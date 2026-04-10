@@ -8,6 +8,7 @@ Reusable Claude Code skills, subagent definitions, and orchestration guides buil
 skills/          Skill source and documentation (browseable)
   handoff/       Hand off work to a fresh agent or subagent
 .claude/skills/  Symlinked or copied — makes skills functional when cloned
+statusline/      Claude Code status line (installable tool)
 guides/          Workflow guides and patterns
 docs/            Roadmap and project planning
 ```
@@ -21,6 +22,12 @@ docs/            Roadmap and project planning
 | `/plan-me-this` | Scaffold a multi-phase task package from a plan | Planned |
 
 See [docs/roadmap.md](docs/roadmap.md) for the full list.
+
+## Tools
+
+| Tool | Description | Install |
+|---|---|---|
+| [Status Line](statusline/) | Context window usage bar for the Claude Code CLI | `./statusline/install.sh` |
 
 ## Guides
 
