@@ -81,7 +81,7 @@ fi
 ## Uninstall
 
 ```bash
-rm ~/.claude/statusline.sh
+./statusline/uninstall.sh
 ```
 
-Then remove the `"statusLine"` block from `~/.claude/settings.json`.
+Removes the script and the `statusLine` key from `~/.claude/settings.json`, leaving all other settings intact. Restart Claude Code to apply.
