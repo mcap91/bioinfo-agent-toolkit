@@ -1,2 +1,6 @@
 *.skill
 .claude/skills/
+
+# kb-graph generated output
+KB_INDEX.md
+graph.html
