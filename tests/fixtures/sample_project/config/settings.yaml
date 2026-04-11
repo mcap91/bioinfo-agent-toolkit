@@ -1,0 +1,11 @@
+# Application settings
+app:
+  name: "Sample Project"
+  version: "1.0.0"
+
+paths:
+  config_module: "src/core/config.py"
+
+database:
+  url: "sqlite:///app.db"
+  pool_size: 5
