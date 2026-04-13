@@ -5,13 +5,14 @@
 
 ---
 
-## 0. Current State (updated 2026-04-10)
+## 0. Current State (updated 2026-04-13)
 
-**Status**: Phase 1 complete. Next up: Phase 1.5 (mutation tests).
+**Status**: Phase 1.5 complete. Next up: Phase 2 (query commands).
 
 **Key files**:
 - `phoam_paint/kb_graph.py` — the tool (single file, ~1000 lines, stdlib only)
 - `tests/fixtures/sample_project/` — fixture project with known graph properties
+- `tests/test_graph_mutations.py` — Phase 1.5 mutation tests (20 tests)
 - `docs/phoam_paint/plan.md` — this file (spec + build order)
 - `docs/phoam_paint/foam_paint_reference.md` — detailed parser/output reference
 - `docs/phoam_paint/check_graph_reference.md` — `/check_graph` slash command content
@@ -36,7 +37,7 @@ graph = build_graph("/path/to/repo")
 **What's stubbed** (prints "not yet implemented"):
 `init`, `uninit`, `neighbors`, `traverse`, `path`, `orphans`, `analyze`
 
-**To resume**: Read Phase 1.5 below, then write `tests/test_graph_mutations.py`.
+**To resume**: Read Phase 2 below, then implement query commands in `kb_graph.py`.
 
 ---
 
@@ -463,21 +464,26 @@ correct KB_INDEX.md.
 - Phase 3 (visualization) was merged into Phase 1 since graph.html is a
   mandatory rebuild output, not a separate command.
 
-### Phase 1.5: Mutation Tests — NEXT
+### Phase 1.5: Mutation Tests — DONE (2026-04-13)
 
 **Goal**: Verify that `rebuild` correctly detects graph changes when files
 are modified. This validates the change-detection story that `/check_graph`
 and the pre-commit hook depend on.
 
-1. Write `tests/test_graph_mutations.py` — a Python test script that:
-   a. Copies the fixture project to a temp directory
-   b. Runs `rebuild`, asserts baseline (10 nodes, 13 edges, 2 orphans)
-   c. Adds a new `.py` file with imports → asserts new node + edges appear
-   d. Removes an import line from an existing file → asserts edge disappears
-   e. Adds a `[[wiki-link]]` to a markdown file → asserts cross-type edge appears
-   f. Creates a new orphan file → asserts orphan count increases
-   g. Adds a `.phoamignore` entry → asserts ignored file disappears from graph
-2. Run tests, fix any issues found
+1. ~~Write `tests/test_graph_mutations.py`~~ — 20 tests across 8 test classes:
+   a. ~~Baseline assertions: counts (10/13/2), orphan identity, all import edges,
+      all wiki-link edges, config edge, most-connected node, KB_INDEX.md output,
+      graph.html output~~
+   b. ~~Add new `.py` file with imports → new node + 2 edges appear (11 nodes, 15 edges)~~
+   c. ~~Remove import line → edge disappears (12 edges)~~
+   d. ~~Add `[[wiki-link]]` to markdown → cross-type edge appears, orphan resolved~~
+   e. ~~Add `[[wiki-link#section]]` → edge with section metadata~~
+   f. ~~Create orphan files (`.py` and `.md`) → orphan count increases~~
+   g. ~~`.phoamignore` by filename, by directory, and for connected files → nodes
+      and edges removed~~
+   h. ~~Delete connected file → node + all its edges removed~~
+   i. ~~Output tests: KB_INDEX.md and graph.html reflect mutations~~
+2. ~~All 20 tests pass (0.09s)~~
 
 ### Phase 2: Query Commands
 
@@ -523,7 +529,66 @@ reverses it cleanly.
 4. Update `docs/roadmap.md` to mark phoam_paint components as completed
 5. Update `README.md` skills table
 
-### Phase 5: Additional Parsers (stretch)
+### Phase 5: Agent A/B Experiment
+
+**Goal**: Prove that `/check_graph` helps a Claude agent catch distant-impact
+changes that it would otherwise miss. This is the "does it actually work?"
+validation — results go in the README as evidence for users.
+
+**Scenario**: A change to one file silently breaks a distant file (2+ hops
+away in the graph). An agent that only looks locally will miss the breakage.
+An agent with `/check_graph` will discover it via blast-radius traversal.
+
+**Fixture design** (extends `tests/fixtures/sample_project/`):
+- Change the `Config` constructor signature in `src/core/config.py` (e.g.,
+  rename `db_url` parameter to `database_url`)
+- This breaks `database.py` (depth 1) which instantiates `Config`, and
+  transitively affects `routes.py` and `auth.py` (depth 2) which use
+  `Database` — but the breakage is **in config.py**, which is 2-3 hops from
+  `routes.py`
+- An agent told "rename the `db_url` param to `database_url` in config.py"
+  must also update `database.py` and any callers that pass `db_url=` — but
+  will it find them all?
+
+**Test script** (`tests/test_agent_experiment.py`):
+1. Copy fixture project to two temp directories (A and B)
+2. Run `kb-graph init` on project B (installs `/check_graph`, KB_INDEX.md)
+3. Spawn Claude Code subprocess on project A (no graph tooling):
+   ```
+   claude -p "Rename the db_url parameter to database_url in config.py.
+   Update all code that uses it. Do not explain, just make the changes."
+   ```
+4. Spawn Claude Code subprocess on project B (with `/check_graph`):
+   ```
+   claude -p "Run /check_graph 'rename db_url to database_url in config.py'
+   to understand the impact, then make the change. Update all affected code.
+   Do not explain, just make the changes."
+   ```
+5. For each project, scan the resulting files and check:
+   - Did `config.py` get updated? (both should pass)
+   - Did `database.py` get updated? (both likely pass — depth 1)
+   - Did callers that pass `db_url=` get updated? (graph-aided agent
+     more likely to catch)
+   - Are there any remaining references to the old `db_url` name?
+6. Record results: which agent caught all references, which missed some
+
+**What we're measuring**:
+- **Completeness**: did the agent find and update every reference?
+- **Depth**: did the agent look beyond the immediate file?
+- **Confidence**: did the agent check its own work?
+
+**Output**: A structured results table in `phoam_paint/README.md` showing
+both runs side-by-side. This is not a pass/fail test — it's a documented
+experiment that demonstrates the tool's value.
+
+**Notes**:
+- Requires Claude Code CLI installed and API access
+- Results are non-deterministic (LLM behavior varies) — run multiple
+  times and report the pattern, not a single run
+- This is a manual/semi-automated validation, not a CI test
+- Consider recording the full agent transcript for each run
+
+### Phase 6: Additional Parsers (stretch)
 
 **Goal**: support beyond Python/Markdown.
 
