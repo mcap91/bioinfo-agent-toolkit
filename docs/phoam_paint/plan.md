@@ -7,21 +7,46 @@
 
 ## 0. Current State (updated 2026-04-13)
 
-**Status**: Phase 1.5 complete. Next up: Phase 2 (query commands).
+**Status**: Phase 5 in progress — experiment ran (5 trials), results show
+the graph has blind spots that need fixing before it reliably outperforms
+grep. Both agents scored 40% perfect. The system needs improvement.
 
 **Key files**:
-- `phoam_paint/kb_graph.py` — the tool (single file, ~1000 lines, stdlib only)
-- `tests/fixtures/sample_project/` — fixture project with known graph properties
+- `phoam_paint/kb_graph.py` — the tool (single file, ~2050 lines, stdlib only)
+- `phoam_paint/install.sh` — copies kb_graph.py to `~/.local/bin/kb-graph`
+- `phoam_paint/uninstall.sh` — removes `~/.local/bin/kb-graph`
+- `tests/fixtures/sample_project/` — fixture project with known graph properties (10 nodes, 13 edges)
 - `tests/test_graph_mutations.py` — Phase 1.5 mutation tests (20 tests)
+- `tests/test_generated_graph.py` — Phase 2 generated-graph correctness tests (28 tests, 100-node project)
+- `tests/test_agent_experiment.py` — Phase 5 A/B experiment script (44-file enhanced fixture, --clean, --save-transcripts)
+- `tests/experiment_transcripts/` — agent transcripts from 5 trials
 - `docs/phoam_paint/plan.md` — this file (spec + build order)
 - `docs/phoam_paint/foam_paint_reference.md` — detailed parser/output reference
-- `docs/phoam_paint/check_graph_reference.md` — `/check_graph` slash command content
+- `docs/phoam_paint/check_graph_reference.md` — `/check_graph` skill reference content
 
 **What works now**:
 ```bash
-python3 phoam_paint/kb_graph.py rebuild tests/fixtures/sample_project/
+# Install globally
+./phoam_paint/install.sh          # or: ./install.sh phoam_paint
+# Uninstall globally
+./phoam_paint/uninstall.sh        # or: ./uninstall.sh phoam_paint
+
+# Set up a project
+kb-graph init /path/to/repo
+# Rebuilds graph, installs hook, CLAUDE.md rules, /check_graph skill, .gitignore
+
+kb-graph rebuild tests/fixtures/sample_project/
 # Produces KB_INDEX.md + graph.html in the target directory
 # Output: 10 nodes, 13 edges, 2 orphans
+
+kb-graph neighbors config.py --path tests/fixtures/sample_project/
+kb-graph traverse database.py --path tests/fixtures/sample_project/
+kb-graph path api-design.md config.py --path tests/fixtures/sample_project/
+kb-graph orphans --path tests/fixtures/sample_project/
+kb-graph analyze --path tests/fixtures/sample_project/
+
+kb-graph uninit /path/to/repo
+# Confirms, then reverses everything init did
 ```
 
 **How to call the graph engine from Python** (for tests):
@@ -29,15 +54,17 @@ python3 phoam_paint/kb_graph.py rebuild tests/fixtures/sample_project/
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from phoam_paint.kb_graph import build_graph, write_kb_index, write_graph_html
+from phoam_paint.kb_graph import resolve_node, build_adjacency, bfs_blast_radius, bfs_shortest_path
 
 graph = build_graph("/path/to/repo")
 # graph = {"nodes": {path: {description, group, type}, ...}, "edges": [{from, to, type, section}, ...]}
 ```
 
-**What's stubbed** (prints "not yet implemented"):
-`init`, `uninit`, `neighbors`, `traverse`, `path`, `orphans`, `analyze`
+**What's stubbed**: nothing — all commands are implemented.
 
-**To resume**: Read Phase 2 below, then implement query commands in `kb_graph.py`.
+**To resume**: Read Phase 5 below — the experiment ran but exposed graph
+blind spots. Section "Phase 5a: Fix graph blind spots" has the concrete
+improvement plan. Start there.
 
 ---
 
@@ -65,7 +92,8 @@ and orphan detection.
 | Config file | Optional `.phoamignore` only | Gitignore syntax for excluding directories. No other config. |
 | graph.html | Mandatory output | The user explicitly requires visualization as a core deliverable |
 | D3.js via CDN | Yes | Keeps the HTML self-contained (one file), avoids bundling JS |
-| Init command | All-in-one | Sets up hook, CLAUDE.md rules, slash command — everything embedded in kb_graph.py |
+| Init command | All-in-one | Sets up hook, CLAUDE.md rules, check_graph skill — everything embedded in kb_graph.py |
+| check_graph | **Skill**, not command | Skills (`.claude/skills/`) are agent-invocable — the agent can run check_graph autonomously before multi-file changes. Commands (`.claude/commands/`) are user-invoked only. **Do not change this back to a command.** |
 
 ### What we learned from references
 
@@ -94,7 +122,7 @@ kb-graph init /path/to/repo
 #   1. Scans the repo, builds the graph
 #   2. Generates KB_INDEX.md at repo root
 #   3. Generates graph.html at repo root
-#   4. Creates .claude/commands/check_graph.md (slash command)
+#   4. Creates .claude/skills/check_graph/SKILL.md (agent-invocable skill)
 #   5. Creates pre-commit hook + sets git config core.hooksPath
 #   6. Appends knowledge-graph rules to CLAUDE.md (creates if missing)
 #   7. Adds graph.html to .gitignore
@@ -118,7 +146,7 @@ kb-graph uninit [/path/to/repo]           # defaults to cwd
 # What uninit does:
 #   1. Removes KB_INDEX.md
 #   2. Removes graph.html
-#   3. Removes .claude/commands/check_graph.md
+#   3. Removes .claude/skills/check_graph/SKILL.md
 #   4. Removes the pre-commit hook (or just the phoam_paint block if
 #      the hook file contains other hooks)
 #   5. Reverts git config core.hooksPath (only if we set it)
@@ -326,9 +354,12 @@ If `scripts/hooks/` already has a pre-commit, append rather than overwrite.
    code. Or use `/check_graph <description>` for a full impact report.
 ```
 
-### /check_graph slash command
+### /check_graph skill
 
-Written to `.claude/commands/check_graph.md`. Spawns an Explore agent that:
+Written to `.claude/skills/check_graph/SKILL.md`. This is a **skill**, not a
+command, so the agent can invoke it autonomously (e.g., before implementing a
+multi-file change) — not just when the user types `/check_graph`. Spawns an
+Explore agent that:
 1. Runs `kb-graph rebuild .` to ensure the index is current
 2. Reads KB_INDEX.md for project structure
 3. Identifies entry-point files for the described change
@@ -378,7 +409,7 @@ phoam_paint/
 
 | Scope | Command | What it does |
 |-------|---------|-------------|
-| **Project** | `kb-graph uninit .` | Reverses `init` — removes KB_INDEX.md, graph.html, hook, slash command, CLAUDE.md rules, .gitignore entry. The tool stays installed globally. |
+| **Project** | `kb-graph uninit .` | Reverses `init` — removes KB_INDEX.md, graph.html, hook, check_graph skill, CLAUDE.md rules, .gitignore entry. The tool stays installed globally. |
 | **Global** | `./phoam_paint/uninstall.sh` | Removes `~/.local/bin/kb-graph`. The tool is gone from the system. Does NOT touch any project — run `uninit` first on each project if you want a full clean removal. |
 
 Both are safe: `uninit` confirms before acting and only removes what `init`
@@ -485,108 +516,212 @@ and the pre-commit hook depend on.
    i. ~~Output tests: KB_INDEX.md and graph.html reflect mutations~~
 2. ~~All 20 tests pass (0.09s)~~
 
-### Phase 2: Query Commands
+### Phase 2: Query Commands — DONE (2026-04-13)
 
 **Goal**: all query commands work and produce correct output.
 
-1. Implement `neighbors` — direct connections (inbound + outbound)
-2. Implement `traverse` — BFS to depth N, with grep-for-references per file,
-   output format matching Section 5 blast-radius spec
-3. Implement `path` — BFS shortest path between two nodes
-4. Implement `orphans` — nodes with degree 0
-5. Implement `analyze` — node/edge counts, top-N most-connected, group breakdown
-6. **Test**: run each command against fixtures, verify output
+1. ~~Implement `neighbors` — direct connections (inbound + outbound)~~
+2. ~~Implement `traverse` — BFS to depth N, with grep-for-references per file,
+   output format matching Section 5 blast-radius spec~~
+3. ~~Implement `path` — BFS shortest path between two nodes~~
+4. ~~Implement `orphans` — nodes with degree 0~~
+5. ~~Implement `analyze` — node/edge counts, top-N most-connected, group breakdown~~
+6. ~~**Test**: run each command against fixtures, verify output~~
 
-### Phase 3: Init & Uninit Commands
+**Implementation notes:**
+- Added `resolve_node()` helper for flexible node name input — accepts exact
+  paths, basenames (`config.py`), partial paths (`core/config.py`), or stems
+  (`config`). Resolves unambiguously or returns None.
+- Blast radius (`traverse`) follows inbound edges only — traces dependents
+  (files that depend on the changed file), not dependencies. This correctly
+  answers "what breaks if I change this file?"
+- For each file in the blast radius, greps for the target node's basename and
+  shows matching lines (capped at 5 per file), per Section 5 spec.
+- Risk level = distinct groups in the radius: 1 = LOW, 2 = MEDIUM, 3+ = HIGH.
+- `path` uses bidirectional BFS (follows edges in both directions) to find
+  the shortest connection between any two nodes.
+- All commands build the graph from scratch (no cached state), per spec.
+- Added `tests/test_generated_graph.py` — 28 tests against a programmatically
+  generated 100-node project (40 workers, 40 guides, 15 orphans, 116 edges).
+  Validates correctness of all query helpers at non-trivial scale.
+- Total test suite: 48 tests (20 mutation + 28 generated), all passing (~0.3s).
+
+### Phase 3: Init & Uninit Commands — DONE (2026-04-13)
 
 (Was Phase 4 — renumbered since visualization was merged into Phase 1.)
 
 **Goal**: `kb-graph init .` sets up a fresh project completely. `kb-graph uninit .`
 reverses it cleanly.
 
-1. Embed pre-commit hook script as string constant (already done — `PRE_COMMIT_HOOK`)
-2. Embed CLAUDE.md rules as string constant (already done — `CLAUDE_MD_RULES`)
-3. Embed check_graph.md slash command as string constant
-4. Implement `init` command: run rebuild, write hook, set git config, write
-   slash command, append CLAUDE.md, update .gitignore
-5. Implement `uninit` command: remove KB_INDEX.md, graph.html, hook, slash
-   command, CLAUDE.md rules section, .gitignore entry, .phoamignore. Confirm
-   before acting. Handle edge cases (hook file has other content, CLAUDE.md
-   has content above/below the rules section)
-6. **Test**: run `init` against a fresh temp directory, verify all files created.
+1. ~~Embed pre-commit hook script as string constant (already done — `PRE_COMMIT_HOOK`)~~
+2. ~~Embed CLAUDE.md rules as string constant (already done — `CLAUDE_MD_RULES`)~~
+3. ~~Embed check_graph skill as string constant (`CHECK_GRAPH_SKILL`)~~
+4. ~~Implement `init` command: run rebuild, write hook, set git config, write
+   skill, append CLAUDE.md, update .gitignore~~
+5. ~~Implement `uninit` command: remove KB_INDEX.md, graph.html, hook, skill,
+   CLAUDE.md rules section, .gitignore entry, .phoamignore. Confirm before
+   acting. Handle edge cases (hook file has other content, CLAUDE.md has
+   content above/below the rules section)~~
+6. ~~**Test**: run `init` against a fresh temp directory, verify all files created.
    Then run `uninit`, verify everything is removed and the directory is back
-   to its original state
+   to its original state~~
 
-### Phase 4: Install/Uninstall Scripts + README
+**Implementation notes:**
+- All three string constants embedded in kb_graph.py: `PRE_COMMIT_HOOK`,
+  `CLAUDE_MD_RULES`, `CHECK_GRAPH_SKILL`. No external template files.
+- check_graph is a **skill** (`.claude/skills/check_graph/SKILL.md`), not a
+  command. Skills have YAML frontmatter with a `description` field, which lets
+  the agent discover and invoke the skill autonomously — e.g., before
+  implementing a multi-file change. Commands are user-invoked only.
+- `init` is idempotent: running twice does not duplicate hook blocks, CLAUDE.md
+  rules, or .gitignore lines.
+- `uninit` confirms before acting, prints a summary of what will be removed.
+  Handles edge cases: hook file with other content (removes only the phoam_paint
+  block), CLAUDE.md with other sections (removes only the rules section),
+  .gitignore with other entries (removes only KB_INDEX.md and graph.html lines).
+- When appending to an existing pre-commit hook, the shebang is stripped to avoid
+  duplicates. When removing the hook block, a bare shebang is not considered
+  "other content" — the file is deleted entirely.
+- Clean round-trip verified: `init` then `uninit` restores the directory to its
+  original state (no leftover files, no modified content, git config reverted).
+- Existing 48 tests still pass (~0.3s).
+
+### Phase 4: Install/Uninstall Scripts — DONE (2026-04-13)
 
 **Goal**: installable and removable from GitHub.
 
-1. Create `phoam_paint/install.sh` (same pattern as `statusline/install.sh`)
-2. Create `phoam_paint/uninstall.sh` (same pattern as `statusline/uninstall.sh` —
-   removes `~/.local/bin/kb-graph`)
-3. Create `phoam_paint/README.md` with install instructions, usage, examples,
-   uninstall instructions
-4. Update `docs/roadmap.md` to mark phoam_paint components as completed
-5. Update `README.md` skills table
+1. ~~Create `phoam_paint/install.sh` (same pattern as `statusline/install.sh`)~~
+2. ~~Create `phoam_paint/uninstall.sh` (same pattern as `statusline/uninstall.sh` —
+   removes `~/.local/bin/kb-graph`)~~
+3. ~~Create `phoam_paint/README.md`~~ (already exists — updated)
+4. ~~Update `docs/roadmap.md` to mark phoam_paint components as completed~~
+5. ~~Update `README.md` tools table~~
 
-### Phase 5: Agent A/B Experiment
+**Implementation notes:**
+- `install.sh` copies `kb_graph.py` to `~/.local/bin/kb-graph`, makes it
+  executable. Detects if already installed and up to date (idempotent).
+  Warns if `~/.local/bin` is not on PATH.
+- `uninstall.sh` removes `~/.local/bin/kb-graph`. Safe to run if already
+  removed (warns, does not error). Reminds user to run `kb-graph uninit`
+  on projects first.
+- Top-level `./install.sh phoam_paint` and `./uninstall.sh phoam_paint`
+  discover and run the scripts correctly.
+- Existing 48 tests still pass (~0.3s).
+
+### Phase 5: Agent A/B Experiment — IN PROGRESS (started 2026-04-13)
 
 **Goal**: Prove that `/check_graph` helps a Claude agent catch distant-impact
 changes that it would otherwise miss. This is the "does it actually work?"
-validation — results go in the README as evidence for users.
+validation — results go in the README as the primary evidence for users.
+This is the most important test in the project.
 
-**Scenario**: A change to one file silently breaks a distant file (2+ hops
-away in the graph). An agent that only looks locally will miss the breakage.
-An agent with `/check_graph` will discover it via blast-radius traversal.
+**What was done (2026-04-13)**:
 
-**Fixture design** (extends `tests/fixtures/sample_project/`):
-- Change the `Config` constructor signature in `src/core/config.py` (e.g.,
-  rename `db_url` parameter to `database_url`)
-- This breaks `database.py` (depth 1) which instantiates `Config`, and
-  transitively affects `routes.py` and `auth.py` (depth 2) which use
-  `Database` — but the breakage is **in config.py**, which is 2-3 hops from
-  `routes.py`
-- An agent told "rename the `db_url` param to `database_url` in config.py"
-  must also update `database.py` and any callers that pass `db_url=` — but
-  will it find them all?
+1. Increased difficulty — enhanced fixture from 10 files to 44 files:
+   - 12 files with 23 `db_url` references across 7 directories (depths 0-3)
+   - 24 noise files (no db_url) across src/core, src/api, src/workers, tests, scripts, docs
+   - New reference types: dict unpacking, f-strings, intermediate var attribute
+     access, shell JSON parsing, markdown code fences, depth-3 chains
+2. Tightened experiment — added `--clean` flag, model/CLI version recording,
+   timing stats per trial, file-level miss tracking
+3. Ran 5 trials (Sonnet 4.6, Claude CLI 2.1.105, trial 6 killed mid-run)
 
-**Test script** (`tests/test_agent_experiment.py`):
-1. Copy fixture project to two temp directories (A and B)
-2. Run `kb-graph init` on project B (installs `/check_graph`, KB_INDEX.md)
-3. Spawn Claude Code subprocess on project A (no graph tooling):
-   ```
-   claude -p "Rename the db_url parameter to database_url in config.py.
-   Update all code that uses it. Do not explain, just make the changes."
-   ```
-4. Spawn Claude Code subprocess on project B (with `/check_graph`):
-   ```
-   claude -p "Run /check_graph 'rename db_url to database_url in config.py'
-   to understand the impact, then make the change. Update all affected code.
-   Do not explain, just make the changes."
-   ```
-5. For each project, scan the resulting files and check:
-   - Did `config.py` get updated? (both should pass)
-   - Did `database.py` get updated? (both likely pass — depth 1)
-   - Did callers that pass `db_url=` get updated? (graph-aided agent
-     more likely to catch)
-   - Are there any remaining references to the old `db_url` name?
-6. Record results: which agent caught all references, which missed some
+**Results (5 trials)**:
 
-**What we're measuring**:
-- **Completeness**: did the agent find and update every reference?
-- **Depth**: did the agent look beyond the immediate file?
-- **Confidence**: did the agent check its own work?
+| Trial | A missed | B missed | A files missed | B files missed |
+|-------|----------|----------|----------------|----------------|
+| 1 | 5 | 0 | settings.yaml, deployment.md, health_check.sh | none |
+| 2 | 0 | 5 | none | deployment.md, health_check.sh, seed.py (comment) |
+| 3 | 5 | 1 | settings.yaml, deployment.md, health_check.sh | seed.py (comment) |
+| 4 | 1 | 0 | seed.py (comment) | none |
+| 5 | 0 | 1 | none | seed.py (comment) |
 
-**Output**: A structured results table in `phoam_paint/README.md` showing
-both runs side-by-side. This is not a pass/fail test — it's a documented
-experiment that demonstrates the tool's value.
+| Metric | Agent A | Agent B |
+|--------|---------|---------|
+| Perfect runs | 2/5 (40%) | 2/5 (40%) |
+| Avg missed refs | 2.2 | 1.4 |
+| Avg time | 60.3s | 116.1s |
 
-**Notes**:
-- Requires Claude Code CLI installed and API access
-- Results are non-deterministic (LLM behavior varies) — run multiple
-  times and report the pattern, not a single run
-- This is a manual/semi-automated validation, not a CI test
-- Consider recording the full agent transcript for each run
+**Verdict**: Agent B is NOT reliably outperforming Agent A. Both score 40%
+perfect. Agent B misses fewer refs on average but takes 2x longer. The
+graph needs to be fixed before it provides reliable value over grep.
+
+#### Root cause analysis
+
+The enhanced graph has 39 nodes but **26 orphans (67%)**. Two files with
+`db_url` references are invisible to the graph:
+
+| Orphan file | Why it's orphaned | Impact |
+|-------------|-------------------|--------|
+| `docs/deployment.md` | Markdown file with no `[[wiki-links]]` — just prose with code fences containing `db_url` | Agent B missed it in trial 2 (2 refs). The graph can't surface a doc that doesn't link to anything. |
+| `scripts/health_check.sh` | Shell parser only detects `source` commands. This script uses `curl` and `python3 -c`, not `source`. | Agent B missed it in trial 2 (2 refs). Graph sees it as an island. |
+
+When Agent B relies on the graph's blast radius, it misses these orphans.
+Agent A just greps and sometimes finds them, sometimes doesn't (non-deterministic).
+
+The `scripts/seed.py` comment miss (`# Dict unpacking — db_url is a key`)
+is a different issue — the graph DOES surface seed.py (it imports config.py),
+but Agent B sometimes leaves comments unchanged. Agent A has the same
+behavior (trial 4). This is agent behavior, not a graph problem.
+
+**Key insight**: The graph reliably surfaces import-connected files (9 of 12
+db_url files are in the blast radius). But it's WORSE than grep for orphan
+files because Agent B trusts the graph and stops looking. The graph needs
+to either (a) have fewer orphans, or (b) the check_graph skill needs to
+compensate with a grep sweep.
+
+#### Phase 5a: Fix graph blind spots — TODO
+
+These improvements target the root causes above. Do them in order, re-run
+the experiment after each to measure impact.
+
+##### 1. Add grep sweep to check_graph skill
+
+The `/check_graph` skill (embedded in `kb_graph.py` as `CHECK_GRAPH_SKILL`)
+currently tells the agent to traverse the graph and read affected files.
+It should ALSO tell the agent to grep project-wide for the target identifier
+after traversing, to catch orphan files the graph missed.
+
+**Change**: In `kb_graph.py`, modify the `CHECK_GRAPH_SKILL` string constant.
+After the "Run `kb-graph traverse`" step, add a step: "Grep the entire
+project for the identifier being changed. Compare grep results against the
+graph results. Any file that grep finds but the graph doesn't is an orphan
+that may also need updating."
+
+This is the highest-leverage fix: the graph narrows the search, grep catches
+stragglers. Agent B gets the best of both approaches.
+
+**Test**: Re-run `--trials 6 --model sonnet --save-transcripts --clean`.
+Agent B should now catch deployment.md and health_check.sh consistently.
+
+##### 2. Consider a "string-match" edge type (optional, lower priority)
+
+Add an edge type to `kb_graph.py` that scans all files for identifiers
+defined in tracked code files (function names, class attributes, parameter
+names). This would connect `docs/deployment.md` → `config.py` because
+deployment.md contains `db_url` which is a parameter name in config.py.
+
+**Caution**: This could be expensive and noisy in large projects. The grep
+sweep in check_graph (fix #1 above) achieves the same goal more cheaply
+at query time rather than at graph-build time.
+
+##### 3. Re-run the experiment
+
+After fix #1, re-run:
+```bash
+python3 tests/test_agent_experiment.py --trials 6 --model sonnet --save-transcripts --clean
+```
+
+**Success criteria**: Agent B should achieve >80% perfect runs (>4/6) and
+Agent A should remain at ~40% or below. If Agent B is not clearly winning,
+investigate transcript to see if check_graph is actually running the grep
+sweep and if the agent is acting on the results.
+
+##### 4. Update README with final results
+
+Once Agent B reliably outperforms Agent A, update `phoam_paint/README.md`
+Phase 5 section with final results. Include the improvement that made the
+difference (grep sweep in check_graph).
 
 ### Phase 6: Additional Parsers (stretch)
 
@@ -610,7 +745,7 @@ experiment that demonstrates the tool's value.
 | Foam as dependency? | No. Headless-first. Foam is design inspiration only. |
 | Where does it live in this repo? | `phoam_paint/` directory (same level as `statusline/`). |
 | How does it install? | `curl` one file to `~/.local/bin/kb-graph`, or `install.sh`. |
-| `/check_graph` bundled or separate? | Bundled. `init` writes the slash command into the target project. |
+| `/check_graph` bundled or separate? | Bundled. `init` writes the skill into the target project's `.claude/skills/`. It is a skill (not a command) so the agent can invoke it autonomously. |
 
 ## 11. Constraints
 

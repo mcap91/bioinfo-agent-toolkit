@@ -28,7 +28,8 @@ components:
    commit, stages the updated KB_INDEX.md, and includes it in the same commit.
    The index is always in sync — never stale, never one commit behind.
 
-6. **`/check_graph`** — A Claude Code slash command that spawns an agent to run
+6. **`/check_graph`** — A Claude Code skill that the agent can invoke
+   autonomously or the user can trigger explicitly. Spawns an agent to run
    graph queries, read affected files, and return a structured impact report
    without bloating the main conversation context.
 
@@ -67,7 +68,7 @@ manual upkeep.
   CLAUDE.md                            # Rules: read index, use wiki-links, query graph
   scripts/kb_graph.py                  # Graph CLI — the engine
   scripts/hooks/pre-commit             # Runs rebuild-index, stages KB_INDEX.md
-  .claude/commands/check_graph.md      # /check_graph slash command
+  .claude/skills/check_graph/SKILL.md  # /check_graph skill (agent-invocable)
   .vscode/settings.json                # Foam config (create or merge into existing)
 ```
 
@@ -394,9 +395,9 @@ per-clone — add it to your repo's setup instructions.
 
 ---
 
-### Step 3: Create `/check_graph` slash command
+### Step 3: Create `/check_graph` skill
 
-Create `.claude/commands/check_graph.md`:
+Create `.claude/skills/check_graph/SKILL.md`:
 
 ```markdown
 Analyze the impact of a proposed change by querying the project knowledge graph.
@@ -616,7 +617,7 @@ current automatically.
 ```
  Plan feature          Agent reads           /check_graph            Agent writes
  (phased docs)  ──►  KB_INDEX.md    ──►   blast radius report  ──►  code
-                     (CLAUDE.md rule)      (slash command)
+                     (CLAUDE.md rule)      (skill)
                                                                        │
                                                                        ▼
                                                                   git commit

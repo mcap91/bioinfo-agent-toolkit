@@ -1,23 +1,40 @@
-Analyze the impact of a proposed change by querying the project knowledge graph.
+---
+name: check_graph
+description: Analyze the impact of a proposed change by querying the project knowledge graph. Use before implementing any feature or fix that touches multiple files, after completing edits to verify blast radius, or when the user asks to check the graph. Runs kb-graph traverse/neighbors to surface affected files and returns a structured impact report.
+---
 
-Change description: $ARGUMENTS
+# check_graph
+
+Analyze the impact of a proposed change using the project's knowledge graph.
+
+## When to use
+
+- Before implementing a feature that may touch multiple systems
+- After completing edits, to verify nothing was missed
+- When the user says "/check_graph" or asks about impact/blast radius
+- When you are unsure what files a change might affect
 
 ## Instructions
 
+Determine what change is being analyzed. This comes from one of:
+- The user's description (e.g., "/check_graph rename db_url to database_url")
+- The current conversation context (e.g., you just edited config.py)
+- Your own judgment (e.g., you're about to start a multi-file change)
+
 Spawn an Explore agent to do the heavy lifting. This keeps the main context clean.
 
-Use the Agent tool with subagent_type "Explore" and the following prompt:
+Use the Agent tool with subagent_type "Explore" and the following prompt,
+filling in the change description:
 
 ---
 
 You are analyzing the impact of a proposed change in this project.
 
-**Change description**: $ARGUMENTS
+**Change description**: <describe the change here>
 
 **Your task**:
 
-1. Run `python scripts/kb_graph.py rebuild-index` to ensure KB_INDEX.md is
-   current.
+1. Run `kb-graph rebuild .` to ensure KB_INDEX.md is current.
 
 2. Read KB_INDEX.md to understand the project structure.
 
@@ -26,8 +43,8 @@ You are analyzing the impact of a proposed change in this project.
 
 4. For each entry point, run blast-radius queries:
    ```
-   python scripts/kb_graph.py traverse <entry-point> --depth 2
-   python scripts/kb_graph.py neighbors <entry-point>
+   kb-graph traverse <entry-point> --depth 2
+   kb-graph neighbors <entry-point>
    ```
 
 5. Read every affected file the graph reveals. Do not skip any.
