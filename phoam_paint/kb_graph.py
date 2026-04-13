@@ -9,6 +9,7 @@ import argparse
 import json
 import os
 import re
+import subprocess
 import sys
 from collections import defaultdict
 from datetime import datetime, timezone
@@ -1087,6 +1088,244 @@ CLAUDE_MD_RULES = """
    code. Or use `/check_graph <description>` for a full impact report.
 """
 
+CHECK_GRAPH_SKILL = """\
+---
+name: check_graph
+description: Analyze the impact of a proposed change by querying the project knowledge graph. Use before implementing any feature or fix that touches multiple files, after completing edits to verify blast radius, or when the user asks to check the graph. Runs kb-graph traverse/neighbors to surface affected files and returns a structured impact report.
+---
+
+# check_graph
+
+Analyze the impact of a proposed change using the project's knowledge graph.
+
+## When to use
+
+- Before implementing a feature that may touch multiple systems
+- After completing edits, to verify nothing was missed
+- When the user says "/check_graph" or asks about impact/blast radius
+- When you are unsure what files a change might affect
+
+## Instructions
+
+Determine what change is being analyzed. This comes from one of:
+- The user's description (e.g., "/check_graph rename db_url to database_url")
+- The current conversation context (e.g., you just edited config.py)
+- Your own judgment (e.g., you're about to start a multi-file change)
+
+Spawn an Explore agent to do the heavy lifting. This keeps the main context clean.
+
+Use the Agent tool with subagent_type "Explore" and the following prompt,
+filling in the change description:
+
+---
+
+You are analyzing the impact of a proposed change in this project.
+
+**Change description**: <describe the change here>
+
+**Your task**:
+
+1. Run `kb-graph rebuild .` to ensure KB_INDEX.md is current.
+
+2. Read KB_INDEX.md to understand the project structure.
+
+3. Identify which modules/systems the change involves. Map them to entry-point
+   files in the index.
+
+4. For each entry point, run blast-radius queries:
+   ```
+   kb-graph traverse <entry-point> --depth 2
+   kb-graph neighbors <entry-point>
+   ```
+
+5. Read every affected file the graph reveals. Do not skip any.
+
+6. If the change involves creating a new module that parallels an existing one
+   in the repo (e.g., a new `qc.py` in a sibling directory where one already
+   exists), identify the existing analog as a **Template** in your report. The
+   implementing agent should read the template before writing the new module.
+
+7. Return a structured impact report:
+
+### Change Summary
+One sentence.
+
+### Entry Points
+Primary files that need edits. List each with its graph key.
+
+### Blast Radius (via graph)
+Files surfaced by traversal, grouped by depth, with WHY each is relevant.
+
+### Template (if applicable)
+Existing in-repo analog that the new module should follow. Include file path and
+the key patterns to replicate (function signatures, return types, how it's wired
+into its parent orchestrator/caller).
+
+### Blockers & Decisions
+- OPEN: questions that must be resolved before implementation
+- DECIDED: existing decisions that constrain this change (quote the source)
+
+### Impact Assessment
+- Scope: Isolated (1-2 files) | Moderate (3-5) | Wide (6+)
+- Breaking: Yes/No
+- Risk: LOW / MEDIUM / HIGH (based on how many packages are in blast radius)
+- Complexity: Simple | Moderate | Complex
+
+### Recommended Approach
+3-5 bullet plan.
+
+### New Wiki-Links Needed
+Specific [[wiki-links]] to add to connect this change into the graph.
+
+---
+
+Once the agent returns, display its report directly to the user.
+"""
+
+# Markers used to identify phoam_paint blocks in files
+_HOOK_START = "# ── phoam_paint pre-commit hook ──"
+_HOOK_END = "# ── end phoam_paint ──"
+_RULES_START = "## Knowledge Graph Rules"
+_GITIGNORE_LINES = ["KB_INDEX.md", "graph.html"]
+
+
+# ── Query Helpers ─────────────────────────────────────────────────────────
+
+def resolve_node(node_input, graph):
+    """Resolve a user-provided node name to a graph node path.
+
+    Tries exact match first, then basename match, then suffix match.
+    Returns the resolved path or None.
+    """
+    nodes = graph["nodes"]
+
+    # Exact match
+    if node_input in nodes:
+        return node_input
+
+    # Basename match (e.g., "config.py" -> "src/core/config.py")
+    matches = [p for p in nodes if os.path.basename(p) == node_input]
+    if len(matches) == 1:
+        return matches[0]
+
+    # Suffix match (e.g., "core/config.py" -> "src/core/config.py")
+    matches = [p for p in nodes if p.endswith("/" + node_input)]
+    if len(matches) == 1:
+        return matches[0]
+
+    # Stem match without extension (e.g., "config" -> "src/core/config.py")
+    if "." not in node_input:
+        matches = [
+            p for p in nodes
+            if os.path.splitext(os.path.basename(p))[0] == node_input
+        ]
+        if len(matches) == 1:
+            return matches[0]
+
+    return None
+
+
+def build_adjacency(graph):
+    """Build inbound/outbound adjacency lists from graph edges."""
+    outbound = defaultdict(list)  # node -> list of edges where node is source
+    inbound = defaultdict(list)   # node -> list of edges where node is target
+    for edge in graph["edges"]:
+        outbound[edge["from"]].append(edge)
+        inbound[edge["to"]].append(edge)
+    return outbound, inbound
+
+
+def bfs_blast_radius(node, graph, max_depth):
+    """BFS from node, following inbound edges only, up to max_depth.
+
+    Traces dependents: files that depend on the changed file, and files
+    that depend on those, etc. This answers "what breaks if I change this?"
+
+    Returns dict mapping node_path -> depth.
+    """
+    _outbound, inbound = build_adjacency(graph)
+    depth_map = {node: 0}
+    frontier = [node]
+
+    for d in range(1, max_depth + 1):
+        next_frontier = []
+        for n in frontier:
+            # Follow inbound edges: who depends on n?
+            for edge in inbound.get(n, []):
+                neighbor = edge["from"]
+                if neighbor not in depth_map:
+                    depth_map[neighbor] = d
+                    next_frontier.append(neighbor)
+        frontier = next_frontier
+
+    return depth_map
+
+
+def bfs_shortest_path(start, end, graph):
+    """BFS shortest path from start to end, following edges in both directions.
+
+    Returns list of node paths from start to end, or None if no path exists.
+    """
+    if start == end:
+        return [start]
+
+    outbound, inbound = build_adjacency(graph)
+    visited = {start}
+    # Queue entries: (current_node, path_so_far)
+    queue = [(start, [start])]
+
+    while queue:
+        current, path = queue.pop(0)
+
+        neighbors = set()
+        for edge in outbound.get(current, []):
+            neighbors.add(edge["to"])
+        for edge in inbound.get(current, []):
+            neighbors.add(edge["from"])
+
+        for neighbor in sorted(neighbors):
+            if neighbor == end:
+                return path + [neighbor]
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append((neighbor, path + [neighbor]))
+
+    return None
+
+
+def grep_references(target_node, file_path, repo_root, max_lines=5):
+    """Grep a file for references to the target node's basename.
+
+    Returns list of (line_number, line_text) tuples, capped at max_lines.
+    """
+    basename = os.path.splitext(os.path.basename(target_node))[0]
+    full_path = os.path.join(repo_root, file_path)
+    matches = []
+
+    try:
+        with open(full_path, "r", errors="ignore") as f:
+            for i, line in enumerate(f, 1):
+                if basename in line:
+                    matches.append((i, line.rstrip()))
+                    if len(matches) >= max_lines:
+                        break
+    except OSError:
+        pass
+
+    return matches
+
+
+def get_edge_label(edge):
+    """Get a short label describing the edge type and relationship."""
+    etype = edge["type"]
+    if etype == "import":
+        return "imports"
+    elif etype == "wiki-link":
+        return "wiki-links to"
+    elif etype == "config-ref":
+        return "references"
+    return etype
+
 
 # ── CLI Commands ───────────────────────────────────────────────────────────
 
@@ -1117,44 +1356,635 @@ def cmd_rebuild(args):
 
 def cmd_init(args):
     """Initialize kb-graph in a repository."""
-    # Stub — Phase 4
-    print("init: not yet implemented (Phase 4)")
+    repo_root = os.path.abspath(args.path)
+    if not os.path.isdir(repo_root):
+        print(f"Error: {repo_root} is not a directory", file=sys.stderr)
+        sys.exit(1)
+
+    # 1. Rebuild (produces KB_INDEX.md + graph.html)
+    graph = build_graph(repo_root)
+    idx_path = write_kb_index(graph, repo_root)
+    html_path = write_graph_html(graph, repo_root)
+
+    node_count = len(graph["nodes"])
+    edge_count = len(graph["edges"])
+    connected = set()
+    for e in graph["edges"]:
+        connected.add(e["from"])
+        connected.add(e["to"])
+    orphan_count = sum(1 for n in graph["nodes"] if n not in connected)
+    print(f"Rebuilt: {node_count} nodes, {edge_count} edges, {orphan_count} orphans")
+    print(f"  {idx_path}")
+    print(f"  {html_path}")
+
+    # 2. Pre-commit hook
+    hooks_dir = os.path.join(repo_root, "scripts", "hooks")
+    os.makedirs(hooks_dir, exist_ok=True)
+    hook_path = os.path.join(hooks_dir, "pre-commit")
+
+    hook_content = PRE_COMMIT_HOOK.strip() + "\n"
+    if os.path.isfile(hook_path):
+        with open(hook_path, "r") as f:
+            existing = f.read()
+        if _HOOK_START in existing:
+            print(f"  pre-commit hook already contains phoam_paint block — skipping")
+        else:
+            # Strip shebang when appending — the existing file already has one
+            block_only = "\n".join(
+                line for line in hook_content.splitlines()
+                if not line.startswith("#!")
+            )
+            with open(hook_path, "a") as f:
+                f.write("\n" + block_only + "\n")
+            print(f"  Appended phoam_paint hook to {hook_path}")
+    else:
+        with open(hook_path, "w") as f:
+            f.write(hook_content)
+        print(f"  Created {hook_path}")
+
+    os.chmod(hook_path, 0o755)
+
+    # Set git config core.hooksPath
+    try:
+        subprocess.run(
+            ["git", "config", "core.hooksPath", "scripts/hooks"],
+            cwd=repo_root, check=True, capture_output=True,
+        )
+        print("  Set git config core.hooksPath = scripts/hooks")
+    except (subprocess.CalledProcessError, FileNotFoundError) as exc:
+        print(f"  Warning: could not set git config core.hooksPath: {exc}",
+              file=sys.stderr)
+
+    # 3. Skill: .claude/skills/check_graph/SKILL.md
+    skill_dir = os.path.join(repo_root, ".claude", "skills", "check_graph")
+    os.makedirs(skill_dir, exist_ok=True)
+    skill_path = os.path.join(skill_dir, "SKILL.md")
+    with open(skill_path, "w") as f:
+        f.write(CHECK_GRAPH_SKILL)
+    print(f"  Created {skill_path}")
+
+    # 4. CLAUDE.md — append Knowledge Graph Rules
+    claude_md_path = os.path.join(repo_root, "CLAUDE.md")
+    rules_block = CLAUDE_MD_RULES.strip() + "\n"
+    if os.path.isfile(claude_md_path):
+        with open(claude_md_path, "r") as f:
+            existing = f.read()
+        if _RULES_START in existing:
+            print("  CLAUDE.md already contains Knowledge Graph Rules — skipping")
+        else:
+            with open(claude_md_path, "a") as f:
+                f.write("\n" + rules_block)
+            print(f"  Appended Knowledge Graph Rules to {claude_md_path}")
+    else:
+        with open(claude_md_path, "w") as f:
+            f.write(rules_block)
+        print(f"  Created {claude_md_path}")
+
+    # 5. .gitignore — add KB_INDEX.md and graph.html
+    gitignore_path = os.path.join(repo_root, ".gitignore")
+    existing_lines = set()
+    if os.path.isfile(gitignore_path):
+        with open(gitignore_path, "r") as f:
+            existing_lines = {line.strip() for line in f}
+
+    lines_to_add = [ln for ln in _GITIGNORE_LINES if ln not in existing_lines]
+    if lines_to_add:
+        with open(gitignore_path, "a") as f:
+            for ln in lines_to_add:
+                f.write(ln + "\n")
+        print(f"  Added {', '.join(lines_to_add)} to .gitignore")
+    else:
+        print("  .gitignore already contains KB_INDEX.md and graph.html — skipping")
+
+    print("\nDone. kb-graph is set up for this project.")
 
 
 def cmd_uninit(args):
     """Remove kb-graph from a repository."""
-    # Stub — Phase 4
-    print("uninit: not yet implemented (Phase 4)")
+    repo_root = os.path.abspath(args.path)
+    if not os.path.isdir(repo_root):
+        print(f"Error: {repo_root} is not a directory", file=sys.stderr)
+        sys.exit(1)
+
+    # Gather what will be removed
+    removals = []
+
+    kb_index_path = os.path.join(repo_root, "KB_INDEX.md")
+    if os.path.isfile(kb_index_path):
+        removals.append(("file", "KB_INDEX.md"))
+
+    graph_html_path = os.path.join(repo_root, "graph.html")
+    if os.path.isfile(graph_html_path):
+        removals.append(("file", "graph.html"))
+
+    skill_path = os.path.join(repo_root, ".claude", "skills", "check_graph", "SKILL.md")
+    if os.path.isfile(skill_path):
+        removals.append(("file", ".claude/skills/check_graph/SKILL.md"))
+
+    hook_path = os.path.join(repo_root, "scripts", "hooks", "pre-commit")
+    if os.path.isfile(hook_path):
+        with open(hook_path, "r") as f:
+            hook_content = f.read()
+        if _HOOK_START in hook_content:
+            if _hook_has_other_content(hook_content):
+                removals.append(("edit", "scripts/hooks/pre-commit (remove phoam_paint block)"))
+            else:
+                removals.append(("file", "scripts/hooks/pre-commit"))
+
+    claude_md_path = os.path.join(repo_root, "CLAUDE.md")
+    if os.path.isfile(claude_md_path):
+        with open(claude_md_path, "r") as f:
+            claude_content = f.read()
+        if _RULES_START in claude_content:
+            cleaned = _remove_rules_section(claude_content)
+            if cleaned.strip():
+                removals.append(("edit", "CLAUDE.md (remove Knowledge Graph Rules section)"))
+            else:
+                removals.append(("file", "CLAUDE.md"))
+
+    gitignore_path = os.path.join(repo_root, ".gitignore")
+    if os.path.isfile(gitignore_path):
+        with open(gitignore_path, "r") as f:
+            gitignore_lines = f.readlines()
+        has_our_lines = any(line.strip() in _GITIGNORE_LINES for line in gitignore_lines)
+        if has_our_lines:
+            remaining = [ln for ln in gitignore_lines if ln.strip() not in _GITIGNORE_LINES]
+            if any(ln.strip() for ln in remaining):
+                removals.append(("edit", ".gitignore (remove KB_INDEX.md and graph.html lines)"))
+            else:
+                removals.append(("file", ".gitignore"))
+
+    phoamignore_path = os.path.join(repo_root, ".phoamignore")
+    if os.path.isfile(phoamignore_path):
+        removals.append(("file", ".phoamignore"))
+
+    # Check if git config core.hooksPath was set to scripts/hooks
+    revert_hooks_path = False
+    try:
+        result = subprocess.run(
+            ["git", "config", "--get", "core.hooksPath"],
+            cwd=repo_root, capture_output=True, text=True,
+        )
+        if result.returncode == 0 and result.stdout.strip() == "scripts/hooks":
+            revert_hooks_path = True
+            removals.append(("config", "git config core.hooksPath (revert to default)"))
+    except FileNotFoundError:
+        pass
+
+    if not removals:
+        print("Nothing to remove — kb-graph is not initialized in this project.")
+        return
+
+    # Confirm before acting
+    print("The following will be removed:\n")
+    for kind, desc in removals:
+        if kind == "file":
+            print(f"  DELETE  {desc}")
+        elif kind == "edit":
+            print(f"  EDIT    {desc}")
+        elif kind == "config":
+            print(f"  REVERT  {desc}")
+
+    print()
+    try:
+        answer = input("Proceed? [y/N] ").strip().lower()
+    except (EOFError, KeyboardInterrupt):
+        print("\nAborted.")
+        return
+
+    if answer != "y":
+        print("Aborted.")
+        return
+
+    # Execute removals
+    for kind, desc in removals:
+        if kind == "file" and desc == "KB_INDEX.md":
+            os.remove(kb_index_path)
+            print(f"  Removed {desc}")
+
+        elif kind == "file" and desc == "graph.html":
+            os.remove(graph_html_path)
+            print(f"  Removed {desc}")
+
+        elif kind == "file" and desc == ".claude/skills/check_graph/SKILL.md":
+            os.remove(skill_path)
+            # Clean up empty directories
+            skill_dir = os.path.dirname(skill_path)
+            if os.path.isdir(skill_dir) and not os.listdir(skill_dir):
+                os.rmdir(skill_dir)
+                skills_dir = os.path.dirname(skill_dir)
+                if os.path.isdir(skills_dir) and not os.listdir(skills_dir):
+                    os.rmdir(skills_dir)
+                    claude_dir = os.path.dirname(skills_dir)
+                    if os.path.isdir(claude_dir) and not os.listdir(claude_dir):
+                        os.rmdir(claude_dir)
+            print(f"  Removed {desc}")
+
+        elif kind == "file" and desc == "scripts/hooks/pre-commit":
+            os.remove(hook_path)
+            # Clean up empty directories
+            hooks_dir = os.path.dirname(hook_path)
+            if os.path.isdir(hooks_dir) and not os.listdir(hooks_dir):
+                os.rmdir(hooks_dir)
+                scripts_dir = os.path.dirname(hooks_dir)
+                if os.path.isdir(scripts_dir) and not os.listdir(scripts_dir):
+                    os.rmdir(scripts_dir)
+            print(f"  Removed {desc}")
+
+        elif kind == "edit" and "pre-commit" in desc:
+            cleaned = _remove_hook_block(hook_content)
+            with open(hook_path, "w") as f:
+                f.write(cleaned)
+            print(f"  {desc}")
+
+        elif kind == "file" and desc == "CLAUDE.md":
+            os.remove(claude_md_path)
+            print(f"  Removed {desc}")
+
+        elif kind == "edit" and "CLAUDE.md" in desc:
+            cleaned = _remove_rules_section(claude_content)
+            with open(claude_md_path, "w") as f:
+                f.write(cleaned)
+            print(f"  {desc}")
+
+        elif kind == "file" and desc == ".gitignore":
+            os.remove(gitignore_path)
+            print(f"  Removed {desc}")
+
+        elif kind == "edit" and ".gitignore" in desc:
+            remaining = [ln for ln in gitignore_lines if ln.strip() not in _GITIGNORE_LINES]
+            with open(gitignore_path, "w") as f:
+                f.writelines(remaining)
+            print(f"  {desc}")
+
+        elif kind == "file" and desc == ".phoamignore":
+            os.remove(phoamignore_path)
+            print(f"  Removed {desc}")
+
+        elif kind == "config":
+            pass  # handled below
+
+    if revert_hooks_path:
+        try:
+            subprocess.run(
+                ["git", "config", "--unset", "core.hooksPath"],
+                cwd=repo_root, check=True, capture_output=True,
+            )
+            print("  Reverted git config core.hooksPath")
+        except (subprocess.CalledProcessError, FileNotFoundError):
+            print("  Warning: could not revert git config core.hooksPath",
+                  file=sys.stderr)
+
+    print("\nDone. kb-graph has been removed from this project.")
+
+
+def _remove_hook_block(content):
+    """Remove the phoam_paint block from a pre-commit hook file."""
+    lines = content.splitlines(keepends=True)
+    result = []
+    in_block = False
+    for line in lines:
+        if _HOOK_START in line:
+            in_block = True
+            # Also remove a preceding blank line if we added one
+            if result and result[-1].strip() == "":
+                result.pop()
+            continue
+        if in_block:
+            if _HOOK_END in line:
+                in_block = False
+            continue
+        result.append(line)
+    return "".join(result)
+
+
+def _hook_has_other_content(content):
+    """True if a hook file has meaningful content outside the phoam_paint block."""
+    cleaned = _remove_hook_block(content)
+    # A bare shebang line is not meaningful on its own
+    for line in cleaned.splitlines():
+        stripped = line.strip()
+        if stripped and not stripped.startswith("#!"):
+            return True
+    return False
+
+
+def _remove_rules_section(content):
+    """Remove the Knowledge Graph Rules section from CLAUDE.md.
+
+    Removes from '## Knowledge Graph Rules' to the next '## ' heading or EOF.
+    """
+    lines = content.splitlines(keepends=True)
+    result = []
+    in_section = False
+    for line in lines:
+        if line.strip().startswith(_RULES_START):
+            in_section = True
+            # Remove a preceding blank line if present
+            if result and result[-1].strip() == "":
+                result.pop()
+            continue
+        if in_section:
+            # Check if we hit the next section heading
+            if line.startswith("## "):
+                in_section = False
+                result.append(line)
+            continue
+        result.append(line)
+    # Remove trailing whitespace/newlines at end
+    text = "".join(result)
+    return text.rstrip("\n") + "\n" if text.strip() else ""
 
 
 def cmd_neighbors(args):
     """Show direct connections of a node."""
-    # Stub — Phase 2
-    print("neighbors: not yet implemented (Phase 2)")
+    repo_root = os.path.abspath(args.path)
+    if not os.path.isdir(repo_root):
+        print(f"Error: {repo_root} is not a directory", file=sys.stderr)
+        sys.exit(1)
+
+    graph = build_graph(repo_root)
+    node = resolve_node(args.node, graph)
+    if node is None:
+        print(f"Error: node '{args.node}' not found in graph", file=sys.stderr)
+        sys.exit(1)
+
+    outbound, inbound = build_adjacency(graph)
+
+    out_edges = outbound.get(node, [])
+    in_edges = inbound.get(node, [])
+
+    print(f"NEIGHBORS: {node}")
+    print()
+
+    if out_edges:
+        print(f"Outbound ({len(out_edges)}):")
+        for edge in sorted(out_edges, key=lambda e: e["to"]):
+            print(f"  -> {edge['to']} ({edge['type']})")
+    else:
+        print("Outbound: none")
+
+    print()
+
+    if in_edges:
+        print(f"Inbound ({len(in_edges)}):")
+        for edge in sorted(in_edges, key=lambda e: e["from"]):
+            print(f"  <- {edge['from']} ({edge['type']})")
+    else:
+        print("Inbound: none")
+
+    print()
+    total = len(out_edges) + len(in_edges)
+    print(f"Total: {total} connections")
 
 
 def cmd_traverse(args):
     """Show blast radius from a node."""
-    # Stub — Phase 2
-    print("traverse: not yet implemented (Phase 2)")
+    repo_root = os.path.abspath(args.path)
+    if not os.path.isdir(repo_root):
+        print(f"Error: {repo_root} is not a directory", file=sys.stderr)
+        sys.exit(1)
+
+    graph = build_graph(repo_root)
+    node = resolve_node(args.node, graph)
+    if node is None:
+        print(f"Error: node '{args.node}' not found in graph", file=sys.stderr)
+        sys.exit(1)
+
+    max_depth = args.depth
+    depth_map = bfs_blast_radius(node, graph, max_depth)
+    outbound, inbound = build_adjacency(graph)
+
+    print(f"BLAST RADIUS: {node}")
+    print()
+
+    # Group nodes by depth
+    by_depth = defaultdict(list)
+    for n, d in sorted(depth_map.items()):
+        by_depth[d].append(n)
+
+    # Depth 0 (the change)
+    print("Depth 0 (the change)")
+    print(f"  └── {node}")
+    print()
+
+    # For each subsequent depth level
+    depth_labels = {
+        1: "direct dependents — MUST review",
+        2: "transitive — CHECK for breakage",
+    }
+
+    for d in range(1, max_depth + 1):
+        nodes_at_depth = sorted(by_depth.get(d, []))
+        if not nodes_at_depth:
+            continue
+
+        label = depth_labels.get(d, f"depth {d}")
+        print(f"Depth {d} ({label})")
+
+        for i, dep_node in enumerate(nodes_at_depth):
+            is_last = (i == len(nodes_at_depth) - 1)
+            connector = "└──" if is_last else "├──"
+            indent = "      " if is_last else "│     "
+
+            # Find the edge that connects this node into the blast radius.
+            # dep_node is the source of an edge pointing to a closer-depth node
+            # (because blast radius follows inbound edges: dep_node -> closer_node).
+            edge_desc = ""
+            for edge in outbound.get(dep_node, []):
+                target = edge["to"]
+                if target in depth_map and depth_map[target] < d:
+                    target_name = os.path.splitext(os.path.basename(target))[0]
+                    edge_desc = f" {get_edge_label(edge)} {target_name}"
+                    break
+
+            print(f"  {connector} {dep_node} ──{edge_desc}")
+
+            # Grep for references to the target node in this file
+            refs = grep_references(node, dep_node, repo_root)
+            for line_no, line_text in refs:
+                print(f"  {indent}L{line_no}: {line_text.strip()}")
+
+        print()
+
+    # Summary line
+    direct_count = len(by_depth.get(1, []))
+    transitive_count = sum(len(by_depth.get(d, [])) for d in range(2, max_depth + 1))
+
+    # Risk = number of distinct groups in the radius
+    groups_in_radius = set()
+    for n in depth_map:
+        if n in graph["nodes"]:
+            groups_in_radius.add(graph["nodes"][n]["group"])
+
+    risk_count = len(groups_in_radius)
+    if risk_count >= 3:
+        risk = "HIGH"
+    elif risk_count == 2:
+        risk = "MEDIUM"
+    else:
+        risk = "LOW"
+
+    print(f"Summary: 1 changed → {direct_count} direct → {transitive_count} transitive | Risk: {risk} ({risk_count} groups in radius)")
 
 
 def cmd_path(args):
     """Find shortest path between two nodes."""
-    # Stub — Phase 2
-    print("path: not yet implemented (Phase 2)")
+    repo_root = os.path.abspath(args.repo_path)
+    if not os.path.isdir(repo_root):
+        print(f"Error: {repo_root} is not a directory", file=sys.stderr)
+        sys.exit(1)
+
+    graph = build_graph(repo_root)
+
+    start = resolve_node(args.from_node, graph)
+    if start is None:
+        print(f"Error: node '{args.from_node}' not found in graph", file=sys.stderr)
+        sys.exit(1)
+
+    end = resolve_node(args.to_node, graph)
+    if end is None:
+        print(f"Error: node '{args.to_node}' not found in graph", file=sys.stderr)
+        sys.exit(1)
+
+    path = bfs_shortest_path(start, end, graph)
+
+    if path is None:
+        print(f"No path between {start} and {end}")
+        sys.exit(0)
+
+    outbound, inbound = build_adjacency(graph)
+
+    print(f"PATH: {start} → {end} ({len(path) - 1} hops)")
+    print()
+
+    for i, node in enumerate(path):
+        if i == 0:
+            print(f"  {node}")
+        else:
+            # Find the edge connecting path[i-1] to path[i]
+            prev = path[i - 1]
+            edge_type = ""
+            for edge in outbound.get(prev, []):
+                if edge["to"] == node:
+                    edge_type = edge["type"]
+                    break
+            if not edge_type:
+                for edge in inbound.get(prev, []):
+                    if edge["from"] == node:
+                        edge_type = edge["type"]
+                        break
+            print(f"    ↓ {edge_type}")
+            print(f"  {node}")
 
 
 def cmd_orphans(args):
     """List files with no connections."""
-    # Stub — Phase 2
-    print("orphans: not yet implemented (Phase 2)")
+    repo_root = os.path.abspath(args.path)
+    if not os.path.isdir(repo_root):
+        print(f"Error: {repo_root} is not a directory", file=sys.stderr)
+        sys.exit(1)
+
+    graph = build_graph(repo_root)
+
+    connected = set()
+    for edge in graph["edges"]:
+        connected.add(edge["from"])
+        connected.add(edge["to"])
+
+    orphans = sorted(
+        p for p in graph["nodes"] if p not in connected
+    )
+
+    print(f"ORPHANS: {len(orphans)} files with no connections")
+    print()
+
+    if orphans:
+        for orphan in orphans:
+            meta = graph["nodes"][orphan]
+            desc = meta["description"]
+            group = meta["group"]
+            if desc:
+                print(f"  {orphan} — {desc} [{group}]")
+            else:
+                print(f"  {orphan} [{group}]")
+    else:
+        print("  No orphans found — every file has at least one connection.")
 
 
 def cmd_analyze(args):
     """Print graph statistics."""
-    # Stub — Phase 2
-    print("analyze: not yet implemented (Phase 2)")
+    repo_root = os.path.abspath(args.path)
+    if not os.path.isdir(repo_root):
+        print(f"Error: {repo_root} is not a directory", file=sys.stderr)
+        sys.exit(1)
+
+    graph = build_graph(repo_root)
+    nodes = graph["nodes"]
+    edges = graph["edges"]
+
+    # Basic counts
+    node_count = len(nodes)
+    edge_count = len(edges)
+
+    connected = set()
+    for edge in edges:
+        connected.add(edge["from"])
+        connected.add(edge["to"])
+    orphan_count = sum(1 for n in nodes if n not in connected)
+
+    # Degree per node (inbound + outbound)
+    degree = defaultdict(int)
+    for edge in edges:
+        degree[edge["from"]] += 1
+        degree[edge["to"]] += 1
+
+    # Top-N most connected (top 5, or all if fewer)
+    top_n = 5
+    sorted_by_degree = sorted(degree.items(), key=lambda x: (-x[1], x[0]))
+    top_nodes = sorted_by_degree[:top_n]
+
+    # Edge type breakdown
+    edge_types = defaultdict(int)
+    for edge in edges:
+        edge_types[edge["type"]] += 1
+
+    # Group breakdown
+    group_counts = defaultdict(int)
+    for meta in nodes.values():
+        group_counts[meta["group"]] += 1
+
+    # File type breakdown
+    type_counts = defaultdict(int)
+    for meta in nodes.values():
+        type_counts[meta["type"]] += 1
+
+    # Print report
+    print("GRAPH ANALYSIS")
+    print()
+    print(f"  Nodes: {node_count}")
+    print(f"  Edges: {edge_count}")
+    print(f"  Orphans: {orphan_count}")
+    print()
+
+    print("Edge types:")
+    for etype in sorted(edge_types.keys()):
+        print(f"  {etype}: {edge_types[etype]}")
+    print()
+
+    print("File types:")
+    for ftype in sorted(type_counts.keys()):
+        print(f"  {ftype}: {type_counts[ftype]}")
+    print()
+
+    print(f"Most connected (top {min(top_n, len(top_nodes))}):")
+    for node_path, deg in top_nodes:
+        print(f"  {node_path} ({deg} edges)")
+    print()
+
+    print(f"Groups ({len(group_counts)}):")
+    for group in sorted(group_counts.keys()):
+        print(f"  {group}: {group_counts[group]} files")
 
 
 # ── Main ───────────────────────────────────────────────────────────────────
