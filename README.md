@@ -29,7 +29,7 @@ Skills install into the project's `.claude/skills/` directory. Tools (like statu
 |---|---|---|
 | [/handoff](skills/handoff/) | Generate a handoff prompt for a fresh CLI agent or subagent | `./install.sh handoff` |
 | /scripts-reference | Generate a clickable script reference doc | Planned |
-| /plan-me-this | Scaffold a multi-phase task package from a plan | Planned |
+| [/plan-me-this](skills/plan-me-this/) | Package a spec into phase docs + readme_this_current_task.md | `./install.sh plan-me-this` |
 
 ## Tools
 
