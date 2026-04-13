@@ -149,6 +149,7 @@ The user reviews and approves or requests changes.
 
 - **Plan for you** — input is an already-discussed, approved spec
 - **Execute anything** — no code, no commands, no implementation
+- **Touch `/handoff`** — separate skill, no modifications, no dependency
 - **Modify the input spec** — the original file is never edited
 - **Impose methodology** — no forced TDD, worktrees, or execution workflow
 - **Hardcode paths** — spec location and output directory are user-provided
