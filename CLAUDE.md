@@ -5,7 +5,7 @@ A collection of reusable Claude Code skills, subagent definitions, and orchestra
 ## Project Structure
 
 ```
-skills/<name>/       Skills (SKILL.md + install.sh + uninstall.sh)
+skills/<name>/       Skills (just a SKILL.md — no install scripts needed)
 statusline/          Tools (script + install.sh + uninstall.sh)
 guides/              Workflow patterns and reference docs
 docs/                Roadmap, specs, and planning
@@ -15,28 +15,25 @@ uninstall.sh         Top-level uninstaller: ./uninstall.sh statusline
 
 ## Modularity Convention
 
-Every installable component — whether a skill, tool, or system — lives in its own directory and **must** contain:
+Every installable component lives in its own directory. The top-level `install.sh` / `uninstall.sh` discover components automatically — no registration step needed.
 
-- `install.sh` — installs the component to the user's system
-- `uninstall.sh` — cleanly removes it without affecting anything else
+**Skills** (under `skills/`) only need a `SKILL.md`. The top-level installer handles copying it to the target project's `.claude/skills/<name>/`. No per-skill install scripts.
 
-The top-level `install.sh` / `uninstall.sh` discover components automatically: any directory with an `install.sh` is installable. No registration step needed.
+**Tools** (like statusline, phoam_paint) have custom install logic and **must** contain their own `install.sh` and `uninstall.sh`.
 
 ### Where components install to
 
 | Type | Target | Example |
 |------|--------|---------|
 | Skill | `<project>/.claude/skills/<name>/` (project-specific) | handoff |
-| Tool | `~/.claude/` + settings.json (user-global) | statusline |
+| Tool | Varies — custom install.sh decides | statusline, phoam_paint |
 
 Skills accept `--project <path>` to target a specific project (defaults to current directory).
 
 ### Adding a new skill
 
 1. Create `skills/<name>/SKILL.md` with YAML frontmatter (`name`, `description`)
-2. Add `skills/<name>/install.sh` that copies SKILL.md to `$PROJECT_DIR/.claude/skills/<name>/`
-3. Add `skills/<name>/uninstall.sh` that removes `$PROJECT_DIR/.claude/skills/<name>/`
-4. Update `docs/roadmap.md` and the tables in `README.md`
+2. Update `docs/roadmap.md` and the tables in `README.md`
 
 ### Adding a new tool
 
