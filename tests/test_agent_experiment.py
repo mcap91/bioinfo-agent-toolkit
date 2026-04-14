@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
-"""Phase 5: Agent A/B Experiment
+"""Phase 5 v3: Agent A/B Experiment — Blast Radius Marking
 
-Proves that /check_graph helps a Claude agent catch distant-impact changes.
-Two Claude Code agents get the same rename task — one with graph tooling
-(KB_INDEX.md, /check_graph skill, CLAUDE.md rules), one without.
+Proves that kb-graph helps a Claude agent identify transitive dependencies
+that are invisible to grep. Two Claude Code agents get the same task: mark
+every file in the blast radius of metadata.py with a comment. Agent A has no
+graph tooling; Agent B has KB_INDEX.md, kb-graph traverse, and CLAUDE.md rules.
 
-The fixture project is enhanced with db_url references scattered across
-multiple files at different graph depths, plus 25 noise files that do NOT
-reference db_url. A correct rename touches all db_url references; any
-remaining `db_url` is a miss.
+The bioinformatics fixture has ~100 files with 19 in the blast radius of
+src/core/metadata.py (4 at depth 1 — greppable, 15 at depth 2-4 — invisible
+to grep). Import chains go through __init__.py re-exports, making manual
+tracing unreliable.
 
 Requirements:
     - Claude Code CLI (`claude` command on PATH)
@@ -21,6 +22,8 @@ Usage:
     python3 tests/test_agent_experiment.py --model sonnet   # use sonnet
     python3 tests/test_agent_experiment.py --save-transcripts  # keep agent output
     python3 tests/test_agent_experiment.py --clean          # wipe previous results first
+    python3 tests/test_agent_experiment.py --dry-run        # validate fixture + blast radius
+    python3 tests/test_agent_experiment.py --depth 3        # limit traverse depth
 
 Results are printed as a table and can be appended to phoam_paint/README.md.
 """
@@ -40,7 +43,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 FIXTURE_DIR = REPO_ROOT / "tests" / "fixtures" / "sample_project"
 
-# ── Logging ──────────────────────────────────────────────────────────────
+# ── Logging ───────────────���───────────────────────────────��──────────────
 # All output goes to both stdout and the log file (if set).
 # tail -f tests/experiment.log to watch progress.
 
@@ -55,7 +58,7 @@ def log(msg=""):
         _log_file.flush()
 
 
-# ── Version Info ─────────────────────────────────────────────────────────
+# ── Version Info ────────────────��──────────────────────��─────────────────
 
 def get_claude_version():
     """Get Claude CLI version string."""
@@ -69,854 +72,1687 @@ def get_claude_version():
         return "unknown"
 
 
-# ── Fixture Enhancement ─────────────────────────────────────────────────
-# These rewrites add db_url references at multiple graph depths so the
-# experiment has something for agents to miss.  Applied to COPIES only.
+# ── v3 Bioinformatics Fixture ─────────────────────���────────────────────
+# ~100 files modeling a spatial-omics analysis package.
+# Target: src/core/metadata.py — 19 files in its blast radius at depth 4.
+# Red herring files mention "metadata" in comments/strings but do NOT import it.
 #
-# The enhanced project has ~45 files total:
-#   - 10 files with db_url references across 6 directories (depth 0-3)
-#   - 25 noise files (no db_url) across multiple directories
-#   - Original fixture files (some overwritten with enhanced versions)
+# Import resolution through kb_graph.py's parse_python():
+#   "from core.metadata import X"  → resolves core.metadata → src/core/metadata.py
+#   "from core import MetadataManager" → core.MetadataManager fails → core → src/core/__init__.py
+#   "from .metadata import X"       → resolves .metadata → src/core/metadata.py
+#   "from .ontology import X"       → resolves .ontology → src/annotation/ontology.py
 
-ENHANCED_CONFIG_PY = """\
-\"\"\"Application configuration management.\"\"\"
+V3_FILES = {
+    # ── TARGET FILE ────────────────────────��───────────────────────────
+    "src/core/metadata.py": '''\
+"""Sample metadata management for spatial-omics experiments.
 
-
-class Config:
-    \"\"\"Loads and validates application settings.\"\"\"
-
-    def __init__(self, debug=False, db_url="sqlite:///app.db"):
-        self.debug = debug
-        self.db_url = db_url
-
-    @classmethod
-    def load(cls, path=None):
-        \"\"\"Load configuration from environment or file.\"\"\"
-        return cls()
-
-    def as_dict(self):
-        \"\"\"Return config as a dictionary.\"\"\"
-        return {"debug": self.debug, "db_url": self.db_url}
+Handles per-sample annotations: tissue origin, capture date, QC flags,
+spatial coordinates, and donor demographics.  Every downstream module
+that needs sample context imports MetadataManager from here.
 """
-
-ENHANCED_DATABASE_PY = """\
-\"\"\"Database connection pool and query helpers.\"\"\"
 from core.config import Config
+from core.logging import get_logger
+
+logger = get_logger(__name__)
 
 
-class Database:
-    \"\"\"Manages database connections.\"\"\"
+class MetadataManager:
+    """Central registry of per-sample metadata records."""
 
     def __init__(self, config: Config):
         self.config = config
-        self.db_url = config.db_url
-        self._pool = []
+        self._records = {}
+        logger.info("MetadataManager initialised")
+
+    def register(self, sample_id, tissue, capture_date, **extra):
+        """Register a new sample with required and optional fields."""
+        record = {
+            "sample_id": sample_id,
+            "tissue": tissue,
+            "capture_date": capture_date,
+            **extra,
+        }
+        self._records[sample_id] = record
+        return record
+
+    def get(self, sample_id):
+        """Retrieve metadata for a single sample."""
+        return self._records.get(sample_id)
+
+    def list_samples(self, tissue=None):
+        """List sample IDs, optionally filtered by tissue type."""
+        if tissue is None:
+            return list(self._records.keys())
+        return [sid for sid, rec in self._records.items() if rec["tissue"] == tissue]
+
+    def summary(self):
+        """Return a summary dict of all registered samples."""
+        tissues = {}
+        for rec in self._records.values():
+            tissues[rec["tissue"]] = tissues.get(rec["tissue"], 0) + 1
+        return {"total": len(self._records), "by_tissue": tissues}
+''',
+
+    # ── LEAF DEPENDENCIES (imported BY metadata.py, NOT in blast radius) ──
+
+    "src/core/config.py": '''\
+"""Global configuration for the spatial-omics pipeline."""
+
+
+class Config:
+    """Immutable pipeline configuration."""
+
+    def __init__(self, data_dir="data/", n_threads=4, seed=42):
+        self.data_dir = data_dir
+        self.n_threads = n_threads
+        self.seed = seed
+
+    @classmethod
+    def from_yaml(cls, path):
+        """Load config from a YAML file (stub)."""
+        return cls()
+
+    def as_dict(self):
+        return {"data_dir": self.data_dir, "n_threads": self.n_threads, "seed": self.seed}
+''',
 
-    def get_connection(self):
-        \"\"\"Get a connection from the pool.\"\"\"
-        return self.db_url
-
-    def execute(self, query, params=None):
-        \"\"\"Execute a query and return results.\"\"\"
-        return []
-"""
-
-ENHANCED_MAIN_PY = """\
-\"\"\"Application entry point.\"\"\"
-from core.config import Config
-from api.routes import create_app
-
-
-def main():
-    config = Config(db_url="postgres://localhost/myapp")
-    app = create_app(config)
-    app.run()
-
-
-if __name__ == "__main__":
-    main()
-"""
-
-ENHANCED_ROUTES_PY = """\
-\"\"\"REST API route definitions.\"\"\"
-from core.database import Database
-from core.config import Config
-from .auth import verify_token
-
-
-def create_app(config):
-    \"\"\"Create and configure the application.\"\"\"
-    db = Database(config)
-    return App(db)
-
-
-class App:
-    \"\"\"Simple application wrapper.\"\"\"
-
-    def __init__(self, db):
-        self.db = db
-
-    def run(self):
-        \"\"\"Start the application.\"\"\"
-        pass
-
-    def health(self):
-        \"\"\"Health check endpoint.\"\"\"
-        return {"db_url": self.db.db_url, "status": "ok"}
-"""
-
-ENHANCED_SETTINGS_YAML = """\
-# Application settings
-app:
-  name: "Sample Project"
-  version: "1.0.0"
-
-paths:
-  config_module: "src/core/config.py"
-
-database:
-  db_url: "sqlite:///app.db"
-  pool_size: 5
-"""
-
-# ── New files with db_url references (added to copies) ──────────────────
-
-NEW_TEST_CONFIG_PY = """\
-\"\"\"Tests for configuration loading.\"\"\"
-import unittest
-
-
-class TestConfig(unittest.TestCase):
-    \"\"\"Verify Config class behavior.\"\"\"
-
-    def test_default_db_url(self):
-        from core.config import Config
-        cfg = Config()
-        self.assertEqual(cfg.db_url, "sqlite:///app.db")
-
-    def test_custom_db_url(self):
-        from core.config import Config
-        cfg = Config(db_url="postgres://localhost/test")
-        self.assertEqual(cfg.db_url, "postgres://localhost/test")
-
-    def test_as_dict_includes_db_url(self):
-        from core.config import Config
-        cfg = Config()
-        d = cfg.as_dict()
-        self.assertIn("db_url", d)
-"""
-
-NEW_MIGRATE_PY = """\
-\"\"\"Database migration runner.\"\"\"
-import sys
-
-from core.config import Config
-
-
-def run_migrations(config):
-    \"\"\"Apply pending migrations to the database.\"\"\"
-    url = config.db_url
-    print(f"Connecting to {url} for migrations...")
-    # In production this would run Alembic or similar
-    return True
-
-
-def rollback(config, steps=1):
-    \"\"\"Roll back the last N migrations.\"\"\"
-    print(f"Rolling back {steps} migration(s) on {config.db_url}")
-    return True
-
-
-if __name__ == "__main__":
-    cfg = Config(db_url=sys.argv[1] if len(sys.argv) > 1 else None)
-    run_migrations(cfg)
-"""
-
-NEW_MIDDLEWARE_PY = """\
-\"\"\"Request middleware for logging and metrics.\"\"\"
-from core.database import Database
-
-
-class RequestLogger:
-    \"\"\"Logs each request with database connection info.\"\"\"
-
-    def __init__(self, database: Database):
-        self._db = database
-        # Attribute access through intermediate variable
-        self._connection_url = database.db_url
-
-    def log_request(self, method, path):
-        \"\"\"Log an incoming request.\"\"\"
-        return f"{method} {path} -> {self._connection_url}"
-"""
-
-NEW_CLI_PY = """\
-\"\"\"CLI entry point — wraps the application for command-line usage.\"\"\"
-from api.routes import create_app
-from core.config import Config
-
-
-def cli_main():
-    \"\"\"Parse CLI args and start the app.\"\"\"
-    config = Config.load()
-    app = create_app(config)
-
-    # Print startup info including connection details
-    health = app.health()
-    print(f"Starting server with db_url={health['db_url']}")
-    app.run()
-
-
-if __name__ == "__main__":
-    cli_main()
-"""
-
-NEW_DEPLOYMENT_MD = """\
-# Deployment Guide
-
-## Environment Variables
-
-Set the following before deploying:
-
-```python
-# Production database configuration
-config = Config(db_url="postgres://prod-host:5432/myapp")
-```
-
-## Docker Compose
-
-```yaml
-services:
-  app:
-    environment:
-      - DB_URL=postgres://db:5432/app
-```
-
-## Health Check
-
-After deploying, verify the `/health` endpoint returns the correct `db_url`.
-"""
-
-NEW_SEED_PY = """\
-\"\"\"Database seeding script — populates initial data.\"\"\"
-from core.config import Config
-from core.database import Database
-
-
-def seed_database():
-    \"\"\"Insert seed data into the database.\"\"\"
-    config = Config()
-    db = Database(config)
-    # Dict unpacking — db_url is a key in the config dict
-    config_dict = config.as_dict()
-    merged = {**config_dict, "pool_size": 10}
-    print(f"Seeding database at {merged['db_url']}...")
-    return True
-
-
-if __name__ == "__main__":
-    seed_database()
-"""
-
-NEW_HEALTH_CHECK_SH = """\
-#!/usr/bin/env bash
-# Health check script — verifies the app is running
-set -euo pipefail
-
-RESPONSE=$(curl -s http://localhost:8000/health)
-DB_URL=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.loads(sys.stdin.read())['db_url'])")
-
-if [ -z "$DB_URL" ]; then
-    echo "FAIL: db_url not found in health response"
-    exit 1
-fi
-
-echo "OK: connected to $DB_URL"
-"""
-
-NEW_ENV_EXAMPLE = """\
-# Environment configuration template
-# Copy to .env and fill in values
-
-# Database
-DB_URL=sqlite:///dev.db
-
-# Application
-DEBUG=true
-PORT=8000
-"""
-
-# Map of NEW files to create (paths relative to project root)
-NEW_FILES = {
-    "tests/test_config.py": NEW_TEST_CONFIG_PY,
-    "scripts/migrate.py": NEW_MIGRATE_PY,
-    "src/api/middleware.py": NEW_MIDDLEWARE_PY,
-    "src/cli.py": NEW_CLI_PY,
-    "docs/deployment.md": NEW_DEPLOYMENT_MD,
-    "scripts/seed.py": NEW_SEED_PY,
-    "scripts/health_check.sh": NEW_HEALTH_CHECK_SH,
-    ".env.example": NEW_ENV_EXAMPLE,
-}
-
-# ── Noise files (no db_url references) ──────────────────────────────────
-# These make the project large enough that exhaustive grep is expensive.
-# The agent has to search through ~45 files total; the graph cuts through
-# the noise by surfacing only the connected files.
-
-NOISE_FILES = {
-    # src/core/ — utility modules
     "src/core/logging.py": '''\
-"""Structured logging for the application."""
+"""Structured logging for the spatial-omics pipeline."""
 
 
 class Logger:
-    """JSON-based structured logger."""
+    """Minimal structured logger."""
 
     def __init__(self, name, level="INFO"):
         self.name = name
         self.level = level
 
-    def info(self, msg, **kwargs):
-        """Log an info-level message."""
+    def info(self, msg, **kw):
         print(f"[{self.level}] {self.name}: {msg}")
 
-    def error(self, msg, **kwargs):
-        """Log an error-level message."""
+    def warn(self, msg, **kw):
+        print(f"[WARN] {self.name}: {msg}")
+
+    def error(self, msg, **kw):
         print(f"[ERROR] {self.name}: {msg}")
 
-    def with_context(self, **ctx):
-        """Return a child logger with extra context."""
-        return Logger(f"{self.name}.child", self.level)
+
+def get_logger(name):
+    """Return a Logger instance for the given module name."""
+    return Logger(name)
 ''',
-    "src/core/cache.py": '''\
-"""In-memory cache with TTL support."""
-import time
 
-
-class Cache:
-    """Simple TTL cache backed by a dict."""
-
-    def __init__(self, default_ttl=300):
-        self._store = {}
-        self._ttl = default_ttl
-
-    def get(self, key):
-        """Retrieve a cached value if it hasn't expired."""
-        entry = self._store.get(key)
-        if entry and entry["expires"] > time.time():
-            return entry["value"]
-        return None
-
-    def set(self, key, value, ttl=None):
-        """Store a value with optional TTL override."""
-        self._store[key] = {
-            "value": value,
-            "expires": time.time() + (ttl or self._ttl),
-        }
-
-    def clear(self):
-        """Remove all cached entries."""
-        self._store.clear()
-''',
     "src/core/exceptions.py": '''\
-"""Application exception hierarchy."""
+"""Custom exception hierarchy for the pipeline."""
 
 
-class AppError(Exception):
-    """Base exception for all application errors."""
-
-    def __init__(self, message, code=None):
+class PipelineError(Exception):
+    """Base exception for all pipeline errors."""
+    def __init__(self, message, stage=None):
         super().__init__(message)
-        self.code = code
+        self.stage = stage
 
 
-class NotFoundError(AppError):
-    """Resource not found."""
-
-    def __init__(self, resource, identifier):
-        super().__init__(f"{resource} {identifier} not found", code=404)
-
-
-class ValidationError(AppError):
-    """Input validation failed."""
-
-    def __init__(self, field, reason):
-        super().__init__(f"Invalid {field}: {reason}", code=400)
+class QCError(PipelineError):
+    """Quality control check failed."""
+    def __init__(self, metric, value, threshold):
+        super().__init__(f"{metric}={value} below threshold {threshold}", stage="qc")
+        self.metric = metric
 
 
-class AuthenticationError(AppError):
-    """Authentication failed."""
-
-    def __init__(self, reason="invalid credentials"):
-        super().__init__(reason, code=401)
+class MetadataError(PipelineError):
+    """Metadata validation failed."""
+    def __init__(self, sample_id, reason):
+        super().__init__(f"Sample {sample_id}: {reason}", stage="metadata")
 ''',
-    "src/core/validators.py": '''\
-"""Input validation utilities."""
-import re
 
+    # ── DEPTH 1 — direct dependents of metadata.py ────────────────────
 
-def validate_email(email):
-    """Check if an email address is syntactically valid."""
-    pattern = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
-    return bool(re.match(pattern, email))
+    "src/core/__init__.py": '''\
+"""Core package — re-exports key classes for convenient access."""
+from .metadata import MetadataManager
+from .config import Config
+from .logging import get_logger
 
-
-def validate_slug(slug):
-    """Check if a string is a valid URL slug."""
-    return bool(re.match(r"^[a-z0-9]+(?:-[a-z0-9]+)*$", slug))
-
-
-def validate_port(port):
-    """Check if a port number is in valid range."""
-    return isinstance(port, int) and 1 <= port <= 65535
-
-
-def sanitize_string(value, max_length=255):
-    """Strip whitespace and truncate to max length."""
-    return value.strip()[:max_length] if value else ""
+__all__ = ["MetadataManager", "Config", "get_logger"]
 ''',
-    # src/api/ — more route handlers and serializers
-    "src/api/serializers.py": '''\
-"""Response serialization helpers."""
-import json
-from datetime import datetime
+
+    "src/annotation/ontology.py": '''\
+"""Gene Ontology term mapping for spatial features."""
+from core.metadata import MetadataManager
 
 
-class JSONSerializer:
-    """Serialize objects to JSON with datetime support."""
+class OntologyMapper:
+    """Maps gene IDs to GO terms using sample context from metadata."""
 
-    @staticmethod
-    def serialize(obj):
-        """Convert an object to a JSON string."""
-        return json.dumps(obj, default=str)
+    def __init__(self, meta: MetadataManager):
+        self._meta = meta
+        self._cache = {}
 
-    @staticmethod
-    def deserialize(data):
-        """Parse a JSON string into a Python object."""
-        return json.loads(data)
+    def annotate(self, gene_id, sample_id):
+        """Return GO terms for a gene in the context of a sample."""
+        sample = self._meta.get(sample_id)
+        tissue = sample["tissue"] if sample else "unknown"
+        return self._cache.get((gene_id, tissue), [])
 
-
-def format_response(data, status=200):
-    """Wrap data in a standard API response envelope."""
-    return {
-        "status": status,
-        "data": data,
-        "timestamp": datetime.utcnow().isoformat(),
-    }
-
-
-def paginate(items, page=1, per_page=20):
-    """Paginate a list of items."""
-    start = (page - 1) * per_page
-    return {
-        "items": items[start:start + per_page],
-        "page": page,
-        "per_page": per_page,
-        "total": len(items),
-    }
+    def load_ontology(self, path):
+        """Load a GO OBO file (stub)."""
+        self._cache.clear()
+        return self
 ''',
-    "src/api/users.py": '''\
-"""User management endpoints."""
+
+    "src/annotation/confidence.py": '''\
+"""Confidence scoring for spatial annotations."""
+from core.metadata import MetadataManager
 
 
-class UserService:
-    """CRUD operations for user accounts."""
+class ConfidenceScorer:
+    """Scores annotation confidence based on sample QC metadata."""
 
-    def __init__(self):
-        self._users = {}
+    def __init__(self, meta: MetadataManager):
+        self._meta = meta
 
-    def create(self, username, email):
-        """Create a new user account."""
-        user_id = len(self._users) + 1
-        self._users[user_id] = {"username": username, "email": email}
-        return user_id
+    def score(self, annotation, sample_id):
+        """Return a confidence float in [0, 1] for an annotation."""
+        sample = self._meta.get(sample_id)
+        if sample is None:
+            return 0.0
+        base = 0.8
+        if sample.get("qc_pass", False):
+            base += 0.15
+        return min(1.0, base)
 
-    def get(self, user_id):
-        """Retrieve a user by ID."""
-        return self._users.get(user_id)
-
-    def list_all(self):
-        """List all registered users."""
-        return list(self._users.values())
-
-    def delete(self, user_id):
-        """Remove a user account."""
-        return self._users.pop(user_id, None) is not None
+    def batch_score(self, annotations, sample_id):
+        """Score a list of annotations for one sample."""
+        return [self.score(a, sample_id) for a in annotations]
 ''',
-    "src/api/pagination.py": '''\
-"""Cursor-based pagination for API endpoints."""
+
+    "tests/test_metadata.py": '''\
+"""Tests for the MetadataManager class."""
+from core.metadata import MetadataManager
+from core.config import Config
+import unittest
 
 
-class Cursor:
-    """Opaque cursor for stable pagination."""
+class TestMetadataManager(unittest.TestCase):
+    """Verify MetadataManager CRUD and query operations."""
 
-    def __init__(self, offset=0, limit=20):
-        self.offset = offset
-        self.limit = limit
+    def setUp(self):
+        self.mgr = MetadataManager(Config())
 
-    def next(self):
-        """Return the cursor for the next page."""
-        return Cursor(self.offset + self.limit, self.limit)
+    def test_register_and_get(self):
+        rec = self.mgr.register("S001", "brain", "2026-01-15")
+        self.assertEqual(self.mgr.get("S001"), rec)
 
-    def prev(self):
-        """Return the cursor for the previous page."""
-        return Cursor(max(0, self.offset - self.limit), self.limit)
+    def test_list_samples_all(self):
+        self.mgr.register("S001", "brain", "2026-01-15")
+        self.mgr.register("S002", "liver", "2026-01-16")
+        self.assertEqual(len(self.mgr.list_samples()), 2)
 
-    def apply(self, queryset):
-        """Slice a list according to this cursor."""
-        return queryset[self.offset:self.offset + self.limit]
+    def test_list_samples_by_tissue(self):
+        self.mgr.register("S001", "brain", "2026-01-15")
+        self.mgr.register("S002", "liver", "2026-01-16")
+        self.assertEqual(self.mgr.list_samples(tissue="brain"), ["S001"])
+
+    def test_summary(self):
+        self.mgr.register("S001", "brain", "2026-01-15")
+        s = self.mgr.summary()
+        self.assertEqual(s["total"], 1)
 ''',
-    "src/api/rate_limiter.py": '''\
-"""Token-bucket rate limiter for API endpoints."""
-import time
 
+    # ── DEPTH 2 — import depth-1 files ────────────────────────────────
 
-class RateLimiter:
-    """Per-client rate limiter using token bucket algorithm."""
+    "src/annotation/__init__.py": '''\
+"""Annotation package — re-exports main annotation classes."""
+from .ontology import OntologyMapper
+from .confidence import ConfidenceScorer
 
-    def __init__(self, rate=10, burst=20):
-        self.rate = rate
-        self.burst = burst
-        self._buckets = {}
-
-    def allow(self, client_id):
-        """Check if a request from client_id should be allowed."""
-        now = time.time()
-        bucket = self._buckets.get(client_id, {"tokens": self.burst, "last": now})
-        elapsed = now - bucket["last"]
-        bucket["tokens"] = min(self.burst, bucket["tokens"] + elapsed * self.rate)
-        bucket["last"] = now
-
-        if bucket["tokens"] >= 1:
-            bucket["tokens"] -= 1
-            self._buckets[client_id] = bucket
-            return True
-        self._buckets[client_id] = bucket
-        return False
+__all__ = ["OntologyMapper", "ConfidenceScorer"]
 ''',
-    # src/workers/ — background task processing
-    "src/workers/__init__.py": "",
-    "src/workers/task_queue.py": '''\
-"""Simple in-memory task queue for background processing."""
-import threading
-from collections import deque
+
+    "src/annotation/markers.py": '''\
+"""Cell-type marker gene management."""
+from .ontology import OntologyMapper
 
 
-class TaskQueue:
-    """Thread-safe FIFO task queue."""
+class MarkerDatabase:
+    """Curated marker gene sets for cell-type identification."""
 
-    def __init__(self):
-        self._queue = deque()
-        self._lock = threading.Lock()
+    def __init__(self, ontology: OntologyMapper):
+        self._ontology = ontology
+        self._markers = {}
 
-    def enqueue(self, task):
-        """Add a task to the queue."""
-        with self._lock:
-            self._queue.append(task)
+    def add_marker(self, cell_type, gene_id):
+        """Register a marker gene for a cell type."""
+        self._markers.setdefault(cell_type, []).append(gene_id)
 
-    def dequeue(self):
-        """Remove and return the next task, or None if empty."""
-        with self._lock:
-            return self._queue.popleft() if self._queue else None
+    def get_markers(self, cell_type):
+        """Return marker genes for a cell type."""
+        return self._markers.get(cell_type, [])
 
-    def size(self):
-        """Return the number of pending tasks."""
-        return len(self._queue)
+    def annotate_markers(self, cell_type, sample_id):
+        """Return GO-annotated markers for a cell type."""
+        genes = self.get_markers(cell_type)
+        return [(g, self._ontology.annotate(g, sample_id)) for g in genes]
 ''',
-    "src/workers/email_worker.py": '''\
-"""Worker for sending transactional emails."""
+
+    "src/annotation/cell_types.py": '''\
+"""Cell-type classification using annotation confidence."""
+from .confidence import ConfidenceScorer
 
 
-class EmailWorker:
-    """Processes email sending tasks from the queue."""
+class CellTypeClassifier:
+    """Assigns cell types to spatial spots based on marker expression."""
 
-    def __init__(self, smtp_host="localhost", smtp_port=587):
-        self.smtp_host = smtp_host
-        self.smtp_port = smtp_port
+    def __init__(self, scorer: ConfidenceScorer, threshold=0.5):
+        self._scorer = scorer
+        self._threshold = threshold
 
-    def send(self, to, subject, body):
-        """Send an email (stub — prints instead of sending)."""
-        print(f"EMAIL to={to} subject={subject}")
-        return True
+    def classify(self, expression_vector, sample_id):
+        """Return the best cell-type label for an expression vector."""
+        candidates = self._rank_candidates(expression_vector)
+        for label, score_val in candidates:
+            conf = self._scorer.score(label, sample_id)
+            if conf >= self._threshold:
+                return label, conf
+        return "unknown", 0.0
 
-    def send_welcome(self, user):
-        """Send a welcome email to a new user."""
-        return self.send(user["email"], "Welcome!", f"Hi {user['username']}")
+    def _rank_candidates(self, expression_vector):
+        """Rank cell-type candidates by expression similarity (stub)."""
+        return [("neuron", 0.9), ("astrocyte", 0.7), ("microglia", 0.4)]
 ''',
-    "src/workers/cleanup_worker.py": '''\
-"""Worker for periodic cleanup tasks."""
-import time
+
+    "src/preprocessing/base.py": '''\
+"""Base preprocessor with metadata-aware sample handling.
+
+Imports MetadataManager via the core package __init__.py re-export,
+NOT directly from core.metadata.  This creates a depth-2 dependency:
+base.py -> core/__init__.py -> core/metadata.py
+"""
+from core import MetadataManager
 
 
-class CleanupWorker:
-    """Removes expired sessions and stale temp files."""
+class BasePreprocessor:
+    """Abstract base for all preprocessing steps."""
 
-    def __init__(self, interval=3600):
-        self.interval = interval
-        self._last_run = 0
+    def __init__(self, meta: MetadataManager):
+        self._meta = meta
 
-    def should_run(self):
-        """Check if enough time has passed since last cleanup."""
-        return time.time() - self._last_run > self.interval
+    def validate_sample(self, sample_id):
+        """Check that a sample exists in the metadata registry."""
+        return self._meta.get(sample_id) is not None
 
-    def run(self):
-        """Execute cleanup tasks."""
-        self._last_run = time.time()
-        expired = self._cleanup_sessions()
-        stale = self._cleanup_temp()
-        return {"sessions": expired, "temp_files": stale}
+    def preprocess(self, sample_id, data):
+        """Override in subclasses to implement preprocessing logic."""
+        if not self.validate_sample(sample_id):
+            raise ValueError(f"Unknown sample: {sample_id}")
+        return data
 
-    def _cleanup_sessions(self):
+    def get_tissue(self, sample_id):
+        """Look up the tissue type for a sample."""
+        rec = self._meta.get(sample_id)
+        return rec["tissue"] if rec else None
+''',
+
+    "src/analysis/clustering.py": '''\
+"""Spatial clustering with ontology-aware feature selection."""
+from annotation.ontology import OntologyMapper
+
+
+class ClusterAnalyzer:
+    """Clusters spatial spots using GO-term-weighted features."""
+
+    def __init__(self, ontology: OntologyMapper, n_clusters=10):
+        self._ontology = ontology
+        self.n_clusters = n_clusters
+
+    def fit(self, expression_matrix, sample_id):
+        """Fit clusters to an expression matrix (stub)."""
+        return list(range(self.n_clusters))
+
+    def predict(self, expression_vector):
+        """Assign a spot to a cluster (stub)."""
         return 0
 
-    def _cleanup_temp(self):
-        return 0
+    def feature_weights(self, gene_ids, sample_id):
+        """Weight genes by GO-term relevance for clustering."""
+        weights = {}
+        for gid in gene_ids:
+            terms = self._ontology.annotate(gid, sample_id)
+            weights[gid] = len(terms) + 1
+        return weights
 ''',
-    # tests/ — test files that don't reference db_url
+
+    # ── DEPTH 3 — import depth-2 files ────────────────────────────────
+
+    "src/preprocessing/__init__.py": '''\
+"""Preprocessing package — re-exports BasePreprocessor."""
+from .base import BasePreprocessor
+
+__all__ = ["BasePreprocessor"]
+''',
+
+    "src/preprocessing/normalization.py": '''\
+"""Expression matrix normalization."""
+from .base import BasePreprocessor
+
+
+class Normalizer(BasePreprocessor):
+    """Log-normalizes expression counts per sample."""
+
+    def __init__(self, meta, scale_factor=10000):
+        super().__init__(meta)
+        self.scale_factor = scale_factor
+
+    def preprocess(self, sample_id, data):
+        """Normalize a count matrix (stub — returns input unchanged)."""
+        super().preprocess(sample_id, data)
+        return data
+
+    def log_normalize(self, counts):
+        """Apply log1p normalization to raw counts (stub)."""
+        return counts
+''',
+
+    "src/preprocessing/qc.py": '''\
+"""Quality control filtering for spatial-omics data."""
+from .base import BasePreprocessor
+
+
+class QualityChecker(BasePreprocessor):
+    """Filters low-quality spots and genes."""
+
+    def __init__(self, meta, min_genes=200, min_counts=500):
+        super().__init__(meta)
+        self.min_genes = min_genes
+        self.min_counts = min_counts
+
+    def preprocess(self, sample_id, data):
+        """Run QC filters on a count matrix (stub)."""
+        super().preprocess(sample_id, data)
+        return data
+
+    def filter_spots(self, count_matrix):
+        """Remove spots below gene/count thresholds (stub)."""
+        return count_matrix
+
+    def filter_genes(self, count_matrix, min_spots=10):
+        """Remove genes expressed in too few spots (stub)."""
+        return count_matrix
+''',
+
+    "src/analysis/spatial.py": '''\
+"""Spatial autocorrelation and neighbourhood analysis."""
+from preprocessing.base import BasePreprocessor
+
+
+class SpatialAnalyzer:
+    """Computes spatial statistics over preprocessed data."""
+
+    def __init__(self, preprocessor: BasePreprocessor):
+        self._preprocessor = preprocessor
+
+    def morans_i(self, expression, coordinates):
+        """Compute Moran's I spatial autocorrelation (stub)."""
+        return 0.0
+
+    def hotspot_detection(self, expression, coordinates, threshold=0.05):
+        """Identify spatial hotspots using Getis-Ord Gi* (stub)."""
+        return []
+
+    def neighborhood_enrichment(self, labels, coordinates, n_perms=1000):
+        """Test neighbourhood enrichment between cell types (stub)."""
+        return {}
+''',
+
+    "src/plotting/spatial_plot.py": '''\
+"""Spatial scatter plots coloured by cluster labels."""
+from analysis.clustering import ClusterAnalyzer
+
+
+class SpatialPlotter:
+    """Generates spatial scatter plots with cluster overlays."""
+
+    def __init__(self, analyzer: ClusterAnalyzer):
+        self._analyzer = analyzer
+
+    def plot_clusters(self, coordinates, labels, output_path=None):
+        """Render a 2D scatter plot coloured by cluster (stub)."""
+        return {"type": "scatter", "n_points": len(coordinates)}
+
+    def plot_expression(self, coordinates, values, gene_name, output_path=None):
+        """Render expression levels on spatial coordinates (stub)."""
+        return {"type": "expression", "gene": gene_name}
+''',
+
+    # ── DEPTH 4 — import depth-3 files ────────────���───────────────────
+
+    "src/preprocessing/ingestion.py": '''\
+"""Data ingestion from various spatial-omics platforms."""
+from .normalization import Normalizer
+
+
+class DataIngestor:
+    """Reads raw data from Visium, MERFISH, or SlideSeq formats."""
+
+    def __init__(self, normalizer: Normalizer):
+        self._normalizer = normalizer
+
+    def read_visium(self, path):
+        """Load 10x Visium data from a directory (stub)."""
+        return {"format": "visium", "path": path}
+
+    def read_merfish(self, path):
+        """Load MERFISH data from CSV files (stub)."""
+        return {"format": "merfish", "path": path}
+
+    def ingest(self, path, platform="visium"):
+        """Auto-detect platform and load data."""
+        loaders = {"visium": self.read_visium, "merfish": self.read_merfish}
+        loader = loaders.get(platform, self.read_visium)
+        return loader(path)
+''',
+
+    "src/preprocessing/batch.py": '''\
+"""Batch effect correction across samples."""
+from .qc import QualityChecker
+
+
+class BatchCorrector:
+    """Removes technical batch effects between samples."""
+
+    def __init__(self, qc: QualityChecker):
+        self._qc = qc
+
+    def harmony(self, expression_matrix, batch_labels):
+        """Run Harmony integration (stub)."""
+        return expression_matrix
+
+    def combat(self, expression_matrix, batch_labels):
+        """Run ComBat batch correction (stub)."""
+        return expression_matrix
+
+    def correct(self, expression_matrix, batch_labels, method="harmony"):
+        """Apply batch correction using the specified method."""
+        methods = {"harmony": self.harmony, "combat": self.combat}
+        return methods.get(method, self.harmony)(expression_matrix, batch_labels)
+''',
+
+    "src/pipelines/run_qc.py": '''\
+"""QC pipeline entry point."""
+from preprocessing.qc import QualityChecker
+
+
+def run_qc_pipeline(config, sample_ids):
+    """Execute QC checks across all samples (stub)."""
+    results = {}
+    for sid in sample_ids:
+        results[sid] = {"passed": True, "metrics": {}}
+    return results
+
+
+if __name__ == "__main__":
+    print("QC pipeline placeholder")
+''',
+
+    "src/pipelines/run_analysis.py": '''\
+"""Full analysis pipeline entry point."""
+from analysis.spatial import SpatialAnalyzer
+
+
+def run_analysis_pipeline(config, sample_ids):
+    """Execute spatial analysis across all samples (stub)."""
+    results = {}
+    for sid in sample_ids:
+        results[sid] = {"clusters": [], "hotspots": []}
+    return results
+
+
+if __name__ == "__main__":
+    print("Analysis pipeline placeholder")
+''',
+
+    "src/plotting/heatmap.py": '''\
+"""Heatmap visualisation for spatial expression data."""
+from analysis.spatial import SpatialAnalyzer
+
+
+class HeatmapRenderer:
+    """Renders gene expression heatmaps with spatial context."""
+
+    def __init__(self, analyzer: SpatialAnalyzer):
+        self._analyzer = analyzer
+
+    def render(self, expression_matrix, gene_names, output_path=None):
+        """Generate a clustered heatmap (stub)."""
+        return {"type": "heatmap", "n_genes": len(gene_names)}
+
+    def render_spatial(self, expression, coordinates, gene, output_path=None):
+        """Overlay expression heatmap on spatial coordinates (stub)."""
+        return {"type": "spatial_heatmap", "gene": gene}
+''',
+
+    # ── NOISE FILES — NOT in blast radius ─────────────────────────────
+
+    # analysis/ — unconnected modules
+    "src/analysis/__init__.py": '''\
+"""Analysis package."""
+''',
+
+    "src/analysis/diffusion.py": '''\
+"""Diffusion pseudotime analysis for trajectory inference."""
+
+
+class DiffusionMap:
+    """Computes diffusion components from a cell-cell similarity graph."""
+
+    def __init__(self, n_components=10, knn=30):
+        self.n_components = n_components
+        self.knn = knn
+
+    def fit(self, expression_matrix):
+        """Fit diffusion map to expression data (stub)."""
+        return self
+
+    def transform(self, expression_matrix):
+        """Project data into diffusion space (stub)."""
+        return expression_matrix
+''',
+
+    "src/analysis/trajectory.py": '''\
+"""Trajectory inference for developmental processes."""
+# TODO: add metadata tracking for lineage annotations
+
+
+class TrajectoryInference:
+    """Infers developmental trajectories from expression data."""
+
+    def __init__(self, root_cell=None):
+        self.root_cell = root_cell
+        self._graph = None
+
+    def fit(self, expression_matrix, coordinates=None):
+        """Build trajectory graph (stub)."""
+        self._graph = {}
+        return self
+
+    def pseudotime(self):
+        """Return pseudotime ordering of cells (stub)."""
+        return []
+
+    def branch_points(self):
+        """Identify branching events in the trajectory (stub)."""
+        return []
+''',
+
+    # plotting/ — unconnected modules
+    "src/plotting/__init__.py": '''\
+"""Plotting package."""
+''',
+
+    "src/plotting/volcano.py": '''\
+"""Volcano plot for differential expression results."""
+
+
+class VolcanoPlot:
+    """Renders volcano plots showing fold-change vs significance."""
+
+    def __init__(self, fc_threshold=1.0, pval_threshold=0.05):
+        self.fc_threshold = fc_threshold
+        self.pval_threshold = pval_threshold
+
+    def render(self, de_results, output_path=None):
+        """Generate a volcano plot (stub)."""
+        return {"type": "volcano", "n_genes": len(de_results)}
+''',
+
+    "src/plotting/umap.py": '''\
+"""UMAP dimensionality reduction and plotting."""
+
+
+class UMAPPlotter:
+    """Generates 2D UMAP embeddings for visualisation."""
+
+    def __init__(self, n_neighbors=15, min_dist=0.1):
+        self.n_neighbors = n_neighbors
+        self.min_dist = min_dist
+
+    def fit_transform(self, expression_matrix):
+        """Compute UMAP embedding (stub)."""
+        return [[0.0, 0.0]] * 100
+
+    def plot(self, embedding, labels=None, output_path=None):
+        """Render a UMAP scatter plot (stub)."""
+        return {"type": "umap", "n_points": len(embedding)}
+''',
+
+    # pipelines/ — unconnected
+    "src/pipelines/__init__.py": '''\
+"""Pipeline orchestration package."""
+''',
+
+    "src/pipelines/run_plotting.py": '''\
+"""Plotting pipeline entry point."""
+
+
+def run_plotting_pipeline(config, sample_ids):
+    """Generate all standard plots for a set of samples (stub)."""
+    for sid in sample_ids:
+        print(f"Generating plots for {sid}")
+    return True
+
+
+if __name__ == "__main__":
+    print("Plotting pipeline placeholder")
+''',
+
+    # tests/ — noise test files (no metadata imports)
     "tests/__init__.py": "",
-    "tests/test_validators.py": '''\
-"""Tests for input validation utilities."""
+
+    "tests/test_config.py": '''\
+"""Tests for pipeline configuration."""
 import unittest
 
 
-class TestValidators(unittest.TestCase):
-    """Verify validation functions work correctly."""
-
-    def test_valid_email(self):
-        self.assertTrue(True)  # placeholder
-
-    def test_invalid_email(self):
+class TestConfig(unittest.TestCase):
+    def test_defaults(self):
         self.assertTrue(True)
 
-    def test_valid_slug(self):
-        self.assertTrue(True)
-
-    def test_port_range(self):
-        self.assertTrue(True)
-
-    def test_sanitize_whitespace(self):
+    def test_from_yaml(self):
         self.assertTrue(True)
 ''',
-    "tests/test_cache.py": '''\
-"""Tests for the caching layer."""
+
+    "tests/test_ontology.py": '''\
+"""Tests for ontology mapping."""
 import unittest
 
 
-class TestCache(unittest.TestCase):
-    """Verify cache get/set/clear operations."""
-
-    def test_set_and_get(self):
+class TestOntologyMapper(unittest.TestCase):
+    def test_annotate(self):
         self.assertTrue(True)
 
-    def test_expired_entry_returns_none(self):
-        self.assertTrue(True)
-
-    def test_clear_removes_all(self):
+    def test_load_ontology(self):
         self.assertTrue(True)
 ''',
-    "tests/test_serializers.py": '''\
-"""Tests for response serialization."""
+
+    "tests/test_normalization.py": '''\
+"""Tests for expression normalisation."""
 import unittest
 
 
-class TestSerializers(unittest.TestCase):
-    """Verify JSON serialization and response formatting."""
-
-    def test_serialize_dict(self):
+class TestNormalizer(unittest.TestCase):
+    def test_log_normalize(self):
         self.assertTrue(True)
 
-    def test_format_response_envelope(self):
-        self.assertTrue(True)
-
-    def test_paginate_items(self):
-        self.assertTrue(True)
-
-    def test_paginate_empty_list(self):
+    def test_scale_factor(self):
         self.assertTrue(True)
 ''',
-    "tests/test_users.py": '''\
-"""Tests for user management service."""
+
+    "tests/test_spatial.py": '''\
+"""Tests for spatial analysis."""
 import unittest
 
 
-class TestUserService(unittest.TestCase):
-    """Verify user CRUD operations."""
-
-    def test_create_user(self):
+class TestSpatialAnalyzer(unittest.TestCase):
+    def test_morans_i(self):
         self.assertTrue(True)
 
-    def test_get_user_by_id(self):
-        self.assertTrue(True)
-
-    def test_delete_user(self):
-        self.assertTrue(True)
-
-    def test_list_all_users(self):
+    def test_hotspot_detection(self):
         self.assertTrue(True)
 ''',
-    "tests/test_rate_limiter.py": '''\
-"""Tests for rate limiting."""
+
+    "tests/test_clustering.py": '''\
+"""Tests for spatial clustering."""
 import unittest
 
 
-class TestRateLimiter(unittest.TestCase):
-    """Verify token-bucket rate limiter."""
-
-    def test_allows_within_limit(self):
+class TestClusterAnalyzer(unittest.TestCase):
+    def test_fit(self):
         self.assertTrue(True)
 
-    def test_blocks_over_limit(self):
+    def test_predict(self):
         self.assertTrue(True)
 
-    def test_tokens_refill(self):
+    def test_feature_weights(self):
         self.assertTrue(True)
 ''',
-    "tests/test_auth.py": '''\
-"""Tests for authentication and authorization."""
+
+    "tests/test_qc.py": '''\
+"""Tests for quality control."""
 import unittest
 
 
-class TestAuth(unittest.TestCase):
-    """Verify token validation and user lookup."""
-
-    def test_valid_token(self):
+class TestQualityChecker(unittest.TestCase):
+    def test_filter_spots(self):
         self.assertTrue(True)
 
-    def test_invalid_token(self):
+    def test_filter_genes(self):
         self.assertTrue(True)
 
-    def test_expired_token(self):
+    def test_min_thresholds(self):
         self.assertTrue(True)
 ''',
-    "tests/test_routes.py": '''\
-"""Tests for API route handlers."""
+
+    "tests/test_plotting.py": '''\
+"""Tests for plotting utilities."""
 import unittest
 
 
-class TestRoutes(unittest.TestCase):
-    """Verify endpoint behavior."""
-
-    def test_health_endpoint(self):
+class TestPlotting(unittest.TestCase):
+    def test_volcano_render(self):
         self.assertTrue(True)
 
-    def test_create_returns_201(self):
+    def test_umap_plot(self):
         self.assertTrue(True)
 
-    def test_not_found_returns_404(self):
-        self.assertTrue(True)
-
-    def test_auth_required(self):
+    def test_heatmap_render(self):
         self.assertTrue(True)
 ''',
-    # scripts/ — operational scripts without db_url
-    "scripts/lint.sh": '''\
-#!/usr/bin/env bash
-# Run code quality checks
-set -euo pipefail
-echo "Running flake8..."
-echo "Running mypy..."
-echo "All checks passed."
+
+    "tests/test_ingestion.py": '''\
+"""Tests for data ingestion."""
+import unittest
+
+
+class TestDataIngestor(unittest.TestCase):
+    def test_read_visium(self):
+        self.assertTrue(True)
+
+    def test_read_merfish(self):
+        self.assertTrue(True)
 ''',
-    "scripts/build.sh": '''\
-#!/usr/bin/env bash
-# Build the application for deployment
-set -euo pipefail
-echo "Building application..."
-echo "Build complete."
+
+    "tests/test_batch.py": '''\
+"""Tests for batch correction."""
+import unittest
+
+
+class TestBatchCorrector(unittest.TestCase):
+    def test_harmony(self):
+        self.assertTrue(True)
+
+    def test_combat(self):
+        self.assertTrue(True)
 ''',
-    # docs/ — documentation without db_url
-    "docs/architecture.md": '''\
-# Architecture
+
+    "tests/test_diffusion.py": '''\
+"""Tests for diffusion map analysis."""
+import unittest
+
+
+class TestDiffusionMap(unittest.TestCase):
+    def test_fit(self):
+        self.assertTrue(True)
+
+    def test_transform(self):
+        self.assertTrue(True)
+''',
+
+    "tests/test_trajectory.py": '''\
+"""Tests for trajectory inference."""
+import unittest
+
+
+class TestTrajectoryInference(unittest.TestCase):
+    def test_fit(self):
+        self.assertTrue(True)
+
+    def test_pseudotime(self):
+        self.assertTrue(True)
+''',
+
+    "tests/test_cell_types.py": '''\
+"""Tests for cell-type classification."""
+import unittest
+
+
+class TestCellTypeClassifier(unittest.TestCase):
+    def test_classify(self):
+        self.assertTrue(True)
+
+    def test_threshold(self):
+        self.assertTrue(True)
+''',
+
+    "tests/test_markers.py": '''\
+"""Tests for marker gene management."""
+import unittest
+
+
+class TestMarkerDatabase(unittest.TestCase):
+    def test_add_marker(self):
+        self.assertTrue(True)
+
+    def test_get_markers(self):
+        self.assertTrue(True)
+''',
+
+    "tests/test_pipelines.py": '''\
+"""Tests for pipeline orchestration."""
+import unittest
+
+
+class TestPipelines(unittest.TestCase):
+    def test_qc_pipeline(self):
+        self.assertTrue(True)
+
+    def test_analysis_pipeline(self):
+        self.assertTrue(True)
+
+    def test_plotting_pipeline(self):
+        self.assertTrue(True)
+''',
+
+    # ── RED HERRING FILES — mention "metadata" but NOT dependents ─────
+
+    "tests/conftest.py": '''\
+"""Shared test fixtures and configuration."""
+import os
+
+# Sample metadata for integration tests — a plain dict literal,
+# NOT imported from core.metadata
+SAMPLE_METADATA = {
+    "S001": {"tissue": "brain", "capture_date": "2026-01-15"},
+    "S002": {"tissue": "liver", "capture_date": "2026-01-16"},
+    "S003": {"tissue": "heart", "capture_date": "2026-01-17"},
+}
+
+TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
+
+
+def get_test_sample(sample_id="S001"):
+    """Return a test sample metadata dict."""
+    return SAMPLE_METADATA.get(sample_id, {})
+''',
+
+    "scripts/download_data.py": '''\
+"""Download reference data from public repositories."""
+import os
+
+# Download sample metadata from GEO and spatial coordinates from
+# the Allen Brain Atlas.  This script does NOT import any project
+# modules — it is a standalone helper.
+
+URLS = {
+    "geo_metadata": "https://ftp.ncbi.nlm.nih.gov/geo/example.csv",
+    "allen_atlas": "https://atlas.brain-map.org/example.h5ad",
+}
+
+
+def download(url, dest_dir="data/"):
+    """Download a file to the destination directory (stub)."""
+    os.makedirs(dest_dir, exist_ok=True)
+    print(f"Would download {url} to {dest_dir}")
+
+
+if __name__ == "__main__":
+    for name, url in URLS.items():
+        download(url)
+''',
+
+    "docs/preprocessing_guide.md": '''\
+# Preprocessing Guide
 
 ## Overview
 
-The application follows a layered architecture:
+The preprocessing pipeline prepares raw spatial-omics data for analysis.
+Each sample's metadata (tissue type, capture date, QC flags) is used to
+select appropriate normalisation parameters.
 
-1. **API Layer** — HTTP routing and request handling
-2. **Service Layer** — Business logic and validation
-3. **Data Layer** — Database access and query building
+## Steps
 
-## Directory Structure
+1. Load raw count matrix
+2. Validate sample metadata against the registry
+3. Filter low-quality spots (min 200 genes, 500 UMIs)
+4. Log-normalise counts with scale factor 10,000
+5. Run batch correction if multiple samples
+
+## Notes
+
+- Always check that metadata is complete before running QC
+- Missing metadata fields will cause the pipeline to abort
+''',
+
+    "configs/pipeline_config.yaml": '''\
+# Pipeline configuration
+pipeline:
+  name: spatial-omics-v3
+  version: "0.1.0"
+
+preprocessing:
+  min_genes: 200
+  min_counts: 500
+  scale_factor: 10000
+
+analysis:
+  n_clusters: 10
+  spatial_neighbors: 6
+
+# Column names expected in sample sheets
+metadata_columns:
+  - sample_id
+  - tissue
+  - capture_date
+  - donor_id
+  - qc_pass
+''',
+
+    # ── REMAINING NOISE FILES ─────────────────────────────────────────
+
+    "scripts/setup_env.sh": '''\
+#!/usr/bin/env bash
+# Set up the development environment
+set -euo pipefail
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+echo "Environment ready."
+''',
+
+    "scripts/run_pipeline.sh": '''\
+#!/usr/bin/env bash
+# Run the full spatial-omics pipeline
+set -euo pipefail
+echo "Running QC..."
+echo "Running normalisation..."
+echo "Running analysis..."
+echo "Pipeline complete."
+''',
+
+    "scripts/validate_output.py": '''\
+"""Validate pipeline output files exist and are non-empty."""
+import os
+import sys
+
+
+def validate(output_dir):
+    """Check that expected output files exist."""
+    expected = ["qc_report.html", "clusters.csv", "spatial_plots/"]
+    missing = [f for f in expected if not os.path.exists(os.path.join(output_dir, f))]
+    if missing:
+        print(f"Missing: {missing}")
+        sys.exit(1)
+    print("All outputs present.")
+
+
+if __name__ == "__main__":
+    validate(sys.argv[1] if len(sys.argv) > 1 else "output/")
+''',
+
+    "scripts/benchmark.py": '''\
+"""Benchmark pipeline performance on varying dataset sizes."""
+import time
+
+
+def benchmark(sizes=(100, 500, 1000, 5000)):
+    """Time the pipeline on different numbers of spots (stub)."""
+    for n in sizes:
+        start = time.time()
+        time.sleep(0.01)
+        elapsed = time.time() - start
+        print(f"  n={n}: {elapsed:.3f}s")
+
+
+if __name__ == "__main__":
+    benchmark()
+''',
+
+    "scripts/profile_memory.py": '''\
+"""Profile memory usage of the preprocessing pipeline."""
+import sys
+
+
+def profile(sample_count=10):
+    """Report memory usage estimates (stub)."""
+    base_mb = 50
+    per_sample_mb = 12
+    total = base_mb + sample_count * per_sample_mb
+    print(f"Estimated memory: {total} MB for {sample_count} samples")
+
+
+if __name__ == "__main__":
+    n = int(sys.argv[1]) if len(sys.argv) > 1 else 10
+    profile(n)
+''',
+
+    "scripts/export_results.py": '''\
+"""Export analysis results to various formats."""
+
+
+def export_csv(results, path):
+    """Write results to CSV (stub)."""
+    print(f"Would write {len(results)} rows to {path}")
+
+
+def export_h5ad(results, path):
+    """Write results to AnnData h5ad format (stub)."""
+    print(f"Would write h5ad to {path}")
+
+
+if __name__ == "__main__":
+    export_csv([], "output/results.csv")
+''',
+
+    # docs/
+    "docs/README.md": '''\
+# Spatial-Omics Analysis Pipeline
+
+A Python toolkit for spatial transcriptomics data analysis.
+
+## Quick Start
+
+```bash
+python -m pipelines.run_qc --config configs/pipeline_config.yaml
+python -m pipelines.run_analysis --config configs/pipeline_config.yaml
+```
+
+## Features
+
+- Quality control and filtering
+- Expression normalisation
+- Spatial clustering
+- Cell-type annotation
+- Heatmap and UMAP visualisation
+''',
+
+    "docs/architecture.md": '''\
+# Architecture
+
+## Package Layout
 
 ```
 src/
-  api/        HTTP handlers, middleware, serializers
-  core/       Config, database, logging, caching
-  workers/    Background task processing
+  core/           Configuration, logging, exceptions
+  annotation/     GO terms, confidence scoring, markers
+  preprocessing/  QC, normalisation, batch correction
+  analysis/       Clustering, spatial stats, trajectories
+  plotting/       Heatmaps, volcano, UMAP, spatial plots
+  pipelines/      End-to-end pipeline entry points
 ```
 
-## Design Decisions
+## Design Principles
 
-- Single-process deployment for simplicity
-- In-memory caching with configurable TTL
-- Token-bucket rate limiting per client
+- Each package has a clear single responsibility
+- Shared types flow through `core/` re-exports
+- Pipeline scripts compose preprocessing + analysis + plotting
 ''',
-    "docs/contributing.md": '''\
-# Contributing
+
+    "docs/api_reference.md": '''\
+# API Reference
+
+## core.Config
+
+Configuration class for the pipeline.
+
+## annotation.OntologyMapper
+
+Maps gene IDs to Gene Ontology terms.
+
+## preprocessing.BasePreprocessor
+
+Abstract base for preprocessing steps.
+
+## analysis.SpatialAnalyzer
+
+Spatial autocorrelation and neighborhood analysis.
+''',
+
+    "docs/analysis_tutorial.md": '''\
+# Analysis Tutorial
+
+## Step 1: Load Data
+
+Load your Visium data using the ingestion module.
+
+## Step 2: QC
+
+Run quality control to filter low-quality spots.
+
+## Step 3: Clustering
+
+Use ClusterAnalyzer to identify spatial domains.
+
+## Step 4: Visualise
+
+Generate heatmaps and spatial plots of your results.
+''',
+
+    # configs/
+    "configs/logging_config.yaml": '''\
+# Logging configuration
+logging:
+  level: INFO
+  format: "[%(levelname)s] %(name)s: %(message)s"
+  file: logs/pipeline.log
+''',
+
+    "configs/test_config.yaml": '''\
+# Test suite configuration
+testing:
+  data_dir: tests/data/
+  n_samples: 3
+  seed: 42
+  timeout: 60
+''',
+
+    # R/
+    "R/spatial_stats.R": '''\
+# Spatial statistics helper functions
+# Called from Python via rpy2 bridge
+
+morans_i <- function(expression, coords) {
+  # Compute Moran's I statistic (stub)
+  return(0.0)
+}
+
+getis_ord <- function(expression, coords, threshold = 0.05) {
+  # Getis-Ord Gi* hotspot detection (stub)
+  return(list())
+}
+''',
+
+    "R/visualization.R": '''\
+# R-based visualization helpers using ggplot2
+
+library(ggplot2)
+
+plot_spatial <- function(coords, values, title = "Spatial Plot") {
+  # Generate spatial scatter plot (stub)
+  cat("Would generate spatial plot:", title, "\\n")
+}
+
+plot_violin <- function(expression, groups, gene) {
+  # Generate violin plot for a gene across groups (stub)
+  cat("Would generate violin plot for:", gene, "\\n")
+}
+''',
+
+    "R/utils.R": '''\
+# Utility functions for R integration
+
+read_expression <- function(path) {
+  # Read expression matrix from CSV (stub)
+  cat("Would read expression from:", path, "\\n")
+  return(matrix(0, nrow = 10, ncol = 10))
+}
+
+write_results <- function(results, path) {
+  # Write results to RDS file (stub)
+  cat("Would write results to:", path, "\\n")
+}
+''',
+
+    "R/deconvolution.R": '''\
+# Cell-type deconvolution using reference profiles
+
+deconvolve <- function(bulk_expression, reference_profiles) {
+  # NNLS-based deconvolution (stub)
+  n_types <- ncol(reference_profiles)
+  return(rep(1 / n_types, n_types))
+}
+
+build_reference <- function(single_cell_data, cell_types) {
+  # Build reference profiles from scRNA-seq (stub)
+  return(matrix(0, nrow = 100, ncol = length(unique(cell_types))))
+}
+''',
+
+    "R/bridge.R": '''\
+# Bridge between Python pipeline and R analysis functions
+
+run_r_analysis <- function(input_path, output_path) {
+  source("R/spatial_stats.R")
+  source("R/utils.R")
+  expr <- read_expression(input_path)
+  write_results(list(expr = expr), output_path)
+}
+''',
+
+    "R/clustering.R": '''\
+# R-based clustering alternatives
+
+seurat_clustering <- function(expression, resolution = 0.8) {
+  # Seurat-style graph-based clustering (stub)
+  n_cells <- nrow(expression)
+  return(sample(1:10, n_cells, replace = TRUE))
+}
+''',
+
+    "R/preprocessing.R": '''\
+# R-based preprocessing helpers
+
+sctransform <- function(counts) {
+  # SCTransform normalisation (stub)
+  return(log1p(counts))
+}
+
+filter_cells <- function(counts, min_genes = 200) {
+  # Filter cells by minimum gene count (stub)
+  return(counts)
+}
+''',
+
+    # Root-level files
+    "pyproject.toml": '''\
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "spatial-omics-pipeline"
+version = "0.1.0"
+requires-python = ">=3.10"
+description = "Spatial transcriptomics analysis toolkit"
+''',
+
+    "setup.cfg": '''\
+[flake8]
+max-line-length = 100
+exclude = .git,__pycache__,.venv
+
+[mypy]
+python_version = 3.10
+warn_return_any = True
+''',
+
+    ".env.example": '''\
+# Environment configuration
+DATA_DIR=data/
+N_THREADS=4
+LOG_LEVEL=INFO
+''',
+
+    ".phoamignore": '''\
+# Ignore for kb-graph scanning
+.venv/
+__pycache__/
+*.egg-info/
+data/
+output/
+logs/
+''',
+
+    ".gitignore": '''\
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+data/
+output/
+logs/
+.env
+''',
+
+    "requirements.txt": '''\
+numpy>=1.24
+scipy>=1.10
+pandas>=2.0
+matplotlib>=3.7
+scanpy>=1.9
+anndata>=0.9
+''',
+
+    "Makefile": '''\
+.PHONY: test lint qc analysis
+
+test:
+\tpython -m pytest tests/ -v
+
+lint:
+\tflake8 src/ tests/
+\tmypy src/
+
+qc:
+\tpython -m pipelines.run_qc
+
+analysis:
+\tpython -m pipelines.run_analysis
+''',
+
+    "LICENSE": '''\
+MIT License
+
+Copyright (c) 2026
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction.
+''',
+
+    # ── PADDING FILES — bring total close to 100 ─────────────────────
+
+    "tests/test_heatmap.py": '''\
+"""Tests for heatmap rendering."""
+import unittest
+
+
+class TestHeatmapRenderer(unittest.TestCase):
+    def test_render(self):
+        self.assertTrue(True)
+
+    def test_render_spatial(self):
+        self.assertTrue(True)
+''',
+
+    "tests/test_volcano.py": '''\
+"""Tests for volcano plot rendering."""
+import unittest
+
+
+class TestVolcanoPlot(unittest.TestCase):
+    def test_render(self):
+        self.assertTrue(True)
+''',
+
+    "tests/test_umap.py": '''\
+"""Tests for UMAP plotting."""
+import unittest
+
+
+class TestUMAPPlotter(unittest.TestCase):
+    def test_fit_transform(self):
+        self.assertTrue(True)
+
+    def test_plot(self):
+        self.assertTrue(True)
+''',
+
+    "tests/test_base.py": '''\
+"""Tests for base preprocessor."""
+import unittest
+
+
+class TestBasePreprocessor(unittest.TestCase):
+    def test_validate_sample(self):
+        self.assertTrue(True)
+
+    def test_preprocess(self):
+        self.assertTrue(True)
+
+    def test_get_tissue(self):
+        self.assertTrue(True)
+''',
+
+    "tests/test_confidence.py": '''\
+"""Tests for confidence scoring."""
+import unittest
+
+
+class TestConfidenceScorer(unittest.TestCase):
+    def test_score(self):
+        self.assertTrue(True)
+
+    def test_batch_score(self):
+        self.assertTrue(True)
+''',
+
+    "tests/test_exceptions.py": '''\
+"""Tests for custom exception hierarchy."""
+import unittest
+
+
+class TestExceptions(unittest.TestCase):
+    def test_pipeline_error(self):
+        self.assertTrue(True)
+
+    def test_qc_error(self):
+        self.assertTrue(True)
+
+    def test_metadata_error(self):
+        self.assertTrue(True)
+''',
+
+    "tests/test_logging.py": '''\
+"""Tests for structured logging."""
+import unittest
+
+
+class TestLogger(unittest.TestCase):
+    def test_info(self):
+        self.assertTrue(True)
+
+    def test_get_logger(self):
+        self.assertTrue(True)
+''',
+
+    "src/utils/__init__.py": """\
+\"\"\"Utility functions for the pipeline.\"\"\"
+""",
+
+    "src/utils/io_helpers.py": '''\
+"""I/O helper functions for reading and writing data files."""
+import os
+
+
+def ensure_dir(path):
+    """Create directory if it does not exist."""
+    os.makedirs(path, exist_ok=True)
+    return path
+
+
+def safe_read(path, default=""):
+    """Read file contents, returning default if file does not exist."""
+    try:
+        with open(path) as f:
+            return f.read()
+    except FileNotFoundError:
+        return default
+''',
+
+    "src/utils/math_utils.py": '''\
+"""Math utility functions for spatial statistics."""
+import math
+
+
+def euclidean_distance(p1, p2):
+    """Compute Euclidean distance between two points."""
+    return math.sqrt(sum((a - b) ** 2 for a, b in zip(p1, p2)))
+
+
+def normalize_vector(vec):
+    """L2-normalize a vector."""
+    magnitude = math.sqrt(sum(x ** 2 for x in vec))
+    if magnitude == 0:
+        return vec
+    return [x / magnitude for x in vec]
+''',
+
+    "scripts/clean_outputs.sh": '''\
+#!/usr/bin/env bash
+# Remove all generated output files
+set -euo pipefail
+rm -rf output/ logs/ *.egg-info/
+echo "Cleaned output directories."
+''',
+
+    "scripts/generate_report.py": '''\
+"""Generate a summary report from pipeline outputs."""
+
+
+def generate(output_dir="output/"):
+    """Create an HTML report summarising pipeline results (stub)."""
+    print(f"Would generate report from {output_dir}")
+
+
+if __name__ == "__main__":
+    generate()
+''',
+
+    "docs/changelog.md": '''\
+# Changelog
+
+## 0.1.0
+
+- Initial release
+- QC, normalisation, and clustering pipelines
+- Spatial statistics module
+- Basic plotting support
+''',
+
+    "docs/installation.md": '''\
+# Installation
+
+## Requirements
+
+- Python 3.10+
+- R 4.2+ (optional, for spatial statistics)
 
 ## Setup
 
-1. Clone the repository
-2. Create a virtual environment
-3. Install dependencies
-4. Run tests: `python -m pytest tests/`
-
-## Code Style
-
-- Follow PEP 8
-- Use type hints for public APIs
-- Write docstrings for all public functions
-
-## Pull Requests
-
-- One feature per PR
-- Include tests for new functionality
-- Update documentation as needed
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 ''',
+
+    "docs/faq.md": '''\
+# FAQ
+
+## How do I add a new sample?
+
+Register the sample in the metadata registry before running the pipeline.
+
+## What formats are supported?
+
+Currently: 10x Visium and MERFISH. SlideSeq support is planned.
+
+## How do I run batch correction?
+
+Use the `--method harmony` or `--method combat` flag with the preprocessing pipeline.
+''',
+
+    "configs/default_params.yaml": '''\
+# Default analysis parameters
+defaults:
+  qc:
+    min_genes: 200
+    min_counts: 500
+  normalization:
+    scale_factor: 10000
+  clustering:
+    n_clusters: 10
+    resolution: 0.8
+  spatial:
+    n_neighbors: 6
+    n_perms: 1000
+''',
+
+    "configs/sample_sheet.csv": '''\
+sample_id,tissue,capture_date,donor_id,qc_pass
+S001,brain,2026-01-15,D001,true
+S002,liver,2026-01-16,D002,true
+S003,heart,2026-01-17,D003,false
+''',
+
+    "R/integration_test.R": '''\
+# Integration test for R analysis functions
+
+test_morans <- function() {
+  source("R/spatial_stats.R")
+  result <- morans_i(matrix(rnorm(100), 10, 10), matrix(runif(20), 10, 2))
+  stopifnot(is.numeric(result))
+  cat("morans_i test passed\\n")
 }
 
-# Map of relative paths to enhanced content (overwrite existing fixture files)
-ENHANCEMENTS = {
-    "src/core/config.py": ENHANCED_CONFIG_PY,
-    "src/core/database.py": ENHANCED_DATABASE_PY,
-    "src/main.py": ENHANCED_MAIN_PY,
-    "src/api/routes.py": ENHANCED_ROUTES_PY,
-    "config/settings.yaml": ENHANCED_SETTINGS_YAML,
+test_morans()
+''',
+
+    "data/.gitkeep": "",
+
+    "notebooks/.gitkeep": "",
 }
 
-# Files that should contain db_url after enhancement (for measurement)
-DB_URL_FILES = [
-    "src/core/config.py",     # depth 0 — definition + as_dict()
-    "src/core/database.py",   # depth 1 — direct usage
-    "src/main.py",            # depth 1 — keyword arg
-    "src/api/routes.py",      # depth 2 — via database, health endpoint
-    "src/api/middleware.py",   # depth 2 — attribute access through intermediate var
-    "src/cli.py",             # depth 3 — calls app.health() which has db_url
-    "config/settings.yaml",   # config-ref — yaml key
-    "tests/test_config.py",   # test — asserts on db_url
-    "scripts/migrate.py",     # script — reads config.db_url
-    "scripts/seed.py",        # script — dict unpacking with db_url key
-    "scripts/health_check.sh",  # shell — parses db_url from JSON response
-    "docs/deployment.md",     # doc — db_url in code fences
+# Old files from the original fixture that must be removed from copies.
+# These contain web-app imports (database.py, routes.py) that would add
+# unrelated edges to the graph.
+OLD_FILES_TO_REMOVE = [
+    "src/core/database.py",
+    "src/api/routes.py",
+    "src/api/auth.py",
+    "src/api/__init__.py",
+    "src/main.py",
+    "standalone.py",
+    "config/settings.yaml",
+    "docs/api-design.md",
+    "docs/orphan-doc.md",
 ]
 
-# ── Agent Prompts ────────────────────────────────────────────────────────
+# Expected blast radius of src/core/metadata.py at depth 4.
+# Grouped by depth for scoring breakdown.
+EXPECTED_DEPTH_1 = [
+    "src/core/__init__.py",
+    "src/annotation/ontology.py",
+    "src/annotation/confidence.py",
+    "tests/test_metadata.py",
+]
+
+EXPECTED_DEPTH_2 = [
+    "src/annotation/__init__.py",
+    "src/annotation/markers.py",
+    "src/annotation/cell_types.py",
+    "src/preprocessing/base.py",
+    "src/analysis/clustering.py",
+]
+
+EXPECTED_DEPTH_3 = [
+    "src/preprocessing/__init__.py",
+    "src/preprocessing/normalization.py",
+    "src/preprocessing/qc.py",
+    "src/analysis/spatial.py",
+    "src/plotting/spatial_plot.py",
+]
+
+EXPECTED_DEPTH_4 = [
+    "src/preprocessing/ingestion.py",
+    "src/preprocessing/batch.py",
+    "src/pipelines/run_qc.py",
+    "src/pipelines/run_analysis.py",
+    "src/plotting/heatmap.py",
+]
+
+EXPECTED_BLAST_RADIUS = EXPECTED_DEPTH_1 + EXPECTED_DEPTH_2 + EXPECTED_DEPTH_3 + EXPECTED_DEPTH_4
+
+DEPTH_GROUPS = {
+    1: set(EXPECTED_DEPTH_1),
+    2: set(EXPECTED_DEPTH_2),
+    3: set(EXPECTED_DEPTH_3),
+    4: set(EXPECTED_DEPTH_4),
+}
+
+# Red herring files — mention "metadata" but are NOT in the blast radius
+RED_HERRING_FILES = [
+    "scripts/download_data.py",
+    "docs/preprocessing_guide.md",
+    "configs/pipeline_config.yaml",
+    "tests/conftest.py",
+    "src/analysis/trajectory.py",
+]
+
+# ── Agent Prompts ────────��──────────────────────────────��────────────────
 
 PROMPT_A = (
-    "Rename the db_url parameter to database_url in config.py. "
-    "Update all code that references db_url throughout this project. "
-    "Do not explain, just make the changes."
+    "A breaking change is planned for src/core/metadata.py. Add "
+    "`# AFFECTED-BY: metadata.py` as the very first line of every Python "
+    "file that would be affected — include all transitive dependents. Do "
+    "not modify metadata.py itself. Do not explain, just make the changes."
 )
 
 PROMPT_B = (
-    "First read CLAUDE.md, then run the check_graph skill to analyze the impact "
-    "of renaming db_url to database_url in config.py. After reviewing the impact "
-    "report, make the rename — update config.py and every file that references "
-    "db_url. Do not explain, just make the changes."
+    "Read CLAUDE.md first. A breaking change is planned for "
+    "src/core/metadata.py. Run `kb-graph traverse metadata.py --depth 4` "
+    "to get the complete list of affected files. Add "
+    "`# AFFECTED-BY: metadata.py` as the very first line of every file "
+    "in the traverse output. Do not modify metadata.py itself. Do not "
+    "explain, just make the changes."
 )
 
+MARKER = "# AFFECTED-BY: metadata.py"
 
-# ── Helpers ──────────────────────────────────────────────────────────────
+
+# ── Helpers ─────��────────────────────────────────────────────────────────
 
 def check_prerequisites():
     """Verify claude CLI and kb-graph are available."""
@@ -932,22 +1768,22 @@ def check_prerequisites():
 
 
 def create_enhanced_project(dest):
-    """Copy fixture project to dest, apply enhancements, add new files and noise."""
+    """Copy fixture project to dest, remove old web-app files, write v3 bioinformatics files."""
     shutil.copytree(FIXTURE_DIR, dest)
 
-    # Overwrite existing files with enhanced versions
-    for rel_path, content in ENHANCEMENTS.items():
+    # Remove old fixture files that don't belong in the v3 bioinformatics project
+    for rel_path in OLD_FILES_TO_REMOVE:
         filepath = Path(dest) / rel_path
-        filepath.write_text(content)
+        if filepath.exists():
+            filepath.unlink()
 
-    # Create new files with db_url references
-    for rel_path, content in NEW_FILES.items():
-        filepath = Path(dest) / rel_path
-        filepath.parent.mkdir(parents=True, exist_ok=True)
-        filepath.write_text(content)
+    # Remove empty directories left behind
+    for dirpath in [Path(dest) / "src" / "api", Path(dest) / "config"]:
+        if dirpath.is_dir() and not any(dirpath.iterdir()):
+            dirpath.rmdir()
 
-    # Create noise files (no db_url)
-    for rel_path, content in NOISE_FILES.items():
+    # Write all v3 fixture files (overwrites existing where paths collide)
+    for rel_path, content in V3_FILES.items():
         filepath = Path(dest) / rel_path
         filepath.parent.mkdir(parents=True, exist_ok=True)
         filepath.write_text(content)
@@ -984,7 +1820,7 @@ def init_graph(project_dir):
     return result.returncode == 0
 
 
-def run_agent(project_dir, prompt, *, model=None, timeout=120):
+def run_agent(project_dir, prompt, *, model=None, timeout=300):
     """Spawn a Claude Code subprocess and return (stdout, stderr, returncode, elapsed)."""
     cmd = [
         "claude",
@@ -1012,78 +1848,57 @@ def run_agent(project_dir, prompt, *, model=None, timeout=120):
         return "", f"TIMEOUT after {timeout}s", -1, elapsed
 
 
-def _scan_file_for_pattern(filepath, pattern):
-    """Scan a file for a regex pattern, returning matching lines.
+def scan_markers(project_dir):
+    """Scan all project files for the AFFECTED-BY marker on line 1.
 
-    Handles text files only — skips binary files gracefully.
+    Returns set of relative paths (forward-slash normalized) where the marker
+    was found as the first line.
     """
-    try:
-        content = filepath.read_text()
-    except (UnicodeDecodeError, PermissionError):
-        return []
-    matching = []
-    for i, line in enumerate(content.splitlines(), 1):
-        if re.search(pattern, line):
-            matching.append(f"  L{i}: {line.strip()}")
-    return matching
-
-
-def count_db_url_refs(project_dir):
-    """Count remaining db_url references (word-boundary match, excludes database_url).
-
-    Scans the known DB_URL_FILES list. Returns dict: {relative_path: [matching_lines]}.
-    """
-    pattern = r'(?<![a-zA-Z_])db_url(?![a-zA-Z_])'
-    hits = {}
-    for rel_path in DB_URL_FILES:
-        filepath = Path(project_dir) / rel_path
-        if not filepath.exists():
+    marked = set()
+    project = Path(project_dir)
+    for filepath in project.rglob("*"):
+        if not filepath.is_file():
             continue
-        matching = _scan_file_for_pattern(filepath, pattern)
-        if matching:
-            hits[rel_path] = matching
-    return hits
-
-
-def count_database_url_refs(project_dir):
-    """Count database_url references (the renamed version).
-
-    Returns dict: {relative_path: count} for files with hits.
-    """
-    hits = {}
-    for rel_path in DB_URL_FILES:
-        filepath = Path(project_dir) / rel_path
-        if not filepath.exists():
+        rel = str(filepath.relative_to(project)).replace("\\", "/")
+        # Skip .git, .claude, and other dot-directories
+        if any(part.startswith(".") for part in Path(rel).parts):
+            continue
+        # Skip KB_INDEX.md and graph.html (generated files)
+        if Path(rel).name in ("KB_INDEX.md", "graph.html"):
             continue
         try:
-            content = filepath.read_text()
+            first_line = filepath.read_text().split("\n", 1)[0].strip()
         except (UnicodeDecodeError, PermissionError):
             continue
-        count = len(re.findall(r'(?<![a-zA-Z_])database_url(?![a-zA-Z_])', content))
-        if count > 0:
-            hits[rel_path] = count
-    return hits
+        if first_line == MARKER:
+            marked.add(rel)
+    return marked
 
 
-def total_expected_refs():
-    """Count how many lines contain db_url in all enhanced/new files.
+def classify_results(marked_files, expected_files):
+    """Compare marked files against the expected blast radius.
 
-    Counts lines (not individual matches per line) to be consistent
-    with count_db_url_refs which also counts lines.
+    Returns dict with hits, misses, false_positives, recall, precision, perfect.
     """
-    pattern = r'(?<![a-zA-Z_])db_url(?![a-zA-Z_])'
-    total = 0
-    all_sources = {**ENHANCEMENTS, **NEW_FILES}
-    for content in all_sources.values():
-        for line in content.splitlines():
-            if re.search(pattern, line):
-                total += 1
-    return total
+    expected = set(expected_files)
+    hits = marked_files & expected
+    misses = expected - marked_files
+    false_positives = marked_files - expected
+    recall = len(hits) / len(expected) if expected else 1.0
+    precision = len(hits) / len(marked_files) if marked_files else 0.0
+    return {
+        "hits": sorted(hits),
+        "misses": sorted(misses),
+        "false_positives": sorted(false_positives),
+        "recall": recall,
+        "precision": precision,
+        "perfect": len(misses) == 0,
+    }
 
 
-# ── Trial Runner ─────────────────────────────────────────────────────────
+# ── Trial Runner ──────────���────────────────────────��─────────────────────
 
-def run_trial(trial_num, *, model=None, save_transcripts=False, timeout=120):
+def run_trial(trial_num, *, model=None, save_transcripts=False, timeout=300):
     """Run one A/B trial. Returns a result dict."""
     log(f"\n{'='*60}")
     log(f"  Trial {trial_num}")
@@ -1099,12 +1914,12 @@ def run_trial(trial_num, *, model=None, save_transcripts=False, timeout=120):
         create_enhanced_project(dir_a)
         create_enhanced_project(dir_b)
 
-        # Verify enhancement worked
-        expected = total_expected_refs()
-        refs_a = count_db_url_refs(dir_a)
-        pre_count = sum(len(v) for v in refs_a.values())
-        log(f"  Enhanced fixture: {pre_count} db_url references across {len(refs_a)} files")
-        assert pre_count == expected, f"Expected {expected} refs, got {pre_count}"
+        # Verify expected blast radius files exist in the fixture
+        expected_count = len(EXPECTED_BLAST_RADIUS)
+        for rel_path in EXPECTED_BLAST_RADIUS:
+            fp = Path(dir_a) / rel_path
+            assert fp.exists(), f"Expected blast radius file missing: {rel_path}"
+        log(f"  Fixture verified: {expected_count} expected blast radius files present")
 
         # Init graph on project B only
         log("  Running kb-graph init on project B...")
@@ -1131,37 +1946,24 @@ def run_trial(trial_num, *, model=None, save_transcripts=False, timeout=120):
         )
         log(f"  Agent B finished in {elapsed_b:.1f}s (exit={rc_b})")
 
-        # Measure results
-        remaining_a = count_db_url_refs(dir_a)
-        remaining_b = count_db_url_refs(dir_b)
-        renamed_a = count_database_url_refs(dir_a)
-        renamed_b = count_database_url_refs(dir_b)
-
-        missed_a = sum(len(v) for v in remaining_a.values())
-        missed_b = sum(len(v) for v in remaining_b.values())
-        updated_a = sum(renamed_a.values())
-        updated_b = sum(renamed_b.values())
-
-        files_missed_a = sorted(remaining_a.keys())
-        files_missed_b = sorted(remaining_b.keys())
+        # Measure results — scan for AFFECTED-BY markers
+        marked_a = scan_markers(dir_a)
+        marked_b = scan_markers(dir_b)
+        results_a = classify_results(marked_a, EXPECTED_BLAST_RADIUS)
+        results_b = classify_results(marked_b, EXPECTED_BLAST_RADIUS)
 
         log(f"\n  Results:")
-        log(f"  Agent A: {updated_a}/{expected} renamed, {missed_a} remaining in {files_missed_a}")
-        log(f"  Agent B: {updated_b}/{expected} renamed, {missed_b} remaining in {files_missed_b}")
+        log(f"  Agent A: recall={results_a['recall']:.0%} ({len(results_a['hits'])}/{expected_count}), "
+            f"precision={results_a['precision']:.0%}, "
+            f"missed={results_a['misses']}")
+        log(f"  Agent B: recall={results_b['recall']:.0%} ({len(results_b['hits'])}/{expected_count}), "
+            f"precision={results_b['precision']:.0%}, "
+            f"missed={results_b['misses']}")
 
-        if remaining_a:
-            log(f"\n  Agent A missed:")
-            for f, lines in sorted(remaining_a.items()):
-                log(f"    {f}:")
-                for line in lines:
-                    log(f"      {line}")
-
-        if remaining_b:
-            log(f"\n  Agent B missed:")
-            for f, lines in sorted(remaining_b.items()):
-                log(f"    {f}:")
-                for line in lines:
-                    log(f"      {line}")
+        if results_a["false_positives"]:
+            log(f"  Agent A false positives: {results_a['false_positives']}")
+        if results_b["false_positives"]:
+            log(f"  Agent B false positives: {results_b['false_positives']}")
 
         # Save transcripts
         if save_transcripts:
@@ -1177,20 +1979,24 @@ def run_trial(trial_num, *, model=None, save_transcripts=False, timeout=120):
 
         return {
             "trial": trial_num,
-            "expected_refs": expected,
+            "expected_count": expected_count,
             "agent_a": {
-                "renamed": updated_a,
-                "remaining": missed_a,
-                "files_missed": files_missed_a,
-                "detail": remaining_a,
+                "recall": results_a["recall"],
+                "precision": results_a["precision"],
+                "perfect": results_a["perfect"],
+                "hits": results_a["hits"],
+                "misses": results_a["misses"],
+                "false_positives": results_a["false_positives"],
                 "elapsed": elapsed_a,
                 "exit_code": rc_a,
             },
             "agent_b": {
-                "renamed": updated_b,
-                "remaining": missed_b,
-                "files_missed": files_missed_b,
-                "detail": remaining_b,
+                "recall": results_b["recall"],
+                "precision": results_b["precision"],
+                "perfect": results_b["perfect"],
+                "hits": results_b["hits"],
+                "misses": results_b["misses"],
+                "false_positives": results_b["false_positives"],
                 "elapsed": elapsed_b,
                 "exit_code": rc_b,
             },
@@ -1200,73 +2006,102 @@ def run_trial(trial_num, *, model=None, save_transcripts=False, timeout=120):
         shutil.rmtree(tmpdir, ignore_errors=True)
 
 
-# ── Summary ──────────────────────────────────────────────────────────────
+# ── Summary ──────���──────────────────────────────��────────────────────────
 
 def print_summary(results):
     """Print a summary table of all trials."""
-    expected = results[0]["expected_refs"]
+    expected_count = results[0]["expected_count"]
+    n = len(results)
 
     log(f"\n{'='*70}")
-    log(f"  EXPERIMENT SUMMARY — {len(results)} trial(s), {expected} db_url refs per project")
+    log(f"  EXPERIMENT SUMMARY — {n} trial(s), {expected_count} expected blast radius files")
     log(f"{'='*70}\n")
 
     # Per-trial table
-    log(f"  {'Trial':>5}  {'A missed':>8}  {'B missed':>8}  {'A files missed':>30}  {'B files missed':>30}  {'A time':>8}  {'B time':>8}")
-    log(f"  {'─'*5}  {'─'*8}  {'─'*8}  {'─'*30}  {'─'*30}  {'─'*8}  {'─'*8}")
+    log(f"  {'Trial':>5}  {'A recall':>8}  {'B recall':>8}  {'A prec':>7}  {'B prec':>7}  {'A time':>8}  {'B time':>8}")
+    log(f"  {'-'*5}  {'-'*8}  {'-'*8}  {'-'*7}  {'-'*7}  {'-'*8}  {'-'*8}")
     for r in results:
         a = r["agent_a"]
         b = r["agent_b"]
-        a_files = ", ".join(Path(f).name for f in a["files_missed"]) or "none"
-        b_files = ", ".join(Path(f).name for f in b["files_missed"]) or "none"
-        log(f"  {r['trial']:>5}  {a['remaining']:>8}  {b['remaining']:>8}  {a_files:>30}  {b_files:>30}  {a['elapsed']:>7.1f}s  {b['elapsed']:>7.1f}s")
+        log(f"  {r['trial']:>5}  {a['recall']:>7.0%}  {b['recall']:>7.0%}  {a['precision']:>6.0%}  {b['precision']:>6.0%}  {a['elapsed']:>7.1f}s  {b['elapsed']:>7.1f}s")
 
     # Aggregates
-    a_totals = [r["agent_a"]["remaining"] for r in results]
-    b_totals = [r["agent_b"]["remaining"] for r in results]
+    a_recalls = [r["agent_a"]["recall"] for r in results]
+    b_recalls = [r["agent_b"]["recall"] for r in results]
+    a_precisions = [r["agent_a"]["precision"] for r in results]
+    b_precisions = [r["agent_b"]["precision"] for r in results]
     a_times = [r["agent_a"]["elapsed"] for r in results]
     b_times = [r["agent_b"]["elapsed"] for r in results]
-    a_perfect = sum(1 for x in a_totals if x == 0)
-    b_perfect = sum(1 for x in b_totals if x == 0)
-    n = len(results)
+    a_perfect = sum(1 for r in results if r["agent_a"]["perfect"])
+    b_perfect = sum(1 for r in results if r["agent_b"]["perfect"])
 
-    log(f"\n  Perfect runs (0 remaining): Agent A = {a_perfect}/{n} ({a_perfect/n*100:.0f}%), Agent B = {b_perfect}/{n} ({b_perfect/n*100:.0f}%)")
-    log(f"  Avg remaining refs:         Agent A = {sum(a_totals)/n:.1f}, Agent B = {sum(b_totals)/n:.1f}")
-    log(f"  Avg time:                   Agent A = {sum(a_times)/n:.1f}s, Agent B = {sum(b_times)/n:.1f}s")
+    log(f"\n  Perfect runs (recall=100%): Agent A = {a_perfect}/{n} ({a_perfect/n*100:.0f}%), Agent B = {b_perfect}/{n} ({b_perfect/n*100:.0f}%)")
+    log(f"  Avg recall:                Agent A = {sum(a_recalls)/n:.0%}, Agent B = {sum(b_recalls)/n:.0%}")
+    log(f"  Avg precision:             Agent A = {sum(a_precisions)/n:.0%}, Agent B = {sum(b_precisions)/n:.0%}")
+    log(f"  Avg time:                  Agent A = {sum(a_times)/n:.1f}s, Agent B = {sum(b_times)/n:.1f}s")
 
-    # Files most commonly missed
+    # Files most commonly missed — grouped by depth
     a_miss_counts = {}
     b_miss_counts = {}
     for r in results:
-        for f in r["agent_a"]["files_missed"]:
+        for f in r["agent_a"]["misses"]:
             a_miss_counts[f] = a_miss_counts.get(f, 0) + 1
-        for f in r["agent_b"]["files_missed"]:
+        for f in r["agent_b"]["misses"]:
             b_miss_counts[f] = b_miss_counts.get(f, 0) + 1
 
     if a_miss_counts or b_miss_counts:
-        log(f"\n  Files missed (across trials):")
-        all_files = sorted(set(list(a_miss_counts.keys()) + list(b_miss_counts.keys())))
-        for f in all_files:
-            a_n = a_miss_counts.get(f, 0)
-            b_n = b_miss_counts.get(f, 0)
+        all_missed = sorted(set(list(a_miss_counts.keys()) + list(b_miss_counts.keys())))
+
+        for depth in (1, 2, 3, 4):
+            depth_set = DEPTH_GROUPS[depth]
+            missed_at_depth = [f for f in all_missed if f in depth_set]
+            if missed_at_depth:
+                greppable = " (greppable)" if depth == 1 else " (NOT greppable)"
+                log(f"\n  Depth-{depth} files missed{greppable}:")
+                for f in missed_at_depth:
+                    a_n = a_miss_counts.get(f, 0)
+                    b_n = b_miss_counts.get(f, 0)
+                    log(f"    {f}: Agent A = {a_n}/{n}, Agent B = {b_n}/{n}")
+
+    # False positives
+    a_fp_counts = {}
+    b_fp_counts = {}
+    for r in results:
+        for f in r["agent_a"]["false_positives"]:
+            a_fp_counts[f] = a_fp_counts.get(f, 0) + 1
+        for f in r["agent_b"]["false_positives"]:
+            b_fp_counts[f] = b_fp_counts.get(f, 0) + 1
+
+    if a_fp_counts or b_fp_counts:
+        log(f"\n  False positives (marked but not in blast radius):")
+        all_fps = sorted(set(list(a_fp_counts.keys()) + list(b_fp_counts.keys())))
+        for f in all_fps:
+            a_n = a_fp_counts.get(f, 0)
+            b_n = b_fp_counts.get(f, 0)
             log(f"    {f}: Agent A = {a_n}/{n}, Agent B = {b_n}/{n}")
 
     # Verdict
     log(f"\n  Verdict:")
-    if sum(b_totals) < sum(a_totals):
-        improvement = (1 - sum(b_totals) / max(sum(a_totals), 1)) * 100
-        log(f"  → Agent B (with /check_graph) missed {improvement:.0f}% fewer references overall.")
-    elif sum(b_totals) == sum(a_totals):
-        log(f"  → Both agents performed equally.")
+    a_avg_recall = sum(a_recalls) / n
+    b_avg_recall = sum(b_recalls) / n
+    if b_avg_recall > a_avg_recall:
+        log(f"  -> Agent B (with kb-graph) achieved {b_avg_recall:.0%} avg recall vs Agent A's {a_avg_recall:.0%}.")
+        if b_perfect > a_perfect:
+            log(f"  -> Agent B had {b_perfect}/{n} perfect runs vs Agent A's {a_perfect}/{n}.")
+    elif b_avg_recall == a_avg_recall:
+        log(f"  -> Both agents achieved equal recall ({a_avg_recall:.0%}).")
     else:
-        log(f"  → Agent A (no graph) caught more references — unexpected result.")
+        log(f"  -> Agent A outperformed Agent B — unexpected result.")
 
     return {
         "trials": n,
-        "expected_refs": expected,
+        "expected_count": expected_count,
         "a_perfect": a_perfect,
         "b_perfect": b_perfect,
-        "a_avg_remaining": sum(a_totals) / n,
-        "b_avg_remaining": sum(b_totals) / n,
+        "a_avg_recall": a_avg_recall,
+        "b_avg_recall": b_avg_recall,
+        "a_avg_precision": sum(a_precisions) / n,
+        "b_avg_precision": sum(b_precisions) / n,
         "a_avg_time": sum(a_times) / n,
         "b_avg_time": sum(b_times) / n,
         "a_miss_files": a_miss_counts,
@@ -1274,7 +2109,7 @@ def print_summary(results):
     }
 
 
-# ── Main ─────────────────────────────────────────────────────────────────
+# ── Main ──────────��────────────────────────���─────────────────────────────
 
 def clean_previous_results():
     """Remove old transcripts, log, and results JSON."""
@@ -1306,7 +2141,7 @@ def count_project_files(project_dir):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Phase 5: Agent A/B Experiment — does /check_graph help agents catch distant-impact changes?"
+        description="Phase 5 v3: Agent A/B Experiment — does kb-graph help agents catch distant-impact changes?"
     )
     parser.add_argument(
         "--trials", type=int, default=1,
@@ -1321,12 +2156,16 @@ def main():
         help="Save full agent stdout/stderr to tests/experiment_transcripts/",
     )
     parser.add_argument(
-        "--timeout", type=int, default=180,
-        help="Timeout per agent in seconds (default: 180)",
+        "--timeout", type=int, default=300,
+        help="Timeout per agent in seconds (default: 300)",
+    )
+    parser.add_argument(
+        "--depth", type=int, default=4,
+        help="Max depth for kb-graph traverse (default: 4)",
     )
     parser.add_argument(
         "--dry-run", action="store_true",
-        help="Set up fixtures and measure baseline without running agents",
+        help="Set up fixtures and validate blast radius ground truth without running agents",
     )
     parser.add_argument(
         "--clean", action="store_true",
@@ -1358,50 +2197,134 @@ def main():
     model_id = args.model or "default"
     started_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
-    log(f"\n{'─'*60}")
+    log(f"\n{'-'*60}")
     log(f"  Experiment started at {started_at}")
     log(f"  Claude CLI: {claude_version}")
     log(f"  Model: {model_id}")
     log(f"  Log file: {log_path}")
     log(f"  Watch progress: tail -f {log_path}")
-    log(f"{'─'*60}")
+    log(f"{'-'*60}")
 
     check_prerequisites()
 
-    log("Phase 5: Agent A/B Experiment")
+    log("Phase 5 v3: Agent A/B Experiment — Blast Radius Marking")
     log(f"  Trials: {args.trials}")
     log(f"  Model: {model_id}")
     log(f"  Timeout: {args.timeout}s per agent")
-    log(f"  Expected db_url refs: {total_expected_refs()}")
-    log(f"  DB_URL_FILES: {len(DB_URL_FILES)} files across {len(set(str(Path(f).parent) for f in DB_URL_FILES))} directories")
-    log(f"  Noise files: {len(NOISE_FILES)}")
+    log(f"  Traverse depth: {args.depth}")
+    log(f"  Expected blast radius: {len(EXPECTED_BLAST_RADIUS)} files")
+    log(f"  Fixture files: {len(V3_FILES)}")
 
     if args.dry_run:
-        # Just set up one fixture and show what it looks like
         tmpdir = tempfile.mkdtemp(prefix="kb_graph_ab_dry_")
         project = os.path.join(tmpdir, "project")
         create_enhanced_project(project)
         total_files = count_project_files(project)
-        refs = count_db_url_refs(project)
-        log(f"\n  Dry run — enhanced fixture: {total_files} files total")
-        log(f"  db_url references:")
-        for f, lines in sorted(refs.items()):
-            log(f"    {f}:")
-            for line in lines:
-                log(f"      {line}")
-        log(f"\n  Total: {sum(len(v) for v in refs.values())} references across {len(refs)} files")
+        log(f"\n  Dry run — v3 bioinformatics fixture: {total_files} files total")
 
-        # Also show kb-graph init output
-        log(f"\n  Testing kb-graph init...")
-        if init_graph(project):
-            log("  kb-graph init succeeded")
-            index = Path(project) / "KB_INDEX.md"
-            if index.exists():
-                # Show first few lines
-                lines = index.read_text().splitlines()[:5]
-                for line in lines:
-                    log(f"    {line}")
+        # Verify all expected blast radius files exist
+        log(f"\n  Expected blast radius ({len(EXPECTED_BLAST_RADIUS)} files):")
+        all_exist = True
+        for depth, files in [(1, EXPECTED_DEPTH_1), (2, EXPECTED_DEPTH_2),
+                             (3, EXPECTED_DEPTH_3), (4, EXPECTED_DEPTH_4)]:
+            for rel_path in files:
+                exists = (Path(project) / rel_path).exists()
+                status = "OK" if exists else "MISSING"
+                log(f"    [{status}] {rel_path} (depth-{depth})")
+                if not exists:
+                    all_exist = False
+
+        # Verify red herring files exist
+        log(f"\n  Red herring files ({len(RED_HERRING_FILES)}):")
+        for rel_path in RED_HERRING_FILES:
+            exists = (Path(project) / rel_path).exists()
+            status = "OK" if exists else "MISSING"
+            log(f"    [{status}] {rel_path}")
+            if not exists:
+                all_exist = False
+
+        if not all_exist:
+            log("\n  ERROR: Some expected files are missing!")
+            shutil.rmtree(tmpdir, ignore_errors=True)
+            if _log_file is not None:
+                _log_file.close()
+            return
+
+        # Init graph and run traverse to validate ground truth
+        log(f"\n  Testing kb-graph init + traverse...")
+        if not init_graph(project):
+            log("  ERROR: kb-graph init failed")
+            shutil.rmtree(tmpdir, ignore_errors=True)
+            if _log_file is not None:
+                _log_file.close()
+            return
+
+        log("  kb-graph init succeeded")
+        depth = args.depth
+        result = subprocess.run(
+            ["kb-graph", "traverse", "metadata.py", "--depth", str(depth)],
+            cwd=project,
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode != 0:
+            log(f"  ERROR: traverse failed: {result.stderr}")
+            shutil.rmtree(tmpdir, ignore_errors=True)
+            if _log_file is not None:
+                _log_file.close()
+            return
+
+        log(f"\n  kb-graph traverse metadata.py --depth {depth}:")
+        for line in result.stdout.strip().splitlines():
+            log(f"    {line}")
+
+        # Parse traverse output for file paths
+        traverse_output = result.stdout
+        found_files = set()
+        for line in traverse_output.splitlines():
+            # Lines containing file paths look like: "  +-- src/core/__init__.py -- ..."
+            match = re.search(r"(src/\S+\.py|tests/\S+\.py|scripts/\S+\.py)", line)
+            if match:
+                found_files.add(match.group(1))
+
+        # Validate ground truth: every expected file should be in traverse output
+        log(f"\n  Ground truth validation ({len(EXPECTED_BLAST_RADIUS)} expected):")
+        expected_set = set(EXPECTED_BLAST_RADIUS)
+        match_count = 0
+        for rel_path in EXPECTED_BLAST_RADIUS:
+            found = rel_path in found_files
+            status = "FOUND" if found else "NOT IN OUTPUT"
+            log(f"    [{status}] {rel_path}")
+            if found:
+                match_count += 1
+
+        # Validate red herrings are NOT in output
+        log(f"\n  Red herring validation (should NOT appear in traverse):")
+        red_herring_ok = True
+        for rel_path in RED_HERRING_FILES:
+            found = rel_path in found_files
+            status = "ABSENT (good)" if not found else "FOUND (BAD!)"
+            log(f"    [{status}] {rel_path}")
+            if found:
+                red_herring_ok = False
+
+        # Summary
+        log(f"\n  Results: {match_count}/{len(EXPECTED_BLAST_RADIUS)} expected files found in traverse output")
+        if match_count == len(EXPECTED_BLAST_RADIUS) and red_herring_ok:
+            log("  PASS — ground truth matches traverse output perfectly")
+        else:
+            extra = found_files - expected_set
+            missing = expected_set - found_files
+            if missing:
+                log(f"  FAIL — missing from traverse: {sorted(missing)}")
+            if extra:
+                log(f"  NOTE — extra in traverse (not in expected): {sorted(extra)}")
+            if not red_herring_ok:
+                log(f"  FAIL — red herring files appeared in traverse output")
+
         shutil.rmtree(tmpdir, ignore_errors=True)
+        if _log_file is not None:
+            _log_file.close()
         return
 
     results = []
@@ -1430,9 +2353,12 @@ def main():
                 "started_at": started_at,
                 "claude_version": claude_version,
                 "model": model_id,
-                "total_project_files": len(ENHANCEMENTS) + len(NEW_FILES) + len(NOISE_FILES),
-                "db_url_files": len(DB_URL_FILES),
-                "expected_refs": total_expected_refs(),
+                "task_type": "blast-radius-marking",
+                "fixture_version": "v3-bioinformatics",
+                "total_fixture_files": len(V3_FILES),
+                "expected_blast_radius": EXPECTED_BLAST_RADIUS,
+                "expected_blast_radius_count": len(EXPECTED_BLAST_RADIUS),
+                "depth_groups": {str(d): sorted(files) for d, files in DEPTH_GROUPS.items()},
             },
             "results": serializable,
             "summary": summary,
