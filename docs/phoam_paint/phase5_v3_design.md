@@ -225,6 +225,99 @@ explain, just make the changes.
 4. Check that Agent B achieves 100% recall in all trials
 5. Check that Agent A recall is consistently < 50%
 
+## Experiment Results (2026-04-14) — FAILED TO DIFFERENTIATE
+
+**1 trial, Sonnet 4.6, CLI 2.1.108**:
+
+| Metric | Agent A (no graph) | Agent B (with graph) |
+|--------|-------------------|---------------------|
+| Recall | 100% (19/19) | 100% (19/19) |
+| Precision | 100% | 100% |
+| Time | 103.9s | 43.3s |
+| Files missed | none | none |
+
+**Agent A achieved perfect recall** — it traced all 19 transitive dependents
+through `__init__.py` re-exports at depth 4 without any graph tooling.
+
+**Why this failed**: The blast-radius marking task is fundamentally a
+"trace Python imports" task, and Sonnet is excellent at reading Python
+import statements and following them transitively. The fixture's import
+chains, while structurally deep, use standard Python import patterns that
+the agent can mechanically follow:
+
+1. Read `metadata.py` → see who imports it (grep + file reading)
+2. For each importer, read that file → see who imports *it*
+3. Repeat until no new files are found
+
+This is a deterministic, well-defined algorithm that a capable agent can
+execute without any special tooling. The `__init__.py` re-exports and
+relative imports add indirection but not opacity — the agent can still
+read each file and trace the chain. Even 97 files is small enough for
+an agent to exhaustively scan the `src/` tree.
+
+**The only measurable difference was speed**: Agent B finished in 43.3s
+(2.4x faster) because it got the answer from one `kb-graph traverse`
+call instead of manually tracing imports. This is a real benefit but
+not the dramatic recall gap needed to prove the graph's value.
+
+### Pattern across all three attempts
+
+| Version | Task | Result | Why it failed |
+|---------|------|--------|---------------|
+| v1 | Rename `db_url` → `database_url` | Both 40% | Text search problem — grep equally effective |
+| v2 | Mark blast radius of `database.py` (46 files, depth 2) | Both 80% | Agent A traced imports manually; only missed markdown wiki-links |
+| v3 | Mark blast radius of `metadata.py` (97 files, depth 4) | Both 100% | Agent A traced all Python imports manually in 104s |
+
+**Conclusion**: The blast-radius marking task does not differentiate the
+agents because Sonnet can trace Python import chains reliably. The
+graph's unique value is NOT "finding transitive Python imports" — the
+agent can already do that. The graph's value must lie in something the
+agent *cannot* do by reading files: either information that is pre-computed
+and costly to derive on-the-fly, or cross-type relationships that aren't
+syntactically visible.
+
+### Alternative task types for Phase 5 v4
+
+The next iteration needs a task where the graph provides information that
+is genuinely hard to derive by reading files. Candidates:
+
+1. **Cross-language dependency tracing**: A fixture with Python + R + shell
+   scripts where `source()` in R and `. script.sh` in shell create edges
+   that Python-focused import tracing misses. The agent would need to
+   understand R and shell sourcing conventions — the graph abstracts
+   this away into a uniform edge format.
+
+2. **"Which files are safe to delete?" (orphan detection)**: Ask the agent
+   to identify all files with zero inbound edges. This requires exhaustive
+   reverse-lookup across the entire project — checking every file to see
+   if *any* other file references it. `kb-graph orphans` does this in one
+   call. An agent would need to read every file and build its own mental
+   graph — much slower and error-prone at scale.
+
+3. **"Find the shortest path between two files"**: Ask the agent how
+   file X and file Y are connected. `kb-graph path X Y` gives the exact
+   chain. Without the graph, the agent must do a BFS through import
+   statements — feasible but slow and easy to miss indirect paths.
+
+4. **Time-constrained multi-file impact assessment**: Reduce the timeout
+   drastically (e.g., 60s) so that Agent A doesn't have time to manually
+   trace all imports. Agent B gets the answer instantly from traverse.
+   This tests the speed advantage rather than the recall advantage.
+
+5. **Scale the fixture to 500+ files**: At some point, manual import
+   tracing becomes impractical within a 300s timeout. The current 97-file
+   fixture is too small. A 500-file fixture with depth-6 chains might
+   finally exceed the agent's tracing capacity.
+
+6. **Wiki-link / cross-type task**: Build a fixture where the blast radius
+   includes documentation files connected via `[[wiki-links]]` and config
+   files referenced by path. These cross-type edges are invisible to
+   `grep -r import` and represent a genuinely different class of dependency.
+
+**Recommended next step**: Option 4 (time-constrained) or option 2 (orphan
+detection) — both play to the graph's strengths and are less likely to be
+solvable by brute-force file reading.
+
 ## Files to Modify
 
 - `tests/test_agent_experiment.py` — full rewrite of fixture data, prompts,

@@ -7,9 +7,14 @@
 
 ## 0. Current State (updated 2026-04-14)
 
-**Status**: Phase 5 v3 implemented and dry-run validated. Bioinformatics
-fixture with 97 files, 19 in blast radius at depth 4. Ground truth
-matches `kb-graph traverse` output perfectly. Ready for experiment runs.
+**Status**: Phase 5 v3 experiment ran but failed to differentiate agents.
+Agent A (no graph) achieved 100% recall by manually tracing Python imports
+through `__init__.py` re-exports at depth 4 — identical to Agent B (with
+graph). The blast-radius marking task does not work as an A/B experiment
+because Sonnet can trace Python import chains reliably without tooling.
+Phase 5 needs a v4 with a fundamentally different task type. See
+`docs/phoam_paint/phase5_v3_design.md` for full analysis and candidate
+alternative tasks.
 
 **Key files**:
 - `phoam_paint/kb_graph.py` — the tool (single file, ~2050 lines, stdlib only)
@@ -62,10 +67,11 @@ graph = build_graph("/path/to/repo")
 
 **What's stubbed**: nothing — all commands are implemented.
 
-**To resume**: Run `python3 tests/test_agent_experiment.py --dry-run` to
-verify fixture health, then `python3 tests/test_agent_experiment.py --trials 5
---save-transcripts` for the full experiment. Review Phase 5 v3 section below
-for design rationale.
+**To resume**: Phase 5 needs a v4 redesign. Read the "Alternative task
+types for Phase 5 v4" section in `docs/phoam_paint/phase5_v3_design.md`
+for candidate approaches. The blast-radius marking task (v1/v2/v3) has
+been tried three times and fails to differentiate agents — do not iterate
+on the same task type again.
 
 ---
 
@@ -609,7 +615,7 @@ reverses it cleanly.
   discover and run the scripts correctly.
 - Existing 48 tests still pass (~0.3s).
 
-### Phase 5: Agent A/B Experiment — IN PROGRESS (started 2026-04-13)
+### Phase 5: Agent A/B Experiment — NEEDS REDESIGN (started 2026-04-13)
 
 **Goal**: Prove that `/check_graph` helps a Claude agent catch distant-impact
 changes that it would otherwise miss. This is the "does it actually work?"
@@ -632,7 +638,7 @@ transitive dependency tracing — was never exercised.
 **Root cause**: The rename task is a text search problem. `grep -r db_url`
 gives both agents the same answer. The graph adds no unique value.
 
-#### Phase 5 v2: Blast radius marking (2026-04-14) — IN PROGRESS
+#### Phase 5 v2: Blast radius marking (2026-04-14) — FAILED
 
 **Redesigned experiment** to test structural knowledge instead of text search.
 
@@ -725,14 +731,14 @@ behavior, and fixture difficulty before running the full experiment.
 **To resume**: Superseded by Phase 5 v3 below. v2 transcripts are in
 `tests/experiment_transcripts/` (will be overwritten by v3 runs).
 
-#### Phase 5 v3: Bioinformatics fixture redesign (2026-04-14) — READY
+#### Phase 5 v3: Bioinformatics fixture redesign (2026-04-14) — FAILED
 
 **Problem**: v2 produced identical 80% recall for both agents. The 46-file
 web-app fixture was too small with shallow (depth 2) import chains. Agent A
 manually traced all Python imports successfully — the graph provided no
 measurable advantage.
 
-**Solution**: Replaced with a 97-file bioinformatics fixture modeled on
+**Solution attempted**: Replaced with a 97-file bioinformatics fixture modeled on
 spatial-omics analysis packages (mirrors real repos like SpatialCore-Dev):
 
 - **Target**: `src/core/metadata.py` — central utility with high fan-out
@@ -752,40 +758,67 @@ but it imports ontology.py directly → depth 2):
 | 3 | 5 | preprocessing/\_\_init\_\_.py, normalization.py, qc.py, spatial.py, spatial_plot.py |
 | 4 | 5 | ingestion.py, batch.py, run_qc.py, run_analysis.py, heatmap.py |
 
-**Critical parser constraint**: `preprocessing/base.py` uses
-`from core import MetadataManager` (not `from core import metadata`) so
-the parser resolves to `core/__init__.py` (depth 2 via \_\_init\_\_) rather
-than directly to `core/metadata.py` (which would be depth 1).
+**Dry-run result** (2026-04-14): PASS — 19/19 ground truth, 0 red herring leaks.
 
-**Changes to `tests/test_agent_experiment.py`**:
-- Replaced all fixture data with `V3_FILES` dict (97 bioinformatics files)
-- Added `OLD_FILES_TO_REMOVE` to clean original web-app fixture files
-- Updated `EXPECTED_BLAST_RADIUS` with 4 depth groups (19 files)
-- Updated `PROMPT_A`, `PROMPT_B`, `MARKER` for metadata.py target
-- Agent B prompt: `kb-graph traverse metadata.py --depth 4`
-- Added `--depth` CLI arg (default 4)
-- Increased default timeout 180s → 300s
-- Extended `print_summary()` with depth 1/2/3/4 miss breakdown
-- Rewrote `--dry-run` to validate traverse output against ground truth
-  and confirm red herring files are absent
+**Experiment result** (1 trial, Sonnet 4.6, CLI 2.1.108, 2026-04-14):
 
-**Dry-run result** (2026-04-14):
-```
-  v3 bioinformatics fixture: 97 files total
-  Expected blast radius: 19/19 [OK]
-  Red herring files: 5/5 [OK], all ABSENT from traverse
-  Ground truth: 19/19 expected files found in traverse output
-  PASS — ground truth matches traverse output perfectly
-```
+| Metric | Agent A (no graph) | Agent B (with graph) |
+|--------|-------------------|---------------------|
+| Recall | 100% (19/19) | 100% (19/19) |
+| Precision | 100% | 100% |
+| Time | 103.9s | 43.3s |
+| Files missed | none | none |
 
-**Expected experiment outcomes**:
-- **Agent A**: 20-30% recall (finds 4 depth-1 files via grep, misses 15)
-- **Agent B**: 100% recall (graph gives the exact answer)
+**What happened**: Agent A traced all 19 transitive dependents through
+`__init__.py` re-exports at depth 4 without any graph tooling. It took
+2.4x longer (104s vs 43s) but achieved identical perfect recall.
 
-**Status**: Ready for experiment runs. Run:
-```bash
-python3 tests/test_agent_experiment.py --trials 5 --save-transcripts
-```
+**Root cause**: The blast-radius marking task is fundamentally a "trace
+Python imports" problem, and Sonnet is excellent at mechanically following
+import statements. The algorithm is deterministic and well-defined:
+read a file, find its importers, repeat. Even 97 files with depth-4 chains
+and `__init__.py` re-exports are within the agent's tracing capacity.
+
+**Pattern across all three attempts**:
+
+| Version | Task | Result | Why it failed |
+|---------|------|--------|---------------|
+| v1 | Rename `db_url` → `database_url` | Both 40% | Text search — grep equally effective |
+| v2 | Mark blast radius (46 files, depth 2) | Both 80% | Agent A traced imports; only missed wiki-links |
+| v3 | Mark blast radius (97 files, depth 4) | Both 100% | Agent A traced all imports in 104s |
+
+**Conclusion**: The blast-radius marking task does not work as an A/B
+experiment. Do not iterate on the same task type. Phase 5 v4 needs a
+fundamentally different approach.
+
+**Status**: Failed. See `docs/phoam_paint/phase5_v3_design.md` for full
+analysis and six candidate alternative task types for v4.
+
+#### Phase 5 v4: Redesign needed
+
+**Goal**: Same as Phase 5 — prove the graph provides measurable value.
+But the task must test something the agent *cannot* do by reading files.
+
+**Candidate task types** (detailed analysis in `phase5_v3_design.md`):
+
+1. **Orphan detection** — "which files are safe to delete?" Requires
+   exhaustive reverse-lookup across entire project. `kb-graph orphans`
+   answers in one call. Agent must read every file to build its own graph.
+2. **Time-constrained blast radius** — reduce timeout to 60s so Agent A
+   can't finish manual tracing. Tests speed advantage, not recall.
+3. **Cross-language deps** — Python + R + shell fixture where `source()`
+   and `. script.sh` create edges invisible to Python import tracing.
+4. **Shortest path** — "how are file X and Y connected?" Requires BFS
+   through imports. `kb-graph path X Y` gives the exact chain.
+5. **Scale to 500+ files** — exceed agent's tracing capacity within timeout.
+6. **Wiki-link / cross-type edges** — blast radius including docs connected
+   via `[[wiki-links]]` and config files referenced by path.
+
+**Recommended**: Option 1 (orphan detection) or option 2 (time-constrained).
+Both play to the graph's pre-computed knowledge advantage rather than
+asking the agent to do something it can already do manually.
+
+**Status**: Not started. Needs design spec and new experiment script.
 
 ### Phase 6: Additional Parsers (stretch)
 
