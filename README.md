@@ -41,19 +41,18 @@ Skills install into the project's `.claude/skills/` directory. Tools (like statu
 
 ## Guides
 
-- [Subagent Workflow](guides/subagent-workflow.md) — automate the plan-with-Opus, execute-with-Sonnet pattern
+- [Subagent Workflow](docs/subagent-workflow.md) — automate the plan-with-Opus, execute-with-Sonnet pattern
 
 ## Structure
 
 ```
-skills/<name>/     Skills — each has SKILL.md + install.sh + uninstall.sh
+skills/<name>/     Skills (just a SKILL.md — no install scripts needed)
 statusline/        Tools — each has install.sh + uninstall.sh
-guides/            Workflow patterns and reference docs
 docs/              Roadmap, specs, and planning
-install.sh         Top-level installer (dispatches to per-component scripts)
-uninstall.sh       Top-level uninstaller
+install.sh         Top-level installer: ./install.sh handoff statusline
+uninstall.sh       Top-level uninstaller: ./uninstall.sh statusline
 ```
 
-Every installable component has its own `install.sh` and `uninstall.sh`. The top-level scripts are convenience wrappers — you can also run component scripts directly (e.g. `./skills/handoff/install.sh`).
+Skills only need a `SKILL.md`. The top-level installer handles copying them to the target project's `.claude/skills/<name>/`. Tools (like statusline, phoam_paint) have custom install logic and contain their own `install.sh` and `uninstall.sh`.
 
 See [docs/roadmap.md](docs/roadmap.md) for the full roadmap.
