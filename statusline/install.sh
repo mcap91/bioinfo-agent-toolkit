@@ -22,9 +22,51 @@ ok()    { printf "${GREEN}[ok]${RESET}    %s\n" "$1"; }
 warn()  { printf "${YELLOW}[warn]${RESET}  %s\n" "$1"; }
 err()   { printf "${RED}[error]${RESET} %s\n" "$1" >&2; exit 1; }
 
-# --- Preflight checks ---
+# --- Find jq ---
 
-command -v jq >/dev/null 2>&1 || err "jq is required but not installed. Install it with: sudo apt install jq (or brew install jq)"
+find_jq() {
+    # 1. Already on PATH — works on Linux, macOS, and Windows if configured
+    if command -v jq >/dev/null 2>&1; then
+        command -v jq
+        return 0
+    fi
+
+    # 2. Windows: check common package manager install locations
+    if [[ "$OSTYPE" == msys* || "$OSTYPE" == cygwin* || "$OSTYPE" == mingw* ]]; then
+        local local_appdata="${LOCALAPPDATA:-$USERPROFILE/AppData/Local}"
+        local program_data="${PROGRAMDATA:-/c/ProgramData}"
+        local win_locations=(
+            # winget
+            "$local_appdata/Microsoft/WinGet/Packages"/jqlang.jq_*/jq.exe
+            # chocolatey
+            "$program_data/chocolatey/bin/jq.exe"
+            # scoop
+            "${USERPROFILE:-$HOME}/scoop/shims/jq.exe"
+        )
+        for loc in "${win_locations[@]}"; do
+            # glob may expand to multiple matches — take the first
+            for match in $loc; do
+                if [ -f "$match" ]; then
+                    echo "$match"
+                    return 0
+                fi
+            done
+        done
+    fi
+
+    return 1
+}
+
+JQ_PATH=$(find_jq) || err "jq is required but not found.
+  Install it:
+    macOS:   brew install jq
+    Linux:   sudo apt install jq  (or yum, pacman, etc.)
+    Windows: winget install jqlang.jq
+  Then re-run this installer."
+
+info "Using jq at: $JQ_PATH"
+
+# --- Preflight checks ---
 
 [ -f "$SCRIPT_SRC" ] || err "statusline.sh not found at $SCRIPT_SRC — run this script from the repo"
 
@@ -32,18 +74,19 @@ command -v jq >/dev/null 2>&1 || err "jq is required but not installed. Install 
 
 mkdir -p "$CLAUDE_DIR"
 
-if [ -f "$SCRIPT_DST" ]; then
-    if cmp -s "$SCRIPT_SRC" "$SCRIPT_DST"; then
-        ok "statusline.sh already installed and up to date"
-    else
-        cp "$SCRIPT_SRC" "$SCRIPT_DST"
-        ok "statusline.sh updated"
-    fi
-else
+# Copy statusline.sh, embedding the resolved jq path if it's not simply "jq"
+if command -v jq >/dev/null 2>&1; then
+    # jq is on PATH — use the generic default (JQ="${JQ:-jq}")
     cp "$SCRIPT_SRC" "$SCRIPT_DST"
-    ok "statusline.sh installed to $SCRIPT_DST"
+else
+    # jq found but not on PATH — embed the full path into the installed copy
+    # Escape backslashes (Windows paths) so sed doesn't mangle them
+    escaped_jq=$(printf '%s' "$JQ_PATH" | sed 's/\\/\\\\/g')
+    sed "s|^JQ=\"\${JQ:-jq}\"|JQ=\"$escaped_jq\"|" "$SCRIPT_SRC" > "$SCRIPT_DST"
+    warn "jq is not on shell PATH — embedded full path into statusline.sh"
 fi
 
+ok "statusline.sh installed to $SCRIPT_DST"
 chmod +x "$SCRIPT_DST"
 
 # --- Configure settings.json ---
@@ -52,13 +95,13 @@ STATUS_LINE_CONFIG='{"type":"command","command":"bash ~/.claude/statusline.sh"}'
 
 if [ -f "$SETTINGS_FILE" ]; then
     # Check if statusLine is already configured
-    existing=$(jq -r '.statusLine.command // empty' "$SETTINGS_FILE" 2>/dev/null)
+    existing=$("$JQ_PATH" -r '.statusLine.command // empty' "$SETTINGS_FILE" 2>/dev/null)
     if [ "$existing" = "bash ~/.claude/statusline.sh" ]; then
         ok "settings.json already configured"
     else
         # Merge statusLine into existing settings, preserving all other keys
         tmp=$(mktemp)
-        jq --argjson sl "$STATUS_LINE_CONFIG" '.statusLine = $sl' "$SETTINGS_FILE" > "$tmp"
+        "$JQ_PATH" --argjson sl "$STATUS_LINE_CONFIG" '.statusLine = $sl' "$SETTINGS_FILE" > "$tmp"
         mv "$tmp" "$SETTINGS_FILE"
         ok "statusLine added to $SETTINGS_FILE"
     fi

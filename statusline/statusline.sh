@@ -6,21 +6,25 @@
 # Install: copy to ~/.claude/statusline.sh and add to ~/.claude/settings.json
 # Or run: statusline/install.sh from this repo
 
+# jq path — overridden by the installer when jq isn't on PATH
+JQ="${JQ:-jq}"
+command -v "$JQ" >/dev/null 2>&1 || { echo "statusline: jq not found"; exit 1; }
+
 # Read JSON input from stdin
 input=$(cat)
 
 # Extract values
-model=$(echo "$input" | jq -r '.model.display_name')
-ctx_size=$(echo "$input" | jq -r '.context_window.context_window_size')
+model=$(echo "$input" | "$JQ" -r '.model.display_name')
+ctx_size=$(echo "$input" | "$JQ" -r '.context_window.context_window_size')
 
 # Check if we have current_usage data (null before first API call)
-has_usage=$(echo "$input" | jq -r '.context_window.current_usage != null')
+has_usage=$(echo "$input" | "$JQ" -r '.context_window.current_usage != null')
 
 if [ "$has_usage" = "true" ]; then
-    input_tokens=$(echo "$input" | jq -r '.context_window.current_usage.input_tokens // 0')
-    output_tokens=$(echo "$input" | jq -r '.context_window.current_usage.output_tokens // 0')
-    cache_creation=$(echo "$input" | jq -r '.context_window.current_usage.cache_creation_input_tokens // 0')
-    cache_read=$(echo "$input" | jq -r '.context_window.current_usage.cache_read_input_tokens // 0')
+    input_tokens=$(echo "$input" | "$JQ" -r '.context_window.current_usage.input_tokens // 0')
+    output_tokens=$(echo "$input" | "$JQ" -r '.context_window.current_usage.output_tokens // 0')
+    cache_creation=$(echo "$input" | "$JQ" -r '.context_window.current_usage.cache_creation_input_tokens // 0')
+    cache_read=$(echo "$input" | "$JQ" -r '.context_window.current_usage.cache_read_input_tokens // 0')
 
     # All four token categories occupy context window space
     total_used=$((input_tokens + output_tokens + cache_creation + cache_read))
