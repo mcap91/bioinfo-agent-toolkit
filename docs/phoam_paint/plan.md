@@ -5,11 +5,11 @@
 
 ---
 
-## 0. Current State (updated 2026-04-13)
+## 0. Current State (updated 2026-04-14)
 
-**Status**: Phase 5 in progress — experiment ran (5 trials), results show
-the graph has blind spots that need fixing before it reliably outperforms
-grep. Both agents scored 40% perfect. The system needs improvement.
+**Status**: Phase 5 v3 implemented and dry-run validated. Bioinformatics
+fixture with 97 files, 19 in blast radius at depth 4. Ground truth
+matches `kb-graph traverse` output perfectly. Ready for experiment runs.
 
 **Key files**:
 - `phoam_paint/kb_graph.py` — the tool (single file, ~2050 lines, stdlib only)
@@ -18,7 +18,7 @@ grep. Both agents scored 40% perfect. The system needs improvement.
 - `tests/fixtures/sample_project/` — fixture project with known graph properties (10 nodes, 13 edges)
 - `tests/test_graph_mutations.py` — Phase 1.5 mutation tests (20 tests)
 - `tests/test_generated_graph.py` — Phase 2 generated-graph correctness tests (28 tests, 100-node project)
-- `tests/test_agent_experiment.py` — Phase 5 A/B experiment script (44-file enhanced fixture, --clean, --save-transcripts)
+- `tests/test_agent_experiment.py` — Phase 5 v3 A/B experiment script (97-file bioinformatics fixture, depth-4 import chains, --depth, --dry-run)
 - `tests/experiment_transcripts/` — agent transcripts from 5 trials
 - `docs/phoam_paint/plan.md` — this file (spec + build order)
 - `docs/phoam_paint/foam_paint_reference.md` — detailed parser/output reference
@@ -62,9 +62,10 @@ graph = build_graph("/path/to/repo")
 
 **What's stubbed**: nothing — all commands are implemented.
 
-**To resume**: Read Phase 5 below — the experiment ran but exposed graph
-blind spots. Section "Phase 5a: Fix graph blind spots" has the concrete
-improvement plan. Start there.
+**To resume**: Run `python3 tests/test_agent_experiment.py --dry-run` to
+verify fixture health, then `python3 tests/test_agent_experiment.py --trials 5
+--save-transcripts` for the full experiment. Review Phase 5 v3 section below
+for design rationale.
 
 ---
 
@@ -615,26 +616,12 @@ changes that it would otherwise miss. This is the "does it actually work?"
 validation — results go in the README as the primary evidence for users.
 This is the most important test in the project.
 
-**What was done (2026-04-13)**:
+#### Phase 5 v1: Rename task (2026-04-13) — ABANDONED
 
-1. Increased difficulty — enhanced fixture from 10 files to 44 files:
-   - 12 files with 23 `db_url` references across 7 directories (depths 0-3)
-   - 24 noise files (no db_url) across src/core, src/api, src/workers, tests, scripts, docs
-   - New reference types: dict unpacking, f-strings, intermediate var attribute
-     access, shell JSON parsing, markdown code fences, depth-3 chains
-2. Tightened experiment — added `--clean` flag, model/CLI version recording,
-   timing stats per trial, file-level miss tracking
-3. Ran 5 trials (Sonnet 4.6, Claude CLI 2.1.105, trial 6 killed mid-run)
-
-**Results (5 trials)**:
-
-| Trial | A missed | B missed | A files missed | B files missed |
-|-------|----------|----------|----------------|----------------|
-| 1 | 5 | 0 | settings.yaml, deployment.md, health_check.sh | none |
-| 2 | 0 | 5 | none | deployment.md, health_check.sh, seed.py (comment) |
-| 3 | 5 | 1 | settings.yaml, deployment.md, health_check.sh | seed.py (comment) |
-| 4 | 1 | 0 | seed.py (comment) | none |
-| 5 | 0 | 1 | none | seed.py (comment) |
+Tested a rename task (db_url → database_url). Both agents scored 40% perfect
+because `grep -r db_url` is equally effective as the graph. The task tested
+text search ability, not structural knowledge. The graph's unique value —
+transitive dependency tracing — was never exercised.
 
 | Metric | Agent A | Agent B |
 |--------|---------|---------|
@@ -642,86 +629,163 @@ This is the most important test in the project.
 | Avg missed refs | 2.2 | 1.4 |
 | Avg time | 60.3s | 116.1s |
 
-**Verdict**: Agent B is NOT reliably outperforming Agent A. Both score 40%
-perfect. Agent B misses fewer refs on average but takes 2x longer. The
-graph needs to be fixed before it provides reliable value over grep.
+**Root cause**: The rename task is a text search problem. `grep -r db_url`
+gives both agents the same answer. The graph adds no unique value.
 
-#### Root cause analysis
+#### Phase 5 v2: Blast radius marking (2026-04-14) — IN PROGRESS
 
-The enhanced graph has 39 nodes but **26 orphans (67%)**. Two files with
-`db_url` references are invisible to the graph:
+**Redesigned experiment** to test structural knowledge instead of text search.
 
-| Orphan file | Why it's orphaned | Impact |
-|-------------|-------------------|--------|
-| `docs/deployment.md` | Markdown file with no `[[wiki-links]]` — just prose with code fences containing `db_url` | Agent B missed it in trial 2 (2 refs). The graph can't surface a doc that doesn't link to anything. |
-| `scripts/health_check.sh` | Shell parser only detects `source` commands. This script uses `curl` and `python3 -c`, not `source`. | Agent B missed it in trial 2 (2 refs). Graph sees it as an island. |
+**Task**: Mark every file in the blast radius of `database.py` by adding
+`# AFFECTED-BY: database.py` as the first line. This requires knowing
+which files are directly or transitively dependent on database.py — a
+graph traversal problem, not a text search problem.
 
-When Agent B relies on the graph's blast radius, it misses these orphans.
-Agent A just greps and sometimes finds them, sometimes doesn't (non-deterministic).
+**Why this works**: Files at depth 2 in the blast radius (e.g., `cli.py`
+imports `routes.py` which imports `database.py`) never mention "database"
+in their text. No amount of grepping will find them. Only graph traversal
+(`kb-graph traverse database.py --depth 2`) surfaces the complete list.
 
-The `scripts/seed.py` comment miss (`# Dict unpacking — db_url is a key`)
-is a different issue — the graph DOES surface seed.py (it imports config.py),
-but Agent B sometimes leaves comments unchanged. Agent A has the same
-behavior (trial 4). This is agent behavior, not a graph problem.
+**Fixture changes**: Added 2 new files to widen the depth-2 blast radius:
+- `src/api/health.py` — imports from `api.routes`, never mentions "database"
+- `scripts/monitor.py` — imports from `api.middleware`, never mentions "database"
 
-**Key insight**: The graph reliably surfaces import-connected files (9 of 12
-db_url files are in the blast radius). But it's WORSE than grep for orphan
-files because Agent B trusts the graph and stops looking. The graph needs
-to either (a) have fewer orphans, or (b) the check_graph skill needs to
-compensate with a grep sweep.
+**Expected blast radius of database.py (10 files)**:
 
-#### Phase 5a: Fix graph blind spots — TODO
+| Depth | File | Connection | Mentions "database"? |
+|-------|------|------------|---------------------|
+| 1 | src/api/routes.py | imports database | YES |
+| 1 | src/api/middleware.py | imports database | YES |
+| 1 | src/api/auth.py | imports database | YES |
+| 1 | scripts/seed.py | imports database | YES |
+| 1 | docs/api-design.md | wiki-links [[database.py]] | YES |
+| 2 | src/main.py | imports routes | **NO** |
+| 2 | src/cli.py | imports routes | **NO** |
+| 2 | src/api/health.py | imports routes | **NO** |
+| 2 | scripts/monitor.py | imports middleware | **NO** |
+| 2 | docs/README.md | wiki-links [[api-design]] | **NO** |
 
-These improvements target the root causes above. Do them in order, re-run
-the experiment after each to measure impact.
+All 5 depth-2 files are invisible to `grep database`. Agent A must manually
+trace import chains in a 46-file project to find them. Agent B gets the
+exact list from `kb-graph traverse` via the check_graph skill.
 
-##### 1. Add grep sweep to check_graph skill
+**Measurement**: For each agent, scan all files for the marker comment.
+Compute recall (expected files marked / total expected) and precision
+(correct marks / all marks). A perfect run = 100% recall.
 
-The `/check_graph` skill (embedded in `kb_graph.py` as `CHECK_GRAPH_SKILL`)
-currently tells the agent to traverse the graph and read affected files.
-It should ALSO tell the agent to grep project-wide for the target identifier
-after traversing, to catch orphan files the graph missed.
+**Smoke test results (1 trial, Sonnet 4.6, CLI 2.1.108, 2026-04-14)**:
 
-**Change**: In `kb_graph.py`, modify the `CHECK_GRAPH_SKILL` string constant.
-After the "Run `kb-graph traverse`" step, add a step: "Grep the entire
-project for the identifier being changed. Compare grep results against the
-graph results. Any file that grep finds but the graph doesn't is an orphan
-that may also need updating."
+| Metric | Agent A | Agent B |
+|--------|---------|---------|
+| Recall | 80% (8/10) | 80% (8/10) |
+| Precision | 100% | 100% |
+| Time | 48.3s | 73.6s |
+| Files missed | README.md, api-design.md | README.md, api-design.md |
 
-This is the highest-leverage fix: the graph narrows the search, grep catches
-stragglers. Agent B gets the best of both approaches.
+**What happened**: Both agents found all 8 Python files (including all 4
+depth-2 Python files) but missed both markdown files. Agent A traced
+imports manually and found depth-2 Python files but didn't consider
+wiki-link dependencies at all. Agent B ran check_graph and got the full
+traverse output (which includes README.md and api-design.md), but:
+1. Skipped `docs/README.md` entirely
+2. Found `docs/api-design.md` but used `<!-- AFFECTED-BY: database.py -->`
+   (HTML comment syntax for "valid Markdown") instead of the exact marker
+   `# AFFECTED-BY: database.py`, so the scanner didn't detect it
 
-**Test**: Re-run `--trials 6 --model sonnet --save-transcripts --clean`.
-Agent B should now catch deployment.md and health_check.sh consistently.
+**Problems to solve**:
+1. **Prompt ambiguity**: Agents are "helpfully" using HTML comment syntax
+   for markdown files instead of the exact marker text. Prompts need to
+   be more explicit about using the exact string verbatim in all file types.
+2. **Agent ignoring graph output**: Agent B's traverse output clearly
+   listed README.md and api-design.md, but the agent either filtered them
+   out or decided markdown files shouldn't be marked. Need to investigate
+   whether the check_graph skill report clearly presents non-Python files
+   or if the agent is making a judgment call to skip them.
+3. **Surprising Agent A success**: Agent A found all depth-2 Python files
+   without the graph by manually tracing imports. This is better than
+   expected. The experiment may need harder conditions (more files, deeper
+   chains, more noise) to differentiate the agents on Python-only deps.
+4. **The real differentiator may be wiki-link deps**: The only files both
+   agents missed are wiki-link connected (markdown), not import-connected
+   (Python). The graph's unique advantage might be cross-type edges (doc →
+   code wiki-links), not just transitive imports. This is worth exploring.
 
-##### 2. Consider a "string-match" edge type (optional, lower priority)
+**Infrastructure notes**:
+- Experiment runs in WSL (not Windows) — `kb_graph.py` has a shebang
+  that requires LF line endings. Fixed via `.gitattributes` (`eol=lf`).
+- `claude` CLI must be authenticated in WSL separately (`claude /login`).
+- `node` must be installed in WSL for the `claude` CLI to work.
+- Dry-run validates fixture + ground truth without needing `claude`:
+  `python3 tests/test_agent_experiment.py --dry-run`
 
-Add an edge type to `kb_graph.py` that scans all files for identifiers
-defined in tracked code files (function names, class attributes, parameter
-names). This would connect `docs/deployment.md` → `config.py` because
-deployment.md contains `db_url` which is a parameter name in config.py.
+**Status**: Pausing to plan further improvements. A fresh agent session
+will pick up from here to iterate on prompt design, check_graph skill
+behavior, and fixture difficulty before running the full experiment.
 
-**Caution**: This could be expensive and noisy in large projects. The grep
-sweep in check_graph (fix #1 above) achieves the same goal more cheaply
-at query time rather than at graph-build time.
+**To resume**: Superseded by Phase 5 v3 below. v2 transcripts are in
+`tests/experiment_transcripts/` (will be overwritten by v3 runs).
 
-##### 3. Re-run the experiment
+#### Phase 5 v3: Bioinformatics fixture redesign (2026-04-14) — READY
 
-After fix #1, re-run:
-```bash
-python3 tests/test_agent_experiment.py --trials 6 --model sonnet --save-transcripts --clean
+**Problem**: v2 produced identical 80% recall for both agents. The 46-file
+web-app fixture was too small with shallow (depth 2) import chains. Agent A
+manually traced all Python imports successfully — the graph provided no
+measurable advantage.
+
+**Solution**: Replaced with a 97-file bioinformatics fixture modeled on
+spatial-omics analysis packages (mirrors real repos like SpatialCore-Dev):
+
+- **Target**: `src/core/metadata.py` — central utility with high fan-out
+- **Blast radius**: 19 files across depths 1-4
+- **Import chains**: through `__init__.py` re-exports (not direct imports)
+- **Red herrings**: 5 files mention "metadata" in comments/strings but
+  are NOT dependents (designed to waste Agent A's grep time)
+- **Only 4 of 19** blast radius files are greppable (depth 1)
+
+**Corrected depth grouping** (spec table had clustering.py at depth 3,
+but it imports ontology.py directly → depth 2):
+
+| Depth | Count | Files |
+|-------|-------|-------|
+| 1 | 4 | core/\_\_init\_\_.py, ontology.py, confidence.py, test_metadata.py |
+| 2 | 5 | annotation/\_\_init\_\_.py, markers.py, cell_types.py, base.py, clustering.py |
+| 3 | 5 | preprocessing/\_\_init\_\_.py, normalization.py, qc.py, spatial.py, spatial_plot.py |
+| 4 | 5 | ingestion.py, batch.py, run_qc.py, run_analysis.py, heatmap.py |
+
+**Critical parser constraint**: `preprocessing/base.py` uses
+`from core import MetadataManager` (not `from core import metadata`) so
+the parser resolves to `core/__init__.py` (depth 2 via \_\_init\_\_) rather
+than directly to `core/metadata.py` (which would be depth 1).
+
+**Changes to `tests/test_agent_experiment.py`**:
+- Replaced all fixture data with `V3_FILES` dict (97 bioinformatics files)
+- Added `OLD_FILES_TO_REMOVE` to clean original web-app fixture files
+- Updated `EXPECTED_BLAST_RADIUS` with 4 depth groups (19 files)
+- Updated `PROMPT_A`, `PROMPT_B`, `MARKER` for metadata.py target
+- Agent B prompt: `kb-graph traverse metadata.py --depth 4`
+- Added `--depth` CLI arg (default 4)
+- Increased default timeout 180s → 300s
+- Extended `print_summary()` with depth 1/2/3/4 miss breakdown
+- Rewrote `--dry-run` to validate traverse output against ground truth
+  and confirm red herring files are absent
+
+**Dry-run result** (2026-04-14):
+```
+  v3 bioinformatics fixture: 97 files total
+  Expected blast radius: 19/19 [OK]
+  Red herring files: 5/5 [OK], all ABSENT from traverse
+  Ground truth: 19/19 expected files found in traverse output
+  PASS — ground truth matches traverse output perfectly
 ```
 
-**Success criteria**: Agent B should achieve >80% perfect runs (>4/6) and
-Agent A should remain at ~40% or below. If Agent B is not clearly winning,
-investigate transcript to see if check_graph is actually running the grep
-sweep and if the agent is acting on the results.
+**Expected experiment outcomes**:
+- **Agent A**: 20-30% recall (finds 4 depth-1 files via grep, misses 15)
+- **Agent B**: 100% recall (graph gives the exact answer)
 
-##### 4. Update README with final results
-
-Once Agent B reliably outperforms Agent A, update `phoam_paint/README.md`
-Phase 5 section with final results. Include the improvement that made the
-difference (grep sweep in check_graph).
+**Status**: Ready for experiment runs. Run:
+```bash
+python3 tests/test_agent_experiment.py --trials 5 --save-transcripts
+```
 
 ### Phase 6: Additional Parsers (stretch)
 
