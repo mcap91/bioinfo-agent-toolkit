@@ -36,6 +36,23 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
+
+def _kb_graph_cmd():
+    """Return the command prefix for invoking kb-graph.
+
+    On Windows, extensionless scripts can't be found by subprocess
+    without shell=True. We resolve the full path and invoke via Python.
+    """
+    kb = shutil.which("kb-graph")
+    if kb:
+        return [sys.executable, kb]
+    # Fallback: check common install location
+    home_bin = Path.home() / ".local" / "bin" / "kb-graph"
+    if home_bin.exists():
+        return [sys.executable, str(home_bin)]
+    return ["kb-graph"]
+
+
 # ── Logging ──────────────────────────────────────────────────────────────
 
 _log_file = None
@@ -904,9 +921,12 @@ PROMPT_B = (
 
 def check_prerequisites():
     missing = []
-    for cmd in ("claude", "kb-graph"):
-        if shutil.which(cmd) is None:
-            missing.append(cmd)
+    if shutil.which("claude") is None:
+        missing.append("claude")
+    # kb-graph: shutil.which fails on Windows for extensionless scripts
+    kb_cmd = _kb_graph_cmd()
+    if kb_cmd == ["kb-graph"]:
+        missing.append("kb-graph")
     if missing:
         log(f"ERROR: Missing prerequisites: {', '.join(missing)}")
         sys.exit(1)
@@ -933,7 +953,7 @@ def init_graph(project_dir):
              "GIT_COMMITTER_NAME": "test", "GIT_COMMITTER_EMAIL": "test@test"},
     )
     result = subprocess.run(
-        ["kb-graph", "init", "."], cwd=project_dir,
+        [*_kb_graph_cmd(), "init", "."], cwd=project_dir,
         capture_output=True, text=True,
     )
     if result.returncode != 0:
