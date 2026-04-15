@@ -1,0 +1,23 @@
+=== PROMPT ===
+Read CLAUDE.md first. The processing engine (docs/design/02-processing-engine.md) is being completely redesigned. Run `kb-graph traverse docs/design/02-processing-engine.md --depth 3` to get the complete list of affected files. Add `<!-- AFFECTED -->` as the very first line of every file in the traverse output. Do not modify 02-processing-engine.md itself. Do not explain, just make the changes.
+
+=== STDOUT ===
+Done. Added `<!-- AFFECTED -->` as the first line of all 13 files from the traverse output:
+
+- `configs/platform_config.yaml`
+- `docs/design/00-platform-overview.md`
+- `docs/design/01-data-ingestion.md`
+- `docs/design/05-scheduling.md`
+- `docs/design/06-security-auth.md`
+- `docs/design/09-open-questions.md`
+- `docs/design/10-architecture.md`
+- `docs/guides/getting-started.md`
+- `docs/guides/performance-guide.md`
+- `docs/reference/design-notes.md`
+- `docs/reference/research-notes.md`
+- `docs/reference/setup.md`
+- `README.md`
+
+
+=== STDERR ===
+

@@ -1,0 +1,21 @@
+=== PROMPT ===
+Read CLAUDE.md first, then read KB_INDEX.md. The function `apply_transform()` in `src/core/transform.py` has a breaking parameter change: `strict: bool = True` is now `mode: str = "strict"`. KB_INDEX.md lists every file that imports transform.py — check those files for call sites. Update every call site: `strict=True` becomes `mode="strict"`, `strict=False` becomes `mode="lenient"`. Call sites using the default (not passing `strict`) need no change. Do not modify `src/core/transform.py` itself. Do not explain, just make the changes.
+
+=== STDOUT ===
+The `api-reference.md` mention is just descriptive text ("Supports strict and lenient validation modes"), not a call site — no change needed there.
+
+All 7 call sites have been updated:
+
+| File | Change |
+|---|---|
+| `tests/test_transform.py:9` | `strict=True` → `mode="strict"` |
+| `tests/test_transform.py:14` | `strict=False` → `mode="lenient"` |
+| `tests/test_pipeline.py:10` | `strict=False` → `mode="lenient"` |
+| `src/analysis/aggregate.py:12` | `strict=False` → `mode="lenient"` |
+| `src/preprocessing/normalize.py:13` | `strict=True` → `mode="strict"` |
+| `src/pipeline/run.py:24` | `strict=True` → `mode="strict"` |
+| `docs/tutorial.md:13` | `strict=True` → `mode="strict"` |
+
+
+=== STDERR ===
+

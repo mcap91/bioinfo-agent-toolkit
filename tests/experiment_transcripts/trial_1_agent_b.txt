@@ -1,0 +1,9 @@
+=== PROMPT ===
+Read CLAUDE.md first. A breaking change is planned for src/core/metadata.py. Run `kb-graph traverse metadata.py --depth 4` to get the complete list of affected files. Add `# AFFECTED-BY: metadata.py` as the very first line of every file in the traverse output. Do not modify metadata.py itself. Do not explain, just make the changes.
+
+=== STDOUT ===
+All 19 affected files have been updated with `# AFFECTED-BY: metadata.py` as their first line.
+
+
+=== STDERR ===
+

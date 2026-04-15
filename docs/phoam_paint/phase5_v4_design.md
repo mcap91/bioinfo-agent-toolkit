@@ -602,3 +602,128 @@ arguments.
 - `tests/fixtures/sample_project/` — original fixture unchanged
 - `tests/test_graph_mutations.py` — Phase 1.5 tests unchanged
 - `tests/test_generated_graph.py` — Phase 2 tests unchanged
+
+---
+
+## Experiment Results (2026-04-15)
+
+**Environment**: Claude CLI 2.1.109, Sonnet 4.6 (default model), Ubuntu via WSL2 on Windows 11
+
+### Experiment A: Doc-Graph Impact Analysis
+
+**1 trial** (+ 1 earlier trial that crashed during summary but produced
+results):
+
+| Metric | Agent A (no graph) | Agent B (with graph) |
+|--------|-------------------|---------------------|
+| Recall | 100% (13/13) | 100% (13/13) |
+| Precision | 100% | 100% |
+| Time | 87.1s | 35.7s |
+| Files missed | none | none |
+
+**Earlier trial** (crashed in summary code before JSON save due to
+`DEPTH_GROUPS` KeyError — bug fixed mid-session):
+
+| Metric | Agent A | Agent B |
+|--------|---------|---------|
+| Recall | 92% (12/13) | 100% (13/13) |
+| Time | 50.5s | 32.7s |
+| Missed | `docs/design/06-security-auth.md` (depth 2) | none |
+
+**Analysis**: The saved trial shows no recall difference — Agent A
+traced all 13 wiki-linked files manually in 87.1s. Agent B finished
+in 35.7s (2.4x faster) by running `kb-graph traverse` once. The
+earlier trial (not saved to JSON) showed Agent A missing one depth-2
+file, suggesting the graph-less approach has some variance in recall
+on wiki-link tasks, but a single miss in one of two runs is not
+statistically significant.
+
+**Agent A strategy** (from transcript): Agent A found all 13 files by
+reading each document, identifying `[[wiki-links]]`, and following
+them transitively. It organized results by depth and found even the
+config YAML reference to the target path. The wiki-link task was
+harder than Python imports (no `grep -r import` shortcut), but
+Sonnet's ability to parse markdown wiki-link syntax was sufficient
+to trace the full graph manually.
+
+**Agent B strategy** (from transcript): Read CLAUDE.md, ran
+`kb-graph traverse docs/design/02-processing-engine.md --depth 3`,
+got the complete file list, applied markers. Deterministic and fast.
+
+### Experiment B: Code Intelligence — Signature Change
+
+**1 trial**:
+
+| Metric | Agent A (no graph) | Agent B (with graph) |
+|--------|-------------------|---------------------|
+| Recall | 100% (6/6) | 100% (6/6) |
+| Precision | 86% (6/7) | 86% (6/7) |
+| Time | 32.3s | 56.9s |
+| False positives | `docs/tutorial.md` | `docs/tutorial.md` |
+
+**Analysis**: Both agents found all 6 call sites and both made the
+same false positive — updating `strict=True` in `docs/tutorial.md`'s
+code example, which the scoring script counted as a false positive
+(tutorial examples aren't real call sites). Agent A was actually
+*faster* (32.3s vs 56.9s) because it went straight to grepping for
+`apply_transform` while Agent B first read CLAUDE.md and KB_INDEX.md.
+
+**Agent A strategy**: Grepped for `apply_transform`, read each file,
+applied the parameter substitution. Simple and effective — the
+function name is unique enough that grep finds all call sites
+directly.
+
+**Agent B strategy**: Read CLAUDE.md, then KB_INDEX.md (which lists
+importers and exports), identified files importing `transform.py`,
+checked each for `apply_transform` calls, applied substitutions.
+The extra KB_INDEX.md reading step added overhead without improving
+results.
+
+### Verdict: FAILED TO DIFFERENTIATE
+
+Neither experiment produced the expected recall gap between agents.
+
+| Experiment | Expected | Actual |
+|-----------|----------|--------|
+| A (doc-graph) | A: 30-50%, B: 100% | Both 100% (saved trial) |
+| B (code intel) | A: 70-90%, B: 100% | Both 100% |
+
+### Pattern across all five attempts (v1–v4)
+
+| Version | Task | Result | Why it failed |
+|---------|------|--------|---------------|
+| v1 | Rename `db_url` → `database_url` | Both 40% | Text search — grep equally effective |
+| v2 | Mark blast radius of `database.py` (46 files) | Both 80% | Agent A traced imports manually |
+| v3 | Mark blast radius of `metadata.py` (97 files, depth 4) | Both 100% | Agent A traced all imports in 104s |
+| v4-A | Mark wiki-link blast radius (13 files, depth 3) | Both 100% | Agent A parsed wiki-links manually |
+| v4-B | Update `apply_transform()` call sites (6 sites) | Both 100% | Grep finds the function name directly |
+
+### Why v4 failed
+
+**Experiment A** tested wiki-link traversal — a genuinely different
+edge type from Python imports. But the fixture was too small (33 files,
+13 in blast radius) and the wiki-link syntax (`[[name]]`) is regular
+enough for an agent to parse and trace manually. The hypothesis that
+"no imports = no grep shortcut" was wrong — the agent adapted by
+grepping for `[[` and reading each file.
+
+**Experiment B** tested function-level knowledge from KB_INDEX.md. But
+the task (find call sites of a uniquely-named function) is solvable
+by grepping for the function name. KB_INDEX.md provides the same
+information as `grep -r apply_transform` — file-level import edges
+plus function names. The graph adds no information that isn't
+recoverable in a single grep.
+
+### What would actually work
+
+The graph's value is **not** "finding things" — Sonnet can find things
+by reading files. The graph's value is **pre-computed transitive
+closure at scale**. Future experiments should test:
+
+1. **Scale**: 500+ files where manual BFS exceeds the timeout
+2. **Time pressure**: 30-60s timeout where only the pre-computed answer
+   is fast enough
+3. **Multi-hop queries**: "What is the shortest path between X and Y?"
+   where BFS through files is error-prone
+4. **Aggregate queries**: "List all orphan files" — requires checking
+   every file's inbound edges, not just following one chain
