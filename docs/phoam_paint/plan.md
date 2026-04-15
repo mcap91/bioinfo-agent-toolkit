@@ -5,16 +5,15 @@
 
 ---
 
-## 0. Current State (updated 2026-04-14)
+## 0. Current State (updated 2026-04-15)
 
-**Status**: Phase 5 v3 experiment ran but failed to differentiate agents.
-Agent A (no graph) achieved 100% recall by manually tracing Python imports
-through `__init__.py` re-exports at depth 4 — identical to Agent B (with
-graph). The blast-radius marking task does not work as an A/B experiment
-because Sonnet can trace Python import chains reliably without tooling.
-Phase 5 needs a v4 with a fundamentally different task type. See
-`docs/phoam_paint/phase5_v3_design.md` for full analysis and candidate
-alternative tasks.
+**Status**: Phase 5 v4 designed. Two new experiments replace the failed
+v1–v3 blast-radius approach: (A) doc-graph impact analysis using
+wiki-links in prose, and (B) code intelligence using function
+signatures in KB_INDEX.md. Experiment B requires enhancing the Python
+parser to extract `def`/`class` lines. Phase 6 (richer code
+intelligence) is scoped as future work. See
+`docs/phoam_paint/phase5_v4_design.md` for the full spec.
 
 **Key files**:
 - `phoam_paint/kb_graph.py` — the tool (single file, ~2050 lines, stdlib only)
@@ -23,9 +22,11 @@ alternative tasks.
 - `tests/fixtures/sample_project/` — fixture project with known graph properties (10 nodes, 13 edges)
 - `tests/test_graph_mutations.py` — Phase 1.5 mutation tests (20 tests)
 - `tests/test_generated_graph.py` — Phase 2 generated-graph correctness tests (28 tests, 100-node project)
-- `tests/test_agent_experiment.py` — Phase 5 v3 A/B experiment script (97-file bioinformatics fixture, depth-4 import chains, --depth, --dry-run)
-- `tests/experiment_transcripts/` — agent transcripts from 5 trials
+- `tests/test_agent_experiment.py` — Phase 5 v3 A/B experiment script (kept for reference)
+- `tests/experiment_transcripts/` — agent transcripts from v3 trials
 - `docs/phoam_paint/plan.md` — this file (spec + build order)
+- `docs/phoam_paint/phase5_v4_design.md` — Phase 5 v4 + Phase 6 design spec
+- `docs/phoam_paint/phase5_v3_design.md` — v3 design + failure analysis (historical)
 - `docs/phoam_paint/foam_paint_reference.md` — detailed parser/output reference
 - `docs/phoam_paint/check_graph_reference.md` — `/check_graph` skill reference content
 
@@ -67,11 +68,10 @@ graph = build_graph("/path/to/repo")
 
 **What's stubbed**: nothing — all commands are implemented.
 
-**To resume**: Phase 5 needs a v4 redesign. Read the "Alternative task
-types for Phase 5 v4" section in `docs/phoam_paint/phase5_v3_design.md`
-for candidate approaches. The blast-radius marking task (v1/v2/v3) has
-been tried three times and fails to differentiate agents — do not iterate
-on the same task type again.
+**To resume**: Phase 5 v4 is designed. Read
+`docs/phoam_paint/phase5_v4_design.md` for the full spec. Next step:
+create an implementation plan, then build Experiment A (no tool changes
+needed), then enhance kb_graph.py's Python parser for Experiment B.
 
 ---
 
@@ -794,40 +794,95 @@ fundamentally different approach.
 **Status**: Failed. See `docs/phoam_paint/phase5_v3_design.md` for full
 analysis and six candidate alternative task types for v4.
 
-#### Phase 5 v4: Redesign needed
+#### Phase 5 v4: Two Focused Experiments (designed 2026-04-15)
 
 **Goal**: Same as Phase 5 — prove the graph provides measurable value.
-But the task must test something the agent *cannot* do by reading files.
+But the tasks must test capabilities the agent *cannot* replicate by
+reading Python import statements.
 
-**Candidate task types** (detailed analysis in `phase5_v3_design.md`):
+**Key insight from v1–v3 failure analysis**: every previous task tested
+Python import tracing, which Sonnet can do mechanically. The graph's
+unique value lies in: (1) wiki-link traversal in prose documents (no
+imports to grep), and (2) pre-computed function-level metadata in
+KB_INDEX.md that would require reading every file to reconstruct.
 
-1. **Orphan detection** — "which files are safe to delete?" Requires
-   exhaustive reverse-lookup across entire project. `kb-graph orphans`
-   answers in one call. Agent must read every file to build its own graph.
-2. **Time-constrained blast radius** — reduce timeout to 60s so Agent A
-   can't finish manual tracing. Tests speed advantage, not recall.
-3. **Cross-language deps** — Python + R + shell fixture where `source()`
-   and `. script.sh` create edges invisible to Python import tracing.
-4. **Shortest path** — "how are file X and Y connected?" Requires BFS
-   through imports. `kb-graph path X Y` gives the exact chain.
-5. **Scale to 500+ files** — exceed agent's tracing capacity within timeout.
-6. **Wiki-link / cross-type edges** — blast radius including docs connected
-   via `[[wiki-links]]` and config files referenced by path.
+**Full spec**: `docs/phoam_paint/phase5_v4_design.md`
 
-**Recommended**: Option 1 (orphan detection) or option 2 (time-constrained).
-Both play to the graph's pre-computed knowledge advantage rather than
-asking the agent to do something it can already do manually.
+##### Experiment A: Doc-Graph Impact Analysis
 
-**Status**: Not started. Needs design spec and new experiment script.
+**Fixture**: ~35 files — design docs for a fictional data analytics
+platform, connected by `[[wiki-links]]` in prose. No code in the
+dependency chains.
 
-### Phase 6: Additional Parsers (stretch)
+**Target**: `docs/design/02-processing-engine.md`
 
-**Goal**: support beyond Python/Markdown.
+**Blast radius**: 13 files across depths 1-3 (5 at depth 1, 6 at
+depth 2, 2 at depth 3). Plus 3 red herring files mentioning
+"processing" in text without wiki-linking to the target.
 
-1. R parser: `source()`, local `library()`
-2. Shell parser: `source`, `. path`
-3. Nextflow parser: `include` statements
-4. **Test**: add fixture files for each language, verify edges
+**Task**: mark every transitively affected file with `<!-- AFFECTED -->`.
+
+**Why it differentiates**: no imports to trace, no grep shortcut for
+transitive wiki-link deps. Agent A must parse wiki-link syntax in
+prose and BFS manually across 35 files. Agent B runs
+`kb-graph traverse` once.
+
+**Expected**: Agent A 30-50% recall, Agent B 100% recall.
+
+**Tool changes needed**: none — current wiki-link + config-ref parsers
+handle this.
+
+##### Experiment B: Code Intelligence — Function-Level Knowledge
+
+**Fixture**: ~80 files — fictional Python data pipeline library with
+cross-cutting function dependencies.
+
+**Target**: `src/core/transform.py` — specifically the
+`apply_transform()` function signature.
+
+**Task**: `apply_transform()`'s `strict: bool = True` parameter is
+replaced by `mode: str = "strict"`. Update every call site:
+`strict=True` → `mode="strict"`, `strict=False` → `mode="lenient"`.
+6 call sites across 5 files need changes.
+
+**Why it differentiates**: Agent B reads KB_INDEX.md which now lists
+exported function signatures and importers per file. Agent A must
+grep, read each file, determine if it calls `apply_transform()` with
+the `strict` parameter, and apply the right substitution. Red herring
+files mention "transform" without being call sites.
+
+**Expected**: Agent A 70-90% recall with lower precision, Agent B
+100% recall and precision.
+
+**Tool changes needed**: enhance `kb_graph.py` Python parser to extract
+`def` and `class` lines; update KB_INDEX.md writer to include
+`exports:` lines per file.
+
+**Status**: Not started. Spec written, needs implementation plan.
+
+### Phase 6: Richer Code Intelligence (future)
+
+**Goal**: expand the minimum-viable function extraction from
+Experiment B into a full code intelligence layer.
+
+**Full spec**: `docs/phoam_paint/phase5_v4_design.md` (Phase 6 section)
+
+| Sub-phase | Feature | Value |
+|-----------|---------|-------|
+| 6.1 | AST-based Python parsing | Reliable extraction of complex types, decorators, docstrings |
+| 6.2 | Call-site indexing | "Here are the 5 exact lines that break" per function |
+| 6.3 | Return value contract tracking | Dict key shapes, enabling return-value-coupling detection |
+| 6.4 | Constant/variable tracking | Module-level constants and their usage sites |
+| 6.5 | R parser | `source()` edges for R→R dependencies |
+| 6.6 | Shell parser | `source`, `. path`, `Rscript`, `python3` invocation edges |
+| 6.7 | Cross-language call tracking | Python→R via subprocess patterns |
+
+**Dependencies**: 6.1 is the foundation (do first). 6.2 is
+highest-value for "what breaks?" use case. 6.5–6.7 are
+highest-value for bioinformatics repos specifically.
+
+**Status**: Not started. Depends on Phase 5 v4 Experiment B
+(which implements the regex-based minimum viable version).
 
 ---
 
