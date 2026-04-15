@@ -396,6 +396,106 @@ def parse_python(filepath, repo_root, tracked_set):
     return edges
 
 
+def extract_exports(filepath):
+    """Extract top-level function signatures and class definitions from a Python file.
+
+    Returns a list of strings like:
+        "apply_transform(data: DataFrame, config: Config, strict: bool = True) -> DataFrame"
+        "class TransformConfig"
+        "class PipelineError(Exception)"
+
+    Skips private functions (_prefixed), nested functions, and methods inside classes.
+    Handles multiline signatures (parentheses spanning multiple lines).
+    """
+    try:
+        with open(filepath, "r", errors="ignore") as f:
+            lines = f.readlines()
+    except OSError:
+        return []
+
+    exports = []
+    indent_in_class = False  # True when we're inside a class body
+    i = 0
+
+    while i < len(lines):
+        line = lines[i]
+        stripped = line.rstrip()
+        leading_spaces = len(line) - len(line.lstrip())
+
+        # Track whether we're inside a class body (indented)
+        if stripped and not stripped.startswith("#"):
+            if leading_spaces == 0:
+                indent_in_class = False
+
+        # Top-level class definition
+        if leading_spaces == 0 and re.match(r"^class\s+", stripped):
+            m = re.match(r"^class\s+(\w+)(?:\(([^)]*)\))?\s*:", stripped)
+            if m:
+                name = m.group(1)
+                bases = m.group(2)
+                if bases:
+                    exports.append(f"class {name}({bases.strip()})")
+                else:
+                    exports.append(f"class {name}")
+                indent_in_class = True
+            i += 1
+            continue
+
+        # Top-level function definition (not inside a class, not private)
+        if leading_spaces == 0 and re.match(r"^def\s+", stripped) and not indent_in_class:
+            m = re.match(r"^def\s+(\w+)\s*\(", stripped)
+            if m:
+                name = m.group(1)
+                # Skip private functions
+                if name.startswith("_"):
+                    i += 1
+                    continue
+
+                # Collect the full signature (may span multiple lines)
+                sig_lines = [stripped]
+                # Check if parentheses are balanced
+                paren_depth = stripped.count("(") - stripped.count(")")
+                j = i + 1
+                while paren_depth > 0 and j < len(lines):
+                    sig_lines.append(lines[j].rstrip())
+                    paren_depth += lines[j].count("(") - lines[j].count(")")
+                    j += 1
+
+                full_sig = " ".join(s.strip() for s in sig_lines)
+
+                # Extract: def name(params) -> return_type:
+                sig_match = re.match(
+                    r"def\s+(\w+)\s*\(([^)]*)\)\s*(?:->\s*(.+?))?\s*:",
+                    full_sig,
+                )
+                if sig_match:
+                    func_name = sig_match.group(1)
+                    params_raw = sig_match.group(2)
+                    return_type = sig_match.group(3)
+
+                    # Clean up params: collapse whitespace, strip trailing commas
+                    params = ", ".join(
+                        p.strip() for p in params_raw.split(",") if p.strip()
+                    )
+
+                    if return_type:
+                        exports.append(f"{func_name}({params}) -> {return_type.strip()}")
+                    else:
+                        exports.append(f"{func_name}({params})")
+
+            i += 1
+            continue
+
+        # Inside a class body — skip methods (they're indented)
+        if leading_spaces > 0 and indent_in_class and re.match(r"\s+def\s+", line):
+            i += 1
+            continue
+
+        i += 1
+
+    return exports
+
+
 def parse_markdown(filepath, repo_root, tracked_set):
     """Parse a Markdown file for [[wiki-links]]."""
     edges = []
