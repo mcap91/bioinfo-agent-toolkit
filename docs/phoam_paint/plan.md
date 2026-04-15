@@ -866,6 +866,33 @@ files mention "transform" without being call sites.
 recall in both. Speed advantage confirmed (2.4x in Experiment A) but
 no recall gap. See results in `docs/phoam_paint/phase5_v4_design.md`.
 
+#### Phase 5 v5: Realistic Prompt Experiment (designed 2026-04-15)
+
+**Goal**: Same as Phase 5 — prove the graph provides measurable value.
+But v5 changes the prompts from explicit instructions to vague,
+realistic requests matching how users actually talk to coding agents.
+
+**Key insight from v1-v4 failure analysis**: every previous experiment
+told both agents exactly what to find. The graph's value is not just
+answering queries — it's prompting the agent to ask the right questions
+via CLAUDE.md rules. With vague prompts, Agent A may not realize there's
+a blast radius to check.
+
+**Full spec**: `docs/phoam_paint/phase5_v5_design.md`
+**Implementation plan**: `docs/phoam_paint/phase5_v5_plan.md`
+
+Three scenarios in one script (`tests/test_experiment_v5.py`):
+
+| Scenario | Task | What it tests |
+|----------|------|---------------|
+| A: "Fix this thing" | "I changed a parameter, make sure nothing broke" | Does the agent discover downstream call sites? |
+| B: "Something is broken" | "Tests are failing, fix it" | Root cause fix (all call sites) vs symptom fix (just the test)? |
+| C: "Rename a file" | "Rename this doc file" | Does the agent find and update wiki-link references? |
+
+**Tool changes needed**: none — uses existing kb-graph features.
+
+**Status**: Designed. Implementation plan written.
+
 ### Phase 6: Richer Code Intelligence (future)
 
 **Goal**: expand the minimum-viable function extraction from
