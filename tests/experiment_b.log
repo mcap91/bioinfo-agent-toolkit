@@ -1,0 +1,51 @@
+Phase 5 v4 — Experiment B: Code Intelligence
+Date: 2026-04-15 21:59:52 UTC
+Claude CLI: 2.1.109 (Claude Code)
+Model: default
+Trials: 1
+Timeout: 300s
+Target: src/core/transform.py
+Expected fixes: 6
+
+
+============================================================
+  Trial 1
+============================================================
+  Setting up projects in /tmp/kb_exp_b_1_besex7j0
+  Running kb-graph init on project B...
+  Project B: KB_INDEX.md=True, CLAUDE.md=True
+
+  Running Agent A (no graph)...
+  Agent A finished in 32.3s (exit=0)
+  Running Agent B (with graph)...
+  Agent B finished in 56.9s (exit=0)
+
+  Results:
+  Agent A: recall=100% (6/6), precision=86%
+    correct: ['normalize_data() calls apply_transform with strict=True', 'aggregate_data() calls apply_transform with strict=False', 'run_pipeline() calls apply_transform with strict=True', 'test_strict_mode() calls apply_transform with strict=True', 'test_lenient_mode() calls apply_transform with strict=False', 'test_pipeline_transform() calls apply_transform with strict=False']
+    missed:  []
+    wrong:   []
+    false+:  ['docs/tutorial.md']
+  Agent B: recall=100% (6/6), precision=86%
+    correct: ['normalize_data() calls apply_transform with strict=True', 'aggregate_data() calls apply_transform with strict=False', 'run_pipeline() calls apply_transform with strict=True', 'test_strict_mode() calls apply_transform with strict=True', 'test_lenient_mode() calls apply_transform with strict=False', 'test_pipeline_transform() calls apply_transform with strict=False']
+    missed:  []
+    wrong:   []
+    false+:  ['docs/tutorial.md']
+
+  Transcripts saved to /mnt/c/Users/mcap9/projects/bioinfo-agent-toolkit/tests/experiment_transcripts/
+
+======================================================================
+  EXPERIMENT B SUMMARY — 1 trial(s), 6 call sites to fix
+======================================================================
+
+  Trial  A recall  B recall   A prec   B prec    A time    B time
+  -----  --------  --------  -------  -------  --------  --------
+      1     100%     100%     86%     86%     32.3s     56.9s
+
+  Perfect runs: Agent A = 0/1, Agent B = 0/1
+  Avg recall:   Agent A = 100%, Agent B = 100%
+
+  Verdict:
+  -> Both agents achieved equal recall (100%).
+
+Results saved to /mnt/c/Users/mcap9/projects/bioinfo-agent-toolkit/tests/experiment_b_results.json

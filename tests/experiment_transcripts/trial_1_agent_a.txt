@@ -1,0 +1,9 @@
+=== PROMPT ===
+A breaking change is planned for src/core/metadata.py. Add `# AFFECTED-BY: metadata.py` as the very first line of every Python file that would be affected — include all transitive dependents. Do not modify metadata.py itself. Do not explain, just make the changes.
+
+=== STDOUT ===
+All 19 files updated.
+
+
+=== STDERR ===
+

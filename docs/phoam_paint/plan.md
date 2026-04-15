@@ -7,13 +7,14 @@
 
 ## 0. Current State (updated 2026-04-15)
 
-**Status**: Phase 5 v4 designed. Two new experiments replace the failed
-v1–v3 blast-radius approach: (A) doc-graph impact analysis using
-wiki-links in prose, and (B) code intelligence using function
-signatures in KB_INDEX.md. Experiment B requires enhancing the Python
-parser to extract `def`/`class` lines. Phase 6 (richer code
-intelligence) is scoped as future work. See
-`docs/phoam_paint/phase5_v4_design.md` for the full spec.
+**Status**: Phase 5 v4 complete — both experiments ran but **failed to
+differentiate** the agents. Agent A (no graph) matched Agent B's recall
+in both experiments. v4-A: both 100% recall on 13 wiki-linked files
+(Agent B 2.4x faster). v4-B: both 100% recall on 6 call sites (Agent A
+actually faster). Combined with v1–v3 failures, this is five consecutive
+experiments where the graph did not produce a measurable recall advantage.
+The graph's demonstrated value is speed (2-2.5x), not recall. See
+`docs/phoam_paint/phase5_v4_design.md` for full results and analysis.
 
 **Key files**:
 - `phoam_paint/kb_graph.py` — the tool (single file, ~2050 lines, stdlib only)
@@ -68,10 +69,12 @@ graph = build_graph("/path/to/repo")
 
 **What's stubbed**: nothing — all commands are implemented.
 
-**To resume**: Phase 5 v4 is designed. Read
-`docs/phoam_paint/phase5_v4_design.md` for the full spec. Next step:
-create an implementation plan, then build Experiment A (no tool changes
-needed), then enhance kb_graph.py's Python parser for Experiment B.
+**To resume**: Phase 5 v4 is complete (both experiments failed to
+differentiate). Five experiments across v1–v4 show Sonnet can replicate
+graph queries by reading files at current fixture scales. Next step:
+either scale fixtures to 500+ files (where manual BFS exceeds timeout),
+add time-pressure constraints, or pivot to aggregate queries (orphan
+detection) where the graph's advantage is structural, not informational.
 
 ---
 
@@ -858,7 +861,10 @@ files mention "transform" without being call sites.
 `def` and `class` lines; update KB_INDEX.md writer to include
 `exports:` lines per file.
 
-**Status**: Not started. Spec written, needs implementation plan.
+**Status**: Complete — failed to differentiate. Both experiments ran
+(2026-04-15, CLI 2.1.109, Sonnet 4.6). Agent A matched Agent B's
+recall in both. Speed advantage confirmed (2.4x in Experiment A) but
+no recall gap. See results in `docs/phoam_paint/phase5_v4_design.md`.
 
 ### Phase 6: Richer Code Intelligence (future)
 
