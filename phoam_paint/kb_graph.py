@@ -629,11 +629,18 @@ def build_graph(repo_root):
 
     # Build nodes
     for filepath in tracked_files:
-        nodes[filepath] = {
+        node = {
             "description": get_description(filepath, repo_root),
             "group": get_group(filepath),
             "type": get_file_type(filepath),
         }
+        # Extract function/class exports for Python files
+        if os.path.splitext(filepath)[1] == ".py":
+            full_path = os.path.join(repo_root, filepath)
+            node["exports"] = extract_exports(full_path)
+        else:
+            node["exports"] = []
+        nodes[filepath] = node
 
     # Parse edges
     for filepath in tracked_files:
@@ -742,6 +749,11 @@ def write_kb_index(graph, repo_root):
             file_type = meta["type"]
 
             if file_type == "code":
+                # Exports (function signatures, class definitions)
+                file_exports = nodes[filepath].get("exports", [])
+                for export in file_exports:
+                    lines.append(f"  - exports: `{export}`")
+
                 # Imports (outbound import edges)
                 import_edges = [e for e in outbound[filepath] if e["type"] == "import"]
                 if import_edges:

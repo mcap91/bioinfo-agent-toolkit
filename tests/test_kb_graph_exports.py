@@ -144,5 +144,69 @@ class TestExtractExports(unittest.TestCase):
         )
 
 
+from phoam_paint.kb_graph import build_graph, write_kb_index
+
+
+class TestExportsInGraph(unittest.TestCase):
+    """Test that exports appear in the graph and KB_INDEX.md."""
+
+    def setUp(self):
+        self.tmpdir = tempfile.mkdtemp()
+        # Create a minimal Python project
+        src_dir = os.path.join(self.tmpdir, "src")
+        os.makedirs(src_dir)
+
+        with open(os.path.join(src_dir, "transform.py"), "w") as f:
+            f.write(
+                '"""Data transformation utilities."""\n\n'
+                "class TransformConfig:\n"
+                "    pass\n\n\n"
+                "def apply_transform(data, config, strict: bool = True):\n"
+                "    pass\n\n\n"
+                "def _helper():\n"
+                "    pass\n"
+            )
+
+        with open(os.path.join(src_dir, "main.py"), "w") as f:
+            f.write(
+                "from transform import apply_transform\n\n"
+                "apply_transform(None, None)\n"
+            )
+
+    def tearDown(self):
+        import shutil
+        shutil.rmtree(self.tmpdir, ignore_errors=True)
+
+    def test_graph_nodes_have_exports(self):
+        graph = build_graph(self.tmpdir)
+        transform_node = graph["nodes"].get("src/transform.py")
+        self.assertIsNotNone(transform_node)
+        self.assertIn("exports", transform_node)
+        self.assertEqual(len(transform_node["exports"]), 2)  # class + function, not _helper
+        self.assertIn("class TransformConfig", transform_node["exports"])
+        self.assertIn(
+            "apply_transform(data, config, strict: bool = True)",
+            transform_node["exports"],
+        )
+
+    def test_graph_nodes_without_exports(self):
+        graph = build_graph(self.tmpdir)
+        main_node = graph["nodes"].get("src/main.py")
+        self.assertIsNotNone(main_node)
+        # main.py has no top-level def/class exports
+        self.assertEqual(main_node.get("exports", []), [])
+
+    def test_kb_index_contains_exports(self):
+        graph = build_graph(self.tmpdir)
+        output_path = write_kb_index(graph, self.tmpdir)
+        with open(output_path) as f:
+            content = f.read()
+        self.assertIn("exports:", content)
+        self.assertIn("apply_transform(data, config, strict: bool = True)", content)
+        self.assertIn("class TransformConfig", content)
+        # Private functions should NOT appear
+        self.assertNotIn("_helper", content)
+
+
 if __name__ == "__main__":
     unittest.main()
