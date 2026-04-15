@@ -37,6 +37,23 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
+
+def _kb_graph_cmd():
+    """Return the command prefix for invoking kb-graph.
+
+    On Windows, extensionless scripts can't be found by subprocess
+    without shell=True. We resolve the full path and invoke via Python.
+    """
+    kb = shutil.which("kb-graph")
+    if kb:
+        return [sys.executable, kb]
+    # Fallback: check common install location
+    home_bin = Path.home() / ".local" / "bin" / "kb-graph"
+    if home_bin.exists():
+        return [sys.executable, str(home_bin)]
+    return ["kb-graph"]
+
+
 # ── Logging ──────────────────────────────────────────────────────────────
 
 _log_file = None
@@ -505,25 +522,27 @@ TARGET = "docs/design/02-processing-engine.md"
 MARKER = "<!-- AFFECTED -->"
 
 EXPECTED_DEPTH_1 = [
-    "docs/design/00-platform-overview.md",
-    "docs/design/05-scheduling.md",
-    "docs/design/10-architecture.md",
-    "docs/reference/design-notes.md",
-    "configs/platform_config.yaml",
+    "docs/design/00-platform-overview.md",    # [[02-processing-engine]] wiki-link
+    "docs/design/01-data-ingestion.md",       # [[02-processing-engine]] wiki-link
+    "docs/design/05-scheduling.md",           # [[02-processing-engine]] wiki-link
+    "docs/design/10-architecture.md",         # [[02-processing-engine]] wiki-link
+    "docs/reference/design-notes.md",         # [[02-processing-engine]] wiki-link
+    "configs/platform_config.yaml",           # config-ref path
 ]
 
 EXPECTED_DEPTH_2 = [
-    "docs/design/01-data-ingestion.md",      # links to 05-scheduling
+    "README.md",                              # links to 00-platform-overview
+    "docs/design/06-security-auth.md",        # links to 01-data-ingestion
     "docs/design/09-open-questions.md",       # links to 00-platform-overview
     "docs/guides/getting-started.md",         # links to 00-platform-overview
-    "README.md",                              # links to 00-platform-overview
-    "docs/reference/setup.md",               # links to 10-architecture
     "docs/guides/performance-guide.md",       # links to 10-architecture
+    "docs/reference/research-notes.md",       # links to 01-data-ingestion
+    "docs/reference/setup.md",               # links to 10-architecture
 ]
 
 EXPECTED_DEPTH_3 = [
-    "docs/design/06-security-auth.md",        # links to 01-data-ingestion
-    "docs/reference/research-notes.md",       # links to 01-data-ingestion
+    # None — all transitives are reachable within depth 2 because
+    # 01-data-ingestion.md directly links to [[02-processing-engine]]
 ]
 
 EXPECTED_BLAST_RADIUS = EXPECTED_DEPTH_1 + EXPECTED_DEPTH_2 + EXPECTED_DEPTH_3
@@ -531,7 +550,6 @@ EXPECTED_BLAST_RADIUS = EXPECTED_DEPTH_1 + EXPECTED_DEPTH_2 + EXPECTED_DEPTH_3
 DEPTH_GROUPS = {
     1: set(EXPECTED_DEPTH_1),
     2: set(EXPECTED_DEPTH_2),
-    3: set(EXPECTED_DEPTH_3),
 }
 
 RED_HERRING_FILES = [
@@ -568,9 +586,12 @@ PROMPT_B = (
 
 def check_prerequisites():
     missing = []
-    for cmd in ("claude", "kb-graph"):
-        if shutil.which(cmd) is None:
-            missing.append(cmd)
+    if shutil.which("claude") is None:
+        missing.append("claude")
+    # kb-graph: shutil.which fails on Windows for extensionless scripts
+    kb_cmd = _kb_graph_cmd()
+    if kb_cmd == ["kb-graph"]:
+        missing.append("kb-graph")
     if missing:
         log(f"ERROR: Missing prerequisites: {', '.join(missing)}")
         sys.exit(1)
@@ -599,7 +620,7 @@ def init_graph(project_dir):
              "GIT_COMMITTER_NAME": "test", "GIT_COMMITTER_EMAIL": "test@test"},
     )
     result = subprocess.run(
-        ["kb-graph", "init", "."], cwd=project_dir,
+        [*_kb_graph_cmd(), "init", "."], cwd=project_dir,
         capture_output=True, text=True,
     )
     if result.returncode != 0:
@@ -700,7 +721,7 @@ def dry_run():
 
         log("  Running kb-graph traverse...")
         result = subprocess.run(
-            ["kb-graph", "traverse", TARGET, "--depth", "3"],
+            [*_kb_graph_cmd(), "traverse", TARGET, "--depth", "3"],
             cwd=tmpdir, capture_output=True, text=True,
         )
         log(f"  Traverse output:\n{result.stdout}")
@@ -713,10 +734,11 @@ def dry_run():
             # or just file paths
             for token in line.split():
                 token = token.strip("├└──│─ ")
-                if "/" in token and not token.startswith("BLAST"):
-                    # Check if it looks like a file path
-                    if any(token.endswith(ext) for ext in (".md", ".yaml", ".yml", ".py", ".sh")):
-                        traverse_files.add(token)
+                if not token or token.startswith("BLAST"):
+                    continue
+                # Check if it looks like a file path (with / or a root-level file)
+                if any(token.endswith(ext) for ext in (".md", ".yaml", ".yml", ".py", ".sh")):
+                    traverse_files.add(token)
 
         # Compare traverse output with expected blast radius
         expected = set(EXPECTED_BLAST_RADIUS)
