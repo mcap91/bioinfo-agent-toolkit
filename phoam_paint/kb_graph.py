@@ -2102,6 +2102,13 @@ def cmd_analyze(args):
 # ── Main ───────────────────────────────────────────────────────────────────
 
 def main():
+    # Ensure stdout/stderr can handle UTF-8 on all platforms (Windows
+    # defaults to cp1252 which can't encode box-drawing characters).
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+    if hasattr(sys.stderr, "reconfigure"):
+        sys.stderr.reconfigure(encoding="utf-8")
+
     parser = argparse.ArgumentParser(
         prog="kb-graph",
         description="Auto-generated knowledge graph for any repo.",
