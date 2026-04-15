@@ -47,7 +47,7 @@ def load_ignore_patterns(repo_root):
     for filename in (".phoamignore", ".gitignore"):
         path = os.path.join(repo_root, filename)
         if os.path.isfile(path):
-            with open(path, "r", errors="ignore") as f:
+            with open(path, "r", encoding="utf-8", errors="ignore") as f:
                 for line in f:
                     line = line.strip()
                     if not line or line.startswith("#"):
@@ -141,7 +141,7 @@ def get_description(filepath, repo_root):
     ext = os.path.splitext(filepath)[1]
 
     try:
-        with open(full_path, "r", errors="ignore") as f:
+        with open(full_path, "r", encoding="utf-8", errors="ignore") as f:
             content = f.read(4096)
     except OSError:
         return ""
@@ -288,7 +288,7 @@ def parse_python(filepath, repo_root, tracked_set):
     full_path = os.path.join(repo_root, filepath)
 
     try:
-        with open(full_path, "r", errors="ignore") as f:
+        with open(full_path, "r", encoding="utf-8", errors="ignore") as f:
             content = f.read()
     except OSError:
         return edges
@@ -408,7 +408,7 @@ def extract_exports(filepath):
     Handles multiline signatures (parentheses spanning multiple lines).
     """
     try:
-        with open(filepath, "r", errors="ignore") as f:
+        with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
             lines = f.readlines()
     except OSError:
         return []
@@ -502,7 +502,7 @@ def parse_markdown(filepath, repo_root, tracked_set):
     full_path = os.path.join(repo_root, filepath)
 
     try:
-        with open(full_path, "r", errors="ignore") as f:
+        with open(full_path, "r", encoding="utf-8", errors="ignore") as f:
             content = f.read()
     except OSError:
         return edges
@@ -529,7 +529,7 @@ def parse_config(filepath, repo_root, tracked_set):
     ext = os.path.splitext(filepath)[1]
 
     try:
-        with open(full_path, "r", errors="ignore") as f:
+        with open(full_path, "r", encoding="utf-8", errors="ignore") as f:
             content = f.read()
     except OSError:
         return edges
@@ -829,7 +829,7 @@ def write_kb_index(graph, repo_root):
 
     output = "\n".join(lines).rstrip() + "\n"
     output_path = os.path.join(repo_root, "KB_INDEX.md")
-    with open(output_path, "w") as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         f.write(output)
 
     return output_path
@@ -1161,7 +1161,7 @@ def write_graph_html(graph, repo_root):
     html = GRAPH_HTML_TEMPLATE.replace("%%GRAPH_DATA%%", graph_json)
 
     output_path = os.path.join(repo_root, "graph.html")
-    with open(output_path, "w") as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         f.write(html)
 
     return output_path
@@ -1415,7 +1415,7 @@ def grep_references(target_node, file_path, repo_root, max_lines=5):
     matches = []
 
     try:
-        with open(full_path, "r", errors="ignore") as f:
+        with open(full_path, "r", encoding="utf-8", errors="ignore") as f:
             for i, line in enumerate(f, 1):
                 if basename in line:
                     matches.append((i, line.rstrip()))
@@ -1496,7 +1496,7 @@ def cmd_init(args):
 
     hook_content = PRE_COMMIT_HOOK.strip() + "\n"
     if os.path.isfile(hook_path):
-        with open(hook_path, "r") as f:
+        with open(hook_path, "r", encoding="utf-8") as f:
             existing = f.read()
         if _HOOK_START in existing:
             print(f"  pre-commit hook already contains phoam_paint block — skipping")
@@ -1506,11 +1506,11 @@ def cmd_init(args):
                 line for line in hook_content.splitlines()
                 if not line.startswith("#!")
             )
-            with open(hook_path, "a") as f:
+            with open(hook_path, "a", encoding="utf-8") as f:
                 f.write("\n" + block_only + "\n")
             print(f"  Appended phoam_paint hook to {hook_path}")
     else:
-        with open(hook_path, "w") as f:
+        with open(hook_path, "w", encoding="utf-8") as f:
             f.write(hook_content)
         print(f"  Created {hook_path}")
 
@@ -1531,7 +1531,7 @@ def cmd_init(args):
     skill_dir = os.path.join(repo_root, ".claude", "skills", "check_graph")
     os.makedirs(skill_dir, exist_ok=True)
     skill_path = os.path.join(skill_dir, "SKILL.md")
-    with open(skill_path, "w") as f:
+    with open(skill_path, "w", encoding="utf-8") as f:
         f.write(CHECK_GRAPH_SKILL)
     print(f"  Created {skill_path}")
 
@@ -1539,16 +1539,16 @@ def cmd_init(args):
     claude_md_path = os.path.join(repo_root, "CLAUDE.md")
     rules_block = CLAUDE_MD_RULES.strip() + "\n"
     if os.path.isfile(claude_md_path):
-        with open(claude_md_path, "r") as f:
+        with open(claude_md_path, "r", encoding="utf-8") as f:
             existing = f.read()
         if _RULES_START in existing:
             print("  CLAUDE.md already contains Knowledge Graph Rules — skipping")
         else:
-            with open(claude_md_path, "a") as f:
+            with open(claude_md_path, "a", encoding="utf-8") as f:
                 f.write("\n" + rules_block)
             print(f"  Appended Knowledge Graph Rules to {claude_md_path}")
     else:
-        with open(claude_md_path, "w") as f:
+        with open(claude_md_path, "w", encoding="utf-8") as f:
             f.write(rules_block)
         print(f"  Created {claude_md_path}")
 
@@ -1556,12 +1556,12 @@ def cmd_init(args):
     gitignore_path = os.path.join(repo_root, ".gitignore")
     existing_lines = set()
     if os.path.isfile(gitignore_path):
-        with open(gitignore_path, "r") as f:
+        with open(gitignore_path, "r", encoding="utf-8") as f:
             existing_lines = {line.strip() for line in f}
 
     lines_to_add = [ln for ln in _GITIGNORE_LINES if ln not in existing_lines]
     if lines_to_add:
-        with open(gitignore_path, "a") as f:
+        with open(gitignore_path, "a", encoding="utf-8") as f:
             for ln in lines_to_add:
                 f.write(ln + "\n")
         print(f"  Added {', '.join(lines_to_add)} to .gitignore")
@@ -1595,7 +1595,7 @@ def cmd_uninit(args):
 
     hook_path = os.path.join(repo_root, "scripts", "hooks", "pre-commit")
     if os.path.isfile(hook_path):
-        with open(hook_path, "r") as f:
+        with open(hook_path, "r", encoding="utf-8") as f:
             hook_content = f.read()
         if _HOOK_START in hook_content:
             if _hook_has_other_content(hook_content):
@@ -1605,7 +1605,7 @@ def cmd_uninit(args):
 
     claude_md_path = os.path.join(repo_root, "CLAUDE.md")
     if os.path.isfile(claude_md_path):
-        with open(claude_md_path, "r") as f:
+        with open(claude_md_path, "r", encoding="utf-8") as f:
             claude_content = f.read()
         if _RULES_START in claude_content:
             cleaned = _remove_rules_section(claude_content)
@@ -1616,7 +1616,7 @@ def cmd_uninit(args):
 
     gitignore_path = os.path.join(repo_root, ".gitignore")
     if os.path.isfile(gitignore_path):
-        with open(gitignore_path, "r") as f:
+        with open(gitignore_path, "r", encoding="utf-8") as f:
             gitignore_lines = f.readlines()
         has_our_lines = any(line.strip() in _GITIGNORE_LINES for line in gitignore_lines)
         if has_our_lines:
@@ -1705,7 +1705,7 @@ def cmd_uninit(args):
 
         elif kind == "edit" and "pre-commit" in desc:
             cleaned = _remove_hook_block(hook_content)
-            with open(hook_path, "w") as f:
+            with open(hook_path, "w", encoding="utf-8") as f:
                 f.write(cleaned)
             print(f"  {desc}")
 
@@ -1715,7 +1715,7 @@ def cmd_uninit(args):
 
         elif kind == "edit" and "CLAUDE.md" in desc:
             cleaned = _remove_rules_section(claude_content)
-            with open(claude_md_path, "w") as f:
+            with open(claude_md_path, "w", encoding="utf-8") as f:
                 f.write(cleaned)
             print(f"  {desc}")
 
@@ -1725,7 +1725,7 @@ def cmd_uninit(args):
 
         elif kind == "edit" and ".gitignore" in desc:
             remaining = [ln for ln in gitignore_lines if ln.strip() not in _GITIGNORE_LINES]
-            with open(gitignore_path, "w") as f:
+            with open(gitignore_path, "w", encoding="utf-8") as f:
                 f.writelines(remaining)
             print(f"  {desc}")
 
