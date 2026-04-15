@@ -107,22 +107,23 @@ These are designed to waste Agent A's time if it relies on text search.
 
 | Depth | File | Connection |
 |-------|------|------------|
-| 1 | `docs/design/00-platform-overview.md` | `[[02-processing]]` wiki-link |
-| 1 | `docs/design/05-scheduling.md` | `[[02-processing]]` wiki-link |
-| 1 | `docs/design/10-architecture.md` | `[[02-processing]]` wiki-link |
-| 1 | `docs/reference/design-notes.md` | `[[02-processing]]` wiki-link |
+| 1 | `docs/design/00-platform-overview.md` | `[[02-processing-engine]]` wiki-link |
+| 1 | `docs/design/01-data-ingestion.md` | `[[02-processing-engine]]` wiki-link |
+| 1 | `docs/design/05-scheduling.md` | `[[02-processing-engine]]` wiki-link |
+| 1 | `docs/design/10-architecture.md` | `[[02-processing-engine]]` wiki-link |
+| 1 | `docs/reference/design-notes.md` | `[[02-processing-engine]]` wiki-link |
 | 1 | `configs/platform_config.yaml` | config-ref path |
-| 2 | `docs/design/01-data-ingestion.md` | links to `05-scheduling` |
+| 2 | `README.md` | links to `00-platform-overview` |
+| 2 | `docs/design/06-security-auth.md` | links to `01-data-ingestion` |
 | 2 | `docs/design/09-open-questions.md` | links to `00-platform-overview` |
 | 2 | `docs/guides/getting-started.md` | links to `00-platform-overview` |
-| 2 | `README.md` | links to `00-platform-overview` |
-| 2 | `docs/reference/setup.md` | links to `10-architecture` |
 | 2 | `docs/guides/performance-guide.md` | links to `10-architecture` |
-| 3 | `docs/design/06-security-auth.md` | links to `01-data-ingestion` |
-| 3 | `docs/reference/research-notes.md` | links to `01-data-ingestion` |
+| 2 | `docs/reference/research-notes.md` | links to `01-data-ingestion` |
+| 2 | `docs/reference/setup.md` | links to `10-architecture` |
 
-**Summary**: 13 files. 5 at depth 1, 6 at depth 2, 2 at depth 3.
-Plus ~22 noise files not in the blast radius.
+**Summary**: 13 files. 6 at depth 1, 7 at depth 2 (no depth 3 needed —
+`01-data-ingestion.md` directly links to the target).
+Plus ~20 noise files not in the blast radius.
 
 ### Agent prompts
 
