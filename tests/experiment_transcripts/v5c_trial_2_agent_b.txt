@@ -1,0 +1,10 @@
+No stale references remain. Here's a summary of everything done:
+
+- **Renamed** `docs/design/02-processing-engine.md` → `docs/design/02-data-processing.md` via `git mv`
+- **Updated content** in the renamed file: title changed from `# Processing Engine` to `# Data Processing`, and "engine" references updated to "module"
+- **Updated wiki-links** in 5 files: `00-platform-overview.md`, `01-data-ingestion.md`, `05-scheduling.md`, `10-architecture.md`, `docs/reference/design-notes.md` — all `[[02-processing-engine]]` → `[[02-data-processing]]`
+- **Updated config path** in `configs/platform_config.yaml`
+- **Rebuilt** the knowledge graph (30 nodes, 36 edges)
+
+
+--- STDERR ---

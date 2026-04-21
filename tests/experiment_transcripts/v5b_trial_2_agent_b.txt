@@ -1,0 +1,8 @@
+All 11 tests pass. Two fixes were needed:
+
+1. **`src/core/transform.py`** — renamed parameter from `mode: str = "strict"` to `strict: bool = True` and updated the internal check from `mode == "strict"` to `strict`. The docstring already described the intended boolean API; the implementation just never matched it.
+
+2. **`pyproject.toml`** — added `[tool.pytest.ini_options]` with `pythonpath = ["src"]` so pytest can resolve `from core.transform import ...` in a `src/` layout project.
+
+
+--- STDERR ---

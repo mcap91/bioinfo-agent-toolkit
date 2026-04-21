@@ -1,0 +1,16 @@
+All 7 files updated. Here's a summary of every change made:
+
+| File | Change |
+|---|---|
+| `src/core/transform.py` | Fixed docstring: `strict: If True…` → `mode: "strict"/"lenient"` |
+| `src/analysis/aggregate.py` | `strict=False` → `mode="lenient"` |
+| `src/pipeline/run.py` | `strict=True` → `mode="strict"` |
+| `src/preprocessing/normalize.py` | `strict=True` → `mode="strict"` |
+| `tests/test_transform.py` | Both `strict=True/False` calls updated |
+| `tests/test_pipeline.py` | `strict=False` → `mode="lenient"` |
+| `docs/tutorial.md` | Example and description updated |
+
+`src/preprocessing/filter.py` was clean — it already called `apply_transform(data, config)` with no explicit parameter, so the default `"strict"` applies unchanged.
+
+
+--- STDERR ---

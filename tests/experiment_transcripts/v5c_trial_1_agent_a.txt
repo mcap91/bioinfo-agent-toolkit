@@ -1,0 +1,13 @@
+Done. Here's a summary of all changes:
+
+- **Renamed** `docs/design/02-processing-engine.md` → `docs/design/02-data-processing.md`
+- **Updated heading** inside the file from `# Processing Engine` to `# Data Processing`
+- **Updated `[[02-processing-engine]]` links** in 5 files:
+  - `docs/design/00-platform-overview.md`
+  - `docs/design/01-data-ingestion.md`
+  - `docs/design/05-scheduling.md`
+  - `docs/design/10-architecture.md`
+  - `docs/reference/design-notes.md`
+
+
+--- STDERR ---

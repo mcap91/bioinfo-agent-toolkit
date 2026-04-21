@@ -1,0 +1,4 @@
+Done. The file has been renamed to `02-data-processing.md` with the title and body updated from "Processing Engine" to "Data Processing". All 6 references to the old name were updated across `configs/platform_config.yaml`, `docs/reference/design-notes.md`, and 4 other design docs.
+
+
+--- STDERR ---
