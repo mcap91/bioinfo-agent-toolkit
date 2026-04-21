@@ -1,0 +1,6 @@
+11/11 passing, no regressions.
+
+**Root cause:** In `src/core/transform.py:12`, the parameter `strict: bool` had been renamed to `mode: str` (with the string `"strict"` as default), but the tests call the function with `strict=True`/`strict=False`. The fix was restoring the parameter name to `strict: bool = True` and updating the internal check from `mode == "strict"` to just `strict`.
+
+
+--- STDERR ---

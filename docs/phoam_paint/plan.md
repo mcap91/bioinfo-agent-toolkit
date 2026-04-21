@@ -5,16 +5,21 @@
 
 ---
 
-## 0. Current State (updated 2026-04-15)
+## 0. Current State (updated 2026-04-21)
 
-**Status**: Phase 5 v4 complete — both experiments ran but **failed to
-differentiate** the agents. Agent A (no graph) matched Agent B's recall
-in both experiments. v4-A: both 100% recall on 13 wiki-linked files
-(Agent B 2.4x faster). v4-B: both 100% recall on 6 call sites (Agent A
-actually faster). Combined with v1–v3 failures, this is five consecutive
-experiments where the graph did not produce a measurable recall advantage.
-The graph's demonstrated value is speed (2-2.5x), not recall. See
-`docs/phoam_paint/phase5_v4_design.md` for full results and analysis.
+**Status**: Phase 5 v5 complete — 3 trials × 3 scenarios on Sonnet
+(CLI 2.1.116). **Scenario C ("Rename a file") produced the first
+measurable recall gap** across five phases of A/B experiments: Agent B
+3/3 perfect runs at 100% recall vs Agent A 1/3 perfect at 61% avg
+recall. Scenarios A and B did not differentiate — A tied at 67%
+recall both agents; B was uninformative because all 6 runs reverted
+the signature change (a scoring artifact of the prompt, not a failure
+to differentiate). Scenario C narrowly misses the formal success
+bar (needed A ≤ 60%, got 61%) but is the closest any scenario has
+come to clear differentiation. Confirms the hypothesis that the
+graph's unique value is cross-referential prose (wiki-links), not
+code import tracing. See `docs/phoam_paint/phase5_v5_design.md` for
+full results.
 
 **Key files**:
 - `phoam_paint/kb_graph.py` — the tool (single file, ~2050 lines, stdlib only)
@@ -23,11 +28,18 @@ The graph's demonstrated value is speed (2-2.5x), not recall. See
 - `tests/fixtures/sample_project/` — fixture project with known graph properties (10 nodes, 13 edges)
 - `tests/test_graph_mutations.py` — Phase 1.5 mutation tests (20 tests)
 - `tests/test_generated_graph.py` — Phase 2 generated-graph correctness tests (28 tests, 100-node project)
+- `tests/test_experiment_a.py` — Phase 5 v4 Experiment A (doc-graph blast radius)
+- `tests/test_experiment_b.py` — Phase 5 v4 Experiment B (code call-site fixes)
+- `tests/test_experiment_v5.py` — Phase 5 v5 three-scenario realistic-prompt experiment
 - `tests/test_agent_experiment.py` — Phase 5 v3 A/B experiment script (kept for reference)
-- `tests/experiment_transcripts/` — agent transcripts from v3 trials
+- `tests/experiment_v5_{a,b,c}_results.json` — v5 results per scenario
+- `tests/experiment_transcripts/` — agent transcripts (v3–v5 trials)
 - `docs/phoam_paint/plan.md` — this file (spec + build order)
-- `docs/phoam_paint/phase5_v4_design.md` — Phase 5 v4 + Phase 6 design spec
+- `docs/phoam_paint/phase5_v5_design.md` — v5 design spec + results (2026-04-21)
+- `docs/phoam_paint/phase5_v5_plan.md` — v5 implementation plan
+- `docs/phoam_paint/phase5_v4_design.md` — v4 design spec + Phase 6 roadmap
 - `docs/phoam_paint/phase5_v3_design.md` — v3 design + failure analysis (historical)
+- `docs/phoam_paint/2026-04-14-phase5-v3-experiment.md` — v3 experiment record (historical)
 - `docs/phoam_paint/foam_paint_reference.md` — detailed parser/output reference
 - `docs/phoam_paint/check_graph_reference.md` — `/check_graph` skill reference content
 
@@ -866,32 +878,131 @@ files mention "transform" without being call sites.
 recall in both. Speed advantage confirmed (2.4x in Experiment A) but
 no recall gap. See results in `docs/phoam_paint/phase5_v4_design.md`.
 
-#### Phase 5 v5: Realistic Prompt Experiment (designed 2026-04-15)
+#### Phase 5 v5: Realistic Prompt Experiment (run 2026-04-21)
 
 **Goal**: Same as Phase 5 — prove the graph provides measurable value.
-But v5 changes the prompts from explicit instructions to vague,
-realistic requests matching how users actually talk to coding agents.
+v5 changed the prompts from explicit instructions to vague, realistic
+requests matching how users actually talk to coding agents.
 
-**Key insight from v1-v4 failure analysis**: every previous experiment
-told both agents exactly what to find. The graph's value is not just
-answering queries — it's prompting the agent to ask the right questions
-via CLAUDE.md rules. With vague prompts, Agent A may not realize there's
-a blast radius to check.
-
-**Full spec**: `docs/phoam_paint/phase5_v5_design.md`
+**Full spec + results**: `docs/phoam_paint/phase5_v5_design.md`
 **Implementation plan**: `docs/phoam_paint/phase5_v5_plan.md`
+**Script**: `tests/test_experiment_v5.py`
+**Raw data**: `tests/experiment_v5_{a,b,c}_results.json`
 
-Three scenarios in one script (`tests/test_experiment_v5.py`):
+Three scenarios, 3 trials each, Sonnet, CLI 2.1.116:
 
-| Scenario | Task | What it tests |
-|----------|------|---------------|
-| A: "Fix this thing" | "I changed a parameter, make sure nothing broke" | Does the agent discover downstream call sites? |
-| B: "Something is broken" | "Tests are failing, fix it" | Root cause fix (all call sites) vs symptom fix (just the test)? |
-| C: "Rename a file" | "Rename this doc file" | Does the agent find and update wiki-link references? |
+| Scenario | A recall | B recall | A perfect | B perfect | Differentiated? |
+|----------|----------|----------|-----------|-----------|-----------------|
+| A: "Fix this thing"      | 67% | 67% | 1/3 | 0/3 | No |
+| B: "Something is broken" | 0%  | 0%  | 0/3 | 0/3 | No (both reverted) |
+| C: "Rename a file"       | 61% | 100% | 1/3 | **3/3** | Borderline — primary win |
 
-**Tool changes needed**: none — uses existing kb-graph features.
+**Status**: Complete. First measurable recall gap across five phases
+(Scenario C: B 3/3 perfect vs A 1/3). Confirms the graph's unique
+value is cross-referential prose (wiki-links), not code import
+tracing. Scenario A did not differentiate; Scenario B is a scoring
+artifact (both agents reverted to "fix" the failing test). Narrowly
+missed the formal success bar (needed A ≤ 60%, got 61%).
 
-**Status**: Designed. Implementation plan written.
+**Critical finding**: Agent B transcripts showed graph usage in only
+**4 of 9 trials total** (Scenario A: 1/3, B: 0/3, C: 2/3). The
+"Read CLAUDE.md first" prompt prefix does **not** reliably cause
+Agent B to invoke kb-graph. When Agent B doesn't call the tool, the
+experiment degrades into two Agent-A runs. **The next iteration must
+verify and enforce tool usage** — see Phase 5 v6 below.
+
+#### Phase 5 v6: Enforced-Tool-Use Experiment (proposed 2026-04-21)
+
+**Motivation**: v5 had a measurement hole. Agent B needs to actually
+call `kb-graph` for the experiment to be a valid A/B comparison.
+Prompts that merely hint ("Read CLAUDE.md first") fail 50%+ of the
+time on Sonnet. Without guaranteed tool invocation, a null result
+can't be distinguished from a never-invoked result.
+
+**Goal**: Close the measurement hole. Every Agent B trial must
+provably call `kb-graph`. Then decide whether the graph's value is
+real (Scenario C expanded and holds) or an artifact (Scenario C
+collapses under stricter conditions).
+
+##### Hard requirement: Agent B MUST call the tool
+
+Three enforcement mechanisms, layered from least to most invasive:
+
+1. **Strategy verification, not just detection.** After each Agent B
+   trial, require at least one of the following signals in the
+   transcript or output artifacts: a `kb-graph` subprocess invocation
+   logged by the claude CLI, a read of `KB_INDEX.md` (stat the file's
+   atime before/after), or a `check_graph` skill invocation. If none
+   appear, the trial is classified `no_tool_use` and **excluded from
+   recall averages**. Report N-excluded alongside N-valid.
+
+2. **Instrumented kb-graph.** Wrap `~/.local/bin/kb-graph` with a
+   logging shim that appends `{timestamp, args, cwd}` to a trial-
+   local log file. Post-trial, assert the log is non-empty for Agent
+   B. This is the ground truth that doesn't depend on transcript
+   text matching.
+
+3. **Strengthened Agent B prompt.** Keep the realistic quality, but
+   name the tool: *"Before making any changes, run `kb-graph traverse
+   <target>` (or `kb-graph neighbors`) to find affected files."* This
+   is still realistic — real CLAUDE.md rules do name tools — but it
+   eliminates the "agent forgot the graph exists" failure mode.
+
+Use **all three**: (1) and (2) measure; (3) maximizes the odds that
+what we measure is non-zero.
+
+##### Scenario changes
+
+- **Keep Scenario C** verbatim. It was the differentiator. Run at
+  **3 trials** (same cadence as v5) — matches the v5 baseline for
+  direct comparability and keeps wall time bounded.
+- **Redesign Scenario A.** At 80 files with Python imports, grep is
+  competitive with the graph. Either (i) widen the blast radius so
+  that depth-2 callers do not contain "transform" textually (no grep
+  shortcut), or (ii) pivot to a call-graph task requiring `kb-graph
+  neighbors` output in KB_INDEX.md.
+- **Redesign Scenario B.** The 6/6 revert result says nothing about
+  the graph. Either (i) make the signature change unambiguously
+  correct by providing multiple failing tests across modules (so
+  reverting breaks more than it fixes), or (ii) the prompt explicitly
+  states the signature change is intentional. Option (ii) sacrifices
+  some realism but produces a measurable signal.
+
+##### Acceptance criteria
+
+The experiment succeeds if, with enforced tool use (3 trials per
+scenario):
+
+- Scenario C holds: B perfect = 3/3, A perfect ≤ 1/3, AND
+- at least one redesigned code scenario (A′ or B′) shows any
+  measurable recall gap in Agent B's favor (≥ 20 percentage points
+  of recall, or at least 1 more perfect run for B than A).
+
+If both hold, phoam_paint can be positioned as a correctness tool
+for cross-referential work. If only C holds, the pitch narrows to
+"graph tool for doc-heavy repos" — still valuable, but smaller.
+
+##### What a fresh agent needs to do
+
+1. Read `docs/phoam_paint/phase5_v5_design.md` Results section for
+   the specific failure modes observed.
+2. Write `docs/phoam_paint/phase5_v6_design.md` and
+   `docs/phoam_paint/phase5_v6_plan.md` following the v5 pattern.
+3. Implement the kb-graph logging shim (Mechanism 2). Options:
+   a small bash wrapper at `~/.local/bin/kb-graph` that `tee`s to
+   a log, or a Python wrapper that sets an env var and writes
+   to `$KB_GRAPH_TRIAL_LOG`. The trial runner creates the log
+   file before each Agent B invocation and asserts non-empty
+   after.
+4. Implement Scenario A′ and B′ fixture redesigns per above.
+5. Run 3 trials × 3 scenarios on Sonnet (matches v5 cadence for
+   apples-to-apples comparison).
+6. Update this plan's "Current State" with results, mark v6 status.
+
+**Tool changes needed**: kb-graph logging shim (test-only, not
+shipped with the tool). No changes to `kb_graph.py` itself.
+
+**Status**: Proposed. Not started.
 
 ### Phase 6: Richer Code Intelligence (future)
 

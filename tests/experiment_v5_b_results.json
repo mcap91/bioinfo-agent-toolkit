@@ -1,0 +1,203 @@
+{
+  "scenario": "B",
+  "name": "Something is broken",
+  "timestamp": "2026-04-21T03:25:52.527181+00:00",
+  "claude_version": "2.1.116 (Claude Code)",
+  "model": "sonnet",
+  "summary": {
+    "trials": 3,
+    "agent_a_avg_recall": 0.0,
+    "agent_b_avg_recall": 0.0,
+    "agent_a_avg_precision": 0.0,
+    "agent_b_avg_precision": 0.0,
+    "agent_a_avg_time": 181.05326930666828,
+    "agent_b_avg_time": 81.17883923732734,
+    "agent_a_perfect": 0,
+    "agent_b_perfect": 0
+  },
+  "trials": [
+    {
+      "trial": 1,
+      "agent_a": {
+        "recall": 0.0,
+        "precision": 0.0,
+        "elapsed": 300.13648261199705,
+        "exit_code": -1,
+        "strategy": {
+          "used_graph": false,
+          "used_grep": false,
+          "read_claude_md": false,
+          "checked_imports": false
+        },
+        "score": {
+          "recall": 0.0,
+          "precision": 0.0,
+          "classification": "revert",
+          "correct": [],
+          "missed": [
+            "normalize_data() calls apply_transform with strict=True",
+            "aggregate_data() calls apply_transform with strict=False",
+            "run_pipeline() calls apply_transform with strict=True",
+            "test_strict_mode() calls apply_transform with strict=True",
+            "test_lenient_mode() calls apply_transform with strict=False",
+            "test_pipeline_transform() calls apply_transform with strict=False"
+          ],
+          "wrong": [],
+          "false_positives": [],
+          "perfect": false
+        }
+      },
+      "agent_b": {
+        "recall": 0.0,
+        "precision": 0.0,
+        "elapsed": 66.09571180900093,
+        "exit_code": 0,
+        "strategy": {
+          "used_graph": false,
+          "used_grep": false,
+          "read_claude_md": false,
+          "checked_imports": false
+        },
+        "score": {
+          "recall": 0.0,
+          "precision": 0.0,
+          "classification": "revert",
+          "correct": [],
+          "missed": [
+            "normalize_data() calls apply_transform with strict=True",
+            "aggregate_data() calls apply_transform with strict=False",
+            "run_pipeline() calls apply_transform with strict=True",
+            "test_strict_mode() calls apply_transform with strict=True",
+            "test_lenient_mode() calls apply_transform with strict=False",
+            "test_pipeline_transform() calls apply_transform with strict=False"
+          ],
+          "wrong": [],
+          "false_positives": [],
+          "perfect": false
+        }
+      }
+    },
+    {
+      "trial": 2,
+      "agent_a": {
+        "recall": 0.0,
+        "precision": 0.0,
+        "elapsed": 85.73291763300949,
+        "exit_code": 0,
+        "strategy": {
+          "used_graph": false,
+          "used_grep": false,
+          "read_claude_md": false,
+          "checked_imports": false
+        },
+        "score": {
+          "recall": 0.0,
+          "precision": 0.0,
+          "classification": "revert",
+          "correct": [],
+          "missed": [
+            "normalize_data() calls apply_transform with strict=True",
+            "aggregate_data() calls apply_transform with strict=False",
+            "run_pipeline() calls apply_transform with strict=True",
+            "test_strict_mode() calls apply_transform with strict=True",
+            "test_lenient_mode() calls apply_transform with strict=False",
+            "test_pipeline_transform() calls apply_transform with strict=False"
+          ],
+          "wrong": [],
+          "false_positives": [],
+          "perfect": false
+        }
+      },
+      "agent_b": {
+        "recall": 0.0,
+        "precision": 0.0,
+        "elapsed": 113.95589687798929,
+        "exit_code": 0,
+        "strategy": {
+          "used_graph": false,
+          "used_grep": false,
+          "read_claude_md": false,
+          "checked_imports": false
+        },
+        "score": {
+          "recall": 0.0,
+          "precision": 0.0,
+          "classification": "revert",
+          "correct": [],
+          "missed": [
+            "normalize_data() calls apply_transform with strict=True",
+            "aggregate_data() calls apply_transform with strict=False",
+            "run_pipeline() calls apply_transform with strict=True",
+            "test_strict_mode() calls apply_transform with strict=True",
+            "test_lenient_mode() calls apply_transform with strict=False",
+            "test_pipeline_transform() calls apply_transform with strict=False"
+          ],
+          "wrong": [],
+          "false_positives": [],
+          "perfect": false
+        }
+      }
+    },
+    {
+      "trial": 3,
+      "agent_a": {
+        "recall": 0.0,
+        "precision": 0.0,
+        "elapsed": 157.29040767499828,
+        "exit_code": 0,
+        "strategy": {
+          "used_graph": false,
+          "used_grep": false,
+          "read_claude_md": false,
+          "checked_imports": false
+        },
+        "score": {
+          "recall": 0.0,
+          "precision": 0.0,
+          "classification": "revert",
+          "correct": [],
+          "missed": [
+            "normalize_data() calls apply_transform with strict=True",
+            "aggregate_data() calls apply_transform with strict=False",
+            "run_pipeline() calls apply_transform with strict=True",
+            "test_strict_mode() calls apply_transform with strict=True",
+            "test_lenient_mode() calls apply_transform with strict=False",
+            "test_pipeline_transform() calls apply_transform with strict=False"
+          ],
+          "wrong": [],
+          "false_positives": [],
+          "perfect": false
+        }
+      },
+      "agent_b": {
+        "recall": 0.0,
+        "precision": 0.0,
+        "elapsed": 63.484909024991794,
+        "exit_code": 0,
+        "strategy": {
+          "used_graph": false,
+          "used_grep": false,
+          "read_claude_md": false,
+          "checked_imports": false
+        },
+        "score": {
+          "recall": 0.0,
+          "precision": 0.0,
+          "classification": "revert",
+          "correct": [],
+          "missed": [
+            "normalize_data() calls apply_transform with strict=True",
+            "aggregate_data() calls apply_transform with strict=False",
+            "run_pipeline() calls apply_transform with strict=True",
+            "test_strict_mode() calls apply_transform with strict=True",
+            "test_lenient_mode() calls apply_transform with strict=False",
+            "test_pipeline_transform() calls apply_transform with strict=False"
+          ],
+          "wrong": [],
+          "false_positives": [],
+          "perfect": false
+        }
+      }
+    }
+  ]
+}

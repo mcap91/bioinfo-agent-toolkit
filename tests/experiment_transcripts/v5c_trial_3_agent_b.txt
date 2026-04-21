@@ -1,0 +1,9 @@
+No stale references remain. Here's a summary of all changes made:
+
+- **Renamed** `docs/design/02-processing-engine.md` → `docs/design/02-data-processing.md` (via `git mv`)
+- **Updated title** inside the file: `# Processing Engine` → `# Data Processing`
+- **Updated wiki-links** in 4 docs: `00-platform-overview.md`, `01-data-ingestion.md`, `05-scheduling.md`, `10-architecture.md`, and `docs/reference/design-notes.md`
+- **Updated path** in `configs/platform_config.yaml`
+
+
+--- STDERR ---

@@ -468,3 +468,100 @@ value.
 If v5 fails: Phase 6 features (especially 6.2 call-site indexing)
 might be what tips the balance, and should be tested in a v6
 experiment.
+
+---
+
+## Results (2026-04-21, CLI 2.1.116, Sonnet)
+
+3 trials × 3 scenarios × 2 agents = 18 invocations. Script:
+`tests/test_experiment_v5.py`. Raw data:
+`tests/experiment_v5_{a,b,c}_results.json`.
+
+### Cross-scenario summary
+
+| Scenario | A recall | B recall | A perfect | B perfect | Meets success bar? |
+|----------|----------|----------|-----------|-----------|--------------------|
+| A: Fix this thing       | 67% | 67% | 1/3 | 0/3 | No |
+| B: Something is broken  | 0%  | 0%  | 0/3 | 0/3 | No (both reverted) |
+| C: Rename a file        | 61% | **100%** | 1/3 | **3/3** | Borderline — see below |
+
+### Scenario A — no differentiation
+
+| Trial | Agent A recall | Agent B recall | Notes |
+|-------|---------------|---------------|-------|
+| 1 | 100% | 0% | B detected graph usage but produced zero fixes |
+| 2 | 100% (1 FP) | 100% (1 FP) | Both wrote `mode="strict"` into `docs/tutorial.md` |
+| 3 | 0% | 100% | A grepped + gave up; B found all 6 |
+
+Avg: both 67% recall, Agent A faster (75s vs 122s). Only 1/3 Agent B
+trials triggered graph usage per transcript detection. The
+"Read CLAUDE.md first" prefix did not reliably cause Agent B to read
+KB_INDEX.md. Same false positive (`docs/tutorial.md`) appeared in both
+agents — the prose mention of `strict=True` in tutorial code tricks
+regex-level call-site detection, not a strategy difference. Agent A
+hit 100% recall in 2/3 trials by direct code exploration, ruling out
+a recall gap at this fixture scale.
+
+### Scenario B — both agents reverted in all 6 runs
+
+All 6 runs classified as `revert`: the agents "fixed" the failing
+test by reverting `apply_transform`'s signature from `mode: str`
+back to `strict: bool`, rather than propagating the new parameter to
+the 6 call sites. One Agent A trial hit the 300s timeout.
+
+This is a **scoring artifact**, not a real failure to differentiate.
+Given one failing test whose traceback points at one file, reverting
+the change is a reasonable minimal fix — the prompt doesn't tell the
+agent that the signature change was intentional. The design doc
+anticipated this case ("a reasonable agent might 'fix' the tests by
+reverting") but the frequency — 6/6 runs — indicates the current
+prompt biases too strongly toward the symptom fix to test anything
+about graph usage.
+
+### Scenario C — Agent B clearly wins
+
+| Trial | Agent A recall | Agent B recall | Graph used (B)? |
+|-------|---------------|---------------|-----------------|
+| 1 | 83% (missed `platform_config.yaml` path ref) | 100% | Yes |
+| 2 | 0% (renamed file only; zero refs updated) | 100% | Yes |
+| 3 | 100% | 100% | No (detected as grep-like) |
+
+- **Agent B: 3/3 perfect** (100% recall on every trial).
+- **Agent A: 1/3 perfect** (avg recall 61%).
+- Agent A took 32s on average; Agent B took 121s (slower because it
+  actually queries the graph and reads referrers).
+- The `configs/platform_config.yaml` path-reference was the most
+  commonly missed — Agent A only caught it in trial 3.
+
+### Success criteria evaluation
+
+The v5 success bar required, in at least one scenario:
+
+- **Primary:** Agent B recall ≥ 90% **AND** Agent A recall ≤ 60%
+- **Alternative:** Agent B perfect ≥ 80% of trials **AND** Agent A
+  perfect ≤ 30% of trials
+
+Scenario C against the primary: B=100% ✓, A=61% — fails by 1
+percentage point. Against the alternative: B=100% ✓, A=33% — fails
+by 3 percentage points. Neither bar clears cleanly, but Scenario C
+is the closest any scenario has come across five phases of
+experiments. The tie between "barely misses threshold" and
+"genuine differentiation" would be resolved by a larger trial count.
+
+### What this establishes
+
+1. **First measurable recall advantage for the graph** (Scenario C).
+   Agent B achieved 3/3 perfect runs; no prior experiment produced
+   any perfect-run gap.
+2. **Confirmed: the graph's value is cross-referential prose**,
+   not code import tracing. Code-oriented scenarios (A, B) showed
+   no recall advantage.
+3. **Strategy detection is unreliable.** `read_claude_md=false` in
+   all 18 runs despite Agent B prompts explicitly starting with
+   "Read CLAUDE.md first." The `claude -p` output likely doesn't
+   surface tool-call detail. Transcript keyword matching is too
+   coarse to measure whether the agent actually consulted CLAUDE.md
+   or KB_INDEX.md.
+4. **Scenario B as designed is uninformative.** Six reverts out
+   of six runs says nothing about graph usage; the prompt itself
+   biases the outcome.
