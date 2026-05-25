@@ -14,6 +14,7 @@ cp -r skills/<name> <your-project>/.claude/skills/<name>
 | Skill | Description |
 |---|---|
 | [/blueprint](skills/blueprint/) | Create a portable architecture reference doc for reimplementation |
+| [/catalog](skills/catalog/) | Research, assess, and catalog external tools and skills |
 | [/handoff](skills/handoff/) | Generate a handoff prompt for a fresh CLI agent or subagent |
 | [/plan-me-this](skills/plan-me-this/) | Package a spec into phase docs + readme_this_current_task.md |
 | [/scripts-reference](skills/scripts-reference/) | Generate a clickable script reference doc |
