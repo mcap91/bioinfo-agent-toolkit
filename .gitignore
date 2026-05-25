@@ -1,7 +1,17 @@
-*.skill
-.claude/skills/
+# Claude Code local config and install targets
+.claude/
+.mcp.json
+.agent-runs/
 
+# VS Code workspace
+*.code-workspace
+
+# Python
 __pycache__/
+
+# Test artifacts
+tests/experiment.log
+tests/experiment_results.json
 
 # kb-graph generated output
 KB_INDEX.md
