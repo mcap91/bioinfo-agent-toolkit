@@ -1,8 +1,0 @@
-11/11 passing. Two root causes were fixed:
-
-1. **`src/core/transform.py:12`** — `apply_transform` parameter was named `mode: str = "strict"` but tests called it as `strict=True/False` (a boolean). Renamed to `strict: bool = True` and updated the condition check.
-
-2. **`pyproject.toml`** — Missing `[tool.pytest.ini_options]` with `pythonpath = ["src"]`, so pytest couldn't find the `core` package under `src/`. Added the missing config.
-
-
---- STDERR ---

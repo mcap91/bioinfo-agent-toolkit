@@ -5,41 +5,16 @@ A collection of reusable Claude Code skills, subagent definitions, and orchestra
 ## Project Structure
 
 ```
-skills/<name>/       Skills (just a SKILL.md — no install scripts needed)
-statusline/          Tools (script + install.sh + uninstall.sh)
-guides/              Workflow patterns and reference docs
-docs/                Roadmap, specs, and planning
-install.sh           Top-level installer: ./install.sh handoff statusline
-uninstall.sh         Top-level uninstaller: ./uninstall.sh statusline
+skills/<name>/     Skills (just a SKILL.md)
+statusline/        Context window status bar tool
+catalog/           External tool/skill catalog
+docs/              Roadmap, specs, and planning
 ```
-
-## Modularity Convention
-
-Every installable component lives in its own directory. The top-level `install.sh` / `uninstall.sh` discover components automatically — no registration step needed.
-
-**Skills** (under `skills/`) only need a `SKILL.md`. The top-level installer handles copying it to the target project's `.claude/skills/<name>/`. No per-skill install scripts.
-
-**Tools** (like statusline, phoam_paint) have custom install logic and **must** contain their own `install.sh` and `uninstall.sh`.
-
-### Where components install to
-
-| Type | Target | Example |
-|------|--------|---------|
-| Skill | `<project>/.claude/skills/<name>/` (project-specific) | handoff |
-| Tool | Varies — custom install.sh decides | statusline, phoam_paint |
-
-Skills accept `--project <path>` to target a specific project (defaults to current directory).
 
 ### Adding a new skill
 
 1. Create `skills/<name>/SKILL.md` with YAML frontmatter (`name`, `description`)
 2. Update `docs/roadmap.md` and the tables in `README.md`
-
-### Adding a new tool
-
-1. Create `<name>/` at repo root with the tool's files
-2. Add `<name>/install.sh` and `<name>/uninstall.sh`
-3. Update `docs/roadmap.md` and the tables in `README.md`
 
 ## General Conventions
 
@@ -53,3 +28,96 @@ Skills accept `--project <path>` to target a specific project (defaults to curre
 - Use appropriate data structures and algorithms — don't brute-force what has a known better solution.
 - When fixing a bug, fix the root cause, not the symptom.
 - If something I asked for requires error handling or validation to work reliably, include it without asking
+
+# kb Integration
+
+This repo is managed with the `kb` toolkit from `../kb`.
+
+Use this operating model:
+
+- run the `kb` wiki MCP server from `../kb`
+- run the `kb` dispatch MCP server from `../kb` when you need handoff lifecycle tools
+- use MCP for wiki operations against this repo
+- use dispatch MCP or `../kb` CLI for dispatch
+- use `../kb` CLI for graph
+- target this repo explicitly with `dir`
+- keep Claude project MCP config in this repo, not copied verbatim from `../kb/.mcp.json`
+
+Repository-context retrieval is a wiki/docs retrieval problem first, not a broad filesystem search problem first.
+
+Before substantive work:
+
+1. Start from `wiki/catalog.md`.
+2. Read the relevant durable `docs/` reference pages.
+3. Check related `wiki/decisions/`, `wiki/issues/`, `wiki/initiatives/`, `wiki/areas/`, and `wiki/sources/`.
+4. Only then inspect implementation files.
+
+Do not use raw `rg` as the first retrieval step for repo-context questions. Use `wiki/catalog.md` or `wiki search` first.
+
+Do not parallelize implementation search with the initial retrieval pass. Complete steps 1-3 before searching code.
+
+## Commands
+
+Install or update `kb`:
+
+```bash
+cd ../kb
+npm install
+npm run typecheck
+npm test
+```
+
+If Claude runs in this consuming repo, put a repo-local `.mcp.json` here that points back to `../kb`.
+
+If Codex runs on this machine, register the `kb` checkout once from `../kb`:
+
+```bash
+cd ../kb
+npm run codex:mcp:register
+```
+
+Do not copy `../kb/.mcp.json` into this repo unchanged. That file is only for the self-hosted `kb` repo case.
+
+Bootstrap this repo:
+
+```bash
+cd ../kb
+npm run wiki -- bootstrap --dir ../bioinfo-agent-toolkit --repo mcap91/bioinfo-agent-toolkit
+npm run dispatch -- init-config
+npm run wiki -- generate --dir ../bioinfo-agent-toolkit
+npm run wiki -- build-search-index --dir ../bioinfo-agent-toolkit
+npm run graph -- --dir ../bioinfo-agent-toolkit
+```
+
+Update this repo after `kb` changes:
+
+```bash
+cd ../kb
+git pull
+npm install
+npm run typecheck
+npm test
+npm run wiki -- sync-contract --dir ../bioinfo-agent-toolkit
+npm run wiki -- lint --dir ../bioinfo-agent-toolkit
+npm run wiki -- generate --dir ../bioinfo-agent-toolkit
+npm run wiki -- build-search-index --dir ../bioinfo-agent-toolkit
+npm run graph -- --dir ../bioinfo-agent-toolkit
+```
+
+If this repo uses dispatch and is upgrading from the older dispatch registry format:
+
+```bash
+cd ../kb
+npm run dispatch -- init-config --force
+```
+
+`sync-contract` does not update this repo's `AGENTS.md` or `CLAUDE.md`.
+It also does not overwrite `wiki/schema.md`, `wiki/conventions.md`, or `wiki/index.md`.
+
+## Rules
+
+- Prefer `kb` MCP for wiki operations.
+- Prefer dispatch MCP or `kb` CLI for `dispatch`.
+- Use `kb` CLI for `graph`.
+- Do not create `HO-*` with `wiki create`.
+- Run `kb` from `../kb`, not from this repo root.

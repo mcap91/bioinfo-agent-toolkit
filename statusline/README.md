@@ -17,22 +17,14 @@ Context window exhaustion triggers automatic conversation compression, which can
 
 ## Install
 
-### Quick install (from this repo)
+1. Copy the script:
 
 ```bash
-git clone https://github.com/mcap91/bioinf-agent-toolkit.git
-cd bioinf-agent-toolkit
-./statusline/install.sh
-```
-
-### Quick install (standalone)
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/mcap91/bioinf-agent-toolkit/main/statusline/statusline.sh -o ~/.claude/statusline.sh
+cp statusline/statusline.sh ~/.claude/statusline.sh
 chmod +x ~/.claude/statusline.sh
 ```
 
-Then add to `~/.claude/settings.json`:
+2. Add to `~/.claude/settings.json`:
 
 ```json
 {
@@ -80,8 +72,6 @@ fi
 
 ## Uninstall
 
-```bash
-./statusline/uninstall.sh
-```
-
-Removes the script and the `statusLine` key from `~/.claude/settings.json`, leaving all other settings intact. Restart Claude Code to apply.
+1. Remove the `statusLine` key from `~/.claude/settings.json`
+2. Delete `~/.claude/statusline.sh`
+3. Restart Claude Code

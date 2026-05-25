@@ -1,4 +1,2 @@
 # Force LF line endings for scripts on all platforms
 *.sh text eol=lf
-# kb_graph.py has a shebang and gets installed to PATH — must be LF
-phoam_paint/kb_graph.py text eol=lf

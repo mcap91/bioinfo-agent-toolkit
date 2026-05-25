@@ -1,9 +1,0 @@
-All done. Here's what changed:
-
-- **`docs/design/02-processing-engine.md`** → renamed to **`docs/design/02-data-processing.md`** via `git mv`; title updated from `# Processing Engine` to `# Data Processing` and body copy updated accordingly
-- **`configs/platform_config.yaml`**: `processing_doc` path updated to the new filename
-- **5 docs** had `[[02-processing-engine]]` wiki-links replaced with `[[02-data-processing]]`: `00-platform-overview.md`, `01-data-ingestion.md`, `05-scheduling.md`, `10-architecture.md`, `docs/reference/design-notes.md`
-- **KB_INDEX.md** regenerated (30 nodes, 36 edges) to reflect the rename
-
-
---- STDERR ---

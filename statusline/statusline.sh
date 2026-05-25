@@ -4,7 +4,6 @@
 # Shows: Model | Progress Bar | Percentage | Token Counts
 #
 # Install: copy to ~/.claude/statusline.sh and add to ~/.claude/settings.json
-# Or run: statusline/install.sh from this repo
 
 # jq path — overridden by the installer when jq isn't on PATH
 JQ="${JQ:-jq}"

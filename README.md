@@ -2,41 +2,31 @@
 
 Reusable Claude Code skills, tools, and guides for bioinformatics workflows. Pick and choose what you need.
 
-## Quick Start
-
-```bash
-git clone https://github.com/mcap91/bioinf-agent-toolkit.git
-cd bioinf-agent-toolkit
-
-# See what's available
-./install.sh --list
-
-# Install into your project
-./install.sh handoff statusline --project ~/projects/my-app
-
-# Or install into current directory
-./install.sh handoff statusline
-
-# Remove what you don't need
-./uninstall.sh statusline
-```
-
-Skills install into the project's `.claude/skills/` directory. Tools (like statusline) install into `~/.claude/` (user-global).
-
 ## Skills
 
-| Skill | Description | Install |
-|---|---|---|
-| [/handoff](skills/handoff/) | Generate a handoff prompt for a fresh CLI agent or subagent | `./install.sh handoff` |
-| [/scripts-reference](skills/scripts-reference/) | Generate a clickable script reference doc | `./install.sh scripts-reference` |
-| [/plan-me-this](skills/plan-me-this/) | Package a spec into phase docs + readme_this_current_task.md | `./install.sh plan-me-this` |
+Copy any skill into your project:
+
+```bash
+# From a clone of this repo
+cp -r skills/<name> <your-project>/.claude/skills/<name>
+```
+
+| Skill | Description |
+|---|---|
+| [/blueprint](skills/blueprint/) | Create a portable architecture reference doc for reimplementation |
+| [/handoff](skills/handoff/) | Generate a handoff prompt for a fresh CLI agent or subagent |
+| [/plan-me-this](skills/plan-me-this/) | Package a spec into phase docs + readme_this_current_task.md |
+| [/scripts-reference](skills/scripts-reference/) | Generate a clickable script reference doc |
 
 ## Tools
 
-| Tool | Description | Install |
-|---|---|---|
-| [kb-graph](phoam_paint/) | Auto-generated knowledge graph — KB_INDEX.md + graph.html for any repo | `./install.sh phoam_paint` |
-| [Status Line](statusline/) | Context window usage bar for the Claude Code CLI | `./install.sh statusline` |
+### [Status Line](statusline/)
+
+Context window usage bar for the Claude Code CLI. See [statusline/README.md](statusline/README.md) for setup.
+
+## Catalog
+
+The `catalog/` directory tracks external skills, plugins, hooks, MCP servers, agent patterns, CLI tools, frameworks, and reference material. See `catalog/index.md` for the current index.
 
 ## Guides
 
@@ -45,13 +35,10 @@ Skills install into the project's `.claude/skills/` directory. Tools (like statu
 ## Structure
 
 ```
-skills/<name>/     Skills (just a SKILL.md — no install scripts needed)
-statusline/        Tools — each has install.sh + uninstall.sh
+skills/<name>/     Skills (just a SKILL.md)
+statusline/        Context window status bar tool
+catalog/           External tool/skill catalog
 docs/              Roadmap, specs, and planning
-install.sh         Top-level installer: ./install.sh handoff statusline
-uninstall.sh       Top-level uninstaller: ./uninstall.sh statusline
 ```
-
-Skills only need a `SKILL.md`. The top-level installer handles copying them to the target project's `.claude/skills/<name>/`. Tools (like statusline, phoam_paint) have custom install logic and contain their own `install.sh` and `uninstall.sh`.
 
 See [docs/roadmap.md](docs/roadmap.md) for the full roadmap.
