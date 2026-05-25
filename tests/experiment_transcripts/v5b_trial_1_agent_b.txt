@@ -1,6 +1,0 @@
-11/11 tests pass, no regressions.
-
-**Root cause:** `apply_transform` in `src/core/transform.py:12` had its parameter renamed from `strict: bool` to `mode: str` (likely a refactor that didn't update the call sites). The docstring still described `strict` as a boolean, confirming the rename was incomplete. The fix was to restore the parameter to `strict: bool = True` and update the internal conditional from `mode == "strict"` to just `strict`.
-
-
---- STDERR ---
