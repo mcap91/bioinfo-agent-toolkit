@@ -9,6 +9,7 @@ tags: [memory, persistence, vector-search, sessions, hooks, kb]
 workflows: []
 reviewed: 2026-05-25
 supersedes: []
+overlaps: [gbrain, third-brain-v5-wiki]
 ---
 
 ## What it does
