@@ -27,6 +27,7 @@ Included on Linux and macOS. On Windows, install [Git for Windows](https://git-s
 |----------|---------|
 | Debian/Ubuntu | `sudo apt install jq` |
 | macOS | `brew install jq` |
+| Windows (winget) | `winget install jqlang.jq` |
 | Windows (scoop) | `scoop install jq` |
 | Windows (choco) | `choco install jq` |
 
