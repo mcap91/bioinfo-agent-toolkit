@@ -9,6 +9,7 @@ tags: [awesome-list, skills, agents, hooks, orchestrators, discovery]
 workflows: []
 reviewed: 2026-05-25
 supersedes: []
+overlaps: [claude-spellbook]
 ---
 
 ## What it says

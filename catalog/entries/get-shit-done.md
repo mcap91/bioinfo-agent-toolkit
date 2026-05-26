@@ -9,6 +9,7 @@ tags: [meta-prompting, context-engineering, spec-driven, claude-md, workflow, kb
 workflows: []
 reviewed: 2026-05-25
 supersedes: []
+overlaps: [claude-spellbook]
 ---
 
 ## What it does

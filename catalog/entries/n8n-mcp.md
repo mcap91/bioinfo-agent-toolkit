@@ -10,6 +10,7 @@ tags: [mcp, n8n, workflow-automation, orchestration, integrations]
 workflows: []
 reviewed: 2026-05-25
 supersedes: []
+overlaps: [gstack]
 ---
 
 ## What it does

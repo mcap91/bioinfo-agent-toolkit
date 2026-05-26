@@ -33,6 +33,7 @@ tags: [tag1, tag2]
 workflows: [scRNA-seq, spatial]
 reviewed: 2026-05-25
 supersedes: []
+overlaps: [other-tool]
 ---
 ~~~
 
@@ -51,6 +52,7 @@ supersedes: []
 | `workflows` | no | Bioinformatics workflows this applies to. Omit for general-purpose |
 | `reviewed` | yes | Date of last review (YYYY-MM-DD) |
 | `supersedes` | no | List of entry names this replaces |
+| `overlaps` | no | List of entry names that serve a similar purpose or compete |
 
 ### Verdicts
 

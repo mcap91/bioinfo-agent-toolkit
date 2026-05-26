@@ -10,6 +10,7 @@ tags: [ui, ux, design-system, typography, color-palettes, dashboards, visualizat
 workflows: []
 reviewed: 2026-05-25
 supersedes: []
+overlaps: [web-artifacts-builder]
 ---
 
 ## What it does
