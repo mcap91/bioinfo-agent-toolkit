@@ -15,16 +15,50 @@ Opus 4.6 | Context: [▓▓▓▓░░░░░░░░░░░░░░░�
 
 Context window exhaustion triggers automatic conversation compression, which can lose important details. This bar gives you immediate visibility into how much context you've consumed so you can decide when to start fresh.
 
+## Prerequisites
+
+### bash
+
+Included on Linux and macOS. On Windows, install [Git for Windows](https://git-scm.com/downloads/win) — this adds `bash` to PATH automatically.
+
+### jq
+
+| Platform | Command |
+|----------|---------|
+| Debian/Ubuntu | `sudo apt install jq` |
+| macOS | `brew install jq` |
+| Windows (scoop) | `scoop install jq` |
+| Windows (choco) | `choco install jq` |
+
+### Verify
+
+Open a new terminal after installing and confirm both are available:
+
+```
+bash --version
+jq --version
+```
+
+On Windows in PowerShell, these work as-is — no PATH reordering needed. If either command is not found, the install didn't add it to PATH (restart your terminal or re-run the installer).
+
 ## Install
 
-1. Copy the script:
+### macOS / Linux
 
 ```bash
 cp statusline/statusline.sh ~/.claude/statusline.sh
 chmod +x ~/.claude/statusline.sh
 ```
 
-2. Add to `~/.claude/settings.json`:
+### Windows (PowerShell)
+
+```powershell
+Copy-Item statusline\statusline.sh "$env:USERPROFILE\.claude\statusline.sh"
+```
+
+### Configure Claude Code
+
+Add to your `settings.json` (`~/.claude/settings.json` on macOS/Linux, `%USERPROFILE%\.claude\settings.json` on Windows):
 
 ```json
 {
@@ -35,10 +69,7 @@ chmod +x ~/.claude/statusline.sh
 }
 ```
 
-### Prerequisites
-
-- [jq](https://jqlang.github.io/jq/) (`sudo apt install jq` / `brew install jq`)
-- A terminal with ANSI color and Unicode support (most modern terminals)
+On Windows, `bash` must be on PATH (Git for Windows provides this). The `~` inside the bash command expands correctly within bash itself.
 
 ## How it works
 
