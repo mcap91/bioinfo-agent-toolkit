@@ -1,15 +1,16 @@
 # Catalog Index
 
-Generated from 39 entries in `catalog/entries/`. Regenerate with `/catalog index`.
+Generated from 40 entries in `catalog/entries/`. Regenerate with `/catalog index`.
 
 ## By Verdict
 
 | Item | Category | Verdict | Reason | Tags |
 |---|---|---|---|---|
 | [Claude Agent Teams](entries/agent-teams.md) | agent-pattern | adopt | primary interactive dispatch path; subscription billing, no API credits needed | agents, teams, dispatch, orchestration |
-| [Karpathy's 12 Rules for CLAUDE.md](entries/karpathy-12-rules.md) | reference | adopt | Rules 6 (token budgets) and 12 (fail loud) not yet in our stack | claude-md, best-practices, token-budgets |
 | [Claude Native Subagents](entries/native-subagents.md) | agent-pattern | adopt | lightweight HO consultation route within existing sessions; no separate billing | agents, subagents, dispatch, consultation |
+| [Karpathy's 12 Rules for CLAUDE.md](entries/karpathy-12-rules.md) | reference | adopt | Rules 6 (token budgets) and 12 (fail loud) not yet in our stack | claude-md, best-practices, token-budgets |
 | [Web Artifacts Builder](entries/web-artifacts-builder.md) | skill | adopt | use when markdown isn't enough for interactive reports/dashboards | html, reports, dashboards, visualization |
+| [Advise Project Approach](entries/advise-project-approach.md) | skill | pilot | structured project-level architecture research with comparable analysis, cost checks, and tradeoff discipline; complements /catalog (tool-level) with project-level advisory | architecture, stack-selection, comparables, cost-analysis, project-strategy, decision-methodology |
 | [BMAD Skill Forge](entries/bmad-skill-forge.md) | skill-generator | pilot | strong fit for bioinformatics tool skill generation; start with Brief tier on samtools | skill-generation, provenance, ast, cli-tools |
 | [Book to Skill](entries/book-to-skill.md) | skill | pilot | directly useful for computational biology methods PDFs | pdf, knowledge, querying |
 | [MarkItDown](entries/markitdown.md) | cli-tool | pilot | directly useful for converting PDFs, Excel, PPTX, and other docs to markdown for LLM pipelines; MIT, Microsoft-maintained | markdown, conversion, pdf, documents, excel, llm-preprocessing |
@@ -32,8 +33,8 @@ Generated from 39 entries in `catalog/entries/`. Regenerate with `/catalog index
 | [Obsidian Skills (Kepano)](entries/obsidian-skills.md) | skill | note | Obsidian-specific; Defuddle (web→clean markdown) and skill packaging patterns worth noting | obsidian, skills, markdown, canvas, defuddle, web-extraction |
 | [Remote Control](entries/remote-control.md) | reference | note | built-in feature; try for long sessions | mobile, remote, sessions |
 | [Verify Before Claim (Third Brain V5)](entries/verify-before-claim.md) | reference | note | superpowers verification-before-completion covers this; confidence model is the novel addition | verification, quality, confidence-model |
-| [claude-pee](entries/claude-pee.md) | cli-tool | skip | PTY wrapper driving interactive CLI; inherently brittle, breaks on CLI version changes | pty, automation, cli, dispatch |
 | [Claude Mem](entries/claude-mem.md) | framework | skip | kb wiki + Claude Code built-in memory cover our needs; adds SQLite + Chroma + worker complexity without clear benefit | memory, persistence, vector-search, sessions, hooks, kb |
+| [claude-pee](entries/claude-pee.md) | cli-tool | skip | PTY wrapper driving interactive CLI; inherently brittle, breaks on CLI version changes | pty, automation, cli, dispatch |
 | [Creating CLAUDE.md](entries/creating-claude-md.md) | skill-generator | skip | /init skill already covers repo-scanning CLAUDE.md generation | claude-md, repo-scanning, code-quality |
 | [gbrain](entries/gbrain.md) | framework | skip | kb wiki already provides persistent typed records with relationships and search | memory-graph, vector-search, kb |
 | [Get Shit Done (GSD)](entries/get-shit-done.md) | framework | skip | deprecated (moved to GSD Redux); superpowers skill system already covers meta-prompting and spec-driven development | meta-prompting, context-engineering, spec-driven, claude-md, workflow, kb |
@@ -64,6 +65,7 @@ Generated from 39 entries in `catalog/entries/`. Regenerate with `/catalog index
 ### General
 
 - [ADHD](entries/adhd.md) — note — parallel divergent ideation via isolated cognitive frames; overlaps with superpowers:brainstorming but the frame isolation and scoring mechanics are worth studying
+- [Advise Project Approach](entries/advise-project-approach.md) — pilot — structured project-level architecture research with comparable analysis, cost checks, and tradeoff discipline; complements /catalog (tool-level) with project-level advisory
 - [Advisor Strategy](entries/advisor-strategy.md) — note — architectural concept for cost-effective agent orchestration; executor/advisor split
 - [Autoharness](entries/autoharness.md) — watch — needs eval benchmarks first; pilot when we have eval criteria for our skills/agents
 - [Awesome Claude Code](entries/awesome-claude-code.md) — note — curated Claude Code ecosystem list; use as discovery source for future catalog inbox items
@@ -154,6 +156,7 @@ Generated from 39 entries in `catalog/entries/`. Regenerate with `/catalog index
 ### skill
 
 - [ADHD](entries/adhd.md) — note — parallel divergent ideation via isolated cognitive frames; overlaps with superpowers:brainstorming but the frame isolation and scoring mechanics are worth studying
+- [Advise Project Approach](entries/advise-project-approach.md) — pilot — structured project-level architecture research with comparable analysis, cost checks, and tradeoff discipline; complements /catalog (tool-level) with project-level advisory
 - [Book to Skill](entries/book-to-skill.md) — pilot — directly useful for computational biology methods PDFs
 - [Obsidian Skills (Kepano)](entries/obsidian-skills.md) — note — Obsidian-specific; Defuddle (web→clean markdown) and skill packaging patterns worth noting
 - [PII Detection / Compliance Skills](entries/pii-detection.md) — pilot — HIPAA/CCPA/PCI-DSS coverage; pilot if handling sensitive data

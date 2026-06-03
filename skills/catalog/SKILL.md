@@ -149,7 +149,13 @@ Propose a verdict (adopt/pilot/watch/note/skip) with a one-line verdict_reason.
 
 ## Index Generation
 
-`/catalog index` reads all `catalog/entries/*.md` files and generates `catalog/index.md` with three views:
+`/catalog index` runs `scripts/catalog_index.py` to regenerate `catalog/index.md`.
+
+```bash
+python scripts/catalog_index.py
+```
+
+The script reads all `catalog/entries/*.md` files and generates three views:
 
 ### By Verdict
 
