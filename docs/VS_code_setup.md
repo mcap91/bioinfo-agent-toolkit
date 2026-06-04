@@ -61,10 +61,62 @@ and cannot be overridden via themes.
 
 ## VS Code Settings
 
-These settings complement the Claude Code theme. Add to
-`%APPDATA%\Code\User\settings.json` under `workbench.colorCustomizations`.
+Portable settings for `%APPDATA%\Code\User\settings.json`. Excludes
+machine-specific entries like `remote.SSH.remotePlatform`.
 
-### UI backgrounds and foreground
+### Editor preferences
+
+```json
+"git.autofetch": true,
+"editor.minimap.enabled": false,
+"workbench.startupEditor": "none",
+"explorer.confirmDragAndDrop": false,
+"workbench.colorTheme": "Dark Modern",
+"workbench.preferredDarkColorTheme": "Dark Modern"
+```
+
+### Terminal configuration
+
+```json
+"terminal.integrated.profiles.windows": {
+    "PowerShell": {
+        "source": "PowerShell",
+        "icon": "terminal-powershell"
+    },
+    "Command Prompt": {
+        "path": [
+            "${env:windir}\\Sysnative\\cmd.exe",
+            "${env:windir}\\System32\\cmd.exe"
+        ],
+        "args": [],
+        "icon": "terminal-cmd"
+    },
+    "Git Bash": {
+        "source": "Git Bash"
+    },
+    "Ubuntu (WSL)": {
+        "path": "C:\\Windows\\System32\\wsl.exe",
+        "args": ["-d", "Ubuntu"]
+    }
+},
+"terminal.integrated.scrollback": 800,
+"terminal.integrated.fontSize": 14,
+"terminal.integrated.initialHint": false,
+"terminal.integrated.gpuAcceleration": "off",
+"terminal.integrated.windowsEnableConpty": true
+```
+
+### Terminal environment (ANSI color support)
+
+```json
+"terminal.integrated.env.windows": {
+    "TERM": "xterm-256color",
+    "COLORTERM": "truecolor",
+    "FORCE_COLOR": "3"
+}
+```
+
+### UI color customizations
 
 Dark backgrounds matched to `mcap91_dark`, with softened foreground text:
 
@@ -84,23 +136,58 @@ Dark backgrounds matched to `mcap91_dark`, with softened foreground text:
 }
 ```
 
-### Terminal environment (ANSI color support)
+---
 
-Force proper color capability detection for Windows terminals:
+## Keybindings
+
+Custom keybindings for `%APPDATA%\Code\User\keybindings.json`:
 
 ```json
-"terminal.integrated.env.windows": {
-    "TERM": "xterm-256color",
-    "COLORTERM": "truecolor",
-    "FORCE_COLOR": "3"
-}
+[
+    {
+        "key": "ctrl+r",
+        "command": "workbench.action.reloadWindow"
+    },
+    {
+        "key": "shift+enter",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": { "text": "\r" },
+        "when": "terminalFocus"
+    }
+]
 ```
 
-### Terminal rendering
+---
 
-```json
-"terminal.integrated.gpuAcceleration": "off",
-"terminal.integrated.windowsEnableConpty": true
+## Extensions
+
+Install all with:
+
+```bash
+code --install-extension anthropic.claude-code
+code --install-extension google.gemini-cli-vscode-ide-companion
+code --install-extension ms-python.python
+code --install-extension ms-python.vscode-pylance
+code --install-extension ms-python.vscode-python-envs
+code --install-extension ms-python.debugpy
+code --install-extension reditorsupport.r
+code --install-extension reditorsupport.r-syntax
+code --install-extension rdebugger.r-debugger
+code --install-extension ikuyadeu.r-pack
+code --install-extension ms-vscode-remote.remote-ssh
+code --install-extension ms-vscode-remote.remote-ssh-edit
+code --install-extension ms-vscode.remote-explorer
+code --install-extension ms-vscode.remote-repositories
+code --install-extension github.remotehub
+code --install-extension github.codespaces
+code --install-extension ms-vscode.azure-repos
+code --install-extension mechatroner.rainbow-csv
+code --install-extension repreng.csv
+code --install-extension ms-toolsai.jupyter-keymap
+code --install-extension foam.foam-vscode
+code --install-extension ms-vscode.live-server
+code --install-extension ms-vscode.powershell
+code --install-extension tomoki1207.pdf
 ```
 
 ---
