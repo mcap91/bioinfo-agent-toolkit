@@ -29,17 +29,31 @@ Context window usage bar for the Claude Code CLI. See [statusline/README.md](sta
 
 The `catalog/` directory tracks external skills, plugins, hooks, MCP servers, agent patterns, CLI tools, frameworks, and reference material. See `catalog/index.md` for the current index.
 
-## Guides
-
-- [Subagent Workflow](docs/subagent-workflow.md) — automate the plan-with-Opus, execute-with-Sonnet pattern
-
 ## Structure
 
 ```
 skills/<name>/     Skills (just a SKILL.md)
 statusline/        Context window status bar tool
 catalog/           External tool/skill catalog
-docs/              Roadmap, specs, and planning
+docs/              Public documentation
 ```
 
-See [docs/roadmap.md](docs/roadmap.md) for the full roadmap.
+## Maintainer Setup
+
+This repo uses the `kb` toolkit for project tracking. The wiki lives in a separate private repo and is cloned into the gitignored `wiki/` directory.
+
+```bash
+# Clone the private wiki into this repo
+git clone git@github.com:mcap91/bioinfo-agent-toolkit-wiki.git wiki
+
+# Run kb commands from the kb checkout
+cd ../kb
+npm run wiki -- lint --dir ../bioinfo-agent-toolkit
+npm run wiki -- generate --dir ../bioinfo-agent-toolkit
+```
+
+See `AGENTS.md` for the full kb workflow.
+
+## License
+
+[MIT](LICENSE)

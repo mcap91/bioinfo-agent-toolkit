@@ -8,13 +8,14 @@ A collection of reusable Claude Code skills, subagent definitions, and orchestra
 skills/<name>/     Skills (just a SKILL.md)
 statusline/        Context window status bar tool
 catalog/           External tool/skill catalog
-docs/              Roadmap, specs, and planning
+docs/              Public documentation
+wiki/              Private wiki (separate repo, gitignored)
 ```
 
 ### Adding a new skill
 
 1. Create `skills/<name>/SKILL.md` with YAML frontmatter (`name`, `description`)
-2. Update `docs/roadmap.md` and the tables in `README.md`
+2. Update the tables in `README.md`
 
 ## General Conventions
 
