@@ -22,7 +22,3 @@ docs/plan-me-this-spec.md
 
 # Python
 __pycache__/
-
-# kb-graph generated output
-KB_INDEX.md
-graph.html
