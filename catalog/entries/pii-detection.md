@@ -1,12 +1,12 @@
 ---
 name: pii-detection
 title: "PII Detection / Compliance Skills"
-url: ""
 category: skill
 verdict: pilot
 verdict_reason: "HIPAA/CCPA/PCI-DSS coverage; pilot if handling sensitive data"
 tags: [pii, compliance, hipaa, ccpa, security]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

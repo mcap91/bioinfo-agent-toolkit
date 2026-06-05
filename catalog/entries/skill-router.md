@@ -7,6 +7,7 @@ verdict: skip
 verdict_reason: "superpowers using-superpowers already handles skill routing"
 tags: [meta-skill, routing, skill-discovery]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

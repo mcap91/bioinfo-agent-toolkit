@@ -7,6 +7,7 @@ verdict: note
 verdict_reason: "direct inspiration for kb graph; concepts like confidence-tagged edges and clustering worth learning from"
 tags: [knowledge-graph, ast, visualization, kb]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

@@ -7,6 +7,7 @@ verdict: note
 verdict_reason: "env vars to block remote system prompt injection in Claude Code; operational hardening knowledge for security-sensitive environments"
 tags: [claude-code, security, privacy, env-vars, hardening, system-prompt, version-pinning]
 reviewed: 2026-05-27
+acquired: 2026-05-27
 supersedes: []
 overlaps: []
 ---

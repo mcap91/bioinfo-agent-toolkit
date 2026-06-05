@@ -1,12 +1,12 @@
 ---
 name: claude-pee
 title: "claude-pee"
-url: ""
 category: cli-tool
 verdict: skip
 verdict_reason: "PTY wrapper driving interactive CLI; inherently brittle, breaks on CLI version changes"
 tags: [pty, automation, cli, dispatch]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

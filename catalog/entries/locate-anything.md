@@ -8,6 +8,7 @@ verdict_reason: "novel parallel box decoding for vision-language grounding; 3B m
 tags: [vision, grounding, object-detection, nvidia, spatial, histology, image-analysis]
 workflows: [spatial]
 reviewed: 2026-05-27
+acquired: 2026-05-27
 supersedes: []
 overlaps: []
 ---

@@ -7,6 +7,7 @@ verdict: skip
 verdict_reason: "ecosystem signal for agentic workspaces; not a concrete kb comparison"
 tags: [assistant, orchestration, local-first, kb]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

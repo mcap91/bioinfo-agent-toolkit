@@ -1,13 +1,13 @@
 ---
 name: book-to-skill
 title: "Book to Skill"
-url: ""
 category: skill
 verdict: pilot
 verdict_reason: "directly useful for computational biology methods PDFs"
 tags: [pdf, knowledge, querying]
 workflows: [scRNA-seq, spatial]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

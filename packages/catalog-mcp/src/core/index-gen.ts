@@ -82,7 +82,7 @@ export async function generateIndex(options: IndexOptions): Promise<IndexResult>
     sections.push(renderByCategory(entries));
   }
 
-  const header = `# Catalog Index\n\nGenerated from ${entries.length} entries in \`catalog/entries/\`. Regenerate with \`/catalog index\`.\n`;
+  const header = `# Catalog Index\n\nGenerated from ${entries.length} entries in \`catalog/entries/\`. Regenerate with the catalog \`index\` tool.\n`;
   const content = header + '\n' + sections.join('\n\n') + '\n';
 
   return { content, path: paths.index, entryCount: entries.length, verdictCounts };

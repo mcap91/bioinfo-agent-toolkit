@@ -8,6 +8,7 @@ verdict_reason: "Obsidian-specific; Defuddle (web→clean markdown) and skill pa
 tags: [obsidian, skills, markdown, canvas, defuddle, web-extraction]
 workflows: []
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

@@ -8,6 +8,7 @@ verdict_reason: "kb wiki + Claude Code built-in memory cover our needs; adds SQL
 tags: [memory, persistence, vector-search, sessions, hooks, kb]
 workflows: []
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 overlaps: [gbrain, third-brain-v5-wiki]
 ---

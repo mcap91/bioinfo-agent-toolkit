@@ -9,6 +9,7 @@ install: "npm install -g uipro-cli && uipro init --ai claude"
 tags: [ui, ux, design-system, typography, color-palettes, dashboards, visualization]
 workflows: []
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 overlaps: [web-artifacts-builder]
 ---

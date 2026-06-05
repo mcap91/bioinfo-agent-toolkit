@@ -7,6 +7,7 @@ verdict: skip
 verdict_reason: "Obsidian-specific schema, heavy; staleness and contradiction detection concepts worth noting for kb"
 tags: [wiki, knowledge-os, ingest, lint, kb]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

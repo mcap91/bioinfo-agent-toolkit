@@ -1,12 +1,12 @@
 ---
 name: tutorial-creator
 title: "Tutorial Creator"
-url: ""
 category: skill
 verdict: pilot
 verdict_reason: "good for knowledge retention and onboarding"
 tags: [tutorials, onboarding, knowledge-retention]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

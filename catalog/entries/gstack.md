@@ -7,6 +7,7 @@ verdict: skip
 verdict_reason: "kb dispatch covers the relevant orchestration patterns; browser/deployment out of scope"
 tags: [workflow, orchestration, browser, kb]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

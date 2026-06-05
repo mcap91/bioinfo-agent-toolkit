@@ -8,6 +8,7 @@ verdict_reason: "parallel divergent ideation via isolated cognitive frames; over
 install: "npx skills add UditAkhourii/adhd"
 tags: [ideation, brainstorming, parallel, divergent-thinking, cognitive-frames, subagents]
 reviewed: 2026-05-27
+acquired: 2026-05-27
 supersedes: []
 overlaps: [superpowers-brainstorming]
 ---

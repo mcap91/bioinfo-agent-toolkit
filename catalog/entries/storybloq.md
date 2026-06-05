@@ -7,6 +7,7 @@ verdict: skip
 verdict_reason: "PolyForm Noncommercial license + heavy overlap with kb wiki"
 tags: [project-state, wiki, tickets, kb]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

@@ -1,6 +1,6 @@
 # Catalog Index
 
-Generated from 40 entries in `catalog/entries/`. Regenerate with `/catalog index`.
+Generated from 40 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
 
 ## By Verdict
 

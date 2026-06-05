@@ -8,6 +8,7 @@ verdict_reason: "use when markdown isn't enough for interactive reports/dashboar
 tags: [html, reports, dashboards, visualization]
 workflows: [scRNA-seq, spatial]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

@@ -8,6 +8,7 @@ verdict_reason: "directly useful for converting PDFs, Excel, PPTX, and other doc
 install: "pip install 'markitdown[all]'"
 tags: [markdown, conversion, pdf, documents, excel, llm-preprocessing]
 reviewed: 2026-05-27
+acquired: 2026-05-27
 supersedes: []
 overlaps: []
 ---

@@ -7,6 +7,7 @@ verdict: adopt
 verdict_reason: "primary interactive dispatch path; subscription billing, no API credits needed"
 tags: [agents, teams, dispatch, orchestration]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

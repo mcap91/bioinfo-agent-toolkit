@@ -14,7 +14,6 @@ cp -r skills/<name> <your-project>/.claude/skills/<name>
 | Skill | Description |
 |---|---|
 | [/blueprint](skills/blueprint/) | Create a portable architecture reference doc for reimplementation |
-| [/catalog](skills/catalog/) | Research, assess, and catalog external tools and skills |
 | [/handoff](skills/handoff/) | Generate a handoff prompt for a fresh CLI agent or subagent |
 | [/plan-me-this](skills/plan-me-this/) | Package a spec into phase docs + readme_this_current_task.md |
 | [/scripts-reference](skills/scripts-reference/) | Generate a clickable script reference doc |
@@ -29,13 +28,16 @@ Context window usage bar for the Claude Code CLI. See [statusline/README.md](sta
 
 The `catalog/` directory tracks external skills, plugins, hooks, MCP servers, agent patterns, CLI tools, frameworks, and reference material. See `catalog/index.md` for the current index.
 
+The catalog is managed by an MCP tool server in [`packages/catalog-mcp/`](packages/catalog-mcp/) — 13 tools for intake, research support, validation, and data management (index, search, lint, scaffold, ingest, fetch-url, build-prompt, validate-entry, write-entry, queue, config, goals, reddit-extract). The server never makes LLM calls; the calling agent does all reasoning.
+
 ## Structure
 
 ```
-skills/<name>/     Skills (just a SKILL.md)
-statusline/        Context window status bar tool
-catalog/           External tool/skill catalog
-docs/              Public documentation
+skills/<name>/         Skills (just a SKILL.md)
+statusline/            Context window status bar tool
+catalog/               External tool/skill catalog (data)
+packages/catalog-mcp/  Catalog MCP tool server (13 tools)
+docs/                  Public documentation
 ```
 
 ## Maintainer Setup
