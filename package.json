@@ -1,0 +1,17 @@
+{
+  "name": "bioinfo-agent-toolkit",
+  "private": true,
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "catalog:mcp": "tsx packages/catalog-mcp/src/server.ts",
+    "test": "vitest run --project packages/catalog-mcp",
+    "typecheck": "tsc --build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.0",
+    "vitest": "^3.2.0",
+    "zod": "^4.0.0"
+  }
+}

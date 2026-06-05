@@ -22,3 +22,16 @@ docs/plan-me-this-spec.md
 
 # Python
 __pycache__/
+
+# Node
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Env files
+.env
+.env.*
+!catalog/config.env.example
+
+# Queue lock
+catalog/.queue.lock
