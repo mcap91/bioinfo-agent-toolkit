@@ -1,0 +1,7 @@
+{
+  "url_patterns": [
+    "github.com/*",
+    "npmjs.com/package/*",
+    "pypi.org/project/*"
+  ]
+}
