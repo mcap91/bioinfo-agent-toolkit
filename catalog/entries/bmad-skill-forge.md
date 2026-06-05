@@ -9,6 +9,7 @@ install: "npx bmad-module-skill-forge install"
 tags: [skill-generation, provenance, ast, cli-tools]
 workflows: [scRNA-seq, spatial]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

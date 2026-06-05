@@ -8,6 +8,7 @@ verdict_reason: "curated Claude Code ecosystem list; use as discovery source for
 tags: [awesome-list, skills, agents, hooks, orchestrators, discovery]
 workflows: []
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 overlaps: [claude-spellbook]
 ---

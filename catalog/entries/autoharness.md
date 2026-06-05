@@ -7,6 +7,7 @@ verdict: watch
 verdict_reason: "needs eval benchmarks first; pilot when we have eval criteria for our skills/agents"
 tags: [harness, optimization, eval, benchmarks]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

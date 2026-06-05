@@ -7,6 +7,7 @@ verdict: adopt
 verdict_reason: "lightweight HO consultation route within existing sessions; no separate billing"
 tags: [agents, subagents, dispatch, consultation]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

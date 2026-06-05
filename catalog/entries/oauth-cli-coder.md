@@ -1,12 +1,12 @@
 ---
 name: oauth-cli-coder
 title: "oauth-cli-coder"
-url: ""
 category: cli-tool
 verdict: skip
 verdict_reason: "OAuth-based CLI automation; adds auth complexity without solving durability"
 tags: [oauth, automation, cli, dispatch]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

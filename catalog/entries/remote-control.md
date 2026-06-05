@@ -1,12 +1,12 @@
 ---
 name: remote-control
 title: "Remote Control"
-url: ""
 category: reference
 verdict: note
 verdict_reason: "built-in feature; try for long sessions"
 tags: [mobile, remote, sessions]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

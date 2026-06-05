@@ -7,6 +7,7 @@ verdict: note
 verdict_reason: "superpowers verification-before-completion covers this; confidence model is the novel addition"
 tags: [verification, quality, confidence-model]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

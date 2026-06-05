@@ -7,6 +7,7 @@ verdict: pilot
 verdict_reason: "proposes NEW skills from observed patterns; complementary to superpowers routing"
 tags: [meta-skill, pattern-detection, skill-generation]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

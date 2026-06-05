@@ -1,12 +1,12 @@
 ---
 name: codebase-reasoning-topology
 title: "Codebase Reasoning Topology"
-url: ""
 category: reference
 verdict: note
 verdict_reason: "heavy for daily use but interesting as a pre-flight checklist concept"
 tags: [invariants, state-ownership, blast-radius, checklist]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

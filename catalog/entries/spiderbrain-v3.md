@@ -7,6 +7,7 @@ verdict: skip
 verdict_reason: "BSL license; master/column concept is the key takeaway for kb graph"
 tags: [dependency-graph, token-reduction, scoring, kb]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

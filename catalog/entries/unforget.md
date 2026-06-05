@@ -1,12 +1,12 @@
 ---
 name: unforget
 title: "Unforget"
-url: ""
 category: skill
 verdict: skip
 verdict_reason: "scan-for-escaped-items pattern worth noting for future kb lint rule or audit command"
 tags: [deferred-work, scanner, todos, kb]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

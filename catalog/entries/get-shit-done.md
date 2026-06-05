@@ -8,6 +8,7 @@ verdict_reason: "deprecated (moved to GSD Redux); superpowers skill system alrea
 tags: [meta-prompting, context-engineering, spec-driven, claude-md, workflow, kb]
 workflows: []
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 overlaps: [claude-spellbook]
 ---

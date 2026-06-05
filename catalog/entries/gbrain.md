@@ -7,6 +7,7 @@ verdict: skip
 verdict_reason: "kb wiki already provides persistent typed records with relationships and search"
 tags: [memory-graph, vector-search, kb]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

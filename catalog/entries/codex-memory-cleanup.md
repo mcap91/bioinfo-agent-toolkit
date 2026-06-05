@@ -1,12 +1,12 @@
 ---
 name: codex-memory-cleanup
 title: "Codex Memory Cleanup"
-url: ""
 category: reference
 verdict: note
 verdict_reason: "operational tip: delete state/log/global-state files if Codex performance degrades"
 tags: [codex, maintenance, performance]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

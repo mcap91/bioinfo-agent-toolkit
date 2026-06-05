@@ -7,6 +7,7 @@ verdict: note
 verdict_reason: "architectural concept for cost-effective agent orchestration; executor/advisor split"
 tags: [agents, cost-optimization, dispatch, patterns]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

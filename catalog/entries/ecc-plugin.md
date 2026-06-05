@@ -8,6 +8,7 @@ verdict_reason: "rate-limited (429 errors); trial when accessible"
 install: "npx claudepluginhub affaan-m/ecc --plugin ecc"
 tags: [plugin, hub, all-in-one]
 reviewed: 2026-05-25
+acquired: 2026-05-25
 supersedes: []
 ---
 

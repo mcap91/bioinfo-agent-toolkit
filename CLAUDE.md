@@ -44,17 +44,40 @@ A collection of reusable Claude Code skills, subagent definitions, and orchestra
 ## Project Structure
 
 ```
-skills/<name>/     Skills (just a SKILL.md)
-statusline/        Context window status bar tool
-catalog/           External tool/skill catalog
-docs/              Public documentation
-wiki/              Private wiki (separate repo, gitignored)
+skills/<name>/         Skills (just a SKILL.md)
+statusline/            Context window status bar tool
+catalog/               External tool/skill catalog (data)
+packages/catalog-mcp/  Catalog MCP tool server (13 tools)
+docs/                  Public documentation
+wiki/                  Private wiki (separate repo, gitignored)
 ```
 
 ### Adding a new skill
 
 1. Create `skills/<name>/SKILL.md` with YAML frontmatter (`name`, `description`)
 2. Update the tables in `README.md`
+
+## Catalog MCP Server
+
+The catalog is managed by an MCP tool server at `packages/catalog-mcp/`. The server provides 13 tools for intake, research support, validation, and data management. It never makes LLM calls — the calling agent does all reasoning. The data lives in `catalog/` (entries, index, queue, config, goals).
+
+### Running the server
+
+The server is configured in `.mcp.json` (gitignored) and starts automatically when Claude Code opens this project. To run manually: `npx tsx packages/catalog-mcp/src/server.ts`.
+
+### Interactive workflow
+
+To add a tool to the catalog:
+1. `fetch-url` — get the README
+2. `build-prompt` — get a structured research prompt
+3. Assess the tool yourself using the prompt
+4. `validate-entry` — check your draft
+5. `write-entry` — save to `catalog/entries/`
+6. `index` — regenerate the index
+
+### Available tools
+
+`ingest`, `fetch-url`, `reddit-extract`, `build-prompt`, `validate-entry`, `write-entry`, `index`, `search`, `lint`, `scaffold`, `queue`, `config`, `goals`
 
 ## General Conventions
 

@@ -8,6 +8,7 @@ verdict_reason: "structured project-level architecture research with comparable 
 install: "npx skills@latest add AaravKashyap12/advise-project-approach --skill advise-project-approach"
 tags: [architecture, stack-selection, comparables, cost-analysis, project-strategy, decision-methodology]
 reviewed: 2026-06-02
+acquired: 2026-06-02
 supersedes: []
 overlaps: []
 ---
