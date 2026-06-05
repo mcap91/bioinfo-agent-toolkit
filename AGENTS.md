@@ -1,134 +1,40 @@
 # kb Integration
 
-This repository uses the `kb` toolkit from `../kb`.
+<!-- BEGIN kb-managed -->
+Managed by kb — edits inside this block are overwritten by `kb bootstrap` / `kb sync-contract`; edit outside the markers.
 
-Assumptions:
+## kb integration
 
-- this repo is the consuming repo
-- the `kb` repo lives at `../kb`
-- all `kb` commands are run from `../kb`
-- this repo is targeted via `dir`
-- this repo does not reuse `../kb/.mcp.json` verbatim
+This repository uses the `kb` toolkit (repo-local wiki, reviewed dispatch, deterministic graph). The kb
+MCP servers (`kb-wiki`, `kb-dispatch`) are registered in this repo's `.mcp.json` and run from the kb
+checkout; every kb tool call targets this repository via `dir`.
 
-## Required Behavior
+### Retrieval — do this before substantive work
 
-When you need wiki operations, prefer the `kb` wiki MCP server running from `../kb`.
+Repository-context retrieval is a wiki/docs retrieval problem first, not a filesystem-search problem first.
 
-Use MCP for:
+1. Search the wiki with the kb wiki MCP `search` tool. This is the first retrieval step.
+2. If you need a structured overview, regenerate views with the MCP `generate` tool and read them
+   (`catalog`, `now`, `inbox`, `backlog`, `archive`).
+3. Then read the relevant durable `docs/` pages.
+4. Then check related `wiki/decisions/`, `wiki/issues/`, `wiki/initiatives/`, `wiki/areas/`, `wiki/sources/`.
+5. Only then inspect implementation files.
 
-- `bootstrap`
-- `sync-contract`
-- `allocate-id`
-- `create`
-- `lint`
-- `generate`
-- `build-search-index`
-- `search`
+If the kb wiki MCP server is not available this session, run the same steps via the kb CLI from the kb
+checkout (`npm run wiki -- search --dir <this repo>`, `npm run wiki -- generate --dir <this repo>`). Do
+not use raw `rg`, file globbing, or direct file reads as the first retrieval step — use the wiki MCP tools
+(`search`, `generate`, `lint`), or the CLI fallback, first. Do not parallelize implementation search with
+the initial retrieval pass.
 
-Always pass `dir` pointing at this repository.
+### Operating rules
 
-When you need dispatch operations, prefer the `kb` dispatch MCP server or the `kb` CLI from `../kb`.
+- Wiki: prefer the `kb-wiki` MCP tools (`search`, `generate`, `lint`, `create`, `allocate-id`,
+  `build-search-index`, `sync-contract`, `bootstrap`); CLI fallback `npm run wiki -- … --dir <this repo>`.
+- Dispatch: prefer the `kb-dispatch` MCP tools or the kb CLI.
+- Graph: kb CLI (`npm run graph -- --dir <this repo>`).
+- Always pass `dir` pointing at this repository; run kb from its own checkout, not this repo root.
+- Do not create `HO-*` via `wiki create` — handoffs are dispatch-owned under `wiki/handoffs/`.
+- If wiki records and code/tests disagree, report the mismatch rather than trusting a grep-first conclusion.
 
-Dispatch operations:
+<!-- END kb-managed -->
 
-- `init-config`
-- `check-environment`
-- `create-handoff`
-- `review`
-- `launch`
-- `review-and-launch`
-- `status`
-- `cleanup`
-
-When you need graph operations, use the `kb` CLI from `../kb`.
-
-Do not run `kb` commands from this repo root unless explicitly instructed. Run them from `../kb` and point back to this repo with `--dir`.
-
-Repository-context retrieval is a wiki/docs retrieval problem first, not a broad filesystem search problem first.
-
-Before substantive work:
-
-1. Start from `wiki/catalog.md`.
-2. Read the relevant durable `docs/` reference pages.
-3. Check related `wiki/decisions/`, `wiki/issues/`, `wiki/initiatives/`, `wiki/areas/`, and `wiki/sources/`.
-4. Only then inspect implementation files.
-
-Do not use raw `rg` as the first retrieval step for repo-context questions. Use `wiki/catalog.md` or `wiki search` first.
-
-Do not parallelize implementation search with the initial retrieval pass. Complete steps 1-3 before searching code.
-
-## First-Time Setup
-
-If `../kb` dependencies are not installed:
-
-```bash
-cd ../kb
-npm install
-npm run typecheck
-npm test
-```
-
-If Claude will run in this consuming repo, create this repo's own `.mcp.json` that points back to `../kb` or to the absolute `kb` path.
-
-If Codex will run on this machine, register the `kb` checkout once and reuse it:
-
-```bash
-cd ../kb
-npm run codex:mcp:register
-```
-
-Do not copy `../kb/.mcp.json` into this repo verbatim. That file is only for self-hosting the `kb` repo itself.
-
-If this repo has not been bootstrapped yet:
-
-1. Derive the repo slug from git remote if possible.
-2. Run:
-
-```bash
-cd ../kb
-npm run wiki -- bootstrap --dir ../bioinfo-agent-toolkit --repo mcap91/bioinfo-agent-toolkit
-npm run dispatch -- init-config
-npm run wiki -- generate --dir ../bioinfo-agent-toolkit
-npm run wiki -- build-search-index --dir ../bioinfo-agent-toolkit
-npm run graph -- --dir ../bioinfo-agent-toolkit
-```
-
-If you already know the absolute path to this repo, you may use that instead of a relative path.
-
-## Day-2 Operations
-
-After updating `kb`:
-
-```bash
-cd ../kb
-npm run wiki -- sync-contract --dir ../bioinfo-agent-toolkit
-npm run wiki -- lint --dir ../bioinfo-agent-toolkit
-npm run wiki -- generate --dir ../bioinfo-agent-toolkit
-npm run wiki -- build-search-index --dir ../bioinfo-agent-toolkit
-npm run graph -- --dir ../bioinfo-agent-toolkit
-```
-
-If this repo uses dispatch and is upgrading from the older dispatch registry format:
-
-```bash
-cd ../kb
-npm run dispatch -- init-config --force
-```
-
-`sync-contract` does not update this repo's `AGENTS.md` or `CLAUDE.md`.
-It also does not overwrite `wiki/schema.md`, `wiki/conventions.md`, or `wiki/index.md`.
-
-## Rules
-
-- Prefer MCP over CLI for wiki operations.
-- Prefer dispatch MCP or CLI for `dispatch`.
-- Use CLI for `graph`.
-- Do not create `HO-*` via `wiki create`.
-- `wiki/handoffs/` is dispatch-owned and excluded from wiki scanning operations.
-- Always keep `kb` validation green before relying on it:
-
-```bash
-cd ../kb
-npm run typecheck
-npm test
-```
