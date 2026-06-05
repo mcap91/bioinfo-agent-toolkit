@@ -1,61 +1,20 @@
 # VS Code & Claude Code CLI Setup (Windows 11)
 
 Setup and theme configuration for running Claude Code CLI inside VS Code on
-Windows 11. This is a living document — adjust values as needed.
+Windows 11. Theme v2 — Dark 2026 (default) with minimal overrides.
 
 ---
 
-## Claude Code Custom Theme: `mcap91_dark`
+## Theme
 
-Install to `~/.claude/themes/mcap91_dark.json`, then activate with `/theme` in
-Claude Code.
+**VS Code:** Dark 2026 (default) — the built-in dark theme, no extension needed.
 
-Based on `dark-ansi` for better ANSI blue rendering on Windows. Overrides UI
-chrome to grey tones, tunes diff and status colors for readability.
+**Claude Code:** stock `dark` theme (set via `/theme` in Claude Code).
 
-```json
-{
-  "name": "mcap91_dark",
-  "base": "dark-ansi",
-  "overrides": {
-    "claude": "ansi:blackBright",
-    "text": "ansi:whiteBright",
-    "inactive": "ansi:blackBright",
-    "subtle": "ansi:blackBright",
-    "suggestion": "ansi:blackBright",
-    "promptBorder": "ansi:blackBright",
-    "selectionBg": "ansi:blackBright",
-    "success": "#22c55e",
-    "error": "#ef4444",
-    "warning": "#eab308",
-    "diffAdded": "#16a34a",
-    "diffRemoved": "#dc2626",
-    "diffAddedWord": "#22c55e",
-    "diffRemovedWord": "#ef4444",
-    "diffAddedDimmed": "#14532d",
-    "diffRemovedDimmed": "#450a0a",
-    "userMessageBackground": "#1c1c1c",
-    "userMessageBackgroundHover": "#222222"
-  }
-}
-```
-
-### Available theme keys reference
-
-| Category | Keys |
-|---|---|
-| UI | `claude`, `text`, `inactive`, `subtle`, `promptBorder`, `permission`, `suggestion`, `selectionBg` |
-| Status | `success`, `error`, `warning` |
-| Modes | `planMode`, `autoAccept`, `fastMode` |
-| Diffs | `diffAdded`, `diffRemoved`, `diffAddedWord`, `diffRemovedWord`, `diffAddedDimmed`, `diffRemovedDimmed` |
-| Messages | `userMessageBackground`, `userMessageBackgroundHover`, `bashMessageBackgroundColor`, `memoryBackgroundColor`, `messageActionsBackground` |
-| Subagents | `{color}_FOR_SUBAGENTS_ONLY` where color is `red`, `blue`, `green`, `yellow`, `purple`, `orange`, `pink`, `cyan` |
-| Usage | `rate_limit_fill`, `rate_limit_empty`, `briefLabelYou`, `briefLabelClaude` |
-
-Color formats: `#rrggbb`, `rgb(r,g,b)`, `ansi256(n)`, `ansi:<name>` (e.g. `ansi:cyanBright`)
-
-**Limitation:** File path link colors are hardcoded in the Claude Code extension
-and cannot be overridden via themes.
+Claude Code renders in a webview, not a VS Code terminal. The VS Code theme
+controls the editor, sidebar, tabs, and terminal. Claude Code text colors are
+controlled entirely by its own theme system. The only crossover is
+`panel.background`, which sets the container behind the Claude Code panel.
 
 ---
 
@@ -70,9 +29,7 @@ machine-specific entries like `remote.SSH.remotePlatform`.
 "git.autofetch": true,
 "editor.minimap.enabled": false,
 "workbench.startupEditor": "none",
-"explorer.confirmDragAndDrop": false,
-"workbench.colorTheme": "Dark Modern",
-"workbench.preferredDarkColorTheme": "Dark Modern"
+"explorer.confirmDragAndDrop": false
 ```
 
 ### Terminal configuration
@@ -116,23 +73,19 @@ machine-specific entries like `remote.SSH.remotePlatform`.
 }
 ```
 
-### UI color customizations
+### UI color overrides
 
-Dark backgrounds matched to `mcap91_dark`, with softened foreground text:
+Minimal overrides on top of Dark 2026 — brighter explorer text, darker
+terminal/sidebar, and a distinct active tab:
 
 ```json
 "workbench.colorCustomizations": {
-    "editor.background": "#111111",
-    "sideBar.background": "#0e0e0e",
-    "activityBar.background": "#0a0a0a",
-    "titleBar.activeBackground": "#0a0a0a",
-    "statusBar.background": "#0a0a0a",
-    "tab.activeBackground": "#111111",
-    "tab.inactiveBackground": "#0a0a0a",
-    "terminal.background": "#161616",
-    "panel.background": "#161616",
-    "terminal.foreground": "#c0c0c0",
-    "foreground": "#c0c0c0"
+    "sideBar.foreground": "#e0e0e0",
+    "sideBar.background": "#111315",
+    "tab.activeForeground": "#f0f0f0",
+    "tab.activeBackground": "#1e2025",
+    "terminal.background": "#111315",
+    "panel.background": "#111315"
 }
 ```
 
@@ -151,7 +104,7 @@ Custom keybindings for `%APPDATA%\Code\User\keybindings.json`:
     {
         "key": "shift+enter",
         "command": "workbench.action.terminal.sendSequence",
-        "args": { "text": "\r" },
+        "args": { "text": "\r" },
         "when": "terminalFocus"
     }
 ]
@@ -189,36 +142,3 @@ code --install-extension ms-vscode.live-server
 code --install-extension ms-vscode.powershell
 code --install-extension tomoki1207.pdf
 ```
-
----
-
-## Troubleshooting: Dull/Desaturated Colors
-
-If Claude Code colors appear faint or washed out in VS Code on Windows, this is
-a known rendering issue. Claude Code renders in a **webview**, not a VS Code
-terminal — most terminal-level color settings do not affect it.
-
-### What does NOT fix Claude Code colors
-
-| Setting | Why it doesn't work |
-|---|---|
-| `terminal.ansi*` in `workbench.colorCustomizations` | Claude Code is a webview, not a terminal |
-| `textLink.foreground` | Does not reach the extension webview |
-| `TERM` / `COLORTERM` / `FORCE_COLOR` env vars | Only affect terminal-based apps |
-| Node version changes | No effect on webview rendering |
-| `disable-hardware-acceleration` in `argv.json` | Made terminal background grey |
-| `force-color-profile: "srgb"` in `argv.json` | No visible improvement |
-| `code --disable-gpu` | Minor improvement to terminal, not Claude Code |
-| VS Code theme change (Tokyo Night Storm, etc.) | No effect on Claude Code webview colors |
-| `windowsEnableConpty` | No effect on Claude Code |
-| UTF-8 encoding override in PowerShell | Made colors worse |
-
-### What DOES help
-
-| Fix | Effect |
-|---|---|
-| Claude Code `dark-ansi` theme (or custom theme based on it) | Better ANSI blue rendering |
-| Claude Code custom theme overrides | Controls all UI colors except hardcoded link color |
-| `panel.background` / `terminal.background` in VS Code | Controls the background behind Claude Code |
-| `foreground` / `terminal.foreground` in VS Code | Controls default text brightness |
-| `editor.background`, `sideBar.background`, etc. | Matches the full VS Code UI to the darker palette |
