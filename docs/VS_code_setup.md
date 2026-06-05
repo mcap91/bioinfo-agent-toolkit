@@ -1,15 +1,16 @@
-# VS Code & Claude Code CLI Setup (Windows 11)
+# VS Code & Claude Code Setup (Windows 11)
 
-Setup and theme configuration for running Claude Code CLI inside VS Code on
-Windows 11. Theme v2 — Dark 2026 (default) with minimal overrides.
+Opinionated setup for running Claude Code inside VS Code on Windows 11.
+Dark Modern base theme with minimal overrides, matched to the Claude Code
+`dark` theme.
 
 ---
 
 ## Theme
 
-**VS Code:** Dark 2026 (default) — the built-in dark theme, no extension needed.
+**VS Code:** Dark Modern (built-in, no extension needed).
 
-**Claude Code:** stock `dark` theme (set via `/theme` in Claude Code).
+**Claude Code:** `dark` — set via `/config` or in `~/.claude/settings.json`.
 
 Claude Code renders in a webview, not a VS Code terminal. The VS Code theme
 controls the editor, sidebar, tabs, and terminal. Claude Code text colors are
@@ -29,12 +30,17 @@ machine-specific entries like `remote.SSH.remotePlatform`.
 "git.autofetch": true,
 "editor.minimap.enabled": false,
 "workbench.startupEditor": "none",
-"explorer.confirmDragAndDrop": false
+"explorer.confirmDragAndDrop": false,
+"files.associations": {
+    "*.rmd": "markdown",
+    "*.Rmd": "rmd"
+}
 ```
 
 ### Terminal configuration
 
 ```json
+"terminal.integrated.defaultProfile.windows": "Ubuntu (WSL)",
 "terminal.integrated.profiles.windows": {
     "PowerShell": {
         "source": "PowerShell",
@@ -73,12 +79,15 @@ machine-specific entries like `remote.SSH.remotePlatform`.
 }
 ```
 
-### UI color overrides
+### Dark Modern overrides
 
-Minimal overrides on top of Dark 2026 — brighter explorer text, darker
-terminal/sidebar, and a distinct active tab:
+Darker sidebar/terminal/panel chrome, brighter explorer text, distinct active
+tab. These sit on top of Dark Modern and carry into the Claude Code panel
+background:
 
 ```json
+"workbench.colorTheme": "Dark Modern",
+"workbench.preferredDarkColorTheme": "Dark Modern",
 "workbench.colorCustomizations": {
     "sideBar.foreground": "#e0e0e0",
     "sideBar.background": "#111315",
@@ -104,7 +113,7 @@ Custom keybindings for `%APPDATA%\Code\User\keybindings.json`:
     {
         "key": "shift+enter",
         "command": "workbench.action.terminal.sendSequence",
-        "args": { "text": "\r" },
+        "args": { "text": "\r" },
         "when": "terminalFocus"
     }
 ]
