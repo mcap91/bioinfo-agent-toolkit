@@ -6,6 +6,15 @@ import { generateAndWriteIndex } from './core/index-gen.js';
 import { lint } from './core/lint.js';
 import { searchEntries } from './core/search.js';
 import { scaffoldEntry } from './core/scaffold.js';
+import { readQueue, removeFromQueue, clearQueue } from './core/queue.js';
+import { ingest } from './core/ingest.js';
+import { fetchUrl } from './core/fetch-url.js';
+import { redditExtract } from './core/reddit.js';
+import { buildPrompt } from './core/prompt-builder.js';
+import { validateEntry } from './core/validate-entry.js';
+import { writeEntry } from './core/write-entry.js';
+import { listGoals, getGoal, addGoal, updateGoal, removeGoal } from './core/goals.js';
+import { PROJECT_STATUSES, PRIORITIES } from './core/schema.js';
 
 export interface ToolDef {
   name: string;
@@ -146,6 +155,194 @@ export const tools: ToolDef[] = [
       raw[input.key as string] = input.value;
       await writeFile(paths.config, JSON.stringify(raw, null, 2) + '\n', 'utf-8');
       return { updated: input.key, value: input.value };
+    },
+  },
+  {
+    name: 'queue',
+    description: 'Manage the catalog intake queue',
+    inputSchema: dirSchema.extend({
+      action: z.enum(['list', 'remove', 'clear']),
+      urls: z.array(z.string().url()).optional(),
+      status: z.enum(['pending', 'error']).optional(),
+    }),
+    handler: async (input) => {
+      const dir = resolveDir(input.dir as string | undefined);
+      const action = input.action as string;
+      if (action === 'list') {
+        const queue = await readQueue(dir);
+        const statusFilter = input.status as string | undefined;
+        const items = statusFilter
+          ? queue.items.filter((i) => i.status === statusFilter)
+          : queue.items;
+        return { items, count: items.length };
+      }
+      if (action === 'remove') {
+        const urls = input.urls as string[];
+        if (!urls?.length) throw new Error('urls required for remove action');
+        const removed = await removeFromQueue(dir, urls);
+        return { removed };
+      }
+      if (action === 'clear') {
+        await clearQueue(dir);
+        return { cleared: true };
+      }
+    },
+  },
+  {
+    name: 'ingest',
+    description: 'Add URLs to the catalog intake queue with deduplication',
+    inputSchema: dirSchema.extend({
+      items: z.array(z.object({
+        url: z.string().url(),
+        source: z.enum(['manual', 'reddit', 'slack', 'email', 'other']).default('manual'),
+        notes: z.string().optional(),
+        context: z.record(z.string(), z.unknown()).optional(),
+      })),
+      deduplicate: z.boolean().default(true),
+    }),
+    handler: async (input) => {
+      const dir = resolveDir(input.dir as string | undefined);
+      return ingest({
+        dir,
+        items: input.items as Array<{ url: string; source?: 'manual' | 'reddit' | 'slack' | 'email' | 'other'; notes?: string; context?: Record<string, unknown> }>,
+        deduplicate: input.deduplicate as boolean,
+      });
+    },
+  },
+  {
+    name: 'fetch-url',
+    description: 'Fetch a URL and extract readable content (with SSRF guards)',
+    inputSchema: dirSchema.extend({
+      url: z.string().url(),
+    }),
+    handler: async (input) => {
+      return fetchUrl(input.url as string);
+    },
+  },
+  {
+    name: 'reddit-extract',
+    description: 'Extract tool URLs from Reddit posts or subreddits',
+    inputSchema: dirSchema.extend({
+      url: z.string().url().optional(),
+      subreddit: z.string().optional(),
+      sort: z.enum(['hot', 'new', 'top']).default('hot'),
+      time: z.enum(['hour', 'day', 'week', 'month', 'year', 'all']).default('week'),
+      limit: z.number().default(25),
+      extra_patterns: z.array(z.string()).optional(),
+      auto_ingest: z.boolean().default(false),
+    }),
+    handler: async (input) => {
+      const dir = resolveDir(input.dir as string | undefined);
+      const urls = await redditExtract({
+        dir,
+        url: input.url as string | undefined,
+        subreddit: input.subreddit as string | undefined,
+        sort: input.sort as 'hot' | 'new' | 'top',
+        time: input.time as 'hour' | 'day' | 'week' | 'month' | 'year' | 'all',
+        limit: input.limit as number,
+        extraPatterns: input.extra_patterns as string[] | undefined,
+      });
+      if (input.auto_ingest) {
+        const ingestResult = await ingest({
+          dir,
+          items: urls.map((u) => ({
+            url: u.url,
+            source: 'reddit' as const,
+            notes: `r/${u.subreddit}: "${u.post_title}" (${u.author}, ${u.score} upvotes)`,
+            context: u as unknown as Record<string, unknown>,
+          })),
+        });
+        return { extracted: urls, ingest: ingestResult };
+      }
+      return { extracted: urls };
+    },
+  },
+  {
+    name: 'build-prompt',
+    description: 'Build a structured research prompt for the calling agent',
+    inputSchema: dirSchema.extend({
+      url: z.string().url(),
+      content: z.string(),
+      source_metadata: z.record(z.string(), z.unknown()).optional(),
+    }),
+    handler: async (input) => {
+      const dir = resolveDir(input.dir as string | undefined);
+      return buildPrompt({
+        dir,
+        url: input.url as string,
+        content: input.content as string,
+        sourceMetadata: input.source_metadata as Record<string, unknown> | undefined,
+      });
+    },
+  },
+  {
+    name: 'validate-entry',
+    description: 'Validate a catalog entry against the schema',
+    inputSchema: dirSchema.extend({
+      entry: z.string(),
+    }),
+    handler: async (input) => {
+      return validateEntry(input.entry as string);
+    },
+  },
+  {
+    name: 'write-entry',
+    description: 'Write a validated catalog entry to disk',
+    inputSchema: dirSchema.extend({
+      entry: z.string(),
+      name: z.string(),
+      status: z.enum(['approved', 'draft']).default('approved'),
+      overwrite: z.boolean().default(false),
+    }),
+    handler: async (input) => {
+      const dir = resolveDir(input.dir as string | undefined);
+      return writeEntry({
+        dir,
+        entry: input.entry as string,
+        name: input.name as string,
+        status: input.status as 'approved' | 'draft',
+        overwrite: input.overwrite as boolean,
+      });
+    },
+  },
+  {
+    name: 'goals',
+    description: 'Read and update active projects and priorities',
+    inputSchema: dirSchema.extend({
+      action: z.enum(['list', 'get', 'add', 'update', 'remove']),
+      name: z.string().optional(),
+      status: z.enum(PROJECT_STATUSES).optional(),
+      project: z.object({
+        name: z.string().min(1),
+        status: z.enum(PROJECT_STATUSES).default('active'),
+        workflows: z.array(z.string()).optional(),
+        priority: z.enum(PRIORITIES).default('medium'),
+        notes: z.string().optional(),
+      }).optional(),
+      updates: z.record(z.string(), z.unknown()).optional(),
+    }),
+    handler: async (input) => {
+      const dir = resolveDir(input.dir as string | undefined);
+      const action = input.action as string;
+      if (action === 'list') return listGoals(dir, input.status as string | undefined);
+      if (action === 'get') {
+        if (!input.name) throw new Error('name required for get');
+        return getGoal(dir, input.name as string);
+      }
+      if (action === 'add') {
+        if (!input.project) throw new Error('project required for add');
+        return addGoal(dir, input.project as any);
+      }
+      if (action === 'update') {
+        if (!input.name) throw new Error('name required for update');
+        if (!input.updates) throw new Error('updates required for update');
+        return updateGoal(dir, input.name as string, input.updates as any);
+      }
+      if (action === 'remove') {
+        if (!input.name) throw new Error('name required for remove');
+        await removeGoal(dir, input.name as string);
+        return { removed: input.name };
+      }
     },
   },
 ];
