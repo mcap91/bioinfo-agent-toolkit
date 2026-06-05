@@ -63,6 +63,10 @@ wiki/              Private wiki (separate repo, gitignored)
 - Keep docs general-purpose; use placeholders (`{YOUR_PROJECT}`, `{SCRIPT_DIR}`) where examples need paths
 - Do **not** check in `.claude/skills/` — that directory is the install target on the user's system, not a source directory in this repo
 
+## Subagents
+
+Subagents default to Sonnet via `CLAUDE_CODE_SUBAGENT_MODEL` in `.claude/settings.json`. Pass `model: "opus"` on individual Agent calls only when the subagent needs complex reasoning or a Sonnet attempt produced inadequate results.
+
 ## Code Quality
 - Prefer correct, complete implementations over minimal ones.
 - Use appropriate data structures and algorithms — don't brute-force what has a known better solution.
