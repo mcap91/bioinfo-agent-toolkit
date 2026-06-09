@@ -80,3 +80,28 @@ describe('writeEntry', () => {
     ).resolves.toBeDefined();
   });
 });
+
+const entryNoStatus = `---\nname: w\ntitle: "W"\nurl: https://x.com/w\ncategory: skill\nverdict: pilot\nverdict_reason: ok\ntags: [a]\nreviewed: 2026-06-08\n---\nbody\n`;
+
+describe('write-entry force-draft', () => {
+  let dir: string;
+  beforeEach(async () => {
+    dir = await mkdtemp(path.join(os.tmpdir(), 'catalog-w-'));
+    await mkdir(path.join(dir, 'catalog', 'entries'), { recursive: true });
+    delete process.env.CATALOG_FORCE_DRAFT;
+  });
+  afterEach(async () => { await rm(dir, { recursive: true, force: true }); delete process.env.CATALOG_FORCE_DRAFT; });
+
+  it('defaults to draft when status omitted', async () => {
+    await writeEntry({ dir, entry: entryNoStatus, name: 'w' });
+    expect(await readFile(path.join(dir, 'catalog', 'entries', 'w.md'), 'utf-8')).toContain('status: draft');
+  });
+
+  it('clamps to draft under CATALOG_FORCE_DRAFT even if approved requested', async () => {
+    process.env.CATALOG_FORCE_DRAFT = '1';
+    await writeEntry({ dir, entry: entryNoStatus, name: 'w', status: 'approved' });
+    const onDisk = await readFile(path.join(dir, 'catalog', 'entries', 'w.md'), 'utf-8');
+    expect(onDisk).toContain('status: draft');
+    expect(onDisk).not.toContain('status: approved');
+  });
+});
