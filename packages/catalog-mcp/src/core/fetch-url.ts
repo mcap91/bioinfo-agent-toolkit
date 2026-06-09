@@ -1,5 +1,32 @@
 // packages/catalog-mcp/src/core/fetch-url.ts
 import { lookup } from 'node:dns/promises';
+import { parseHTML } from 'linkedom';
+import { Readability } from '@mozilla/readability';
+
+export interface ExtractResult {
+  text: string;
+  title: string;
+  belowThreshold: boolean;
+}
+
+/** HTML → main article text via Readability over a lightweight DOM. */
+export function extractReadable(html: string, minChars: number): ExtractResult {
+  let text = '';
+  let title = '';
+  try {
+    const { document } = parseHTML(html);
+    const article = new Readability(document as unknown as Document).parse();
+    text = (article?.textContent || '').replace(/\n{3,}/g, '\n\n').trim();
+    title = article?.title || '';
+  } catch {
+    text = '';
+  }
+  if (!title) {
+    const m = html.match(/<title[^>]*>(.*?)<\/title>/is);
+    title = m ? m[1].trim() : '';
+  }
+  return { text, title, belowThreshold: text.length < minChars };
+}
 
 const ALLOWED_SCHEMES = new Set(['http:', 'https:']);
 
@@ -105,7 +132,10 @@ const MAX_REDIRECTS = 5;
 const TIMEOUT_MS = 30_000;
 const MAX_BODY_BYTES = 5 * 1024 * 1024;
 
-export async function fetchUrl(urlStr: string): Promise<FetchResult> {
+export async function fetchUrl(
+  urlStr: string,
+  opts: { clean?: boolean; minChars?: number } = {},
+): Promise<FetchResult & { belowThreshold?: boolean }> {
   const parsed = validateUrl(urlStr);
   await validateResolvedIp(parsed.hostname);
 
@@ -151,14 +181,20 @@ export async function fetchUrl(urlStr: string): Promise<FetchResult> {
       }
 
       const title = extractTitle(text) || parsed.pathname.split('/').pop() || '';
+      const metadata = {
+        url: currentUrl,
+        contentType: response.headers.get('content-type'),
+        status: response.status,
+      };
+      if (opts.clean === false) {
+        return { content: text, title, metadata };
+      }
+      const extracted = extractReadable(text, opts.minChars ?? 200);
       return {
-        content: text,
-        title,
-        metadata: {
-          url: currentUrl,
-          contentType: response.headers.get('content-type'),
-          status: response.status,
-        },
+        content: extracted.text || text,
+        title: extracted.title || title,
+        metadata,
+        belowThreshold: extracted.belowThreshold,
       };
     } finally {
       clearTimeout(timeout);

@@ -8,7 +8,9 @@
     "node": ">=20.11.0"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.12.1"
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "@mozilla/readability": "^0.6.0",
+    "linkedom": "^0.18.12"
   },
   "scripts": {}
 }

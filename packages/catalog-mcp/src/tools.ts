@@ -15,6 +15,7 @@ import { validateEntry } from './core/validate-entry.js';
 import { writeEntry } from './core/write-entry.js';
 import { listGoals, getGoal, addGoal, updateGoal, removeGoal } from './core/goals.js';
 import { PROJECT_STATUSES, PRIORITIES } from './core/schema.js';
+import { listDrafts, approveEntry, rejectEntry } from './core/review.js';
 
 export interface ToolDef {
   name: string;
@@ -220,12 +221,18 @@ export const tools: ToolDef[] = [
   },
   {
     name: 'fetch-url',
-    description: 'Fetch a URL and extract readable content (with SSRF guards)',
+    description: 'Fetch a URL and extract readable content (SSRF-guarded). clean=false returns raw HTML.',
     inputSchema: dirSchema.extend({
       url: z.string().url(),
+      clean: z.boolean().default(true),
     }),
     handler: async (input) => {
-      return fetchUrl(input.url as string);
+      const dir = resolveDir(input.dir as string | undefined);
+      const config = await loadConfig(dir).catch(() => ({ min_clean_chars: 200 } as { min_clean_chars: number }));
+      return fetchUrl(input.url as string, {
+        clean: input.clean as boolean,
+        minChars: config.min_clean_chars,
+      });
     },
   },
   {
@@ -312,6 +319,31 @@ export const tools: ToolDef[] = [
         status: input.status as 'approved' | 'draft',
         overwrite: input.overwrite as boolean,
       });
+    },
+  },
+  {
+    name: 'review',
+    description: 'Review autonomous drafts: list, approve, or reject (record-as-skip)',
+    inputSchema: dirSchema.extend({
+      action: z.enum(['list', 'approve', 'reject']),
+      name: z.string().optional(),
+      reason: z.string().optional(),
+    }),
+    handler: async (input) => {
+      const dir = resolveDir(input.dir as string | undefined);
+      const action = input.action as string;
+      if (action === 'list') return { drafts: await listDrafts(dir) };
+      const name = input.name as string;
+      if (!name) throw new Error('name required for approve/reject');
+      if (action === 'approve') {
+        const r = await approveEntry(dir, name);
+        await generateAndWriteIndex({ dir, format: 'full', includeDrafts: false });
+        return { approved: name, path: r.path };
+      }
+      const reason = (input.reason as string) || 'no reason given';
+      const r = await rejectEntry(dir, name, reason);
+      await generateAndWriteIndex({ dir, format: 'full', includeDrafts: false });
+      return { rejected: name, path: r.path };
     },
   },
   {
