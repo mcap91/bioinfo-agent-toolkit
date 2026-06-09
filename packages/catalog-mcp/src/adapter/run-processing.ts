@@ -13,7 +13,10 @@
 //                              positional prompt would be swallowed as another value —
 //                              pipe the recipe to stdin instead.
 // Re-verify with `claude --help` and bump this pin if the CLI is upgraded.
-import { spawn } from 'node:child_process';
+//
+// cross-spawn is used instead of node:child_process spawn for cross-platform .cmd/.ps1
+// shim resolution on Windows (PATHEXT-aware, no shell:true required).
+import spawn from 'cross-spawn';
 import { readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
@@ -73,6 +76,11 @@ async function main(): Promise<void> {
   });
   child.stdin?.write(recipe);
   child.stdin?.end();
+  child.on('error', (err) => {
+    console.error(`Failed to launch the "claude" CLI: ${err.message}`);
+    console.error('Ensure Claude Code is installed and on PATH (try: claude --version).');
+    process.exit(1);
+  });
   child.on('exit', (code) => process.exit(code ?? 1));
 }
 
