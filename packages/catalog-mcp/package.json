@@ -12,5 +12,7 @@
     "@mozilla/readability": "^0.6.0",
     "linkedom": "^0.18.12"
   },
-  "scripts": {}
+  "scripts": {
+    "catalog:process": "tsx src/adapter/run-processing.ts"
+  }
 }
