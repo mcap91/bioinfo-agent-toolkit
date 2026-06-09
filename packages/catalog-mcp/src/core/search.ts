@@ -31,7 +31,10 @@ export async function searchEntries(options: SearchOptions): Promise<SearchResul
 
     if (options.verdict && fm.verdict !== options.verdict) continue;
     if (options.category && fm.category !== options.category) continue;
-    if (options.status && (fm.status || 'approved') !== options.status) continue;
+    if (options.status !== 'any') {
+      const wanted = options.status ?? 'approved';
+      if ((fm.status || 'approved') !== wanted) continue;
+    }
 
     if (options.query) {
       const searchFields = options.fields || [

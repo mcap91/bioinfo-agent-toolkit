@@ -12,7 +12,9 @@ interface QueueData {
 }
 
 interface AddItem {
-  url: string;
+  key: string;
+  url?: string;
+  content?: string;
   source: 'manual' | 'reddit' | 'slack' | 'email' | 'other';
   notes?: string;
   context?: Record<string, unknown>;
@@ -32,10 +34,11 @@ export async function addToQueue(dir: string, items: AddItem[]): Promise<QueueIt
   return withLock(dir, async () => {
     const queue = await readQueue(dir);
     const added: QueueItem[] = [];
-
     for (const item of items) {
       const queueItem: QueueItem = {
+        key: item.key,
         url: item.url,
+        content: item.content,
         source: item.source,
         notes: item.notes,
         context: item.context,
@@ -45,23 +48,35 @@ export async function addToQueue(dir: string, items: AddItem[]): Promise<QueueIt
       queue.items.push(queueItem);
       added.push(queueItem);
     }
-
     await writeQueueAtomic(dir, queue);
     return added;
   });
 }
 
-export async function removeFromQueue(
-  dir: string,
-  urls: string[],
-): Promise<number> {
+export async function removeFromQueue(dir: string, keys: string[]): Promise<number> {
   return withLock(dir, async () => {
     const queue = await readQueue(dir);
-    const urlSet = new Set(urls);
+    const keySet = new Set(keys);
     const before = queue.items.length;
-    queue.items = queue.items.filter((item) => !urlSet.has(item.url));
+    queue.items = queue.items.filter((item) => !keySet.has(item.key));
     await writeQueueAtomic(dir, queue);
     return before - queue.items.length;
+  });
+}
+
+export async function updateQueueItem(
+  dir: string,
+  key: string,
+  patch: { status?: 'pending' | 'error' | 'parked'; error_message?: string },
+): Promise<boolean> {
+  return withLock(dir, async () => {
+    const queue = await readQueue(dir);
+    const item = queue.items.find((i) => i.key === key);
+    if (!item) return false;
+    if (patch.status) item.status = patch.status;
+    if (patch.error_message !== undefined) item.error_message = patch.error_message;
+    await writeQueueAtomic(dir, queue);
+    return true;
   });
 }
 

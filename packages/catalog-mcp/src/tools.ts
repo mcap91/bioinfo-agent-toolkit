@@ -6,7 +6,7 @@ import { generateAndWriteIndex } from './core/index-gen.js';
 import { lint } from './core/lint.js';
 import { searchEntries } from './core/search.js';
 import { scaffoldEntry } from './core/scaffold.js';
-import { readQueue, removeFromQueue, clearQueue } from './core/queue.js';
+import { readQueue, removeFromQueue, updateQueueItem, clearQueue } from './core/queue.js';
 import { ingest } from './core/ingest.js';
 import { fetchUrl } from './core/fetch-url.js';
 import { redditExtract } from './core/reddit.js';
@@ -159,11 +159,13 @@ export const tools: ToolDef[] = [
   },
   {
     name: 'queue',
-    description: 'Manage the catalog intake queue',
+    description: 'Manage the catalog intake queue (list/remove/update/clear)',
     inputSchema: dirSchema.extend({
-      action: z.enum(['list', 'remove', 'clear']),
-      urls: z.array(z.string().url()).optional(),
-      status: z.enum(['pending', 'error']).optional(),
+      action: z.enum(['list', 'remove', 'update', 'clear']),
+      keys: z.array(z.string()).optional(),
+      key: z.string().optional(),
+      status: z.enum(['pending', 'error', 'parked']).optional(),
+      message: z.string().optional(),
     }),
     handler: async (input) => {
       const dir = resolveDir(input.dir as string | undefined);
@@ -177,23 +179,30 @@ export const tools: ToolDef[] = [
         return { items, count: items.length };
       }
       if (action === 'remove') {
-        const urls = input.urls as string[];
-        if (!urls?.length) throw new Error('urls required for remove action');
-        const removed = await removeFromQueue(dir, urls);
-        return { removed };
+        const keys = input.keys as string[];
+        if (!keys?.length) throw new Error('keys required for remove action');
+        return { removed: await removeFromQueue(dir, keys) };
       }
-      if (action === 'clear') {
-        await clearQueue(dir);
-        return { cleared: true };
+      if (action === 'update') {
+        const key = input.key as string;
+        if (!key) throw new Error('key required for update action');
+        const ok = await updateQueueItem(dir, key, {
+          status: input.status as 'pending' | 'error' | 'parked' | undefined,
+          error_message: input.message as string | undefined,
+        });
+        return { updated: ok };
       }
+      await clearQueue(dir);
+      return { cleared: true };
     },
   },
   {
     name: 'ingest',
-    description: 'Add URLs to the catalog intake queue with deduplication',
+    description: 'Add URLs or free-form text items to the intake queue, with dedup',
     inputSchema: dirSchema.extend({
       items: z.array(z.object({
-        url: z.string().url(),
+        url: z.string().url().optional(),
+        content: z.string().optional(),
         source: z.enum(['manual', 'reddit', 'slack', 'email', 'other']).default('manual'),
         notes: z.string().optional(),
         context: z.record(z.string(), z.unknown()).optional(),
@@ -204,7 +213,7 @@ export const tools: ToolDef[] = [
       const dir = resolveDir(input.dir as string | undefined);
       return ingest({
         dir,
-        items: input.items as Array<{ url: string; source?: 'manual' | 'reddit' | 'slack' | 'email' | 'other'; notes?: string; context?: Record<string, unknown> }>,
+        items: input.items as Array<{ url?: string; content?: string; source?: 'manual' | 'reddit' | 'slack' | 'email' | 'other'; notes?: string; context?: Record<string, unknown> }>,
         deduplicate: input.deduplicate as boolean,
       });
     },
@@ -291,7 +300,7 @@ export const tools: ToolDef[] = [
     inputSchema: dirSchema.extend({
       entry: z.string(),
       name: z.string(),
-      status: z.enum(['approved', 'draft']).default('approved'),
+      status: z.enum(['approved', 'draft']).default('draft'),
       overwrite: z.boolean().default(false),
     }),
     handler: async (input) => {

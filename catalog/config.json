@@ -3,5 +3,13 @@
     "github.com/*",
     "npmjs.com/package/*",
     "pypi.org/project/*"
-  ]
+  ],
+  "blocked_domains": [
+    { "host": "instagram.com" },
+    { "host": "x.com" },
+    { "host": "twitter.com" },
+    { "host": "linkedin.com", "allow_paths": ["/pulse/"] }
+  ],
+  "min_clean_chars": 200,
+  "gmail_fallback": true
 }

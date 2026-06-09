@@ -4,6 +4,7 @@ import { mkdtemp, rm, mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
 import { ingest } from '../src/core/ingest.js';
+import { readQueue } from '../src/core/queue.js';
 
 describe('ingest', () => {
   let tmpDir: string;
@@ -69,5 +70,35 @@ describe('ingest', () => {
       deduplicate: false,
     });
     expect(result.added).toHaveLength(1);
+  });
+});
+
+describe('ingest phase 2', () => {
+  let dir: string;
+  beforeEach(async () => {
+    dir = await mkdtemp(path.join(os.tmpdir(), 'catalog-i-'));
+    await mkdir(path.join(dir, 'catalog', 'entries'), { recursive: true });
+    await writeFile(path.join(dir, 'catalog', 'queue.json'), '{"items":[]}\n', 'utf-8');
+  });
+  afterEach(async () => { await rm(dir, { recursive: true, force: true }); });
+
+  it('ingests a content-only item and assigns a content key', async () => {
+    const r = await ingest({ dir, items: [{ content: 'a free-form note', source: 'email' }] });
+    expect(r.count).toBe(1);
+    const item = (await readQueue(dir)).items[0];
+    expect(item.url).toBeUndefined();
+    expect(item.key).toMatch(/^content:[0-9a-f]{16}$/);
+  });
+
+  it('dedups identical content (whitespace variants)', async () => {
+    await ingest({ dir, items: [{ content: 'same  thing' }] });
+    const r = await ingest({ dir, items: [{ content: 'same thing\n' }] });
+    expect(r.skipped[0].reason).toMatch(/already in queue/);
+  });
+
+  it('dedups url items by url (existing behavior)', async () => {
+    await ingest({ dir, items: [{ url: 'https://x.com/a' }] });
+    const r = await ingest({ dir, items: [{ url: 'https://x.com/a' }] });
+    expect(r.skipped).toHaveLength(1);
   });
 });
