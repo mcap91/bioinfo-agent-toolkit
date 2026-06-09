@@ -7,6 +7,10 @@ export interface InboxItem {
   note?: string;
   blocked: boolean;
   raw: string;
+  /** 0-based index of the first line that belongs to this item (inclusive). */
+  startLine: number;
+  /** 0-based index of the last line that belongs to this item (inclusive). */
+  endLine: number;
 }
 
 const URL_LINE = /^\s*(https?:\/\/\S+)(?:\s+—\s+(.*))?\s*$/;
@@ -25,6 +29,7 @@ export function parseInbox(text: string): InboxItem[] {
     const line = lines[i];
 
     if (FENCE_OPEN.test(line)) {
+      const fenceStart = i;
       // Collect until closing fence.
       const block: string[] = [];
       let closed = false;
@@ -40,13 +45,23 @@ export function parseInbox(text: string): InboxItem[] {
         console.warn('inbox: unterminated ```text block — skipped');
         continue;
       }
+      // fenceEnd is i - 1 (the closing ```)
+      const fenceEnd = i - 1;
       let source: string | undefined;
       const contentLines = [...block];
       const sm = block[0]?.match(SOURCE_LINE);
       if (sm) { source = sm[1]; contentLines.shift(); }
       const content = contentLines.join('\n').trim();
       if (content) {
-        items.push({ kind: 'text', content, source, blocked: false, raw: block.join('\n') });
+        items.push({
+          kind: 'text',
+          content,
+          source,
+          blocked: false,
+          raw: block.join('\n'),
+          startLine: fenceStart,
+          endLine: fenceEnd,
+        });
       }
       continue;
     }
@@ -55,7 +70,15 @@ export function parseInbox(text: string): InboxItem[] {
     const stripped = line.replace(NEEDS_LINK, '').trim();
     const m = stripped.match(URL_LINE);
     if (m) {
-      items.push({ kind: 'url', url: m[1], note: m[2]?.trim(), blocked, raw: line.trim() });
+      items.push({
+        kind: 'url',
+        url: m[1],
+        note: m[2]?.trim(),
+        blocked,
+        raw: line.trim(),
+        startLine: i,
+        endLine: i,
+      });
     }
     i++;
   }

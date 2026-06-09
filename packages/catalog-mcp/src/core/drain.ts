@@ -33,13 +33,21 @@ export async function drainInbox(dir: string): Promise<DrainResult> {
   let text: string;
   try { text = await readFile(inboxPath, 'utf-8'); } catch { return { ingested: 0, blocked: 0, skipped: 0 }; }
 
-  const header = text.split('\n').slice(0, headerLineCount(text)).join('\n');
+  const lines = text.replace(/\r\n/g, '\n').split('\n');
   const items = parseInbox(text);
 
   let ingested = 0;
   let blocked = 0;
   let skipped = 0;
-  const keepLines: string[] = [];
+
+  // Classify every item and build a map of line-index → what to do with it.
+  // Actions: 'drop' (remove), 'keep-marked' (replace line with marked version), 'keep' (verbatim).
+  // Line indices not touched stay verbatim (prose, blanks, headers, scratch).
+  type LineAction =
+    | { action: 'drop' }
+    | { action: 'keep-marked'; replacement: string };
+
+  const lineActions = new Map<number, LineAction>();
 
   for (const item of items) {
     const isBlocked =
@@ -47,24 +55,51 @@ export async function drainInbox(dir: string): Promise<DrainResult> {
 
     if (isBlocked) {
       blocked++;
-      keepLines.push(ensureMarker(item));
+      // Replace the first line with the ⚠ needs-link version.
+      lineActions.set(item.startLine, { action: 'keep-marked', replacement: ensureMarker(item) });
+      // If there are additional span lines (fenced blocks), drop them.
+      for (let ln = item.startLine + 1; ln <= item.endLine; ln++) {
+        lineActions.set(ln, { action: 'drop' });
+      }
       continue;
     }
+
     const r = await ingest({
       dir,
       items: [item.kind === 'url'
         ? { url: item.url, source: 'manual' as const, notes: item.note }
         : { content: item.content, source: 'manual' as const, context: item.source ? { source: item.source } : undefined }],
     });
-    if (r.count > 0) ingested++;
+
+    const success = r.count > 0;
+    if (success) ingested++;
     else skipped++;
+
+    // Drop all lines belonging to this item regardless of ingestion result.
+    for (let ln = item.startLine; ln <= item.endLine; ln++) {
+      lineActions.set(ln, { action: 'drop' });
+    }
   }
 
-  // Atomic-ish rewrite: header + kept (blocked) lines, LF only.
-  const body = [header.trimEnd(), '', ...keepLines].filter((l, idx, a) => !(l === '' && a[idx - 1] === '')).join('\n');
-  const out = body.endsWith('\n') ? body : body + '\n';
+  // Build output by walking original lines and applying actions.
+  const outLines: string[] = [];
+  for (let ln = 0; ln < lines.length; ln++) {
+    const action = lineActions.get(ln);
+    if (!action) {
+      // No action — keep verbatim (prose, blanks, headers, scratch).
+      outLines.push(lines[ln]);
+    } else if (action.action === 'keep-marked') {
+      outLines.push(action.replacement);
+    }
+    // action === 'drop' → skip line.
+  }
+
+  // Normalize: LF only, trim trailing whitespace on the overall output, single trailing newline.
+  let out = outLines.join('\n').replace(/\r\n/g, '\n').trimEnd() + '\n';
+
+  // Atomic-ish rewrite.
   const tmp = inboxPath + '.tmp';
-  await writeFile(tmp, out.replace(/\r\n/g, '\n'), 'utf-8');
+  await writeFile(tmp, out, 'utf-8');
   await rename(tmp, inboxPath);
 
   return { ingested, blocked, skipped };
@@ -73,12 +108,4 @@ export async function drainInbox(dir: string): Promise<DrainResult> {
 function ensureMarker(item: InboxItem): string {
   const base = item.raw.replace(/⚠\s*needs-link\s*/g, '').trim();
   return `⚠ needs-link ${base}`;
-}
-
-/** Number of leading lines that are the human header (until first blank line). */
-function headerLineCount(text: string): number {
-  const lines = text.replace(/\r\n/g, '\n').split('\n');
-  if (!lines[0]?.startsWith('#')) return 0;
-  const blank = lines.indexOf('');
-  return blank === -1 ? lines.length : blank;
 }
