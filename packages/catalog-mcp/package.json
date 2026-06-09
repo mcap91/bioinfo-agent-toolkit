@@ -10,9 +10,13 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",
     "@mozilla/readability": "^0.6.0",
+    "cross-spawn": "^7.0.6",
     "linkedom": "^0.18.12"
   },
   "scripts": {
     "catalog:process": "tsx src/adapter/run-processing.ts"
+  },
+  "devDependencies": {
+    "@types/cross-spawn": "^6.0.6"
   }
 }
