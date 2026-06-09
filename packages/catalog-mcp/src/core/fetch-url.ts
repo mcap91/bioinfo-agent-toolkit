@@ -28,6 +28,18 @@ export function extractReadable(html: string, minChars: number): ExtractResult {
   return { text, title, belowThreshold: text.length < minChars };
 }
 
+/** Pick the content to return and the park signal, consistently.
+ * belowThreshold reflects the RETURNED content, not only the Readability result,
+ * so the signal and payload always agree. */
+export function resolveCleanContent(
+  extracted: ExtractResult,
+  raw: string,
+  minChars: number,
+): { content: string; belowThreshold: boolean } {
+  const content = extracted.text || raw;
+  return { content, belowThreshold: content.length < minChars };
+}
+
 const ALLOWED_SCHEMES = new Set(['http:', 'https:']);
 
 const BLOCKED_HOSTS = new Set([
@@ -190,12 +202,8 @@ export async function fetchUrl(
         return { content: text, title, metadata };
       }
       const extracted = extractReadable(text, opts.minChars ?? 200);
-      return {
-        content: extracted.text || text,
-        title: extracted.title || title,
-        metadata,
-        belowThreshold: extracted.belowThreshold,
-      };
+      const { content, belowThreshold } = resolveCleanContent(extracted, text, opts.minChars ?? 200);
+      return { content, title: extracted.title || title, metadata, belowThreshold };
     } finally {
       clearTimeout(timeout);
     }

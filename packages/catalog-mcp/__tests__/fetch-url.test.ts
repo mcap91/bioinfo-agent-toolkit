@@ -1,6 +1,6 @@
 // packages/catalog-mcp/__tests__/fetch-url.test.ts
 import { describe, it, expect } from 'vitest';
-import { validateUrl, extractReadable } from '../src/core/fetch-url.js';
+import { validateUrl, extractReadable, resolveCleanContent } from '../src/core/fetch-url.js';
 
 describe('SSRF guards', () => {
   it('allows https URLs', () => {
@@ -82,5 +82,32 @@ describe('extractReadable', () => {
   it('flags belowThreshold for thin content', () => {
     const r = extractReadable('<html><body><p>tiny</p></body></html>', 200);
     expect(r.belowThreshold).toBe(true);
+  });
+});
+
+describe('resolveCleanContent', () => {
+  it('uses raw body and marks NOT parked when Readability extracts nothing but raw is content-rich', () => {
+    const raw = 'x'.repeat(500);
+    const result = resolveCleanContent({ text: '', title: '', belowThreshold: true }, raw, 200);
+    expect(result.belowThreshold).toBe(false);
+    expect(result.content.length).toBe(500);
+  });
+
+  it('uses raw body and marks parked when both extracted and raw are thin', () => {
+    const result = resolveCleanContent({ text: '', title: '', belowThreshold: true }, 'tiny', 200);
+    expect(result.belowThreshold).toBe(true);
+    expect(result.content).toBe('tiny');
+  });
+
+  it('prefers extracted text over raw when extraction succeeded', () => {
+    const extracted = 'a'.repeat(300);
+    const result = resolveCleanContent(
+      { text: extracted, title: 'T', belowThreshold: false },
+      'raw'.repeat(999),
+      200,
+    );
+    expect(result.content).toBe(extracted);
+    expect(result.content.startsWith('aaa')).toBe(true);
+    expect(result.belowThreshold).toBe(false);
   });
 });
