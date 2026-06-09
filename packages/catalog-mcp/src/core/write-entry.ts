@@ -1,6 +1,7 @@
 // packages/catalog-mcp/src/core/write-entry.ts
 import { parseFrontmatter, serializeFrontmatter } from './frontmatter.js';
 import { persistEntry } from './entry-io.js';
+import { isForceDraft } from './force-draft.js';
 
 interface WriteEntryOptions {
   dir: string;
@@ -19,7 +20,7 @@ export async function writeEntry(options: WriteEntryOptions): Promise<WriteEntry
   const { dir, entry, name, status = 'draft', overwrite = false } = options;
 
   // Force-draft mode (headless processor): clamp to draft regardless of caller.
-  const forceDraft = !!process.env['CATALOG_FORCE_DRAFT'];
+  const forceDraft = isForceDraft();
   const effectiveStatus: 'approved' | 'draft' = forceDraft ? 'draft' : status;
 
   let content = entry;

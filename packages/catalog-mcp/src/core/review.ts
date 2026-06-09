@@ -5,6 +5,7 @@ import { catalogPaths } from './config.js';
 import { searchEntries } from './search.js';
 import { parseFrontmatter, serializeFrontmatter } from './frontmatter.js';
 import { persistEntry } from './entry-io.js';
+import { isForceDraft } from './force-draft.js';
 
 /** Convenience wrapper over search(status:'draft') — no parallel query path. */
 export async function listDrafts(dir: string) {
@@ -23,6 +24,7 @@ async function mutateEntry(
   name: string,
   mutate: (fm: Record<string, unknown>) => void,
 ): Promise<{ path: string }> {
+  if (isForceDraft()) throw new Error('force-draft mode: approval disabled');
   const file = path.join(catalogPaths(dir).entries, `${name}.md`);
   const parsed = parseFrontmatter(await readFile(file, 'utf-8'));
   mutate(parsed.frontmatter);

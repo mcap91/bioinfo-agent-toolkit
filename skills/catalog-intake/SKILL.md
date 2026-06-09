@@ -13,6 +13,5 @@ description: Pull links into the catalog inbox (Gmail scan, chat paste), curate,
 2. **Curate** `catalog/inbox.md` with the user: delete junk; for any `⚠ needs-link` item
    (Instagram, LinkedIn posts, X, paywalled), open it and replace it with the real fetchable
    URL or paste the relevant prose as a ```text block.
-3. **Drain:** call the `ingest` flow via the drain (run `npx tsx packages/catalog-mcp/scripts/drain.ts`
-   or the `drain` path) — it ingests ready items and leaves blocked ones marked.
+3. **Drain:** call the `drain {}` MCP tool — it ingests ready items and leaves blocked ones marked.
 4. Report what was ingested, blocked, and skipped. Processing (assessment) is a separate step.

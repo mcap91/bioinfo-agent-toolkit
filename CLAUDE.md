@@ -47,7 +47,7 @@ A collection of reusable Claude Code skills, subagent definitions, and orchestra
 skills/<name>/         Skills (just a SKILL.md)
 statusline/            Context window status bar tool
 catalog/               External tool/skill catalog (data)
-packages/catalog-mcp/  Catalog MCP tool server (14 tools)
+packages/catalog-mcp/  Catalog MCP tool server (15 tools)
 docs/                  Public documentation
 wiki/                  Private wiki (separate repo, gitignored)
 ```
@@ -59,7 +59,7 @@ wiki/                  Private wiki (separate repo, gitignored)
 
 ## Catalog MCP Server
 
-The catalog is managed by an MCP tool server at `packages/catalog-mcp/`. The server provides 14 tools for intake, research support, validation, review, and data management. It never makes LLM calls — the calling agent does all reasoning. The data lives in `catalog/` (entries, index, queue, config, goals, inbox, recipe).
+The catalog is managed by an MCP tool server at `packages/catalog-mcp/`. The server provides 15 tools for intake, research support, validation, review, and data management. It never makes LLM calls — the calling agent does all reasoning. The data lives in `catalog/` (entries, index, queue, config, goals, inbox, recipe).
 
 ### Running the server
 
@@ -77,7 +77,7 @@ To add a tool to the catalog:
 
 ### Available tools
 
-`ingest`, `fetch-url`, `reddit-extract`, `build-prompt`, `validate-entry`, `write-entry`, `index`, `search`, `lint`, `scaffold`, `queue`, `review`, `config`, `goals`
+`ingest`, `drain`, `fetch-url`, `reddit-extract`, `build-prompt`, `validate-entry`, `write-entry`, `index`, `search`, `lint`, `scaffold`, `queue`, `review`, `config`, `goals`
 
 ### Phase 2 — intake → processing → review pipeline
 

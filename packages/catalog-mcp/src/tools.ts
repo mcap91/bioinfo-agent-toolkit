@@ -16,6 +16,8 @@ import { writeEntry } from './core/write-entry.js';
 import { listGoals, getGoal, addGoal, updateGoal, removeGoal } from './core/goals.js';
 import { PROJECT_STATUSES, PRIORITIES } from './core/schema.js';
 import { listDrafts, approveEntry, rejectEntry } from './core/review.js';
+import { isForceDraft } from './core/force-draft.js';
+import { drainInbox } from './core/drain.js';
 
 export interface ToolDef {
   name: string;
@@ -34,10 +36,11 @@ export const tools: ToolDef[] = [
     }),
     handler: async (input) => {
       const dir = resolveDir(input.dir as string | undefined);
+      const includeDrafts = isForceDraft() ? false : (input.include_drafts as boolean);
       const result = await generateAndWriteIndex({
         dir,
         format: input.format as 'full' | 'verdict' | 'workflow' | 'category',
-        includeDrafts: input.include_drafts as boolean,
+        includeDrafts,
       });
       return {
         path: result.path,
@@ -195,6 +198,15 @@ export const tools: ToolDef[] = [
       }
       await clearQueue(dir);
       return { cleared: true };
+    },
+  },
+  {
+    name: 'drain',
+    description: 'Drain catalog/inbox.md into the queue: ingest ready items, keep+mark blocked items (⚠ needs-link)',
+    inputSchema: dirSchema,
+    handler: async (input) => {
+      const dir = resolveDir(input.dir as string | undefined);
+      return drainInbox(dir);
     },
   },
   {
