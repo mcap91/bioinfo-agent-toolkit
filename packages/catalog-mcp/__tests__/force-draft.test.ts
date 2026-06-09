@@ -6,6 +6,7 @@ import os from 'node:os';
 import { tools } from '../src/tools.js';
 import { approveEntry, rejectEntry } from '../src/core/review.js';
 import { scaffoldEntry } from '../src/core/scaffold.js';
+import { lint } from '../src/core/lint.js';
 
 // Mirrors review.test.ts's draft() helper.
 const draft = (name: string) =>
@@ -119,6 +120,40 @@ describe('scaffold clamps to draft under force-draft', () => {
     delete process.env['CATALOG_FORCE_DRAFT'];
     await scaffoldEntry({ dir, name: 's2', category: 'skill' });
     const md = await readFile(path.join(dir, 'catalog', 'entries', 's2.md'), 'utf-8');
+    expect(md).toContain('status: approved');
+  });
+});
+
+describe('B-4: lint --fix clamps default status to draft under force-draft (final writer)', () => {
+  let dir: string;
+
+  // Entry with a lint error (no tags -> schema fails) AND no status -> triggers applyFixes.
+  const erroredNoStatus = (name: string) =>
+    `---\nname: ${name}\ntitle: "${name}"\nurl: https://x.com/${name}\ncategory: skill\nverdict: pilot\nverdict_reason: ok\nreviewed: 2026-06-08\n---\nbody\n`;
+
+  beforeEach(async () => {
+    dir = await mkdtemp(path.join(os.tmpdir(), 'catalog-fd-lint-'));
+    await mkdir(path.join(dir, 'catalog', 'entries'), { recursive: true });
+    await writeFile(path.join(dir, 'catalog', 'entries', 'e1.md'), erroredNoStatus('e1'), 'utf-8');
+    process.env['CATALOG_FORCE_DRAFT'] = '1';
+  });
+
+  afterEach(async () => {
+    delete process.env['CATALOG_FORCE_DRAFT'];
+    await rm(dir, { recursive: true, force: true });
+  });
+
+  it('lint({fix:true}) on a status-less errored entry writes status: draft, never approved, under force-draft', async () => {
+    await lint({ dir, fix: true });
+    const md = await readFile(path.join(dir, 'catalog', 'entries', 'e1.md'), 'utf-8');
+    expect(md).toContain('status: draft');
+    expect(md).not.toContain('status: approved');
+  });
+
+  it('lint({fix:true}) still defaults to approved when NOT in force-draft', async () => {
+    delete process.env['CATALOG_FORCE_DRAFT'];
+    await lint({ dir, fix: true });
+    const md = await readFile(path.join(dir, 'catalog', 'entries', 'e1.md'), 'utf-8');
     expect(md).toContain('status: approved');
   });
 });
