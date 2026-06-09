@@ -1,6 +1,6 @@
 // packages/catalog-mcp/__tests__/fetch-url.test.ts
 import { describe, it, expect } from 'vitest';
-import { validateUrl } from '../src/core/fetch-url.js';
+import { validateUrl, extractReadable } from '../src/core/fetch-url.js';
 
 describe('SSRF guards', () => {
   it('allows https URLs', () => {
@@ -63,5 +63,24 @@ describe('SSRF guards', () => {
   it('allows normal domains starting with fc/fd (not IPv6 ULAs)', () => {
     expect(() => validateUrl('https://fdroid.org/packages')).not.toThrow();
     expect(() => validateUrl('https://fc2.com/page')).not.toThrow();
+  });
+});
+
+describe('extractReadable', () => {
+  const chrome = `<html><head><title>T</title></head><body>
+    <nav>Home Jobs Sign in Join now</nav>
+    <article><h1>Real Title</h1><p>${'word '.repeat(80)}</p></article>
+    <footer>boilerplate</footer></body></html>`;
+
+  it('extracts main article text and drops nav/footer', () => {
+    const r = extractReadable(chrome, 200);
+    expect(r.text).toContain('Real Title');
+    expect(r.text).not.toContain('Join now');
+    expect(r.belowThreshold).toBe(false);
+  });
+
+  it('flags belowThreshold for thin content', () => {
+    const r = extractReadable('<html><body><p>tiny</p></body></html>', 200);
+    expect(r.belowThreshold).toBe(true);
   });
 });
