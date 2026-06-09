@@ -61,4 +61,31 @@ describe('drainInbox', () => {
     await drainInbox(dir);
     expect(await readInbox()).not.toContain('\r\n');
   });
+
+  it('preserves header prose and scratch notes; removes processed urls; keeps+marks blocked', async () => {
+    const inbox = [
+      '# Catalog inbox',
+      '',
+      'Drop URLs here, then run the drain.',
+      '',
+      'https://github.com/org/tool',
+      'a scratch note to self',
+      'https://instagram.com/p/abc',
+    ].join('\n') + '\n';
+    await writeInbox(inbox);
+    const r = await drainInbox(dir);
+    const out = await readInbox();
+    // prose and scratch survive
+    expect(out).toContain('Drop URLs here');
+    expect(out).toContain('a scratch note to self');
+    // processed url removed
+    expect(out).not.toContain('github.com/org/tool');
+    // blocked url kept and marked
+    expect(out).toContain('instagram.com/p/abc');
+    expect(out).toContain('⚠ needs-link');
+    // LF only
+    expect(out).not.toContain('\r\n');
+    expect(r.ingested).toBe(1);
+    expect(r.blocked).toBe(1);
+  });
 });

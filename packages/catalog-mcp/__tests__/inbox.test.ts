@@ -4,7 +4,7 @@ import { parseInbox } from '../src/core/inbox.js';
 describe('parseInbox', () => {
   it('parses a bare url line with a note', () => {
     const items = parseInbox('https://github.com/org/tool — a note\n');
-    expect(items).toEqual([
+    expect(items).toMatchObject([
       { kind: 'url', url: 'https://github.com/org/tool', note: 'a note', blocked: false, raw: 'https://github.com/org/tool — a note' },
     ]);
   });
