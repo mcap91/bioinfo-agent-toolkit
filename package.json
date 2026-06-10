@@ -4,7 +4,7 @@
   "workspaces": ["packages/*"],
   "scripts": {
     "catalog:mcp": "tsx packages/catalog-mcp/src/server.ts",
-    "test": "vitest run --project packages/catalog-mcp",
+    "test": "npm test --workspace @catalog/mcp",
     "typecheck": "tsc --build"
   },
   "devDependencies": {
