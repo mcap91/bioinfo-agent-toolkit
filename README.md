@@ -19,6 +19,7 @@ cp -r skills/<name> <your-project>/.claude/skills/<name>
 | [/scripts-reference](skills/scripts-reference/) | Generate a clickable script reference doc |
 | [/catalog-intake](skills/catalog-intake/) | Scan and curate links into the catalog inbox, then drain to the queue |
 | [/catalog-review](skills/catalog-review/) | Review autonomously-generated catalog drafts and approve or reject |
+| [/agent-lockdown](skills/agent-lockdown/) | Lock down a coding agent CLI — version pin, model pin, env hardening, secrets deny, integrity checkup |
 
 ## Tools
 
