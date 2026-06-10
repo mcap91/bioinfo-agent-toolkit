@@ -5,7 +5,8 @@ description: Review autonomously-generated catalog drafts and approve or reject 
 
 # Catalog review
 
-1. `review {action:list}` → the pending drafts.
+1. `review {action:list}` → the pending drafts. **Check this first** — if the count is 0,
+   there is nothing to review.
 2. For each draft, read `catalog/entries/<name>.md` with the user. Check the verdict,
    reasoning, tags, and `security_flags`. This is the validation gate — drafts come from
    untrusted fetched content.

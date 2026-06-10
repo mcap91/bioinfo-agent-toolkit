@@ -6,7 +6,7 @@ description: Pull links into the catalog inbox (Gmail scan, chat paste), curate,
 # Catalog intake
 
 1. **Gather** (interactive only):
-   - Gmail: search `subject:catalog` (primary). If `config.json` `gmail_fallback` is true,
+   - Gmail: search `from:me subject:catalog` (primary). If `config.json` `gmail_fallback` is true,
      also `from:me newer_than:7d` filtered to github.com / reddit.com / instagram.com.
    - Extract URLs from message bodies; capture prose bodies as fenced ```text blocks with a
      `source:` line. Append all to `catalog/inbox.md`.

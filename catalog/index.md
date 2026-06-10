@@ -1,6 +1,6 @@
 # Catalog Index
 
-Generated from 40 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
+Generated from 44 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
 
 ## By Verdict
 
@@ -24,11 +24,15 @@ Generated from 40 entries in `catalog/entries/`. Regenerate with the catalog `in
 | [UI/UX Pro Max Skill](entries/ui-ux-pro-max-skill.md) | skill | watch | comprehensive design system generation but focused on general web/mobile UI; evaluate when dashboard/report aesthetics become a priority | ui, ux, design-system, typography, color-palettes, dashboards, visualization |
 | [ADHD](entries/adhd.md) | skill | note | parallel divergent ideation via isolated cognitive frames; overlaps with superpowers:brainstorming but the frame isolation and scoring mechanics are worth studying | ideation, brainstorming, parallel, divergent-thinking, cognitive-frames, subagents |
 | [Advisor Strategy](entries/advisor-strategy.md) | agent-pattern | note | architectural concept for cost-effective agent orchestration; executor/advisor split | agents, cost-optimization, dispatch, patterns |
+| [Agent Session Resume](entries/agent-session-resume.md) | skill | note | Cross-agent session resume skill with structured checkpoint workflow; overlaps with our handoff skill but adds multi-agent-platform support (Codex, Cursor, Antigravity, OpenCode) | handoff, session-resume, cross-agent, claude-code, codex, cursor |
+| [AI Needs What ALCOA+ Gave Records](entries/alcoa-plus-for-ai.md) | reference | note | Useful framing for regulated-AI governance but no actionable tool or framework yet — CASTEM teased but unpublished | ai-governance, gxp, regulatory, data-integrity, pharma |
+| [Autoresearch](entries/autoresearch.md) | framework | note | Highly influential autonomous experimentation loop pattern, but ML-training-specific — transferable idea, not transferable code | autonomous-agents, ml-training, experimentation, karpathy, agent-loop |
 | [Awesome Claude Code](entries/awesome-claude-code.md) | reference | note | curated Claude Code ecosystem list; use as discovery source for future catalog inbox items | awesome-list, skills, agents, hooks, orchestrators, discovery |
 | [Claude Code Remote Prompt Hardening](entries/claude-code-remote-prompt-hardening.md) | reference | note | env vars to block remote system prompt injection in Claude Code; operational hardening knowledge for security-sensitive environments | claude-code, security, privacy, env-vars, hardening, system-prompt, version-pinning |
 | [Claude Spellbook](entries/claude-spellbook.md) | reference | note | 50 skills, 7 agents, 11 slash commands — use as pattern reference, not default install | skills, agents, hooks, patterns |
 | [Codebase Reasoning Topology](entries/codebase-reasoning-topology.md) | reference | note | heavy for daily use but interesting as a pre-flight checklist concept | invariants, state-ownership, blast-radius, checklist |
 | [Codex Memory Cleanup](entries/codex-memory-cleanup.md) | reference | note | operational tip: delete state/log/global-state files if Codex performance degrades | codex, maintenance, performance |
+| [Deny .env Reads via Permissions](entries/deny-env-reads.md) | reference | note | Useful security hygiene tip for Claude Code projects; documents a built-in feature rather than a new tool | security, permissions, claude-code, env-files, secrets |
 | [Graphify](entries/graphify.md) | framework | note | direct inspiration for kb graph; concepts like confidence-tagged edges and clustering worth learning from | knowledge-graph, ast, visualization, kb |
 | [Obsidian Skills (Kepano)](entries/obsidian-skills.md) | skill | note | Obsidian-specific; Defuddle (web→clean markdown) and skill packaging patterns worth noting | obsidian, skills, markdown, canvas, defuddle, web-extraction |
 | [Remote Control](entries/remote-control.md) | reference | note | built-in feature; try for long sessions | mobile, remote, sessions |
@@ -67,7 +71,10 @@ Generated from 40 entries in `catalog/entries/`. Regenerate with the catalog `in
 - [ADHD](entries/adhd.md) — note — parallel divergent ideation via isolated cognitive frames; overlaps with superpowers:brainstorming but the frame isolation and scoring mechanics are worth studying
 - [Advise Project Approach](entries/advise-project-approach.md) — pilot — structured project-level architecture research with comparable analysis, cost checks, and tradeoff discipline; complements /catalog (tool-level) with project-level advisory
 - [Advisor Strategy](entries/advisor-strategy.md) — note — architectural concept for cost-effective agent orchestration; executor/advisor split
+- [Agent Session Resume](entries/agent-session-resume.md) — note — Cross-agent session resume skill with structured checkpoint workflow; overlaps with our handoff skill but adds multi-agent-platform support (Codex, Cursor, Antigravity, OpenCode)
+- [AI Needs What ALCOA+ Gave Records](entries/alcoa-plus-for-ai.md) — note — Useful framing for regulated-AI governance but no actionable tool or framework yet — CASTEM teased but unpublished
 - [Autoharness](entries/autoharness.md) — watch — needs eval benchmarks first; pilot when we have eval criteria for our skills/agents
+- [Autoresearch](entries/autoresearch.md) — note — Highly influential autonomous experimentation loop pattern, but ML-training-specific — transferable idea, not transferable code
 - [Awesome Claude Code](entries/awesome-claude-code.md) — note — curated Claude Code ecosystem list; use as discovery source for future catalog inbox items
 - [Claude Agent Teams](entries/agent-teams.md) — adopt — primary interactive dispatch path; subscription billing, no API credits needed
 - [Claude Code Remote Prompt Hardening](entries/claude-code-remote-prompt-hardening.md) — note — env vars to block remote system prompt injection in Claude Code; operational hardening knowledge for security-sensitive environments
@@ -78,6 +85,7 @@ Generated from 40 entries in `catalog/entries/`. Regenerate with the catalog `in
 - [Codebase Reasoning Topology](entries/codebase-reasoning-topology.md) — note — heavy for daily use but interesting as a pre-flight checklist concept
 - [Codex Memory Cleanup](entries/codex-memory-cleanup.md) — note — operational tip: delete state/log/global-state files if Codex performance degrades
 - [Creating CLAUDE.md](entries/creating-claude-md.md) — skip — /init skill already covers repo-scanning CLAUDE.md generation
+- [Deny .env Reads via Permissions](entries/deny-env-reads.md) — note — Useful security hygiene tip for Claude Code projects; documents a built-in feature rather than a new tool
 - [Everything Claude Code (ECC)](entries/ecc-plugin.md) — watch — rate-limited (429 errors); trial when accessible
 - [gbrain](entries/gbrain.md) — skip — kb wiki already provides persistent typed records with relationships and search
 - [Get Shit Done (GSD)](entries/get-shit-done.md) — skip — deprecated (moved to GSD Redux); superpowers skill system already covers meta-prompting and spec-driven development
@@ -118,6 +126,7 @@ Generated from 40 entries in `catalog/entries/`. Regenerate with the catalog `in
 ### framework
 
 - [Autoharness](entries/autoharness.md) — watch — needs eval benchmarks first; pilot when we have eval criteria for our skills/agents
+- [Autoresearch](entries/autoresearch.md) — note — Highly influential autonomous experimentation loop pattern, but ML-training-specific — transferable idea, not transferable code
 - [Claude Mem](entries/claude-mem.md) — skip — kb wiki + Claude Code built-in memory cover our needs; adds SQLite + Chroma + worker complexity without clear benefit
 - [gbrain](entries/gbrain.md) — skip — kb wiki already provides persistent typed records with relationships and search
 - [Get Shit Done (GSD)](entries/get-shit-done.md) — skip — deprecated (moved to GSD Redux); superpowers skill system already covers meta-prompting and spec-driven development
@@ -144,11 +153,13 @@ Generated from 40 entries in `catalog/entries/`. Regenerate with the catalog `in
 
 ### reference
 
+- [AI Needs What ALCOA+ Gave Records](entries/alcoa-plus-for-ai.md) — note — Useful framing for regulated-AI governance but no actionable tool or framework yet — CASTEM teased but unpublished
 - [Awesome Claude Code](entries/awesome-claude-code.md) — note — curated Claude Code ecosystem list; use as discovery source for future catalog inbox items
 - [Claude Code Remote Prompt Hardening](entries/claude-code-remote-prompt-hardening.md) — note — env vars to block remote system prompt injection in Claude Code; operational hardening knowledge for security-sensitive environments
 - [Claude Spellbook](entries/claude-spellbook.md) — note — 50 skills, 7 agents, 11 slash commands — use as pattern reference, not default install
 - [Codebase Reasoning Topology](entries/codebase-reasoning-topology.md) — note — heavy for daily use but interesting as a pre-flight checklist concept
 - [Codex Memory Cleanup](entries/codex-memory-cleanup.md) — note — operational tip: delete state/log/global-state files if Codex performance degrades
+- [Deny .env Reads via Permissions](entries/deny-env-reads.md) — note — Useful security hygiene tip for Claude Code projects; documents a built-in feature rather than a new tool
 - [Karpathy's 12 Rules for CLAUDE.md](entries/karpathy-12-rules.md) — adopt — Rules 6 (token budgets) and 12 (fail loud) not yet in our stack
 - [Remote Control](entries/remote-control.md) — note — built-in feature; try for long sessions
 - [Verify Before Claim (Third Brain V5)](entries/verify-before-claim.md) — note — superpowers verification-before-completion covers this; confidence model is the novel addition
@@ -157,6 +168,7 @@ Generated from 40 entries in `catalog/entries/`. Regenerate with the catalog `in
 
 - [ADHD](entries/adhd.md) — note — parallel divergent ideation via isolated cognitive frames; overlaps with superpowers:brainstorming but the frame isolation and scoring mechanics are worth studying
 - [Advise Project Approach](entries/advise-project-approach.md) — pilot — structured project-level architecture research with comparable analysis, cost checks, and tradeoff discipline; complements /catalog (tool-level) with project-level advisory
+- [Agent Session Resume](entries/agent-session-resume.md) — note — Cross-agent session resume skill with structured checkpoint workflow; overlaps with our handoff skill but adds multi-agent-platform support (Codex, Cursor, Antigravity, OpenCode)
 - [Book to Skill](entries/book-to-skill.md) — pilot — directly useful for computational biology methods PDFs
 - [Obsidian Skills (Kepano)](entries/obsidian-skills.md) — note — Obsidian-specific; Defuddle (web→clean markdown) and skill packaging patterns worth noting
 - [PII Detection / Compliance Skills](entries/pii-detection.md) — pilot — HIPAA/CCPA/PCI-DSS coverage; pilot if handling sensitive data
