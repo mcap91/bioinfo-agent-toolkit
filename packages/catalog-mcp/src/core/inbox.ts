@@ -13,7 +13,7 @@ export interface InboxItem {
   endLine: number;
 }
 
-const URL_LINE = /^\s*(https?:\/\/\S+)(?:\s+—\s+(.*))?\s*$/;
+const URL_LINE = /^\s*((?:https?:\/\/)?(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}\/\S*)(?:\s+—\s+(.*))?\s*$/;
 const NEEDS_LINK = /⚠\s*needs-link/;
 const FENCE_OPEN = /^\s*```text\s*$/;
 const FENCE_CLOSE = /^\s*```\s*$/;
@@ -70,9 +70,10 @@ export function parseInbox(text: string): InboxItem[] {
     const stripped = line.replace(NEEDS_LINK, '').trim();
     const m = stripped.match(URL_LINE);
     if (m) {
+      const rawUrl = m[1];
       items.push({
         kind: 'url',
-        url: m[1],
+        url: rawUrl.match(/^https?:\/\//) ? rawUrl : `https://${rawUrl}`,
         note: m[2]?.trim(),
         blocked,
         raw: line.trim(),

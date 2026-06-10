@@ -12,7 +12,7 @@ https://github.com/lyogavin/airllm
 https://github.com/onyx-dot-app/onyx
 https://github.com/Adityapal67/context-graph-compressor
 
-```
+```text
 
 If you want to understand the whole reasoning behind these mistakes supported by the system of my agentic memory via KG and ontologies, consider going over my latest 6 LinkedIn posts:
 
@@ -40,7 +40,7 @@ https://github.com/chopratejas/headroom
 
 https://github.com/cwinvestments/memstack
 
-```
+```text
 
 Remember to deny Claude from reading your .env
 Resource
@@ -62,7 +62,7 @@ Ref: https://code.claude.com/docs/en/settings
 
 ```
 
-```
+```text
 Long Claude chats slowly get worse - slower, repetitive, forgetful. Here's the "context handoff" trick that resets it without losing anything (prompt inside)
 Productivity
 Most people use Claude to get answers. The thing it is actually best at is the opposite: pressure-testing an answer you already have. Its long context and willingness to hold nuance make it a far better "argue with me" partner than a one-shot question box.
@@ -194,7 +194,7 @@ https://www.instagram.com/p/DYuLTpCEvY8/?igsh=MTc4MmM1YmI2Ng==
 https://www.instagram.com/reel/DXhIODkDqq2/?igsh=MTc4MmM1YmI2Ng==
 
 
-```
+```text
 An active attack is planting backdoors inside Claude Code right now. If you use npm, your credentials may already be compromised.
 Last week a malware campaign hit 32 npm packages under `@redhat-cloud-services`. About 117,000 weekly downloads. If you installed an affected version, the malware planted itself inside your Claude Code startup settings and your VS Code project config. Every time you open either one, the attacker's code runs.
 
@@ -263,3 +263,5 @@ Install with scripts off until this settles. Use npm install --ignore-scripts. I
 Scope your CI/CD tokens to least privilege. Credential theft only pays off if the secrets are reachable from the build host. A build token that can only do one job is worth far less to an attacker than one that can reach your whole cloud.
 
 ```
+
+https://github.com/ruvnet/RuView
