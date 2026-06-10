@@ -80,8 +80,6 @@ function buildCompactSummary(
   const lines: string[] = ['| Title | Category | Verdict |', '|---|---|---|'];
   for (const [, entry] of entries) {
     const fm = entry.frontmatter;
-    const status = (fm.status as string) || 'approved';
-    if (status === 'draft') continue;
     lines.push(`| ${fm.title} | ${fm.category} | ${fm.verdict} |`);
   }
   return lines.join('\n');
@@ -96,7 +94,6 @@ url: https://source-url
 category: ${CATEGORIES.join(' | ')}
 verdict: ${VERDICTS.join(' | ')}
 verdict_reason: "one-line explanation"
-status: approved
 tags: [tag1, tag2]
 workflows: []
 reviewed: YYYY-MM-DD

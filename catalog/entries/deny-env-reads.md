@@ -5,7 +5,6 @@ url: "https://code.claude.com/docs/en/settings"
 category: reference
 verdict: note
 verdict_reason: Useful security hygiene tip for Claude Code projects; documents a built-in feature rather than a new tool
-status: approved
 tags: [security, permissions, claude-code, env-files, secrets]
 workflows: []
 reviewed: 2026-06-10

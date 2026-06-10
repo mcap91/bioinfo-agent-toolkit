@@ -1,6 +1,7 @@
 // packages/catalog-mcp/src/adapter/run-processing.ts
 // Headless one-shot: run the catalog processing recipe under `claude -p`, with the
-// catalog MCP server attached in force-draft mode so no entry can reach `approved`.
+// catalog MCP server attached. Entries are written directly to disk; adoption-time
+// security is handled at the install boundary (WK-0031), not at cataloging time.
 //
 // VERIFIED against `claude 2.1.162 (Claude Code)` on 2026-06-09:
 //   --print                    non-interactive mode
@@ -23,7 +24,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 // Scoped allowlist: only the catalog MCP tools the recipe calls plus the agent's own web
-// search/fetch. The catalog server runs force-draft, so even these cannot emit `approved`.
+// search/fetch.
 const ALLOWED_TOOLS = [
   'mcp__catalog__queue',
   'mcp__catalog__fetch-url',
@@ -50,13 +51,13 @@ async function main(): Promise<void> {
   const root = repoRoot();
   const recipe = await readFile(path.join(root, 'catalog', 'recipe.md'), 'utf-8');
 
-  // MCP config attaching the catalog server (stdio) with the force-draft guarantee in env.
+  // MCP config attaching the catalog server (stdio).
   const mcpConfig = JSON.stringify({
     mcpServers: {
       catalog: {
         command: 'npx',
         args: ['tsx', path.join(root, 'packages', 'catalog-mcp', 'src', 'server.ts')],
-        env: { CATALOG_FORCE_DRAFT: '1', CATALOG_ROOT: root },
+        env: { CATALOG_ROOT: root },
       },
     },
   });
@@ -72,7 +73,7 @@ async function main(): Promise<void> {
   const child = spawn('claude', args, {
     cwd: root,
     stdio: ['pipe', 'inherit', 'inherit'],
-    env: { ...process.env, CATALOG_FORCE_DRAFT: '1', CATALOG_ROOT: root },
+    env: { ...process.env, CATALOG_ROOT: root },
   });
   child.stdin?.write(recipe);
   child.stdin?.end();

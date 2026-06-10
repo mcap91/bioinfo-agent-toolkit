@@ -42,30 +42,25 @@ describe('searchEntries', () => {
   });
 });
 
-describe('search excludes drafts by default', () => {
+describe('search ignores legacy status frontmatter (status removed in v2.1.0)', () => {
   let dir: string;
   beforeEach(async () => {
     dir = await mkdtemp(path.join(os.tmpdir(), 'catalog-s-'));
     await mkdir(path.join(dir, 'catalog', 'entries'), { recursive: true });
-    const mk = (name: string, status: string) =>
+    const mk = (name: string, extra = '') =>
       writeFile(
         path.join(dir, 'catalog', 'entries', `${name}.md`),
-        `---\nname: ${name}\ntitle: "${name}"\ncategory: skill\nverdict: pilot\nverdict_reason: x\nstatus: ${status}\ntags: [t]\nreviewed: 2026-06-08\n---\nbody\n`,
+        `---\nname: ${name}\ntitle: "${name}"\ncategory: skill\nverdict: pilot\nverdict_reason: x\n${extra}tags: [t]\nreviewed: 2026-06-08\n---\nbody\n`,
         'utf-8',
       );
-    await mk('approved-one', 'approved');
-    await mk('draft-one', 'draft');
+    await mk('plain-one');
+    await mk('legacy-draft', 'status: draft\n');
   });
   afterEach(async () => { await rm(dir, { recursive: true, force: true }); });
 
-  it('omits drafts when no status filter is given', async () => {
+  it('returns all entries regardless of any legacy status line', async () => {
     const r = await searchEntries({ dir, query: '' });
-    expect(r.some((e) => e.name === 'draft-one')).toBe(false);
-    expect(r.some((e) => e.name === 'approved-one')).toBe(true);
-  });
-
-  it('returns drafts when explicitly requested', async () => {
-    const r = await searchEntries({ dir, query: '', status: 'draft' });
-    expect(r.some((e) => e.name === 'draft-one')).toBe(true);
+    expect(r.some((e) => e.name === 'plain-one')).toBe(true);
+    expect(r.some((e) => e.name === 'legacy-draft')).toBe(true);
   });
 });

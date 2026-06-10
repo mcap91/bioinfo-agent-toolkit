@@ -15,7 +15,6 @@ describe('generateIndex', () => {
     const result = await generateIndex({
       dir: repoRoot,
       format: 'full',
-      includeDrafts: false,
     });
     expect(result.content).toBe(expected);
   });
@@ -26,7 +25,6 @@ describe('generateIndex', () => {
     const result = await generateIndex({
       dir: repoRoot,
       format: 'full',
-      includeDrafts: false,
     });
     expect(result.entryCount).toBe(entryFiles.length);
   });

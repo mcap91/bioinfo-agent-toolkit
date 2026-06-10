@@ -3,7 +3,6 @@ import { writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { catalogPaths } from './config.js';
-import { isForceDraft } from './force-draft.js';
 import type { Category } from './schema.js';
 
 const REFERENCE_CATEGORIES = new Set(['reference', 'agent-pattern']);
@@ -45,8 +44,6 @@ export async function scaffoldEntry(options: ScaffoldOptions): Promise<ScaffoldR
     `category: ${options.category}`,
     `verdict: pilot`,
     `verdict_reason: ""`,
-    // Force-draft (headless): a stub created under the headless server must not be approved.
-    `status: ${isForceDraft() ? 'draft' : 'approved'}`,
     `tags: []`,
     `reviewed: ${today}`,
     `acquired: ${today}`,

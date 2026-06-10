@@ -5,7 +5,6 @@ url: "https://github.com/hacktivist123/agent-session-resume"
 category: skill
 verdict: note
 verdict_reason: "Cross-agent session resume skill with structured checkpoint workflow; overlaps with our handoff skill but adds multi-agent-platform support (Codex, Cursor, Antigravity, OpenCode)"
-status: approved
 tags: [handoff, session-resume, cross-agent, claude-code, codex, cursor]
 workflows: []
 reviewed: 2026-06-09
