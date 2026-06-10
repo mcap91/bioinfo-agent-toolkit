@@ -20,6 +20,25 @@ describe('parseInbox', () => {
     expect(items[0]).toMatchObject({ kind: 'text', source: 'https://linkedin.com/posts/x', content: 'Line one\nLine two' });
   });
 
+  it('parses a bare url without protocol and normalizes to https', () => {
+    const items = parseInbox('github.com/org/tool\n');
+    expect(items).toMatchObject([
+      { kind: 'url', url: 'https://github.com/org/tool', blocked: false },
+    ]);
+  });
+
+  it('parses a bare url with a note', () => {
+    const items = parseInbox('github.com/org/tool — check this out\n');
+    expect(items).toMatchObject([
+      { kind: 'url', url: 'https://github.com/org/tool', note: 'check this out' },
+    ]);
+  });
+
+  it('does not match prose lines as bare urls', () => {
+    const items = parseInbox('Remember to deny Claude from reading your .env\n');
+    expect(items).toEqual([]);
+  });
+
   it('ignores blank lines, headers, and prose', () => {
     const items = parseInbox('# inbox\n\njust a note to self\n');
     expect(items).toEqual([]);
