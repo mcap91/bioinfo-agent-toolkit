@@ -1,6 +1,9 @@
 // packages/catalog-mcp/__tests__/lint.test.ts
-import { describe, it, expect } from 'vitest';
-import { lintEntry } from '../src/core/lint.js';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { mkdtemp, rm, mkdir, writeFile, readFile } from 'node:fs/promises';
+import path from 'node:path';
+import os from 'node:os';
+import { lintEntry, lint } from '../src/core/lint.js';
 
 describe('lintEntry', () => {
   const validFrontmatter = {
@@ -44,5 +47,25 @@ describe('lintEntry', () => {
   it('errors on name mismatch with filename', () => {
     const result = lintEntry('wrong-name', validFrontmatter, '');
     expect(result.errors.some((e: string) => e.includes('name'))).toBe(true);
+  });
+});
+
+describe('lint --fix no longer adds a status field (removed in v2.1.0)', () => {
+  let dir: string;
+  // Errored (no tags -> schema fails) AND no status -> previously triggered the status default.
+  const erroredNoStatus = (name: string) =>
+    `---\nname: ${name}\ntitle: "${name}"\nurl: https://x.com/${name}\ncategory: skill\nverdict: pilot\nverdict_reason: ok\nreviewed: 2026-06-08\n---\nbody\n`;
+
+  beforeEach(async () => {
+    dir = await mkdtemp(path.join(os.tmpdir(), 'catalog-lint-'));
+    await mkdir(path.join(dir, 'catalog', 'entries'), { recursive: true });
+    await writeFile(path.join(dir, 'catalog', 'entries', 'e1.md'), erroredNoStatus('e1'), 'utf-8');
+  });
+  afterEach(async () => { await rm(dir, { recursive: true, force: true }); });
+
+  it('lint({fix:true}) does not write a status line', async () => {
+    await lint({ dir, fix: true });
+    const md = await readFile(path.join(dir, 'catalog', 'entries', 'e1.md'), 'utf-8');
+    expect(md).not.toContain('status:');
   });
 });

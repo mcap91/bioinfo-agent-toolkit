@@ -29,6 +29,16 @@ describe('scaffoldEntry', () => {
     expect(content).toContain('## What it does');
   });
 
+  it('does not emit a status field (removed in v2.1.0)', async () => {
+    const result = await scaffoldEntry({
+      dir: tmpDir,
+      name: 'my-tool',
+      category: 'skill',
+    });
+    const content = await readFile(result.path, 'utf-8');
+    expect(content).not.toContain('status:');
+  });
+
   it('sets acquired to today', async () => {
     const result = await scaffoldEntry({
       dir: tmpDir,

@@ -16,13 +16,10 @@ export const CATEGORIES = [
 
 export const VERDICTS = ['adopt', 'pilot', 'watch', 'note', 'skip'] as const;
 
-export const STATUSES = ['approved', 'draft'] as const;
-
 export const SOURCES = ['manual', 'reddit', 'slack', 'email', 'other'] as const;
 
 export type Category = (typeof CATEGORIES)[number];
 export type Verdict = (typeof VERDICTS)[number];
-export type Status = (typeof STATUSES)[number];
 
 export const entrySchema = z.object({
   name: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'Must be kebab-case'),
@@ -31,7 +28,6 @@ export const entrySchema = z.object({
   category: z.enum(CATEGORIES),
   verdict: z.enum(VERDICTS),
   verdict_reason: z.string().min(1),
-  status: z.enum(STATUSES).default('approved'),
   install: z.string().optional(),
   tags: z.array(z.string()).min(1),
   workflows: z.array(z.string()).optional(),

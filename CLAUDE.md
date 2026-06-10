@@ -47,7 +47,7 @@ A collection of reusable Claude Code skills, subagent definitions, and orchestra
 skills/<name>/         Skills (just a SKILL.md)
 statusline/            Context window status bar tool
 catalog/               External tool/skill catalog (data)
-packages/catalog-mcp/  Catalog MCP tool server (15 tools)
+packages/catalog-mcp/  Catalog MCP tool server (14 tools)
 docs/                  Public documentation
 wiki/                  Private wiki (separate repo, gitignored)
 ```
@@ -59,7 +59,7 @@ wiki/                  Private wiki (separate repo, gitignored)
 
 ## Catalog MCP Server
 
-The catalog is managed by an MCP tool server at `packages/catalog-mcp/`. The server provides 15 tools for intake, research support, validation, review, and data management. It never makes LLM calls — the calling agent does all reasoning. The data lives in `catalog/` (entries, index, queue, config, goals, inbox, recipe).
+The catalog is managed by an MCP tool server at `packages/catalog-mcp/`. The server provides 14 tools for intake, research support, validation, and data management. It never makes LLM calls — the calling agent does all reasoning. The data lives in `catalog/` (entries, index, queue, config, goals, inbox, recipe).
 
 ### Running the server
 
@@ -71,23 +71,22 @@ To add a tool to the catalog:
 1. `fetch-url` — get the README
 2. `build-prompt` — get a structured research prompt
 3. Assess the tool yourself using the prompt
-4. `validate-entry` — check your draft
+4. `validate-entry` — check your entry
 5. `write-entry` — save to `catalog/entries/`
 6. `index` — regenerate the index
 
 ### Available tools
 
-`ingest`, `drain`, `fetch-url`, `reddit-extract`, `build-prompt`, `validate-entry`, `write-entry`, `index`, `search`, `lint`, `scaffold`, `queue`, `review`, `config`, `goals`
+`ingest`, `drain`, `fetch-url`, `reddit-extract`, `build-prompt`, `validate-entry`, `write-entry`, `index`, `search`, `lint`, `scaffold`, `queue`, `config`, `goals`
 
-### Phase 2 — intake → processing → review pipeline
+### Phase 2 — intake → processing pipeline
 
-Three stages, split by who runs each:
+Two stages, split by who runs each:
 
 1. **Intake (interactive).** Links/prose land in `catalog/inbox.md` (Gmail scan, chat paste, or hand-edit). The `/catalog-intake` skill curates the inbox and **drains** it: ready items are ingested into the queue; blocked-domain URLs (Instagram, X, LinkedIn *posts*) are marked `⚠ needs-link` and held. `config.json` `blocked_domains` drives the classification, with path exceptions (e.g. LinkedIn `/pulse/` articles are fetchable).
-2. **Processing (manual or headless).** `catalog/recipe.md` is the runtime-agnostic loop: for each `pending` queue item — fetch (clean) or use `content`, `build-prompt`, assess, `validate-entry`, `write-entry` (draft), then `queue` remove/update, and `index`. Run it headlessly with `npm run -w @catalog/mcp catalog:process`, which launches `claude -p` with the catalog server attached in **force-draft mode**.
-3. **Review (interactive).** The `/catalog-review` skill drives the `review` tool: `list` the drafts, then `approve` (→ `approved`) or `reject` (→ `verdict: skip`, `status: approved`, reason prefixed `[rejected]`). This human gate is the validation layer.
+2. **Processing (manual or headless).** `catalog/recipe.md` is the runtime-agnostic loop: for each `pending` queue item — fetch (clean) or use `content`, `build-prompt`, assess, `validate-entry`, `write-entry`, then `queue` remove/update, and `index`. Run it headlessly with `npm run -w @catalog/mcp catalog:process`, which launches `claude -p` with the catalog server attached.
 
-**Force-draft guarantee.** The headless processor runs the server with `CATALOG_FORCE_DRAFT=1`, so `write-entry` clamps every entry to `status: draft` regardless of what the agent passes — a prompt-injected page cannot escalate an entry to `approved`. `index` and `search` exclude drafts by default, so nothing reaches the published catalog without explicit human approval. The adapter (`src/adapter/run-processing.ts`) pins the verified `claude -p` flag format against a recorded CLI version; re-verify with `claude --help` if the CLI is upgraded.
+**Direct writes.** Entries are written straight to `catalog/entries/` with no draft/approved gate; `index` and `search` include every entry. The security boundary that matters for a catalogued tool is **adoption/installation**, handled at the install boundary (WK-0031, the `agent-lockdown` skill is the first piece) — not at cataloging time. The adapter (`src/adapter/run-processing.ts`) pins the verified `claude -p` flag format against a recorded CLI version; re-verify with `claude --help` if the CLI is upgraded.
 
 ## General Conventions
 

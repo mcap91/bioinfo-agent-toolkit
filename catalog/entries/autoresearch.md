@@ -5,7 +5,6 @@ url: "https://github.com/karpathy/autoresearch"
 category: framework
 verdict: note
 verdict_reason: "Highly influential autonomous experimentation loop pattern, but ML-training-specific — transferable idea, not transferable code"
-status: approved
 tags: [autonomous-agents, ml-training, experimentation, karpathy, agent-loop]
 workflows: []
 reviewed: 2026-06-10

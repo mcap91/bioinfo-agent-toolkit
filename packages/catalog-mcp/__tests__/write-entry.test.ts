@@ -59,6 +59,12 @@ describe('writeEntry', () => {
     expect(content).toContain('acquired:');
   });
 
+  it('writes no status field (removed in v2.1.0)', async () => {
+    const result = await writeEntry({ dir: tmpDir, entry: validEntry, name: 'test-tool' });
+    const content = await readFile(result.path, 'utf-8');
+    expect(content).not.toContain('status:');
+  });
+
   it('rejects invalid entry', async () => {
     const badEntry = '---\nname: test\n---\nNo required fields\n';
     await expect(
@@ -78,30 +84,5 @@ describe('writeEntry', () => {
     await expect(
       writeEntry({ dir: tmpDir, entry: validEntry, name: 'test-tool', overwrite: true }),
     ).resolves.toBeDefined();
-  });
-});
-
-const entryNoStatus = `---\nname: w\ntitle: "W"\nurl: https://x.com/w\ncategory: skill\nverdict: pilot\nverdict_reason: ok\ntags: [a]\nreviewed: 2026-06-08\n---\nbody\n`;
-
-describe('write-entry force-draft', () => {
-  let dir: string;
-  beforeEach(async () => {
-    dir = await mkdtemp(path.join(os.tmpdir(), 'catalog-w-'));
-    await mkdir(path.join(dir, 'catalog', 'entries'), { recursive: true });
-    delete process.env.CATALOG_FORCE_DRAFT;
-  });
-  afterEach(async () => { await rm(dir, { recursive: true, force: true }); delete process.env.CATALOG_FORCE_DRAFT; });
-
-  it('defaults to draft when status omitted', async () => {
-    await writeEntry({ dir, entry: entryNoStatus, name: 'w' });
-    expect(await readFile(path.join(dir, 'catalog', 'entries', 'w.md'), 'utf-8')).toContain('status: draft');
-  });
-
-  it('clamps to draft under CATALOG_FORCE_DRAFT even if approved requested', async () => {
-    process.env.CATALOG_FORCE_DRAFT = '1';
-    await writeEntry({ dir, entry: entryNoStatus, name: 'w', status: 'approved' });
-    const onDisk = await readFile(path.join(dir, 'catalog', 'entries', 'w.md'), 'utf-8');
-    expect(onDisk).toContain('status: draft');
-    expect(onDisk).not.toContain('status: approved');
   });
 });

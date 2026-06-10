@@ -1,6 +1,6 @@
 // packages/catalog-mcp/src/tools.ts
 import { z } from 'zod';
-import { dirSchema, CATEGORIES, VERDICTS, STATUSES } from './core/schema.js';
+import { dirSchema, CATEGORIES, VERDICTS } from './core/schema.js';
 import { resolveDir, loadConfig } from './core/config.js';
 import { generateAndWriteIndex } from './core/index-gen.js';
 import { lint } from './core/lint.js';
@@ -15,8 +15,6 @@ import { validateEntry } from './core/validate-entry.js';
 import { writeEntry } from './core/write-entry.js';
 import { listGoals, getGoal, addGoal, updateGoal, removeGoal } from './core/goals.js';
 import { PROJECT_STATUSES, PRIORITIES } from './core/schema.js';
-import { listDrafts, approveEntry, rejectEntry } from './core/review.js';
-import { isForceDraft } from './core/force-draft.js';
 import { drainInbox } from './core/drain.js';
 
 export interface ToolDef {
@@ -32,15 +30,12 @@ export const tools: ToolDef[] = [
     description: 'Regenerate catalog/index.md from all entry files',
     inputSchema: dirSchema.extend({
       format: z.enum(['full', 'verdict', 'workflow', 'category']).default('full'),
-      include_drafts: z.boolean().default(false),
     }),
     handler: async (input) => {
       const dir = resolveDir(input.dir as string | undefined);
-      const includeDrafts = isForceDraft() ? false : (input.include_drafts as boolean);
       const result = await generateAndWriteIndex({
         dir,
         format: input.format as 'full' | 'verdict' | 'workflow' | 'category',
-        includeDrafts,
       });
       return {
         path: result.path,
@@ -75,7 +70,6 @@ export const tools: ToolDef[] = [
       fields: z.array(z.string()).optional(),
       verdict: z.enum(VERDICTS).optional(),
       category: z.string().optional(),
-      status: z.enum(STATUSES).optional(),
       limit: z.number().default(20),
     }),
     handler: async (input) => {
@@ -86,7 +80,6 @@ export const tools: ToolDef[] = [
         fields: input.fields as string[] | undefined,
         verdict: input.verdict as string | undefined,
         category: input.category as string | undefined,
-        status: input.status as string | undefined,
         limit: input.limit as number,
       });
     },
@@ -319,7 +312,6 @@ export const tools: ToolDef[] = [
     inputSchema: dirSchema.extend({
       entry: z.string(),
       name: z.string(),
-      status: z.enum(['approved', 'draft']).default('draft'),
       overwrite: z.boolean().default(false),
     }),
     handler: async (input) => {
@@ -328,34 +320,8 @@ export const tools: ToolDef[] = [
         dir,
         entry: input.entry as string,
         name: input.name as string,
-        status: input.status as 'approved' | 'draft',
         overwrite: input.overwrite as boolean,
       });
-    },
-  },
-  {
-    name: 'review',
-    description: 'Review autonomous drafts: list, approve, or reject (record-as-skip)',
-    inputSchema: dirSchema.extend({
-      action: z.enum(['list', 'approve', 'reject']),
-      name: z.string().optional(),
-      reason: z.string().optional(),
-    }),
-    handler: async (input) => {
-      const dir = resolveDir(input.dir as string | undefined);
-      const action = input.action as string;
-      if (action === 'list') return { drafts: await listDrafts(dir) };
-      const name = input.name as string;
-      if (!name) throw new Error('name required for approve/reject');
-      if (action === 'approve') {
-        const r = await approveEntry(dir, name);
-        await generateAndWriteIndex({ dir, format: 'full', includeDrafts: false });
-        return { approved: name, path: r.path };
-      }
-      const reason = (input.reason as string) || 'no reason given';
-      const r = await rejectEntry(dir, name, reason);
-      await generateAndWriteIndex({ dir, format: 'full', includeDrafts: false });
-      return { rejected: name, path: r.path };
     },
   },
   {

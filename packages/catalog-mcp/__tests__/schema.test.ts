@@ -10,7 +10,6 @@ describe('entrySchema', () => {
     category: 'skill' as const,
     verdict: 'pilot' as const,
     verdict_reason: 'looks promising',
-    status: 'approved' as const,
     tags: ['testing'],
     reviewed: '2026-06-03',
   };
@@ -57,12 +56,19 @@ describe('entrySchema', () => {
     expect(result.success).toBe(false);
   });
 
-  it('defaults status to approved', () => {
-    const { status, ...noStatus } = validEntry;
-    const result = entrySchema.safeParse(noStatus);
+  it('does not include a status field (removed in v2.1.0)', () => {
+    const result = entrySchema.safeParse(validEntry);
     expect(result.success).toBe(true);
     if (result.success) {
-      expect(result.data.status).toBe('approved');
+      expect('status' in result.data).toBe(false);
+    }
+  });
+
+  it('ignores a stray legacy status key (zod strips unknown keys)', () => {
+    const result = entrySchema.safeParse({ ...validEntry, status: 'approved' });
+    expect(result.success).toBe(true);
+    if (result.success) {
+      expect('status' in result.data).toBe(false);
     }
   });
 });

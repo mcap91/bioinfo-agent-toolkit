@@ -4,7 +4,6 @@ import path from 'node:path';
 import { entrySchema } from './schema.js';
 import { parseFrontmatter, serializeFrontmatter } from './frontmatter.js';
 import { catalogPaths } from './config.js';
-import { isForceDraft } from './force-draft.js';
 
 interface LintResult {
   errors: string[];
@@ -93,7 +92,6 @@ export async function lint(options: LintOptions): Promise<LintFileResult[]> {
 
 function applyFixes(fm: Record<string, unknown>): Record<string, unknown> {
   const fixed = { ...fm };
-  if (!fixed.status) fixed.status = isForceDraft() ? 'draft' : 'approved';
   if (fixed.url === '') delete fixed.url;
   if (fixed.tags && !Array.isArray(fixed.tags)) fixed.tags = [];
   if (fixed.supersedes && !Array.isArray(fixed.supersedes)) fixed.supersedes = [];

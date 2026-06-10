@@ -7,7 +7,6 @@ import { VERDICTS } from './schema.js';
 interface IndexOptions {
   dir: string;
   format: 'full' | 'verdict' | 'workflow' | 'category';
-  includeDrafts: boolean;
 }
 
 interface IndexResult {
@@ -25,7 +24,6 @@ interface EntryData {
   verdict_reason: string;
   tags: string[];
   workflows: string[];
-  status: string;
 }
 
 // Ordinal comparator on lowercased strings — matches Python's
@@ -50,8 +48,6 @@ export async function generateIndex(options: IndexOptions): Promise<IndexResult>
 
   for (const [name, parsed] of raw) {
     const fm = parsed.frontmatter;
-    const status = (fm.status as string) || 'approved';
-    if (!options.includeDrafts && status === 'draft') continue;
 
     entries.push({
       name,
@@ -61,7 +57,6 @@ export async function generateIndex(options: IndexOptions): Promise<IndexResult>
       verdict_reason: fm.verdict_reason as string,
       tags: (fm.tags as string[]) || [],
       workflows: (fm.workflows as string[]) || [],
-      status,
     });
   }
 
