@@ -192,3 +192,74 @@ https://www.reddit.com/r/mcp/s/nkZ0BfhZJ4
 https://www.instagram.com/p/DZY-FHxnwIP/?img_index=1&igsh=MTc4MmM1YmI2Ng==
 https://www.instagram.com/p/DYuLTpCEvY8/?igsh=MTc4MmM1YmI2Ng==
 https://www.instagram.com/reel/DXhIODkDqq2/?igsh=MTc4MmM1YmI2Ng==
+
+
+```
+An active attack is planting backdoors inside Claude Code right now. If you use npm, your credentials may already be compromised.
+Last week a malware campaign hit 32 npm packages under `@redhat-cloud-services`. About 117,000 weekly downloads. If you installed an affected version, the malware planted itself inside your Claude Code startup settings and your VS Code project config. Every time you open either one, the attacker's code runs.
+
+It silently collects every credential on your machine and sends them to the attacker. Uninstalling the package does not remove it. The malware lives outside the package, in your editor config, and it survives cleanup.
+
+If you try to cut off the attacker's access by revoking tokens before removing the malware, it can wipe your entire home directory and overwrite the files so they cannot be recovered.
+
+Three days later, a second wave hit 57 more packages using a new technique that bypasses the security tools that caught the first wave. 647,000 monthly downloads affected. Some malicious versions are still live on the npm registry. The worm is self-propagating, it uses stolen tokens to infect new packages automatically.
+
+Here is how one stolen credential made all of this possible.
+
+The attacker got one Red Hat employee's GitHub login. Probably stolen weeks earlier by malware that grabs saved passwords from browsers. With that login they had the employee's access level.
+
+They pushed malicious code directly into three Red Hat repositories, no review needed, and triggered Red Hat's own build pipeline to publish the poisoned packages to npm. The packages came out with valid security certificates because Red Hat's own pipeline built them.
+
+There was no known vulnerability to scan for, and the malicious code was brand new, so security tools that look for known threats found nothing. The tools that caught it flagged it within hours, but by then the downloads had already happened.
+
+32 packages. About 117,000 weekly downloads. 96 poisoned versions pushed in two waves on June 1.
+
+Once installed on a developer's machine, the malware collected every credential it could find. AWS, Google Cloud, Azure, Kubernetes, SSH keys, GitHub tokens, npm tokens. It checked for CrowdStrike and SentinelOne before acting to avoid detection.
+
+Then it set up persistence. It planted code in two places: ~/.claude/settings.json and .vscode/tasks.json. These run automatically when you open Claude Code or open a project. The attacker gets re-entry every time, even after you clean up the original package.
+
+It also registered the company's build servers as machines the attacker controls remotely. That is persistent access to the build infrastructure itself.
+
+And if you rotate the attacker's credentials and cut off access, the malware wipes your home directory. Overwrites files so they cannot be recovered. The attacker built this in on purpose so companies think twice before revoking access.
+
+The group behind this is TeamPCP. Red Hat is their latest target, not their first. Same methods, same playbook, running since late 2025. Confirmed victims: GitHub (3,800 internal repos stolen, listed for sale at $50K), Mistral AI (code compromise confirmed; attacker claimed 450 repos at $25K), the European Commission (90+ GB exfiltrated), plus TanStack, UiPath, Zapier, Postman. Fortune 500 banks and government agencies confirmed but not named. Total across all waves: an estimated 500,000 credentials harvested across 1,000+ organizations. They are now working with a ransomware group.
+
+The worm's source code was open sourced by TeamPCP on May 12. Anyone can build their own version now. Copycats are already active.
+
+Sources:
+
+Red Hat / Miasma attack: Microsoft Threat Intelligence — https://www.microsoft.com/en-us/security/blog/2026/06/02/preinstall-persistence-inside-red-hat-npm-miasma-credential-stealing-campaign/
+
+Second wave (Phantom Gyp): StepSecurity — https://www.stepsecurity.io/blog/binding-gyp-npm-supply-chain-attack-spreads-like-worm
+
+Editor persistence + cleanup steps: Snyk — https://snyk.io/blog/miasma-supply-chain-attack-malicious-code-redhat-cloud-services-npm-packages/
+
+TeamPCP victims and scope: Tenable — https://www.tenable.com/blog/mini-shai-hulud-frequently-asked-questions
+
+2025 secrets stats: GitGuardian State of Secrets Sprawl 2026 — https://www.gitguardian.com/state-of-secrets-sprawl-report-2026
+
+CISA GovCloud leak: Krebs on Security — https://krebsonsecurity.com/2026/05/cisa-admin-leaked-aws-govcloud-keys-on-github/
+
+If you use npm, i wrote in the comments what to do, in order. Do not skip the order, it matters.
+
+Check if you installed an affected package. Run npm ls u/redhat-cloud-services, npm ls u/vapi-ai/server-sdk, and npm ls ai-sdk-ollama in your projects. Also check your lockfile for any version published June 1 or June 3-4. If you find one, assume every credential on that machine is already compromised and keep reading.
+
+Do not start by revoking tokens. If the backdoor is still on the machine and it sees its access getting cut, it can wipe your home directory. Clean the machine first, rotate second, in that order.
+
+Check ~/.claude/settings.json. Look for anything you did not add, especially SessionStart hooks. If you find something you do not recognize, screenshot it for evidence, disconnect the machine from the network, then remove it. Do not rotate anything from this machine.
+
+Check .vscode/tasks.json in your projects. Same thing. Look for tasks you did not create, especially anything that runs on folderOpen. Remove them.
+
+Check your GitHub security log at github.com/settings/security-log. Look for repositories you did not create, especially any with "Miasma" or "Shai-Hulud" in the description. Look for GitHub Actions workflows or self-hosted runners you did not set up. If you run CI/CD, revoke and rotate any GitHub Actions OIDC trust relationships, that is the exact hole the Red Hat attack used.
+
+Check if the worm already spread through you. Review your npm publish history and GitHub audit log for any package version or commit you did not make. The worm republishes packages from any account it can reach. If your account pushed something you did not, your maintainer credentials are compromised and so is anyone who installed that version.
+
+Now rotate, from a clean machine. After the persistence is removed, rotate everything the infected machine could reach, from a different, trusted device: npm tokens, GitHub PATs, SSH keys, then cloud credentials (AWS, GCP, Azure), Kubernetes, and Vault. Rotating from the infected machine lets the malware grab the new credentials too.
+
+Pin your dependencies with integrity hashes. A locked dependency with a content hash fails the install if a package gets republished with different content, before any code runs. This is the single best protection against the next wave.
+
+Install with scripts off until this settles. Use npm install --ignore-scripts. It blocks the install hooks the first wave used and the binding.gyp / node-gyp builds the second wave used. It may break packages that need native compilation, but right now it is the safest default.
+
+Scope your CI/CD tokens to least privilege. Credential theft only pays off if the secrets are reachable from the build host. A build token that can only do one job is worth far less to an attacker than one that can reach your whole cloud.
+
+```
