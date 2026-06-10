@@ -1,6 +1,6 @@
 // packages/catalog-mcp/__tests__/fetch-url.test.ts
 import { describe, it, expect } from 'vitest';
-import { validateUrl, extractReadable, resolveCleanContent } from '../src/core/fetch-url.js';
+import { validateUrl, extractReadable, resolveCleanContent, rewriteRedditUrl } from '../src/core/fetch-url.js';
 
 describe('SSRF guards', () => {
   it('allows https URLs', () => {
@@ -63,6 +63,35 @@ describe('SSRF guards', () => {
   it('allows normal domains starting with fc/fd (not IPv6 ULAs)', () => {
     expect(() => validateUrl('https://fdroid.org/packages')).not.toThrow();
     expect(() => validateUrl('https://fc2.com/page')).not.toThrow();
+  });
+});
+
+describe('rewriteRedditUrl', () => {
+  it('rewrites www.reddit.com to old.reddit.com', () => {
+    expect(rewriteRedditUrl('https://www.reddit.com/r/claudeskills/comments/abc/'))
+      .toBe('https://old.reddit.com/r/claudeskills/comments/abc/');
+  });
+
+  it('rewrites bare reddit.com to old.reddit.com', () => {
+    expect(rewriteRedditUrl('https://reddit.com/r/test/comments/123/'))
+      .toBe('https://old.reddit.com/r/test/comments/123/');
+  });
+
+  it('preserves query params and fragments', () => {
+    const url = 'https://www.reddit.com/r/sub/comments/x/?share_id=abc&utm_source=share';
+    const result = rewriteRedditUrl(url);
+    expect(result).toContain('old.reddit.com');
+    expect(result).toContain('share_id=abc');
+  });
+
+  it('does not rewrite old.reddit.com (already correct)', () => {
+    const url = 'https://old.reddit.com/r/sub/comments/x/';
+    expect(rewriteRedditUrl(url)).toBe(url);
+  });
+
+  it('does not rewrite non-Reddit URLs', () => {
+    const url = 'https://github.com/org/repo';
+    expect(rewriteRedditUrl(url)).toBe(url);
   });
 });
 

@@ -144,10 +144,25 @@ const MAX_REDIRECTS = 5;
 const TIMEOUT_MS = 30_000;
 const MAX_BODY_BYTES = 5 * 1024 * 1024;
 
+const REDDIT_HOSTS = new Set(['reddit.com', 'www.reddit.com']);
+
+/** Rewrite reddit.com → old.reddit.com to bypass bot-challenge pages. */
+export function rewriteRedditUrl(urlStr: string): string {
+  try {
+    const u = new URL(urlStr);
+    if (REDDIT_HOSTS.has(u.hostname)) {
+      u.hostname = 'old.reddit.com';
+      return u.href;
+    }
+  } catch { /* let validateUrl handle it */ }
+  return urlStr;
+}
+
 export async function fetchUrl(
   urlStr: string,
   opts: { clean?: boolean; minChars?: number } = {},
 ): Promise<FetchResult & { belowThreshold?: boolean }> {
+  urlStr = rewriteRedditUrl(urlStr);
   const parsed = validateUrl(urlStr);
   await validateResolvedIp(parsed.hostname);
 
