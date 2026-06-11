@@ -9,7 +9,7 @@ import type { BlockedDomain } from './schema.js';
 interface DrainResult {
   ingested: number;
   blocked: number;
-  skipped: number;
+  skipped: { url: string; reason: string }[];
 }
 
 function hostBlocked(url: string, blocked: BlockedDomain[]): boolean {
@@ -31,14 +31,14 @@ export async function drainInbox(dir: string): Promise<DrainResult> {
   const config = await loadConfig(dir);
 
   let text: string;
-  try { text = await readFile(inboxPath, 'utf-8'); } catch { return { ingested: 0, blocked: 0, skipped: 0 }; }
+  try { text = await readFile(inboxPath, 'utf-8'); } catch { return { ingested: 0, blocked: 0, skipped: [] }; }
 
   const lines = text.replace(/\r\n/g, '\n').split('\n');
   const items = parseInbox(text);
 
   let ingested = 0;
   let blocked = 0;
-  let skipped = 0;
+  const skipped: { url: string; reason: string }[] = [];
 
   // Classify every item and build a map of line-index → what to do with it.
   // Actions: 'drop' (remove), 'keep-marked' (replace line with marked version), 'keep' (verbatim).
@@ -72,8 +72,11 @@ export async function drainInbox(dir: string): Promise<DrainResult> {
     });
 
     const success = r.count > 0;
-    if (success) ingested++;
-    else skipped++;
+    if (success) {
+      ingested++;
+    } else {
+      for (const s of r.skipped) skipped.push({ url: s.key, reason: s.reason });
+    }
 
     // Drop all lines belonging to this item regardless of ingestion result.
     for (let ln = item.startLine; ln <= item.endLine; ln++) {
@@ -94,8 +97,8 @@ export async function drainInbox(dir: string): Promise<DrainResult> {
     // action === 'drop' → skip line.
   }
 
-  // Normalize: LF only, trim trailing whitespace on the overall output, single trailing newline.
-  let out = outLines.join('\n').replace(/\r\n/g, '\n').trimEnd() + '\n';
+  // Normalize: LF only, collapse runs of blank lines, trim, single trailing newline.
+  let out = outLines.join('\n').replace(/\r\n/g, '\n').replace(/\n{3,}/g, '\n\n').trimEnd() + '\n';
 
   // Atomic-ish rewrite.
   const tmp = inboxPath + '.tmp';
