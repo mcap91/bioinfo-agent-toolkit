@@ -1,6 +1,6 @@
 # Catalog Index
 
-Generated from 94 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
+Generated from 96 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
 
 ## By Verdict
 
@@ -16,6 +16,7 @@ Generated from 94 entries in `catalog/entries/`. Regenerate with the catalog `in
 | [Vaultwarden](entries/vaultwarden.md) | framework | adopt | Production-grade self-hosted Bitwarden-compatible password server in Rust; fraction of the resource footprint of the official server | password-manager, self-hosted, bitwarden, rust, docker, security, secrets |
 | [Web Artifacts Builder](entries/web-artifacts-builder.md) | skill | adopt | use when markdown isn't enough for interactive reports/dashboards | html, reports, dashboards, visualization |
 | [Advise Project Approach](entries/advise-project-approach.md) | skill | pilot | structured project-level architecture research with comparable analysis, cost checks, and tradeoff discipline; complements /catalog (tool-level) with project-level advisory | architecture, stack-selection, comparables, cost-analysis, project-strategy, decision-methodology |
+| [BioMysteryBench](entries/biomysterybench.md) | reference | pilot | 99-problem bioinformatics research benchmark from Anthropic — directly useful for evaluating agent performance on real research tasks. | benchmark, bioinformatics, evaluation, dataset, research, anthropic |
 | [BMAD Skill Forge](entries/bmad-skill-forge.md) | skill-generator | pilot | strong fit for bioinformatics tool skill generation; start with Brief tier on samtools | skill-generation, provenance, ast, cli-tools |
 | [Book to Skill](entries/book-to-skill.md) | skill | pilot | directly useful for computational biology methods PDFs | pdf, knowledge, querying |
 | [Browser Use](entries/browser-use.md) | framework | pilot | MIT-licensed Python/Rust framework giving LLM agents real browser control — useful for web scraping, form automation, and accessing bioinformatics portals, but Rust-core beta is still experimental and full capability requires commercial cloud | browser-automation, web-scraping, agent, python, rust, claude-code-skill |
@@ -82,6 +83,7 @@ Generated from 94 entries in `catalog/entries/`. Regenerate with the catalog `in
 | [Inbox Zero](entries/inbox-zero.md) | framework | note | AI-powered self-hostable email management app — strong open-source email assistant, not a developer/agent toolkit. | email, ai-assistant, gmail, productivity, self-hosted, open-source |
 | [OBLITERATUS](entries/obliteratus.md) | framework | note | Mechanistic interpretability research toolkit for refusal removal — notable as a reference for alignment geometry, but not safe to adopt in agent pipelines and irrelevant to bioinformatics workflows | llm, mechanistic-interpretability, abliteration, alignment, safety-bypass, research, gradio, python |
 | [Obsidian Skills (Kepano)](entries/obsidian-skills.md) | skill | note | Obsidian-specific; Defuddle (web→clean markdown) and skill packaging patterns worth noting | obsidian, skills, markdown, canvas, defuddle, web-extraction |
+| [OpenRouter](entries/openrouter.md) | framework | note | Unified LLM API gateway supporting 200+ models — useful as infrastructure reference, not directly needed when using Claude natively. | llm, api-gateway, model-routing, openai-compatible, infrastructure |
 | [Paperless-ngx](entries/paperless-ngx.md) | framework | note | Mature self-hosted document management system — useful for archiving research docs but not an agent tool or developer library | document-management, self-hosted, ocr, search, archive, docker, paperless |
 | [Pi-hole](entries/pi-hole.md) | reference | note | Network-wide DNS ad blocker — mature infrastructure tool, informational for lab network hygiene | dns, ad-blocking, privacy, self-hosted, network, sinkhole, dhcp |
 | [Remote Control](entries/remote-control.md) | reference | note | built-in feature; try for long sessions | mobile, remote, sessions |
@@ -130,6 +132,7 @@ Generated from 94 entries in `catalog/entries/`. Regenerate with the catalog `in
 - [Autoharness](entries/autoharness.md) — watch — needs eval benchmarks first; pilot when we have eval criteria for our skills/agents
 - [Autoresearch](entries/autoresearch.md) — note — Highly influential autonomous experimentation loop pattern, but ML-training-specific — transferable idea, not transferable code
 - [Awesome Claude Code](entries/awesome-claude-code.md) — note — curated Claude Code ecosystem list; use as discovery source for future catalog inbox items
+- [BioMysteryBench](entries/biomysterybench.md) — pilot — 99-problem bioinformatics research benchmark from Anthropic — directly useful for evaluating agent performance on real research tasks.
 - [Browser Use](entries/browser-use.md) — pilot — MIT-licensed Python/Rust framework giving LLM agents real browser control — useful for web scraping, form automation, and accessing bioinformatics portals, but Rust-core beta is still experimental and full capability requires commercial cloud
 - [CASTEM: First Principles for Model-Mediated Work](entries/castem-first-principles-model-mediated-work.md) — note — Portable 6-criterion mnemonic (Credible, Auditable, Supervised, Traceable, Explainable, Monitored) for AI governance in regulated settings — good design checklist, no tooling.
 - [Claude Agent Teams](entries/agent-teams.md) — adopt — primary interactive dispatch path; subscription billing, no API credits needed
@@ -183,6 +186,7 @@ Generated from 94 entries in `catalog/entries/`. Regenerate with the catalog `in
 - [OpenClaw](entries/openclaw.md) — skip — ecosystem signal for agentic workspaces; not a concrete kb comparison
 - [opencode-fff-search](entries/opencode-fff-search.md) — watch — Drop-in OpenCode grep/glob replacement with Rust-backed in-memory index, frecency ranking, and SIMD literal matching — 3-10x faster than process-spawning ripgrep at scale.
 - [OpenDataLoader PDF](entries/opendataloader-pdf.md) — pilot — Top-benchmarked open-source PDF parser with bounding boxes, formula extraction, and RAG-ready output — worth piloting for bioinformatics literature ingestion before committing.
+- [OpenRouter](entries/openrouter.md) — note — Unified LLM API gateway supporting 200+ models — useful as infrastructure reference, not directly needed when using Claude natively.
 - [OpenSpace](entries/openspace.md) — watch — Compelling skill-evolution engine for Claude Code agents but very new (v0.1.0), self-published benchmark, and significant security surface from community skill ingestion
 - [Paperless-ngx](entries/paperless-ngx.md) — note — Mature self-hosted document management system — useful for archiving research docs but not an agent tool or developer library
 - [Pi-hole](entries/pi-hole.md) — note — Network-wide DNS ad blocker — mature infrastructure tool, informational for lab network hygiene
@@ -260,6 +264,7 @@ Generated from 94 entries in `catalog/entries/`. Regenerate with the catalog `in
 - [Onyx AI Platform](entries/onyx-ai-platform.md) — watch — Full self-hostable AI platform with agentic RAG and MCP — notable architecture reference, but too deployment-heavy to adopt as a composable toolkit component
 - [Open WebUI](entries/open-webui.md) — watch — Leading self-hosted LLM web UI with RAG, pipelines, and enterprise auth — relevant infrastructure context but custom non-SPDX license limits adoption
 - [OpenClaw](entries/openclaw.md) — skip — ecosystem signal for agentic workspaces; not a concrete kb comparison
+- [OpenRouter](entries/openrouter.md) — note — Unified LLM API gateway supporting 200+ models — useful as infrastructure reference, not directly needed when using Claude natively.
 - [OpenSpace](entries/openspace.md) — watch — Compelling skill-evolution engine for Claude Code agents but very new (v0.1.0), self-published benchmark, and significant security surface from community skill ingestion
 - [Paperless-ngx](entries/paperless-ngx.md) — note — Mature self-hosted document management system — useful for archiving research docs but not an agent tool or developer library
 - [Repowire](entries/repowire.md) — watch — Compelling multi-agent mesh for cross-repo coordination, but macOS/Linux only and default spawn config ships dangerous permission flags
@@ -294,6 +299,7 @@ Generated from 94 entries in `catalog/entries/`. Regenerate with the catalog `in
 - [AI Memory Comparison](entries/ai-memory-comparison.md) — adopt — Definitive source-backed survey of 73 open-source AI agent memory systems across 79 features — every claim cites public code or docs.
 - [AI Needs What ALCOA+ Gave Records](entries/alcoa-plus-for-ai.md) — note — Useful framing for regulated-AI governance but no actionable tool or framework yet — CASTEM teased but unpublished
 - [Awesome Claude Code](entries/awesome-claude-code.md) — note — curated Claude Code ecosystem list; use as discovery source for future catalog inbox items
+- [BioMysteryBench](entries/biomysterybench.md) — pilot — 99-problem bioinformatics research benchmark from Anthropic — directly useful for evaluating agent performance on real research tasks.
 - [CASTEM: First Principles for Model-Mediated Work](entries/castem-first-principles-model-mediated-work.md) — note — Portable 6-criterion mnemonic (Credible, Auditable, Supervised, Traceable, Explainable, Monitored) for AI governance in regulated settings — good design checklist, no tooling.
 - [Claude Code Remote Prompt Hardening](entries/claude-code-remote-prompt-hardening.md) — note — env vars to block remote system prompt injection in Claude Code; operational hardening knowledge for security-sensitive environments
 - [Claude Decision Pressure-Test & Context Handoff Prompts](entries/claude-decision-pressure-test-and-context-handoff.md) — note — Two reusable prompting patterns — steelman/red-team verdict loop and structured context handoff — worth keeping as copy-paste references
