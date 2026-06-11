@@ -1,7 +1,7 @@
 ---
 name: third-brain-v5-wiki
-title: "Third Brain V5 (Wiki/Knowledge Layer)"
-url: https://github.com/Mark393295827/third-brain-v5-skills
+title: Third Brain V5 (Wiki/Knowledge Layer)
+url: "https://github.com/Mark393295827/third-brain-v5-skills"
 category: framework
 verdict: skip
 verdict_reason: "Obsidian-specific schema, heavy; staleness and contradiction detection concepts worth noting for kb"
@@ -9,6 +9,10 @@ tags: [wiki, knowledge-os, ingest, lint, kb]
 reviewed: 2026-05-25
 acquired: 2026-05-25
 supersedes: []
+license: MIT
+security_flags: []
+workflows: []
+overlaps: []
 ---
 
 ## What it does
@@ -37,3 +41,9 @@ Obsidian-specific schema is the primary incompatibility — kb wiki uses typed r
 ## Mechanical details
 
 Do not install. Obsidian-specific schema is incompatible with kb wiki's record format, and running a separate knowledge OS alongside kb would create competing sources of truth. The three lint concepts (staleness, contradiction, ingest) can be developed as native kb lint rules without any Third Brain code. Study the wiki-lint skill definition in the source repo for the staleness threshold and contradiction detection heuristics.
+
+## Security
+
+Licensed MIT. No executable binaries are distributed — the package consists entirely of Markdown skill files that are copied into the user's agent config directory (e.g. `~/.claude/skills/`). The install script (`install.sh`) performs only directory creation and file copies; it does not download additional dependencies, modify system paths, or escalate privileges. The ChromaDB dependency used by the knowledge-ops skill is only relevant if that skill is actively run, and is invoked via `pip install` at the user's discretion, not automatically.
+
+No credentials, tokens, or network calls are required at install time. Skills run entirely through the agent's own LLM context — they contain no server-side components, webhooks, or telemetry. The primary security consideration is supply-chain: skills are installed into the global agent config and will be loaded for all projects on that machine. Review individual skill files before installing, and prefer project-scoped installation (`.claude/skills/`) over global (`~/.claude/skills/`) to limit blast radius.

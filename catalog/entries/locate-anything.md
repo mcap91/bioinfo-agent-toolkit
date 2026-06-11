@@ -1,16 +1,18 @@
 ---
 name: locate-anything
-title: "LocateAnything"
-url: https://research.nvidia.com/labs/lpr/locate-anything/
+title: LocateAnything
+url: "https://research.nvidia.com/labs/lpr/locate-anything/"
 category: framework
 verdict: watch
-verdict_reason: "novel parallel box decoding for vision-language grounding; 3B model on HuggingFace; evaluate for spatial/histology image analysis when pipeline matures"
+verdict_reason: novel parallel box decoding for vision-language grounding; 3B model on HuggingFace; evaluate for spatial/histology image analysis when pipeline matures
 tags: [vision, grounding, object-detection, nvidia, spatial, histology, image-analysis]
+license: Apache-2.0 (code); NVIDIA non-commercial research license (model weights)
 workflows: [spatial]
 reviewed: 2026-05-27
 acquired: 2026-05-27
 supersedes: []
 overlaps: []
+security_flags: [trust_remote_code]
 ---
 
 ## What it does
@@ -24,3 +26,9 @@ Potentially relevant for spatial transcriptomics workflows — grounding arbitra
 ## Mechanical details
 
 Model: `huggingface.co/nvidia/LocateAnything-3B`. Code: `github.com/NVlabs/Eagle/tree/main/Embodied`. Demo: `huggingface.co/spaces/nvidia/LocateAnything`. Paper: arXiv:2605.27365 (Wang et al., 2026). Pilot trigger: when spatial transcriptomics pipeline includes an image grounding step, evaluate on a representative H&E image with tissue-type text queries.
+
+## Security
+
+The model weights (`nvidia/LocateAnything-3B`) are released under NVIDIA's non-commercial research license — commercial use is prohibited except by NVIDIA and its affiliates, making this unsuitable for production or commercial pipelines without a separate agreement. The code repository (NVlabs/Eagle) is Apache 2.0, but the model incorporates Qwen2.5-3B-Instruct (Qwen Research License) and MoonViT-SO-400M (MIT), so the most restrictive upstream term (Qwen Research License) applies to derived deployments. NVIDIA explicitly labels this model as "for research and development only."
+
+Loading the model requires `trust_remote_code=True`, which executes arbitrary Python from the HuggingFace model card at load time — verify the model revision is pinned and the remote code reviewed before use in any automated pipeline. No known CVEs or prompt-injection disclosures were identified at time of review; the model processes image and text inputs only and does not make network calls at inference time.

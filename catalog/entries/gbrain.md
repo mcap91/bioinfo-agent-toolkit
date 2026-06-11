@@ -1,14 +1,18 @@
 ---
 name: gbrain
-title: "gbrain"
-url: https://github.com/garrytan/gbrain
+title: gbrain
+url: "https://github.com/garrytan/gbrain"
 category: framework
 verdict: skip
-verdict_reason: "kb wiki already provides persistent typed records with relationships and search"
+verdict_reason: kb wiki already provides persistent typed records with relationships and search
 tags: [memory-graph, vector-search, kb]
 reviewed: 2026-05-25
 acquired: 2026-05-25
 supersedes: []
+license: MIT
+security_flags: []
+workflows: []
+overlaps: []
 ---
 
 ## What it does
@@ -22,3 +26,7 @@ kb wiki already provides persistent, typed records with relationships and text-b
 ## Mechanical details
 
 Do not install. The use case is fully covered by kb wiki + kb graph. If search relevance becomes a concern in the future, vector embeddings could be added to the existing search index rather than adopting a separate memory graph system.
+
+## Security
+
+Licensed MIT. The project ships a `SECURITY.md` documenting its OAuth 2.1 threat model and hardening defaults for the HTTP MCP server (scope-gated access: read / write / admin, DCR-style client registration, rate limiting). The local PGLite path has no network exposure by default; the HTTP server path requires explicit `gbrain serve --http` and bearer-token or OAuth setup. Team/multi-user deployments use per-login brain scoping; the README notes fuzz-testing across all read paths with zero cross-user data leaks observed. No supply-chain concerns beyond standard npm/bun ecosystem; install is from a public GitHub repo with no binary blobs. Since verdict is `skip`, no install or credential exposure applies to this project.

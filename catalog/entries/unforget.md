@@ -1,13 +1,17 @@
 ---
 name: unforget
-title: "Unforget"
+title: Unforget
 category: skill
 verdict: skip
-verdict_reason: "scan-for-escaped-items pattern worth noting for future kb lint rule or audit command"
+verdict_reason: scan-for-escaped-items pattern worth noting for future kb lint rule or audit command
 tags: [deferred-work, scanner, todos, kb]
 reviewed: 2026-05-25
 acquired: 2026-05-25
 supersedes: []
+license: unknown
+security_flags: []
+workflows: []
+overlaps: []
 ---
 
 ## What it does
@@ -29,3 +33,9 @@ kb wiki tracks what you explicitly create records for — it assumes you'll crea
 ## Mechanical details
 
 Do not install. The concept is the value, not the tool. Implementing the sweep pattern natively in kb lint would be more useful than a separate scanner that doesn't understand kb's record schema. If a future kb lint rule is implemented, the UNFORGET.md rating table format (10-column with Target column) is a useful reference for what a consolidation output could look like.
+
+## Security
+
+Unforget is a Claude Code skill distributed as a Reddit post rather than a published package, so there is no installation surface, no dependency chain, and no executable binary to audit. The "tool" is entirely prompt text that the user copies into their own skill file — the security boundary is the same as any custom slash command: only what you paste into the skill runs, and it only reads local files (TODO comments, plan files, memory entries) with no network access or external calls.
+
+No security flags apply. The swept file paths are local and read-only by design; the only write is to UNFORGET.md in the project root. Users who adopt the sweep pattern natively in kb lint (the recommended path per this entry's verdict) inherit whatever sandboxing kb already applies to lint commands.

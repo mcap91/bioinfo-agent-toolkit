@@ -1,11 +1,13 @@
 ---
 name: claude-mem
-title: "Claude Mem"
-url: https://github.com/thedotmack/claude-mem
+title: Claude Mem
+url: "https://github.com/thedotmack/claude-mem"
 category: framework
 verdict: skip
-verdict_reason: "kb wiki + Claude Code built-in memory cover our needs; adds SQLite + Chroma + worker complexity without clear benefit"
+verdict_reason: kb wiki + Claude Code built-in memory cover our needs; adds SQLite + Chroma + worker complexity without clear benefit
 tags: [memory, persistence, vector-search, sessions, hooks, kb]
+license: Apache-2.0
+security_flags: []
 workflows: []
 reviewed: 2026-05-25
 acquired: 2026-05-25
@@ -29,3 +31,9 @@ We already have two memory layers that cover this space: Claude Code's built-in 
 - Worker: runs on port 37777, provides HTTP API + web UI
 - Hooks: 5 lifecycle hooks auto-capture session activity
 - Storage: SQLite for observations, Chroma for vector/semantic search
+
+## Security
+
+Licensed under Apache 2.0, a permissive OSI-approved license that allows use in commercial, enterprise, and agentic tool stacks without restriction. No security flags are raised for the license itself.
+
+The tool's risk profile is moderate for adoption purposes. It runs a persistent background worker service (port 37777) that exposes a local HTTP API and web UI, automatically intercepts 5 Claude Code lifecycle hooks, and stores all session observations in a local SQLite database alongside a Chroma vector DB. The hook-based auto-capture means every tool call and session interaction is recorded — users should be aware of what is persisted and use `<private>` tags to exclude sensitive content. The worker port is localhost-only by default, but the running process increases local attack surface. No network exfiltration concerns are documented. An associated third-party Solana token ($CMEM) was created without the author's prior consent (later endorsed); this has no bearing on the software itself but is worth noting for supply-chain awareness.

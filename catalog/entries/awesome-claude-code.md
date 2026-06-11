@@ -1,11 +1,13 @@
 ---
 name: awesome-claude-code
-title: "Awesome Claude Code"
-url: https://github.com/hesreallyhim/awesome-claude-code
+title: Awesome Claude Code
+url: "https://github.com/hesreallyhim/awesome-claude-code"
 category: reference
 verdict: note
-verdict_reason: "curated Claude Code ecosystem list; use as discovery source for future catalog inbox items"
+verdict_reason: curated Claude Code ecosystem list; use as discovery source for future catalog inbox items
 tags: [awesome-list, skills, agents, hooks, orchestrators, discovery]
+license: CC-BY-NC-ND-4.0
+security_flags: []
 workflows: []
 reviewed: 2026-05-25
 acquired: 2026-05-25
@@ -26,3 +28,9 @@ Similar to Claude Spellbook (already cataloged as reference/note) — a curated 
 - Use as a periodic discovery source: browse for new tools to add to catalog/inbox.md
 - Check back after reorganization completes for better navigability
 - Cross-reference with Claude Spellbook for coverage gaps
+
+## Security
+
+Licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0), which permits sharing with attribution but prohibits commercial use and derivative works. This is a reference list, not executable code — there is nothing to install, execute, or integrate directly from this repository.
+
+The security risk profile is minimal: the entry is read-only reference material. The only indirect risk is that linked tools within the list are unvetted at the list level; individual entries must be assessed before adoption. No supply-chain, execution, or secrets-exposure concerns apply to the list itself.

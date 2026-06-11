@@ -1,14 +1,18 @@
 ---
 name: verify-before-claim
-title: "Verify Before Claim (Third Brain V5)"
-url: https://github.com/Mark393295827/third-brain-v5-skills
+title: Verify Before Claim (Third Brain V5)
+url: "https://github.com/Mark393295827/third-brain-v5-skills"
 category: reference
 verdict: note
-verdict_reason: "superpowers verification-before-completion covers this; confidence model is the novel addition"
+verdict_reason: superpowers verification-before-completion covers this; confidence model is the novel addition
 tags: [verification, quality, confidence-model]
 reviewed: 2026-05-25
 acquired: 2026-05-25
 supersedes: []
+license: MIT
+security_flags: []
+workflows: []
+overlaps: []
 ---
 
 ## What it says
@@ -31,3 +35,9 @@ Third Brain V5's verify-before-claim skill enforces that no completion claim is 
 ## What to adopt
 
 No immediate action. If a future skill or workflow needs probabilistic confidence reporting rather than binary verification, revisit the confidence model from this source. The single-source flagging concept is also worth incorporating if hallucination rates on reference-backed claims become a concern.
+
+## Security
+
+This is a pure prompt/skill file — no executable code, no binaries, no network calls, and no dependencies beyond the agent runtime that already loads it. The MIT license imposes no usage restrictions. Installation copies Markdown files into the agent's skills directory (`~/.claude/skills/` or `.claude/skills/`), so the only adoption surface is the text of the skill itself being added to the agent's context.
+
+No security flags apply. The skill does not request elevated permissions, does not touch the filesystem beyond what the calling agent already has access to, and does not introduce supply-chain risk beyond trusting the upstream GitHub repository's Markdown content.

@@ -1,14 +1,18 @@
 ---
 name: openclaw
-title: "OpenClaw"
-url: https://openclaw.ai/
+title: OpenClaw
+url: "https://openclaw.ai/"
 category: framework
 verdict: skip
-verdict_reason: "ecosystem signal for agentic workspaces; not a concrete kb comparison"
+verdict_reason: ecosystem signal for agentic workspaces; not a concrete kb comparison
 tags: [assistant, orchestration, local-first, kb]
 reviewed: 2026-05-25
 acquired: 2026-05-25
 supersedes: []
+license: unknown
+security_flags: []
+workflows: []
+overlaps: []
 ---
 
 ## What it does
@@ -22,3 +26,9 @@ OpenClaw is more ecosystem context than a concrete kb comparison. There is no di
 ## Mechanical details
 
 Do not install. No concrete concepts identified for adoption into kb. Monitor as ecosystem signal for local-first agentic workspace patterns if the kb roadmap expands toward cross-app integration.
+
+## Security
+
+OpenClaw is self-hosted and local-first — the agent runs on the user's own machine and acts with broad system access (file system, browser, email, calendar, API keys). The marketing site describes instances "accessing your files, Gmail, calendar, everything about you" continuously, and users report it autonomously opening browsers, configuring OAuth tokens, and controlling system processes. The exact license could not be confirmed from public sources; the product is described as open source but the GitHub repository was not reachable at review time.
+
+Because the agent runs with wide OS-level permissions and integrates outbound messaging channels (WhatsApp, Telegram, Discord), the attack surface is broad: compromised skills, prompt injection via messages, or a malicious inbox item could trigger unintended actions. The verdict is skip/ecosystem-signal, so installation is not recommended; if evaluated, scope its permissions tightly and treat inbound messages from external channels as untrusted input.

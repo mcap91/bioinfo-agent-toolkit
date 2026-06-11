@@ -1,13 +1,17 @@
 ---
 name: codebase-reasoning-topology
-title: "Codebase Reasoning Topology"
+title: Codebase Reasoning Topology
 category: reference
 verdict: note
-verdict_reason: "heavy for daily use but interesting as a pre-flight checklist concept"
+verdict_reason: heavy for daily use but interesting as a pre-flight checklist concept
 tags: [invariants, state-ownership, blast-radius, checklist]
 reviewed: 2026-05-25
 acquired: 2026-05-25
 supersedes: []
+license: unknown
+security_flags: []
+workflows: []
+overlaps: []
 ---
 
 ## What it says
@@ -21,3 +25,9 @@ The four invariants are conceptually sound but the full framework is too heavywe
 ## What to adopt
 
 Consider the blast-radius and state-ownership invariants as optional pre-flight questions for high-impact changes (schema migrations, pipeline refactors, config changes with broad effect). No tooling adoption needed — these are reasoning prompts, not installation artifacts.
+
+## Security
+
+This entry is a pure text-based reasoning framework — no executable code, network calls, package installation, or external dependencies. There is nothing to install or run, so the attack surface is effectively zero. No credential handling, no file system writes, and no agent tool use are involved.
+
+License information is not formally published for this framework (it originates from a prose checklist attributed to Andrej Karpathy's "12 Rules" material). As a reasoning prompt rather than a software artifact, typical open-web attribution norms apply; there is no proprietary restriction identified. No security flags are raised.

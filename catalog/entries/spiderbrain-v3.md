@@ -1,14 +1,18 @@
 ---
 name: spiderbrain-v3
-title: "Spiderbrain V3"
-url: https://github.com/SaroirCommunity/Spiderbrain-V3
+title: Spiderbrain V3
+url: "https://github.com/SaroirCommunity/Spiderbrain-V3"
 category: framework
 verdict: skip
-verdict_reason: "BSL license; master/column concept is the key takeaway for kb graph"
+verdict_reason: BSL license; master/column concept is the key takeaway for kb graph
 tags: [dependency-graph, token-reduction, scoring, kb]
 reviewed: 2026-05-25
 acquired: 2026-05-25
 supersedes: []
+license: BSL-1.1
+security_flags: []
+workflows: []
+overlaps: []
 ---
 
 ## What it does
@@ -41,3 +45,9 @@ BSL 1.1 license on the core (commercial production requires a paid license; conv
 ## Mechanical details
 
 Do not install. BSL 1.1 license prohibits commercial production use. The master/column detection concept can be implemented independently in kb graph using fan-in counts from the existing graph structure and git log for change frequency — no Spiderbrain code required. Study the README for the scoring formula; the synganglion.json schema is a useful reference for what a scored graph output looks like.
+
+## Security
+
+This repository is deprecated and archived; Spiderbrain V3 (v3.0.0, May 2026) is no longer maintained by the original authors, who have moved the project to a proprietary product at spiderbrain.ai. No new CVEs, dependency patches, or security fixes will be issued against this codebase.
+
+The tool operates entirely on local files (JS/TS imports, git history, tsconfig) and produces static output files — it does not make network calls at runtime, so the supply-chain risk surface is limited to its npm dependencies at install time. Given the BSL 1.1 verdict and the deprecated status of the repo, the correct action is non-adoption; no further security assessment is warranted.

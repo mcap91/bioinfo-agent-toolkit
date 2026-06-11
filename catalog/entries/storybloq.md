@@ -1,14 +1,18 @@
 ---
 name: storybloq
-title: "Storybloq"
-url: https://github.com/Storybloq/storybloq
+title: Storybloq
+url: "https://github.com/Storybloq/storybloq"
 category: framework
 verdict: skip
-verdict_reason: "PolyForm Noncommercial license + heavy overlap with kb wiki"
+verdict_reason: PolyForm Noncommercial license + heavy overlap with kb wiki
 tags: [project-state, wiki, tickets, kb]
 reviewed: 2026-05-25
 acquired: 2026-05-25
 supersedes: []
+license: PolyForm Noncommercial 1.0.0
+security_flags: []
+workflows: []
+overlaps: []
 ---
 
 ## What it does
@@ -44,3 +48,7 @@ PolyForm Noncommercial 1.0.0 license is a hard blocker for any commercial adopti
 ## Mechanical details
 
 Do not install. PolyForm Noncommercial license prohibits commercial use, and kb wiki covers the same ground. The two concepts worth studying (PreCompact hook and Lessons lifecycle) can be extracted from the README without running the tool. If kb ever implements a compaction hook, Storybloq's `.story/snapshots/` approach is a concrete reference for what state to capture.
+
+## Security
+
+Storybloq is an npm global package that registers an MCP server and installs hooks into Claude Code's settings. The `storybloq setup --client all` command mutates `~/.claude/settings.json` to add PreCompact and SessionStart hooks, meaning a compromised or malicious package version could inject arbitrary shell commands that run inside every Claude Code session. The MCP server itself exposes 53 tools with write access to `.story/` records; tools that mutate state (create/update/delete tickets, issues, lessons, handovers) run without additional confirmation prompts once the server is registered. The PolyForm Noncommercial license means no security audit obligation or commercial support path exists; vulnerabilities would rely on community disclosure alone. For reference/study use only — do not install in any environment where the MCP server would be active.
