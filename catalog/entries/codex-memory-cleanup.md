@@ -1,6 +1,6 @@
 ---
 name: codex-memory-cleanup
-title: "Codex Memory Cleanup"
+title: Codex Memory Cleanup
 category: reference
 verdict: note
 verdict_reason: "operational tip: delete state/log/global-state files if Codex performance degrades"
@@ -8,6 +8,10 @@ tags: [codex, maintenance, performance]
 reviewed: 2026-05-25
 acquired: 2026-05-25
 supersedes: []
+license: unknown
+security_flags: []
+workflows: []
+overlaps: []
 ---
 
 ## What it says
@@ -26,3 +30,9 @@ If Codex performance degrades, delete these files before escalating to other deb
 - `.codex/.codex-global-state.json`
 
 These files are in the Codex data directory (typically `~/.codex/` or the project `.codex/` folder depending on configuration).
+
+## Security
+
+This entry describes a local file deletion procedure, not a third-party tool — there is no installation surface and no network activity involved. The files targeted (`.codex/state_5.sqlite`, `.codex/logs_2.sqlite`, `.codex/.codex-global-state.json`) are local SQLite databases and a JSON state file written by Codex itself; deleting them carries no supply-chain or injection risk.
+
+The only security consideration is accidental data loss: the procedure is irreversible (no backup step). Users with meaningful conversation history stored in the global-state file should confirm they do not need to recover that data before deleting. No elevated privileges are required and the operation has no effect on system files outside the `.codex/` directory.

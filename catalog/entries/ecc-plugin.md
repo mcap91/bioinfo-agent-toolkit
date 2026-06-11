@@ -1,15 +1,19 @@
 ---
 name: ecc-plugin
-title: "Everything Claude Code (ECC)"
-url: https://www.claudepluginhub.com/plugins/affaan-m-everything-claude-code
+title: Everything Claude Code (ECC)
+url: "https://www.claudepluginhub.com/plugins/affaan-m-everything-claude-code"
 category: plugin
 verdict: watch
-verdict_reason: "rate-limited (429 errors); trial when accessible"
-install: "npx claudepluginhub affaan-m/ecc --plugin ecc"
+verdict_reason: rate-limited (429 errors); trial when accessible
+install: npx claudepluginhub affaan-m/ecc --plugin ecc
 tags: [plugin, hub, all-in-one]
 reviewed: 2026-05-25
 acquired: 2026-05-25
 supersedes: []
+license: unknown
+security_flags: [unverified-content, bundled-install, npx-remote-exec]
+workflows: []
+overlaps: []
 ---
 
 ## What it does
@@ -23,3 +27,7 @@ Cannot fully evaluate without access. The bundled approach may introduce conflic
 ## Mechanical details
 
 Install: `npx claudepluginhub affaan-m/ecc --plugin ecc`. If the rate limit has cleared, trial in an isolated project before adding to the main stack. Evaluate for overlap with superpowers and existing skills before enabling broadly.
+
+## Security
+
+License is unknown — the plugin hub page was unreachable during review (429 errors), so no license, source code, or publisher verification was possible. The install mechanism (`npx claudepluginhub`) executes remote code directly without a pinned version, which is a supply-chain risk common to the npx-remote-exec pattern. The bundled all-in-one nature means the attack surface is wider than a single-purpose plugin; if any bundled component is malicious or compromised, the entire install is affected. Trial only in an isolated project with no access to production credentials or sensitive directories until the content can be verified and the publisher's identity confirmed.

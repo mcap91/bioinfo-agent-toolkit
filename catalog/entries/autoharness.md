@@ -1,14 +1,18 @@
 ---
 name: autoharness
-title: "Autoharness"
-url: https://github.com/kayba-ai/autoharness
+title: Autoharness
+url: "https://github.com/kayba-ai/autoharness"
 category: framework
 verdict: watch
-verdict_reason: "needs eval benchmarks first; pilot when we have eval criteria for our skills/agents"
+verdict_reason: needs eval benchmarks first; pilot when we have eval criteria for our skills/agents
 tags: [harness, optimization, eval, benchmarks]
 reviewed: 2026-05-25
 acquired: 2026-05-25
 supersedes: []
+license: MIT
+security_flags: []
+workflows: []
+overlaps: []
 ---
 
 ## What it does
@@ -27,3 +31,7 @@ The `generic_command` adapter works with any scoring command, making it compatib
 ## Mechanical details
 
 Install from GitHub. Requires a benchmark adapter and scoring command before meaningful optimization can begin. For bioinformatics use, the `generic_command` adapter is the entry point — define a shell command that scores pipeline output against a reference, then let Autoharness propose prompt and config changes. Pilot trigger: when eval criteria for skills or agents are defined.
+
+## Security
+
+Licensed MIT (Copyright 2026 kayba-ai). No security flags apply: the tool runs entirely locally against a target harness repo, does not phone home, and has no web-facing surface of its own. The primary risk surface is the proposal generators — `openai_responses` and `codex_cli` send harness content (prompts, configs) to external APIs, so API key handling and data-sensitivity policies apply when those generators are used. The `claude_code` and `local_*` generators remain fully local. The Python plugin system (`AUTOHARNESS_PLUGIN_PATHS`) deserves the same scrutiny as any arbitrary code execution path: review third-party plugins before adding them to a production harness.

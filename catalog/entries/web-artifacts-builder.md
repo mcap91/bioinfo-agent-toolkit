@@ -1,12 +1,15 @@
 ---
 name: web-artifacts-builder
-title: "Web Artifacts Builder"
-url: https://github.com/anthropics/skills/blob/main/skills/web-artifacts-builder/SKILL.md
+title: Web Artifacts Builder
+url: "https://github.com/anthropics/skills/blob/main/skills/web-artifacts-builder/SKILL.md"
 category: skill
 verdict: adopt
 verdict_reason: "use when markdown isn't enough for interactive reports/dashboards"
 tags: [html, reports, dashboards, visualization]
 workflows: [scRNA-seq, spatial]
+overlaps: []
+security_flags: []
+license: Apache-2.0
 reviewed: 2026-05-25
 acquired: 2026-05-25
 supersedes: []
@@ -23,3 +26,7 @@ Markdown is sufficient for most workflow documentation, but interactive outputs 
 ## Mechanical details
 
 Install from `https://github.com/anthropics/skills/blob/main/skills/web-artifacts-builder/SKILL.md`. Use when a workflow produces results that benefit from interactivity: sortable tables, filterable lists, toggle views. Default to markdown; escalate to this skill when markdown is insufficient.
+
+## Security
+
+This skill is published by Anthropic in their official skills repository under the Apache 2.0 license, which provides a known, auditable provenance. It executes entirely client-side: the bundling pipeline (React + Vite + Parcel) runs locally and produces a single self-contained HTML file — no outbound network calls are made at runtime. The generated bundle inlines all JavaScript and CSS, so the security boundary is the same as for any static HTML file viewed in a browser. No credentials, API keys, or server-side components are involved. The main operational consideration is that bundled artifacts may include user-supplied data rendered as HTML; agents should sanitize untrusted input before passing it into templates to prevent XSS in the output artifact.

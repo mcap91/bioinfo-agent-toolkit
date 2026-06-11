@@ -1,15 +1,18 @@
 ---
 name: claude-code-remote-prompt-hardening
-title: "Claude Code Remote Prompt Hardening"
-url: https://www.reddit.com/r/ClaudeCode/comments/1tmizuy/claude_code_v21150_now_allows_anthropic_to/
+title: Claude Code Remote Prompt Hardening
+url: "https://www.reddit.com/r/ClaudeCode/comments/1tmizuy/claude_code_v21150_now_allows_anthropic_to/"
 category: reference
 verdict: note
-verdict_reason: "env vars to block remote system prompt injection in Claude Code; operational hardening knowledge for security-sensitive environments"
+verdict_reason: env vars to block remote system prompt injection in Claude Code; operational hardening knowledge for security-sensitive environments
 tags: [claude-code, security, privacy, env-vars, hardening, system-prompt, version-pinning]
 reviewed: 2026-05-27
 acquired: 2026-05-27
 supersedes: []
 overlaps: []
+license: unknown
+security_flags: []
+workflows: []
 ---
 
 ## What it says
@@ -69,3 +72,9 @@ jq '.env.DISABLE_AUTOUPDATER = "1"' ~/.claude/settings.json > /tmp/s.json && mv 
 ```
 
 `DISABLE_AUTOUPDATER` stops the background update check. To also block manual `claude update` commands, use `DISABLE_UPDATES=1` instead. Do not use `npm update -g` to upgrade — always use `npm install -g @anthropic-ai/claude-code@<version>` with an explicit version or `@latest`.
+
+## Security
+
+This entry is a knowledge reference, not an installable tool — there is no software supply chain to audit. The source is a Reddit community post with no formal license; the documented techniques (env vars, version pinning) are derived from reverse-engineering a publicly distributed npm package (`@anthropic-ai/claude-code`), which is MIT-licensed. No code from the entry is executed; the risk surface is limited to the operational decision of whether to apply the described settings.
+
+The security flags are empty because the entry documents mitigations rather than threats: setting `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1` and `DISABLE_GROWTHBOOK=1` reduces the attack surface for remote system prompt injection. The primary residual risk is version drift — if Claude Code is upgraded without re-verifying the env var behavior against the new binary, the mitigations may silently stop working. Re-verification via `npm pack` + `strings` after each upgrade is the recommended practice.

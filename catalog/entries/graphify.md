@@ -1,14 +1,18 @@
 ---
 name: graphify
-title: "Graphify"
-url: https://github.com/safishamsi/graphify
+title: Graphify
+url: "https://github.com/safishamsi/graphify"
 category: framework
 verdict: note
-verdict_reason: "direct inspiration for kb graph; concepts like confidence-tagged edges and clustering worth learning from"
+verdict_reason: direct inspiration for kb graph; concepts like confidence-tagged edges and clustering worth learning from
 tags: [knowledge-graph, ast, visualization, kb]
 reviewed: 2026-05-25
 acquired: 2026-05-25
 supersedes: []
+license: unknown
+security_flags: []
+workflows: []
+overlaps: []
 ---
 
 ## What it does
@@ -40,3 +44,7 @@ Graphify is the direct inspiration for kb graph — the concept of making implic
 ## Mechanical details
 
 Install from GitHub. Requires tree-sitter for code parsing (local, no API calls for code extraction) and an LLM API for doc/multimedia extraction. The `/graphify query` interface is the primary agent integration point. Not recommended for installation — kb graph covers the core use case and this would be a parallel graph system. Study the source for the confidence tagging and clustering concepts rather than running it alongside kb.
+
+## Security
+
+No license is stated in the repository; the PyPI package is `graphifyy` (double-y) and the README explicitly notes it is the only official package — other `graphify*` packages are unaffiliated, which is a mild supply-chain surface to be aware of at install time. Code files are processed entirely locally via tree-sitter with no API calls, so source code never leaves the machine. Docs, PDFs, and images are sent to a third-party LLM API (whichever backend key is configured), making data residency dependent on the chosen provider; for sensitive corpora the README recommends `--backend ollama` for fully local inference. Query logging writes to `~/.cache/graphify-queries.log` by default and can be disabled via `GRAPHIFY_QUERY_LOG_DISABLE=1`. The MCP HTTP server defaults to loopback-only (`127.0.0.1`) and requires explicit `--host 0.0.0.0 --api-key` to expose beyond localhost, which is a reasonable default. No telemetry or usage tracking is claimed by the project.

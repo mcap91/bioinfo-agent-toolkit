@@ -1,7 +1,7 @@
 ---
 name: agent-teams
-title: "Claude Agent Teams"
-url: https://code.claude.com/docs/en/agent-teams
+title: Claude Agent Teams
+url: "https://code.claude.com/docs/en/agent-teams"
 category: agent-pattern
 verdict: adopt
 verdict_reason: "primary interactive dispatch path; subscription billing, no API credits needed"
@@ -9,6 +9,10 @@ tags: [agents, teams, dispatch, orchestration]
 reviewed: 2026-05-25
 acquired: 2026-05-25
 supersedes: []
+license: proprietary
+security_flags: []
+workflows: []
+overlaps: []
 ---
 
 ## What it says
@@ -36,3 +40,9 @@ Billing runs under interactive subscription — no API billing or Agent SDK cred
 | Can dispatch launch agent teams? | No. Agent teams are interactive-only. No `-p` mode. |
 | Can dispatch capture team outputs? | Not directly. Task list is transient. Teammates must write durably via MCP. |
 | Is billing acceptable? | Yes. Subscription only. No API credits. |
+
+## Security
+
+Claude Agent Teams is a proprietary Anthropic feature built into Claude Code; there is no open-source license or independently auditable codebase. All team state (config, task list, mailbox) is stored locally under `~/.claude/teams/` and `~/.claude/tasks/` and is removed when the team is cleaned up, so there is no persistent credential or secret exposure from the coordination layer itself. The primary security concern is permission inheritance: all teammates start with the lead's permission mode, and if the lead runs with `--dangerously-skip-permissions`, every teammate inherits that flag with no per-teammate override at spawn time. This means a compromised or misbehaving teammate has the same filesystem and tool access as the lead. Mitigation is to use the most restrictive permission set the task allows before spawning teammates, and to leverage subagent `tools` allowlists to narrow each teammate's effective tool surface.
+
+There are no network-exposure risks specific to the coordination layer — teammates communicate via local IPC (file locking for task claims, local mailbox), not over a network. MCP servers available to the lead are equally available to all teammates, so any MCP tool that has broad write access (e.g. kb-wiki, filesystem MCP) is reachable by every teammate. Hooks (`TeammateIdle`, `TaskCreated`, `TaskCompleted`) run local shell commands and should be treated with the same care as any pre/post-commit hook — avoid embedding secrets or privileged operations in hook scripts.

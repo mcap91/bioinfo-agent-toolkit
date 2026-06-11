@@ -1,13 +1,17 @@
 ---
 name: tutorial-creator
-title: "Tutorial Creator"
+title: Tutorial Creator
 category: skill
 verdict: pilot
-verdict_reason: "good for knowledge retention and onboarding"
+verdict_reason: good for knowledge retention and onboarding
 tags: [tutorials, onboarding, knowledge-retention]
 reviewed: 2026-05-25
 acquired: 2026-05-25
 supersedes: []
+license: unknown
+security_flags: []
+workflows: []
+overlaps: []
 ---
 
 ## What it does
@@ -21,3 +25,7 @@ Bioinformatics workflows accumulate tacit knowledge — why a particular normali
 ## Mechanical details
 
 Source is a Reddit r/claudeskills post. No public repo URL confirmed at review time. Pilot by running it on one completed analysis session to evaluate output quality and tutorial structure before broader adoption.
+
+## Security
+
+Tutorial Creator is a Claude Code skill implemented as a SKILL.md prompt file with no associated binary, package dependency, or network component. Its attack surface is limited to the prompt text itself: a malicious or tampered SKILL.md could influence model behavior through injected instructions, so the file should be reviewed before installation and sourced only from trusted channels. No external data is fetched at runtime and no code is executed outside the normal Claude Code conversation context, so supply-chain and execution risks are negligible.

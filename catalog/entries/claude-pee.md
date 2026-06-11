@@ -1,6 +1,6 @@
 ---
 name: claude-pee
-title: "claude-pee"
+title: claude-pee
 category: cli-tool
 verdict: skip
 verdict_reason: "PTY wrapper driving interactive CLI; inherently brittle, breaks on CLI version changes"
@@ -8,6 +8,10 @@ tags: [pty, automation, cli, dispatch]
 reviewed: 2026-05-25
 acquired: 2026-05-25
 supersedes: []
+license: unknown
+security_flags: []
+workflows: []
+overlaps: []
 ---
 
 ## What it does
@@ -21,3 +25,9 @@ PTY automation is inherently brittle: any CLI version change that alters prompt 
 ## Mechanical details
 
 Not recommended for install. No stable package source identified. Rejected in WK-0003 research as a dispatch path.
+
+## Security
+
+License is unknown — no stable package source was identified for this tool, so no license terms are available. The security_flags list is empty because no specific vulnerabilities or red-flag behaviors were documented; the tool was rejected on reliability grounds rather than security grounds.
+
+The primary risk profile is operational rather than security-related: PTY automation grants the wrapper full read/write access to the terminal session, which means any malformed input injection or output-parsing bug could produce unintended CLI actions. Because no stable distribution exists and the tool is not recommended for install, there is no supply-chain surface to evaluate. Risk is rated low-but-moot — the verdict is skip, so installation is not expected.

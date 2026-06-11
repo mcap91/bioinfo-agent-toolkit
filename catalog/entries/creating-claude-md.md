@@ -1,14 +1,18 @@
 ---
 name: creating-claude-md
-title: "Creating CLAUDE.md"
-url: https://github.com/sruthik27/creating-claude-md
+title: Creating CLAUDE.md
+url: "https://github.com/sruthik27/creating-claude-md"
 category: skill-generator
 verdict: skip
-verdict_reason: "/init skill already covers repo-scanning CLAUDE.md generation"
+verdict_reason: /init skill already covers repo-scanning CLAUDE.md generation
 tags: [claude-md, repo-scanning, code-quality]
 reviewed: 2026-05-25
 acquired: 2026-05-25
 supersedes: []
+license: MIT
+security_flags: []
+workflows: []
+overlaps: []
 ---
 
 ## What it does
@@ -22,3 +26,7 @@ The `/init` skill already performs repo-scanning CLAUDE.md generation and is ins
 ## Mechanical details
 
 No additional install needed — the `/init` skill covers this use case. If the 80-line cap discipline is wanted as a standalone rule, add it as a comment or constraint in the project CLAUDE.md rather than adopting this generator.
+
+## Security
+
+This is a pure Markdown skill file with no runtime code, compiled artifacts, or network calls of its own. It is distributed under the MIT license and installs via a plain `git clone` into the local `~/.claude/skills/` directory. There is no install script, no binary, and no dependency manifest — the attack surface is limited to the SKILL.md content itself, which an agent reads and interprets. The principal risk is prompt-injection in the skill text; review the file before installing, especially after upstream updates.
