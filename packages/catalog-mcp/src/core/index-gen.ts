@@ -12,6 +12,7 @@ interface IndexOptions {
 interface IndexResult {
   content: string;
   path: string;
+  searchIndexPath: string;
   entryCount: number;
   verdictCounts: Record<string, number>;
 }
@@ -24,6 +25,30 @@ interface EntryData {
   verdict_reason: string;
   tags: string[];
   workflows: string[];
+}
+
+interface SearchIndexEntry {
+  name: string;
+  title: string;
+  url: string | undefined;
+  category: string;
+  verdict: string;
+  verdict_reason: string;
+  tags: string[];
+  workflows: string[];
+  license: string | undefined;
+  security_flags: string[];
+  reviewed: string | undefined;
+  summary: string;
+  path: string;
+}
+
+function extractSummary(body: string): string {
+  const match = body.match(/##\s*What it does\s*\n([\s\S]*?)(?=\n##\s|\n*$)/);
+  if (match) return match[1].trim();
+  const trimmed = body.replace(/^#+\s.*\n*/gm, '').trim();
+  if (trimmed.length <= 300) return trimmed;
+  return trimmed.slice(0, 300).replace(/\s+\S*$/, '') + '…';
 }
 
 // Ordinal comparator on lowercased strings — matches Python's
@@ -80,13 +105,50 @@ export async function generateIndex(options: IndexOptions): Promise<IndexResult>
   const header = `# Catalog Index\n\nGenerated from ${entries.length} entries in \`catalog/entries/\`. Regenerate with the catalog \`index\` tool.\n`;
   const content = header + '\n' + sections.join('\n\n') + '\n';
 
-  return { content, path: paths.index, entryCount: entries.length, verdictCounts };
+  return { content, path: paths.index, searchIndexPath: paths.searchIndex, entryCount: entries.length, verdictCounts };
 }
 
 export async function generateAndWriteIndex(options: IndexOptions): Promise<IndexResult> {
   const result = await generateIndex(options);
   await writeFile(result.path, result.content, 'utf-8');
   return result;
+}
+
+export async function buildSearchIndex(dir: string): Promise<{ path: string; count: number }> {
+  const paths = catalogPaths(dir);
+  const raw = await readAllEntries(paths.entries);
+  const entries: SearchIndexEntry[] = [];
+
+  for (const [name, parsed] of raw) {
+    const fm = parsed.frontmatter;
+    entries.push({
+      name,
+      title: fm.title as string,
+      url: fm.url as string | undefined,
+      category: fm.category as string,
+      verdict: fm.verdict as string,
+      verdict_reason: fm.verdict_reason as string,
+      tags: (fm.tags as string[]) || [],
+      workflows: (fm.workflows as string[]) || [],
+      license: fm.license as string | undefined,
+      security_flags: (fm.security_flags as string[]) || [],
+      reviewed: fm.reviewed as string | undefined,
+      summary: extractSummary(parsed.body),
+      path: `catalog/entries/${name}.md`,
+    });
+  }
+
+  const index = {
+    description: 'Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a verdict (adopt/pilot/watch/note/skip) and security review.',
+    usage: 'Search by tags, category, verdict, or keywords in verdict_reason/summary. Follow the path field for the full entry with security analysis and mechanical details.',
+    generated: new Date().toISOString().slice(0, 10),
+    count: entries.length,
+    verdicts: { adopt: 'ready to use', pilot: 'worth trying', watch: 'monitor for now', note: 'reference only', skip: 'not recommended' },
+    entries,
+  };
+
+  await writeFile(paths.searchIndex, JSON.stringify(index, null, 2) + '\n', 'utf-8');
+  return { path: paths.searchIndex, count: entries.length };
 }
 
 function sortByTitle(entries: EntryData[]): EntryData[] {

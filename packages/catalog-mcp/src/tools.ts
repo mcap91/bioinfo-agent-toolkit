@@ -2,7 +2,7 @@
 import { z } from 'zod';
 import { dirSchema, CATEGORIES, VERDICTS } from './core/schema.js';
 import { resolveDir, loadConfig } from './core/config.js';
-import { generateAndWriteIndex } from './core/index-gen.js';
+import { generateAndWriteIndex, buildSearchIndex } from './core/index-gen.js';
 import { lint } from './core/lint.js';
 import { searchEntries } from './core/search.js';
 import { scaffoldEntry } from './core/scaffold.js';
@@ -37,8 +37,10 @@ export const tools: ToolDef[] = [
         dir,
         format: input.format as 'full' | 'verdict' | 'workflow' | 'category',
       });
+      const searchResult = await buildSearchIndex(dir);
       return {
         path: result.path,
+        searchIndexPath: searchResult.path,
         entryCount: result.entryCount,
         verdictCounts: result.verdictCounts,
       };
