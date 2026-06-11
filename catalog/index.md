@@ -1,6 +1,6 @@
 # Catalog Index
 
-Generated from 85 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
+Generated from 94 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
 
 ## By Verdict
 
@@ -12,6 +12,8 @@ Generated from 85 entries in `catalog/entries/`. Regenerate with the catalog `in
 | [Karpathy's 12 Rules for CLAUDE.md](entries/karpathy-12-rules.md) | reference | adopt | Rules 6 (token budgets) and 12 (fail loud) not yet in our stack | claude-md, best-practices, token-budgets |
 | [Karpathy's LLM Wiki Pattern](entries/karpathy-llm-wiki.md) | reference | adopt | Foundational pattern doc for LLM-maintained personal knowledge bases — directly describes the architecture kb-wiki implements | knowledge-base, wiki, llm-pattern, obsidian, personal-knowledge-management, rag-alternative |
 | [Superpowers: Verification Before Completion](entries/superpowers-verification-before-completion.md) | skill | adopt | canonical 'evidence before claims' gate skill — already active in this project and referenced by other catalog entries as the standard | verification, quality, agent-discipline, completion-gate, tdd |
+| [Syncthing](entries/syncthing.md) | cli-tool | adopt | Mature, audited, decentralized file sync daemon — production-grade for agent artifact persistence and cross-machine data sharing. | file-sync, decentralized, p2p, self-hosted, cross-platform, golang, tls, data-safety |
+| [Vaultwarden](entries/vaultwarden.md) | framework | adopt | Production-grade self-hosted Bitwarden-compatible password server in Rust; fraction of the resource footprint of the official server | password-manager, self-hosted, bitwarden, rust, docker, security, secrets |
 | [Web Artifacts Builder](entries/web-artifacts-builder.md) | skill | adopt | use when markdown isn't enough for interactive reports/dashboards | html, reports, dashboards, visualization |
 | [Advise Project Approach](entries/advise-project-approach.md) | skill | pilot | structured project-level architecture research with comparable analysis, cost checks, and tradeoff discipline; complements /catalog (tool-level) with project-level advisory | architecture, stack-selection, comparables, cost-analysis, project-strategy, decision-methodology |
 | [BMAD Skill Forge](entries/bmad-skill-forge.md) | skill-generator | pilot | strong fit for bioinformatics tool skill generation; start with Brief tier on samtools | skill-generation, provenance, ast, cli-tools |
@@ -22,6 +24,7 @@ Generated from 85 entries in `catalog/entries/`. Regenerate with the catalog `in
 | [Crawl4AI](entries/crawl4ai.md) | framework | pilot | Best-in-class async web-to-Markdown crawler for agent/RAG pipelines, but Docker API has had dense critical CVEs; library mode is safe to pilot | web-scraping, markdown, rag, agents, async, playwright, docker, llm-extraction |
 | [Google Workspace CLI (gws)](entries/googleworkspace-cli.md) | cli-tool | pilot | Rust CLI with agent-first JSON output and 100+ bundled SKILL.md files covering all Workspace APIs; pre-v1.0 with breaking changes expected | google-workspace, gmail, drive, calendar, sheets, agent-skills, oauth, json-output, rust |
 | [Grill With Docs](entries/grill-with-docs.md) | skill | pilot | Well-structured DDD design-review skill that enforces domain language, but relies on companion format files (CONTEXT-FORMAT.md, ADR-FORMAT.md) not bundled with the skill. | domain-driven-design, design-review, documentation, adr, glossary, planning |
+| [Karakeep](entries/karakeep.md) | framework | pilot | Self-hostable AI bookmark manager with REST API, official agent skills, and Ollama support — agent-friendly but self-described as under heavy development. | bookmarks, knowledge-management, self-hosted, llm, tagging, search, rest-api, agent-friendly |
 | [MarkItDown](entries/markitdown.md) | cli-tool | pilot | directly useful for converting PDFs, Excel, PPTX, and other docs to markdown for LLM pipelines; MIT, Microsoft-maintained | markdown, conversion, pdf, documents, excel, llm-preprocessing |
 | [One Skill to Rule Them All](entries/one-skill-to-rule-them-all.md) | meta-skill | pilot | proposes NEW skills from observed patterns; complementary to superpowers routing | meta-skill, pattern-detection, skill-generation |
 | [OpenDataLoader PDF](entries/opendataloader-pdf.md) | cli-tool | pilot | Top-benchmarked open-source PDF parser with bounding boxes, formula extraction, and RAG-ready output — worth piloting for bioinformatics literature ingestion before committing. | pdf, rag, ocr, markdown, json, bioinformatics, langchain, accessibility |
@@ -56,6 +59,7 @@ Generated from 85 entries in `catalog/entries/`. Regenerate with the catalog `in
 | [Tolvi — Engineering Decision Vault](entries/tolvi.md) | framework | watch | Solid CAG/RAG dual-mode decision-capture design but pre-1.0, small project, and overlaps with kb already in use | decisions, knowledge-management, adr, vault, claude-code-skill, rag, cag, go-cli, agent-integration |
 | [UI/UX Pro Max Skill](entries/ui-ux-pro-max-skill.md) | skill | watch | comprehensive design system generation but focused on general web/mobile UI; evaluate when dashboard/report aesthetics become a priority | ui, ux, design-system, typography, color-palettes, dashboards, visualization |
 | [Weft](entries/weft-language.md) | framework | watch | Novel AI orchestration language with typed nodes, durable execution, and human-in-the-loop primitives — early-stage but architecturally interesting | programming-language, ai-orchestration, durable-execution, visual-programming, human-in-the-loop, rust |
+| [AdGuard Home](entries/adguard-home.md) | framework | note | Production-ready network-wide DNS ad/tracker blocker — infrastructure tool, not an agent/dev workflow component | dns, privacy, ad-blocking, network, self-hosted, docker |
 | [ADHD](entries/adhd.md) | skill | note | parallel divergent ideation via isolated cognitive frames; overlaps with superpowers:brainstorming but the frame isolation and scoring mechanics are worth studying | ideation, brainstorming, parallel, divergent-thinking, cognitive-frames, subagents |
 | [Advisor Strategy](entries/advisor-strategy.md) | agent-pattern | note | architectural concept for cost-effective agent orchestration; executor/advisor split | agents, cost-optimization, dispatch, patterns |
 | [Agent Session Resume](entries/agent-session-resume.md) | skill | note | Cross-agent session resume skill with structured checkpoint workflow; overlaps with our handoff skill but adds multi-agent-platform support (Codex, Cursor, Antigravity, OpenCode) | handoff, session-resume, cross-agent, claude-code, codex, cursor |
@@ -70,11 +74,16 @@ Generated from 85 entries in `catalog/entries/`. Regenerate with the catalog `in
 | [Cobalt](entries/cobalt.md) | cli-tool | note | General-purpose media downloader with a self-hosted API; no agent, skill, or bioinformatics relevance. | media-download, self-hosted, api, proxy, youtube, video |
 | [Codebase Reasoning Topology](entries/codebase-reasoning-topology.md) | reference | note | heavy for daily use but interesting as a pre-flight checklist concept | invariants, state-ownership, blast-radius, checklist |
 | [Codex Memory Cleanup](entries/codex-memory-cleanup.md) | reference | note | operational tip: delete state/log/global-state files if Codex performance degrades | codex, maintenance, performance |
+| [CrowdSec](entries/crowdsec.md) | framework | note | Production-ready crowdsourced IDS/IPS framework — valuable for hardening servers hosting agent infrastructure, outside direct agent/bioinformatics workflows. | security, ids, ips, waf, threat-intelligence, crowdsourced, ip-blocklist, infrastructure |
 | [Deny .env Reads via Permissions](entries/deny-env-reads.md) | reference | note | Useful security hygiene tip for Claude Code projects; documents a built-in feature rather than a new tool | security, permissions, claude-code, env-files, secrets |
 | [FluidDocs Deck Builder](entries/fluiddocs-deck-builder.md) | plugin | note | Well-built skill/plugin pack for HTML slide decks; interesting multi-reviewer architecture but outside bioinformatics workflows | presentation, slides, skill-pack, claude-code-plugin, html, pdf-import |
 | [Graphify](entries/graphify.md) | framework | note | direct inspiration for kb graph; concepts like confidence-tagged edges and clustering worth learning from | knowledge-graph, ast, visualization, kb |
+| [Immich](entries/immich.md) | framework | note | Production-ready self-hosted Google Photos alternative with AI search; not agent tooling but solid self-hosted media infrastructure. | self-hosted, photo-management, video, mobile, ai-search, facial-recognition, oauth, docker |
+| [Inbox Zero](entries/inbox-zero.md) | framework | note | AI-powered self-hostable email management app — strong open-source email assistant, not a developer/agent toolkit. | email, ai-assistant, gmail, productivity, self-hosted, open-source |
 | [OBLITERATUS](entries/obliteratus.md) | framework | note | Mechanistic interpretability research toolkit for refusal removal — notable as a reference for alignment geometry, but not safe to adopt in agent pipelines and irrelevant to bioinformatics workflows | llm, mechanistic-interpretability, abliteration, alignment, safety-bypass, research, gradio, python |
 | [Obsidian Skills (Kepano)](entries/obsidian-skills.md) | skill | note | Obsidian-specific; Defuddle (web→clean markdown) and skill packaging patterns worth noting | obsidian, skills, markdown, canvas, defuddle, web-extraction |
+| [Paperless-ngx](entries/paperless-ngx.md) | framework | note | Mature self-hosted document management system — useful for archiving research docs but not an agent tool or developer library | document-management, self-hosted, ocr, search, archive, docker, paperless |
+| [Pi-hole](entries/pi-hole.md) | reference | note | Network-wide DNS ad blocker — mature infrastructure tool, informational for lab network hygiene | dns, ad-blocking, privacy, self-hosted, network, sinkhole, dhcp |
 | [Remote Control](entries/remote-control.md) | reference | note | built-in feature; try for long sessions | mobile, remote, sessions |
 | [TeamPCP/Miasma npm Supply Chain Attack (June 2026)](entries/teampcp-miasma-npm-supply-chain-attack-2026.md) | reference | note | Incident writeup documenting credential-harvesting malware and ~/.claude/settings.json hook persistence — directly relevant to agent-lockdown hardening (WK-0031) | security, supply-chain, npm, claude-code, incident-report, credential-theft, persistence |
 | [Verify Before Claim (Third Brain V5)](entries/verify-before-claim.md) | reference | note | superpowers verification-before-completion covers this; confidence model is the novel addition | verification, quality, confidence-model |
@@ -109,6 +118,7 @@ Generated from 85 entries in `catalog/entries/`. Regenerate with the catalog `in
 
 ### General
 
+- [AdGuard Home](entries/adguard-home.md) — note — Production-ready network-wide DNS ad/tracker blocker — infrastructure tool, not an agent/dev workflow component
 - [ADHD](entries/adhd.md) — note — parallel divergent ideation via isolated cognitive frames; overlaps with superpowers:brainstorming but the frame isolation and scoring mechanics are worth studying
 - [Advise Project Approach](entries/advise-project-approach.md) — pilot — structured project-level architecture research with comparable analysis, cost checks, and tradeoff discipline; complements /catalog (tool-level) with project-level advisory
 - [Advisor Strategy](entries/advisor-strategy.md) — note — architectural concept for cost-effective agent orchestration; executor/advisor split
@@ -138,6 +148,7 @@ Generated from 85 entries in `catalog/entries/`. Regenerate with the catalog `in
 - [Context Graph Compressor](entries/context-graph-compressor.md) — pilot — Structured JSON graph handoff with importance tagging and cross-LLM portability beats plain-text handoff skills; too new/single-contributor to adopt outright
 - [Crawl4AI](entries/crawl4ai.md) — pilot — Best-in-class async web-to-Markdown crawler for agent/RAG pipelines, but Docker API has had dense critical CVEs; library mode is safe to pilot
 - [Creating CLAUDE.md](entries/creating-claude-md.md) — skip — /init skill already covers repo-scanning CLAUDE.md generation
+- [CrowdSec](entries/crowdsec.md) — note — Production-ready crowdsourced IDS/IPS framework — valuable for hardening servers hosting agent infrastructure, outside direct agent/bioinformatics workflows.
 - [Deny .env Reads via Permissions](entries/deny-env-reads.md) — note — Useful security hygiene tip for Claude Code projects; documents a built-in feature rather than a new tool
 - [Distill](entries/distill.md) — watch — Local 1.7B model pipe-filter for CLI output compression is a real problem but requires 8–16 GB RAM and relies on an unaudited HuggingFace model; overlaps with rtk.
 - [ECC — Everything Claude Code (GitHub)](entries/ecc-github.md) — watch — massive cross-harness skill/hook/agent system worth monitoring but high adoption complexity and scope overlap with existing stack
@@ -153,6 +164,9 @@ Generated from 85 entries in `catalog/entries/`. Regenerate with the catalog `in
 - [gstack](entries/gstack.md) — skip — kb dispatch covers the relevant orchestration patterns; browser/deployment out of scope
 - [Headroom](entries/headroom.md) — watch — Powerful context compression with real benchmarks, but proxy/MITM position and headroom learn's CLAUDE.md writes are significant trust risks for adoption without review
 - [Headroom Desktop](entries/headroom-desktop.md) — watch — Solid local-first Claude Code cost optimizer with hook injection into ~/.claude/settings.json — worth monitoring given agent-lockdown relevance, but macOS-only stable and single-contributor
+- [Immich](entries/immich.md) — note — Production-ready self-hosted Google Photos alternative with AI search; not agent tooling but solid self-hosted media infrastructure.
+- [Inbox Zero](entries/inbox-zero.md) — note — AI-powered self-hostable email management app — strong open-source email assistant, not a developer/agent toolkit.
+- [Karakeep](entries/karakeep.md) — pilot — Self-hostable AI bookmark manager with REST API, official agent skills, and Ollama support — agent-friendly but self-described as under heavy development.
 - [Karpathy's 12 Rules for CLAUDE.md](entries/karpathy-12-rules.md) — adopt — Rules 6 (token budgets) and 12 (fail loud) not yet in our stack
 - [Karpathy's LLM Wiki Pattern](entries/karpathy-llm-wiki.md) — adopt — Foundational pattern doc for LLM-maintained personal knowledge bases — directly describes the architecture kb-wiki implements
 - [Langflow](entries/langflow.md) — watch — Heavy visual-builder platform with native MCP-server export; too large for direct adoption but worth monitoring for MCP workflow integration patterns.
@@ -170,6 +184,8 @@ Generated from 85 entries in `catalog/entries/`. Regenerate with the catalog `in
 - [opencode-fff-search](entries/opencode-fff-search.md) — watch — Drop-in OpenCode grep/glob replacement with Rust-backed in-memory index, frecency ranking, and SIMD literal matching — 3-10x faster than process-spawning ripgrep at scale.
 - [OpenDataLoader PDF](entries/opendataloader-pdf.md) — pilot — Top-benchmarked open-source PDF parser with bounding boxes, formula extraction, and RAG-ready output — worth piloting for bioinformatics literature ingestion before committing.
 - [OpenSpace](entries/openspace.md) — watch — Compelling skill-evolution engine for Claude Code agents but very new (v0.1.0), self-published benchmark, and significant security surface from community skill ingestion
+- [Paperless-ngx](entries/paperless-ngx.md) — note — Mature self-hosted document management system — useful for archiving research docs but not an agent tool or developer library
+- [Pi-hole](entries/pi-hole.md) — note — Network-wide DNS ad blocker — mature infrastructure tool, informational for lab network hygiene
 - [PII Detection / Compliance Skills](entries/pii-detection.md) — pilot — HIPAA/CCPA/PCI-DSS coverage; pilot if handling sensitive data
 - [Remote Control](entries/remote-control.md) — note — built-in feature; try for long sessions
 - [Repowire](entries/repowire.md) — watch — Compelling multi-agent mesh for cross-repo coordination, but macOS/Linux only and default spawn config ships dangerous permission flags
@@ -181,6 +197,7 @@ Generated from 85 entries in `catalog/entries/`. Regenerate with the catalog `in
 - [Stirling PDF](entries/stirling-pdf.md) — pilot — Self-hosted REST API for 50+ PDF operations enables privacy-preserving agentic PDF workflows without external services
 - [Storybloq](entries/storybloq.md) — skip — PolyForm Noncommercial license + heavy overlap with kb wiki
 - [Superpowers: Verification Before Completion](entries/superpowers-verification-before-completion.md) — adopt — canonical 'evidence before claims' gate skill — already active in this project and referenced by other catalog entries as the standard
+- [Syncthing](entries/syncthing.md) — adopt — Mature, audited, decentralized file sync daemon — production-grade for agent artifact persistence and cross-machine data sharing.
 - [Synthesize Bio](entries/synthesize-bio.md) — pilot — Generates synthetic human gene expression profiles on demand via natural-language prompts — unique bioinformatics capability, but proprietary SaaS requiring account and external API trust.
 - [TeamPCP/Miasma npm Supply Chain Attack (June 2026)](entries/teampcp-miasma-npm-supply-chain-attack-2026.md) — note — Incident writeup documenting credential-harvesting malware and ~/.claude/settings.json hook persistence — directly relevant to agent-lockdown hardening (WK-0031)
 - [Third Brain V5 (Wiki/Knowledge Layer)](entries/third-brain-v5-wiki.md) — skip — Obsidian-specific schema, heavy; staleness and contradiction detection concepts worth noting for kb
@@ -188,6 +205,7 @@ Generated from 85 entries in `catalog/entries/`. Regenerate with the catalog `in
 - [Tutorial Creator](entries/tutorial-creator.md) — pilot — good for knowledge retention and onboarding
 - [UI/UX Pro Max Skill](entries/ui-ux-pro-max-skill.md) — watch — comprehensive design system generation but focused on general web/mobile UI; evaluate when dashboard/report aesthetics become a priority
 - [Unforget](entries/unforget.md) — skip — scan-for-escaped-items pattern worth noting for future kb lint rule or audit command
+- [Vaultwarden](entries/vaultwarden.md) — adopt — Production-grade self-hosted Bitwarden-compatible password server in Rust; fraction of the resource footprint of the official server
 - [Verify Before Claim (Third Brain V5)](entries/verify-before-claim.md) — note — superpowers verification-before-completion covers this; confidence model is the novel addition
 - [Weft](entries/weft-language.md) — watch — Novel AI orchestration language with typed nodes, durable execution, and human-in-the-loop primitives — early-stage but architecturally interesting
 
@@ -210,9 +228,11 @@ Generated from 85 entries in `catalog/entries/`. Regenerate with the catalog `in
 - [OpenDataLoader PDF](entries/opendataloader-pdf.md) — pilot — Top-benchmarked open-source PDF parser with bounding boxes, formula extraction, and RAG-ready output — worth piloting for bioinformatics literature ingestion before committing.
 - [rtk — CLI Proxy for LLM Token Reduction](entries/rtk.md) — pilot — Directly reduces Claude Code token costs 60-90% via transparent Bash hook; Windows hook requires WSL but filters work natively
 - [Stirling PDF](entries/stirling-pdf.md) — pilot — Self-hosted REST API for 50+ PDF operations enables privacy-preserving agentic PDF workflows without external services
+- [Syncthing](entries/syncthing.md) — adopt — Mature, audited, decentralized file sync daemon — production-grade for agent artifact persistence and cross-machine data sharing.
 
 ### framework
 
+- [AdGuard Home](entries/adguard-home.md) — note — Production-ready network-wide DNS ad/tracker blocker — infrastructure tool, not an agent/dev workflow component
 - [AirLLM](entries/airllm.md) — watch — Clever layer-shard inference to run 70B models on 4GB VRAM, but maintenance has stalled since August 2024 while better-maintained alternatives (Ollama/llama.cpp) have matured.
 - [ASI-Evolve](entries/asi-evolve.md) — watch — Impressive autonomous research-loop results but arbitrary code execution per round, no stated license, and very new (2026 academic repo)
 - [Autoharness](entries/autoharness.md) — watch — needs eval benchmarks first; pilot when we have eval criteria for our skills/agents
@@ -221,6 +241,7 @@ Generated from 85 entries in `catalog/entries/`. Regenerate with the catalog `in
 - [Claude Mem](entries/claude-mem.md) — skip — kb wiki + Claude Code built-in memory cover our needs; adds SQLite + Chroma + worker complexity without clear benefit
 - [CLI-Anything](entries/cli-anything.md) — pilot — Generates production-grade, agent-native CLI harnesses from any codebase via a 7-phase pipeline; directly integrates with Claude Code as a plugin and emits SKILL.md files for skill discovery.
 - [Crawl4AI](entries/crawl4ai.md) — pilot — Best-in-class async web-to-Markdown crawler for agent/RAG pipelines, but Docker API has had dense critical CVEs; library mode is safe to pilot
+- [CrowdSec](entries/crowdsec.md) — note — Production-ready crowdsourced IDS/IPS framework — valuable for hardening servers hosting agent infrastructure, outside direct agent/bioinformatics workflows.
 - [ECC — Everything Claude Code (GitHub)](entries/ecc-github.md) — watch — massive cross-harness skill/hook/agent system worth monitoring but high adoption complexity and scope overlap with existing stack
 - [ERA — Empirical Research Assistant](entries/era-empirical-research-assistant.md) — watch — Interesting LLM+tree-search loop for scientific code generation, but Gemini-locked, research-grade, and not directly applicable to Claude Code workflows today
 - [gbrain](entries/gbrain.md) — skip — kb wiki already provides persistent typed records with relationships and search
@@ -228,6 +249,9 @@ Generated from 85 entries in `catalog/entries/`. Regenerate with the catalog `in
 - [Graphify](entries/graphify.md) — note — direct inspiration for kb graph; concepts like confidence-tagged edges and clustering worth learning from
 - [gstack](entries/gstack.md) — skip — kb dispatch covers the relevant orchestration patterns; browser/deployment out of scope
 - [Headroom](entries/headroom.md) — watch — Powerful context compression with real benchmarks, but proxy/MITM position and headroom learn's CLAUDE.md writes are significant trust risks for adoption without review
+- [Immich](entries/immich.md) — note — Production-ready self-hosted Google Photos alternative with AI search; not agent tooling but solid self-hosted media infrastructure.
+- [Inbox Zero](entries/inbox-zero.md) — note — AI-powered self-hostable email management app — strong open-source email assistant, not a developer/agent toolkit.
+- [Karakeep](entries/karakeep.md) — pilot — Self-hostable AI bookmark manager with REST API, official agent skills, and Ollama support — agent-friendly but self-described as under heavy development.
 - [Langflow](entries/langflow.md) — watch — Heavy visual-builder platform with native MCP-server export; too large for direct adoption but worth monitoring for MCP workflow integration patterns.
 - [LocateAnything](entries/locate-anything.md) — watch — novel parallel box decoding for vision-language grounding; 3B model on HuggingFace; evaluate for spatial/histology image analysis when pipeline matures
 - [Maxun](entries/maxun.md) — watch — Capable no-code web data platform with MCP support and LLM extraction, but early-stage and AGPLv3 copyleft limits commercial embedding
@@ -237,12 +261,14 @@ Generated from 85 entries in `catalog/entries/`. Regenerate with the catalog `in
 - [Open WebUI](entries/open-webui.md) — watch — Leading self-hosted LLM web UI with RAG, pipelines, and enterprise auth — relevant infrastructure context but custom non-SPDX license limits adoption
 - [OpenClaw](entries/openclaw.md) — skip — ecosystem signal for agentic workspaces; not a concrete kb comparison
 - [OpenSpace](entries/openspace.md) — watch — Compelling skill-evolution engine for Claude Code agents but very new (v0.1.0), self-published benchmark, and significant security surface from community skill ingestion
+- [Paperless-ngx](entries/paperless-ngx.md) — note — Mature self-hosted document management system — useful for archiving research docs but not an agent tool or developer library
 - [Repowire](entries/repowire.md) — watch — Compelling multi-agent mesh for cross-repo coordination, but macOS/Linux only and default spawn config ships dangerous permission flags
 - [RuView WiFi Sensing Platform](entries/ruview-wifi-sensing.md) — watch — Interesting hardware+agent integration with a Claude Code plugin and MCP server, but beta software requiring physical ESP32 hardware for core capabilities
 - [Spiderbrain V3](entries/spiderbrain-v3.md) — skip — BSL license; master/column concept is the key takeaway for kb graph
 - [Storybloq](entries/storybloq.md) — skip — PolyForm Noncommercial license + heavy overlap with kb wiki
 - [Third Brain V5 (Wiki/Knowledge Layer)](entries/third-brain-v5-wiki.md) — skip — Obsidian-specific schema, heavy; staleness and contradiction detection concepts worth noting for kb
 - [Tolvi — Engineering Decision Vault](entries/tolvi.md) — watch — Solid CAG/RAG dual-mode decision-capture design but pre-1.0, small project, and overlaps with kb already in use
+- [Vaultwarden](entries/vaultwarden.md) — adopt — Production-grade self-hosted Bitwarden-compatible password server in Rust; fraction of the resource footprint of the official server
 - [Weft](entries/weft-language.md) — watch — Novel AI orchestration language with typed nodes, durable execution, and human-in-the-loop primitives — early-stage but architecturally interesting
 
 ### mcp-server
@@ -279,6 +305,7 @@ Generated from 85 entries in `catalog/entries/`. Regenerate with the catalog `in
 - [GraphRAG & Agent Memory LinkedIn Series](entries/graphrag-agent-memory-linkedin-series.md) — watch — Six-post series covering GraphRAG design, ontology modeling, and unified agent memory architecture — useful conceptual grounding for KG-backed agents.
 - [Karpathy's 12 Rules for CLAUDE.md](entries/karpathy-12-rules.md) — adopt — Rules 6 (token budgets) and 12 (fail loud) not yet in our stack
 - [Karpathy's LLM Wiki Pattern](entries/karpathy-llm-wiki.md) — adopt — Foundational pattern doc for LLM-maintained personal knowledge bases — directly describes the architecture kb-wiki implements
+- [Pi-hole](entries/pi-hole.md) — note — Network-wide DNS ad blocker — mature infrastructure tool, informational for lab network hygiene
 - [Remote Control](entries/remote-control.md) — note — built-in feature; try for long sessions
 - [TeamPCP/Miasma npm Supply Chain Attack (June 2026)](entries/teampcp-miasma-npm-supply-chain-attack-2026.md) — note — Incident writeup documenting credential-harvesting malware and ~/.claude/settings.json hook persistence — directly relevant to agent-lockdown hardening (WK-0031)
 - [Verify Before Claim (Third Brain V5)](entries/verify-before-claim.md) — note — superpowers verification-before-completion covers this; confidence model is the novel addition
