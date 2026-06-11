@@ -28,9 +28,32 @@ Context window usage bar for the Claude Code CLI. See [statusline/README.md](sta
 
 ## Catalog
 
-The `catalog/` directory tracks external skills, plugins, hooks, MCP servers, agent patterns, CLI tools, frameworks, and reference material. See `catalog/index.md` for the current index.
+The `catalog/` directory tracks external skills, plugins, hooks, MCP servers, agent patterns, CLI tools, frameworks, and reference material — 96 assessed entries with verdicts, security reviews, and tags.
 
-The catalog is managed by an MCP tool server in [`packages/catalog-mcp/`](packages/catalog-mcp/) — 14 tools for intake, research support, validation, and data management (index, search, lint, scaffold, ingest, drain, fetch-url, build-prompt, validate-entry, write-entry, queue, config, goals, reddit-extract). The server never makes LLM calls; the calling agent does all reasoning.
+### Using the catalog from another project
+
+The catalog ships a search index at [`catalog/.search-index.json`](catalog/.search-index.json) — a single JSON file any agent can read to find tools, benchmarks, skills, or frameworks without cloning this repo or running an MCP server.
+
+**Add this to your project's CLAUDE.md** (or equivalent agent instructions):
+
+```markdown
+## External tool catalog
+
+When looking for tools, skills, benchmarks, frameworks, or MCP servers, check the
+bioinfo-agent-toolkit catalog first:
+
+    https://raw.githubusercontent.com/mcap91/bioinfo-agent-toolkit/main/catalog/.search-index.json
+
+Fetch this file and search by tags, category, verdict, or keywords in verdict_reason/summary.
+Verdicts: adopt (ready to use), pilot (worth trying), watch (monitor), note (reference only).
+For full details on any entry, read the file at the entry's `path` field from the same repo.
+```
+
+An agent in your project can then `WebFetch` the URL (or `Read` it from a local clone) and search in-context — no MCP wiring needed.
+
+### Managing the catalog
+
+The catalog is managed by an MCP tool server in [`packages/catalog-mcp/`](packages/catalog-mcp/) — 14 tools for intake, research support, validation, and data management (index, search, lint, scaffold, ingest, drain, fetch-url, build-prompt, validate-entry, write-entry, queue, config, goals, reddit-extract). The server never makes LLM calls; the calling agent does all reasoning. Running the `index` tool regenerates both `catalog/index.md` and `catalog/.search-index.json`.
 
 ## Structure
 

@@ -1,0 +1,2289 @@
+{
+  "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a verdict (adopt/pilot/watch/note/skip) and security review.",
+  "usage": "Search by tags, category, verdict, or keywords in verdict_reason/summary. Follow the path field for the full entry with security analysis and mechanical details.",
+  "generated": "2026-06-11",
+  "count": 96,
+  "verdicts": {
+    "adopt": "ready to use",
+    "pilot": "worth trying",
+    "watch": "monitor for now",
+    "note": "reference only",
+    "skip": "not recommended"
+  },
+  "entries": [
+    {
+      "name": "adguard-home",
+      "title": "AdGuard Home",
+      "url": "https://github.com/AdguardTeam/AdGuardHome",
+      "category": "framework",
+      "verdict": "note",
+      "verdict_reason": "Production-ready network-wide DNS ad/tracker blocker — infrastructure tool, not an agent/dev workflow component",
+      "tags": [
+        "dns",
+        "privacy",
+        "ad-blocking",
+        "network",
+        "self-hosted",
+        "docker"
+      ],
+      "workflows": [],
+      "license": "GPL-3.0",
+      "security_flags": [
+        "install-script-curl-pipe"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "AdGuard Home is a self-hosted, network-wide DNS server that blocks ads, trackers, phishing domains, and malware at the DNS layer. Once deployed, it covers all devices on a network without requiring any per-device client software — it works by routing tracking and advertising domains to a black hole instead of resolving them normally.\n\nThe software ships with a web-based admin UI (accessible over HTTPS), a built-in DHCP server, per-client configuration (different filtering rules per device or group), and access control for who may use the DNS server. It supports encrypted DNS upstream resolvers: DNS-over-HTTPS (DoH), DNS-over-TLS (DoT), and DNSCrypt — making it substantially more capable than the Pi-Hole it is frequently compared against. Parental controls, Safe Search enforcement on major search engines, and custom blocklist management are all built-in with no additional software required.\n\nIt ships as a single Go binary with a React frontend bundled in. Deployment options include a one-line install script, Docker (official image on DockerHub), and Snap. A REST API and a Python client library enable programmatic integration; third-party integrations exist for Home Assistant, OpenWrt, GLiNet routers, iOS, and more.",
+      "path": "catalog/entries/adguard-home.md"
+    },
+    {
+      "name": "adhd",
+      "title": "ADHD",
+      "url": "https://github.com/UditAkhourii/adhd",
+      "category": "skill",
+      "verdict": "note",
+      "verdict_reason": "parallel divergent ideation via isolated cognitive frames; overlaps with superpowers:brainstorming but the frame isolation and scoring mechanics are worth studying",
+      "tags": [
+        "ideation",
+        "brainstorming",
+        "parallel",
+        "divergent-thinking",
+        "cognitive-frames",
+        "subagents"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-05-27",
+      "summary": "A Claude Code skill that implements parallel divergent ideation by spawning N isolated reasoning branches under deliberately distorted cognitive frames, then applying a separate critic pass to evaluate and converge. Two-phase architecture: Phase 1 (Diverge) selects 5 of 14 cognitive frames (hardware engineer, regulator, 10-year-old, competitor, biology, logistics, game design, markets, inversion, extreme budget/timeline, speedrunner, ant colony, 3am on-call) and spawns parallel Agent calls where each generates 6 ideas in structured JSON with zero shared context. Phase 2 (Focus) scores ideas 0-10 on novelty/viability/fit (weighted 0.35/0.40/0.25), clusters by underlying angle, and deepens top 3 with mechanics sketches, load-bearing risks, first concrete steps, and child ideas. Default run: 5 frames x 6 ideas = 30 candidates, ~10 LLM calls, ~$0.30.\n\nAlso available as a CLI (`npm install -g adhd-agent; adhd \"your problem\"`) and TypeScript library. MIT licensed, requires Node 18+.",
+      "path": "catalog/entries/adhd.md"
+    },
+    {
+      "name": "advise-project-approach",
+      "title": "Advise Project Approach",
+      "url": "https://github.com/AaravKashyap12/advise-project-approach",
+      "category": "skill",
+      "verdict": "pilot",
+      "verdict_reason": "structured project-level architecture research with comparable analysis, cost checks, and tradeoff discipline; complements /catalog (tool-level) with project-level advisory",
+      "tags": [
+        "architecture",
+        "stack-selection",
+        "comparables",
+        "cost-analysis",
+        "project-strategy",
+        "decision-methodology"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-02",
+      "summary": "A Claude Code skill (22KB SKILL.md) that automates the research loop a strong engineer would do before committing to a technology stack. Three operating modes: pre-build strategy (no repo yet — research comparables, evaluate stacks, recommend an approach), mid-build course correction (inspect existing repo against goals and external references), and post-build review (architecture, quality, deployment readiness against mature comparables). The skill enforces a structured decision methodology: frame constraints, research comparable projects, extract transferable patterns, check operating costs against real pricing pages, compare 2-4 approaches in a tradeoff matrix, and recommend with explicit failure conditions. Distinguishing features include comparable bias controls (popularity doesn't override fit), pricing reality checks (separates \"free to start\" from actual operating cost), and calibrated output contracts (weekend prototype and production SaaS get different standards). MIT licensed, 32 stars, 3 releases (latest v0.3.0). Also available as a packaged `.skill` file.",
+      "path": "catalog/entries/advise-project-approach.md"
+    },
+    {
+      "name": "advisor-strategy",
+      "title": "Advisor Strategy",
+      "url": "https://claude.com/blog/the-advisor-strategy",
+      "category": "agent-pattern",
+      "verdict": "note",
+      "verdict_reason": "architectural concept for cost-effective agent orchestration; executor/advisor split",
+      "tags": [
+        "agents",
+        "cost-optimization",
+        "dispatch",
+        "patterns"
+      ],
+      "workflows": [],
+      "license": "proprietary",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "The Advisor Strategy is an architectural pattern where one model executes (cheaper/faster) and a smarter model advises only when needed. The executor handles routine work; when it hits uncertainty it escalates to the advisor for a targeted review. No tool to install — this is a design concept from…",
+      "path": "catalog/entries/advisor-strategy.md"
+    },
+    {
+      "name": "agent-session-resume",
+      "title": "Agent Session Resume",
+      "url": "https://github.com/hacktivist123/agent-session-resume",
+      "category": "skill",
+      "verdict": "note",
+      "verdict_reason": "Cross-agent session resume skill with structured checkpoint workflow; overlaps with our handoff skill but adds multi-agent-platform support (Codex, Cursor, Antigravity, OpenCode)",
+      "tags": [
+        "handoff",
+        "session-resume",
+        "cross-agent",
+        "claude-code",
+        "codex",
+        "cursor"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-09",
+      "summary": "A reusable skill that gives AI coding agents a disciplined resume workflow for continuing\nwork from a prior session. Instead of asking the next agent to \"continue from the previous\nsession,\" the skill forces it to first produce a structured handoff checkpoint containing:\nthe prior goal, what is done, what is still open, key decisions, the stopping point, and\nthe next action to take before editing. Tasks are classified as DONE, PARTIALLY DONE, or\nNOT DONE.\n\nSupports Claude Code, Codex, Cursor, Antigravity, and OpenCode. Installs via\n`npx skills add hacktivist123/agent-session-resume` or as a Claude Code plugin.",
+      "path": "catalog/entries/agent-session-resume.md"
+    },
+    {
+      "name": "agent-teams",
+      "title": "Claude Agent Teams",
+      "url": "https://code.claude.com/docs/en/agent-teams",
+      "category": "agent-pattern",
+      "verdict": "adopt",
+      "verdict_reason": "primary interactive dispatch path; subscription billing, no API credits needed",
+      "tags": [
+        "agents",
+        "teams",
+        "dispatch",
+        "orchestration"
+      ],
+      "workflows": [],
+      "license": "proprietary",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "Claude Agent Teams is an experimental feature (requires `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` and v2.1.32+) where one lead session coordinates multiple teammate sessions. Teammates share a task list (pending → in progress → completed, with dependency support) and a mailbox for direct…",
+      "path": "catalog/entries/agent-teams.md"
+    },
+    {
+      "name": "ai-memory-comparison",
+      "title": "AI Memory Comparison",
+      "url": "https://github.com/carsteneu/ai-memory-comparison",
+      "category": "reference",
+      "verdict": "adopt",
+      "verdict_reason": "Definitive source-backed survey of 73 open-source AI agent memory systems across 79 features — every claim cites public code or docs.",
+      "tags": [
+        "memory",
+        "agents",
+        "comparison",
+        "survey",
+        "mcp",
+        "rag",
+        "vector-db"
+      ],
+      "workflows": [],
+      "license": "CC0-1.0",
+      "security_flags": [],
+      "reviewed": "2026-06-10",
+      "summary": "A sortable, filterable comparison table of 73 open-source memory systems built specifically for AI coding agents (Claude Code, Codex, OpenCode, etc.). Systems are evaluated across 79 features on seven axes: Data Model, Search & Retrieval, Knowledge Lifecycle, Extraction Pipeline, Platform Support, Architecture, and Benchmarks. Every checkmark links to the exact README line, docs page, or source file that proves the feature exists. The live table is hosted at carsteneu.github.io/ai-memory-comparison. An `evidence/` directory in the repo stores per-system citation files so claims are re-auditable at any time.",
+      "path": "catalog/entries/ai-memory-comparison.md"
+    },
+    {
+      "name": "airllm",
+      "title": "AirLLM",
+      "url": "https://github.com/lyogavin/airllm",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "Clever layer-shard inference to run 70B models on 4GB VRAM, but maintenance has stalled since August 2024 while better-maintained alternatives (Ollama/llama.cpp) have matured.",
+      "tags": [
+        "llm-inference",
+        "low-vram",
+        "memory-optimization",
+        "python",
+        "huggingface",
+        "quantization"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "no-ci-evidence",
+        "stale-since-2024",
+        "community-contributed-cpu-backend"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "AirLLM is a Python library that enables running large language models (70B parameters and up) on consumer GPUs with as little as 4GB VRAM, and 405B Llama3.1 on 8GB VRAM. It achieves this by decomposing a HuggingFace model into per-layer shards saved to disk, then loading and executing one layer (or a small set of layers) at a time during inference. No quantization is required for the base mode, though optional block-wise 4bit/8bit quantization is supported for up to 3x throughput improvement with minimal accuracy loss. The API mirrors the HuggingFace Transformers interface (`AutoModel.from_pretrained`, `model.generate`), making migration straightforward. Supported models include Llama 2/3/3.1, Mixtral, Mistral, ChatGLM, Qwen/Qwen2.5, Baichuan, and InternLM. macOS (Apple Silicon via mlx) and CPU inference are also supported as of v2.10.1.",
+      "path": "catalog/entries/airllm.md"
+    },
+    {
+      "name": "alcoa-plus-for-ai",
+      "title": "AI Needs What ALCOA+ Gave Records",
+      "url": "https://bryandownie.substack.com/p/ai-needs-what-alcoa-gave-records",
+      "category": "reference",
+      "verdict": "note",
+      "verdict_reason": "Useful framing for regulated-AI governance but no actionable tool or framework yet — CASTEM teased but unpublished",
+      "tags": [
+        "ai-governance",
+        "gxp",
+        "regulatory",
+        "data-integrity",
+        "pharma"
+      ],
+      "workflows": [],
+      "license": "UNLICENSED",
+      "security_flags": [],
+      "reviewed": "2026-06-10",
+      "summary": "Bryan Downie argues that generative AI breaks the traditional division of labor in regulated-industry record-keeping. ALCOA+ (Attributable, Legible, Contemporaneous, Original, Accurate + Complete, Consistent, Enduring, Available) governs data records, while other regimes (IQ/OQ/PQ, CSV, SOPs)…",
+      "path": "catalog/entries/alcoa-plus-for-ai.md"
+    },
+    {
+      "name": "asi-evolve",
+      "title": "ASI-Evolve",
+      "url": "https://github.com/GAIR-NLP/ASI-Evolve",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "Impressive autonomous research-loop results but arbitrary code execution per round, no stated license, and very new (2026 academic repo)",
+      "tags": [
+        "autonomous-research",
+        "agentic",
+        "evolutionary-search",
+        "experiment-automation",
+        "bioinformatics",
+        "llm-driven",
+        "multi-agent"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-unknown",
+      "security_flags": [
+        "arbitrary-code-execution",
+        "no-license-stated",
+        "no-tests-observed",
+        "no-ci-observed"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "ASI-Evolve is a general agentic framework that automates iterative research: it runs a LEARN → DESIGN → EXPERIMENT → ANALYZE loop autonomously, round after round, until it finds improved solutions. Three specialized agents drive each round — a Researcher (retrieves prior knowledge, proposes next candidate program), an Engineer (executes the candidate, collects structured metrics via a user-supplied eval script), and an Analyzer (distills outcomes into transferable lessons). Two persistent memory systems prevent circular exploration: a Cognition Store (FAISS-backed vector store seeded with domain knowledge, papers, and heuristics) and an Experiment Database (stores every trial with motivation, code, result, and analysis; parent selection uses UCB1, greedy, random, or MAP-Elites island sampling). The framework is domain-agnostic — the user supplies a problem description, a baseline program, and an evaluation script returning a numeric score; ASI-Evolve handles the rest. Published results cover neural architecture search (+0.97 pts over DeltaNet), pretraining data curation (+18 pts MMLU), RL algorithm design (+12.5 pts AMC32 vs GRPO), and drug-target interaction (+6.94 AUROC).",
+      "path": "catalog/entries/asi-evolve.md"
+    },
+    {
+      "name": "autoharness",
+      "title": "Autoharness",
+      "url": "https://github.com/kayba-ai/autoharness",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "needs eval benchmarks first; pilot when we have eval criteria for our skills/agents",
+      "tags": [
+        "harness",
+        "optimization",
+        "eval",
+        "benchmarks"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "A control plane for agent harnesses that proposes and applies changes to prompts, configs, and middleware, then runs evals and keeps only improvements. Works as a resumable search campaign: Workspace → Track → Campaign. Persists settings, proposals, records, iterations, champion state, and plugins in a `.autoharness/` directory. Benchmark results on tau2-airline: +40.7% (best-of-N scoring), +24.1% (hyperparameter tuning), +22.2% (runtime context injection). Includes an assistant integration that generates a `autoharness.claude.md` handoff document via `guide --assistant claude`.\n\n**Key components**:\n- 6 benchmark adapters: `generic_command`, `pytest`, `harbor`, `tau2_bench`, `hal`, `car_bench`\n- 7 proposal generators: `manual`, `failure_summary`, `local_template`, `local_command`, `openai_responses`, `codex_cli`, `claude_code`\n- Plugin system: `.autoharness/plugins/` or `AUTOHARNESS_PLUGIN_PATHS` env var",
+      "path": "catalog/entries/autoharness.md"
+    },
+    {
+      "name": "autoresearch",
+      "title": "Autoresearch",
+      "url": "https://github.com/karpathy/autoresearch",
+      "category": "framework",
+      "verdict": "note",
+      "verdict_reason": "Highly influential autonomous experimentation loop pattern, but ML-training-specific — transferable idea, not transferable code",
+      "tags": [
+        "autonomous-agents",
+        "ml-training",
+        "experimentation",
+        "karpathy",
+        "agent-loop"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-10",
+      "summary": "Autoresearch gives an AI coding agent a single-GPU LLM training setup (simplified nanochat) and lets it experiment autonomously. The agent modifies `train.py` (architecture, hyperparameters, optimizer, training loop), runs a fixed 5-minute training cycle, evaluates validation bits-per-byte (`val_bpb`), keeps or discards the change, and repeats. The human programs `program.md` — a Markdown instruction file — rather than touching Python directly. Runs ~12 experiments/hour, ~100 overnight.\n\nThe repo is deliberately minimal: three files (`prepare.py` for data prep, `train.py` for the agent to modify, `program.md` for human instructions). Requires a single NVIDIA GPU (tested on H100). Community forks exist for macOS/MPS, AMD, and Windows RTX. 85.9k stars and 12.4k forks as of June 2026 — one of the fastest-growing repos in GitHub history.\n\nKarpathy ran it for two days on his own hand-tuned code and it found 20 stacking improvements including a bug in his attention implementation. The pattern has been adopted beyond ML (e.g. Shopify used it for templating engine optimization).",
+      "path": "catalog/entries/autoresearch.md"
+    },
+    {
+      "name": "awesome-claude-code",
+      "title": "Awesome Claude Code",
+      "url": "https://github.com/hesreallyhim/awesome-claude-code",
+      "category": "reference",
+      "verdict": "note",
+      "verdict_reason": "curated Claude Code ecosystem list; use as discovery source for future catalog inbox items",
+      "tags": [
+        "awesome-list",
+        "skills",
+        "agents",
+        "hooks",
+        "orchestrators",
+        "discovery"
+      ],
+      "workflows": [],
+      "license": "CC-BY-NC-ND-4.0",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "A curated collection of Claude Code resources covering skills, agents, hooks, status lines, slash commands, agent orchestrators, applications, plugins, and developer tooling. 44.8k stars. Currently being reorganized — the previous ToC structure was retired and a new organizational system is in…",
+      "path": "catalog/entries/awesome-claude-code.md"
+    },
+    {
+      "name": "biomysterybench",
+      "title": "BioMysteryBench",
+      "url": "https://huggingface.co/datasets/Anthropic/BioMysteryBench-full",
+      "category": "reference",
+      "verdict": "pilot",
+      "verdict_reason": "99-problem bioinformatics research benchmark from Anthropic — directly useful for evaluating agent performance on real research tasks.",
+      "tags": [
+        "benchmark",
+        "bioinformatics",
+        "evaluation",
+        "dataset",
+        "research",
+        "anthropic"
+      ],
+      "workflows": [],
+      "license": "CC-BY-4.0",
+      "security_flags": [
+        "access-gated"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "BioMysteryBench is a bioinformatics research benchmark created by Anthropic, hosted on HuggingFace. It contains 99 problems designed to test whether AI models can perform genuine bioinformatics research tasks. Each problem includes a question prompt, an answer rubric with expected results, allowed network domains for the solving environment, and associated data files. Problems are tagged with whether at least one human benchmarker solved them, providing a human-solvability baseline. The dataset ships as CSV/Parquet for problem metadata and per-problem ZIP archives containing the working data.",
+      "path": "catalog/entries/biomysterybench.md"
+    },
+    {
+      "name": "bmad-skill-forge",
+      "title": "BMAD Skill Forge",
+      "url": "https://github.com/armelhbobdad/bmad-module-skill-forge",
+      "category": "skill-generator",
+      "verdict": "pilot",
+      "verdict_reason": "strong fit for bioinformatics tool skill generation; start with Brief tier on samtools",
+      "tags": [
+        "skill-generation",
+        "provenance",
+        "ast",
+        "cli-tools"
+      ],
+      "workflows": [
+        "scRNA-seq",
+        "spatial"
+      ],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "Transforms code repos and documentation into verified, version-pinned AI skill files. Uses AST parsing to extract real function signatures, so generated skills reference actual API shapes rather than guessed ones. Every claim traces back to source via a provenance-map.json (file:line at pinned commit for code, `[EXT:{url}]` citations for docs-only skills). Produces two outputs: a full `SKILL.md` with signatures, parameters, types, and inline provenance citations like `[AST:file.py:L27]`; and a `context-snippet.md` (80-120 token compressed index) for passive injection into CLAUDE.md. The workflow `@Ferris forge <library>` chains Brief → Create → Test → Export steps, each clearing context before the next.\n\n**Three capability tiers**:\n1. **Brief** — documentation/discourse analysis only, no AST. Immediately usable, no extra tooling.\n2. **Forge** — adds AST extraction via `ast-grep`.\n3. **Forge+/Deep** — adds semantic search (`cocoindex-code`) and hybrid indexing.\n\nLifecycle operations (Rename, Drop, Update, Export) are all transactional. Validation includes skill-check for agentskills.io format compliance and optional Snyk agent scan for prompt injection and data exposure.",
+      "path": "catalog/entries/bmad-skill-forge.md"
+    },
+    {
+      "name": "book-to-skill",
+      "title": "Book to Skill",
+      "category": "skill",
+      "verdict": "pilot",
+      "verdict_reason": "directly useful for computational biology methods PDFs",
+      "tags": [
+        "pdf",
+        "knowledge",
+        "querying"
+      ],
+      "workflows": [
+        "scRNA-seq",
+        "spatial"
+      ],
+      "license": "unknown",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "Turns a technical PDF into a queryable skill with chapter summaries, a glossary, and on-demand section loading. Rather than dumping a full document into context, it builds a structured index that Claude can query selectively. Directly applicable to computational biology methods texts — algorithm descriptions, protocol PDFs, and reference manuals that are too large for inline inclusion.",
+      "path": "catalog/entries/book-to-skill.md"
+    },
+    {
+      "name": "browser-use",
+      "title": "Browser Use",
+      "url": "https://github.com/browser-use/browser-use",
+      "category": "framework",
+      "verdict": "pilot",
+      "verdict_reason": "MIT-licensed Python/Rust framework giving LLM agents real browser control — useful for web scraping, form automation, and accessing bioinformatics portals, but Rust-core beta is still experimental and full capability requires commercial cloud",
+      "tags": [
+        "browser-automation",
+        "web-scraping",
+        "agent",
+        "python",
+        "rust",
+        "claude-code-skill"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "curl-install-pattern",
+        "cloud-data-sharing-risk"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Browser Use gives LLM agents a real browser action space — navigate, click, type, screenshot, read DOM state — via a Python API backed by a Rust core (v0.13+). The agent receives a task string, an LLM handle (OpenAI, Anthropic, Google, or the proprietary `bu-*` models), and an optional `BrowserProfile`, then autonomously drives the browser through recovery loops inspired by coding agents until the task is complete or exhausted. A CLI provides headless/interactive one-liner automation. A Claude Code skill (installable via curl) exposes browser control directly within Claude Code sessions. There is also a commercial cloud offering with stealth browsers, proxy rotation, CAPTCHA solving, and 1000+ integrations, but the core library is fully self-hostable.",
+      "path": "catalog/entries/browser-use.md"
+    },
+    {
+      "name": "castem-first-principles-model-mediated-work",
+      "title": "CASTEM: First Principles for Model-Mediated Work",
+      "url": "https://www.linkedin.com/pulse/castem-first-principles-model-mediated-work-bryan-downie-ph-d--58mnc/",
+      "category": "reference",
+      "verdict": "note",
+      "verdict_reason": "Portable 6-criterion mnemonic (Credible, Auditable, Supervised, Traceable, Explainable, Monitored) for AI governance in regulated settings — good design checklist, no tooling.",
+      "tags": [
+        "ai-governance",
+        "compliance",
+        "regulated-ai",
+        "mnemonic",
+        "audit",
+        "validation",
+        "oversight"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-copyright-author",
+      "security_flags": [],
+      "reviewed": "2026-06-10",
+      "summary": "Bryan Downie introduces CASTEM — a six-question mnemonic synthesized from the regulatory landscape (FDA credibility guidance, EU AI Act, banking model-risk rules, insurance bulletins) as of April 2026. It is the follow-up to his prior piece on ALCOA+ applied to AI records.\n\nThe six criteria:\n\n-…",
+      "path": "catalog/entries/castem-first-principles-model-mediated-work.md"
+    },
+    {
+      "name": "claude-code-remote-prompt-hardening",
+      "title": "Claude Code Remote Prompt Hardening",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1tmizuy/claude_code_v21150_now_allows_anthropic_to/",
+      "category": "reference",
+      "verdict": "note",
+      "verdict_reason": "env vars to block remote system prompt injection in Claude Code; operational hardening knowledge for security-sensitive environments",
+      "tags": [
+        "claude-code",
+        "security",
+        "privacy",
+        "env-vars",
+        "hardening",
+        "system-prompt",
+        "version-pinning"
+      ],
+      "workflows": [],
+      "license": "unknown",
+      "security_flags": [],
+      "reviewed": "2026-05-27",
+      "summary": "Starting with Claude Code v2.1.150, two network-sourced data channels can inject content into the LLM system prompt at runtime. First, an API call to `api.anthropic.com/api/claude_cli/bootstrap` at startup (cached to disk). Second, a GrowthBook feature flag (`tengu_heron_brook`) that refreshes…",
+      "path": "catalog/entries/claude-code-remote-prompt-hardening.md"
+    },
+    {
+      "name": "claude-decision-pressure-test-and-context-handoff",
+      "title": "Claude Decision Pressure-Test & Context Handoff Prompts",
+      "category": "reference",
+      "verdict": "note",
+      "verdict_reason": "Two reusable prompting patterns — steelman/red-team verdict loop and structured context handoff — worth keeping as copy-paste references",
+      "tags": [
+        "prompting",
+        "decision-making",
+        "context-management",
+        "red-teaming",
+        "handoff"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-06-10",
+      "summary": "A Reddit/social media guide describing two standalone Claude prompting techniques:\n\n**1. Decision Pressure-Test (4-step loop)**\nA structured prompt that forces Claude to steelman a decision, red-team it, argue the opposite position, then deliver a calibrated verdict. Designed to surface blind spots…",
+      "path": "catalog/entries/claude-decision-pressure-test-and-context-handoff.md"
+    },
+    {
+      "name": "claude-howto",
+      "title": "Claude Howto",
+      "url": "https://github.com/luongnv89/claude-howto",
+      "category": "reference",
+      "verdict": "note",
+      "verdict_reason": "Well-structured tutorial guide with copy-paste templates, but it is a learning reference rather than an installable tool.",
+      "tags": [
+        "claude-code",
+        "tutorial",
+        "learning-path",
+        "slash-commands",
+        "skills",
+        "hooks",
+        "mcp",
+        "subagents",
+        "templates"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-10",
+      "summary": "A visual, example-driven tutorial guide for Claude Code structured as 10 progressive modules: slash commands, memory, checkpoints, CLI basics, skills, hooks, MCP, subagents, advanced features, and plugins. Each module includes Mermaid architecture diagrams, production-ready copy-paste templates (CLAUDE.md stubs, hook scripts, subagent definitions, MCP config files), and a self-assessment quiz runnable via `/self-assessment` or `/lesson-quiz [topic]` inside Claude Code. A guided learning path runs beginner to advanced in 11–13 hours. Maintained in sync with Claude Code releases (latest v2.1.160, June 2026). Multilingual: English, Vietnamese, Chinese, Ukrainian, Japanese. Also ships an EPUB generator (`uv run scripts/build_epub.py`) for offline reading.",
+      "path": "catalog/entries/claude-howto.md"
+    },
+    {
+      "name": "claude-mem",
+      "title": "Claude Mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "category": "framework",
+      "verdict": "skip",
+      "verdict_reason": "kb wiki + Claude Code built-in memory cover our needs; adds SQLite + Chroma + worker complexity without clear benefit",
+      "tags": [
+        "memory",
+        "persistence",
+        "vector-search",
+        "sessions",
+        "hooks",
+        "kb"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "A persistent memory system for AI agents using SQLite + Chroma vector DB. Automatically captures observations via 5 lifecycle hooks (SessionStart, UserPromptSubmit, PostToolUse, Stop, SessionEnd), generates semantic summaries, and provides 3-layer progressive disclosure retrieval (search→timeline→full details) to minimize token usage. Runs a worker service on port 37777 with HTTP API and web UI. Provides 4 MCP tools for intelligent memory search. Supports privacy controls via `<private>` tags. 78.1k stars, Apache 2.0, requires Node 18+, Bun, and uv.",
+      "path": "catalog/entries/claude-mem.md"
+    },
+    {
+      "name": "claude-pee",
+      "title": "claude-pee",
+      "category": "cli-tool",
+      "verdict": "skip",
+      "verdict_reason": "PTY wrapper driving interactive CLI; inherently brittle, breaks on CLI version changes",
+      "tags": [
+        "pty",
+        "automation",
+        "cli",
+        "dispatch"
+      ],
+      "workflows": [],
+      "license": "unknown",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "`claude-pee` is a PTY wrapper that drives the Claude Code interactive CLI programmatically by injecting keystrokes and reading terminal output. It attempts to automate headless dispatch by treating the interactive terminal session as a subprocess target. Because it depends on the exact output format and interactive behavior of the CLI, it breaks whenever Claude Code updates its terminal UI.",
+      "path": "catalog/entries/claude-pee.md"
+    },
+    {
+      "name": "claude-peers-mcp",
+      "title": "Claude Peers MCP",
+      "url": "https://github.com/louislva/claude-peers-mcp",
+      "category": "mcp-server",
+      "verdict": "watch",
+      "verdict_reason": "Novel multi-session peer messaging, but mandatory --dangerously-skip-permissions flag is a hard blocker for safe use",
+      "tags": [
+        "multi-agent",
+        "inter-session",
+        "messaging",
+        "coordination",
+        "broker",
+        "sqlite",
+        "bun"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-unknown",
+      "security_flags": [
+        "dangerously-skip-permissions-required",
+        "dangerously-load-development-channels-required",
+        "no-tests-observed",
+        "no-ci-observed",
+        "single-contributor",
+        "optional-openai-key-exfil-risk"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Claude Peers MCP is an MCP server that lets multiple concurrently running Claude Code instances on the same machine discover each other and exchange messages in real time. A local broker daemon (localhost:7899, SQLite backend) acts as the hub. Each Claude Code session registers with the broker via a stdio MCP server; inbound messages are pushed into the session via the `claude/channel` protocol for immediate delivery. Four tools are exposed: `list_peers` (discover running instances with directory, git repo, and summary), `send_message` (send to a peer by ID), `set_summary` (describe what you're working on), and `check_messages` (polling fallback). A CLI (`bun cli.ts`) allows out-of-band inspection and message injection. Optionally, setting `OPENAI_API_KEY` triggers an auto-summary call to `gpt-5.4-nano` on startup.",
+      "path": "catalog/entries/claude-peers-mcp.md"
+    },
+    {
+      "name": "claude-spellbook",
+      "title": "Claude Spellbook",
+      "category": "reference",
+      "verdict": "note",
+      "verdict_reason": "50 skills, 7 agents, 11 slash commands — use as pattern reference, not default install",
+      "tags": [
+        "skills",
+        "agents",
+        "hooks",
+        "patterns"
+      ],
+      "workflows": [],
+      "license": "unknown",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "A bundled toolkit of 50 skills, 7 agents, and 11 slash commands with auto-formatting hooks. Provides a worked example of the \"skill + agent + hook\" integration pattern — showing how these three Claude Code primitives can be combined into a coherent operational system. Sourced from a Reddit…",
+      "path": "catalog/entries/claude-spellbook.md"
+    },
+    {
+      "name": "cli-anything",
+      "title": "CLI-Anything",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "category": "framework",
+      "verdict": "pilot",
+      "verdict_reason": "Generates production-grade, agent-native CLI harnesses from any codebase via a 7-phase pipeline; directly integrates with Claude Code as a plugin and emits SKILL.md files for skill discovery.",
+      "tags": [
+        "cli-generation",
+        "agent-native",
+        "skill-generation",
+        "claude-code-plugin",
+        "python",
+        "bioinformatics-adjacent"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "runs-arbitrary-codegen",
+        "upstream-software-required"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "CLI-Anything is a framework and Claude Code plugin that transforms any software codebase into an agent-native CLI harness through an automated 7-phase pipeline: analyze source, design command architecture, implement a Click CLI with REPL and `--json` output, plan and write tests, document, and publish via `pip install -e .`. The generated harness lands on PATH as `cli-anything-<software>` and ships a `SKILL.md` for agent skill discovery.\n\nTwo entry points exist: (1) **CLI-Hub** (`pip install cli-anything-hub`) — a package manager for 40+ pre-built harnesses covering creative tools, AI/ML platforms, scientific computing, office suites, and game engines; (2) the **Claude Code plugin** (`/plugin marketplace add HKUDS/CLI-Anything` + `/plugin install cli-anything`) — run `/cli-anything <path-or-repo>` to generate a fresh harness for any target. A meta-skill (`npx skills add HKUDS/CLI-Anything --skill cli-hub-meta-skill -g -y`) lets agents autonomously discover and install the right CLI for a task.\n\nPre-built harnesses with bioinformatics relevance include UniMol Tools (molecular property prediction), QGIS (geospatial analysis), CloudAnalyzer (point cloud QA), and 3MF (mesh geometry for 3D printing). The project has 2,461 passing tests (100% pass rate) across unit and E2E layers, and publishes an arXiv technical report (2606.03854).",
+      "path": "catalog/entries/cli-anything.md"
+    },
+    {
+      "name": "cobalt",
+      "title": "Cobalt",
+      "url": "https://github.com/imputnet/cobalt",
+      "category": "cli-tool",
+      "verdict": "note",
+      "verdict_reason": "General-purpose media downloader with a self-hosted API; no agent, skill, or bioinformatics relevance.",
+      "tags": [
+        "media-download",
+        "self-hosted",
+        "api",
+        "proxy",
+        "youtube",
+        "video"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0",
+      "security_flags": [
+        "agpl-copyleft"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Cobalt is a self-hosted media downloading service. Users paste a public video/audio URL (YouTube, Twitter/X, TikTok, Instagram, etc.) into the web frontend or call the REST API, and cobalt streams the file back without caching it — acting as a transparent proxy to the platform's CDN. The monorepo ships three components: an API server (Node.js), a web frontend (SvelteKit), and shared packages. It is designed to be ad-free, tracker-free, and paywall-free, and explicitly limits itself to freely accessible public content only.",
+      "path": "catalog/entries/cobalt.md"
+    },
+    {
+      "name": "codebase-reasoning-topology",
+      "title": "Codebase Reasoning Topology",
+      "category": "reference",
+      "verdict": "note",
+      "verdict_reason": "heavy for daily use but interesting as a pre-flight checklist concept",
+      "tags": [
+        "invariants",
+        "state-ownership",
+        "blast-radius",
+        "checklist"
+      ],
+      "workflows": [],
+      "license": "unknown",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "A structured prompt framework from Karpathy's 12 Rules (same source as the `karpathy-12-rules` entry) that defines four invariants for reasoning about a codebase before making changes. The four invariants are: (1) state ownership — what owns each piece of state and what can mutate it; (2) feedback…",
+      "path": "catalog/entries/codebase-reasoning-topology.md"
+    },
+    {
+      "name": "codex-memory-cleanup",
+      "title": "Codex Memory Cleanup",
+      "category": "reference",
+      "verdict": "note",
+      "verdict_reason": "operational tip: delete state/log/global-state files if Codex performance degrades",
+      "tags": [
+        "codex",
+        "maintenance",
+        "performance"
+      ],
+      "workflows": [],
+      "license": "unknown",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "An operational tip from Reddit r/codex: if Codex performance degrades (slow responses, stale context, erratic behavior), deleting accumulated state and log files restores baseline performance. Three files accumulate over time and are safe to delete: `.codex/state_5.sqlite`, `.codex/logs_2.sqlite`,…",
+      "path": "catalog/entries/codex-memory-cleanup.md"
+    },
+    {
+      "name": "context-graph-compressor",
+      "title": "Context Graph Compressor",
+      "url": "https://github.com/Adityapal67/context-graph-compressor",
+      "category": "skill",
+      "verdict": "pilot",
+      "verdict_reason": "Structured JSON graph handoff with importance tagging and cross-LLM portability beats plain-text handoff skills; too new/single-contributor to adopt outright",
+      "tags": [
+        "context-management",
+        "handoff",
+        "token-reduction",
+        "json",
+        "claude-ai",
+        "cross-llm",
+        "session-resume"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "no-tests",
+        "no-ci",
+        "single-contributor",
+        "new-repo"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Compresses a long claude.ai chat conversation into a portable, minimal JSON context graph that can be pasted into a new session with any LLM. Outputs two modes: `compact` (~300–500 tokens, abbreviated keys for minimum token cost) and `readable` (full prose, for archiving or sharing). The graph encodes typed nodes (fact, decision, problem, goal, code, context), per-node importance (h/m/l), and optional relationship edges (depends_on, resolves, supersedes). Low-importance nodes are dropped in compact mode. A `handoff` top-level field provides a plain-English re-entry prompt for the receiving LLM. Installed via claude.ai Settings → Skills (upload `.skill` file). Triggered by natural-language phrases: \"compress this chat\", \"handoff to new chat\", \"too many tokens, start fresh\".",
+      "path": "catalog/entries/context-graph-compressor.md"
+    },
+    {
+      "name": "crawl4ai",
+      "title": "Crawl4AI",
+      "url": "https://github.com/unclecode/crawl4ai",
+      "category": "framework",
+      "verdict": "pilot",
+      "verdict_reason": "Best-in-class async web-to-Markdown crawler for agent/RAG pipelines, but Docker API has had dense critical CVEs; library mode is safe to pilot",
+      "tags": [
+        "web-scraping",
+        "markdown",
+        "rag",
+        "agents",
+        "async",
+        "playwright",
+        "docker",
+        "llm-extraction"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "docker-api-rce-history",
+        "ssrf-history",
+        "unaudited-litellm-fork",
+        "hook-sandbox-escape-history"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Crawl4AI is an async Python web crawling framework that converts web pages into clean, LLM-ready Markdown for RAG pipelines, agents, and structured data extraction. It wraps Playwright (Chromium/Firefox/WebKit) with an `AsyncWebCrawler` API, an async browser pool, caching, and a CLI (`crwl`).\n\nCore capabilities:\n\n- **Markdown output modes:** raw, \"fit\" (BM25-filtered noise removal), and citation-annotated variants\n- **Structured extraction:** CSS/XPath schema extraction (no LLM needed), LLM-driven extraction via any provider (through a litellm fork), chunking strategies\n- **Deep crawling:** BFS/DFS/BestFirst strategies with crash recovery (`resume_state`), prefetch mode (5-10x faster for URL discovery only), adaptive crawling that learns site patterns\n- **Browser control:** stealth/undetected mode, Shadow DOM flattening, virtual scroll, session persistence, proxy chains with anti-bot escalation, custom hooks at 8 pipeline points\n- **Deployment:** Docker image with FastAPI server, JWT auth, monitoring dashboard, MCP integration (direct connection to AI tools)\n- **CLI:** `crwl <url> -o markdown`, deep crawl flags, LLM question mode",
+      "path": "catalog/entries/crawl4ai.md"
+    },
+    {
+      "name": "creating-claude-md",
+      "title": "Creating CLAUDE.md",
+      "url": "https://github.com/sruthik27/creating-claude-md",
+      "category": "skill-generator",
+      "verdict": "skip",
+      "verdict_reason": "/init skill already covers repo-scanning CLAUDE.md generation",
+      "tags": [
+        "claude-md",
+        "repo-scanning",
+        "code-quality"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "Scans a repo (manifests, linters, git history), then asks 6 targeted questions — gotchas, scope, approvals, testing, external docs, and reasoning preferences — before generating a CLAUDE.md. Enforces a hard cap at 80 lines with overflow to `agent_docs/`. Refuses to include rules that duplicate linter config, personality prompts, or pasted documentation. The 80-line philosophy reflects a real maintenance insight: CLAUDE.md files that grow without discipline become noise.",
+      "path": "catalog/entries/creating-claude-md.md"
+    },
+    {
+      "name": "crowdsec",
+      "title": "CrowdSec",
+      "url": "https://github.com/crowdsecurity/crowdsec",
+      "category": "framework",
+      "verdict": "note",
+      "verdict_reason": "Production-ready crowdsourced IDS/IPS framework — valuable for hardening servers hosting agent infrastructure, outside direct agent/bioinformatics workflows.",
+      "tags": [
+        "security",
+        "ids",
+        "ips",
+        "waf",
+        "threat-intelligence",
+        "crowdsourced",
+        "ip-blocklist",
+        "infrastructure"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-10",
+      "summary": "CrowdSec is an open-source, crowdsourced security engine that combines intrusion detection, intrusion prevention, and web application firewall capabilities in a single platform. It analyzes log sources (system logs, web server logs, application logs) and HTTP request streams to detect malicious behaviors such as brute-force attacks, port scans, web scans, and credential stuffing. When a threat is detected, it can trigger active remediation through pluggable \"Remediation Components\" that enforce blocks at different layers of the stack — application, system, or infrastructure.\n\nThe platform's distinguishing feature is the CrowdSec Community Blocklist: a real-time, curated list of malicious IP addresses contributed by all participating CrowdSec instances worldwide. Every installation both consumes the blocklist and feeds back into it, giving every user the benefit of threat intelligence gathered across the entire community. Detection scenarios ship under MIT license and are hosted on the CrowdSec Hub, where users can discover, share, and extend rules for their specific stack.\n\nCrowdSec runs on Linux, Windows, Docker, OPNsense, and Kubernetes. Its \"Detect Here, Remedy There\" architecture separates the analysis engine from the remediation layer, so log collection and threat detection can be centralized while blocks are enforced at the relevant perimeter points.",
+      "path": "catalog/entries/crowdsec.md"
+    },
+    {
+      "name": "deny-env-reads",
+      "title": "Deny .env Reads via Permissions",
+      "url": "https://code.claude.com/docs/en/settings",
+      "category": "reference",
+      "verdict": "note",
+      "verdict_reason": "Useful security hygiene tip for Claude Code projects; documents a built-in feature rather than a new tool",
+      "tags": [
+        "security",
+        "permissions",
+        "claude-code",
+        "env-files",
+        "secrets"
+      ],
+      "workflows": [],
+      "license": "UNLICENSED",
+      "security_flags": [],
+      "reviewed": "2026-06-10",
+      "summary": "A practical tip for preventing Claude Code from reading sensitive environment files (`.env`, `.env.*`, `secrets/`). Even with explicit steering prompts telling Claude not to read `.env` files, the agent may still occasionally access or modify them. The reliable solution is to add deny rules to…",
+      "path": "catalog/entries/deny-env-reads.md"
+    },
+    {
+      "name": "distill",
+      "title": "Distill",
+      "url": "https://github.com/samuelfaj/distill",
+      "category": "cli-tool",
+      "verdict": "watch",
+      "verdict_reason": "Local 1.7B model pipe-filter for CLI output compression is a real problem but requires 8–16 GB RAM and relies on an unaudited HuggingFace model; overlaps with rtk.",
+      "tags": [
+        "token-reduction",
+        "cli",
+        "pipe",
+        "local-model",
+        "output-compression"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [
+        "no-license-in-readme",
+        "single-contributor",
+        "unaudited-hf-model",
+        "npm-global-install"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Distill is an npm CLI tool installed globally (`npm i -g @samuelfaj/distill`) that acts as a Unix pipe filter: you pipe any command's output into `distill \"question\"` and it returns a short, focused answer instead of the raw output. The compression is done locally by a custom fine-tuned 1.7B parameter 4-bit quantized MLX model (`samuelfaj/distill-1.7B-MLX` on HuggingFace). The claimed compression ratio is up to 99% token reduction (e.g., 7648 tokens → 99 tokens in the shown example). It also advertises a \"Distill Language\" that teaches the LLM to reason more efficiently, though no details are provided in the README.",
+      "path": "catalog/entries/distill.md"
+    },
+    {
+      "name": "ecc-github",
+      "title": "ECC — Everything Claude Code (GitHub)",
+      "url": "https://github.com/affaan-m/ecc",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "massive cross-harness skill/hook/agent system worth monitoring but high adoption complexity and scope overlap with existing stack",
+      "tags": [
+        "skills",
+        "hooks",
+        "agents",
+        "rules",
+        "security",
+        "cross-harness",
+        "plugin",
+        "claude-code"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "hook-system-broad-scope",
+        "third-party-install-scripts",
+        "pro-tier-upsell"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "ECC is a large-scale agent harness performance system for Claude Code and six other AI coding tools (Codex, Cursor, OpenCode, Gemini CLI, Zed, GitHub Copilot). At v2.0.0 (June 2026) it ships 64 specialized subagents, 261 skills, 84 legacy command shims, a hook automation system (PreToolUse/PostToolUse/Stop/SessionStart/End), language-specific rules (12 ecosystems), cross-platform Node.js scripts, a Tkinter desktop dashboard, and AgentShield — a static security scanner with 1,282 tests and 102 rules that runs a red-team/blue-team/auditor Opus pipeline against your Claude Code configuration. It also provides continuous learning v2 (instinct-based pattern extraction with confidence scoring), token optimization guidance, session memory persistence, and strategic compaction tooling. Install paths: Claude Code plugin (`/plugin install ecc@ecc`), shell installer (`install.sh`/`install.ps1`), or `npx ecc-install`. Selective profiles (minimal, core, full) allow targeted installation.",
+      "path": "catalog/entries/ecc-github.md"
+    },
+    {
+      "name": "ecc-plugin",
+      "title": "Everything Claude Code (ECC)",
+      "url": "https://www.claudepluginhub.com/plugins/affaan-m-everything-claude-code",
+      "category": "plugin",
+      "verdict": "watch",
+      "verdict_reason": "rate-limited (429 errors); trial when accessible",
+      "tags": [
+        "plugin",
+        "hub",
+        "all-in-one"
+      ],
+      "workflows": [],
+      "license": "unknown",
+      "security_flags": [
+        "unverified-content",
+        "bundled-install",
+        "npx-remote-exec"
+      ],
+      "reviewed": "2026-05-25",
+      "summary": "An all-in-one plugin package distributed through the Claude Plugin Hub. Bundles multiple capabilities into a single install command. Encountered 429 rate limit errors across three attempts in two separate sessions during the review period, preventing content verification.",
+      "path": "catalog/entries/ecc-plugin.md"
+    },
+    {
+      "name": "era-empirical-research-assistant",
+      "title": "ERA — Empirical Research Assistant",
+      "url": "https://github.com/google-research/era",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "Interesting LLM+tree-search loop for scientific code generation, but Gemini-locked, research-grade, and not directly applicable to Claude Code workflows today",
+      "tags": [
+        "scientific-computing",
+        "code-generation",
+        "tree-search",
+        "llm-loop",
+        "bioinformatics",
+        "single-cell",
+        "python",
+        "google-research",
+        "research-paper"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "executes-generated-code",
+        "no-pinned-deps",
+        "not-officially-supported",
+        "api-key-required"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "ERA (Empirical Research Assistant) is an AI system that iteratively generates, executes, and scores candidate programs to converge on expert-level scientific software. It pairs a large language model with a Flat UCB Tree Search (FUTS) algorithm — a variant of PUCT (Predictor + Upper Confidence bound for Trees) — to explore a solution space across `num_iterations` iterations, always expanding the most promising node and keeping the best solution found. The user provides two callables: `generate_fn` (LLM call that produces a new candidate from a problem definition and prior solution) and `execute_fn` (scores a candidate by running it against the problem's metric in a sandbox). ERA is demonstrated on regression tasks (California Housing Kaggle) and validated in eight real-world scientific domains: epidemiology forecasting, neuroscience, theoretical physics, public health, climate, hydrology, economics, and combinatorics. Published as a 2025 Google Research paper (arXiv 2509.06503).",
+      "path": "catalog/entries/era-empirical-research-assistant.md"
+    },
+    {
+      "name": "fluiddocs-deck-builder",
+      "title": "FluidDocs Deck Builder",
+      "url": "https://github.com/FluidForm-ai/fluiddocs-deck-builder",
+      "category": "plugin",
+      "verdict": "note",
+      "verdict_reason": "Well-built skill/plugin pack for HTML slide decks; interesting multi-reviewer architecture but outside bioinformatics workflows",
+      "tags": [
+        "presentation",
+        "slides",
+        "skill-pack",
+        "claude-code-plugin",
+        "html",
+        "pdf-import"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-10",
+      "summary": "Open-source Claude Code plugin that generates interactive HTML slide decks from one-line briefs. Ships five type-correct deck spines (pitch 14 slides, sales 11, launch 12, keynote 28, all-hands 15), a PDF/PPTX importer, and a critique skill. Each generated deck is a single self-contained HTML file with inline editing (press E), localStorage autosave, and Ctrl+S download. A multi-reviewer quality pipeline (Brand, Copy, Layout) runs in parallel when subagents are available. Optional deploy to fluiddocs.ai via included shell script.",
+      "path": "catalog/entries/fluiddocs-deck-builder.md"
+    },
+    {
+      "name": "gbrain",
+      "title": "gbrain",
+      "url": "https://github.com/garrytan/gbrain",
+      "category": "framework",
+      "verdict": "skip",
+      "verdict_reason": "kb wiki already provides persistent typed records with relationships and search",
+      "tags": [
+        "memory-graph",
+        "vector-search",
+        "kb"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "A persistent memory graph with hybrid search (vector + keyword) and typed links. Designed for long-lived memory across sessions covering entities, experiments, and literature. Combines vector similarity search (semantic) with keyword search to retrieve relevant memory nodes.",
+      "path": "catalog/entries/gbrain.md"
+    },
+    {
+      "name": "get-shit-done",
+      "title": "Get Shit Done (GSD)",
+      "url": "https://github.com/glittercowboy/get-shit-done",
+      "category": "framework",
+      "verdict": "skip",
+      "verdict_reason": "deprecated (moved to GSD Redux); superpowers skill system already covers meta-prompting and spec-driven development",
+      "tags": [
+        "meta-prompting",
+        "context-engineering",
+        "spec-driven",
+        "claude-md",
+        "workflow",
+        "kb"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "A meta-prompting, context engineering, and spec-driven development system for Claude Code. Provides structured frameworks for organizing developer-AI interactions — agents, commands, hooks, SDKs, and documentation patterns. JavaScript/TypeScript codebase with 2,922 commits and 78 releases. Had 63.7k stars. **Deprecated**: development moved to \"GSD Redux\" at open-gsd/get-shit-done.",
+      "path": "catalog/entries/get-shit-done.md"
+    },
+    {
+      "name": "googleworkspace-cli",
+      "title": "Google Workspace CLI (gws)",
+      "url": "https://github.com/googleworkspace/cli",
+      "category": "cli-tool",
+      "verdict": "pilot",
+      "verdict_reason": "Rust CLI with agent-first JSON output and 100+ bundled SKILL.md files covering all Workspace APIs; pre-v1.0 with breaking changes expected",
+      "tags": [
+        "google-workspace",
+        "gmail",
+        "drive",
+        "calendar",
+        "sheets",
+        "agent-skills",
+        "oauth",
+        "json-output",
+        "rust"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "pre-v1.0-breaking-changes",
+        "unverified-app-scope-limit",
+        "runtime-discovery-fetch"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "`gws` is a single binary CLI that provides uniform command-line access to every Google Workspace API (Drive, Gmail, Calendar, Sheets, Docs, Chat, Admin, Apps Script, and more). Rather than shipping a static command list, it fetches Google's own Discovery Service documents at runtime (cached 24 h) and dynamically constructs a full `clap` command tree. All output — success responses, errors, download metadata — is structured JSON, making it directly pipeable to `jq` or consumable by AI agents without parsing.\n\nThe repository bundles 100+ SKILL.md files (one per supported API plus higher-level helpers) and 50 curated recipes for common Gmail, Drive, Calendar, and Sheets workflows. Skills can be installed with `npx skills add https://github.com/googleworkspace/cli` or selectively copied per service. Helper commands (`+send`, `+reply`, `+agenda`, `+standup-report`, `+meeting-prep`, `+weekly-digest`, `+email-to-task`, etc.) are hand-crafted on top of the auto-generated surface for common human/agent tasks.\n\nAuthentication covers interactive OAuth, headless/CI credential export, service accounts, and pre-obtained access tokens. Credentials are encrypted at rest with AES-256-GCM using the OS keyring (or a file fallback).",
+      "path": "catalog/entries/googleworkspace-cli.md"
+    },
+    {
+      "name": "graphify",
+      "title": "Graphify",
+      "url": "https://github.com/safishamsi/graphify",
+      "category": "framework",
+      "verdict": "note",
+      "verdict_reason": "direct inspiration for kb graph; concepts like confidence-tagged edges and clustering worth learning from",
+      "tags": [
+        "knowledge-graph",
+        "ast",
+        "visualization",
+        "kb"
+      ],
+      "workflows": [],
+      "license": "unknown",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "Transforms codebases, documentation, and multimedia into interactive knowledge graphs using a three-stage pipeline. Stage 1 extracts via tree-sitter AST (31 languages, local, no API calls) plus LLM semantic extraction for docs/PDFs/images and faster-whisper for audio/video. Stage 2 semantically enriches: comments tagged `# NOTE:`, `# WHY:`, `# HACK:` become separate nodes; docstrings and design rationale are extracted; edges get confidence tags (EXTRACTED, INFERRED, AMBIGUOUS). Stage 3 runs community detection via Leiden clustering, identifying \"god nodes\" (highest-degree hubs) and surprising cross-module connections. Output is `graphify-out/graph.html` (interactive visualization), `GRAPH_REPORT.md` (human-readable summary), and `graph.json` (queryable JSON). Registers as a `/graphify` skill so agents can issue `graphify query \"<question>\"` for scoped queries instead of reading full files.",
+      "path": "catalog/entries/graphify.md"
+    },
+    {
+      "name": "graphrag-agent-memory-linkedin-series",
+      "title": "GraphRAG & Agent Memory LinkedIn Series",
+      "url": "https://www.linkedin.com/feed/update/urn:li:share:7464580605327060992",
+      "category": "reference",
+      "verdict": "watch",
+      "verdict_reason": "Six-post series covering GraphRAG design, ontology modeling, and unified agent memory architecture — useful conceptual grounding for KG-backed agents.",
+      "tags": [
+        "graphrag",
+        "knowledge-graph",
+        "ontology",
+        "agent-memory",
+        "reasoning",
+        "langgraph",
+        "crewai"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-06-10",
+      "summary": "A six-post LinkedIn series by a practitioner who spent a year building GraphRAG from scratch. Topics covered by title:\n\n1. **3 ways to model your ontologies for GraphRAG** — ontology design patterns for retrieval-augmented generation over knowledge graphs.\n2. **LangGraph/CrewAI or from scratch?** —…",
+      "path": "catalog/entries/graphrag-agent-memory-linkedin-series.md"
+    },
+    {
+      "name": "grill-with-docs",
+      "title": "Grill With Docs",
+      "url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/grill-with-docs/SKILL.md",
+      "category": "skill",
+      "verdict": "pilot",
+      "verdict_reason": "Well-structured DDD design-review skill that enforces domain language, but relies on companion format files (CONTEXT-FORMAT.md, ADR-FORMAT.md) not bundled with the skill.",
+      "tags": [
+        "domain-driven-design",
+        "design-review",
+        "documentation",
+        "adr",
+        "glossary",
+        "planning"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-unknown",
+      "security_flags": [
+        "no-license-stated"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "`grill-with-docs` is a Claude Code skill that runs a structured interrogation session to stress-test a design plan against a project's existing domain model. The agent asks probing questions one at a time, walks every branch of the design tree, proposes its own recommended answers, and explores the codebase when questions can be resolved by code inspection.\n\nFour core behaviours fire during the session:\n\n1. **Terminology challenge** — when the user's language conflicts with terms already in CONTEXT.md, the agent calls it out immediately with a precise quote from the glossary.\n2. **Language sharpening** — vague or overloaded terms are replaced with a canonical name from the project vocabulary (e.g. \"account\" → Customer vs. User).\n3. **Code cross-reference** — stated behaviour is checked against actual code; contradictions are surfaced explicitly.\n4. **Live documentation writes** — when a term is resolved it is written into CONTEXT.md on the spot (not batched); ADRs are written only when all three criteria are met: hard-to-reverse, surprising without context, and the result of a real trade-off.\n\nThe skill expects a specific file layout: a root-level `CONTEXT.md` (glossary only, no implementation details), `docs/adr/` for decisions, and companion files `CONTEXT-FORMAT.md` and `ADR-FORMAT.md` that define the write formats. For multi-context repos, a `CONTEXT-MAP.md` at the root points to per-context `CONTEXT.md` files.",
+      "path": "catalog/entries/grill-with-docs.md"
+    },
+    {
+      "name": "gstack",
+      "title": "gstack",
+      "url": "https://github.com/garrytan/gstack",
+      "category": "framework",
+      "verdict": "skip",
+      "verdict_reason": "kb dispatch covers the relevant orchestration patterns; browser/deployment out of scope",
+      "tags": [
+        "workflow",
+        "orchestration",
+        "browser",
+        "kb"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "An opinionated workflow stack with browser control, code reviews, and deployment helpers. Bundles many moving parts into a single orchestration framework targeting full application development workflows including browser automation and deployment pipelines.",
+      "path": "catalog/entries/gstack.md"
+    },
+    {
+      "name": "headroom-desktop",
+      "title": "Headroom Desktop",
+      "url": "https://github.com/gglucass/headroom-desktop",
+      "category": "plugin",
+      "verdict": "watch",
+      "verdict_reason": "Solid local-first Claude Code cost optimizer with hook injection into ~/.claude/settings.json — worth monitoring given agent-lockdown relevance, but macOS-only stable and single-contributor",
+      "tags": [
+        "token-optimization",
+        "cost-reduction",
+        "claude-code",
+        "proxy",
+        "compression",
+        "tauri",
+        "hook"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "modifies-claude-settings",
+        "anthropic-base-url-redirect",
+        "telemetry-aptabase",
+        "telemetry-sentry",
+        "single-contributor",
+        "private-backend-repo",
+        "2gb-runtime-download"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Headroom Desktop is a macOS menu-bar tray app (Tauri/Rust shell, Python optimization brain) that intercepts Claude Code's API traffic through a local proxy and applies token-saving transforms before requests reach the Anthropic API. It claims ~50% cost reduction. Three bundled tools: `headroom` (prompt optimization pipeline), `rtk` (rewrites bash command outputs to strip noise before they enter the context window), and `vitals` (project health scanner). All transforms run entirely locally — no data leaves the machine except through the normal Anthropic API call.\n\nOn install it: downloads a ~2 GB self-contained Python runtime to `~/.headroom`; injects a `PreToolUse` hook and a rewrite script into `~/.claude/settings.json`; redirects `ANTHROPIC_BASE_URL` to the local proxy; stores a session token in the macOS Keychain. On quit/uninstall it reverses every change. A watchdog auto-pauses if the proxy crashes so Claude Code continues working uninterrupted.\n\nCompression benchmarks (self-reported from the underlying `headroom` library): JSON arrays 86–100%, structured logs 82–95%, multi-tool agentic conversations 56–81%, plain text 43–46%. Code in recent messages is intentionally not compressed.\n\nStable target is macOS 14+ on Apple Silicon. Linux x86_64 builds exist as an experimental preview covering only the core proxy flow.",
+      "path": "catalog/entries/headroom-desktop.md"
+    },
+    {
+      "name": "headroom",
+      "title": "Headroom",
+      "url": "https://github.com/chopratejas/headroom",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "Powerful context compression with real benchmarks, but proxy/MITM position and headroom learn's CLAUDE.md writes are significant trust risks for adoption without review",
+      "tags": [
+        "context-compression",
+        "token-reduction",
+        "mcp-server",
+        "proxy",
+        "memory",
+        "agent-wrap",
+        "claude-code"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "mitm-proxy",
+        "agent-instructions-write",
+        "single-author",
+        "unvetted-ml-model"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Headroom is a context compression layer that sits between an AI agent/app and the LLM provider, compressing tool outputs, logs, RAG chunks, files, and conversation history before they reach the model. Claims 60–95% token reduction with accuracy preserved on GSM8K, TruthfulQA, SQuAD v2, and BFCL benchmarks.\n\nDeployment modes:\n- **Library**: `compress(messages)` in Python or TypeScript, inline in any app\n- **Proxy**: `headroom proxy --port 8787` — drop-in OpenAI-compatible proxy, zero code changes\n- **Agent wrap**: `headroom wrap claude|codex|cursor|aider|copilot` — one-command wrapping\n- **MCP server**: `headroom_compress`, `headroom_retrieve`, `headroom_stats` tools for any MCP client\n\nAdditional features:\n- **Cross-agent memory**: shared store across Claude, Codex, Gemini with auto-dedup\n- **headroom learn**: mines failed sessions and writes corrections to CLAUDE.md / AGENTS.md / GEMINI.md\n- **CCR (reversible compression)**: originals stored locally; LLM retrieves via `headroom_retrieve` on demand\n- **CacheAligner**: stabilizes prompt prefixes so provider KV caches (Anthropic, OpenAI) actually hit\n\nCompression algorithms: SmartCrusher (JSON), CodeCompressor (AST-aware for Python/JS/Go/Rust/Java/C++), Kompress-base (HuggingFace ML model trained on agentic traces), image compression (40–90% via ML router).",
+      "path": "catalog/entries/headroom.md"
+    },
+    {
+      "name": "immich",
+      "title": "Immich",
+      "url": "https://github.com/immich-app/immich",
+      "category": "framework",
+      "verdict": "note",
+      "verdict_reason": "Production-ready self-hosted Google Photos alternative with AI search; not agent tooling but solid self-hosted media infrastructure.",
+      "tags": [
+        "self-hosted",
+        "photo-management",
+        "video",
+        "mobile",
+        "ai-search",
+        "facial-recognition",
+        "oauth",
+        "docker"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0",
+      "security_flags": [],
+      "reviewed": "2026-06-10",
+      "summary": "Immich is a high-performance, self-hosted photo and video management platform designed as a privacy-respecting alternative to Google Photos. It provides both a mobile app (iOS/Android) and a web interface, supporting automatic photo backup, album management, shared albums, partner sharing, and public gallery links. The platform stores all media on infrastructure you control and exposes a full REST API with API key authentication.\n\nThe platform includes AI-powered capabilities baked in: semantic search via CLIP embeddings lets users find photos by natural-language description, while on-device facial recognition clusters faces and links them to named people. EXIF metadata is parsed and displayed alongside an interactive map view, and a \"Memories\" feature resurfaces photos from the same date in prior years. Raw camera formats (CR2, NEF, ARW, etc.) and LivePhoto/MotionPhoto files are supported natively.\n\nMulti-user support with OAuth 2.0 / OIDC integration makes Immich deployable for families or small organizations. Storage structure is user-configurable (e.g., by date, album, or custom templates). Offline mobile access, duplicate detection, stacked photos, folder view, and tagging round out the feature set, giving it near-parity with commercial cloud photo services.",
+      "path": "catalog/entries/immich.md"
+    },
+    {
+      "name": "inbox-zero",
+      "title": "Inbox Zero",
+      "url": "https://github.com/elie222/inbox-zero",
+      "category": "framework",
+      "verdict": "note",
+      "verdict_reason": "AI-powered self-hostable email management app — strong open-source email assistant, not a developer/agent toolkit.",
+      "tags": [
+        "email",
+        "ai-assistant",
+        "gmail",
+        "productivity",
+        "self-hosted",
+        "open-source"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0",
+      "security_flags": [
+        "requires-oauth-credentials",
+        "processes-email-content",
+        "cloud-or-self-hosted"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Inbox Zero is a full-stack, AI-powered email management web application. It connects to Gmail (and Microsoft accounts) via OAuth and applies AI rules to automatically organize, label, archive, and draft replies to emails. The AI assistant learns the user's tone and style to pre-draft replies, can block cold emails, and tracks which threads need a response (Reply Zero feature). It integrates with Slack and Telegram so users can manage their inbox from those apps without opening Gmail.\n\nBeyond basic AI sorting, Inbox Zero offers: a bulk unsubscriber that detects and unsubscribes from mailing lists in one click, a bulk archiver for cleaning old emails, email analytics dashboards showing activity trends, meeting briefs that pull context from email and calendar before scheduled meetings, and smart filing that auto-saves attachments to Google Drive or OneDrive.\n\nThe project is positioned as an open-source, self-hostable alternative to Fyxer. It has a hosted SaaS offering at getinboxzero.com and supports self-hosting via a one-command Docker CLI setup (`npx @inbox-zero/cli setup`). The stack is Next.js + Prisma + Upstash + Turborepo, with Docker images published on every main-branch commit.",
+      "path": "catalog/entries/inbox-zero.md"
+    },
+    {
+      "name": "karakeep",
+      "title": "Karakeep",
+      "url": "https://github.com/karakeep-app/karakeep",
+      "category": "framework",
+      "verdict": "pilot",
+      "verdict_reason": "Self-hostable AI bookmark manager with REST API, official agent skills, and Ollama support — agent-friendly but self-described as under heavy development.",
+      "tags": [
+        "bookmarks",
+        "knowledge-management",
+        "self-hosted",
+        "llm",
+        "tagging",
+        "search",
+        "rest-api",
+        "agent-friendly"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0",
+      "security_flags": [
+        "puppeteer-in-production",
+        "agpl-copyleft",
+        "heavy-development"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Karakeep (previously Hoarder) is a self-hostable bookmark-everything platform that ingests links, notes, images, and PDFs into a centralized, searchable knowledge store. It automatically fetches link metadata (title, description, preview image) and uses LLMs — either OpenAI or local models via Ollama — to apply automatic tags and generate summaries. Full-text search is powered by Meilisearch, and OCR extracts text from images for indexing.\n\nBeyond basic bookmarking, Karakeep supports full-page archival via monolith (protecting against link rot), video archiving via yt-dlp, RSS feed auto-ingestion, content highlights, and a rule-based engine for automated list management. Browser extensions exist for Chrome, Firefox, and Safari, plus native iOS and Android apps. Collaboration is supported at the list level. Importers are provided for Chrome bookmarks, Pocket, Linkwarden, Omnivore, and Tab Session Manager.\n\nThe platform is explicitly designed to be LLM agent-friendly: it exposes a REST API, a CLI, and ships official agent skills compatible with LLM agents (specifically calling out OpenClaw and Hermes). This makes it tractable as a backing store or knowledge-retrieval target within agent workflows.",
+      "path": "catalog/entries/karakeep.md"
+    },
+    {
+      "name": "karpathy-12-rules",
+      "title": "Karpathy's 12 Rules for CLAUDE.md",
+      "category": "reference",
+      "verdict": "adopt",
+      "verdict_reason": "Rules 6 (token budgets) and 12 (fail loud) not yet in our stack",
+      "tags": [
+        "claude-md",
+        "best-practices",
+        "token-budgets"
+      ],
+      "workflows": [],
+      "license": "unknown",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "A 12-rule framework for CLAUDE.md best practices, sourced from a Reddit r/AskVibecoders post. The original 4 rules cover: think before coding, simplicity first, surgical changes, goal-driven execution. Eight additional rules expand coverage to agent loops, multi-step tasks, and silent failure…",
+      "path": "catalog/entries/karpathy-12-rules.md"
+    },
+    {
+      "name": "karpathy-llm-wiki",
+      "title": "Karpathy's LLM Wiki Pattern",
+      "url": "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f",
+      "category": "reference",
+      "verdict": "adopt",
+      "verdict_reason": "Foundational pattern doc for LLM-maintained personal knowledge bases — directly describes the architecture kb-wiki implements",
+      "tags": [
+        "knowledge-base",
+        "wiki",
+        "llm-pattern",
+        "obsidian",
+        "personal-knowledge-management",
+        "rag-alternative"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-06-10",
+      "summary": "A pattern document (idea file) by Andrej Karpathy for building personal knowledge bases using LLMs. The core insight: instead of RAG (re-deriving knowledge from raw sources on every query), have the LLM incrementally build and maintain a persistent wiki — structured, interlinked markdown files that…",
+      "path": "catalog/entries/karpathy-llm-wiki.md"
+    },
+    {
+      "name": "langflow",
+      "title": "Langflow",
+      "url": "https://github.com/langflow-ai/langflow",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "Heavy visual-builder platform with native MCP-server export; too large for direct adoption but worth monitoring for MCP workflow integration patterns.",
+      "tags": [
+        "visual-builder",
+        "agentic-workflows",
+        "mcp-server",
+        "llm-orchestration",
+        "multi-agent",
+        "python",
+        "open-source"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "large-dependency-surface",
+        "exposes-local-http-server"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Langflow is an open-source platform for visually building, testing, and deploying LLM-powered agent workflows. Users drag-and-drop components (LLM nodes, vector store connectors, tool nodes, logic gates) into a graph in a browser UI, then Langflow executes them as a Python-backed pipeline. Every completed flow can be published as a REST API endpoint or as an MCP server, making it callable from any MCP client. It ships with support for all major LLM providers (OpenAI, Anthropic, Groq, etc.), vector databases (Chroma, Pinecone, Weaviate, etc.), and common AI tools out of the box. A desktop app (Windows/macOS) bundles all Python dependencies for zero-setup local use.",
+      "path": "catalog/entries/langflow.md"
+    },
+    {
+      "name": "locate-anything",
+      "title": "LocateAnything",
+      "url": "https://research.nvidia.com/labs/lpr/locate-anything/",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "novel parallel box decoding for vision-language grounding; 3B model on HuggingFace; evaluate for spatial/histology image analysis when pipeline matures",
+      "tags": [
+        "vision",
+        "grounding",
+        "object-detection",
+        "nvidia",
+        "spatial",
+        "histology",
+        "image-analysis"
+      ],
+      "workflows": [
+        "spatial"
+      ],
+      "license": "Apache-2.0 (code); NVIDIA non-commercial research license (model weights)",
+      "security_flags": [
+        "trust_remote_code"
+      ],
+      "reviewed": "2026-05-27",
+      "summary": "A unified vision-language grounding model from NVIDIA that predicts bounding boxes and point coordinates for visual grounding and object detection tasks. The key innovation is Parallel Box Decoding (PBD) — predicting complete bounding boxes as atomic units in a single forward pass rather than sequential token generation, achieving 12.7 boxes per second (10x faster than Qwen3-VL's textual approach). Architecture: Moon-ViT vision encoder with Qwen2.5 language decoder connected via MLP projector. Three inference modes: Fast Mode (MTP) for speed, Slow Mode (NTP) for precision, and Hybrid Mode that detects format irregularities and falls back to autoregressive generation. Handles general object detection, GUI element grounding, referring expression comprehension, OCR localization, layout understanding, and point-based localization. 3B parameter model.",
+      "path": "catalog/entries/locate-anything.md"
+    },
+    {
+      "name": "markitdown",
+      "title": "MarkItDown",
+      "url": "https://github.com/microsoft/markitdown",
+      "category": "cli-tool",
+      "verdict": "pilot",
+      "verdict_reason": "directly useful for converting PDFs, Excel, PPTX, and other docs to markdown for LLM pipelines; MIT, Microsoft-maintained",
+      "tags": [
+        "markdown",
+        "conversion",
+        "pdf",
+        "documents",
+        "excel",
+        "llm-preprocessing"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-05-27",
+      "summary": "A lightweight Python utility from Microsoft that converts diverse file formats to Markdown for use with LLMs and text analysis pipelines. Supports PDF, PowerPoint, Word, Excel, images (with EXIF metadata and OCR), audio (with metadata and transcription), HTML, CSV, JSON, XML, ZIP files, YouTube URLs, and EPub. Preserves document structure — headings, lists, tables, and links. Offers both a CLI (`markitdown path-to-file.pdf > doc.md`) and a Python API. Optional integrations with Azure Document Intelligence for enhanced extraction and OpenAI-compatible clients for LLM-based image descriptions. Has a third-party plugin system for extended functionality.",
+      "path": "catalog/entries/markitdown.md"
+    },
+    {
+      "name": "maxun",
+      "title": "Maxun",
+      "url": "https://github.com/getmaxun/maxun",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "Capable no-code web data platform with MCP support and LLM extraction, but early-stage and AGPLv3 copyleft limits commercial embedding",
+      "tags": [
+        "web-scraping",
+        "data-extraction",
+        "no-code",
+        "mcp-server",
+        "llm",
+        "crawling",
+        "self-hosted"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0",
+      "security_flags": [
+        "early-stage",
+        "agpl-copyleft",
+        "handles-auth-credentials"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Maxun is an open-source no-code web data platform that turns websites into structured, API-accessible data without writing code. It has four core robot types: Extract (point-and-click recorder or natural-language LLM mode), Scrape (full page to Markdown/HTML/screenshot), Crawl (multi-page site traversal), and Search (automated web search with time filters). Results can be exported to Google Sheets, Airtable, or consumed via a RESTful API. A developer SDK and CLI exist for programmatic control. The platform also exposes an MCP server interface, making it callable from Claude and other MCP-compatible agents. It handles pagination, infinite scroll, login-gated content, and scheduled runs. Self-hosting is supported via Docker Compose; a hosted SaaS (app.maxun.dev) is also available.",
+      "path": "catalog/entries/maxun.md"
+    },
+    {
+      "name": "memstack",
+      "title": "MemStack",
+      "url": "https://github.com/cwinvestments/memstack",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "Free-tier skill library is substantial but the PyPI MCP loader performs opaque license checks and stores credentials in-process, warranting supply-chain caution before adoption",
+      "tags": [
+        "skills",
+        "memory",
+        "sqlite",
+        "hooks",
+        "tts",
+        "mcp-server",
+        "freemium",
+        "skill-loader",
+        "claude-code"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "no-tests-evident",
+        "license-check-network-call",
+        "credential-stored-by-process",
+        "single-org-contributor",
+        "opaque-pypi-loader",
+        "freemium-gating"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "MemStack is a commercial freemium skill framework for Claude Code that distributes 127 SKILL.md-style skills via a Python MCP server installed from PyPI (`memstack-skill-loader`). Skills are organized into domains: Core/Memory, Security, Deployment, Development, Business, Content, SEO, Marketing, Product, and Automation. They load on-demand at runtime — only the skill matching the current task is injected, avoiding context bloat.\n\nThe free tier includes 84 skills plus: SQLite-backed persistent session memory with semantic vector search, deterministic hooks (commit safety, secret scanning, build verification), TTS voice notifications, TokenStack™ context compression, and a localhost dashboard (port 3333) for skill management, token analytics, and 3-agent orchestration with real-time streaming.\n\nThe Pro tier (paid license via memstack.pro) unlocks 43 additional skills including multi-agent orchestration, browser automation, RAG builder, model router, advanced security, and various platform-specific skills (iOS App Store, Next.js conventions, etc.).",
+      "path": "catalog/entries/memstack.md"
+    },
+    {
+      "name": "n8n-mcp",
+      "title": "n8n MCP Server",
+      "url": "https://github.com/czlonkowski/n8n-mcp",
+      "category": "mcp-server",
+      "verdict": "watch",
+      "verdict_reason": "powerful workflow automation bridge but heavy dependency; evaluate when pipeline orchestration needs outgrow kb dispatch",
+      "tags": [
+        "mcp",
+        "n8n",
+        "workflow-automation",
+        "orchestration",
+        "integrations"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "api-key-required",
+        "credentials-exposure-risk",
+        "production-workflow-ai-edit-warning"
+      ],
+      "reviewed": "2026-05-25",
+      "summary": "An MCP server that connects AI assistants (Claude, Copilot, Cursor) with n8n's workflow automation platform. Provides 20+ tools for node search/retrieval/validation, workflow CRUD, execution management, credential handling, and security auditing. Covers 1,851 n8n nodes (822 core + 1,029 community), 2,352 workflow templates, and 265 AI-capable tool variants. Offers a cloud dashboard (100 free daily calls), self-hosting via npx/Docker/Railway, and IDE-specific integration guides. 21.3k stars, 1,016+ commits.",
+      "path": "catalog/entries/n8n-mcp.md"
+    },
+    {
+      "name": "native-subagents",
+      "title": "Claude Native Subagents",
+      "url": "https://code.claude.com/docs/en/sub-agents",
+      "category": "agent-pattern",
+      "verdict": "adopt",
+      "verdict_reason": "lightweight HO consultation route within existing sessions; no separate billing",
+      "tags": [
+        "agents",
+        "subagents",
+        "dispatch",
+        "consultation"
+      ],
+      "workflows": [],
+      "license": "proprietary",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "Native subagents run within a single Claude Code session's context. The parent delegates a task to a subagent with specific tools and instructions; the subagent does its work, reports the result back to the parent, and terminates. There is no inter-subagent communication — subagents only report…",
+      "path": "catalog/entries/native-subagents.md"
+    },
+    {
+      "name": "oauth-cli-coder",
+      "title": "oauth-cli-coder",
+      "category": "cli-tool",
+      "verdict": "skip",
+      "verdict_reason": "OAuth-based CLI automation; adds auth complexity without solving durability",
+      "tags": [
+        "oauth",
+        "automation",
+        "cli",
+        "dispatch"
+      ],
+      "workflows": [],
+      "license": "unknown",
+      "security_flags": [
+        "oauth-token-handling",
+        "no-stable-package-source"
+      ],
+      "reviewed": "2026-05-25",
+      "summary": "`oauth-cli-coder` automates Claude Code CLI interactions using OAuth-based authentication rather than PTY key injection. It attempts to handle the interactive login and session flow programmatically so that the CLI can be driven in a headless or semi-automated context.",
+      "path": "catalog/entries/oauth-cli-coder.md"
+    },
+    {
+      "name": "obliteratus",
+      "title": "OBLITERATUS",
+      "url": "https://github.com/elder-plinius/OBLITERATUS",
+      "category": "framework",
+      "verdict": "note",
+      "verdict_reason": "Mechanistic interpretability research toolkit for refusal removal — notable as a reference for alignment geometry, but not safe to adopt in agent pipelines and irrelevant to bioinformatics workflows",
+      "tags": [
+        "llm",
+        "mechanistic-interpretability",
+        "abliteration",
+        "alignment",
+        "safety-bypass",
+        "research",
+        "gradio",
+        "python"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0",
+      "security_flags": [
+        "safety-bypass-tool",
+        "telemetry-opt-out-required",
+        "adversarial-prompting-content",
+        "trust-remote-code",
+        "dual-license-commercial-required"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "OBLITERATUS is an open-source toolkit for performing \"abliteration\" on transformer-based LLMs — the process of identifying and surgically removing internal representations responsible for content refusal without retraining. It provides a full pipeline: probe a model's hidden states to locate refusal directions, extract them via PCA/mean-difference/SVD/whitened-SVD, then project those directions out of the model's weights (permanently) or suppress them at inference time via steering vectors (reversibly).\n\nThe toolkit ships with: a Gradio web UI (hosted on HuggingFace Spaces with ZeroGPU), a CLI (`obliteratus obliterate <model>`), a Python API, YAML-based reproducible configs, and 15 analysis modules that map the geometric structure of safety mechanisms before modifying them. It supports 116 model presets across 5 VRAM tiers (tiny → frontier), multi-GPU pipeline sharding, remote SSH execution, and quantized inference (8-bit/4-bit via bitsandbytes). Seven obliteration presets range from `basic` (1-direction diff-in-means) to `nuclear` (all techniques + expert transplant + steering). Also includes crowd-sourced telemetry: runs with `--contribute` feed anonymous benchmark data to a shared dataset and community leaderboard.",
+      "path": "catalog/entries/obliteratus.md"
+    },
+    {
+      "name": "obsidian-skills",
+      "title": "Obsidian Skills (Kepano)",
+      "url": "https://github.com/kepano/obsidian-skills",
+      "category": "skill",
+      "verdict": "note",
+      "verdict_reason": "Obsidian-specific; Defuddle (web→clean markdown) and skill packaging patterns worth noting",
+      "tags": [
+        "obsidian",
+        "skills",
+        "markdown",
+        "canvas",
+        "defuddle",
+        "web-extraction"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "A collection of five Claude Code-compatible skills for working with Obsidian vaults: Obsidian Markdown (wikilinks, embeds, callouts, properties), Obsidian Bases (database-like views with filters and formulas), JSON Canvas (visual node/edge canvas files), Obsidian CLI (vault interaction via command-line for plugin/theme dev), and Defuddle (extracts clean markdown from web pages, stripping unnecessary content to conserve tokens). Installable via plugin marketplace, npx, or manual copy. 33k stars.",
+      "path": "catalog/entries/obsidian-skills.md"
+    },
+    {
+      "name": "one-skill-to-rule-them-all",
+      "title": "One Skill to Rule Them All",
+      "url": "https://github.com/rebelytics/one-skill-to-rule-them-all",
+      "category": "meta-skill",
+      "verdict": "pilot",
+      "verdict_reason": "proposes NEW skills from observed patterns; complementary to superpowers routing",
+      "tags": [
+        "meta-skill",
+        "pattern-detection",
+        "skill-generation"
+      ],
+      "workflows": [],
+      "license": "CC-BY-4.0",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "Watches your work across sessions, finds repeated patterns in how you fix problems or structure workflows, drafts candidate skills, and suggests updates to existing ones. It operates at the meta level — not executing tasks but observing how tasks get executed and extracting reusable structure from repeated behaviors. Good fit when you notice yourself fixing the same class of mistake repeatedly or repeating the same multi-step setup. Best paired with a strict session-start trigger so it runs consistently.",
+      "path": "catalog/entries/one-skill-to-rule-them-all.md"
+    },
+    {
+      "name": "onyx-ai-platform",
+      "title": "Onyx AI Platform",
+      "url": "https://github.com/onyx-dot-app/onyx",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "Full self-hostable AI platform with agentic RAG and MCP — notable architecture reference, but too deployment-heavy to adopt as a composable toolkit component",
+      "tags": [
+        "rag",
+        "agentic-rag",
+        "self-hosted",
+        "llm",
+        "mcp",
+        "knowledge-retrieval",
+        "enterprise",
+        "connectors"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "curl-pipe-install",
+        "large-attack-surface",
+        "code-execution-sandbox"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Onyx is a self-hostable, open-source AI application platform built on top of LLMs. It provides a full-featured chat UI combined with a hybrid vector+keyword index for agentic RAG, deep research flows, web search (Serper, Brave, SearXNG, Firecrawl/Exa), sandboxed code execution, artifact generation, voice mode, image generation, and MCP-based action integrations. It ships with 50+ pre-built data connectors (document stores, wikis, ticketing systems, etc.) for knowledge ingestion. Deployment is Docker, Kubernetes, or Helm/Terraform. The \"Lite\" mode requires under 1 GB RAM and runs a stripped-down stack; the full \"Standard\" mode adds Redis, MinIO, background job workers, and dedicated ML inference servers. Enterprise Edition adds SSO (OIDC/SAML/Google OAuth), SCIM provisioning, RBAC, analytics, query audit logs, PII scrubbing hooks, and whitelabeling.",
+      "path": "catalog/entries/onyx-ai-platform.md"
+    },
+    {
+      "name": "open-webui",
+      "title": "Open WebUI",
+      "url": "https://github.com/open-webui/open-webui",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "Leading self-hosted LLM web UI with RAG, pipelines, and enterprise auth — relevant infrastructure context but custom non-SPDX license limits adoption",
+      "tags": [
+        "llm-ui",
+        "self-hosted",
+        "rag",
+        "ollama",
+        "openai-compatible",
+        "pipelines",
+        "enterprise",
+        "docker",
+        "python"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-OpenWebUI",
+      "security_flags": [
+        "custom-license",
+        "byof-code-execution",
+        "pipeline-code-execution"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Open WebUI is a self-hosted, offline-capable web application that provides a ChatGPT-style interface for any Ollama or OpenAI-compatible LLM backend. It bundles a comprehensive feature set in a single deployable unit: local RAG (9 vector DB options, Tika/Docling/OCR extraction engines), web search (15+ providers), image generation (DALL-E, ComfyUI, AUTOMATIC1111), voice/video calls (Whisper, Deepgram, ElevenLabs), a Python function-calling tool workspace (Bring Your Own Function), and a Pipelines plugin framework for custom middleware. Enterprise features include LDAP/AD, SCIM 2.0, SSO/OAuth, RBAC, Redis-backed horizontal scaling, OpenTelemetry observability, and cloud storage backends (S3, GCS, Azure Blob). Installed via `pip install open-webui` or Docker; runs at localhost:8080/3000.",
+      "path": "catalog/entries/open-webui.md"
+    },
+    {
+      "name": "openclaw",
+      "title": "OpenClaw",
+      "url": "https://openclaw.ai/",
+      "category": "framework",
+      "verdict": "skip",
+      "verdict_reason": "ecosystem signal for agentic workspaces; not a concrete kb comparison",
+      "tags": [
+        "assistant",
+        "orchestration",
+        "local-first",
+        "kb"
+      ],
+      "workflows": [],
+      "license": "unknown",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "A local-first assistant orchestration platform with cross-app integrations. Positions itself as an agentic workspace for connecting local tools, assistants, and applications. Ecosystem signal for the direction the local-first AI orchestration space is moving.",
+      "path": "catalog/entries/openclaw.md"
+    },
+    {
+      "name": "opencode-fff-search",
+      "title": "opencode-fff-search",
+      "url": "https://github.com/ozgurulukir/opencode-fff-search",
+      "category": "plugin",
+      "verdict": "watch",
+      "verdict_reason": "Drop-in OpenCode grep/glob replacement with Rust-backed in-memory index, frecency ranking, and SIMD literal matching — 3-10x faster than process-spawning ripgrep at scale.",
+      "tags": [
+        "opencode",
+        "search",
+        "grep",
+        "glob",
+        "rust",
+        "performance",
+        "fuzzy-search",
+        "lmdb",
+        "frecency",
+        "simd"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-10",
+      "summary": "opencode-fff-search is an OpenCode plugin that overrides the agent's built-in `grep` and `glob` tools with the fff (Fast File Finder) search engine. fff is a Rust library loaded as an N-API native module — no child process is spawned per search call. The plugin provides:\n\n- **Grep tool**: four automatic search paths — direct file read (100% recall), fsGrep for non-ASCII/Turkish patterns (100% recall), fff indexed search with regex/plain mode detection and SIMD-accelerated literal matching, plus an auto-fallback chain back to fsGrep if fff returns zero results.\n- **Glob tool**: real glob matching via minimatch for patterns with metacharacters, fff fuzzy search for bare names, and globWalk augmentation when exact basename matches are missing.\n- **Frecency ranking**: LMDB-backed aiMode scores files by recent/frequent access, surfacing relevant results first.\n- **Bigram inverted content index**: pre-filters 80–95% of files before opening them, yielding 5–20x grep speedups on large repos.\n- **Filesystem watcher**: detects new/deleted files mid-session without restart.\n- **.gitignore-aware**: respects gitignore at both the fff index level (Rust ignore crate) and the filesystem fallback level.\n\nBenchmarks on the nodejs/node repo (48K files): single grep ~15ms vs ~45ms for a spawned ripgrep; 100 consecutive greps under 1 second vs ~5 minutes.",
+      "path": "catalog/entries/opencode-fff-search.md"
+    },
+    {
+      "name": "opendataloader-pdf",
+      "title": "OpenDataLoader PDF",
+      "url": "https://github.com/opendataloader-project/opendataloader-pdf",
+      "category": "cli-tool",
+      "verdict": "pilot",
+      "verdict_reason": "Top-benchmarked open-source PDF parser with bounding boxes, formula extraction, and RAG-ready output — worth piloting for bioinformatics literature ingestion before committing.",
+      "tags": [
+        "pdf",
+        "rag",
+        "ocr",
+        "markdown",
+        "json",
+        "bioinformatics",
+        "langchain",
+        "accessibility"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "java-runtime-required",
+        "self-reported-benchmarks",
+        "pii-sanitization-opt-in",
+        "local-server-process"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "OpenDataLoader PDF converts PDFs to structured Markdown, JSON (with per-element bounding boxes), HTML, or Tagged PDF. It runs in two modes: a fast deterministic local mode (Java-based, ~60 pages/sec on CPU) and a hybrid mode that routes complex pages to a local AI backend for higher accuracy. Hybrid mode adds OCR (80+ languages), borderless table extraction, LaTeX formula extraction, and AI-generated chart/image descriptions. A built-in prompt injection filter strips hidden text, off-page content, and invisible layers before content reaches an LLM. LangChain integration is available via `langchain-opendataloader-pdf`. There is also an accessibility pipeline that auto-tags untagged PDFs into Tagged PDFs (free, Apache 2.0); full PDF/UA export is an enterprise add-on.",
+      "path": "catalog/entries/opendataloader-pdf.md"
+    },
+    {
+      "name": "openrouter",
+      "title": "OpenRouter",
+      "url": "https://openrouter.ai/",
+      "category": "framework",
+      "verdict": "note",
+      "verdict_reason": "Unified LLM API gateway supporting 200+ models — useful as infrastructure reference, not directly needed when using Claude natively.",
+      "tags": [
+        "llm",
+        "api-gateway",
+        "model-routing",
+        "openai-compatible",
+        "infrastructure"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-proprietary",
+      "security_flags": [
+        "proprietary-saas",
+        "credentials-required",
+        "data-leaves-to-third-party"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "OpenRouter is a unified API gateway that routes LLM requests to multiple providers (OpenAI, Anthropic, Google, Meta, Mistral, and others) through a single OpenAI-compatible endpoint. It supports 200+ models with automatic fallback between providers, cost optimization by comparing prices across providers, model routing based on price/speed/quality preferences, and usage tracking with rate limiting. The API is OpenAI SDK-compatible, so existing code can be pointed at OpenRouter with minimal changes. It is widely used in the open-source AI community and commonly integrated into frontends like SillyTavern and Open WebUI.",
+      "path": "catalog/entries/openrouter.md"
+    },
+    {
+      "name": "openspace",
+      "title": "OpenSpace",
+      "url": "https://github.com/HKUDS/OpenSpace",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "Compelling skill-evolution engine for Claude Code agents but very new (v0.1.0), self-published benchmark, and significant security surface from community skill ingestion",
+      "tags": [
+        "skill-evolution",
+        "mcp-server",
+        "claude-code",
+        "agent-learning",
+        "skill-sharing",
+        "token-efficiency"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-unknown",
+      "security_flags": [
+        "untrusted-skill-execution",
+        "community-code-download",
+        "self-published-benchmark",
+        "license-not-stated"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "OpenSpace is a self-evolving skill engine that plugs into any agent supporting SKILL.md-format skills (Claude Code, Codex, OpenClaw, nanobot, Cursor) via an MCP server. It observes every task execution and autonomously evolves skills through three modes: FIX (repair a broken skill in-place with a new version), DERIVED (create a specialized child skill from a parent), and CAPTURED (extract a novel reusable pattern from a successful execution with no prior skill).\n\nSkills are stored in SQLite with a full version DAG and quality metrics (applied rate, completion rate, fallback rate). A local React dashboard visualizes lineage, diffs, and health. A cloud community at open-space.cloud enables cross-agent sharing with public/private/group access control.\n\nThe GDPVal benchmark (self-published, 50 tasks, 6 industries) reports 4.2x higher \"income capture\" and 46% fewer tokens vs. a ClawWork baseline using the same backbone LLM. Integration is two steps: add the MCP server to `.mcp.json` and copy two host skills (`delegate-task`, `skill-discovery`) into the agent's skills directory.",
+      "path": "catalog/entries/openspace.md"
+    },
+    {
+      "name": "paperless-ngx",
+      "title": "Paperless-ngx",
+      "url": "https://github.com/paperless-ngx/paperless-ngx",
+      "category": "framework",
+      "verdict": "note",
+      "verdict_reason": "Mature self-hosted document management system — useful for archiving research docs but not an agent tool or developer library",
+      "tags": [
+        "document-management",
+        "self-hosted",
+        "ocr",
+        "search",
+        "archive",
+        "docker",
+        "paperless"
+      ],
+      "workflows": [],
+      "license": "GPL-3.0",
+      "security_flags": [
+        "cleartext-storage",
+        "no-encryption-at-rest",
+        "curl-pipe-bash-install"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Paperless-ngx is a self-hosted web application that transforms physical and digital documents into a searchable online archive. It succeeds the original Paperless and Paperless-ng projects and is community-maintained by a distributed team. The system ingests documents (via scanner, email, or manual upload), runs OCR on them, tags and classifies them, and presents a searchable web interface for retrieval.\n\nThe platform is deployed via Docker Compose and provides a full-stack web UI for document management. It supports multiple languages via Crowdin-based community translations and has active support channels through GitHub Discussions and a Matrix room. A public demo is available at demo.paperless-ngx.com.\n\nIn a bioinformatics or research context, Paperless-ngx could serve as an archive for lab reports, sequencing manifests, vendor invoices, regulatory documents, and grant correspondence — any paper-heavy administrative layer around a research operation.",
+      "path": "catalog/entries/paperless-ngx.md"
+    },
+    {
+      "name": "pi-hole",
+      "title": "Pi-hole",
+      "url": "https://github.com/pi-hole/pi-hole",
+      "category": "reference",
+      "verdict": "note",
+      "verdict_reason": "Network-wide DNS ad blocker — mature infrastructure tool, informational for lab network hygiene",
+      "tags": [
+        "dns",
+        "ad-blocking",
+        "privacy",
+        "self-hosted",
+        "network",
+        "sinkhole",
+        "dhcp"
+      ],
+      "workflows": [],
+      "license": "EUPL-1.2",
+      "security_flags": [
+        "curl-pipe-bash-install"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Pi-hole is a DNS sinkhole that runs on Linux hardware (typically a Raspberry Pi or any low-power server) and blocks advertisements and tracking domains at the network level. It intercepts DNS queries from every device on the local network and returns NXDOMAIN (or a blank IP) for any domain on its blocklists, preventing ad content from ever loading — in browsers, mobile apps, smart TVs, and any other networked device — without installing client-side software.\n\nThe core engine is FTLDNS (Faster Than Light DNS), a purpose-built daemon that handles DNS resolution, query caching, and real-time statistics. FTLDNS exposes a REST API (`/api/`) that surfaces query counts, block rates, top domains, and unique client metrics, making it easy to integrate Pi-hole data into dashboards or scripts. A web UI dashboard presents graphs, query logs, and configuration panels, and the `pihole` CLI provides full administrative control without the web interface.\n\nPi-hole can also function as a DHCP server, enabling it to automatically assign itself as the DNS resolver for every device that joins the network. It supports IPv4 and IPv6, custom allow/deny lists, regex-based rules, and long-term query history.",
+      "path": "catalog/entries/pi-hole.md"
+    },
+    {
+      "name": "pii-detection",
+      "title": "PII Detection / Compliance Skills",
+      "url": "https://github.com/gosprinto/compliance-skills",
+      "category": "skill",
+      "verdict": "pilot",
+      "verdict_reason": "HIPAA/CCPA/PCI-DSS coverage; pilot if handling sensitive data",
+      "tags": [
+        "pii",
+        "compliance",
+        "hipaa",
+        "ccpa",
+        "security"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "Automatically fires during planning, code generation, and repo audits to detect personally identifiable information and flag regulatory compliance gaps. Covers eight regulatory frameworks: CCPA, HIPAA, PCI-DSS, COPPA, GLBA, BIPA, FERPA, and the FTC Act. Operates as a background check rather than an on-demand command — it intercepts risky operations before they complete. Source is `gosprinto/compliance-skills/pii-detector`, discovered via Reddit r/claudeskills.",
+      "path": "catalog/entries/pii-detection.md"
+    },
+    {
+      "name": "remote-control",
+      "title": "Remote Control",
+      "url": "https://code.claude.com/docs/en/remote-control",
+      "category": "reference",
+      "verdict": "note",
+      "verdict_reason": "built-in feature; try for long sessions",
+      "tags": [
+        "mobile",
+        "remote",
+        "sessions"
+      ],
+      "workflows": [],
+      "license": "proprietary",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "A built-in Claude Code feature for managing running agent sessions from a mobile device. Allows monitoring and directing long-running sessions without being at the workstation. Sourced from a Reddit r/ClaudeCode post.\n\nAlready available as a native capability — no installation required. Worth…",
+      "path": "catalog/entries/remote-control.md"
+    },
+    {
+      "name": "repowire",
+      "title": "Repowire",
+      "url": "https://github.com/prassanna-ravishankar/repowire",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "Compelling multi-agent mesh for cross-repo coordination, but macOS/Linux only and default spawn config ships dangerous permission flags",
+      "tags": [
+        "multi-agent",
+        "orchestration",
+        "mcp",
+        "claude-code",
+        "codex",
+        "gemini-cli",
+        "daemon",
+        "mesh",
+        "tmux",
+        "telegram",
+        "slack"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "spawn-ships-dangerously-skip-permissions",
+        "optional-external-relay",
+        "curl-pipe-sh-installer",
+        "macos-linux-only"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Repowire is a local daemon that gives named identities to agent sessions (Claude Code, Codex, Gemini CLI, OpenCode, Pi) running in different tmux windows or machines, then lets them exchange typed messages — non-blocking asks with explicit ack replies, fire-and-forget notifications, scheduled wake-ups, and broadcasts. A browser dashboard, Telegram, and Slack can participate as \"service peers.\" A single session can be designated an orchestrator that dispatches work, polls status, and coordinates reviews across other agent peers. The daemon stores state in SQLite at `~/.repowire/state.db`; a hosted relay (repowire.io) is opt-in for remote access and cross-machine bridging.",
+      "path": "catalog/entries/repowire.md"
+    },
+    {
+      "name": "rtk",
+      "title": "rtk — CLI Proxy for LLM Token Reduction",
+      "url": "https://github.com/rtk-ai/rtk",
+      "category": "cli-tool",
+      "verdict": "pilot",
+      "verdict_reason": "Directly reduces Claude Code token costs 60-90% via transparent Bash hook; Windows hook requires WSL but filters work natively",
+      "tags": [
+        "token-optimization",
+        "claude-code",
+        "cli",
+        "rust",
+        "bash-hook",
+        "ai-tooling"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "curl-pipe-sh-install",
+        "hook-rewrites-all-bash"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "rtk is a single Rust binary CLI proxy that intercepts shell commands and compresses their output before it reaches the LLM context window. It wraps 100+ dev commands (git, cargo, npm, docker, kubectl, AWS CLI, test runners, linters, etc.) and applies four strategies — smart filtering, grouping, truncation, and deduplication — to strip noise while preserving signal. Claimed savings are 60–90% per command type, aggregating to ~80% reduction over a typical 30-minute coding session.\n\nFor Claude Code the integration is a PreToolUse bash hook installed via `rtk init -g`. Every Bash tool call is transparently rewritten to `rtk <cmd>` before execution, giving 100% adoption across all subagents and conversations without any per-call overhead. Built-in Read, Grep, and Glob tools bypass the hook (they are not Bash calls), so those continue to use Claude's native implementations.\n\nAdditional features: `rtk gain` analytics for tracking actual savings, `rtk discover` to find missed opportunities, tee fallback that saves full output on failure for LLM recovery, and per-project TOML config for excluding commands or adjusting filter aggressiveness.",
+      "path": "catalog/entries/rtk.md"
+    },
+    {
+      "name": "ruview-wifi-sensing",
+      "title": "RuView WiFi Sensing Platform",
+      "url": "https://github.com/ruvnet/RuView",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "Interesting hardware+agent integration with a Claude Code plugin and MCP server, but beta software requiring physical ESP32 hardware for core capabilities",
+      "tags": [
+        "wifi-sensing",
+        "esp32",
+        "mcp-server",
+        "claude-code-plugin",
+        "edge-ai",
+        "vital-signs",
+        "presence-detection",
+        "iot",
+        "physiological-signals"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "beta-software",
+        "hardware-dependent",
+        "readme-benchmark-corrections-noted"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "RuView turns commodity WiFi signals into a spatial intelligence and physiological sensing platform. It uses Channel State Information (CSI) from low-cost ESP32-S3 nodes (~$9 each) to detect presence through walls, measure breathing rate (6–30 BPM) and heart rate (40–120 BPM) contactlessly, estimate 17-keypoint body pose, classify activities (walking, falls, sleep stages), and fingerprint rooms via RF reflection patterns — all on edge hardware with no cloud, no cameras, and no wearables required.\n\nThe system ships several Claude Code-adjacent components: a Claude Code plugin (`plugins/ruview/`) providing 9 skills and 7 `/ruview-*` commands for onboarding, firmware flashing, provisioning, and running sensing applications; an MCP server (`@ruvnet/rvagent`, `npx @ruvnet/rvagent stdio`) with 6 tools exposing live sensing data to AI agents (`ruview.presence.now`, `ruview.vitals.get_breathing`, `ruview.vitals.get_heart_rate`, `ruview.vitals.get_all`, `ruview.bfld.last_scan`, `ruview.bfld.subscribe`); and a Python package (`pip install ruview`) plus a Rust sensing server core. A catalog of 105 signed edge modules covers health monitoring, security, retail analytics, industrial safety, and swarm coordination.",
+      "path": "catalog/entries/ruview-wifi-sensing.md"
+    },
+    {
+      "name": "skill-router",
+      "title": "Skill Router",
+      "url": "https://github.com/pcx-wave/skill-router",
+      "category": "meta-skill",
+      "verdict": "skip",
+      "verdict_reason": "superpowers using-superpowers already handles skill routing",
+      "tags": [
+        "meta-skill",
+        "routing",
+        "skill-discovery"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "Scans installed skills, builds a lightweight keyword index, and routes incoming requests to the most relevant skill. Operates in two modes: suggest (presents matches for confirmation) and auto (applies high-confidence matches without prompting). Conservative by design — only triggers on high-confidence keyword matches to avoid false routing.",
+      "path": "catalog/entries/skill-router.md"
+    },
+    {
+      "name": "sota-scan",
+      "title": "sota-scan",
+      "url": "https://github.com/MerlijnW70/sota-scan",
+      "category": "skill",
+      "verdict": "pilot",
+      "verdict_reason": "Useful comparative benchmarking skill for Claude Code, but single-contributor, no tests, and high token cost for exhaustive mode",
+      "tags": [
+        "benchmarking",
+        "competitive-analysis",
+        "code-quality",
+        "claude-code",
+        "skill"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "no-tests",
+        "single-contributor"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "sota-scan is a Claude Code skill that benchmarks your project against the top real-world projects in the same space. It uses Claude's internet access to identify comparable projects, reads their repositories, and produces a scored gap analysis (0–100%) with a ranked to-do list. Each gap cites a specific real project that already solves it — no vague advice. Three depth modes are available: `quick` (~80–150k tokens, top 3 gaps), `standard` (~150–350k tokens, full scorecard), and `exhaustive` (~400k+ tokens, deepest scan). Progress is persisted in a `.sota/` directory so you can re-run and track improvement over time.\n\nInstallation is two files: `SKILL.md` copied to `~/.claude/skills/sota-scan/` and `workflows/sota-scan-fanout.js` copied to `~/.claude/workflows/`. Invoked via `/sota-scan` or plain English (\"Is my project top-tier?\").",
+      "path": "catalog/entries/sota-scan.md"
+    },
+    {
+      "name": "spiderbrain-v3",
+      "title": "Spiderbrain V3",
+      "url": "https://github.com/SaroirCommunity/Spiderbrain-V3",
+      "category": "framework",
+      "verdict": "skip",
+      "verdict_reason": "BSL license; master/column concept is the key takeaway for kb graph",
+      "tags": [
+        "dependency-graph",
+        "token-reduction",
+        "scoring",
+        "kb"
+      ],
+      "workflows": [],
+      "license": "BSL-1.1",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "Generates dependency graphs with importance scoring, file rankings, and per-cluster webmaps, with explicit focus on token cost reduction by pre-computing which files matter most. The core innovation is master/column detection: nodes are scored by mass (fan-in count — how many nodes depend on this one) and rhythm (git commit frequency), then classified as Masters (high mass, low rhythm — stable architectural anchors that govern many but change rarely) or Columns (fast-changing dependents governed by stable masters — the volatile surface area). Amplitude is mass × theta-gain, where theta-gain is derived from \"column phase detection.\" Example node annotation: `\"9.9 MASTER src/worker.js cluster=shell fan-in=14 rhythm=42\"`. Output includes synganglion.json (all nodes, edges, scores), spideyorder.md (ranked by mass), spideymove.md (ranked by recency), per-cluster webmap.md (K-nearest-neighbors), per-cluster rules.md (curated constraints), and per-cluster changelog.md (rationale).\n\nMeasured token reduction on a 154-node Next.js project: 77% tool call reduction (30 → 7), 84% input token savings (42.4K → 6.8K tokens), 70% API cost reduction.",
+      "path": "catalog/entries/spiderbrain-v3.md"
+    },
+    {
+      "name": "stirling-pdf",
+      "title": "Stirling PDF",
+      "url": "https://github.com/Stirling-Tools/Stirling-PDF",
+      "category": "cli-tool",
+      "verdict": "pilot",
+      "verdict_reason": "Self-hosted REST API for 50+ PDF operations enables privacy-preserving agentic PDF workflows without external services",
+      "tags": [
+        "pdf",
+        "self-hosted",
+        "rest-api",
+        "docker",
+        "ocr",
+        "document-processing",
+        "automation"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "open-core-commercial-features"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Stirling PDF is a self-hosted, open-source PDF platform offering 50+ PDF operations through a browser UI and a REST API. Core capabilities include merging, splitting, compressing, converting (PDF↔Office, PDF↔images), OCR, redacting, signing, adding watermarks, rotating pages, and flattening forms. It can run as a desktop app, a browser-based tool, or a Docker-deployed server exposing a private REST API. Automation workflows can be composed directly in the UI (no-code pipelines) or driven programmatically via the API. Enterprise features (SSO, audit logging) are available in a paid tier.",
+      "path": "catalog/entries/stirling-pdf.md"
+    },
+    {
+      "name": "storybloq",
+      "title": "Storybloq",
+      "url": "https://github.com/Storybloq/storybloq",
+      "category": "framework",
+      "verdict": "skip",
+      "verdict_reason": "PolyForm Noncommercial license + heavy overlap with kb wiki",
+      "tags": [
+        "project-state",
+        "wiki",
+        "tickets",
+        "kb"
+      ],
+      "workflows": [],
+      "license": "PolyForm Noncommercial 1.0.0",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "A file-based project state system stored in a `.story/` directory with JSON records for tickets, issues, notes, lessons, handovers, snapshots, and roadmap. Ships as an npm package with a CLI, 53-tool MCP server, and Claude Code `/story` skill. Solves AI coding statelessness by persisting project state across sessions. Includes an autonomous ticket execution mode (`/story auto T-001`) that chains PICK → PLAN → REVIEW → WRITE_TESTS → IMPLEMENT → TEST → REVIEW → FINALIZE. Supports multi-repo federation with an orchestrator + node model and cross-node blocking. Two standout lifecycle features: a PreCompact hook that auto-snapshots state before Claude compacts context, and a Lessons lifecycle with reinforce (priority boosting on reuse) and digest (compact injection into skills) operations.",
+      "path": "catalog/entries/storybloq.md"
+    },
+    {
+      "name": "superpowers-verification-before-completion",
+      "title": "Superpowers: Verification Before Completion",
+      "url": "https://github.com/obra/superpowers/blob/main/skills/verification-before-completion/SKILL.md",
+      "category": "skill",
+      "verdict": "adopt",
+      "verdict_reason": "canonical 'evidence before claims' gate skill — already active in this project and referenced by other catalog entries as the standard",
+      "tags": [
+        "verification",
+        "quality",
+        "agent-discipline",
+        "completion-gate",
+        "tdd"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-unknown",
+      "security_flags": [],
+      "reviewed": "2026-06-10",
+      "summary": "A Claude Code skill that enforces a hard gate before any completion claim, success expression, or commit action. The core principle is \"evidence before claims, always.\" Before stating that tests pass, a build succeeds, a bug is fixed, or requirements are met, the agent must: (1) identify the command that proves the claim, (2) run it fresh and completely in the current message, (3) read the full output and exit code, (4) verify the output supports the claim, and only then (5) state the claim with the evidence attached.\n\nThe skill defines an \"Iron Law\" (no completion claims without fresh verification evidence), a structured 5-step gate function, a table of common claim-to-requirement mappings (e.g., \"tests pass\" requires test-command output showing 0 failures, not a prior run), a \"red flags — STOP\" list (expressions like \"should pass,\" \"probably,\" satisfaction phrases like \"Great!\" or \"Done!\" before verification, trusting agent success reports), and a rationalization-prevention table addressing common excuses. It also covers regression testing (full red-green cycle required), agent delegation (always verify VCS diff, not agent self-report), and requirements verification (line-by-line checklist, not just passing tests).",
+      "path": "catalog/entries/superpowers-verification-before-completion.md"
+    },
+    {
+      "name": "syncthing",
+      "title": "Syncthing",
+      "url": "https://github.com/syncthing/syncthing",
+      "category": "cli-tool",
+      "verdict": "adopt",
+      "verdict_reason": "Mature, audited, decentralized file sync daemon — production-grade for agent artifact persistence and cross-machine data sharing.",
+      "tags": [
+        "file-sync",
+        "decentralized",
+        "p2p",
+        "self-hosted",
+        "cross-platform",
+        "golang",
+        "tls",
+        "data-safety"
+      ],
+      "workflows": [],
+      "license": "MPL-2.0",
+      "security_flags": [],
+      "reviewed": "2026-06-10",
+      "summary": "Syncthing is a continuous file synchronization daemon written in Go that keeps directories in sync across two or more computers in real time without requiring a central server or cloud intermediary. It uses a custom block-exchange protocol (BEP) over TLS 1.3, with device identities anchored to self-generated public/private key pairs — no accounts, no passwords, no third-party infrastructure required. Peers discover each other via a global discovery server (optional, can be self-hosted) and then communicate directly or via relay servers when NAT traversal fails.\n\nThe program exposes a web-based GUI on localhost and a REST/JSON API, making it scriptable and embeddable. It handles conflict resolution, file versioning (simple, staggered, or external strategies), selective sync (ignore patterns), and per-folder sharing with fine-grained read-only vs. read-write permissions. Native packages are available for Linux, macOS, Windows, FreeBSD, and ARM systems; a Docker image is also maintained. Background operation is supported via systemd units, Windows services, or launchd plists included in the repository.\n\nFor agent-toolkit workflows specifically, Syncthing is useful as the persistence and artifact distribution layer: agent output directories, model checkpoints, or shared data stores can be kept in sync across workstations, servers, and CI nodes without a cloud upload step.",
+      "path": "catalog/entries/syncthing.md"
+    },
+    {
+      "name": "synthesize-bio",
+      "title": "Synthesize Bio",
+      "url": "https://claude.com/connectors/synthesize-bio",
+      "category": "mcp-server",
+      "verdict": "pilot",
+      "verdict_reason": "Generates synthetic human gene expression profiles on demand via natural-language prompts — unique bioinformatics capability, but proprietary SaaS requiring account and external API trust.",
+      "tags": [
+        "bioinformatics",
+        "rna-seq",
+        "gene-expression",
+        "synthetic-data",
+        "genomics",
+        "single-cell",
+        "bulk-rna"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-proprietary",
+      "security_flags": [
+        "proprietary-saas",
+        "account-required",
+        "data-leaves-to-third-party",
+        "no-source-to-audit"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Synthesize Bio is a Claude connector that lets Claude call the Synthesize Bio Gene Expression Model (GEM) API to generate realistic synthetic human gene expression profiles from a plain-English experiment description. The user describes a contrast — for example \"tumor vs normal lung tissue\" or \"KRAS knockout vs control\" — and the platform returns expression data that mimics what a real RNA-seq experiment on human samples would produce. Both bulk RNA-seq and single-cell RNA-seq modalities are supported. Intended use cases include tumor/normal comparisons, cell-type contrasts, drug toxicity signature prediction, and druggable-target discovery. The connector is listed on the official Claude connectors page and requires a Synthesize Bio account (https://www.synthesize.bio/).",
+      "path": "catalog/entries/synthesize-bio.md"
+    },
+    {
+      "name": "teampcp-miasma-npm-supply-chain-attack-2026",
+      "title": "TeamPCP/Miasma npm Supply Chain Attack (June 2026)",
+      "category": "reference",
+      "verdict": "note",
+      "verdict_reason": "Incident writeup documenting credential-harvesting malware and ~/.claude/settings.json hook persistence — directly relevant to agent-lockdown hardening (WK-0031)",
+      "tags": [
+        "security",
+        "supply-chain",
+        "npm",
+        "claude-code",
+        "incident-report",
+        "credential-theft",
+        "persistence"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-06-10",
+      "summary": "A detailed writeup of the TeamPCP/Miasma npm supply chain attack discovered in June 2026. 32 packages under the `@redhat-cloud-services` npm scope were compromised (approximately 117K weekly downloads), with a second wave hitting 57 additional packages (647K monthly downloads).\n\nThe malware…",
+      "path": "catalog/entries/teampcp-miasma-npm-supply-chain-attack-2026.md"
+    },
+    {
+      "name": "third-brain-v5-wiki",
+      "title": "Third Brain V5 (Wiki/Knowledge Layer)",
+      "url": "https://github.com/Mark393295827/third-brain-v5-skills",
+      "category": "framework",
+      "verdict": "skip",
+      "verdict_reason": "Obsidian-specific schema, heavy; staleness and contradiction detection concepts worth noting for kb",
+      "tags": [
+        "wiki",
+        "knowledge-os",
+        "ingest",
+        "lint",
+        "kb"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "18 skills turning Claude/Codex/Gemini into a persistent knowledge OS. This entry covers the wiki and knowledge layer only — the verification skills from this same repo are covered separately in `verify-before-claim`. The wiki-relevant skills are: wiki-ingest (STOW pipeline converting articles/PDFs/meetings into interlinked wiki with source notes, entity/concept pages), knowledge-ops (classify, deduplicate, vectorize via ChromaDB, sync across repositories), and wiki-lint (health checks across 8 dimensions: frontmatter, links, orphans, staleness, contradictions, drift, and two more). The storage schema assumes Obsidian-style directories (sources/, concepts/, entities/) and Obsidian markdown conventions.",
+      "path": "catalog/entries/third-brain-v5-wiki.md"
+    },
+    {
+      "name": "tolvi",
+      "title": "Tolvi — Engineering Decision Vault",
+      "url": "https://github.com/tolvi-labs/tolvi",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "Solid CAG/RAG dual-mode decision-capture design but pre-1.0, small project, and overlaps with kb already in use",
+      "tags": [
+        "decisions",
+        "knowledge-management",
+        "adr",
+        "vault",
+        "claude-code-skill",
+        "rag",
+        "cag",
+        "go-cli",
+        "agent-integration"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "pre-release",
+        "unverified-release-signing"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Tolvi is a per-repo engineering knowledge vault. It stores decisions, session notes, and patterns as Markdown files with YAML frontmatter under `<repo>/vault/`, using a defined format spec (`tolvi-format-v1`). Two retrieval modes coexist on the same vault format:\n\n- **Local / CAG arm:** The Go CLI loads the entire vault into Anthropic context via prompt caching, then answers natural-language queries with `tolvi ask`. Zero infrastructure; requires only an Anthropic API key.\n- **Server / RAG arm:** A self-hostable TypeScript Fastify server with Postgres + pgvector + Ollama embeddings supports multi-tenant, shared-index retrieval for teams that outgrow the local context window.\n\nTwo capture modes complement each other:\n\n- **Mechanical (CLI):** `tolvi sync` writes a single explicit note; `tolvi commit` gates on a session note existing for today. Deterministic, scriptable, no LLM.\n- **Synthesized (skill):** The Claude Code `/tolvi` slash command or Cursor `.cursorrules` integration reconstructs a whole working session into decisions, patterns, and a session log. High fidelity but agent-dependent and non-deterministic.\n\nA pre-commit hook integration (`tolvi precommit install`) flags commits touching decision-likely files (deps, infra, tooling, large diffs) to nudge capture at the right moment.",
+      "path": "catalog/entries/tolvi.md"
+    },
+    {
+      "name": "tutorial-creator",
+      "title": "Tutorial Creator",
+      "category": "skill",
+      "verdict": "pilot",
+      "verdict_reason": "good for knowledge retention and onboarding",
+      "tags": [
+        "tutorials",
+        "onboarding",
+        "knowledge-retention"
+      ],
+      "workflows": [],
+      "license": "unknown",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "Converts code sessions and Claude conversations into structured tutorials with vocabulary, a pre-test, a step-by-step walkthrough, common mistakes, and a post-test. Transforms work that would otherwise be lost after a session into reusable learning material. Useful for capturing non-obvious workflow decisions, pipeline quirks, and tool-specific gotchas discovered during active development.",
+      "path": "catalog/entries/tutorial-creator.md"
+    },
+    {
+      "name": "ui-ux-pro-max-skill",
+      "title": "UI/UX Pro Max Skill",
+      "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+      "category": "skill",
+      "verdict": "watch",
+      "verdict_reason": "comprehensive design system generation but focused on general web/mobile UI; evaluate when dashboard/report aesthetics become a priority",
+      "tags": [
+        "ui",
+        "ux",
+        "design-system",
+        "typography",
+        "color-palettes",
+        "dashboards",
+        "visualization"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "An AI skill that enhances Claude Code with professional UI/UX design capabilities. Uses 161 industry-specific reasoning rules to generate complete design systems (styles, colors, typography, components) matched to product type. Includes databases of 67 UI styles, 161 color palettes, 57 typography pairings, 25 chart types, and 99 UX/accessibility guidelines. Supports React, Next.js, Vue, Svelte, Angular, SwiftUI, Flutter, and more. Generates via MASTER.md persistence file with page-specific overrides. 82.7k stars, MIT licensed.",
+      "path": "catalog/entries/ui-ux-pro-max-skill.md"
+    },
+    {
+      "name": "unforget",
+      "title": "Unforget",
+      "category": "skill",
+      "verdict": "skip",
+      "verdict_reason": "scan-for-escaped-items pattern worth noting for future kb lint rule or audit command",
+      "tags": [
+        "deferred-work",
+        "scanner",
+        "todos",
+        "kb"
+      ],
+      "workflows": [],
+      "license": "unknown",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "Scans multiple hiding spots where deferred work tends to accumulate — Deferred.md, plan files, memory entries, TODO docs, and code TODOs — and consolidates findings into an UNFORGET.md file with 10-column rating tables. The signature column is Target, with values THIS (current session), NEXT (next session), LATER (someday), and SOMEDAY (backlog). A `/unforget promote` command handles release cycle transitions, moving NEXT items to THIS when a session begins. The key insight is that Unforget addresses a different problem than a wiki: a wiki tracks what you put into it, while Unforget finds what escaped tracking.",
+      "path": "catalog/entries/unforget.md"
+    },
+    {
+      "name": "vaultwarden",
+      "title": "Vaultwarden",
+      "url": "https://github.com/dani-garcia/vaultwarden",
+      "category": "framework",
+      "verdict": "adopt",
+      "verdict_reason": "Production-grade self-hosted Bitwarden-compatible password server in Rust; fraction of the resource footprint of the official server",
+      "tags": [
+        "password-manager",
+        "self-hosted",
+        "bitwarden",
+        "rust",
+        "docker",
+        "security",
+        "secrets"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0",
+      "security_flags": [
+        "stores-credentials",
+        "requires-https",
+        "backup-critical"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "Vaultwarden is an unofficial, community-maintained reimplementation of the Bitwarden server API, written in Rust. It is fully compatible with all official Bitwarden clients — desktop apps, browser extensions, mobile apps, and the CLI — while running on a fraction of the resources required by the official server. A single container with a small SQLite database is sufficient for personal or small-team deployments.\n\nThe server implements nearly the complete Bitwarden feature surface: personal vault, organizations with collections and sharing, member roles and groups, policies, directory connector, emergency access, event logs, admin password reset, and all major MFA methods (TOTP authenticator, email, FIDO2/WebAuthn, YubiKey, Duo). It also bundles a modified Bitwarden Web Vault client directly in the container image, so no separate web-client deployment is needed.\n\nVaultwarden is distributed as container images on ghcr.io, docker.io, and quay.io, and can also be built from source. It uses the Rocket web framework and stores data in SQLite (default), MySQL, or PostgreSQL. The recommended production setup pairs it with a TLS-terminating reverse proxy (nginx, Caddy, Traefik).",
+      "path": "catalog/entries/vaultwarden.md"
+    },
+    {
+      "name": "verify-before-claim",
+      "title": "Verify Before Claim (Third Brain V5)",
+      "url": "https://github.com/Mark393295827/third-brain-v5-skills",
+      "category": "reference",
+      "verdict": "note",
+      "verdict_reason": "superpowers verification-before-completion covers this; confidence model is the novel addition",
+      "tags": [
+        "verification",
+        "quality",
+        "confidence-model"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "Third Brain V5's verify-before-claim skill enforces that no completion claim is made without fresh verification evidence — a new command run, not a citation of prior output. Includes explicit exit code checking as a discrete step. Produces structured validation reports with confidence scores rather…",
+      "path": "catalog/entries/verify-before-claim.md"
+    },
+    {
+      "name": "web-artifacts-builder",
+      "title": "Web Artifacts Builder",
+      "url": "https://github.com/anthropics/skills/blob/main/skills/web-artifacts-builder/SKILL.md",
+      "category": "skill",
+      "verdict": "adopt",
+      "verdict_reason": "use when markdown isn't enough for interactive reports/dashboards",
+      "tags": [
+        "html",
+        "reports",
+        "dashboards",
+        "visualization"
+      ],
+      "workflows": [
+        "scRNA-seq",
+        "spatial"
+      ],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-05-25",
+      "summary": "Generates self-contained HTML reports and interactive dashboards as skill output. Fills the gap between static markdown output (which lacks interactivity) and full application development (which is overkill for analysis reports). Suitable for QC summaries, pipeline result dashboards, and comparative analyses where users need to explore data rather than just read it. Source is the official Anthropic skills repository.",
+      "path": "catalog/entries/web-artifacts-builder.md"
+    },
+    {
+      "name": "weft-language",
+      "title": "Weft",
+      "url": "https://github.com/WeaveMindAI/weft",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "Novel AI orchestration language with typed nodes, durable execution, and human-in-the-loop primitives — early-stage but architecturally interesting",
+      "tags": [
+        "programming-language",
+        "ai-orchestration",
+        "durable-execution",
+        "visual-programming",
+        "human-in-the-loop",
+        "rust"
+      ],
+      "workflows": [],
+      "license": "O-Saasy-1.0",
+      "security_flags": [
+        "saas-restriction"
+      ],
+      "reviewed": "2026-06-10",
+      "summary": "A programming language where LLMs, humans, APIs, and infrastructure are first-class primitives. Programs are typed node graphs: LLM inference, human approval forms, database queries, and messaging (Discord/Slack/Telegram/etc.) are all single-node operations wired together with a compiler that checks types and connections before anything runs. Programs survive crashes via Restate durable execution — a human approval that takes three days uses the same code as one that takes three seconds. Two native views: dense text code for AI builders and a visual graph for humans, kept in sync. Rust backend, SvelteKit dashboard, ~30 built-in nodes across AI, code, communication, data, flow, storage, and triggers.",
+      "path": "catalog/entries/weft-language.md"
+    }
+  ]
+}
