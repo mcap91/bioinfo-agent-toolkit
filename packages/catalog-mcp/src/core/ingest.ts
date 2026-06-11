@@ -32,13 +32,13 @@ export async function ingest(options: IngestOptions): Promise<IngestResult> {
 
   const paths = catalogPaths(dir);
   const queue = await readQueue(dir);
-  const queueKeys = new Set(queue.items.map((i) => i.key));
+  const queueKeys = new Set(queue.items.map((i) => i.key.toLowerCase()));
 
   const entries = await readAllEntries(paths.entries);
   const entryUrls = new Set<string>();
   for (const [, entry] of entries) {
     const url = entry.frontmatter.url;
-    if (typeof url === 'string' && url) entryUrls.add(url);
+    if (typeof url === 'string' && url) entryUrls.add(url.toLowerCase());
   }
 
   const seenThisBatch = new Set<string>();
@@ -53,16 +53,19 @@ export async function ingest(options: IngestOptions): Promise<IngestResult> {
     }
 
     if (deduplicate) {
-      if (queueKeys.has(key) || seenThisBatch.has(key)) {
+      const keyLower = key.toLowerCase();
+      if (queueKeys.has(keyLower) || seenThisBatch.has(keyLower)) {
         skipped.push({ key, reason: 'already in queue' });
         continue;
       }
-      if (item.url && entryUrls.has(item.url)) {
+      if (item.url && entryUrls.has(item.url.toLowerCase())) {
         skipped.push({ key, reason: 'already cataloged' });
         continue;
       }
+      seenThisBatch.add(keyLower);
+    } else {
+      seenThisBatch.add(key);
     }
-    seenThisBatch.add(key);
     toAdd.push({ ...item, key });
     added.push(key);
   }

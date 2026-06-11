@@ -44,13 +44,13 @@ describe('drain tool wiring', () => {
     const result = await drainTool.handler({ dir }) as {
       ingested: number;
       blocked: number;
-      skipped: number;
+      skipped: { url: string; reason: string }[];
     };
 
     // Shape check.
     expect(typeof result.ingested).toBe('number');
     expect(typeof result.blocked).toBe('number');
-    expect(typeof result.skipped).toBe('number');
+    expect(Array.isArray(result.skipped)).toBe(true);
 
     // One fetchable URL should be ingested.
     expect(result.ingested).toBe(1);

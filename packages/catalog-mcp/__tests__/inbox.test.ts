@@ -48,4 +48,16 @@ describe('parseInbox', () => {
     const items = parseInbox('```text\nno closing fence\n');
     expect(items.find((i) => i.kind === 'text')).toBeUndefined();
   });
+
+  it('parses a fence with trailing apostrophe (```text\')', () => {
+    const md = "```text'\nsome content\n```\n";
+    const items = parseInbox(md);
+    expect(items).toMatchObject([{ kind: 'text', content: 'some content' }]);
+  });
+
+  it('parses a fence with trailing garbage after text', () => {
+    const md = '```text123\nsome content\n```\n';
+    const items = parseInbox(md);
+    expect(items).toEqual([]);
+  });
 });

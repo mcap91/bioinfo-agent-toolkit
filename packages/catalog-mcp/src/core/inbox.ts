@@ -15,7 +15,7 @@ export interface InboxItem {
 
 const URL_LINE = /^\s*((?:https?:\/\/)?(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}\/\S*)(?:\s+—\s+(.*))?\s*$/;
 const NEEDS_LINK = /⚠\s*needs-link/;
-const FENCE_OPEN = /^\s*```text\s*$/;
+const FENCE_OPEN = /^\s*```text\b.*$/;
 const FENCE_CLOSE = /^\s*```\s*$/;
 const SOURCE_LINE = /^source:\s*(\S+)\s*$/;
 

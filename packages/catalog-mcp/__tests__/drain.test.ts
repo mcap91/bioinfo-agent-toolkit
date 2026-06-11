@@ -62,6 +62,36 @@ describe('drainInbox', () => {
     expect(await readInbox()).not.toContain('\r\n');
   });
 
+  it('returns per-item skip details when items are deduped', async () => {
+    await writeInbox('https://github.com/org/tool\n');
+    await drainInbox(dir);
+    // Drain again — same URL is now in queue, should be skipped with detail.
+    await writeInbox('https://github.com/org/tool\n');
+    const r = await drainInbox(dir);
+    expect(r.ingested).toBe(0);
+    expect(r.skipped).toHaveLength(1);
+    expect(r.skipped[0]).toMatchObject({ url: 'https://github.com/org/tool', reason: expect.stringContaining('already') });
+  });
+
+  it('collapses consecutive blank lines left by removed items', async () => {
+    const inbox = [
+      '# Inbox',
+      '',
+      'https://github.com/org/a',
+      'https://github.com/org/b',
+      'https://github.com/org/c',
+      '',
+      'a scratch note',
+    ].join('\n') + '\n';
+    await writeInbox(inbox);
+    await drainInbox(dir);
+    const out = await readInbox();
+    // Should not have 3+ consecutive newlines (i.e., 2+ blank lines in a row).
+    expect(out).not.toMatch(/\n{3,}/);
+    expect(out).toContain('# Inbox');
+    expect(out).toContain('a scratch note');
+  });
+
   it('preserves header prose and scratch notes; removes processed urls; keeps+marks blocked', async () => {
     const inbox = [
       '# Catalog inbox',

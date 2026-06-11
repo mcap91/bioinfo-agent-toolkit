@@ -101,4 +101,22 @@ describe('ingest phase 2', () => {
     const r = await ingest({ dir, items: [{ url: 'https://x.com/a' }] });
     expect(r.skipped).toHaveLength(1);
   });
+
+  it('dedups urls case-insensitively against queue', async () => {
+    await ingest({ dir, items: [{ url: 'https://github.com/Org/Tool' }] });
+    const r = await ingest({ dir, items: [{ url: 'https://github.com/org/tool' }] });
+    expect(r.skipped).toHaveLength(1);
+    expect(r.skipped[0].reason).toMatch(/already in queue/);
+  });
+
+  it('dedups urls case-insensitively against existing entries', async () => {
+    await writeFile(
+      path.join(dir, 'catalog', 'entries', 'existing.md'),
+      '---\nname: existing\ntitle: Existing\nurl: https://github.com/Org/Existing\ncategory: skill\nverdict: adopt\nverdict_reason: good\ntags: [test]\nreviewed: 2026-06-03\n---\n',
+      'utf-8',
+    );
+    const r = await ingest({ dir, items: [{ url: 'https://github.com/org/existing' }] });
+    expect(r.skipped).toHaveLength(1);
+    expect(r.skipped[0].reason).toMatch(/already cataloged/);
+  });
 });
