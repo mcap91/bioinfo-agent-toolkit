@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a verdict (adopt/pilot/watch/note/skip) and security review.",
   "usage": "Search by tags, category, verdict, or keywords in verdict_reason/summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-06-11",
-  "count": 96,
+  "generated": "2026-06-16",
+  "count": 116,
   "verdicts": {
     "adopt": "ready to use",
     "pilot": "worth trying",
@@ -212,6 +212,30 @@
       "path": "catalog/entries/alcoa-plus-for-ai.md"
     },
     {
+      "name": "architect-loop",
+      "title": "Architect Loop",
+      "url": "https://github.com/DanMcInerney/architect-loop",
+      "category": "agent-pattern",
+      "verdict": "pilot",
+      "verdict_reason": "Research-backed cross-vendor agent loop with strong separation of concerns; excellent design patterns for gated, worktree-isolated multi-agent builds",
+      "tags": [
+        "multi-agent",
+        "cross-vendor",
+        "claude-code-skill",
+        "codex",
+        "worktree-isolation",
+        "gates",
+        "research",
+        "orchestration"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-16",
+      "summary": "Two Claude Code skills that wire Claude Fable (architect/planner/reviewer) with GPT-5.5 Codex CLI (builder/researcher) into a repo-centered loop. Runs on existing subscriptions — no API keys required.\n\n**`/architect`** — the build loop. One work block per invocation:\n1. **Spec + gates first.** Fable specs a one-PR slice, splits into 1–4 lanes with non-overlapping file sets, commits acceptance gates to `docs/gates/` before builders start. Gates are read-only — builder edits auto-fail the slice.\n2. **Parallel isolated builders.** One fresh `codex exec` per lane in its own git worktree. Builders must argue with the spec before building (silent compliance = defect), build only declared files, and report raw results. No commit access in sandbox.\n3. **Fable judges and integrates.** Runs gate commands itself (builder claims are \"hearsay\"), reads the diff against spec intent (passing tests ≠ mergeable), commits and merges passing lanes in a fresh context.\n\n**`/architect-research`** — the research loop. Scout-first design:\n1. Cheap Codex scout maps the topic (~10 searches)\n2. Fable designs 3–6 topic-specific lanes from the scout map, drawing tactics per source class (academic snowballing, dependents-not-stars evidence, hype gating, expert tracking)\n3. Parallel Codex researchers run under hard budgets with strict findings discipline (URL + date + quote + confidence tag; NOT FOUND beats inference)\n4. Fable verifies (≥2 sources per claim, adversarial falsification) and writes one decision-oriented report\n\nRepo is the only memory: `docs/HANDOFF.md` (pruned each session), `docs/gates/`, `docs/lanes/`, git history.",
+      "path": "catalog/entries/architect-loop.md"
+    },
+    {
       "name": "asi-evolve",
       "title": "ASI-Evolve",
       "url": "https://github.com/GAIR-NLP/ASI-Evolve",
@@ -419,6 +443,29 @@
       "path": "catalog/entries/castem-first-principles-model-mediated-work.md"
     },
     {
+      "name": "cl4r1t4s",
+      "title": "CL4R1T4S",
+      "url": "https://github.com/elder-plinius/CL4R1T4S",
+      "category": "reference",
+      "verdict": "note",
+      "verdict_reason": "Collection of leaked AI system prompts; useful security-awareness reference but README contains embedded prompt injection",
+      "tags": [
+        "system-prompts",
+        "ai-transparency",
+        "security-awareness",
+        "prompt-injection"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [
+        "prompt-injection-in-readme",
+        "no-license-file"
+      ],
+      "reviewed": "2026-06-16",
+      "summary": "A repository collecting extracted, leaked, and reverse-engineered system prompts from major AI models and agents — ChatGPT, Claude, Gemini, Grok, Perplexity, Cursor, Windsurf, Devin, Manus, Replit, and others. Maintained by @elder_plinius. Entries include model name/version and extraction date. The stated purpose is AI transparency: making visible the hidden prompt scaffolds that shape model behavior, refusals, personas, and ethical framing.",
+      "path": "catalog/entries/cl4r1t4s.md"
+    },
+    {
       "name": "claude-code-remote-prompt-hardening",
       "title": "Claude Code Remote Prompt Hardening",
       "url": "https://www.reddit.com/r/ClaudeCode/comments/1tmizuy/claude_code_v21150_now_allows_anthropic_to/",
@@ -509,6 +556,32 @@
       "path": "catalog/entries/claude-mem.md"
     },
     {
+      "name": "claude-meta-skill",
+      "title": "Claude Meta-Skill",
+      "url": "https://github.com/YYH211/Claude-meta-skill",
+      "category": "reference",
+      "verdict": "note",
+      "verdict_reason": "Curated collection of 11 Claude Code skills; mostly Chinese-language or general-dev focused, with significant overlap to existing catalog entries",
+      "tags": [
+        "claude-code",
+        "skills",
+        "collection",
+        "prompt-engineering",
+        "mcp",
+        "refactoring"
+      ],
+      "workflows": [],
+      "license": "Unlicense",
+      "security_flags": [
+        "no-tests",
+        "no-ci",
+        "no-license-file"
+      ],
+      "reviewed": "2026-06-16",
+      "summary": "A curated GitHub repository containing 11 ready-to-use Claude Code skills packaged as SKILL.md files with YAML frontmatter. Skills cover: skill creation guidance (create-skill-file), prompt optimization, deep reading analysis using 10+ thinking frameworks (SCQA, 5W2H, First Principles, etc.), DRY refactoring, frontend design, MCP server building, daily AI news aggregation, FastGPT workflow JSON generation, Manus-style file-based planning (3-file pattern), local git diff review, and Chinese software copyright registration material preparation. Installation is copy-based (`cp -r skill-dir .claude/skills/`).",
+      "path": "catalog/entries/claude-meta-skill.md"
+    },
+    {
       "name": "claude-pee",
       "title": "claude-pee",
       "category": "cli-tool",
@@ -575,6 +648,29 @@
       "reviewed": "2026-05-25",
       "summary": "A bundled toolkit of 50 skills, 7 agents, and 11 slash commands with auto-formatting hooks. Provides a worked example of the \"skill + agent + hook\" integration pattern — showing how these three Claude Code primitives can be combined into a coherent operational system. Sourced from a Reddit…",
       "path": "catalog/entries/claude-spellbook.md"
+    },
+    {
+      "name": "claw-code",
+      "title": "Claw Code",
+      "url": "https://github.com/ultraworkers/claw-code",
+      "category": "framework",
+      "verdict": "note",
+      "verdict_reason": "Rust reimplementation of a CLI agent harness; self-described museum exhibit maintained by agents rather than a production tool",
+      "tags": [
+        "rust",
+        "cli-agent",
+        "claude-code-alternative",
+        "agent-harness",
+        "ultraworkers"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "deprecated-crate-name-collision"
+      ],
+      "reviewed": "2026-06-16",
+      "summary": "A Rust implementation of a CLI agent harness (similar to Claude Code) from the UltraWorkers ecosystem. Provides an interactive CLI for running LLM-powered coding sessions with support for Anthropic, OpenAI, and local OpenAI-compatible providers (Ollama, llama.cpp, vLLM). Features include interactive sessions, prompt mode, doctor health checks, file context via `@path`, and a parity harness for migration testing. Part of a broader ecosystem including LazyCodex, Gajae-Code, clawhip, and oh-my-* tools.\n\nNotably, the repository is self-described as \"closer to a museum exhibit than a product pitch\" — it's maintained by agents (LazyCodex and Gajae-Code) rather than human developers, serving as a demonstration of agent-managed code maintenance.",
+      "path": "catalog/entries/claw-code.md"
     },
     {
       "name": "cli-anything",
@@ -913,6 +1009,30 @@
       "path": "catalog/entries/fluiddocs-deck-builder.md"
     },
     {
+      "name": "frontier",
+      "title": "Frontier",
+      "url": "https://github.com/WellDunDun/frontier",
+      "category": "plugin",
+      "verdict": "watch",
+      "verdict_reason": "Well-architected multi-harness orchestration runtime for Claude Code; early preview but the token-economics argument and delegation model are sound",
+      "tags": [
+        "claude-code",
+        "orchestration",
+        "multi-model",
+        "delegation",
+        "pi",
+        "codex",
+        "ollama",
+        "omlx"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-06-16",
+      "summary": "An orchestration runtime installed as a Claude Code plugin that delegates bounded work (research, implementation, testing, log reduction) to other harnesses and model providers. The orchestrator (your frontier model in Claude Code or Codex) keeps planning, synthesis, and final review; workers handle token-heavy tasks on cheaper or local models via Pi and Codex harness adapters. Supports three backend flavors: oMLX (local Apple Silicon inference), Ollama, and any OpenAI-compatible server (LM Studio, vLLM, llama.cpp, cloud gateways). Ships five slash commands (`delegate`, `status`, `result`, `cancel`, `setup`), a `frontier-worker` agent, and a companion CLI runtime (`frontier-companion.mjs`) that owns all harness details.",
+      "path": "catalog/entries/frontier.md"
+    },
+    {
       "name": "gbrain",
       "title": "gbrain",
       "url": "https://github.com/garrytan/gbrain",
@@ -1179,6 +1299,32 @@
       "path": "catalog/entries/inbox-zero.md"
     },
     {
+      "name": "jcode",
+      "title": "jcode",
+      "url": "https://github.com/1jehuang/jcode",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "Feature-rich Rust coding agent harness with exceptional performance (14ms boot, 28MB RAM), swarm collaboration, and 30+ provider integrations; compelling alternative harness to watch",
+      "tags": [
+        "cli-agent",
+        "rust",
+        "multi-provider",
+        "swarm",
+        "memory",
+        "browser-automation",
+        "performance"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [
+        "curl-pipe-bash-install",
+        "self-dev-mode"
+      ],
+      "reviewed": "2026-06-16",
+      "summary": "A Rust-based coding agent harness (Claude Code / Codex alternative) optimized for performance and multi-session workflows. Key differentiators: 14ms time-to-first-frame (245x faster than Claude Code), 28MB RAM baseline (14x less than Claude Code), ~10MB per additional session (vs 213MB for Claude Code). Supports 30+ providers via OAuth and API key flows (Claude, OpenAI, Copilot, Gemini, Azure, OpenRouter, Ollama, LM Studio, and many more).\n\nNotable features: Swarm mode (multiple agents in the same repo with automatic conflict detection and messaging), semantic memory system (embeds turns as vectors, retrieves related memories via cosine similarity, ambient consolidation), browser automation (Firefox Agent Bridge), self-dev mode (agent modifies its own source, builds, tests, and hot-reloads), side panels with inline Mermaid rendering, session resume from other harnesses (Claude Code, Codex, OpenCode, Pi), adaptive agent grep (adds file structure info to grep results), and interleaved input (sends while agent works without breaking KV cache).",
+      "path": "catalog/entries/jcode.md"
+    },
+    {
       "name": "karakeep",
       "title": "Karakeep",
       "url": "https://github.com/karakeep-app/karakeep",
@@ -1349,6 +1495,29 @@
       "path": "catalog/entries/maxun.md"
     },
     {
+      "name": "mempalace",
+      "title": "MemPalace",
+      "url": "https://github.com/MemPalace/mempalace",
+      "category": "framework",
+      "verdict": "pilot",
+      "verdict_reason": "Local-first AI memory with 96.6% R@5 retrieval, 33 MCP tools, verbatim storage, and pluggable backends; strong benchmarks and Claude Code integration make it worth trialing",
+      "tags": [
+        "memory",
+        "semantic-search",
+        "mcp-server",
+        "local-first",
+        "chromadb",
+        "knowledge-graph",
+        "claude-code"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-16",
+      "summary": "A local-first AI memory system that stores conversation history as verbatim text (no summarization, extraction, or paraphrasing) and retrieves it with semantic search. The index is structured like a memory palace: people and projects become wings, topics become rooms, and original content lives in drawers. Searches can be scoped to specific wings/rooms rather than running against a flat corpus.\n\nKey capabilities: 33 MCP tools for palace reads/writes, knowledge-graph operations, cross-wing navigation, drawer management, and agent diaries. Temporal entity-relationship graph with validity windows backed by local SQLite. Auto-save hooks for Claude Code, Codex CLI, and Cursor IDE. Can mine Claude Code session transcripts and project files into the palace.\n\nBenchmark results: 96.6% R@5 on LongMemEval (500 questions) with zero API calls; 98.4% with hybrid heuristics (keyword boosting, temporal proximity, preference patterns); 99%+ with LLM rerank. All benchmarks reproducible from the repository.",
+      "path": "catalog/entries/mempalace.md"
+    },
+    {
       "name": "memstack",
       "title": "MemStack",
       "url": "https://github.com/cwinvestments/memstack",
@@ -1379,6 +1548,53 @@
       "reviewed": "2026-06-10",
       "summary": "MemStack is a commercial freemium skill framework for Claude Code that distributes 127 SKILL.md-style skills via a Python MCP server installed from PyPI (`memstack-skill-loader`). Skills are organized into domains: Core/Memory, Security, Deployment, Development, Business, Content, SEO, Marketing, Product, and Automation. They load on-demand at runtime — only the skill matching the current task is injected, avoiding context bloat.\n\nThe free tier includes 84 skills plus: SQLite-backed persistent session memory with semantic vector search, deterministic hooks (commit safety, secret scanning, build verification), TTS voice notifications, TokenStack™ context compression, and a localhost dashboard (port 3333) for skill management, token analytics, and 3-agent orchestration with real-time streaming.\n\nThe Pro tier (paid license via memstack.pro) unlocks 43 additional skills including multi-agent orchestration, browser automation, RAG builder, model router, advanced security, and various platform-specific skills (iOS App Store, Next.js conventions, etc.).",
       "path": "catalog/entries/memstack.md"
+    },
+    {
+      "name": "mlx-vlm-turboquant",
+      "title": "mlx-vlm TurboQuant (Apple Silicon KV Cache Compression)",
+      "url": "https://github.com/Blaizzy/mlx-vlm/pull/858",
+      "category": "framework",
+      "verdict": "pilot",
+      "verdict_reason": "Production-quality Metal kernels implementing TurboQuant on Apple Silicon; benchmarked and ready for review but PR not yet merged",
+      "tags": [
+        "quantization",
+        "kv-cache",
+        "apple-silicon",
+        "mlx",
+        "metal",
+        "inference",
+        "vision-language"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "pr-not-merged"
+      ],
+      "reviewed": "2026-06-16",
+      "summary": "PR #858 on mlx-vlm adds TurboQuant KV cache compression for Apple Silicon via custom Metal kernels. Implements the full PolarQuant + QJL pipeline as GPU-native operations: `_mse_score_kernel`, `_pack_lowbit_kernel`, `_unpack_lowbit_kernel`, `_qjl_score_kernel`, `_prod_score_kernel`, plus fused integer decode kernels.\n\nKey results from the PR benchmarks:\n- 3–4 bit KV cache quantization with zero accuracy loss\n- Single fused kernel replaces 4 separate Metal dispatches (2.7x decode speedup)\n- Float16 norms save 9% KV memory\n- Multi-query score kernel: 28ms → 12ms at 64k context\n- Prefill attention optimization via dedicated MQ score path",
+      "path": "catalog/entries/mlx-vlm-turboquant.md"
+    },
+    {
+      "name": "model-workspace-protocol",
+      "title": "Model Workspace Protocol (MWP)",
+      "url": "https://arxiv.org/abs/2603.16021",
+      "category": "reference",
+      "verdict": "note",
+      "verdict_reason": "Research paper proposing filesystem structure as agent orchestration; numbered folders + markdown prompts replace multi-agent frameworks for sequential workflows",
+      "tags": [
+        "research",
+        "orchestration",
+        "filesystem",
+        "agent-architecture",
+        "unix-philosophy",
+        "markdown"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-16",
+      "summary": "A research paper (arXiv:2603.16021) presenting Model Workspace Protocol (MWP) — a method that replaces framework-level agent orchestration with filesystem structure. Instead of multi-agent frameworks managing context passing, memory, error handling, and step coordination through code, MWP uses: numbered folders representing stages, plain Markdown files carrying prompts and context for each step, and local scripts for mechanical (non-AI) work. A single agent reads the right files at the right moment, doing work that would otherwise require a multi-agent framework.\n\nThe approach draws from Unix pipeline design, modular decomposition, multi-pass compilation, and literate programming. Designed for sequential workflows where a human reviews output at each step. MIT licensed, open source.",
+      "path": "catalog/entries/model-workspace-protocol.md"
     },
     {
       "name": "n8n-mcp",
@@ -1424,6 +1640,28 @@
       "reviewed": "2026-05-25",
       "summary": "Native subagents run within a single Claude Code session's context. The parent delegates a task to a subagent with specific tools and instructions; the subagent does its work, reports the result back to the parent, and terminates. There is no inter-subagent communication — subagents only report…",
       "path": "catalog/entries/native-subagents.md"
+    },
+    {
+      "name": "nvidia-build",
+      "title": "NVIDIA Build (NIM)",
+      "url": "https://build.nvidia.com/models",
+      "category": "framework",
+      "verdict": "note",
+      "verdict_reason": "NVIDIA's model API catalog and NIM inference microservices; broad model access but enterprise-focused with GPU-heavy deployment requirements",
+      "tags": [
+        "nvidia",
+        "nim",
+        "model-api",
+        "inference",
+        "gpu",
+        "enterprise"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-06-16",
+      "summary": "NVIDIA Build is NVIDIA's platform for accessing and deploying AI models via API. It provides NIM (NVIDIA Inference Microservices) — optimized, containerized model endpoints for running LLMs, vision models, embedding models, and domain-specific models on NVIDIA GPUs. The platform offers both a hosted API playground (build.nvidia.com) for testing models and self-hosted NIM containers for on-premises or cloud deployment. The model catalog spans hundreds of models including Llama, Mistral, Qwen, and NVIDIA's own models, plus domain-specific models for healthcare, biology, and other verticals.",
+      "path": "catalog/entries/nvidia-build.md"
     },
     {
       "name": "oauth-cli-coder",
@@ -1500,6 +1738,33 @@
       "path": "catalog/entries/obsidian-skills.md"
     },
     {
+      "name": "odysseus",
+      "title": "Odysseus",
+      "url": "https://github.com/pewdiepie-archdaemon/odysseus",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "Feature-rich self-hosted AI workspace with massive community momentum, but weeks-old with unsandboxed agent shell execution",
+      "tags": [
+        "self-hosted",
+        "ai-workspace",
+        "agents",
+        "local-models",
+        "docker",
+        "research",
+        "email",
+        "mcp"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0-or-later",
+      "security_flags": [
+        "unsandboxed-shell",
+        "new-project"
+      ],
+      "reviewed": "2026-06-16",
+      "summary": "Self-hosted AI workspace created by PewDiePie (Felix Kjellberg), launched May 31 2026. Provides a Docker-deployed browser UI combining chat, autonomous agents, deep research, document editing, email (IMAP/SMTP), notes, tasks, calendar (CalDAV), and local model serving via Ollama. Built on a Python/FastAPI backend. Hardware-aware \"Cookbook\" recommends and downloads models based on local GPU. Compare mode enables blind side-by-side model evaluation. Supports MCP tool integration, agent skills, and memory. ~72k GitHub stars and ~9.2k forks within weeks of launch. Local-first, privacy-first, no telemetry.",
+      "path": "catalog/entries/odysseus.md"
+    },
+    {
       "name": "one-skill-to-rule-them-all",
       "title": "One Skill to Rule Them All",
       "url": "https://github.com/rebelytics/one-skill-to-rule-them-all",
@@ -1545,6 +1810,29 @@
       "reviewed": "2026-06-10",
       "summary": "Onyx is a self-hostable, open-source AI application platform built on top of LLMs. It provides a full-featured chat UI combined with a hybrid vector+keyword index for agentic RAG, deep research flows, web search (Serper, Brave, SearXNG, Firecrawl/Exa), sandboxed code execution, artifact generation, voice mode, image generation, and MCP-based action integrations. It ships with 50+ pre-built data connectors (document stores, wikis, ticketing systems, etc.) for knowledge ingestion. Deployment is Docker, Kubernetes, or Helm/Terraform. The \"Lite\" mode requires under 1 GB RAM and runs a stripped-down stack; the full \"Standard\" mode adds Redis, MinIO, background job workers, and dedicated ML inference servers. Enterprise Edition adds SSO (OIDC/SAML/Google OAuth), SCIM provisioning, RBAC, analytics, query audit logs, PII scrubbing hooks, and whitelabeling.",
       "path": "catalog/entries/onyx-ai-platform.md"
+    },
+    {
+      "name": "open-knowledge-format",
+      "title": "Open Knowledge Format (OKF)",
+      "url": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md",
+      "category": "reference",
+      "verdict": "note",
+      "verdict_reason": "Google's draft spec for agent-friendly knowledge representation using Markdown + YAML frontmatter; closely aligned with our wiki pattern but v0.1 draft status",
+      "tags": [
+        "knowledge-management",
+        "specification",
+        "google",
+        "markdown",
+        "frontmatter",
+        "agent-friendly",
+        "wiki"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-06-16",
+      "summary": "A specification (v0.1 draft) from Google Cloud Platform for representing knowledge as a directory of Markdown files with YAML frontmatter — designed to be authored by people, generated by agents, exchanged across organizations, and consumed by both. A \"Knowledge Bundle\" is a directory tree of `.md` files where each file is a \"Concept\" with a required `type` field in frontmatter. The spec defines: concept documents (frontmatter + body), cross-linking via standard Markdown links, index files for progressive disclosure, log files for change history, and citations for external sources.\n\nKey design principles: readable without tooling, parseable without SDKs, diffable in git, portable across tools. Deliberately minimal — only standardizes `type` as a required field; everything else is optional. Consumers must tolerate unknown types, unknown frontmatter keys, and broken links.",
+      "path": "catalog/entries/open-knowledge-format.md"
     },
     {
       "name": "open-webui",
@@ -1703,6 +1991,29 @@
       "path": "catalog/entries/openspace.md"
     },
     {
+      "name": "overcut",
+      "title": "Overcut — Agentic SDLC Orchestration",
+      "url": "https://overcut.ai",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "Commercial orchestration layer for multi-agent SDLC; addresses real coordination gap but closed-source, early-stage, and not yet individually usable",
+      "tags": [
+        "agent-orchestration",
+        "sdlc",
+        "multi-agent",
+        "devops",
+        "workflow-automation"
+      ],
+      "workflows": [],
+      "license": "Proprietary",
+      "security_flags": [
+        "closed-source"
+      ],
+      "reviewed": "2026-06-16",
+      "summary": "Overcut is a commercial platform for orchestrating AI coding agents across the software development lifecycle. Rather than replacing individual agents (Claude Code, Cursor, Copilot), it adds a coordination layer above them — handling multi-agent workflows, governance, approvals, audit trails, and integration with engineering systems (Jira, Linear, GitHub, GitLab, Azure DevOps, Bitbucket).\n\nKey capabilities:\n- Pre-built agents and drag-and-drop workflow builder for SDLC automation\n- Continuous monitoring of tickets and PRs across platforms to build organizational context\n- Ephemeral sandboxed agent execution with scoped tokens and audit logs\n- Deploy managed-cloud or fully on-prem (code never leaves the environment)\n- Direct interaction via `@overcut` mentions on tickets and PRs\n\nThe source content is a founder discussion post articulating the thesis: the industry is converging on the need for an orchestration/governance layer above coding agents, analogous to how Git, CI/CD, and observability standardized earlier.",
+      "path": "catalog/entries/overcut.md"
+    },
+    {
       "name": "paperless-ngx",
       "title": "Paperless-ngx",
       "url": "https://github.com/paperless-ngx/paperless-ngx",
@@ -1774,6 +2085,53 @@
       "reviewed": "2026-05-25",
       "summary": "Automatically fires during planning, code generation, and repo audits to detect personally identifiable information and flag regulatory compliance gaps. Covers eight regulatory frameworks: CCPA, HIPAA, PCI-DSS, COPPA, GLBA, BIPA, FERPA, and the FTC Act. Operates as a background check rather than an on-demand command — it intercepts risky operations before they complete. Source is `gosprinto/compliance-skills/pii-detector`, discovered via Reddit r/claudeskills.",
       "path": "catalog/entries/pii-detection.md"
+    },
+    {
+      "name": "ponytail",
+      "title": "Ponytail",
+      "url": "https://github.com/DietrichGebert/ponytail",
+      "category": "plugin",
+      "verdict": "pilot",
+      "verdict_reason": "YAGNI enforcement plugin with strong benchmarks (80-94% less code, 47-77% cheaper); multi-platform support and clean design make it worth trialing",
+      "tags": [
+        "claude-code",
+        "codex",
+        "plugin",
+        "yagni",
+        "minimalism",
+        "code-quality",
+        "over-engineering"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-16",
+      "summary": "A plugin that makes AI coding agents write minimal code by enforcing a strict YAGNI (You Aren't Gonna Need It) ladder before generating any code. The agent stops at the first rung that holds: (1) does this need to exist? skip it; (2) stdlib does it? use it; (3) native platform feature? use it; (4) installed dependency? use it; (5) one line? one line; (6) only then, the minimum that works. Every shortcut is marked with a `ponytail:` comment naming its upgrade path, so deferred complexity is tracked, not lost.\n\nBenchmarks across five everyday tasks (email validator, debounce, CSV sum, countdown timer, rate limiter) on Haiku/Sonnet/Opus show 80-94% less code, 3-6x faster, and 47-77% cheaper than a no-skill agent.",
+      "path": "catalog/entries/ponytail.md"
+    },
+    {
+      "name": "qwen3-6-27b",
+      "title": "Qwen3.6-27B",
+      "url": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "category": "framework",
+      "verdict": "watch",
+      "verdict_reason": "Strong open-weight 27B model with near-frontier coding scores and 262K context; promising local worker model but requires multi-GPU or quantization for practical use",
+      "tags": [
+        "llm",
+        "open-weights",
+        "coding",
+        "agentic",
+        "multimodal",
+        "qwen",
+        "local-inference",
+        "llama-cpp"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-06-16",
+      "summary": "A 27B-parameter dense causal language model with vision encoder from the Qwen team (Alibaba). Qwen3.6-27B is the first open-weight release of the Qwen 3.6 series, focused on agentic coding and thinking preservation. Key capabilities: 262K native context (extensible to 1M+ via YaRN), multimodal input (text, image, video), built-in tool calling, thinking mode with `preserve_thinking` for retaining reasoning context across turns. Architecture uses a hybrid of Gated DeltaNet (linear attention) and Gated Attention layers with multi-token prediction.\n\nBenchmark highlights (vs Claude 4.5 Opus): SWE-bench Verified 77.2 (vs 80.9), SWE-bench Pro 53.5 (vs 57.1), Terminal-Bench 2.0 59.3 (tied), SkillsBench 48.2 (vs 45.3 — exceeds Opus), AIME 2026 94.1 (vs 95.1). For a 27B open-weight model, these are remarkably close to frontier closed-source performance.",
+      "path": "catalog/entries/qwen3-6-27b.md"
     },
     {
       "name": "remote-control",
@@ -1881,6 +2239,30 @@
       "path": "catalog/entries/ruview-wifi-sensing.md"
     },
     {
+      "name": "scheduled-multi-agent-coordinator",
+      "title": "Scheduled Multi-Agent Coordinator Pattern",
+      "url": "https://github.com/nanocoai/nanoclaw",
+      "category": "agent-pattern",
+      "verdict": "note",
+      "verdict_reason": "Useful architecture pattern for persistent scheduled agents with coordinator + messaging; NanoClaw and Hermes are mature implementations",
+      "tags": [
+        "multi-agent",
+        "scheduling",
+        "coordinator",
+        "persistent-agent",
+        "messaging-integration",
+        "codex",
+        "nanoclaw",
+        "hermes"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-16",
+      "summary": "A discussion post describing a desired architecture for running multiple Codex CLI agents on schedules or event triggers, with a coordinator agent that:\n\n- Manages the other agents and ensures system stability\n- Handles events, schedules, and connections to third-party services\n- Provides remote…",
+      "path": "catalog/entries/scheduled-multi-agent-coordinator.md"
+    },
+    {
       "name": "skill-router",
       "title": "Skill Router",
       "url": "https://github.com/pcx-wave/skill-router",
@@ -1898,6 +2280,29 @@
       "reviewed": "2026-05-25",
       "summary": "Scans installed skills, builds a lightweight keyword index, and routes incoming requests to the most relevant skill. Operates in two modes: suggest (presents matches for confirmation) and auto (applies high-confidence matches without prompting). Conservative by design — only triggers on high-confidence keyword matches to avoid false routing.",
       "path": "catalog/entries/skill-router.md"
+    },
+    {
+      "name": "skillopt",
+      "title": "SkillOpt",
+      "url": "https://github.com/microsoft/SkillOpt",
+      "category": "framework",
+      "verdict": "pilot",
+      "verdict_reason": "Microsoft research framework that optimizes agent skills via training loops; +23.5 point lifts on Claude Code, Sleep mode for nightly skill consolidation is directly relevant",
+      "tags": [
+        "skill-optimization",
+        "microsoft",
+        "training-loop",
+        "claude-code",
+        "codex",
+        "agent-skills",
+        "research"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-16",
+      "summary": "A text-space optimizer from Microsoft Research that treats agent skill documents (SKILL.md files) as trainable state and optimizes them using a training loop modeled on deep learning: epochs, mini-batches, learning rates, and validation gates — but without touching model weights. A separate optimizer model turns scored rollouts into bounded add/delete/replace edits on a skill document; edits are accepted only when they strictly improve a held-out validation score. The deployed artifact is a compact `best_skill.md` (300-2,000 tokens) that runs against the unchanged target model.\n\nTraining loop: rollout → reflect → aggregate → select → update → evaluate. Features a textual learning-rate budget (constraining edit magnitude), a rejected-edit buffer, and epoch-wise slow/meta updates for stability.\n\nResults: across 6 benchmarks, 7 target models, and 3 execution harnesses (direct chat, Codex CLI, Claude Code CLI), SkillOpt is best or tied-best on all 52 evaluated cells. On GPT-5.5: +23.5 points in direct chat, +24.8 in Codex, +19.1 in Claude Code. Optimized skills transfer across model scales, between harnesses, and to nearby benchmarks.\n\nSkillOpt-Sleep (preview): a nightly offline companion for local coding agents that reviews past sessions, replays recurring tasks, and consolidates validated skills behind a held-out gate.",
+      "path": "catalog/entries/skillopt.md"
     },
     {
       "name": "sota-scan",
@@ -2133,6 +2538,28 @@
       "path": "catalog/entries/tolvi.md"
     },
     {
+      "name": "turboquant",
+      "title": "TurboQuant — Extreme KV Cache Compression",
+      "url": "https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/",
+      "category": "reference",
+      "verdict": "watch",
+      "verdict_reason": "Foundational Google Research algorithm (ICLR 2026) for 3-4 bit KV cache compression with zero accuracy loss; growing downstream ecosystem but no single canonical package yet",
+      "tags": [
+        "quantization",
+        "kv-cache",
+        "compression",
+        "inference",
+        "memory-optimization",
+        "google-research"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-06-16",
+      "summary": "TurboQuant (ICLR 2026) compresses the key-value cache in transformer models to 3–4 bits with zero accuracy loss. It combines two sub-algorithms:\n\n- **PolarQuant** (AISTATS 2026): Randomly rotates data vectors, converts to polar coordinates, then quantizes on a predictable circular grid — eliminates the normalization constants that bloat traditional quantization.\n- **QJL** (Quantized Johnson-Lindenstrauss): A 1-bit error-correction pass that removes bias from the PolarQuant stage using a sign-bit projection trick. Zero memory overhead.\n\nResults on Gemma and Mistral across LongBench, Needle-in-Haystack, ZeroSCROLLS, RULER, and L-Eval: 6x memory reduction, up to 8x speedup on H100 GPUs, no training or fine-tuning required. Also applicable to vector search (superior recall vs. PQ and RabbiQ baselines).",
+      "path": "catalog/entries/turboquant.md"
+    },
+    {
       "name": "tutorial-creator",
       "title": "Tutorial Creator",
       "category": "skill",
@@ -2172,6 +2599,29 @@
       "reviewed": "2026-05-25",
       "summary": "An AI skill that enhances Claude Code with professional UI/UX design capabilities. Uses 161 industry-specific reasoning rules to generate complete design systems (styles, colors, typography, components) matched to product type. Includes databases of 67 UI styles, 161 color palettes, 57 typography pairings, 25 chart types, and 99 UX/accessibility guidelines. Supports React, Next.js, Vue, Svelte, Angular, SwiftUI, Flutter, and more. Generates via MASTER.md persistence file with page-specific overrides. 82.7k stars, MIT licensed.",
       "path": "catalog/entries/ui-ux-pro-max-skill.md"
+    },
+    {
+      "name": "understand-anything",
+      "title": "Understand Anything",
+      "url": "https://github.com/Egonex-AI/Understand-Anything",
+      "category": "plugin",
+      "verdict": "watch",
+      "verdict_reason": "Interactive knowledge graph plugin for codebases with multi-agent pipeline and broad platform support; impressive but heavy — watch for maturity and real-world performance on large repos",
+      "tags": [
+        "claude-code",
+        "knowledge-graph",
+        "codebase-analysis",
+        "visualization",
+        "tree-sitter",
+        "onboarding",
+        "plugin"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-16",
+      "summary": "A Claude Code plugin that analyzes a codebase with a multi-agent pipeline (5-7 specialized agents), builds a knowledge graph of every file, function, class, and dependency, then provides an interactive web dashboard for exploration. Uses a tree-sitter + LLM hybrid approach: tree-sitter for deterministic structural parsing (imports, exports, call sites, inheritance), LLM for semantic analysis (summaries, architectural layer assignment, business-domain mapping, guided tours).\n\nKey features: interactive force-directed graph visualization, fuzzy and semantic search, diff impact analysis (see which parts your changes affect), guided architecture tours ordered by dependency, persona-adaptive UI (junior dev / PM / power user), architectural layer visualization (API/Service/Data/UI/Utility), business domain extraction, and Karpathy-pattern wiki knowledge graph analysis. Supports incremental updates — only re-analyzes changed files. Graph output is JSON, committable for team sharing.",
+      "path": "catalog/entries/understand-anything.md"
     },
     {
       "name": "unforget",
@@ -2284,6 +2734,30 @@
       "reviewed": "2026-06-10",
       "summary": "A programming language where LLMs, humans, APIs, and infrastructure are first-class primitives. Programs are typed node graphs: LLM inference, human approval forms, database queries, and messaging (Discord/Slack/Telegram/etc.) are all single-node operations wired together with a compiler that checks types and connections before anything runs. Programs survive crashes via Restate durable execution — a human approval that takes three days uses the same code as one that takes three seconds. Two native views: dense text code for AI builders and a visual graph for humans, kept in sync. Rust backend, SvelteKit dashboard, ~30 built-in nodes across AI, code, communication, data, flow, storage, and triggers.",
       "path": "catalog/entries/weft-language.md"
+    },
+    {
+      "name": "zero-to-mastery-ml",
+      "title": "Zero to Mastery ML",
+      "url": "https://github.com/mrdbourke/zero-to-mastery-ml",
+      "category": "reference",
+      "verdict": "note",
+      "verdict_reason": "Comprehensive ML/DS course materials (NumPy, pandas, sklearn, TensorFlow); useful learning reference but not a tool or workflow component",
+      "tags": [
+        "machine-learning",
+        "data-science",
+        "course",
+        "numpy",
+        "pandas",
+        "scikit-learn",
+        "tensorflow",
+        "jupyter"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-06-16",
+      "summary": "Course materials repository for the Zero to Mastery Machine Learning and Data Science course (Udemy / zerotomastery.io). Contains Jupyter notebooks, datasets, and supporting materials covering: a 6-step ML project framework, NumPy, pandas, Matplotlib, Scikit-Learn, and TensorFlow/Keras deep learning. Includes three milestone projects: heart disease classification (binary classification), bulldozer price prediction (regression), and Dog Vision (image classification with transfer learning). Also available as an online book at dev.mrdbourke.com/zero-to-mastery-ml/.",
+      "path": "catalog/entries/zero-to-mastery-ml.md"
     }
   ]
 }
