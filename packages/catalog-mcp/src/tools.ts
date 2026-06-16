@@ -1,7 +1,7 @@
 // packages/catalog-mcp/src/tools.ts
 import { z } from 'zod';
 import { dirSchema, CATEGORIES, VERDICTS } from './core/schema.js';
-import { resolveDir, loadConfig } from './core/config.js';
+import { resolveDir, loadConfig, loadState, saveState } from './core/config.js';
 import { generateAndWriteIndex, buildSearchIndex } from './core/index-gen.js';
 import { lint } from './core/lint.js';
 import { searchEntries } from './core/search.js';
@@ -106,11 +106,11 @@ export const tools: ToolDef[] = [
   },
   {
     name: 'config',
-    description: 'View and update catalog configuration',
+    description: 'View and update catalog configuration and persistent state (e.g. Gmail pull cursor)',
     inputSchema: dirSchema.extend({
-      action: z.enum(['get', 'set', 'check']),
+      action: z.enum(['get', 'set', 'check', 'get-state', 'set-state']),
       key: z.string().optional(),
-      value: z.union([z.string(), z.array(z.string())]).optional(),
+      value: z.union([z.string(), z.array(z.string()), z.null()]).optional(),
     }),
     handler: async (input) => {
       const dir = resolveDir(input.dir as string | undefined);
@@ -140,6 +140,20 @@ export const tools: ToolDef[] = [
           config,
           missingCredentials: missing,
         };
+      }
+      if (action === 'get-state') {
+        return { state: await loadState(dir) };
+      }
+      if (action === 'set-state') {
+        if (!input.key) throw new Error('key is required for set-state action');
+        const VALID_STATE_KEYS = new Set(['gmail_last_pull_iso']);
+        if (!VALID_STATE_KEYS.has(input.key as string)) {
+          throw new Error(
+            `Unknown state key "${input.key}". Valid keys: ${[...VALID_STATE_KEYS].join(', ')}`,
+          );
+        }
+        const state = await saveState(dir, { [input.key as string]: input.value ?? null });
+        return { updated: input.key, state };
       }
       // action === 'set'
       if (!input.key) throw new Error('key is required for set action');

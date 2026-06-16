@@ -79,14 +79,27 @@ To add a tool to the catalog:
 
 `ingest`, `drain`, `fetch-url`, `reddit-extract`, `build-prompt`, `validate-entry`, `write-entry`, `index`, `search`, `lint`, `scaffold`, `queue`, `config`, `goals`
 
-### Phase 2 — intake → processing pipeline
+### Catalog pipeline — intake → processing
 
-Two stages, split by who runs each:
+The full flow is documented in `skills/catalog-intake/SKILL.md`. Summary:
 
-1. **Intake (interactive).** Links/prose land in `catalog/inbox.md` (Gmail scan, chat paste, or hand-edit). The `/catalog-intake` skill curates the inbox and **drains** it: ready items are ingested into the queue; blocked-domain URLs (Instagram, X, LinkedIn *posts*) are marked `⚠ needs-link` and held. `config.json` `blocked_domains` drives the classification, with path exceptions (e.g. LinkedIn `/pulse/` articles are fetchable).
-2. **Processing (manual or headless).** `catalog/recipe.md` is the runtime-agnostic loop: for each `pending` queue item — fetch (clean) or use `content`, `build-prompt`, assess, `validate-entry`, `write-entry`, then `queue` remove/update, and `index`. Run it headlessly with `npm run -w @catalog/mcp catalog:process`, which launches `claude -p` with the catalog server attached.
+1. **Intake (interactive).** Run the `/catalog-intake` skill or follow it manually. It pulls from
+   Gmail (`from:me subject:catalog after:<cursor>`), appends URLs/prose to `catalog/inbox.md`,
+   updates the cursor in `catalog/state.json` via `config { action: "set-state" }`, curates with
+   the user, then drains. Blocked/unfetchable items (Instagram, Reddit `/s/` share links, X,
+   LinkedIn posts) stay in inbox marked `⚠ needs-link` until resolved.
+2. **Processing (headless).** Run in the background:
+   ```
+   npm run -w @catalog/mcp catalog:process
+   ```
+   This launches `claude --print` with the catalog MCP server, follows `catalog/recipe.md`, and
+   processes every pending queue item unattended. After it finishes, check `catalog/queue.json`
+   for any `parked`/`error` items, then commit the new entries.
 
-**Direct writes.** Entries are written straight to `catalog/entries/` with no draft/approved gate; `index` and `search` include every entry. The security boundary that matters for a catalogued tool is **adoption/installation**, handled at the install boundary (WK-0031, the `agent-lockdown` skill is the first piece) — not at cataloging time. The adapter (`src/adapter/run-processing.ts`) pins the verified `claude -p` flag format against a recorded CLI version; re-verify with `claude --help` if the CLI is upgraded.
+**Direct writes.** Entries go straight to `catalog/entries/` — no draft gate. The security boundary
+is at **adoption/installation** (WK-0031), not cataloging time. The adapter
+(`src/adapter/run-processing.ts`) pins the `claude --print` flag format; re-verify with
+`claude --help` if the CLI is upgraded.
 
 ## General Conventions
 

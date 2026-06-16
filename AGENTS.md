@@ -38,3 +38,16 @@ the initial retrieval pass.
 
 <!-- END kb-managed -->
 
+## Catalog pipeline
+
+The catalog tracks external tools, skills, and frameworks. The full operator flow is in
+`skills/catalog-intake/SKILL.md`. Quick reference:
+
+1. **Intake:** pull links from Gmail or paste into `catalog/inbox.md`, then drain with the
+   `drain` MCP tool. Unfetchable items (Instagram, Reddit `/s/` share links) stay in inbox
+   marked `⚠ needs-link`.
+2. **Processing:** run `npm run -w @catalog/mcp catalog:process` in the background. It processes
+   every pending queue item headless and writes entries to `catalog/entries/`.
+3. **After processing:** check `catalog/queue.json` for parked/errored items, commit new entries.
+
+The MCP server provides 14 tools — see `CLAUDE.md` for the full list.

@@ -1,9 +1,9 @@
 // packages/catalog-mcp/src/core/config.ts
-import { readFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { configSchema, type CatalogConfig } from './schema.js';
+import { configSchema, stateSchema, type CatalogConfig, type CatalogState } from './schema.js';
 
 export function resolveDir(inputDir?: string): string {
   if (inputDir) return path.resolve(inputDir);
@@ -39,6 +39,26 @@ export function catalogPaths(dir: string) {
     searchIndex: path.join(dir, 'catalog', '.search-index.json'),
     queue: path.join(dir, 'catalog', 'queue.json'),
     config: path.join(dir, 'catalog', 'config.json'),
+    state: path.join(dir, 'catalog', 'state.json'),
     queueLock: path.join(dir, 'catalog', '.queue.lock'),
   };
+}
+
+export async function loadState(dir: string): Promise<CatalogState> {
+  const statePath = catalogPaths(dir).state;
+  try {
+    const raw = await readFile(statePath, 'utf-8');
+    return stateSchema.parse(JSON.parse(raw));
+  } catch {
+    return stateSchema.parse({});
+  }
+}
+
+export async function saveState(dir: string, updates: Partial<CatalogState>): Promise<CatalogState> {
+  const current = await loadState(dir);
+  const merged = { ...current, ...updates };
+  const validated = stateSchema.parse(merged);
+  const statePath = catalogPaths(dir).state;
+  await writeFile(statePath, JSON.stringify(validated, null, 2) + '\n', 'utf-8');
+  return validated;
 }

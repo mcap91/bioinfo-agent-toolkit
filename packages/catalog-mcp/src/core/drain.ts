@@ -25,6 +25,16 @@ function hostBlocked(url: string, blocked: BlockedDomain[]): boolean {
   return false;
 }
 
+function urlUnfetchable(url: string): boolean {
+  let parsed: URL;
+  try { parsed = new URL(url); } catch { return false; }
+  const host = parsed.hostname.replace(/^www\./, '');
+  if ((host === 'reddit.com' || host === 'old.reddit.com') && /^\/r\/[^/]+\/s\//.test(parsed.pathname)) {
+    return true;
+  }
+  return false;
+}
+
 /** Parse inbox.md, ingest ready items, keep/mark blocked items, rewrite the file (LF). */
 export async function drainInbox(dir: string): Promise<DrainResult> {
   const inboxPath = path.join(dir, 'catalog', 'inbox.md');
@@ -51,7 +61,9 @@ export async function drainInbox(dir: string): Promise<DrainResult> {
 
   for (const item of items) {
     const isBlocked =
-      item.blocked || (item.kind === 'url' && item.url ? hostBlocked(item.url, config.blocked_domains) : false);
+      item.blocked || (item.kind === 'url' && item.url
+        ? hostBlocked(item.url, config.blocked_domains) || urlUnfetchable(item.url)
+        : false);
 
     if (isBlocked) {
       blocked++;

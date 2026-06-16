@@ -79,6 +79,12 @@ export type BlockedDomain = z.infer<typeof blockedDomainSchema>;
 
 export type CatalogConfig = z.infer<typeof configSchema>;
 
+export const stateSchema = z.object({
+  gmail_last_pull_iso: z.string().datetime().nullable().default(null),
+});
+
+export type CatalogState = z.infer<typeof stateSchema>;
+
 export const dirSchema = z.object({
   dir: z.string().optional().describe('Target repo directory (auto-resolved if omitted)'),
 });
