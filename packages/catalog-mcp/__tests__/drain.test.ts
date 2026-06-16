@@ -92,6 +92,22 @@ describe('drainInbox', () => {
     expect(out).toContain('a scratch note');
   });
 
+  it('blocks Reddit /s/ share links as unfetchable', async () => {
+    await writeInbox('https://www.reddit.com/r/AI_Agents/s/kClxACXOyp\n');
+    const r = await drainInbox(dir);
+    expect(r.ingested).toBe(0);
+    expect(r.blocked).toBe(1);
+    const inbox = await readInbox();
+    expect(inbox).toContain('reddit.com/r/AI_Agents/s/kClxACXOyp');
+    expect(inbox).toContain('⚠ needs-link');
+  });
+
+  it('allows normal Reddit /comments/ urls through', async () => {
+    await writeInbox('https://www.reddit.com/r/AI_Agents/comments/abc123/some_title\n');
+    const r = await drainInbox(dir);
+    expect(r.ingested).toBe(1);
+  });
+
   it('preserves header prose and scratch notes; removes processed urls; keeps+marks blocked', async () => {
     const inbox = [
       '# Catalog inbox',
