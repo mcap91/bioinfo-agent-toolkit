@@ -18,6 +18,7 @@ overlaps: []
 An operational tip from Reddit r/codex: if Codex performance degrades (slow responses, stale context, erratic behavior), deleting accumulated state and log files restores baseline performance. Three files accumulate over time and are safe to delete: `.codex/state_5.sqlite`, `.codex/logs_2.sqlite`, and `.codex/.codex-global-state.json`. Codex recreates them on the next run.
 
 ## Assessment
+
 Not a tool or skill — a maintenance procedure. Worth noting because performance degradation from accumulated state is non-obvious and the fix is not documented in standard Codex docs. Relevant if Codex is used alongside Claude Code on this machine.
 
 ## What to adopt

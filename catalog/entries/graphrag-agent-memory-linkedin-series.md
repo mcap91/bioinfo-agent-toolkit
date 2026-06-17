@@ -27,6 +27,7 @@ A six-post LinkedIn series by a practitioner who spent a year building GraphRAG 
 Posts are unfetchable (LinkedIn post URLs); summary is derived from titles and surrounding context.
 
 ## Assessment
+
 `watch` — the series addresses a real gap: how to structure agent memory beyond flat vector stores, using KGs and ontologies. The "reasoning memory" framing is a distinct perspective worth tracking. No code or repo is linked; the value is conceptual/architectural rather than immediately adoptable tooling. Useful reference when designing KG-backed memory for bioinformatics agents.
 
 ## What to adopt

@@ -25,6 +25,7 @@ Results: across 6 benchmarks, 7 target models, and 3 execution harnesses (direct
 SkillOpt-Sleep (preview): a nightly offline companion for local coding agents that reviews past sessions, replays recurring tasks, and consolidates validated skills behind a held-out gate.
 
 ## Assessment
+
 The approach is novel and the results are strong — turning skill optimization into a principled training problem rather than ad-hoc iteration. The +19.1 point lift on Claude Code CLI is directly relevant to our skills. The SkillOpt-Sleep feature (nightly session review → skill consolidation) is exactly the kind of automated skill improvement loop we'd want for our own skills. Multi-backend support (OpenAI, Azure, Claude, Qwen, MiniMax) means we can use it with our existing model setup. The research paper backing (arXiv:2605.23904) gives confidence in the methodology. Pilot to test whether it can meaningfully improve our existing catalog-intake, debugging, and research skills.
 
 ## Mechanical details

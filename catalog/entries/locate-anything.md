@@ -19,6 +19,7 @@ security_flags: [trust_remote_code]
 A unified vision-language grounding model from NVIDIA that predicts bounding boxes and point coordinates for visual grounding and object detection tasks. The key innovation is Parallel Box Decoding (PBD) — predicting complete bounding boxes as atomic units in a single forward pass rather than sequential token generation, achieving 12.7 boxes per second (10x faster than Qwen3-VL's textual approach). Architecture: Moon-ViT vision encoder with Qwen2.5 language decoder connected via MLP projector. Three inference modes: Fast Mode (MTP) for speed, Slow Mode (NTP) for precision, and Hybrid Mode that detects format irregularities and falls back to autoregressive generation. Handles general object detection, GUI element grounding, referring expression comprehension, OCR localization, layout understanding, and point-based localization. 3B parameter model.
 
 ## Assessment
+
 Potentially relevant for spatial transcriptomics workflows — grounding arbitrary text descriptions to regions in H&E or fluorescence images. The model is available on HuggingFace (`nvidia/LocateAnything-3B`) with an interactive demo, and code is on GitHub (`NVlabs/Eagle/tree/main/Embodied`). However, this is a general-purpose vision-language model, not trained on histology or biomedical images. The blocker is evaluating whether it generalizes to tissue morphology and cell-type localization tasks without fine-tuning. Dataset listed as "incoming" suggests the project is still maturing.
 
 ## Mechanical details

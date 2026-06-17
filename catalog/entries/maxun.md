@@ -18,6 +18,7 @@ overlaps: []
 Maxun is an open-source no-code web data platform that turns websites into structured, API-accessible data without writing code. It has four core robot types: Extract (point-and-click recorder or natural-language LLM mode), Scrape (full page to Markdown/HTML/screenshot), Crawl (multi-page site traversal), and Search (automated web search with time filters). Results can be exported to Google Sheets, Airtable, or consumed via a RESTful API. A developer SDK and CLI exist for programmatic control. The platform also exposes an MCP server interface, making it callable from Claude and other MCP-compatible agents. It handles pagination, infinite scroll, login-gated content, and scheduled runs. Self-hosting is supported via Docker Compose; a hosted SaaS (app.maxun.dev) is also available.
 
 ## Assessment
+
 **Watch** — the feature set is genuinely useful for AI agent workflows: LLM-ready Markdown output, MCP integration, and headless scheduling cover real data-ingestion needs in bioinformatics-adjacent research (literature scraping, public database harvesting, clinical trial registries). However, three factors hold it back from pilot:
 
 1. **Early-stage**: The README explicitly warns the project is in early development, meaning breaking changes are likely and API stability cannot be assumed.

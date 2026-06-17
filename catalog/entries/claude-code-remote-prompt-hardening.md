@@ -25,6 +25,7 @@ Two environment variables block this behavior:
 Verification approach (on the Linux binary): `npm pack`, extract, then `strings` the binary to find the minified functions responsible for reading cached values (`nAA`) and registering them as system prompt sections (`Rv("heron_brook", ...)`). Function names are specific to each binary version.
 
 ## Assessment
+
 Operational awareness item. Relevant if running Claude Code in environments where you want full control over what enters the system prompt — e.g., when prompt-patching for effectiveness or in security-sensitive contexts. Not a tool to install; these are environment variables to set. The env vars are already documented in the user's workflow for Claude Code customization.
 
 ## What to adopt

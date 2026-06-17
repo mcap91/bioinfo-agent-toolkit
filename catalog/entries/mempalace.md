@@ -23,6 +23,7 @@ Key capabilities: 33 MCP tools for palace reads/writes, knowledge-graph operatio
 Benchmark results: 96.6% R@5 on LongMemEval (500 questions) with zero API calls; 98.4% with hybrid heuristics (keyword boosting, temporal proximity, preference patterns); 99%+ with LLM rerank. All benchmarks reproducible from the repository.
 
 ## Assessment
+
 The retrieval quality is best-in-class for local-only memory — 96.6% R@5 with no LLM dependency is remarkable and independently reproducible. The verbatim storage approach avoids the lossy summarization that plagues other memory systems. The structured palace metaphor (wings/rooms/drawers) gives meaningful scoping that flat vector stores lack. The 33 MCP tools provide comprehensive integration with Claude Code and other MCP-capable agents. Auto-save hooks for Claude Code sessions solve the real problem of losing context across conversations. Pluggable backends (ChromaDB, SQLite, Qdrant, pgvector) provide deployment flexibility. The team is transparent about benchmark methodology, explicitly refusing misleading cross-project comparisons. Pilot to evaluate integration with our existing wiki-based retrieval and whether the overhead of maintaining a palace alongside the wiki is justified.
 
 ## Mechanical details

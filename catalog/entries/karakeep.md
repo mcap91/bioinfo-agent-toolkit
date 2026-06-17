@@ -23,6 +23,7 @@ Beyond basic bookmarking, Karakeep supports full-page archival via monolith (pro
 The platform is explicitly designed to be LLM agent-friendly: it exposes a REST API, a CLI, and ships official agent skills compatible with LLM agents (specifically calling out OpenClaw and Hermes). This makes it tractable as a backing store or knowledge-retrieval target within agent workflows.
 
 ## Assessment
+
 Karakeep earns a pilot verdict. It is the most feature-complete self-hostable bookmark+AI tagging platform available, and its explicit REST API + CLI + official skills design makes it unusually accessible for agent-driven workflows. Ollama support means it can run fully air-gapped without OpenAI dependency, which is relevant for local agent setups.
 
 The main caution is the project's own self-description: "under heavy development." API stability and schema migrations may be disruptive. The AGPL-3.0 license imposes network-service copyleft obligations, which matters if Karakeep is ever wrapped into a proprietary service. For personal or internal agent infrastructure use, this is largely a non-issue. The cloud tier (cloud.karakeep.app) offers a hosted escape hatch if self-hosting is too operationally heavy.

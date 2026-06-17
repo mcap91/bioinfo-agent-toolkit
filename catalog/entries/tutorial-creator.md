@@ -18,6 +18,7 @@ overlaps: []
 Converts code sessions and Claude conversations into structured tutorials with vocabulary, a pre-test, a step-by-step walkthrough, common mistakes, and a post-test. Transforms work that would otherwise be lost after a session into reusable learning material. Useful for capturing non-obvious workflow decisions, pipeline quirks, and tool-specific gotchas discovered during active development.
 
 ## Assessment
+
 Bioinformatics workflows accumulate tacit knowledge — why a particular normalization approach was chosen, what a cryptic error message means, how to interpret QC plots. Tutorial Creator makes that knowledge explicit and transferable. Good for onboarding collaborators to established pipelines or creating reference materials from exploratory analysis sessions.
 
 ## Mechanical details

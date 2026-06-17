@@ -32,6 +32,7 @@ Two Claude Code skills that wire Claude Fable (architect/planner/reviewer) with 
 Repo is the only memory: `docs/HANDOFF.md` (pruned each session), `docs/gates/`, `docs/lanes/`, git history.
 
 ## Assessment
+
 **Pilot.** This is one of the most thoughtfully designed multi-agent orchestration patterns in the catalog:
 
 - **Research-backed design** — every choice is cited in DESIGN.md with a failure-mode table; not heuristics but observed evidence

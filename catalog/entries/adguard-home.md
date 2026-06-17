@@ -23,6 +23,7 @@ The software ships with a web-based admin UI (accessible over HTTPS), a built-in
 It ships as a single Go binary with a React frontend bundled in. Deployment options include a one-line install script, Docker (official image on DockerHub), and Snap. A REST API and a Python client library enable programmatic integration; third-party integrations exist for Home Assistant, OpenWrt, GLiNet routers, iOS, and more.
 
 ## Assessment
+
 AdGuard Home is a polished, production-grade tool with a large user base, active maintenance from the AdGuard team, and a broad feature set. The verdict is `note` rather than `adopt` because it is infrastructure software for home/small-office network privacy — it has no direct relevance to Claude Code agent workflows, bioinformatics pipelines, or LLM tooling that is the focus of this catalog. It is cataloged here because it was submitted to the inbox; the note verdict signals it is worth knowing about without implying it should be integrated into agent workflows.
 
 The GPL-3.0 copyleft license is fine for self-hosted use but would impose obligations if redistributed as part of a larger product. For the target use case (self-hosted home network DNS), this is not a concern.

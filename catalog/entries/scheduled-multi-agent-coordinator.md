@@ -30,6 +30,7 @@ The post names two existing open-source multi-agent loop systems as starting poi
 **Hermes Agent** (hermes-agent.org by Nous Research) — a self-hosted multi-agent framework with a built-in learning loop (writes reusable skills after complex tasks). 32k+ GitHub stars, 200+ LLM backends, 40+ tools. The opencode-hermes-multiagent variant provides 17 specialized coding agents. MIT licensed, supports Linux/macOS/WSL2.
 
 ## Assessment
+
 **Note.** The pattern itself — scheduled persistent agents with coordinator oversight and messaging integration — is architecturally relevant to how we might scale automated workflows. However:
 
 - This is a concept/wish-list, not a deployable tool

@@ -26,6 +26,7 @@ Key results from the PR benchmarks:
 - Prefill attention optimization via dedicated MQ score path
 
 ## Assessment
+
 **Pilot.** The implementation is thorough — 20+ commits with detailed Metal kernel work, benchmarks, NIAH test suite, and PPL evaluation. Author (Blaizzy) is the mlx-vlm maintainer. Co-authored with Claude Opus 4.6. PR is marked ready for review (April 2, 2026) but not yet merged. Once merged, this becomes the canonical TurboQuant path for Apple Silicon local inference. Monitor for merge.
 
 ## Mechanical details

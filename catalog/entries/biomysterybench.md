@@ -19,6 +19,7 @@ overlaps: []
 BioMysteryBench is a bioinformatics research benchmark created by Anthropic, hosted on HuggingFace. It contains 99 problems designed to test whether AI models can perform genuine bioinformatics research tasks. Each problem includes a question prompt, an answer rubric with expected results, allowed network domains for the solving environment, and associated data files. Problems are tagged with whether at least one human benchmarker solved them, providing a human-solvability baseline. The dataset ships as CSV/Parquet for problem metadata and per-problem ZIP archives containing the working data.
 
 ## Assessment
+
 **Pilot.** This is directly relevant to evaluating bioinformatics agent capabilities — exactly the kind of benchmark needed to measure whether toolkit skills and workflows actually produce correct research outputs. The problems span real bioinformatics research tasks with ground-truth rubrics, which is rare. The access gate (must agree to evaluation-only terms) is a minor friction but reasonable. Worth running a subset against current agent configurations to establish a baseline. Could move to adopt once we have a harness for running problems systematically.
 
 ## Mechanical details

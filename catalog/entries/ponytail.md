@@ -21,6 +21,7 @@ A plugin that makes AI coding agents write minimal code by enforcing a strict YA
 Benchmarks across five everyday tasks (email validator, debounce, CSV sum, countdown timer, rate limiter) on Haiku/Sonnet/Opus show 80-94% less code, 3-6x faster, and 47-77% cheaper than a no-skill agent.
 
 ## Assessment
+
 The philosophy is sound and the benchmarks are reproducible (`npx promptfoo eval`). The plugin explicitly carves out trust-boundary validation, data-loss handling, security, and accessibility as never-skip items, so it's not reckless minimalism. Three intensity levels (lite/full/ultra) plus off give fine control. The review commands (`/ponytail-review` for diff, `/ponytail-audit` for repo) and debt harvesting (`/ponytail-debt`) are useful standalone. Multi-platform support (Claude Code, Codex, Copilot CLI, Gemini/Antigravity, Pi, OpenCode, OpenClaw, Cursor, Windsurf, Cline, Kiro) is impressively broad. Worth piloting to see how it interacts with our existing skills and workflows.
 
 ## Mechanical details

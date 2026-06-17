@@ -19,6 +19,7 @@ overlaps: []
 OpenRouter is a unified API gateway that routes LLM requests to multiple providers (OpenAI, Anthropic, Google, Meta, Mistral, and others) through a single OpenAI-compatible endpoint. It supports 200+ models with automatic fallback between providers, cost optimization by comparing prices across providers, model routing based on price/speed/quality preferences, and usage tracking with rate limiting. The API is OpenAI SDK-compatible, so existing code can be pointed at OpenRouter with minimal changes. It is widely used in the open-source AI community and commonly integrated into frontends like SillyTavern and Open WebUI.
 
 ## Assessment
+
 **Note.** Useful to know about as LLM infrastructure — particularly relevant if building multi-model agent workflows or needing provider redundancy. However, this toolkit primarily uses Claude directly via Claude Code and the Anthropic API, so OpenRouter adds a layer of indirection without clear benefit for the current setup. Worth revisiting if a workflow needs non-Anthropic models (e.g., for comparison benchmarks, specialized open-source models, or cost-sensitive batch inference). The existing Open WebUI catalog entry already references OpenRouter as a common integration.
 
 ## Mechanical details

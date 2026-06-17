@@ -21,6 +21,7 @@ A research paper (arXiv:2603.16021) presenting Model Workspace Protocol (MWP) �
 The approach draws from Unix pipeline design, modular decomposition, multi-pass compilation, and literate programming. Designed for sequential workflows where a human reviews output at each step. MIT licensed, open source.
 
 ## Assessment
+
 The idea is elegant in its simplicity — filesystem structure as the orchestration layer is maximally transparent and debuggable. For sequential, human-in-the-loop workflows (which describes much of our catalog processing and research work), it could reduce complexity compared to framework-level orchestration. The Unix philosophy alignment (each stage does one thing, plain text interfaces) resonates. However, note rather than pilot because: (1) it explicitly targets sequential workflows with human review, not concurrent or autonomous operation, (2) our existing recipe-based approach (catalog/recipe.md driving a headless loop) already captures a similar pattern informally, (3) the paper is the contribution — the protocol itself is a convention, not tooling, and (4) the numbered-folders approach may not scale well to dynamic or branching workflows.
 
 ## Mechanical details

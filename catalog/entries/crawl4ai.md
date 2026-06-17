@@ -28,6 +28,7 @@ Core capabilities:
 - **CLI:** `crwl <url> -o markdown`, deep crawl flags, LLM question mode
 
 ## Assessment
+
 Crawl4AI is the correct choice when an agent workflow needs to turn arbitrary web URLs into clean Markdown or structured JSON without building a crawler from scratch. It covers the full range from simple single-URL fetches to large multi-hop deep crawls with crash recovery. The 51K+ star community and active release cadence (multiple releases per month in 2025) indicate sustained maintenance.
 
 The `pilot` verdict (not `adopt`) is driven by two concerns:

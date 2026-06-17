@@ -25,6 +25,7 @@ Compression benchmarks (self-reported from the underlying `headroom` library): J
 Stable target is macOS 14+ on Apple Silicon. Linux x86_64 builds exist as an experimental preview covering only the core proxy flow.
 
 ## Assessment
+
 **Watch** rather than pilot for three reasons:
 
 1. **Hook injection into agent settings.** The install path writes a `PreToolUse` hook and redirects `ANTHROPIC_BASE_URL` — the exact surface that the `agent-lockdown` skill is designed to harden and audit. Adopting a tool that modifies this surface deserves careful review before use in production agentic workflows.

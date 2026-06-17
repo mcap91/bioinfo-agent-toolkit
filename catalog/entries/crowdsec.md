@@ -23,6 +23,7 @@ The platform's distinguishing feature is the CrowdSec Community Blocklist: a rea
 CrowdSec runs on Linux, Windows, Docker, OPNsense, and Kubernetes. Its "Detect Here, Remedy There" architecture separates the analysis engine from the remediation layer, so log collection and threat detection can be centralized while blocks are enforced at the relevant perimeter points.
 
 ## Assessment
+
 CrowdSec is mature, widely deployed infrastructure security software with a large and active community (tens of thousands of GitHub stars, regular releases, many contributors). It solves a real and important problem — protecting servers from automated attacks — and the crowdsourced threat intelligence model provides genuine value over static blocklists.
 
 For users of this toolkit, the relevance is indirect: CrowdSec is not an agent framework, MCP server, or bioinformatics tool, but it is excellent hardening for any server or cloud instance that hosts agent infrastructure, notebooks, or public-facing APIs. The "note" verdict reflects that it is genuinely useful reference knowledge for infrastructure security, without being directly in scope for agent or bioinformatics workflows.

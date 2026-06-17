@@ -19,6 +19,7 @@ overlaps: []
 Automatically fires during planning, code generation, and repo audits to detect personally identifiable information and flag regulatory compliance gaps. Covers eight regulatory frameworks: CCPA, HIPAA, PCI-DSS, COPPA, GLBA, BIPA, FERPA, and the FTC Act. Operates as a background check rather than an on-demand command — it intercepts risky operations before they complete. Source is `gosprinto/compliance-skills/pii-detector`, discovered via Reddit r/claudeskills.
 
 ## Assessment
+
 Clinical and genomic datasets in bioinformatics frequently carry HIPAA obligations. A skill that intercepts PII exposure automatically during code generation and repo audits reduces the risk of accidental data leakage without requiring developers to manually audit every operation. Pilot is conditional on handling sensitive data — not needed for purely synthetic or public datasets.
 
 ## Mechanical details

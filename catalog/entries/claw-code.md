@@ -21,6 +21,7 @@ A Rust implementation of a CLI agent harness (similar to Claude Code) from the U
 Notably, the repository is self-described as "closer to a museum exhibit than a product pitch" — it's maintained by agents (LazyCodex and Gajae-Code) rather than human developers, serving as a demonstration of agent-managed code maintenance.
 
 ## Assessment
+
 The project explicitly directs users to LazyCodex and Gajae-Code for actual work, positioning itself as an agent-managed artifact rather than a production tool. The `claw-code` crate name on crates.io is deprecated (installs a stub that says "renamed to agent-code"), creating potential confusion. The agent-managed maintenance philosophy is interesting from a research perspective but means the codebase may evolve unpredictably. Note as a curiosity and reference for agent-managed repository patterns, but not a tool to adopt or pilot.
 
 ## Mechanical details

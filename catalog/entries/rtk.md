@@ -23,6 +23,7 @@ For Claude Code the integration is a PreToolUse bash hook installed via `rtk ini
 Additional features: `rtk gain` analytics for tracking actual savings, `rtk discover` to find missed opportunities, tee fallback that saves full output on failure for LLM recovery, and per-project TOML config for excluding commands or adjusting filter aggressiveness.
 
 ## Assessment
+
 **Pilot** — the value proposition is concrete and directly applicable: this project uses Claude Code heavily and token consumption from verbose Bash outputs is a real cost. The hook mechanism is well-designed (auditable shell script, not opaque binary injection), the license is clean, and the telemetry is opt-in with GDPR compliance. 
 
 The main constraint for this environment is Windows-native: the auto-rewrite hook (`rtk-rewrite.sh`) requires a Unix shell, so on native Windows it falls back to CLAUDE.md injection mode (instructions added to project file, no automatic rewriting). The project platform memory explicitly lists WSL as an acceptable fallback, so the full hook experience is achievable. Filters themselves work on native Windows — only the auto-rewrite hook is WSL-only.

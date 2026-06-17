@@ -23,6 +23,7 @@ The platform is deployed via Docker Compose and provides a full-stack web UI for
 In a bioinformatics or research context, Paperless-ngx could serve as an archive for lab reports, sequencing manifests, vendor invoices, regulatory documents, and grant correspondence — any paper-heavy administrative layer around a research operation.
 
 ## Assessment
+
 Paperless-ngx is a solid, production-ready self-hosted platform for document management, not an agent framework, developer library, CLI tool, or skill. It does not integrate into Claude Code workflows or LLM agent pipelines in any documented way. The verdict is **note** rather than **adopt** or **pilot** because there is no direct activation path within the catalog's primary use cases (agent tooling, bioinformatics pipelines).
 
 The project has demonstrated longevity — it is the third-generation successor to the original Paperless project, with an active multi-team contributor community. For users who manage significant volumes of physical or PDF documents in a research environment, this is worth knowing about. However, it competes with and overlaps with Stirling PDF (already cataloged as pilot) in the document-processing space, though Stirling PDF focuses on PDF manipulation rather than archival and retrieval.

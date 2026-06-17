@@ -20,6 +20,7 @@ overlaps: []
 18 skills turning Claude/Codex/Gemini into a persistent knowledge OS. This entry covers the wiki and knowledge layer only — the verification skills from this same repo are covered separately in `verify-before-claim`. The wiki-relevant skills are: wiki-ingest (STOW pipeline converting articles/PDFs/meetings into interlinked wiki with source notes, entity/concept pages), knowledge-ops (classify, deduplicate, vectorize via ChromaDB, sync across repositories), and wiki-lint (health checks across 8 dimensions: frontmatter, links, orphans, staleness, contradictions, drift, and two more). The storage schema assumes Obsidian-style directories (sources/, concepts/, entities/) and Obsidian markdown conventions.
 
 ## Assessment
+
 Obsidian-specific schema is the primary incompatibility — kb wiki uses typed records with YAML frontmatter in issues/, decisions/, areas/, initiatives/ directories, not Obsidian's flat-file convention. The system is also heavy (ChromaDB dependency for vector search, 18 skills, cross-repo sync machinery). The comparison below shows the overlap and the lint dimension gap that is worth addressing in kb.
 
 | Feature | Third Brain V5 | kb wiki |

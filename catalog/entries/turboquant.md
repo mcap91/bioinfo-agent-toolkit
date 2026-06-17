@@ -24,6 +24,7 @@ TurboQuant (ICLR 2026) compresses the key-value cache in transformer models to 3
 Results on Gemma and Mistral across LongBench, Needle-in-Haystack, ZeroSCROLLS, RULER, and L-Eval: 6x memory reduction, up to 8x speedup on H100 GPUs, no training or fine-tuning required. Also applicable to vector search (superior recall vs. PQ and RabbiQ baselines).
 
 ## Assessment
+
 **Watch.** The algorithm is proven and the research is from Google, but the ecosystem is fragmented. Downstream implementations include TurboAgents (RAG/agent middleware), vLLM TurboQuant Plugin, turboquant-pytorch, turboquant ggml (llama.cpp), and the mlx-vlm PR for Apple Silicon. No single canonical package has emerged as the standard integration path. Worth tracking as implementations mature.
 
 ## Mechanical details

@@ -19,6 +19,7 @@ overlaps: []
 Browser Use gives LLM agents a real browser action space — navigate, click, type, screenshot, read DOM state — via a Python API backed by a Rust core (v0.13+). The agent receives a task string, an LLM handle (OpenAI, Anthropic, Google, or the proprietary `bu-*` models), and an optional `BrowserProfile`, then autonomously drives the browser through recovery loops inspired by coding agents until the task is complete or exhausted. A CLI provides headless/interactive one-liner automation. A Claude Code skill (installable via curl) exposes browser control directly within Claude Code sessions. There is also a commercial cloud offering with stealth browsers, proxy rotation, CAPTCHA solving, and 1000+ integrations, but the core library is fully self-hostable.
 
 ## Assessment
+
 **Pilot** — the capability is genuinely novel and relevant: bioinformatics workflows frequently need to interact with web-only tools (NCBI, Ensembl, cBioPortal, GEO submission forms, data portals). Browser Use provides a principled, agent-driven way to do this with real browser state rather than raw HTTP. The MIT license is clean, the project is active, and there is an explicit Claude Code skill that integrates directly into this toolkit's model. The Rust-core beta is still flagged experimental, and the highest-accuracy models (`bu-3-max`) are proprietary and metered. Adopt after the Rust core stabilizes and after evaluating cloud data-sharing implications for genomics data.
 
 ## Mechanical details

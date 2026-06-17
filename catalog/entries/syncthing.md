@@ -24,6 +24,7 @@ The program exposes a web-based GUI on localhost and a REST/JSON API, making it 
 For agent-toolkit workflows specifically, Syncthing is useful as the persistence and artifact distribution layer: agent output directories, model checkpoints, or shared data stores can be kept in sync across workstations, servers, and CI nodes without a cloud upload step.
 
 ## Assessment
+
 Syncthing reaches the `adopt` bar on every axis. It has been in continuous active development since 2013, with hundreds of contributors and a sustained release cadence (tagged releases appear on a regular schedule, all GPG-signed). The protocol has received independent security audits (2017 audit by Cure53 is publicly documented). The codebase has a comprehensive test suite, CI configuration, and uses a linter — all visible in the repository structure. Release binaries are GPG-signed at the key published on syncthing.net/security, and macOS/Windows binaries carry platform code-signing as well; the built-in updater uses an ECDSA signature, so even auto-updates are cryptographically verified.
 
 The license (MPL-2.0) is a weak copyleft that applies only to modified Syncthing source files — it imposes no obligation on code that merely uses Syncthing as a running process, which covers every normal agent-toolkit integration pattern. The project has a formal security disclosure process (security@syncthing.net) and a published security policy, with no known unpatched CVEs at time of review.

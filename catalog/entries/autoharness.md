@@ -24,6 +24,7 @@ A control plane for agent harnesses that proposes and applies changes to prompts
 - Plugin system: `.autoharness/plugins/` or `AUTOHARNESS_PLUGIN_PATHS` env var
 
 ## Assessment
+
 The `generic_command` adapter works with any scoring command, making it compatible with bioinformatics pipelines. The blocker is defining a scoring function — "did this pipeline produce correct output for this test dataset?" requires a reference dataset and a correctness check before Autoharness can optimize anything. The framework itself is solid; the prerequisite is eval infrastructure, not a tool limitation.
 
 ## Mechanical details

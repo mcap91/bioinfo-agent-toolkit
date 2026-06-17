@@ -33,6 +33,7 @@ Additional features:
 Compression algorithms: SmartCrusher (JSON), CodeCompressor (AST-aware for Python/JS/Go/Rust/Java/C++), Kompress-base (HuggingFace ML model trained on agentic traces), image compression (40–90% via ML router).
 
 ## Assessment
+
 Watch rather than pilot or adopt for several reasons:
 
 1. **Proxy/MITM position**: The proxy and wrap modes sit in the critical path of all LLM traffic, including prompts containing secrets, credentials, and sensitive data. This is a significant trust boundary to cross without independent security review.

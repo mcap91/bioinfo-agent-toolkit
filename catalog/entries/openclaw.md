@@ -20,6 +20,7 @@ overlaps: []
 A local-first assistant orchestration platform with cross-app integrations. Positions itself as an agentic workspace for connecting local tools, assistants, and applications. Ecosystem signal for the direction the local-first AI orchestration space is moving.
 
 ## Assessment
+
 OpenClaw is more ecosystem context than a concrete kb comparison. There is no direct feature overlap to analyze — it targets cross-app integration rather than knowledge management or dispatch orchestration. Worth revisiting if kb needs cross-app integration patterns, but not actionable now.
 
 ## Mechanical details

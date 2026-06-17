@@ -30,6 +30,7 @@ The six criteria:
 The article draws the analogy explicitly: ALCOA+ made record integrity portable; CASTEM attempts to make model credibility portable.
 
 ## Assessment
+
 `note`: The framework is well-constructed and grounded in real regulatory sources rather than invented requirements. It has direct applicability to anyone designing AI pipelines for regulated environments (clinical, pharmaceutical, financial). However, it is an editorial article — no code, no tooling, no implementation scaffold — so there is nothing to adopt or pilot beyond internalizing the checklist. Worth referencing when designing agent validation, audit logging, human-in-the-loop, and drift-monitoring subsystems. Overlaps with and extends the prior ALCOA+ article already in the catalog.
 
 ## What to adopt

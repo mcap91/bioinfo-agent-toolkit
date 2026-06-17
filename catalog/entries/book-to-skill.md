@@ -18,6 +18,7 @@ overlaps: []
 Turns a technical PDF into a queryable skill with chapter summaries, a glossary, and on-demand section loading. Rather than dumping a full document into context, it builds a structured index that Claude can query selectively. Directly applicable to computational biology methods texts — algorithm descriptions, protocol PDFs, and reference manuals that are too large for inline inclusion.
 
 ## Assessment
+
 Bioinformatics work regularly involves large reference PDFs (tool manuals, method papers, protocol guides) that are impractical to keep in context. A queryable skill wrapping these documents enables precise retrieval without context bloat. Low-risk pilot: one computational biology methods book.
 
 ## Mechanical details

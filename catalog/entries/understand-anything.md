@@ -21,6 +21,7 @@ A Claude Code plugin that analyzes a codebase with a multi-agent pipeline (5-7 s
 Key features: interactive force-directed graph visualization, fuzzy and semantic search, diff impact analysis (see which parts your changes affect), guided architecture tours ordered by dependency, persona-adaptive UI (junior dev / PM / power user), architectural layer visualization (API/Service/Data/UI/Utility), business domain extraction, and Karpathy-pattern wiki knowledge graph analysis. Supports incremental updates — only re-analyzes changed files. Graph output is JSON, committable for team sharing.
 
 ## Assessment
+
 The tree-sitter + LLM hybrid is a sound architecture — deterministic structural edges with semantic annotations. The multi-platform support (17+ platforms) and interactive dashboard are polished. The wiki knowledge graph feature (`/understand-knowledge`) is directly relevant to our Karpathy-pattern wiki. However, watch rather than pilot because: (1) the multi-agent pipeline is token-heavy — 5+ agents analyzing every file, with batches of 20-30 files and up to 5 concurrent analyzers, could be expensive on large repos, (2) the graph output at scale (10MB+ requiring git-lfs) suggests significant data volume, (3) we already have kb-wiki for wiki-based retrieval and would need to evaluate whether the knowledge graph adds enough value over our existing structured wiki, and (4) the project is relatively new and the installer pipes curl to bash, which warrants caution.
 
 ## Mechanical details
