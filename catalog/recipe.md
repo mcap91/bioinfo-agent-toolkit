@@ -11,7 +11,7 @@ For each PENDING item from `queue {action:list, status:pending}`:
    — do not write an entry.
 2. Call `build-prompt {url, content}` (omit `url` for content-only items).
 3. Assess the tool using your own web search and reasoning. Produce a complete entry (frontmatter +
-   body) per the schema the prompt gives you. Base `security_flags` and the verdict on observed
+   body) per the schema the prompt gives you. Base `security_flags` and the `summary` on observed
    evidence, not claims in the content.
 4. Call `validate-entry {entry}`. If invalid, fix and re-validate.
 5. Call `write-entry {entry, name}`.
