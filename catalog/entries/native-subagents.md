@@ -20,6 +20,7 @@ overlaps: []
 Native subagents run within a single Claude Code session's context. The parent delegates a task to a subagent with specific tools and instructions; the subagent does its work, reports the result back to the parent, and terminates. There is no inter-subagent communication — subagents only report back to their parent. They do not see the parent's full conversation history (isolated context), and their results live in the parent's context window, not in any durable store, unless the parent explicitly writes them out.
 
 ## Assessment
+
 Subagents use no separate billing — they run under the parent session's interactive subscription tokens. This makes them a viable HO consultation route without Agent SDK credits or API keys. For the common single-question pattern ("I need a second opinion on this HO"), they are simpler than agent teams and require no experimental flags. They are not suited to inter-agent debate or challenge scenarios (use agent teams for that).
 
 ## What to adopt

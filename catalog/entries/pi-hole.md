@@ -23,6 +23,7 @@ The core engine is FTLDNS (Faster Than Light DNS), a purpose-built daemon that h
 Pi-hole can also function as a DHCP server, enabling it to automatically assign itself as the DNS resolver for every device that joins the network. It supports IPv4 and IPv6, custom allow/deny lists, regex-based rules, and long-term query history.
 
 ## Assessment
+
 Pi-hole is a well-established, widely deployed privacy tool with a large community, active maintenance, and a clear, stable feature set. It earns "note" rather than "adopt" or "pilot" here because it is entirely outside the scope of AI agent workflows, bioinformatics pipelines, or Claude Code skill orchestration. It is a network infrastructure tool — useful for personal lab infrastructure (blocking telemetry from lab devices, for instance) but not something an agent would invoke, compose, or integrate into an agentic workflow.
 
 The verdict "note" reflects that this is informational: worth knowing about for personal/home-lab network hygiene, but there is no workflow integration path in this catalog's domain. Users who operate self-hosted AI infrastructure may find Pi-hole useful for blocking unwanted outbound DNS from lab machines, which is a mild tangential overlap with the `agent-lockdown` skill's network hardening concerns.

@@ -27,6 +27,7 @@ opencode-fff-search is an OpenCode plugin that overrides the agent's built-in `g
 Benchmarks on the nodejs/node repo (48K files): single grep ~15ms vs ~45ms for a spawned ripgrep; 100 consecutive greps under 1 second vs ~5 minutes.
 
 ## Assessment
+
 **watch** — The search optimization patterns here (N-API in-process engine, frecency/LMDB, bigram pre-filter, SIMD matching, graceful fallback chain) are directly applicable to any AI coding agent that performs frequent file search. While this plugin targets OpenCode specifically, the architecture is a reference implementation worth tracking. The 100x throughput advantage on repeated searches is significant for agentic loops. The project is MIT-licensed, has 172 tests, and has a well-documented fallback strategy for the known recall gap. Not cataloged for immediate adoption (requires OpenCode 1.14+), but the patterns are valuable.
 
 ## Mechanical details

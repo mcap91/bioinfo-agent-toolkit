@@ -20,6 +20,7 @@ overlaps: [third-brain-v5-wiki]
 A pattern document (idea file) by Andrej Karpathy for building personal knowledge bases using LLMs. The core insight: instead of RAG (re-deriving knowledge from raw sources on every query), have the LLM incrementally build and maintain a persistent wiki — structured, interlinked markdown files that compound over time. Three layers: raw sources (immutable), the wiki (LLM-owned markdown), and the schema (CLAUDE.md/AGENTS.md that configures the LLM as a wiki maintainer). Three operations: ingest (process source → update wiki pages), query (search wiki → synthesize answer → optionally file back), lint (health-check for contradictions, orphans, stale claims). Designed for Obsidian as the reading interface, git as version control, with optional CLI tools for search at scale.
 
 ## Assessment
+
 This is the foundational pattern behind what kb-wiki implements. The three-layer architecture (sources → wiki → schema), the ingest/query/lint operations, and the philosophy of "LLM does the bookkeeping, human does the thinking" map directly to the toolkit's wiki workflow. Adopt as a canonical reference — revisit when evolving kb-wiki's architecture.
 
 ## What to adopt

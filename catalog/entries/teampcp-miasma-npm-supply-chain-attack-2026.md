@@ -28,6 +28,7 @@ Sources cited: Microsoft Threat Intelligence, StepSecurity, Snyk, Tenable, GitGu
 Remediation order documented: check then clean then rotate (order matters; rotating before checking can trigger the wipe payload).
 
 ## Assessment
+
 `note` rather than `adopt` because this is a passive reference — there is no installable tool or technique to adopt directly. Its value is informational: it establishes the threat model that motivated WK-0031 and the `agent-lockdown` skill, confirms that `~/.claude/settings.json` hooks are a real attack vector, and provides the correct remediation sequence for incident response.
 
 ## What to adopt

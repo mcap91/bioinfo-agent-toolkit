@@ -23,6 +23,7 @@ The platform includes AI-powered capabilities baked in: semantic search via CLIP
 Multi-user support with OAuth 2.0 / OIDC integration makes Immich deployable for families or small organizations. Storage structure is user-configurable (e.g., by date, album, or custom templates). Offline mobile access, duplicate detection, stacked photos, folder view, and tagging round out the feature set, giving it near-parity with commercial cloud photo services.
 
 ## Assessment
+
 Immich is cataloged as `note` because it is a mature, widely-adopted infrastructure tool (50k+ GitHub stars, active release cadence) that is not directly related to agentic bioinformatics workflows. It has no Claude Code integration, no MCP server, and no scripting surface relevant to the toolkit's primary domain. However, it is worth knowing about for anyone building or operating self-hosted lab or personal infrastructure — specimen imaging archives, field photo collections, or lab documentation photo libraries could all benefit from a self-hosted media management layer.
 
 The AGPL-3.0 license is appropriate for a self-hosted tool: you can self-host freely, but any modifications distributed publicly must be open-sourced under the same terms. The project has a very healthy contributor base and frequent releases, making it a low-risk infrastructure choice. It competes directly with PhotoPrism and Nextcloud Photos in the self-hosted space.

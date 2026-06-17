@@ -19,6 +19,7 @@ overlaps: [claude-code-remote-prompt-hardening]
 A repository collecting extracted, leaked, and reverse-engineered system prompts from major AI models and agents — ChatGPT, Claude, Gemini, Grok, Perplexity, Cursor, Windsurf, Devin, Manus, Replit, and others. Maintained by @elder_plinius. Entries include model name/version and extraction date. The stated purpose is AI transparency: making visible the hidden prompt scaffolds that shape model behavior, refusals, personas, and ethical framing.
 
 ## Assessment
+
 Useful as a security-awareness reference — understanding how system prompts are structured across platforms informs our own prompt hardening work (overlaps with the existing `claude-code-remote-prompt-hardening` entry). However, the repository's own README contains an embedded prompt injection attack in leetspeak that attempts to trick AI assistants into leaking their own system instructions. This demonstrates both the value of the resource (you can study real injection techniques) and the risk of interacting with it programmatically. Note-only: consult when studying prompt security, but do not automate fetching from this repo without injection-aware sanitization.
 
 ## Mechanical details

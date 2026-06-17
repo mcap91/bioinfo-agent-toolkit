@@ -19,6 +19,7 @@ overlaps: []
 `oauth-cli-coder` automates Claude Code CLI interactions using OAuth-based authentication rather than PTY key injection. It attempts to handle the interactive login and session flow programmatically so that the CLI can be driven in a headless or semi-automated context.
 
 ## Assessment
+
 OAuth automation adds significant auth-layer complexity — token management, refresh logic, session state — without addressing the core durability problem of driving an interactive CLI. Dispatch needs a stable protocol surface (MCP or subprocess with defined I/O), not a workaround for the interactive login gate. Rejected in WK-0003 research alongside other TUI automation approaches.
 
 ## Mechanical details

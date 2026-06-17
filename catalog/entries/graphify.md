@@ -19,6 +19,7 @@ overlaps: []
 Transforms codebases, documentation, and multimedia into interactive knowledge graphs using a three-stage pipeline. Stage 1 extracts via tree-sitter AST (31 languages, local, no API calls) plus LLM semantic extraction for docs/PDFs/images and faster-whisper for audio/video. Stage 2 semantically enriches: comments tagged `# NOTE:`, `# WHY:`, `# HACK:` become separate nodes; docstrings and design rationale are extracted; edges get confidence tags (EXTRACTED, INFERRED, AMBIGUOUS). Stage 3 runs community detection via Leiden clustering, identifying "god nodes" (highest-degree hubs) and surprising cross-module connections. Output is `graphify-out/graph.html` (interactive visualization), `GRAPH_REPORT.md` (human-readable summary), and `graph.json` (queryable JSON). Registers as a `/graphify` skill so agents can issue `graphify query "<question>"` for scoped queries instead of reading full files.
 
 ## Assessment
+
 Graphify is the direct inspiration for kb graph — the concept of making implicit project understanding explicit and agent-accessible, and the graph-as-queryable-knowledge-base pattern rather than just a visualization, both originated here. The comparison below shows where kb graph has caught up and where it hasn't.
 
 | Feature | Graphify | kb graph |

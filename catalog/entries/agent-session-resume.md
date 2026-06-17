@@ -27,6 +27,7 @@ Supports Claude Code, Codex, Cursor, Antigravity, and OpenCode. Installs via
 `npx skills add hacktivist123/agent-session-resume` or as a Claude Code plugin.
 
 ## Assessment
+
 **Note** rather than pilot or adopt. We already have a `handoff` skill in this repo that
 generates self-contained handoff prompts for fresh CLI agents and subagents. This tool
 solves a similar problem from the receiving side (resume) rather than the sending side

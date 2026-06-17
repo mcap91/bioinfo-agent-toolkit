@@ -19,6 +19,7 @@ overlaps: [awesome-claude-code, claude-spellbook]
 A visual, example-driven tutorial guide for Claude Code structured as 10 progressive modules: slash commands, memory, checkpoints, CLI basics, skills, hooks, MCP, subagents, advanced features, and plugins. Each module includes Mermaid architecture diagrams, production-ready copy-paste templates (CLAUDE.md stubs, hook scripts, subagent definitions, MCP config files), and a self-assessment quiz runnable via `/self-assessment` or `/lesson-quiz [topic]` inside Claude Code. A guided learning path runs beginner to advanced in 11–13 hours. Maintained in sync with Claude Code releases (latest v2.1.160, June 2026). Multilingual: English, Vietnamese, Chinese, Ukrainian, Japanese. Also ships an EPUB generator (`uv run scripts/build_epub.py`) for offline reading.
 
 ## Assessment
+
 The guide is genuinely well-crafted and above average for a community reference: it has real CI (pytest, ruff, bandit, mypy), a CONTRIBUTING.md, a SECURITY.md with private-disclosure instructions, and active maintenance cadence. The self-assessment hook is a useful touch. However, the catalog already records the individual features this guide teaches (skills, hooks, subagents, MCP patterns), and the templates are generic enough that a practitioner following those catalog entries will naturally arrive at the same configurations. It belongs in the catalog as a discoverable onboarding resource for newcomers to Claude Code, not as something to adopt or pilot for production use.
 
 ## Mechanical details

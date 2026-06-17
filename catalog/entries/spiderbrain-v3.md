@@ -22,6 +22,7 @@ Generates dependency graphs with importance scoring, file rankings, and per-clus
 Measured token reduction on a 154-node Next.js project: 77% tool call reduction (30 → 7), 84% input token savings (42.4K → 6.8K tokens), 70% API cost reduction.
 
 ## Assessment
+
 BSL 1.1 license on the core (commercial production requires a paid license; converts to Apache 2.0 after 4 years) rules out adoption. The table below shows where Spiderbrain V3 diverges from kb graph — primarily in its token-optimization purpose and scoring model.
 
 | Feature | Spiderbrain V3 | kb graph |

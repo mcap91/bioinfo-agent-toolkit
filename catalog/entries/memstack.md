@@ -23,6 +23,7 @@ The free tier includes 84 skills plus: SQLite-backed persistent session memory w
 The Pro tier (paid license via memstack.pro) unlocks 43 additional skills including multi-agent orchestration, browser automation, RAG builder, model router, advanced security, and various platform-specific skills (iOS App Store, Next.js conventions, etc.).
 
 ## Assessment
+
 The free skill library is genuinely broad and the on-demand loading architecture is sound — loading a single matched skill rather than dumping all 127 into context is the right pattern. Some individual skills (diary, echo, governor, scan) address real workflow needs.
 
 However, the delivery mechanism introduces risks that outweigh immediate adoption:

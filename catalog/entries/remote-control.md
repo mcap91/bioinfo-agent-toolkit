@@ -19,6 +19,7 @@ overlaps: []
 A built-in Claude Code feature for managing running agent sessions from a mobile device. Allows monitoring and directing long-running sessions without being at the workstation. Sourced from a Reddit r/ClaudeCode post.
 
 ## Assessment
+
 Already available as a native capability — no installation required. Worth trying during long bioinformatics pipeline runs where you want to check session status or redirect the agent without being at the machine.
 
 ## What to adopt

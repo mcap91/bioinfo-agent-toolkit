@@ -20,6 +20,7 @@ overlaps: []
 Scans a repo (manifests, linters, git history), then asks 6 targeted questions — gotchas, scope, approvals, testing, external docs, and reasoning preferences — before generating a CLAUDE.md. Enforces a hard cap at 80 lines with overflow to `agent_docs/`. Refuses to include rules that duplicate linter config, personality prompts, or pasted documentation. The 80-line philosophy reflects a real maintenance insight: CLAUDE.md files that grow without discipline become noise.
 
 ## Assessment
+
 The `/init` skill already performs repo-scanning CLAUDE.md generation and is installed in this stack. There is no capability gap. The 80-line cap philosophy is worth keeping as a maintenance guideline for our own CLAUDE.md, but the tool itself adds no workflow value beyond what init provides.
 
 ## Mechanical details

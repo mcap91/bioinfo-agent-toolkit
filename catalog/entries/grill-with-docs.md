@@ -28,6 +28,7 @@ Four core behaviours fire during the session:
 The skill expects a specific file layout: a root-level `CONTEXT.md` (glossary only, no implementation details), `docs/adr/` for decisions, and companion files `CONTEXT-FORMAT.md` and `ADR-FORMAT.md` that define the write formats. For multi-context repos, a `CONTEXT-MAP.md` at the root points to per-context `CONTEXT.md` files.
 
 ## Assessment
+
 Verdict: **pilot**
 
 The skill embodies sound DDD discipline — strict glossary enforcement, conservative ADR gating, and inline-capture beats batch-later for actually keeping docs current. The three-criterion ADR gate (hard-to-reverse + surprising + real trade-off) is one of the clearest ADR guidelines available in a skill format.

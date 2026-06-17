@@ -20,6 +20,7 @@ overlaps: []
 A persistent memory graph with hybrid search (vector + keyword) and typed links. Designed for long-lived memory across sessions covering entities, experiments, and literature. Combines vector similarity search (semantic) with keyword search to retrieve relevant memory nodes.
 
 ## Assessment
+
 kb wiki already provides persistent, typed records with relationships and text-based search. gbrain's typed links overlap with kb graph's structural relationships. The one genuine addition is vector search (semantic similarity), which kb's text-based search index doesn't have — but this isn't a current gap that needs closing. Only worth revisiting if kb hits a wall on search relevance that would benefit from vector embeddings.
 
 ## Mechanical details

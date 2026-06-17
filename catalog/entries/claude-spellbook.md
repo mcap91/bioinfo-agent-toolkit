@@ -18,6 +18,7 @@ overlaps: []
 A bundled toolkit of 50 skills, 7 agents, and 11 slash commands with auto-formatting hooks. Provides a worked example of the "skill + agent + hook" integration pattern — showing how these three Claude Code primitives can be combined into a coherent operational system. Sourced from a Reddit r/claudeskills post.
 
 ## Assessment
+
 Installing all 50 skills would create routing noise and override conflicts with the existing superpowers stack. The value is in the pattern library — how individual skills are structured, how agents are wired to skills, and how hooks trigger behavior automatically. Useful to browse when designing new integrations, not as a default install.
 
 ## What to adopt

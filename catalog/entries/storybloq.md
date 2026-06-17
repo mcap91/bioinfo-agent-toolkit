@@ -20,6 +20,7 @@ overlaps: []
 A file-based project state system stored in a `.story/` directory with JSON records for tickets, issues, notes, lessons, handovers, snapshots, and roadmap. Ships as an npm package with a CLI, 53-tool MCP server, and Claude Code `/story` skill. Solves AI coding statelessness by persisting project state across sessions. Includes an autonomous ticket execution mode (`/story auto T-001`) that chains PICK → PLAN → REVIEW → WRITE_TESTS → IMPLEMENT → TEST → REVIEW → FINALIZE. Supports multi-repo federation with an orchestrator + node model and cross-node blocking. Two standout lifecycle features: a PreCompact hook that auto-snapshots state before Claude compacts context, and a Lessons lifecycle with reinforce (priority boosting on reuse) and digest (compact injection into skills) operations.
 
 ## Assessment
+
 PolyForm Noncommercial 1.0.0 license is a hard blocker for any commercial adoption path. Beyond the license, Storybloq and kb wiki solve the same problem — persistent project state across AI sessions — with heavy overlap in record types and relationships. The table below shows the overlap and divergence.
 
 | Feature | Storybloq | kb wiki |

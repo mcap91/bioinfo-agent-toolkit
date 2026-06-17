@@ -27,6 +27,7 @@ Transforms code repos and documentation into verified, version-pinned AI skill f
 Lifecycle operations (Rename, Drop, Update, Export) are all transactional. Validation includes skill-check for agentskills.io format compliance and optional Snyk agent scan for prompt injection and data exposure.
 
 ## Assessment
+
 For bioinformatics CLIs (samtools, bedtools, nextflow), hand-writing skill definitions risks hallucinated flag names and wrong parameter types. Skill Forge prevents this by grounding every claim in a parsed source. The provenance model is the key differentiator — no other skill generator in the current stack provides file:line:commit traceability. Brief tier requires only Node.js >= 22 and no AST setup, making it the lowest-friction entry point.
 
 ## Mechanical details

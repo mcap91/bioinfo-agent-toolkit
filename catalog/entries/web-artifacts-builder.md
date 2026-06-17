@@ -20,6 +20,7 @@ supersedes: []
 Generates self-contained HTML reports and interactive dashboards as skill output. Fills the gap between static markdown output (which lacks interactivity) and full application development (which is overkill for analysis reports). Suitable for QC summaries, pipeline result dashboards, and comparative analyses where users need to explore data rather than just read it. Source is the official Anthropic skills repository.
 
 ## Assessment
+
 Markdown is sufficient for most workflow documentation, but interactive outputs are needed for analysis results that users need to explore — differential expression tables, QC metric comparisons, spatial transcriptomics overlays. This skill is already in the Anthropic skills repo and is ready to adopt as a named output format option.
 
 ## Mechanical details

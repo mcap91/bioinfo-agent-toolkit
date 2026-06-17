@@ -20,6 +20,7 @@ overlaps: []
 Scans installed skills, builds a lightweight keyword index, and routes incoming requests to the most relevant skill. Operates in two modes: suggest (presents matches for confirmation) and auto (applies high-confidence matches without prompting). Conservative by design — only triggers on high-confidence keyword matches to avoid false routing.
 
 ## Assessment
+
 `superpowers using-superpowers` already handles skill discovery and routing in this stack. Skill Router would duplicate that responsibility without adding capability. No gap to fill.
 
 ## Mechanical details

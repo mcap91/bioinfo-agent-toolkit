@@ -25,6 +25,7 @@ A technique for recovering from long-running chats where context degradation cau
 Both techniques include complete copy-paste prompts.
 
 ## Assessment
+
 These are lightweight, zero-install prompting patterns applicable to any Claude workflow. Neither requires code, infrastructure, or external tools. The handoff pattern in particular is directly relevant to this project (kb-dispatch already uses a similar structured-handoff approach). They belong in the catalog as a note/reference rather than a full adopt verdict because they are informal community techniques with no formal publication, versioning, or maintenance.
 
 ## What to adopt

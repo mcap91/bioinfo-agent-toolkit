@@ -19,6 +19,7 @@ overlaps: [openrouter]
 NVIDIA Build is NVIDIA's platform for accessing and deploying AI models via API. It provides NIM (NVIDIA Inference Microservices) — optimized, containerized model endpoints for running LLMs, vision models, embedding models, and domain-specific models on NVIDIA GPUs. The platform offers both a hosted API playground (build.nvidia.com) for testing models and self-hosted NIM containers for on-premises or cloud deployment. The model catalog spans hundreds of models including Llama, Mistral, Qwen, and NVIDIA's own models, plus domain-specific models for healthcare, biology, and other verticals.
 
 ## Assessment
+
 Note rather than watch because: (1) the platform is enterprise-focused with GPU-heavy deployment requirements (NIM containers assume NVIDIA GPU infrastructure), (2) the hosted API playground has free-tier rate limits that make it impractical for sustained agentic workflows, (3) for model API access OpenRouter already provides a more flexible multi-provider gateway in the catalog, and (4) the biological/scientific domain models on the platform (BioNeMo, etc.) could be individually cataloged if they become relevant to specific workflows. The NIM deployment pattern is worth noting for future on-premises model serving if GPU hardware becomes available.
 
 ## Mechanical details

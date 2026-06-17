@@ -28,6 +28,7 @@ Key capabilities:
 The source content is a founder discussion post articulating the thesis: the industry is converging on the need for an orchestration/governance layer above coding agents, analogous to how Git, CI/CD, and observability standardized earlier.
 
 ## Assessment
+
 **Watch.** The problem Overcut addresses — coordinating multiple AI agents across real engineering workflows — is genuine and increasingly relevant as agent adoption scales. However:
 
 - **Closed-source commercial product** with no public SDK, API, or self-hostable open-source component

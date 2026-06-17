@@ -19,6 +19,7 @@ overlaps: []
 Third Brain V5's verify-before-claim skill enforces that no completion claim is made without fresh verification evidence — a new command run, not a citation of prior output. Includes explicit exit code checking as a discrete step. Produces structured validation reports with confidence scores rather than a binary pass/fail gate. The confidence model is probabilistic (poker psychology: expected value reasoning) rather than binary, enabling claims like "80% confident this pipeline is correct." Also flags claims backed by only a single source as inherently weaker.
 
 ## Assessment
+
 `superpowers verification-before-completion` covers the core rule ("evidence before assertions always") and uses verification as a gate. The two approaches are functionally equivalent for the common case. The novel contribution from Third Brain V5 is the probabilistic confidence model — useful if the stack ever needs to express partial confidence rather than binary verified/unverified status.
 
 | Aspect | Third Brain V5 | Superpowers |

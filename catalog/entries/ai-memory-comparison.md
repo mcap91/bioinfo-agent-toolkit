@@ -19,6 +19,7 @@ overlaps: []
 A sortable, filterable comparison table of 73 open-source memory systems built specifically for AI coding agents (Claude Code, Codex, OpenCode, etc.). Systems are evaluated across 79 features on seven axes: Data Model, Search & Retrieval, Knowledge Lifecycle, Extraction Pipeline, Platform Support, Architecture, and Benchmarks. Every checkmark links to the exact README line, docs page, or source file that proves the feature exists. The live table is hosted at carsteneu.github.io/ai-memory-comparison. An `evidence/` directory in the repo stores per-system citation files so claims are re-auditable at any time.
 
 ## Assessment
+
 `adopt` as the go-to shortlist tool when evaluating memory backends for an agent project. The source-citation discipline and coding-agent focus make it far more trustworthy than vendor marketing comparisons. Scope is deliberately narrow (no general vector DBs, no pure RAG frameworks), so signal-to-noise is high. CC0 license means it can be embedded, forked, or redistributed without restriction.
 
 Note: the maintainer is also the author of YesMem (one of the 73 listed systems), which is disclosed in the README; YesMem follows the same evidence rules as all other entries.

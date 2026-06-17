@@ -29,6 +29,7 @@ Two capture modes complement each other:
 A pre-commit hook integration (`tolvi precommit install`) flags commits touching decision-likely files (deps, infra, tooling, large diffs) to nudge capture at the right moment.
 
 ## Assessment
+
 **watch** — The architecture is thoughtful: the CAG/RAG split on a single portable vault format is a clean design, and first-class Claude Code skill integration (`/tolvi` slash command in `integrations/claude-code/`) is directly relevant here. The pre-commit nudge pattern is useful.
 
 However: (1) this repo already uses `kb` for the same purpose — structured wiki with schema, search, dispatch, and agent retrieval; adopting Tolvi would duplicate the concern; (2) the project is pre-1.0 (v0.1.1), from a new lab with a small contributor base, and distribution channels (Homebrew, npm, Docker Hub) are still in progress; (3) the CAG approach trades token cost for zero infrastructure, which may not scale well for large vaults.
