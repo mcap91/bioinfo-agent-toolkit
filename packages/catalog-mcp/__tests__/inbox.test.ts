@@ -60,4 +60,21 @@ describe('parseInbox', () => {
     const items = parseInbox(md);
     expect(items).toEqual([]);
   });
+
+  it('parses an arbitrary kebab reason on a url line as blocked', () => {
+    const items = parseInbox('⚠ fetch-error https://github.com/o/r\n');
+    expect(items[0]).toMatchObject({ kind: 'url', blocked: true, reason: 'fetch-error' });
+  });
+  it('a standalone marker line marks the following text block blocked', () => {
+    const items = parseInbox('⚠ empty-fetch\n```text\na tip\n```\n');
+    expect(items[0]).toMatchObject({ kind: 'text', content: 'a tip', blocked: true, reason: 'empty-fetch' });
+  });
+  it('an unmarked text block is not blocked (still ingestable)', () => {
+    const items = parseInbox('```text\na tip\n```\n');
+    expect(items[0]).toMatchObject({ kind: 'text', blocked: false });
+  });
+  it('a dangling marker with no following fence attaches to nothing', () => {
+    const items = parseInbox('⚠ empty-fetch\n\njust prose\n');
+    expect(items).toEqual([]);
+  });
 });
