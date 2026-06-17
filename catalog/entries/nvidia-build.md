@@ -39,3 +39,7 @@ Note rather than watch because: (1) the platform is enterprise-focused with GPU-
 - **Supply chain**: NVIDIA is a major public company; NGC containers are signed
 - **Dangerous patterns**: None at the platform level; standard model deployment risks apply
 - **Maintenance**: Actively maintained; models and containers updated regularly
+
+## Usage notes
+
+- Pair with the OpenRouter rankings (openrouter.ai/rankings) to scout open models, then pull/test them from this build catalog.
