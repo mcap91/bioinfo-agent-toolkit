@@ -3,7 +3,6 @@ name: creating-claude-md
 title: Creating CLAUDE.md
 url: "https://github.com/sruthik27/creating-claude-md"
 category: skill-generator
-decision_status: rejected
 summary: /init skill already covers repo-scanning CLAUDE.md generation
 tags: [claude-md, repo-scanning, code-quality]
 reviewed: 2026-05-25

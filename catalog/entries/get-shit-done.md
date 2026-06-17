@@ -3,7 +3,6 @@ name: get-shit-done
 title: Get Shit Done (GSD)
 url: "https://github.com/glittercowboy/get-shit-done"
 category: framework
-decision_status: rejected
 summary: deprecated (moved to GSD Redux); superpowers skill system already covers meta-prompting and spec-driven development
 tags: [meta-prompting, context-engineering, spec-driven, claude-md, workflow, kb]
 workflows: []

@@ -3,7 +3,6 @@ name: skill-router
 title: Skill Router
 url: "https://github.com/pcx-wave/skill-router"
 category: meta-skill
-decision_status: rejected
 summary: superpowers using-superpowers already handles skill routing
 tags: [meta-skill, routing, skill-discovery]
 reviewed: 2026-05-25

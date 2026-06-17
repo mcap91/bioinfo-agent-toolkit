@@ -3,7 +3,6 @@ name: karpathy-llm-wiki
 title: "Karpathy's LLM Wiki Pattern"
 url: "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f"
 category: reference
-decision_status: adopted
 summary: Foundational pattern doc for LLM-maintained personal knowledge bases — directly describes the architecture kb-wiki implements
 tags: [knowledge-base, wiki, llm-pattern, obsidian, personal-knowledge-management, rag-alternative, knowledge-management]
 workflows: []

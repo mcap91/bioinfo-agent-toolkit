@@ -3,7 +3,6 @@ name: openclaw
 title: OpenClaw
 url: "https://openclaw.ai/"
 category: framework
-decision_status: rejected
 summary: ecosystem signal for agentic workspaces; not a concrete kb comparison
 tags: [assistant, orchestration, local-first, kb]
 reviewed: 2026-05-25

@@ -3,7 +3,6 @@ name: third-brain-v5-wiki
 title: Third Brain V5 (Wiki/Knowledge Layer)
 url: "https://github.com/Mark393295827/third-brain-v5-skills"
 category: framework
-decision_status: rejected
 summary: "Obsidian-specific schema, heavy; staleness and contradiction detection concepts worth noting for kb"
 tags: [wiki, knowledge-os, ingest, lint, kb]
 reviewed: 2026-05-25

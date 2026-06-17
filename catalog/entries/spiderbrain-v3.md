@@ -3,7 +3,6 @@ name: spiderbrain-v3
 title: Spiderbrain V3
 url: "https://github.com/SaroirCommunity/Spiderbrain-V3"
 category: framework
-decision_status: rejected
 summary: BSL license; master/column concept is the key takeaway for kb graph
 tags: [dependency-graph, token-reduction, scoring, kb]
 reviewed: 2026-05-25

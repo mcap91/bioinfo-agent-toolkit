@@ -2,7 +2,6 @@
 name: oauth-cli-coder
 title: oauth-cli-coder
 category: cli-tool
-decision_status: rejected
 summary: OAuth-based CLI automation; adds auth complexity without solving durability
 tags: [oauth, automation, cli, dispatch]
 reviewed: 2026-05-25

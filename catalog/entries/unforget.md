@@ -2,7 +2,6 @@
 name: unforget
 title: Unforget
 category: skill
-decision_status: rejected
 summary: scan-for-escaped-items pattern worth noting for future kb lint rule or audit command
 tags: [deferred-work, scanner, todos, kb]
 reviewed: 2026-05-25

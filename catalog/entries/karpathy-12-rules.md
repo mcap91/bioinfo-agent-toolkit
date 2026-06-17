@@ -2,7 +2,6 @@
 name: karpathy-12-rules
 title: "Karpathy's 12 Rules for CLAUDE.md"
 category: reference
-decision_status: adopted
 summary: Rules 6 (token budgets) and 12 (fail loud) not yet in our stack
 tags: [claude-md, best-practices, token-budgets]
 reviewed: 2026-05-25

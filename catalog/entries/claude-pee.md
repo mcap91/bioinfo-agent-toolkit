@@ -2,7 +2,6 @@
 name: claude-pee
 title: claude-pee
 category: cli-tool
-decision_status: rejected
 summary: "PTY wrapper driving interactive CLI; inherently brittle, breaks on CLI version changes"
 tags: [pty, automation, cli, dispatch]
 reviewed: 2026-05-25
