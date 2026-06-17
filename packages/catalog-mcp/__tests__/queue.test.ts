@@ -3,7 +3,7 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { mkdtemp, rm, mkdir, writeFile, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
-import { readQueue, addToQueue, removeFromQueue, clearQueue, updateQueueItem } from '../src/core/queue.js';
+import { readQueue, addToQueue, removeFromQueue, clearQueue, returnToInbox } from '../src/core/queue.js';
 
 describe('queue', () => {
   let tmpDir: string;
@@ -34,7 +34,7 @@ describe('queue', () => {
     const queue = await readQueue(tmpDir);
     expect(queue.items).toHaveLength(1);
     expect(queue.items[0].url).toBe('https://github.com/org/tool');
-    expect(queue.items[0].status).toBe('pending');
+    expect(queue.items[0].url).toBe('https://github.com/org/tool');
   });
 
   it('removes items by URL', async () => {
@@ -76,6 +76,9 @@ describe('queue phase 2', () => {
   });
   afterEach(async () => { await rm(dir, { recursive: true, force: true }); });
 
+  const writeInbox = (s: string) => writeFile(path.join(dir, 'catalog', 'inbox.md'), s, 'utf-8');
+  const readInbox = () => readFile(path.join(dir, 'catalog', 'inbox.md'), 'utf-8');
+
   it('stores content-only items keyed by content', async () => {
     await addToQueue(dir, [{ key: 'content:abc', content: 'hello', source: 'manual' }]);
     const q = await readQueue(dir);
@@ -91,11 +94,21 @@ describe('queue phase 2', () => {
     expect((await readQueue(dir)).items).toHaveLength(0);
   });
 
-  it('updates an item status + message by key', async () => {
-    await addToQueue(dir, [{ key: 'k1', url: 'https://x/a', source: 'manual' }]);
-    await updateQueueItem(dir, 'k1', { status: 'parked', error_message: 'too short' });
-    const item = (await readQueue(dir)).items[0];
-    expect(item.status).toBe('parked');
-    expect(item.error_message).toBe('too short');
+  it('returnToInbox writes a marked url item and removes it from the queue', async () => {
+    await addToQueue(dir, [{ key: 'https://x/a', url: 'https://x/a', source: 'manual' }]);
+    await writeInbox('# inbox\n');
+    expect(await returnToInbox(dir, 'https://x/a', 'fetch error')).toBe(true); // slugified
+    expect((await readQueue(dir)).items).toHaveLength(0);
+    expect(await readInbox()).toContain('⚠ fetch-error https://x/a');
+  });
+  it('returnToInbox writes a content item as a marked ```text block', async () => {
+    await addToQueue(dir, [{ key: 'content:1', content: 'a tip', source: 'manual' }]);
+    await writeInbox('# inbox\n');
+    await returnToInbox(dir, 'content:1', 'not-cataloguable');
+    expect(await readInbox()).toContain('⚠ not-cataloguable\n```text\na tip\n```');
+  });
+  it('returnToInbox returns false for an unknown key', async () => {
+    await writeInbox('# inbox\n');
+    expect(await returnToInbox(dir, 'nope', 'x')).toBe(false);
   });
 });

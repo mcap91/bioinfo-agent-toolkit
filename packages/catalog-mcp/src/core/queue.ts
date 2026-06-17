@@ -43,7 +43,6 @@ export async function addToQueue(dir: string, items: AddItem[]): Promise<QueueIt
         notes: item.notes,
         context: item.context,
         added: new Date().toISOString(),
-        status: 'pending',
       };
       queue.items.push(queueItem);
       added.push(queueItem);
@@ -64,26 +63,40 @@ export async function removeFromQueue(dir: string, keys: string[]): Promise<numb
   });
 }
 
-export async function updateQueueItem(
-  dir: string,
-  key: string,
-  patch: { status?: 'pending' | 'error' | 'parked'; error_message?: string },
-): Promise<boolean> {
-  return withLock(dir, async () => {
-    const queue = await readQueue(dir);
-    const item = queue.items.find((i) => i.key === key);
-    if (!item) return false;
-    if (patch.status) item.status = patch.status;
-    if (patch.error_message !== undefined) item.error_message = patch.error_message;
-    await writeQueueAtomic(dir, queue);
-    return true;
-  });
-}
-
 export async function clearQueue(dir: string): Promise<void> {
   return withLock(dir, async () => {
     await writeQueueAtomic(dir, { items: [] });
   });
+}
+
+/** Move a queue item back to catalog/inbox.md marked `⚠ <reason>`, then drop it from the queue.
+ * The inverse of ingest; keeps the queue to pending-only. */
+export async function returnToInbox(dir: string, key: string, reason: string): Promise<boolean> {
+  const queue = await readQueue(dir);
+  const item = queue.items.find((i) => i.key === key);
+  if (!item) return false;
+
+  const token = (reason || 'returned').trim().replace(/\s+/g, '-');
+  const block = formatInboxWriteback(item, token);
+
+  const inboxPath = path.join(dir, 'catalog', 'inbox.md');
+  let existing = '';
+  try { existing = await readFile(inboxPath, 'utf-8'); } catch { /* new inbox */ }
+  existing = existing.replace(/\r\n/g, '\n');
+  const sep = existing === '' || existing.endsWith('\n') ? '' : '\n';
+  const next = `${existing}${sep}${block}\n`;
+  const tmp = inboxPath + '.tmp';
+  await writeFile(tmp, next, 'utf-8');
+  await rename(tmp, inboxPath);
+
+  await removeFromQueue(dir, [key]);
+  return true;
+}
+
+function formatInboxWriteback(item: QueueItem, token: string): string {
+  if (item.url) return `⚠ ${token} ${item.url}`;
+  const src = item.context?.['source'] ? `source: ${item.context['source']}\n` : '';
+  return `⚠ ${token}\n\`\`\`text\n${src}${item.content ?? ''}\n\`\`\``;
 }
 
 async function writeQueueAtomic(dir: string, data: QueueData): Promise<void> {
