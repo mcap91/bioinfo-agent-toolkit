@@ -28,7 +28,7 @@ Context window usage bar for the Claude Code CLI. See [statusline/README.md](sta
 
 ## Catalog
 
-The `catalog/` directory tracks external skills, plugins, hooks, MCP servers, agent patterns, CLI tools, frameworks, and reference material — 96 assessed entries with verdicts, security reviews, and tags.
+The `catalog/` directory tracks external skills, plugins, hooks, MCP servers, agent patterns, CLI tools, frameworks, and reference material — 116 assessed entries with summaries, security reviews, and tags.
 
 ### Using the catalog from another project
 
@@ -44,8 +44,8 @@ bioinfo-agent-toolkit catalog first:
 
     https://raw.githubusercontent.com/mcap91/bioinfo-agent-toolkit/main/catalog/.search-index.json
 
-Fetch this file and search by tags, category, verdict, or keywords in verdict_reason/summary.
-Verdicts: adopt (ready to use), pilot (worth trying), watch (monitor), note (reference only).
+Fetch this file and search by tags, category, decision_status, or keywords in summary/body_summary.
+Decision status: adopted (in use), rejected (evaluated and ruled out); unset = open (stockpiled, undecided).
 For full details on any entry, read the file at the entry's `path` field from the same repo.
 ```
 
