@@ -2,11 +2,10 @@
 import { writeFile } from 'node:fs/promises';
 import { readAllEntries } from './frontmatter.js';
 import { catalogPaths } from './config.js';
-import { VERDICTS } from './schema.js';
 
 interface IndexOptions {
   dir: string;
-  format: 'full' | 'verdict' | 'workflow' | 'category';
+  format: 'full' | 'decision_status' | 'workflow' | 'category';
 }
 
 interface IndexResult {
@@ -14,15 +13,15 @@ interface IndexResult {
   path: string;
   searchIndexPath: string;
   entryCount: number;
-  verdictCounts: Record<string, number>;
+  decisionStatusCounts: Record<string, number>;
 }
 
 interface EntryData {
   name: string;
   title: string;
   category: string;
-  verdict: string;
-  verdict_reason: string;
+  decision_status: string;
+  summary: string;
   tags: string[];
   workflows: string[];
 }
@@ -32,14 +31,14 @@ interface SearchIndexEntry {
   title: string;
   url: string | undefined;
   category: string;
-  verdict: string;
-  verdict_reason: string;
+  decision_status: string;
+  summary: string;
+  body_summary: string;
   tags: string[];
   workflows: string[];
   license: string | undefined;
   security_flags: string[];
   reviewed: string | undefined;
-  summary: string;
   path: string;
 }
 
@@ -78,22 +77,22 @@ export async function generateIndex(options: IndexOptions): Promise<IndexResult>
       name,
       title: fm.title as string,
       category: fm.category as string,
-      verdict: fm.verdict as string,
-      verdict_reason: fm.verdict_reason as string,
+      decision_status: (fm.decision_status as string) ?? 'open',
+      summary: fm.summary as string,
       tags: (fm.tags as string[]) || [],
       workflows: (fm.workflows as string[]) || [],
     });
   }
 
-  const verdictCounts: Record<string, number> = {};
+  const decisionStatusCounts: Record<string, number> = {};
   for (const e of entries) {
-    verdictCounts[e.verdict] = (verdictCounts[e.verdict] || 0) + 1;
+    decisionStatusCounts[e.decision_status] = (decisionStatusCounts[e.decision_status] || 0) + 1;
   }
 
   const sections: string[] = [];
 
-  if (options.format === 'full' || options.format === 'verdict') {
-    sections.push(renderByVerdict(entries));
+  if (options.format === 'full' || options.format === 'decision_status') {
+    sections.push(renderByDecisionStatus(entries));
   }
   if (options.format === 'full' || options.format === 'workflow') {
     sections.push(renderByWorkflow(entries));
@@ -105,7 +104,7 @@ export async function generateIndex(options: IndexOptions): Promise<IndexResult>
   const header = `# Catalog Index\n\nGenerated from ${entries.length} entries in \`catalog/entries/\`. Regenerate with the catalog \`index\` tool.\n`;
   const content = header + '\n' + sections.join('\n\n') + '\n';
 
-  return { content, path: paths.index, searchIndexPath: paths.searchIndex, entryCount: entries.length, verdictCounts };
+  return { content, path: paths.index, searchIndexPath: paths.searchIndex, entryCount: entries.length, decisionStatusCounts };
 }
 
 export async function generateAndWriteIndex(options: IndexOptions): Promise<IndexResult> {
@@ -126,24 +125,24 @@ export async function buildSearchIndex(dir: string): Promise<{ path: string; cou
       title: fm.title as string,
       url: fm.url as string | undefined,
       category: fm.category as string,
-      verdict: fm.verdict as string,
-      verdict_reason: fm.verdict_reason as string,
+      decision_status: (fm.decision_status as string) ?? 'open',
+      summary: fm.summary as string,
+      body_summary: extractSummary(parsed.body),
       tags: (fm.tags as string[]) || [],
       workflows: (fm.workflows as string[]) || [],
       license: fm.license as string | undefined,
       security_flags: (fm.security_flags as string[]) || [],
       reviewed: fm.reviewed as string | undefined,
-      summary: extractSummary(parsed.body),
       path: `catalog/entries/${name}.md`,
     });
   }
 
   const index = {
-    description: 'Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a verdict (adopt/pilot/watch/note/skip) and security review.',
-    usage: 'Search by tags, category, verdict, or keywords in verdict_reason/summary. Follow the path field for the full entry with security analysis and mechanical details.',
+    description: 'Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.',
+    usage: 'Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.',
     generated: new Date().toISOString().slice(0, 10),
     count: entries.length,
-    verdicts: { adopt: 'ready to use', pilot: 'worth trying', watch: 'monitor for now', note: 'reference only', skip: 'not recommended' },
+    decision_statuses: { adopted: 'in use', rejected: 'evaluated and ruled out', open: 'stockpiled, undecided' },
     entries,
   };
 
@@ -155,18 +154,18 @@ function sortByTitle(entries: EntryData[]): EntryData[] {
   return [...entries].sort((a, b) => cmpTitleLower(a.title, b.title));
 }
 
-function renderByVerdict(entries: EntryData[]): string {
-  const sorted = VERDICTS.flatMap((v) =>
-    sortByTitle(entries.filter((e) => e.verdict === v)),
+function renderByDecisionStatus(entries: EntryData[]): string {
+  const sorted = ['adopted', 'rejected', 'open'].flatMap((v) =>
+    sortByTitle(entries.filter((e) => e.decision_status === v)),
   );
   const rows = sorted.map(
     (e) =>
-      `| [${e.title}](entries/${e.name}.md) | ${e.category} | ${e.verdict} | ${e.verdict_reason} | ${e.tags.join(', ')} |`,
+      `| [${e.title}](entries/${e.name}.md) | ${e.category} | ${e.decision_status} | ${e.summary} | ${e.tags.join(', ')} |`,
   );
   return [
-    '## By Verdict',
+    '## By Decision Status',
     '',
-    '| Item | Category | Verdict | Reason | Tags |',
+    '| Item | Category | Status | Reason | Tags |',
     '|---|---|---|---|---|',
     ...rows,
   ].join('\n');
@@ -195,7 +194,7 @@ function renderByWorkflow(entries: EntryData[]): string {
     sections.push('');
     for (const e of sortByTitle(groups.get(key)!)) {
       sections.push(
-        `- [${e.title}](entries/${e.name}.md) — ${e.verdict} — ${e.verdict_reason}`,
+        `- [${e.title}](entries/${e.name}.md) — ${e.decision_status} — ${e.summary}`,
       );
     }
   }
@@ -218,7 +217,7 @@ function renderByCategory(entries: EntryData[]): string {
     sections.push('');
     for (const e of sortByTitle(groups.get(key)!)) {
       sections.push(
-        `- [${e.title}](entries/${e.name}.md) — ${e.verdict} — ${e.verdict_reason}`,
+        `- [${e.title}](entries/${e.name}.md) — ${e.decision_status} — ${e.summary}`,
       );
     }
   }
