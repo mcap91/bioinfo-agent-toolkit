@@ -6,7 +6,7 @@ interface SearchOptions {
   dir: string;
   query: string;
   fields?: string[];
-  verdict?: string;
+  decision_status?: string;
   category?: string;
   limit?: number;
 }
@@ -15,8 +15,8 @@ interface SearchResult {
   name: string;
   title: string;
   category: string;
-  verdict: string;
-  verdict_reason: string;
+  decision_status: string;
+  summary: string;
   tags: string[];
 }
 
@@ -28,13 +28,13 @@ export async function searchEntries(options: SearchOptions): Promise<SearchResul
   for (const [name, parsed] of raw) {
     const fm = parsed.frontmatter;
 
-    if (options.verdict && fm.verdict !== options.verdict) continue;
+    if (options.decision_status && ((fm.decision_status as string | undefined) ?? 'open') !== options.decision_status) continue;
     if (options.category && fm.category !== options.category) continue;
 
     if (options.query) {
       const searchFields = options.fields || [
         'title',
-        'verdict_reason',
+        'summary',
         'tags',
         'name',
       ];
@@ -59,8 +59,8 @@ export async function searchEntries(options: SearchOptions): Promise<SearchResul
       name,
       title: fm.title as string,
       category: fm.category as string,
-      verdict: fm.verdict as string,
-      verdict_reason: fm.verdict_reason as string,
+      decision_status: (fm.decision_status as string) ?? 'open',
+      summary: fm.summary as string,
       tags: (fm.tags as string[]) || [],
     });
   }

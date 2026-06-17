@@ -14,13 +14,13 @@ describe('searchEntries', () => {
     expect(results.some((r) => r.name === 'agent-teams')).toBe(true);
   });
 
-  it('filters by verdict', async () => {
+  it('filters by decision_status', async () => {
     const results = await searchEntries({
       dir: repoRoot,
       query: '',
-      verdict: 'adopt',
+      decision_status: 'open',
     });
-    expect(results.every((r) => r.verdict === 'adopt')).toBe(true);
+    expect(results.every((r) => r.decision_status === 'open')).toBe(true);
   });
 
   it('filters by category', async () => {
@@ -50,7 +50,7 @@ describe('search ignores legacy status frontmatter (status removed in v2.1.0)', 
     const mk = (name: string, extra = '') =>
       writeFile(
         path.join(dir, 'catalog', 'entries', `${name}.md`),
-        `---\nname: ${name}\ntitle: "${name}"\ncategory: skill\nverdict: pilot\nverdict_reason: x\n${extra}tags: [t]\nreviewed: 2026-06-08\n---\nbody\n`,
+        `---\nname: ${name}\ntitle: "${name}"\ncategory: skill\nsummary: x\n${extra}tags: [t]\nreviewed: 2026-06-08\n---\nbody\n`,
         'utf-8',
       );
     await mk('plain-one');
