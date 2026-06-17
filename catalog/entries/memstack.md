@@ -4,7 +4,7 @@ title: MemStack
 url: "https://github.com/cwinvestments/memstack"
 category: framework
 summary: "Free-tier skill library is substantial but the PyPI MCP loader performs opaque license checks and stores credentials in-process, warranting supply-chain caution before adoption"
-tags: [skills, memory, sqlite, hooks, tts, mcp-server, freemium, skill-loader, claude-code]
+tags: [skills, memory, sqlite, hooks, tts, mcp-server, freemium, skill-loader, claude-code, meta-skill]
 workflows: []
 reviewed: 2026-06-10
 acquired: 2026-06-10

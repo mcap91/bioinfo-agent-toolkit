@@ -4,7 +4,7 @@ title: Weft
 url: "https://github.com/WeaveMindAI/weft"
 category: framework
 summary: "Novel AI orchestration language with typed nodes, durable execution, and human-in-the-loop primitives — early-stage but architecturally interesting"
-tags: [programming-language, ai-orchestration, durable-execution, visual-programming, human-in-the-loop, rust]
+tags: [programming-language, ai-orchestration, durable-execution, visual-programming, human-in-the-loop, rust, orchestration]
 workflows: []
 reviewed: 2026-06-10
 acquired: 2026-06-10

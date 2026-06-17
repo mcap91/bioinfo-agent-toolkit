@@ -4,7 +4,7 @@ title: rtk — CLI Proxy for LLM Token Reduction
 url: "https://github.com/rtk-ai/rtk"
 category: cli-tool
 summary: "Directly reduces Claude Code token costs 60-90% via transparent Bash hook; Windows hook requires WSL but filters work natively"
-tags: [token-optimization, claude-code, cli, rust, bash-hook, ai-tooling]
+tags: [token-optimization, claude-code, cli, rust, bash-hook, ai-tooling, token-reduction]
 workflows: []
 reviewed: 2026-06-10
 acquired: 2026-06-10
