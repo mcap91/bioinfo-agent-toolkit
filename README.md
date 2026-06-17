@@ -53,7 +53,7 @@ An agent in your project can then `WebFetch` the URL (or `Read` it from a local 
 
 ### Managing the catalog
 
-The catalog is managed by an MCP tool server in [`packages/catalog-mcp/`](packages/catalog-mcp/) — 14 tools for intake, research support, validation, and data management (index, search, lint, scaffold, ingest, drain, fetch-url, build-prompt, validate-entry, write-entry, queue, config, goals, reddit-extract). The server never makes LLM calls; the calling agent does all reasoning. Running the `index` tool regenerates both `catalog/index.md` and `catalog/.search-index.json`.
+The catalog is managed by an MCP tool server in [`packages/catalog-mcp/`](packages/catalog-mcp/) — 15 tools for intake, research support, validation, and data management (index, search, lint, scaffold, ingest, drain, fetch-url, build-prompt, validate-entry, write-entry, annotate-entry, queue, config, goals, reddit-extract). The server never makes LLM calls; the calling agent does all reasoning. Running the `index` tool regenerates both `catalog/index.md` and `catalog/.search-index.json`.
 
 ## Structure
 
@@ -61,7 +61,7 @@ The catalog is managed by an MCP tool server in [`packages/catalog-mcp/`](packag
 skills/<name>/         Skills (just a SKILL.md)
 statusline/            Context window status bar tool
 catalog/               External tool/skill catalog (data)
-packages/catalog-mcp/  Catalog MCP tool server (14 tools)
+packages/catalog-mcp/  Catalog MCP tool server (15 tools)
 docs/                  Public documentation
 ```
 

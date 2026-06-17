@@ -47,7 +47,7 @@ A collection of reusable Claude Code skills, subagent definitions, and orchestra
 skills/<name>/         Skills (just a SKILL.md)
 statusline/            Context window status bar tool
 catalog/               External tool/skill catalog (data)
-packages/catalog-mcp/  Catalog MCP tool server (14 tools)
+packages/catalog-mcp/  Catalog MCP tool server (15 tools)
 docs/                  Public documentation
 wiki/                  Private wiki (separate repo, gitignored)
 ```
@@ -59,7 +59,7 @@ wiki/                  Private wiki (separate repo, gitignored)
 
 ## Catalog MCP Server
 
-The catalog is managed by an MCP tool server at `packages/catalog-mcp/`. The server provides 14 tools for intake, research support, validation, and data management. It never makes LLM calls — the calling agent does all reasoning. The data lives in `catalog/` (entries, index, queue, config, goals, inbox, recipe).
+The catalog is managed by an MCP tool server at `packages/catalog-mcp/`. The server provides 15 tools for intake, research support, validation, and data management. It never makes LLM calls — the calling agent does all reasoning. The data lives in `catalog/` (entries, index, queue, config, goals, inbox, recipe).
 
 ### Running the server
 
@@ -77,7 +77,7 @@ To add a tool to the catalog:
 
 ### Available tools
 
-`ingest`, `drain`, `fetch-url`, `reddit-extract`, `build-prompt`, `validate-entry`, `write-entry`, `index`, `search`, `lint`, `scaffold`, `queue`, `config`, `goals`
+`ingest`, `drain`, `fetch-url`, `reddit-extract`, `build-prompt`, `validate-entry`, `write-entry`, `annotate-entry`, `index`, `search`, `lint`, `scaffold`, `queue`, `config`, `goals`
 
 ### Catalog pipeline — intake → processing
 
@@ -93,8 +93,9 @@ The full flow is documented in `skills/catalog-intake/SKILL.md`. Summary:
    npm run -w @catalog/mcp catalog:process
    ```
    This launches `claude --print` with the catalog MCP server, follows `catalog/recipe.md`, and
-   processes every pending queue item unattended. After it finishes, check `catalog/queue.json`
-   for any `parked`/`error` items, then commit the new entries.
+   processes every pending queue item unattended. The queue holds only pending work: every item
+   ends as a catalog entry or returns to `catalog/inbox.md` marked `⚠ <reason>`, so after a clean
+   run `catalog/queue.json` is empty. Check `inbox.md` for any returned items, then commit the new entries.
 
 **Direct writes.** Entries go straight to `catalog/entries/` — no draft gate. The security boundary
 is at **adoption/installation** (WK-0031), not cataloging time. The adapter
