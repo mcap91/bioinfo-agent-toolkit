@@ -37,6 +37,7 @@ export function catalogPaths(dir: string) {
     entries: path.join(dir, 'catalog', 'entries'),
     index: path.join(dir, 'catalog', 'index.md'),
     searchIndex: path.join(dir, 'catalog', '.search-index.json'),
+    taxonomy: path.join(dir, 'catalog', 'taxonomy.json'),
     queue: path.join(dir, 'catalog', 'queue.json'),
     config: path.join(dir, 'catalog', 'config.json'),
     state: path.join(dir, 'catalog', 'state.json'),
