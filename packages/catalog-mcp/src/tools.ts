@@ -1,6 +1,6 @@
 // packages/catalog-mcp/src/tools.ts
 import { z } from 'zod';
-import { dirSchema, CATEGORIES, VERDICTS } from './core/schema.js';
+import { dirSchema, CATEGORIES } from './core/schema.js';
 import { resolveDir, loadConfig, loadState, saveState } from './core/config.js';
 import { generateAndWriteIndex, buildSearchIndex } from './core/index-gen.js';
 import { lint } from './core/lint.js';
@@ -29,20 +29,20 @@ export const tools: ToolDef[] = [
     name: 'index',
     description: 'Regenerate catalog/index.md from all entry files',
     inputSchema: dirSchema.extend({
-      format: z.enum(['full', 'verdict', 'workflow', 'category']).default('full'),
+      format: z.enum(['full', 'decision_status', 'workflow', 'category']).default('full'),
     }),
     handler: async (input) => {
       const dir = resolveDir(input.dir as string | undefined);
       const result = await generateAndWriteIndex({
         dir,
-        format: input.format as 'full' | 'verdict' | 'workflow' | 'category',
+        format: input.format as 'full' | 'decision_status' | 'workflow' | 'category',
       });
       const searchResult = await buildSearchIndex(dir);
       return {
         path: result.path,
         searchIndexPath: searchResult.path,
         entryCount: result.entryCount,
-        verdictCounts: result.verdictCounts,
+        decisionStatusCounts: result.decisionStatusCounts,
       };
     },
   },
@@ -70,9 +70,9 @@ export const tools: ToolDef[] = [
     inputSchema: dirSchema.extend({
       query: z.string(),
       fields: z.array(z.string()).optional(),
-      verdict: z.enum(VERDICTS).optional(),
+      decision_status: z.enum(['adopted', 'rejected', 'open']).optional(),
       category: z.string().optional(),
-      limit: z.number().default(20),
+      limit: z.number().int().positive().default(200),
     }),
     handler: async (input) => {
       const dir = resolveDir(input.dir as string | undefined);
@@ -80,7 +80,7 @@ export const tools: ToolDef[] = [
         dir,
         query: input.query as string,
         fields: input.fields as string[] | undefined,
-        verdict: input.verdict as string | undefined,
+        decision_status: input.decision_status as string | undefined,
         category: input.category as string | undefined,
         limit: input.limit as number,
       });
