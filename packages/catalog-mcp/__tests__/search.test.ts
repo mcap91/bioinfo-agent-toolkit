@@ -64,3 +64,52 @@ describe('search ignores legacy status frontmatter (status removed in v2.1.0)', 
     expect(r.some((e) => e.name === 'legacy-draft')).toBe(true);
   });
 });
+
+describe('searchEntries coverage + taxonomy', () => {
+  let tmp: string;
+  beforeEach(async () => {
+    tmp = await mkdtemp(path.join(os.tmpdir(), 'catalog-cov-'));
+    await mkdir(path.join(tmp, 'catalog', 'entries'), { recursive: true });
+    await writeFile(
+      path.join(tmp, 'catalog', 'taxonomy.json'),
+      JSON.stringify({ canonical: { 'meta-skill': ['skill-optimization', 'skill-evolution', 'evolve', 'evolution'] } }),
+      'utf-8',
+    );
+    const mk = (name: string, summary: string, tags: string) =>
+      writeFile(
+        path.join(tmp, 'catalog', 'entries', `${name}.md`),
+        `---\nname: ${name}\ntitle: "${name}"\ncategory: skill\nsummary: "${summary}"\ntags: [${tags}]\nreviewed: 2026-06-16\n---\nbody\n`,
+        'utf-8',
+      );
+    // skillopt: tag skill-optimization (-> tokens skill, optimization) + 'microsoft' in summary
+    await mk('skillopt', 'microsoft skill optimizer', 'skill-optimization');
+    // openspace: tag skill-evolution
+    await mk('openspace', 'self-evolving skills', 'skill-evolution');
+  });
+  afterEach(async () => { await rm(tmp, { recursive: true, force: true }); });
+
+  it('optimization finds skill-optimization via tokenized tag (non-alias)', async () => {
+    const r = await searchEntries({ dir: tmp, query: 'optimization' });
+    expect(r.map((e) => e.name)).toContain('skillopt');
+  });
+  it('evolve (alias) returns the whole meta-skill cluster', async () => {
+    const r = await searchEntries({ dir: tmp, query: 'evolve' });
+    const names = r.map((e) => e.name);
+    expect(names).toEqual(expect.arrayContaining(['skillopt', 'openspace']));
+  });
+  it('multi-word query orders by coverage (more terms matched first)', async () => {
+    const r = await searchEntries({ dir: tmp, query: 'skill optimization microsoft' });
+    expect(r[0].name).toBe('skillopt'); // matches all three
+  });
+  it('decision_status filter accepts open for unset entries', async () => {
+    const r = await searchEntries({ dir: tmp, query: '', decision_status: 'open' });
+    expect(r.every((e) => e.decision_status === 'open')).toBe(true);
+  });
+  it("fields:['title'] still matches on tags", async () => {
+    const r = await searchEntries({ dir: tmp, query: 'optimization', fields: ['title'] });
+    expect(r.map((e) => e.name)).toContain('skillopt');
+  });
+  it('returns [] for no match, never throws', async () => {
+    expect(await searchEntries({ dir: tmp, query: 'zzzznotahit' })).toEqual([]);
+  });
+});
