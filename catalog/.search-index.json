@@ -2,7 +2,7 @@
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
   "generated": "2026-06-17",
-  "count": 116,
+  "count": 124,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -489,6 +489,31 @@
       "path": "catalog/entries/claude-code-remote-prompt-hardening.md"
     },
     {
+      "name": "claude-cookbook",
+      "title": "Claude Cookbook",
+      "url": "https://platform.claude.com/cookbook/",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Anthropic's official collection of 60+ practical guides covering agent patterns, tool use, RAG, managed agents, Agent SDK, evals, and multimodal — the authoritative how-to reference for Claude API development",
+      "body_summary": "Anthropic's official cookbook — 60+ practical guides organized by category (Agent Patterns, Tools, RAG & Retrieval, Claude Agent SDK, Claude Managed Agents, Evals, Integrations, Multimodal, Responses, Skills, Thinking). Notable recent entries (2026):\n\n- **Classifier fallback for Fable 5** —…",
+      "tags": [
+        "claude-api",
+        "agent-patterns",
+        "rag",
+        "tool-use",
+        "managed-agents",
+        "agent-sdk",
+        "evals",
+        "multimodal",
+        "anthropic-official"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-06-17",
+      "path": "catalog/entries/claude-cookbook.md"
+    },
+    {
       "name": "claude-decision-pressure-test-and-context-handoff",
       "title": "Claude Decision Pressure-Test & Context Handoff Prompts",
       "category": "reference",
@@ -908,6 +933,31 @@
       "path": "catalog/entries/distill.md"
     },
     {
+      "name": "dspy",
+      "title": "DSPy",
+      "url": "https://dspy.ai/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Stanford NLP framework for programming (not prompting) LLMs via typed signatures, composable modules, and automatic prompt optimization; 35k stars, 433+ contributors, production use at scale — relevant for building optimized LLM pipelines",
+      "body_summary": "DSPy is a Python framework for building AI systems using structured signatures instead of hand-written prompts. Three core primitives:\n\n1. **Signatures** — declare tasks as typed inputs/outputs (e.g., `\"question -> answer\"` or a class with `InputField`/`OutputField`). Portable across models.\n2. **Modules** — control execution strategy without rewriting the task. Same signature can run as `dspy.Predict` (direct), `dspy.ChainOfThought` (step-by-step reasoning), or `dspy.ReAct` (tools + reasoning loop).\n3. **Optimizers** — compile a program against a metric and training examples. GEPA (Reflective Prompt Evolution) automatically tunes prompts until quality converges (e.g., 62% → 89% accuracy on the same model).\n\nAlso supports multimodal inputs (images), agent pipelines, and composable multi-module programs (e.g., FactCheck = find claims → verify each).",
+      "tags": [
+        "llm",
+        "prompt-optimization",
+        "framework",
+        "python",
+        "signatures",
+        "modules",
+        "agents",
+        "rag",
+        "stanford"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-17",
+      "path": "catalog/entries/dspy.md"
+    },
+    {
       "name": "ecc-github",
       "title": "ECC — Everything Claude Code (GitHub)",
       "url": "https://github.com/affaan-m/ecc",
@@ -1257,6 +1307,29 @@
       "path": "catalog/entries/headroom.md"
     },
     {
+      "name": "huggingface-llm-course",
+      "title": "HuggingFace LLM Course",
+      "url": "https://huggingface.co/learn/llm-course/en/chapter1/1",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Free 12-chapter course covering transformers, fine-tuning, datasets, tokenizers, and reasoning models using the HuggingFace ecosystem; useful learning path but not a tool or workflow component",
+      "body_summary": "A free, community-translated course covering LLMs and NLP using the HuggingFace ecosystem (Transformers, Datasets, Tokenizers, Accelerate libraries plus the HuggingFace Hub). 12 chapters organized in three tiers:\n\n1. **Chapters 1-4**: Transformer fundamentals, using/fine-tuning models from the Hub,…",
+      "tags": [
+        "llm",
+        "transformers",
+        "fine-tuning",
+        "huggingface",
+        "educational",
+        "nlp",
+        "deep-learning"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-06-17",
+      "path": "catalog/entries/huggingface-llm-course.md"
+    },
+    {
       "name": "immich",
       "title": "Immich",
       "url": "https://github.com/immich-app/immich",
@@ -1561,6 +1634,30 @@
       "path": "catalog/entries/memstack.md"
     },
     {
+      "name": "mex",
+      "title": "mex",
+      "url": "https://github.com/theDakshJaitly/mex",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Structured markdown scaffold + 11-checker drift-detection CLI for persistent AI agent memory; provider-neutral, ~60% token reduction claims, but single-contributor and overlaps with kb wiki + built-in memory",
+      "body_summary": "mex creates a structured markdown scaffold for AI coding agent memory — a tiny anchor file (CLAUDE.md / AGENTS.md), a routing table (ROUTER.md), context directories for architecture/decisions/conventions, and reusable task patterns. The CLI (`npx mex-agent`) runs 11 zero-token checkers against the real codebase to detect drift (stale paths, broken links, missing dependencies, config desync) and scores scaffold health out of 100. When drift is found, `mex sync` generates targeted prompts for the agent to fix only stale pieces.\n\nKey features:\n- **Provider-neutral**: Claude Code, Cursor, Windsurf, GitHub Copilot, OpenCode, Codex\n- **Agent Memory Mode**: `--mode agent-memory` for persistent ops/homelab agents with heartbeat monitoring\n- **GROW step**: after meaningful work, updates project state and task patterns automatically\n- **Append-only event log**: `mex log` writes decisions to `.mex/events/decisions.jsonl`",
+      "tags": [
+        "agent-memory",
+        "context-management",
+        "drift-detection",
+        "scaffold",
+        "cli"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "telemetry-default-on",
+        "single-contributor"
+      ],
+      "reviewed": "2026-06-17",
+      "path": "catalog/entries/mex.md"
+    },
+    {
       "name": "mlx-vlm-turboquant",
       "title": "mlx-vlm TurboQuant (Apple Silicon KV Cache Compression)",
       "url": "https://github.com/Blaizzy/mlx-vlm/pull/858",
@@ -1631,6 +1728,30 @@
       ],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/n8n-mcp.md"
+    },
+    {
+      "name": "nanogpt",
+      "title": "nanoGPT",
+      "url": "https://github.com/karpathy/nanogpt",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Karpathy's canonical minimal GPT training repo (~600 lines total); deprecated Nov 2025 in favor of nanochat but remains the clearest educational reference for transformer training loops",
+      "body_summary": "The simplest, fastest repository for training/finetuning medium-sized GPTs. The entire implementation is ~600 lines: `train.py` (~300 lines, boilerplate training loop) and `model.py` (~300 lines, GPT model definition with optional GPT-2 weight loading). Reproduces GPT-2 (124M) on OpenWebText using a single 8xA100 node in ~4 days.\n\nSupports: character-level and BPE tokenization, DDP multi-GPU/multi-node training, PyTorch 2.0 `torch.compile`, finetuning from GPT-2 checkpoints, CPU/GPU/MPS (Apple Silicon) inference.\n\n**Deprecated as of Nov 2025** — Karpathy recommends nanochat as the successor.",
+      "tags": [
+        "gpt",
+        "training",
+        "transformer",
+        "karpathy",
+        "deep-learning",
+        "educational"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "deprecated"
+      ],
+      "reviewed": "2026-06-17",
+      "path": "catalog/entries/nanogpt.md"
     },
     {
       "name": "native-subagents",
@@ -2004,6 +2125,30 @@
       "path": "catalog/entries/openspace.md"
     },
     {
+      "name": "opus-fable-mode",
+      "title": "opus-fable-mode",
+      "url": "https://gitlab.com/timo2026/opus-fable-mode",
+      "category": "hook",
+      "decision_status": "open",
+      "summary": "Data-driven behavioral governor + re-injection hook to steer Opus 4.8 toward Fable 5's terse, result-first working style; honest about limits (style not capability) and backed by 37K-message corpus analysis",
+      "body_summary": "A small toolkit to recover the behavioral qualities of the now-suspended Claude Fable 5 model when using Opus 4.8 in Claude Code. Based on analysis of 9,224 Fable and 27,685 Opus messages across 68 projects, it identified measurable behavioral differences:\n\n- Fable's median reply is 2.6x shorter (18 vs 47 words)\n- Fable's tool:text ratio is 3.91 vs Opus's 1.41 (Opus narrates ~3x more per unit of work)\n- Fable opens with results (\"Done\", \"task\"); Opus opens with self-narration (\"I'll\", \"Let me\")\n\nThree components form a setpoint/thermostat/measurement loop:\n1. **governor-block.md** — 8-rule behavioral directive appended to `~/.claude/CLAUDE.md`\n2. **reinject.sh** — `UserPromptSubmit` hook that re-prints the governor every turn to defeat context decay\n3. **leak_test.py** — measures whether Opus is converging toward Fable's behavioral signature using your own JSONL logs",
+      "tags": [
+        "behavioral-tuning",
+        "claude-code",
+        "hook",
+        "token-reduction",
+        "fable-5"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "single-contributor",
+        "settings-json-modification"
+      ],
+      "reviewed": "2026-06-17",
+      "path": "catalog/entries/opus-fable-mode.md"
+    },
+    {
       "name": "overcut",
       "title": "Overcut — Agentic SDLC Orchestration",
       "url": "https://overcut.ai",
@@ -2277,6 +2422,35 @@
       "security_flags": [],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/scheduled-multi-agent-coordinator.md"
+    },
+    {
+      "name": "shannon",
+      "title": "Shannon (AI Pentester)",
+      "url": "https://github.com/KeygraphHQ/shannon",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Autonomous white-box AI pentester that analyzes source code and executes real exploits against web apps/APIs; AGPL-3.0, proof-by-exploitation reports, but actively mutates target state and requires authorization context",
+      "body_summary": "Shannon Lite is an autonomous, white-box AI pentester for web applications and APIs. It analyzes source code to identify attack vectors, then uses browser automation and CLI tools to execute real exploits against a running application. Only vulnerabilities with a working proof-of-concept make it into the final report.\n\nMulti-agent architecture:\n1. **Pre-reconnaissance** — scans source code for frameworks, entry points, data flows, attack surfaces\n2. **Reconnaissance** — explores the live app, correlates runtime behavior with code context\n3. **Vulnerability analysis** — specialized agents for Injection, XSS, SSRF, Authentication, Authorization\n4. **Exploitation** — attempts real PoC attacks, discards unproven hypotheses\n5. **Reporting** — compiles validated findings with evidence and remediation guidance (Markdown)\n\nRuns in an ephemeral Docker container with isolated workspace. Supports authenticated testing (login flows, TOTP, test credentials), resumable workspaces, and configurable rules of engagement.",
+      "tags": [
+        "security",
+        "pentesting",
+        "web-security",
+        "exploitation",
+        "owasp",
+        "ai-agent",
+        "docker",
+        "anthropic"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0-only",
+      "security_flags": [
+        "executes-exploits",
+        "mutates-target-state",
+        "agpl-copyleft",
+        "llm-cost-significant"
+      ],
+      "reviewed": "2026-06-17",
+      "path": "catalog/entries/shannon.md"
     },
     {
       "name": "skill-router",
@@ -2685,6 +2859,29 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/vaultwarden.md"
+    },
+    {
+      "name": "vcf-parquet-discussion",
+      "title": "VCF vs Parquet for Genomic Variants (Reddit Discussion)",
+      "url": "https://reddit.com",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Former VCF spec maintainer explains why VCF persists: the real problem is representing complex variation (SVs, translocations, ploidy changes), not the container format — Parquet wouldn't solve schema complexity; VRS is the ongoing effort",
+      "body_summary": "A Reddit discussion where a former VCF specification maintainer explains why VCF remains the dominant format for variant data despite its quirks, and why switching to Parquet as a container wouldn't solve the fundamental problems. Key points from the maintainer:\n\n1. **VCF isn't the actual…",
+      "tags": [
+        "vcf",
+        "parquet",
+        "genomic-variants",
+        "file-formats",
+        "bioinformatics",
+        "vrs",
+        "ga4gh"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-06-17",
+      "path": "catalog/entries/vcf-parquet-discussion.md"
     },
     {
       "name": "verify-before-claim",
