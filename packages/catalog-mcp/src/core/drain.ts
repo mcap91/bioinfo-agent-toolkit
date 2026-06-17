@@ -60,19 +60,21 @@ export async function drainInbox(dir: string): Promise<DrainResult> {
   const lineActions = new Map<number, LineAction>();
 
   for (const item of items) {
-    const isBlocked =
-      item.blocked || (item.kind === 'url' && item.url
-        ? hostBlocked(item.url, config.blocked_domains) || urlUnfetchable(item.url)
-        : false);
+    const ruleBlocked = item.kind === 'url' && item.url
+      ? hostBlocked(item.url, config.blocked_domains) || urlUnfetchable(item.url)
+      : false;
+    const isBlocked = item.blocked || ruleBlocked;
 
     if (isBlocked) {
       blocked++;
-      // Replace the first line with the ⚠ needs-link version.
-      lineActions.set(item.startLine, { action: 'keep-marked', replacement: ensureMarker(item) });
-      // If there are additional span lines (fenced blocks), drop them.
-      for (let ln = item.startLine + 1; ln <= item.endLine; ln++) {
-        lineActions.set(ln, { action: 'drop' });
+      if (item.kind === 'text') {
+        // Already a ⚠ marker line + fence — keep every line verbatim (no action).
+        continue;
       }
+      lineActions.set(item.startLine, {
+        action: 'keep-marked',
+        replacement: ensureMarker(item, item.reason ?? 'needs-link'),
+      });
       continue;
     }
 
@@ -120,7 +122,7 @@ export async function drainInbox(dir: string): Promise<DrainResult> {
   return { ingested, blocked, skipped };
 }
 
-function ensureMarker(item: InboxItem): string {
-  const base = item.raw.replace(/⚠\s*needs-link\s*/g, '').trim();
-  return `⚠ needs-link ${base}`;
+function ensureMarker(item: InboxItem, reason: string): string {
+  const base = item.raw.replace(/^\s*⚠\s*\S*\s*/, '').trim();
+  return `⚠ ${reason} ${base}`;
 }

@@ -108,6 +108,22 @@ describe('drainInbox', () => {
     expect(r.ingested).toBe(1);
   });
 
+  it('keeps a ⚠-marked text block through a re-drain without re-ingesting it', async () => {
+    await writeInbox('⚠ empty-fetch\n```text\nsome tip\n```\n');
+    const r = await drainInbox(dir);
+    expect(r.ingested).toBe(0);
+    expect(r.blocked).toBe(1);
+    const inbox = await readInbox();
+    expect(inbox).toContain('⚠ empty-fetch');
+    expect(inbox).toContain('some tip');
+    expect((await readQueue(dir)).items).toHaveLength(0);
+  });
+  it('preserves a non-needs-link reason on a blocked url across re-drain', async () => {
+    await writeInbox('⚠ fetch-error https://github.com/o/r\n');
+    await drainInbox(dir);
+    expect(await readInbox()).toContain('⚠ fetch-error https://github.com/o/r');
+  });
+
   it('preserves header prose and scratch notes; removes processed urls; keeps+marks blocked', async () => {
     const inbox = [
       '# Catalog inbox',
