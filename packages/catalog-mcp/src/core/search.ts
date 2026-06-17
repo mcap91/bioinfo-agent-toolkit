@@ -1,6 +1,8 @@
 // packages/catalog-mcp/src/core/search.ts
 import { readAllEntries } from './frontmatter.js';
 import { catalogPaths } from './config.js';
+import { loadTaxonomy, buildIndex, expandTerm, tokenize } from './taxonomy.js';
+import { cmpTitleLower } from './sort.js';
 
 interface SearchOptions {
   dir: string;
@@ -15,56 +17,70 @@ interface SearchResult {
   name: string;
   title: string;
   category: string;
-  decision_status: string;
+  decision_status: string; // normalized: 'open' when unset
   summary: string;
   tags: string[];
 }
 
+const DEFAULT_TEXT_FIELDS = ['title', 'summary', 'name', 'body'];
+
 export async function searchEntries(options: SearchOptions): Promise<SearchResult[]> {
   const paths = catalogPaths(options.dir);
   const raw = await readAllEntries(paths.entries);
-  const results: SearchResult[] = [];
+  const taxIndex = buildIndex(await loadTaxonomy(options.dir));
+
+  const textFields = options.fields ?? DEFAULT_TEXT_FIELDS;
+  const queryTerms = options.query.toLowerCase().split(/\s+/).filter(Boolean);
+
+  const scored: { entry: SearchResult; coverage: number }[] = [];
 
   for (const [name, parsed] of raw) {
     const fm = parsed.frontmatter;
-
-    if (options.decision_status && ((fm.decision_status as string | undefined) ?? 'open') !== options.decision_status) continue;
+    const status = (fm.decision_status as string | undefined) ?? 'open';
+    if (options.decision_status && status !== options.decision_status) continue;
     if (options.category && fm.category !== options.category) continue;
 
-    if (options.query) {
-      const searchFields = options.fields || [
-        'title',
-        'summary',
-        'tags',
-        'name',
-      ];
-      const haystack = searchFields
-        .map((f) => {
-          const val = fm[f];
-          if (Array.isArray(val)) return val.join(' ');
-          return String(val || '');
-        })
-        .join(' ')
-        .toLowerCase();
-
-      if (!haystack.includes(options.query.toLowerCase())) {
-        // Also check body text
-        if (!parsed.body.toLowerCase().includes(options.query.toLowerCase())) {
-          continue;
-        }
-      }
+    // entryTokens: tokenized text fields + whole tags + tokenized tags.
+    const tokens = new Set<string>();
+    for (const f of textFields) {
+      const val = f === 'body' ? parsed.body : fm[f];
+      const text = Array.isArray(val) ? val.join(' ') : String(val ?? '');
+      for (const t of tokenize(text)) tokens.add(t);
+    }
+    const tags = (fm.tags as string[]) ?? [];
+    for (const tag of tags) {
+      tokens.add(tag.toLowerCase());            // whole tag (always — clustering)
+      for (const t of tokenize(tag)) tokens.add(t);
     }
 
-    results.push({
-      name,
-      title: fm.title as string,
-      category: fm.category as string,
-      decision_status: (fm.decision_status as string) ?? 'open',
-      summary: fm.summary as string,
-      tags: (fm.tags as string[]) || [],
+    let coverage = 0;
+    if (queryTerms.length > 0) {
+      for (const term of queryTerms) {
+        const candidates = new Set<string>([...expandTerm(term, taxIndex), ...tokenize(term)]);
+        for (const c of candidates) { if (tokens.has(c)) { coverage++; break; } }
+      }
+      if (coverage === 0) continue; // not a hit
+    }
+
+    scored.push({
+      entry: {
+        name,
+        title: fm.title as string,
+        category: fm.category as string,
+        decision_status: status,
+        summary: fm.summary as string,
+        tags,
+      },
+      coverage,
     });
   }
 
-  results.sort((a, b) => a.title.localeCompare(b.title));
-  return results.slice(0, options.limit || 20);
+  scored.sort(
+    (a, b) =>
+      b.coverage - a.coverage ||
+      cmpTitleLower(a.entry.title, b.entry.title) ||
+      cmpTitleLower(a.entry.name, b.entry.name),
+  );
+
+  return scored.slice(0, options.limit ?? 200).map((s) => s.entry);
 }
