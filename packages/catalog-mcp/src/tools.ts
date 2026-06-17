@@ -6,13 +6,14 @@ import { generateAndWriteIndex, buildSearchIndex } from './core/index-gen.js';
 import { lint } from './core/lint.js';
 import { searchEntries } from './core/search.js';
 import { scaffoldEntry } from './core/scaffold.js';
-import { readQueue, removeFromQueue, updateQueueItem, clearQueue } from './core/queue.js';
+import { readQueue, removeFromQueue, returnToInbox, clearQueue } from './core/queue.js';
 import { ingest } from './core/ingest.js';
 import { fetchUrl } from './core/fetch-url.js';
 import { redditExtract } from './core/reddit.js';
 import { buildPrompt } from './core/prompt-builder.js';
 import { validateEntry } from './core/validate-entry.js';
 import { writeEntry } from './core/write-entry.js';
+import { annotateEntry } from './core/annotate-entry.js';
 import { listGoals, getGoal, addGoal, updateGoal, removeGoal } from './core/goals.js';
 import { PROJECT_STATUSES, PRIORITIES } from './core/schema.js';
 import { drainInbox } from './core/drain.js';
@@ -172,38 +173,30 @@ export const tools: ToolDef[] = [
   },
   {
     name: 'queue',
-    description: 'Manage the catalog intake queue (list/remove/update/clear)',
+    description: 'Manage the catalog intake queue (list/remove/return/clear). Holds only pending work; return sends an item back to inbox.md marked ⚠ <reason>.',
     inputSchema: dirSchema.extend({
-      action: z.enum(['list', 'remove', 'update', 'clear']),
+      action: z.enum(['list', 'remove', 'return', 'clear']),
       keys: z.array(z.string()).optional(),
       key: z.string().optional(),
-      status: z.enum(['pending', 'error', 'parked']).optional(),
-      message: z.string().optional(),
+      reason: z.string().optional(),
     }),
     handler: async (input) => {
       const dir = resolveDir(input.dir as string | undefined);
       const action = input.action as string;
       if (action === 'list') {
         const queue = await readQueue(dir);
-        const statusFilter = input.status as string | undefined;
-        const items = statusFilter
-          ? queue.items.filter((i) => i.status === statusFilter)
-          : queue.items;
-        return { items, count: items.length };
+        return { items: queue.items, count: queue.items.length };
       }
       if (action === 'remove') {
         const keys = input.keys as string[];
         if (!keys?.length) throw new Error('keys required for remove action');
         return { removed: await removeFromQueue(dir, keys) };
       }
-      if (action === 'update') {
+      if (action === 'return') {
         const key = input.key as string;
-        if (!key) throw new Error('key required for update action');
-        const ok = await updateQueueItem(dir, key, {
-          status: input.status as 'pending' | 'error' | 'parked' | undefined,
-          error_message: input.message as string | undefined,
-        });
-        return { updated: ok };
+        if (!key) throw new Error('key required for return action');
+        if (!input.reason) throw new Error('reason required for return action');
+        return { returned: await returnToInbox(dir, key, input.reason as string) };
       }
       await clearQueue(dir);
       return { cleared: true };
@@ -328,7 +321,6 @@ export const tools: ToolDef[] = [
     inputSchema: dirSchema.extend({
       entry: z.string(),
       name: z.string(),
-      overwrite: z.boolean().default(false),
     }),
     handler: async (input) => {
       const dir = resolveDir(input.dir as string | undefined);
@@ -336,7 +328,24 @@ export const tools: ToolDef[] = [
         dir,
         entry: input.entry as string,
         name: input.name as string,
-        overwrite: input.overwrite as boolean,
+      });
+    },
+  },
+  {
+    name: 'annotate-entry',
+    description: 'Append a note under a ## section of an existing entry (deterministic; frontmatter + other sections byte-preserved). Use to add usage tips to a tool without rewriting it.',
+    inputSchema: dirSchema.extend({
+      name: z.string(),
+      section: z.string(),
+      body: z.string(),
+    }),
+    handler: async (input) => {
+      const dir = resolveDir(input.dir as string | undefined);
+      return annotateEntry({
+        dir,
+        name: input.name as string,
+        section: input.section as string,
+        body: input.body as string,
       });
     },
   },
