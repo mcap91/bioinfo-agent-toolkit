@@ -10,9 +10,7 @@ description: Full catalog pipeline — Gmail pull, inbox curation, drain, and he
 1. **Read cursor:** call `config { action: "get-state" }` to read `gmail_last_pull_iso`. This is the
    timestamp of the last successful Gmail pull. Use it to scope the search (step 2).
 2. **Gather:**
-   - Gmail: search `from:me subject:catalog after:{date from cursor, YYYY/MM/DD}` (primary).
-     If `config.json` `gmail_fallback` is true, also `from:me newer_than:7d` filtered to
-     github.com / reddit.com / instagram.com.
+   - Gmail: search `from:me subject:catalog after:{date from cursor, YYYY/MM/DD}`.
    - Extract URLs from message bodies; capture prose bodies as fenced ```text blocks with a
      `source:` line. Append all to `catalog/inbox.md`.
 3. **Update cursor:** call `config { action: "set-state", key: "gmail_last_pull_iso", value: "<now ISO>" }`

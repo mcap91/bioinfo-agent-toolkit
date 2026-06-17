@@ -10,6 +10,5 @@
     { "host": "twitter.com" },
     { "host": "linkedin.com", "allow_paths": ["/pulse/"] }
   ],
-  "min_clean_chars": 200,
-  "gmail_fallback": true
+  "min_clean_chars": 200
 }
