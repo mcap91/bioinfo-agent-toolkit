@@ -3,7 +3,6 @@ name: storybloq
 title: Storybloq
 url: "https://github.com/Storybloq/storybloq"
 category: framework
-decision_status: rejected
 summary: PolyForm Noncommercial license + heavy overlap with kb wiki
 tags: [project-state, wiki, tickets, kb]
 reviewed: 2026-05-25

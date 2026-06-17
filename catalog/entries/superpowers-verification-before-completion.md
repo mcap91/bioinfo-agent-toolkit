@@ -3,7 +3,6 @@ name: superpowers-verification-before-completion
 title: "Superpowers: Verification Before Completion"
 url: "https://github.com/obra/superpowers/blob/main/skills/verification-before-completion/SKILL.md"
 category: skill
-decision_status: adopted
 summary: "canonical 'evidence before claims' gate skill — already active in this project and referenced by other catalog entries as the standard"
 tags: [verification, quality, agent-discipline, completion-gate, tdd]
 workflows: []

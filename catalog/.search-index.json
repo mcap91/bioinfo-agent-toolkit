@@ -124,7 +124,7 @@
       "title": "Claude Agent Teams",
       "url": "https://code.claude.com/docs/en/agent-teams",
       "category": "agent-pattern",
-      "decision_status": "adopted",
+      "decision_status": "open",
       "summary": "primary interactive dispatch path; subscription billing, no API credits needed",
       "body_summary": "Claude Agent Teams is an experimental feature (requires `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` and v2.1.32+) where one lead session coordinates multiple teammate sessions. Teammates share a task list (pending → in progress → completed, with dependency support) and a mailbox for direct…",
       "tags": [
@@ -144,7 +144,7 @@
       "title": "AI Memory Comparison",
       "url": "https://github.com/carsteneu/ai-memory-comparison",
       "category": "reference",
-      "decision_status": "adopted",
+      "decision_status": "open",
       "summary": "Definitive source-backed survey of 73 open-source AI agent memory systems across 79 features — every claim cites public code or docs.",
       "body_summary": "A sortable, filterable comparison table of 73 open-source memory systems built specifically for AI coding agents (Claude Code, Codex, OpenCode, etc.). Systems are evaluated across 79 features on seven axes: Data Model, Search & Retrieval, Knowledge Lifecycle, Extraction Pipeline, Platform Support, Architecture, and Benchmarks. Every checkmark links to the exact README line, docs page, or source file that proves the feature exists. The live table is hosted at carsteneu.github.io/ai-memory-comparison. An `evidence/` directory in the repo stores per-system citation files so claims are re-auditable at any time.",
       "tags": [
@@ -538,7 +538,7 @@
       "title": "Claude Mem",
       "url": "https://github.com/thedotmack/claude-mem",
       "category": "framework",
-      "decision_status": "rejected",
+      "decision_status": "open",
       "summary": "kb wiki + Claude Code built-in memory cover our needs; adds SQLite + Chroma + worker complexity without clear benefit",
       "body_summary": "A persistent memory system for AI agents using SQLite + Chroma vector DB. Automatically captures observations via 5 lifecycle hooks (SessionStart, UserPromptSubmit, PostToolUse, Stop, SessionEnd), generates semantic summaries, and provides 3-layer progressive disclosure retrieval (search→timeline→full details) to minimize token usage. Runs a worker service on port 37777 with HTTP API and web UI. Provides 4 MCP tools for intelligent memory search. Supports privacy controls via `<private>` tags. 78.1k stars, Apache 2.0, requires Node 18+, Bun, and uv.",
       "tags": [
@@ -585,7 +585,7 @@
       "name": "claude-pee",
       "title": "claude-pee",
       "category": "cli-tool",
-      "decision_status": "rejected",
+      "decision_status": "open",
       "summary": "PTY wrapper driving interactive CLI; inherently brittle, breaks on CLI version changes",
       "body_summary": "`claude-pee` is a PTY wrapper that drives the Claude Code interactive CLI programmatically by injecting keystrokes and reading terminal output. It attempts to automate headless dispatch by treating the interactive terminal session as a subprocess target. Because it depends on the exact output format and interactive behavior of the CLI, it breaks whenever Claude Code updates its terminal UI.",
       "tags": [
@@ -822,7 +822,7 @@
       "title": "Creating CLAUDE.md",
       "url": "https://github.com/sruthik27/creating-claude-md",
       "category": "skill-generator",
-      "decision_status": "rejected",
+      "decision_status": "open",
       "summary": "/init skill already covers repo-scanning CLAUDE.md generation",
       "body_summary": "Scans a repo (manifests, linters, git history), then asks 6 targeted questions — gotchas, scope, approvals, testing, external docs, and reasoning preferences — before generating a CLAUDE.md. Enforces a hard cap at 80 lines with overflow to `agent_docs/`. Refuses to include rules that duplicate linter config, personality prompts, or pasted documentation. The 80-line philosophy reflects a real maintenance insight: CLAUDE.md files that grow without discipline become noise.",
       "tags": [
@@ -1041,7 +1041,7 @@
       "title": "gbrain",
       "url": "https://github.com/garrytan/gbrain",
       "category": "framework",
-      "decision_status": "rejected",
+      "decision_status": "open",
       "summary": "kb wiki already provides persistent typed records with relationships and search",
       "body_summary": "A persistent memory graph with hybrid search (vector + keyword) and typed links. Designed for long-lived memory across sessions covering entities, experiments, and literature. Combines vector similarity search (semantic) with keyword search to retrieve relevant memory nodes.",
       "tags": [
@@ -1061,7 +1061,7 @@
       "title": "Get Shit Done (GSD)",
       "url": "https://github.com/glittercowboy/get-shit-done",
       "category": "framework",
-      "decision_status": "rejected",
+      "decision_status": "open",
       "summary": "deprecated (moved to GSD Redux); superpowers skill system already covers meta-prompting and spec-driven development",
       "body_summary": "A meta-prompting, context engineering, and spec-driven development system for Claude Code. Provides structured frameworks for organizing developer-AI interactions — agents, commands, hooks, SDKs, and documentation patterns. JavaScript/TypeScript codebase with 2,922 commits and 78 releases. Had 63.7k stars. **Deprecated**: development moved to \"GSD Redux\" at open-gsd/get-shit-done.",
       "tags": [
@@ -1181,7 +1181,7 @@
       "title": "gstack",
       "url": "https://github.com/garrytan/gstack",
       "category": "framework",
-      "decision_status": "rejected",
+      "decision_status": "open",
       "summary": "kb dispatch covers the relevant orchestration patterns; browser/deployment out of scope",
       "body_summary": "An opinionated workflow stack with browser control, code reviews, and deployment helpers. Bundles many moving parts into a single orchestration framework targeting full application development workflows including browser automation and deployment pipelines.",
       "tags": [
@@ -1364,7 +1364,7 @@
       "name": "karpathy-12-rules",
       "title": "Karpathy's 12 Rules for CLAUDE.md",
       "category": "reference",
-      "decision_status": "adopted",
+      "decision_status": "open",
       "summary": "Rules 6 (token budgets) and 12 (fail loud) not yet in our stack",
       "body_summary": "A 12-rule framework for CLAUDE.md best practices, sourced from a Reddit r/AskVibecoders post. The original 4 rules cover: think before coding, simplicity first, surgical changes, goal-driven execution. Eight additional rules expand coverage to agent loops, multi-step tasks, and silent failure…",
       "tags": [
@@ -1383,7 +1383,7 @@
       "title": "Karpathy's LLM Wiki Pattern",
       "url": "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f",
       "category": "reference",
-      "decision_status": "adopted",
+      "decision_status": "open",
       "summary": "Foundational pattern doc for LLM-maintained personal knowledge bases — directly describes the architecture kb-wiki implements",
       "body_summary": "A pattern document (idea file) by Andrej Karpathy for building personal knowledge bases using LLMs. The core insight: instead of RAG (re-deriving knowledge from raw sources on every query), have the LLM incrementally build and maintain a persistent wiki — structured, interlinked markdown files that…",
       "tags": [
@@ -1637,7 +1637,7 @@
       "title": "Claude Native Subagents",
       "url": "https://code.claude.com/docs/en/sub-agents",
       "category": "agent-pattern",
-      "decision_status": "adopted",
+      "decision_status": "open",
       "summary": "lightweight HO consultation route within existing sessions; no separate billing",
       "body_summary": "Native subagents run within a single Claude Code session's context. The parent delegates a task to a subagent with specific tools and instructions; the subagent does its work, reports the result back to the parent, and terminates. There is no inter-subagent communication — subagents only report…",
       "tags": [
@@ -1678,7 +1678,7 @@
       "name": "oauth-cli-coder",
       "title": "oauth-cli-coder",
       "category": "cli-tool",
-      "decision_status": "rejected",
+      "decision_status": "open",
       "summary": "OAuth-based CLI automation; adds auth complexity without solving durability",
       "body_summary": "`oauth-cli-coder` automates Claude Code CLI interactions using OAuth-based authentication rather than PTY key injection. It attempts to handle the interactive login and session flow programmatically so that the CLI can be driven in a headless or semi-automated context.",
       "tags": [
@@ -1879,7 +1879,7 @@
       "title": "OpenClaw",
       "url": "https://openclaw.ai/",
       "category": "framework",
-      "decision_status": "rejected",
+      "decision_status": "open",
       "summary": "ecosystem signal for agentic workspaces; not a concrete kb comparison",
       "body_summary": "A local-first assistant orchestration platform with cross-app integrations. Positions itself as an agentic workspace for connecting local tools, assistants, and applications. Ecosystem signal for the direction the local-first AI orchestration space is moving.",
       "tags": [
@@ -2283,7 +2283,7 @@
       "title": "Skill Router",
       "url": "https://github.com/pcx-wave/skill-router",
       "category": "meta-skill",
-      "decision_status": "rejected",
+      "decision_status": "open",
       "summary": "superpowers using-superpowers already handles skill routing",
       "body_summary": "Scans installed skills, builds a lightweight keyword index, and routes incoming requests to the most relevant skill. Operates in two modes: suggest (presents matches for confirmation) and auto (applies high-confidence matches without prompting). Conservative by design — only triggers on high-confidence keyword matches to avoid false routing.",
       "tags": [
@@ -2350,7 +2350,7 @@
       "title": "Spiderbrain V3",
       "url": "https://github.com/SaroirCommunity/Spiderbrain-V3",
       "category": "framework",
-      "decision_status": "rejected",
+      "decision_status": "open",
       "summary": "BSL license; master/column concept is the key takeaway for kb graph",
       "body_summary": "Generates dependency graphs with importance scoring, file rankings, and per-cluster webmaps, with explicit focus on token cost reduction by pre-computing which files matter most. The core innovation is master/column detection: nodes are scored by mass (fan-in count — how many nodes depend on this one) and rhythm (git commit frequency), then classified as Masters (high mass, low rhythm — stable architectural anchors that govern many but change rarely) or Columns (fast-changing dependents governed by stable masters — the volatile surface area). Amplitude is mass × theta-gain, where theta-gain is derived from \"column phase detection.\" Example node annotation: `\"9.9 MASTER src/worker.js cluster=shell fan-in=14 rhythm=42\"`. Output includes synganglion.json (all nodes, edges, scores), spideyorder.md (ranked by mass), spideymove.md (ranked by recency), per-cluster webmap.md (K-nearest-neighbors), per-cluster rules.md (curated constraints), and per-cluster changelog.md (rationale).\n\nMeasured token reduction on a 154-node Next.js project: 77% tool call reduction (30 → 7), 84% input token savings (42.4K → 6.8K tokens), 70% API cost reduction.",
       "tags": [
@@ -2395,7 +2395,7 @@
       "title": "Storybloq",
       "url": "https://github.com/Storybloq/storybloq",
       "category": "framework",
-      "decision_status": "rejected",
+      "decision_status": "open",
       "summary": "PolyForm Noncommercial license + heavy overlap with kb wiki",
       "body_summary": "A file-based project state system stored in a `.story/` directory with JSON records for tickets, issues, notes, lessons, handovers, snapshots, and roadmap. Ships as an npm package with a CLI, 53-tool MCP server, and Claude Code `/story` skill. Solves AI coding statelessness by persisting project state across sessions. Includes an autonomous ticket execution mode (`/story auto T-001`) that chains PICK → PLAN → REVIEW → WRITE_TESTS → IMPLEMENT → TEST → REVIEW → FINALIZE. Supports multi-repo federation with an orchestrator + node model and cross-node blocking. Two standout lifecycle features: a PreCompact hook that auto-snapshots state before Claude compacts context, and a Lessons lifecycle with reinforce (priority boosting on reuse) and digest (compact injection into skills) operations.",
       "tags": [
@@ -2415,7 +2415,7 @@
       "title": "Superpowers: Verification Before Completion",
       "url": "https://github.com/obra/superpowers/blob/main/skills/verification-before-completion/SKILL.md",
       "category": "skill",
-      "decision_status": "adopted",
+      "decision_status": "open",
       "summary": "canonical 'evidence before claims' gate skill — already active in this project and referenced by other catalog entries as the standard",
       "body_summary": "A Claude Code skill that enforces a hard gate before any completion claim, success expression, or commit action. The core principle is \"evidence before claims, always.\" Before stating that tests pass, a build succeeds, a bug is fixed, or requirements are met, the agent must: (1) identify the command that proves the claim, (2) run it fresh and completely in the current message, (3) read the full output and exit code, (4) verify the output supports the claim, and only then (5) state the claim with the evidence attached.\n\nThe skill defines an \"Iron Law\" (no completion claims without fresh verification evidence), a structured 5-step gate function, a table of common claim-to-requirement mappings (e.g., \"tests pass\" requires test-command output showing 0 failures, not a prior run), a \"red flags — STOP\" list (expressions like \"should pass,\" \"probably,\" satisfaction phrases like \"Great!\" or \"Done!\" before verification, trusting agent success reports), and a rationalization-prevention table addressing common excuses. It also covers regression testing (full red-green cycle required), agent delegation (always verify VCS diff, not agent self-report), and requirements verification (line-by-line checklist, not just passing tests).",
       "tags": [
@@ -2436,7 +2436,7 @@
       "title": "Syncthing",
       "url": "https://github.com/syncthing/syncthing",
       "category": "cli-tool",
-      "decision_status": "adopted",
+      "decision_status": "open",
       "summary": "Mature, audited, decentralized file sync daemon — production-grade for agent artifact persistence and cross-machine data sharing.",
       "body_summary": "Syncthing is a continuous file synchronization daemon written in Go that keeps directories in sync across two or more computers in real time without requiring a central server or cloud intermediary. It uses a custom block-exchange protocol (BEP) over TLS 1.3, with device identities anchored to self-generated public/private key pairs — no accounts, no passwords, no third-party infrastructure required. Peers discover each other via a global discovery server (optional, can be self-hosted) and then communicate directly or via relay servers when NAT traversal fails.\n\nThe program exposes a web-based GUI on localhost and a REST/JSON API, making it scriptable and embeddable. It handles conflict resolution, file versioning (simple, staggered, or external strategies), selective sync (ignore patterns), and per-folder sharing with fine-grained read-only vs. read-write permissions. Native packages are available for Linux, macOS, Windows, FreeBSD, and ARM systems; a Docker image is also maintained. Background operation is supported via systemd units, Windows services, or launchd plists included in the repository.\n\nFor agent-toolkit workflows specifically, Syncthing is useful as the persistence and artifact distribution layer: agent output directories, model checkpoints, or shared data stores can be kept in sync across workstations, servers, and CI nodes without a cloud upload step.",
       "tags": [
@@ -2510,7 +2510,7 @@
       "title": "Third Brain V5 (Wiki/Knowledge Layer)",
       "url": "https://github.com/Mark393295827/third-brain-v5-skills",
       "category": "framework",
-      "decision_status": "rejected",
+      "decision_status": "open",
       "summary": "Obsidian-specific schema, heavy; staleness and contradiction detection concepts worth noting for kb",
       "body_summary": "18 skills turning Claude/Codex/Gemini into a persistent knowledge OS. This entry covers the wiki and knowledge layer only — the verification skills from this same repo are covered separately in `verify-before-claim`. The wiki-relevant skills are: wiki-ingest (STOW pipeline converting articles/PDFs/meetings into interlinked wiki with source notes, entity/concept pages), knowledge-ops (classify, deduplicate, vectorize via ChromaDB, sync across repositories), and wiki-lint (health checks across 8 dimensions: frontmatter, links, orphans, staleness, contradictions, drift, and two more). The storage schema assumes Obsidian-style directories (sources/, concepts/, entities/) and Obsidian markdown conventions.",
       "tags": [
@@ -2644,7 +2644,7 @@
       "name": "unforget",
       "title": "Unforget",
       "category": "skill",
-      "decision_status": "rejected",
+      "decision_status": "open",
       "summary": "scan-for-escaped-items pattern worth noting for future kb lint rule or audit command",
       "body_summary": "Scans multiple hiding spots where deferred work tends to accumulate — Deferred.md, plan files, memory entries, TODO docs, and code TODOs — and consolidates findings into an UNFORGET.md file with 10-column rating tables. The signature column is Target, with values THIS (current session), NEXT (next session), LATER (someday), and SOMEDAY (backlog). A `/unforget promote` command handles release cycle transitions, moving NEXT items to THIS when a session begins. The key insight is that Unforget addresses a different problem than a wiki: a wiki tracks what you put into it, while Unforget finds what escaped tracking.",
       "tags": [
@@ -2664,7 +2664,7 @@
       "title": "Vaultwarden",
       "url": "https://github.com/dani-garcia/vaultwarden",
       "category": "framework",
-      "decision_status": "adopted",
+      "decision_status": "open",
       "summary": "Production-grade self-hosted Bitwarden-compatible password server in Rust; fraction of the resource footprint of the official server",
       "body_summary": "Vaultwarden is an unofficial, community-maintained reimplementation of the Bitwarden server API, written in Rust. It is fully compatible with all official Bitwarden clients — desktop apps, browser extensions, mobile apps, and the CLI — while running on a fraction of the resources required by the official server. A single container with a small SQLite database is sufficient for personal or small-team deployments.\n\nThe server implements nearly the complete Bitwarden feature surface: personal vault, organizations with collections and sharing, member roles and groups, policies, directory connector, emergency access, event logs, admin password reset, and all major MFA methods (TOTP authenticator, email, FIDO2/WebAuthn, YubiKey, Duo). It also bundles a modified Bitwarden Web Vault client directly in the container image, so no separate web-client deployment is needed.\n\nVaultwarden is distributed as container images on ghcr.io, docker.io, and quay.io, and can also be built from source. It uses the Rocket web framework and stores data in SQLite (default), MySQL, or PostgreSQL. The recommended production setup pairs it with a TLS-terminating reverse proxy (nginx, Caddy, Traefik).",
       "tags": [
@@ -2710,7 +2710,7 @@
       "title": "Web Artifacts Builder",
       "url": "https://github.com/anthropics/skills/blob/main/skills/web-artifacts-builder/SKILL.md",
       "category": "skill",
-      "decision_status": "adopted",
+      "decision_status": "open",
       "summary": "use when markdown isn't enough for interactive reports/dashboards",
       "body_summary": "Generates self-contained HTML reports and interactive dashboards as skill output. Fills the gap between static markdown output (which lacks interactivity) and full application development (which is overkill for analysis reports). Suitable for QC summaries, pipeline result dashboards, and comparative analyses where users need to explore data rather than just read it. Source is the official Anthropic skills repository.",
       "tags": [

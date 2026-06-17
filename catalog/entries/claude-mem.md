@@ -3,7 +3,6 @@ name: claude-mem
 title: Claude Mem
 url: "https://github.com/thedotmack/claude-mem"
 category: framework
-decision_status: rejected
 summary: kb wiki + Claude Code built-in memory cover our needs; adds SQLite + Chroma + worker complexity without clear benefit
 tags: [memory, persistence, vector-search, sessions, hooks, kb]
 license: Apache-2.0

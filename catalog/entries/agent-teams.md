@@ -3,7 +3,6 @@ name: agent-teams
 title: Claude Agent Teams
 url: "https://code.claude.com/docs/en/agent-teams"
 category: agent-pattern
-decision_status: adopted
 summary: "primary interactive dispatch path; subscription billing, no API credits needed"
 tags: [agents, teams, dispatch, orchestration]
 reviewed: 2026-05-25

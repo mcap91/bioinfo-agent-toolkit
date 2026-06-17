@@ -3,7 +3,6 @@ name: web-artifacts-builder
 title: Web Artifacts Builder
 url: "https://github.com/anthropics/skills/blob/main/skills/web-artifacts-builder/SKILL.md"
 category: skill
-decision_status: adopted
 summary: "use when markdown isn't enough for interactive reports/dashboards"
 tags: [html, reports, dashboards, visualization]
 workflows: [scRNA-seq, spatial]

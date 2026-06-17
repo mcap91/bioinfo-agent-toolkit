@@ -3,7 +3,6 @@ name: gstack
 title: gstack
 url: "https://github.com/garrytan/gstack"
 category: framework
-decision_status: rejected
 summary: kb dispatch covers the relevant orchestration patterns; browser/deployment out of scope
 tags: [workflow, orchestration, browser, kb]
 reviewed: 2026-05-25

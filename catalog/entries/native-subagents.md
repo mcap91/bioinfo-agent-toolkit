@@ -3,7 +3,6 @@ name: native-subagents
 title: Claude Native Subagents
 url: "https://code.claude.com/docs/en/sub-agents"
 category: agent-pattern
-decision_status: adopted
 summary: lightweight HO consultation route within existing sessions; no separate billing
 tags: [agents, subagents, dispatch, consultation]
 reviewed: 2026-05-25

@@ -3,7 +3,6 @@ name: ai-memory-comparison
 title: AI Memory Comparison
 url: "https://github.com/carsteneu/ai-memory-comparison"
 category: reference
-decision_status: adopted
 summary: Definitive source-backed survey of 73 open-source AI agent memory systems across 79 features — every claim cites public code or docs.
 tags: [memory, agents, comparison, survey, mcp, rag, vector-db]
 workflows: []
