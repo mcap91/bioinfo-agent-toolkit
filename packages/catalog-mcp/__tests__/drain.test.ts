@@ -9,7 +9,6 @@ const CONFIG = JSON.stringify({
   url_patterns: [],
   blocked_domains: [{ host: 'instagram.com' }, { host: 'linkedin.com', allow_paths: ['/pulse/'] }],
   min_clean_chars: 200,
-  gmail_fallback: true,
 });
 
 describe('drainInbox', () => {

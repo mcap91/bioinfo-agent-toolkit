@@ -19,10 +19,9 @@ describe('queueItemSchema (phase 2)', () => {
 });
 
 describe('configSchema (phase 2)', () => {
-  it('defaults blocked_domains/min_clean_chars/gmail_fallback', () => {
+  it('defaults blocked_domains/min_clean_chars', () => {
     const r = configSchema.parse({ url_patterns: [] });
     expect(r.blocked_domains).toEqual([]);
     expect(r.min_clean_chars).toBe(200);
-    expect(r.gmail_fallback).toBe(true);
   });
 });
