@@ -31,6 +31,7 @@ const ALLOWED_TOOLS = [
   'mcp__catalog__build-prompt',
   'mcp__catalog__validate-entry',
   'mcp__catalog__write-entry',
+  'mcp__catalog__annotate-entry',
   'mcp__catalog__index',
   'WebSearch',
   'WebFetch',
