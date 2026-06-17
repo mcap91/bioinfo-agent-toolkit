@@ -68,3 +68,49 @@ describe('lint --fix no longer adds a status field (removed in v2.1.0)', () => {
     expect(md).not.toContain('status:');
   });
 });
+
+describe('lint taxonomy audit + retired keys', () => {
+  let tmp: string;
+  beforeEach(async () => {
+    tmp = await mkdtemp(path.join(os.tmpdir(), 'catalog-lintx-'));
+    await mkdir(path.join(tmp, 'catalog', 'entries'), { recursive: true });
+    await writeFile(
+      path.join(tmp, 'catalog', 'taxonomy.json'),
+      JSON.stringify({ canonical: { 'meta-skill': ['skill-optimization'] } }),
+      'utf-8',
+    );
+    // alias-without-canonical: has skill-optimization but NOT meta-skill (warning-only, no schema error)
+    await writeFile(
+      path.join(tmp, 'catalog', 'entries', 'skillopt.md'),
+      `---\nname: skillopt\ntitle: "SkillOpt"\ncategory: skill\nsummary: "x"\ntags: [skill-optimization]\nreviewed: 2026-06-16\n---\nbody\n`,
+      'utf-8',
+    );
+    // retired verdict key -> error
+    await writeFile(
+      path.join(tmp, 'catalog', 'entries', 'legacy.md'),
+      `---\nname: legacy\ntitle: "Legacy"\ncategory: skill\nverdict: adopt\nsummary: "x"\ntags: [t]\nreviewed: 2026-06-16\n---\nbody\n`,
+      'utf-8',
+    );
+  });
+  afterEach(async () => { await rm(tmp, { recursive: true, force: true }); });
+
+  it('warns when an alias tag lacks its canonical', async () => {
+    const res = await lint({ dir: tmp });
+    const e = res.results.find((r) => r.file === 'skillopt.md')!;
+    expect(e.warnings.some((w) => /meta-skill/.test(w))).toBe(true);
+  });
+  it('--fix adds the missing canonical tag (warning-only entry)', async () => {
+    await lint({ dir: tmp, fix: true });
+    const after = await readFile(path.join(tmp, 'catalog', 'entries', 'skillopt.md'), 'utf-8');
+    expect(after).toMatch(/meta-skill/);
+  });
+  it('flags a retired verdict key as an error', async () => {
+    const res = await lint({ dir: tmp });
+    const e = res.results.find((r) => r.file === 'legacy.md')!;
+    expect(e.errors.some((x) => /verdict/.test(x))).toBe(true);
+  });
+  it('reports aliasWithoutCanonical in the taxonomy summary', async () => {
+    const res = await lint({ dir: tmp });
+    expect(res.taxonomy.aliasWithoutCanonical).toBeGreaterThanOrEqual(1);
+  });
+});
