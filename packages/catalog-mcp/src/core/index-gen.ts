@@ -2,6 +2,7 @@
 import { writeFile } from 'node:fs/promises';
 import { readAllEntries } from './frontmatter.js';
 import { catalogPaths } from './config.js';
+import { cmpTitleLower, cmpRaw } from './sort.js';
 
 interface IndexOptions {
   dir: string;
@@ -48,21 +49,6 @@ function extractSummary(body: string): string {
   const trimmed = body.replace(/^#+\s.*\n*/gm, '').trim();
   if (trimmed.length <= 300) return trimmed;
   return trimmed.slice(0, 300).replace(/\s+\S*$/, '') + '…';
-}
-
-// Ordinal comparator on lowercased strings — matches Python's
-// sorted(key=lambda x: x["title"].lower()) that generated catalog/index.md.
-// Do NOT use localeCompare here; it diverges from Python's code-point order.
-function cmpTitleLower(a: string, b: string): number {
-  const al = a.toLowerCase();
-  const bl = b.toLowerCase();
-  return al < bl ? -1 : al > bl ? 1 : 0;
-}
-
-// Ordinal comparator on raw strings (case-sensitive) — matches Python's
-// sorted() on workflow/category keys (which are NOT lowercased).
-function cmpRaw(a: string, b: string): number {
-  return a < b ? -1 : a > b ? 1 : 0;
 }
 
 export async function generateIndex(options: IndexOptions): Promise<IndexResult> {
