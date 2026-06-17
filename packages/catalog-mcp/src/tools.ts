@@ -55,13 +55,13 @@ export const tools: ToolDef[] = [
     }),
     handler: async (input) => {
       const dir = resolveDir(input.dir as string | undefined);
-      const results = await lint({
+      const { results, taxonomy } = await lint({
         dir,
         files: input.files as string[] | undefined,
         fix: input.fix as boolean,
       });
       const hasErrors = results.some((r) => r.errors.length > 0);
-      return { results, clean: !hasErrors };
+      return { results, taxonomy, clean: !hasErrors };
     },
   },
   {
