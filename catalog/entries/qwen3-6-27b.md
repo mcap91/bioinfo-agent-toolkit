@@ -3,8 +3,7 @@ name: qwen3-6-27b
 title: Qwen3.6-27B
 url: "https://huggingface.co/Qwen/Qwen3.6-27B"
 category: framework
-verdict: watch
-verdict_reason: Strong open-weight 27B model with near-frontier coding scores and 262K context; promising local worker model but requires multi-GPU or quantization for practical use
+summary: Strong open-weight 27B model with near-frontier coding scores and 262K context; promising local worker model but requires multi-GPU or quantization for practical use
 tags: [llm, open-weights, coding, agentic, multimodal, qwen, local-inference, llama-cpp]
 workflows: []
 reviewed: 2026-06-16
@@ -21,8 +20,7 @@ A 27B-parameter dense causal language model with vision encoder from the Qwen te
 
 Benchmark highlights (vs Claude 4.5 Opus): SWE-bench Verified 77.2 (vs 80.9), SWE-bench Pro 53.5 (vs 57.1), Terminal-Bench 2.0 59.3 (tied), SkillsBench 48.2 (vs 45.3 — exceeds Opus), AIME 2026 94.1 (vs 95.1). For a 27B open-weight model, these are remarkably close to frontier closed-source performance.
 
-## Why this verdict
-
+## Assessment
 The coding benchmarks are impressive for the parameter count — SWE-bench Verified 77.2 puts it ahead of Gemma4-31B (52.0) and within striking distance of Claude 4.5 Opus (80.9). The thinking preservation feature is particularly relevant for agentic workflows where maintaining reasoning context across tool-call turns reduces redundant re-reasoning and total token consumption. The user's note about llama.cpp suggests interest in local inference, which is viable with quantization (GGUF formats available). Watch rather than pilot because: (1) 27B dense requires significant VRAM for full-precision serving (multiple GPUs at fp16), (2) quantized local inference quality needs empirical validation for coding tasks, and (3) the Frontier plugin entry suggests a natural pairing but both are early-stage.
 
 ## Mechanical details

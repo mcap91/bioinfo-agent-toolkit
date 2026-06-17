@@ -3,8 +3,7 @@ name: adhd
 title: ADHD
 url: "https://github.com/UditAkhourii/adhd"
 category: skill
-verdict: note
-verdict_reason: "parallel divergent ideation via isolated cognitive frames; overlaps with superpowers:brainstorming but the frame isolation and scoring mechanics are worth studying"
+summary: "parallel divergent ideation via isolated cognitive frames; overlaps with superpowers:brainstorming but the frame isolation and scoring mechanics are worth studying"
 install: npx skills add UditAkhourii/adhd
 tags: [ideation, brainstorming, parallel, divergent-thinking, cognitive-frames, subagents]
 reviewed: 2026-05-27
@@ -22,8 +21,7 @@ A Claude Code skill that implements parallel divergent ideation by spawning N is
 
 Also available as a CLI (`npm install -g adhd-agent; adhd "your problem"`) and TypeScript library. MIT licensed, requires Node 18+.
 
-## Why this verdict
-
+## Assessment
 The `superpowers:brainstorming` skill already covers divergent ideation in our stack. ADHD's distinguishing mechanics — strictly isolated parallel branches with zero shared context during divergence, a fixed frame library, and quantitative scoring with trap detection — are worth studying as potential enhancements to the brainstorming skill. The frame isolation invariant (serialization collapses the method) is the strongest novel contribution. However, installing it alongside superpowers:brainstorming would create routing ambiguity for the same trigger conditions.
 
 ## Mechanical details

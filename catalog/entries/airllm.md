@@ -3,8 +3,7 @@ name: airllm
 title: AirLLM
 url: "https://github.com/lyogavin/airllm"
 category: framework
-verdict: watch
-verdict_reason: "Clever layer-shard inference to run 70B models on 4GB VRAM, but maintenance has stalled since August 2024 while better-maintained alternatives (Ollama/llama.cpp) have matured."
+summary: "Clever layer-shard inference to run 70B models on 4GB VRAM, but maintenance has stalled since August 2024 while better-maintained alternatives (Ollama/llama.cpp) have matured."
 tags: [llm-inference, low-vram, memory-optimization, python, huggingface, quantization]
 workflows: []
 reviewed: 2026-06-10
@@ -19,8 +18,7 @@ overlaps: []
 
 AirLLM is a Python library that enables running large language models (70B parameters and up) on consumer GPUs with as little as 4GB VRAM, and 405B Llama3.1 on 8GB VRAM. It achieves this by decomposing a HuggingFace model into per-layer shards saved to disk, then loading and executing one layer (or a small set of layers) at a time during inference. No quantization is required for the base mode, though optional block-wise 4bit/8bit quantization is supported for up to 3x throughput improvement with minimal accuracy loss. The API mirrors the HuggingFace Transformers interface (`AutoModel.from_pretrained`, `model.generate`), making migration straightforward. Supported models include Llama 2/3/3.1, Mixtral, Mistral, ChatGLM, Qwen/Qwen2.5, Baichuan, and InternLM. macOS (Apple Silicon via mlx) and CPU inference are also supported as of v2.10.1.
 
-## Why this verdict
-
+## Assessment
 The core technique — sequential layer-shard loading to sidestep VRAM limits — is genuinely useful for resource-constrained inference and was novel when released in late 2023. However, the project's last tagged update is v2.11.0 from August 2024, with no subsequent activity visible. The broader ecosystem (Ollama with GGUF quantization, llama.cpp, ExLlamaV2) now covers the same use-case with active maintenance, broader hardware support, better throughput, and quantization that is more mature than AirLLM's block-wise approach. Worth monitoring in case development resumes, but not the right choice for new deployments today.
 
 ## Mechanical details

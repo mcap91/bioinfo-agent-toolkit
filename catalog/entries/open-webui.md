@@ -3,8 +3,7 @@ name: open-webui
 title: Open WebUI
 url: "https://github.com/open-webui/open-webui"
 category: framework
-verdict: watch
-verdict_reason: "Leading self-hosted LLM web UI with RAG, pipelines, and enterprise auth — relevant infrastructure context but custom non-SPDX license limits adoption"
+summary: "Leading self-hosted LLM web UI with RAG, pipelines, and enterprise auth — relevant infrastructure context but custom non-SPDX license limits adoption"
 tags: [llm-ui, self-hosted, rag, ollama, openai-compatible, pipelines, enterprise, docker, python]
 workflows: []
 reviewed: 2026-06-10
@@ -19,8 +18,7 @@ overlaps: [onyx-ai-platform]
 
 Open WebUI is a self-hosted, offline-capable web application that provides a ChatGPT-style interface for any Ollama or OpenAI-compatible LLM backend. It bundles a comprehensive feature set in a single deployable unit: local RAG (9 vector DB options, Tika/Docling/OCR extraction engines), web search (15+ providers), image generation (DALL-E, ComfyUI, AUTOMATIC1111), voice/video calls (Whisper, Deepgram, ElevenLabs), a Python function-calling tool workspace (Bring Your Own Function), and a Pipelines plugin framework for custom middleware. Enterprise features include LDAP/AD, SCIM 2.0, SSO/OAuth, RBAC, Redis-backed horizontal scaling, OpenTelemetry observability, and cloud storage backends (S3, GCS, Azure Blob). Installed via `pip install open-webui` or Docker; runs at localhost:8080/3000.
 
-## Why this verdict
-
+## Assessment
 Open WebUI is the dominant open-source self-hosted LLM UI project by adoption and feature breadth — awareness of it is valuable for anyone building or deploying LLM infrastructure. However, it is not a Claude Code skill, MCP server, agent pattern, or CLI tool that integrates directly into this toolkit's workflows. The custom "Open WebUI License" (branding preservation requirement) is not a standard SPDX identifier and introduces uncertainty about redistribution and embedding. The Pipelines framework and BYOF Python execution surface are powerful but represent meaningful code-execution attack surface. Cataloged as `watch` — monitor for a Pipelines-based MCP bridge or bioinformatics-specific integration that would warrant a `pilot` upgrade.
 
 ## Mechanical details

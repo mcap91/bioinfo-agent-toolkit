@@ -3,8 +3,7 @@ name: claude-code-remote-prompt-hardening
 title: Claude Code Remote Prompt Hardening
 url: "https://www.reddit.com/r/ClaudeCode/comments/1tmizuy/claude_code_v21150_now_allows_anthropic_to/"
 category: reference
-verdict: note
-verdict_reason: env vars to block remote system prompt injection in Claude Code; operational hardening knowledge for security-sensitive environments
+summary: env vars to block remote system prompt injection in Claude Code; operational hardening knowledge for security-sensitive environments
 tags: [claude-code, security, privacy, env-vars, hardening, system-prompt, version-pinning]
 reviewed: 2026-05-27
 acquired: 2026-05-27
@@ -25,8 +24,7 @@ Two environment variables block this behavior:
 
 Verification approach (on the Linux binary): `npm pack`, extract, then `strings` the binary to find the minified functions responsible for reading cached values (`nAA`) and registering them as system prompt sections (`Rv("heron_brook", ...)`). Function names are specific to each binary version.
 
-## Why this verdict
-
+## Assessment
 Operational awareness item. Relevant if running Claude Code in environments where you want full control over what enters the system prompt — e.g., when prompt-patching for effectiveness or in security-sensitive contexts. Not a tool to install; these are environment variables to set. The env vars are already documented in the user's workflow for Claude Code customization.
 
 ## What to adopt

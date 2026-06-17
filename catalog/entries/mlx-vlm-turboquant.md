@@ -3,8 +3,7 @@ name: mlx-vlm-turboquant
 title: mlx-vlm TurboQuant (Apple Silicon KV Cache Compression)
 url: "https://github.com/Blaizzy/mlx-vlm/pull/858"
 category: framework
-verdict: pilot
-verdict_reason: Production-quality Metal kernels implementing TurboQuant on Apple Silicon; benchmarked and ready for review but PR not yet merged
+summary: Production-quality Metal kernels implementing TurboQuant on Apple Silicon; benchmarked and ready for review but PR not yet merged
 tags: [quantization, kv-cache, apple-silicon, mlx, metal, inference, vision-language]
 workflows: []
 reviewed: 2026-06-16
@@ -26,8 +25,7 @@ Key results from the PR benchmarks:
 - Multi-query score kernel: 28ms → 12ms at 64k context
 - Prefill attention optimization via dedicated MQ score path
 
-## Why this verdict
-
+## Assessment
 **Pilot.** The implementation is thorough — 20+ commits with detailed Metal kernel work, benchmarks, NIAH test suite, and PPL evaluation. Author (Blaizzy) is the mlx-vlm maintainer. Co-authored with Claude Opus 4.6. PR is marked ready for review (April 2, 2026) but not yet merged. Once merged, this becomes the canonical TurboQuant path for Apple Silicon local inference. Monitor for merge.
 
 ## Mechanical details

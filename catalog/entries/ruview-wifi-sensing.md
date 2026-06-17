@@ -3,8 +3,7 @@ name: ruview-wifi-sensing
 title: RuView WiFi Sensing Platform
 url: "https://github.com/ruvnet/RuView"
 category: framework
-verdict: watch
-verdict_reason: "Interesting hardware+agent integration with a Claude Code plugin and MCP server, but beta software requiring physical ESP32 hardware for core capabilities"
+summary: "Interesting hardware+agent integration with a Claude Code plugin and MCP server, but beta software requiring physical ESP32 hardware for core capabilities"
 tags: [wifi-sensing, esp32, mcp-server, claude-code-plugin, edge-ai, vital-signs, presence-detection, iot, physiological-signals]
 workflows: []
 reviewed: 2026-06-10
@@ -21,8 +20,7 @@ RuView turns commodity WiFi signals into a spatial intelligence and physiologica
 
 The system ships several Claude Code-adjacent components: a Claude Code plugin (`plugins/ruview/`) providing 9 skills and 7 `/ruview-*` commands for onboarding, firmware flashing, provisioning, and running sensing applications; an MCP server (`@ruvnet/rvagent`, `npx @ruvnet/rvagent stdio`) with 6 tools exposing live sensing data to AI agents (`ruview.presence.now`, `ruview.vitals.get_breathing`, `ruview.vitals.get_heart_rate`, `ruview.vitals.get_all`, `ruview.bfld.last_scan`, `ruview.bfld.subscribe`); and a Python package (`pip install ruview`) plus a Rust sensing server core. A catalog of 105 signed edge modules covers health monitoring, security, retail analytics, industrial safety, and swarm coordination.
 
-## Why this verdict
-
+## Assessment
 **Watch** rather than pilot or adopt because:
 
 1. **Hardware gating.** All substantive capabilities — through-wall sensing, vital signs, pose estimation — require physical ESP32-S3 nodes. The Docker image runs on simulated data only, limiting evaluation without a hardware purchase.

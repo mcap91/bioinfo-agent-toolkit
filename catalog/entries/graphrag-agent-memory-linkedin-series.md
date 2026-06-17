@@ -3,8 +3,7 @@ name: graphrag-agent-memory-linkedin-series
 title: "GraphRAG & Agent Memory LinkedIn Series"
 url: "https://www.linkedin.com/feed/update/urn:li:share:7464580605327060992"
 category: reference
-verdict: watch
-verdict_reason: "Six-post series covering GraphRAG design, ontology modeling, and unified agent memory architecture — useful conceptual grounding for KG-backed agents."
+summary: "Six-post series covering GraphRAG design, ontology modeling, and unified agent memory architecture — useful conceptual grounding for KG-backed agents."
 tags: [graphrag, knowledge-graph, ontology, agent-memory, reasoning, langgraph, crewai]
 workflows: []
 reviewed: 2026-06-10
@@ -27,8 +26,7 @@ A six-post LinkedIn series by a practitioner who spent a year building GraphRAG 
 
 Posts are unfetchable (LinkedIn post URLs); summary is derived from titles and surrounding context.
 
-## Why this verdict
-
+## Assessment
 `watch` — the series addresses a real gap: how to structure agent memory beyond flat vector stores, using KGs and ontologies. The "reasoning memory" framing is a distinct perspective worth tracking. No code or repo is linked; the value is conceptual/architectural rather than immediately adoptable tooling. Useful reference when designing KG-backed memory for bioinformatics agents.
 
 ## What to adopt

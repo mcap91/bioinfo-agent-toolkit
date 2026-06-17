@@ -3,8 +3,7 @@ name: autoresearch
 title: Autoresearch
 url: "https://github.com/karpathy/autoresearch"
 category: framework
-verdict: note
-verdict_reason: "Highly influential autonomous experimentation loop pattern, but ML-training-specific — transferable idea, not transferable code"
+summary: "Highly influential autonomous experimentation loop pattern, but ML-training-specific — transferable idea, not transferable code"
 tags: [autonomous-agents, ml-training, experimentation, karpathy, agent-loop]
 workflows: []
 reviewed: 2026-06-10
@@ -23,8 +22,7 @@ The repo is deliberately minimal: three files (`prepare.py` for data prep, `trai
 
 Karpathy ran it for two days on his own hand-tuned code and it found 20 stacking improvements including a bug in his attention implementation. The pattern has been adopted beyond ML (e.g. Shopify used it for templating engine optimization).
 
-## Why this verdict
-
+## Assessment
 The autonomous experiment loop (modify → run → evaluate → keep/discard → repeat) is a compelling agent workflow pattern, and the "programming the program" concept (human writes Markdown instructions, agent writes code) maps directly to the skill-based agent paradigm this toolkit uses. However, the implementation is entirely ML-training-specific — GPT models, PyTorch, Muon+AdamW optimizer, BPE tokenizer. None of that transfers to bioinformatics.
 
 Worth documenting as a landmark example of agent-driven autonomous experimentation. The meta-pattern could inspire bioinformatics analogues (e.g. autonomous parameter sweeps for alignment pipelines, variant caller tuning), but that would be a new tool, not this one. Active GitHub discussion (#447) about generalizing beyond ML, but no concrete bioinformatics fork exists yet.

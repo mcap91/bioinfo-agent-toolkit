@@ -3,8 +3,7 @@ name: era-empirical-research-assistant
 title: ERA — Empirical Research Assistant
 url: "https://github.com/google-research/era"
 category: framework
-verdict: watch
-verdict_reason: "Interesting LLM+tree-search loop for scientific code generation, but Gemini-locked, research-grade, and not directly applicable to Claude Code workflows today"
+summary: "Interesting LLM+tree-search loop for scientific code generation, but Gemini-locked, research-grade, and not directly applicable to Claude Code workflows today"
 tags: [scientific-computing, code-generation, tree-search, llm-loop, bioinformatics, single-cell, python, google-research, research-paper]
 workflows: []
 reviewed: 2026-06-10
@@ -19,8 +18,7 @@ overlaps: [autoresearch, asi-evolve]
 
 ERA (Empirical Research Assistant) is an AI system that iteratively generates, executes, and scores candidate programs to converge on expert-level scientific software. It pairs a large language model with a Flat UCB Tree Search (FUTS) algorithm — a variant of PUCT (Predictor + Upper Confidence bound for Trees) — to explore a solution space across `num_iterations` iterations, always expanding the most promising node and keeping the best solution found. The user provides two callables: `generate_fn` (LLM call that produces a new candidate from a problem definition and prior solution) and `execute_fn` (scores a candidate by running it against the problem's metric in a sandbox). ERA is demonstrated on regression tasks (California Housing Kaggle) and validated in eight real-world scientific domains: epidemiology forecasting, neuroscience, theoretical physics, public health, climate, hydrology, economics, and combinatorics. Published as a 2025 Google Research paper (arXiv 2509.06503).
 
-## Why this verdict
-
+## Assessment
 `watch` — The FUTS/PUCT loop pattern is a genuinely useful blueprint for any agentic system that needs iterative LLM-driven program synthesis with automatic scoring. That algorithmic idea is worth tracking and potentially extracting. However, ERA itself is Gemini-API-locked (`google-generativeai` SDK, `GOOGLE_API_KEY`), paper-release research code ("not an officially supported Google product"), and targets scientific Python workflows rather than Claude Code skill/agent patterns. It is not directly adoptable as a Claude Code skill or hook today. The core FUTS implementation (`futs.py`) could inspire a provider-agnostic reimplementation for bioinformatics agent loops.
 
 ## Mechanical details

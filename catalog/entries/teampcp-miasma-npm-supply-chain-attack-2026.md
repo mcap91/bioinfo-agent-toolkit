@@ -2,8 +2,7 @@
 name: teampcp-miasma-npm-supply-chain-attack-2026
 title: TeamPCP/Miasma npm Supply Chain Attack (June 2026)
 category: reference
-verdict: note
-verdict_reason: Incident writeup documenting credential-harvesting malware and ~/.claude/settings.json hook persistence — directly relevant to agent-lockdown hardening (WK-0031)
+summary: Incident writeup documenting credential-harvesting malware and ~/.claude/settings.json hook persistence — directly relevant to agent-lockdown hardening (WK-0031)
 tags: [security, supply-chain, npm, claude-code, incident-report, credential-theft, persistence]
 workflows: []
 reviewed: 2026-06-10
@@ -28,8 +27,7 @@ Sources cited: Microsoft Threat Intelligence, StepSecurity, Snyk, Tenable, GitGu
 
 Remediation order documented: check then clean then rotate (order matters; rotating before checking can trigger the wipe payload).
 
-## Why this verdict
-
+## Assessment
 `note` rather than `adopt` because this is a passive reference — there is no installable tool or technique to adopt directly. Its value is informational: it establishes the threat model that motivated WK-0031 and the `agent-lockdown` skill, confirms that `~/.claude/settings.json` hooks are a real attack vector, and provides the correct remediation sequence for incident response.
 
 ## What to adopt

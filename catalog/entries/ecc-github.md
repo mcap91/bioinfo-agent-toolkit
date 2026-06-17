@@ -3,8 +3,7 @@ name: ecc-github
 title: ECC — Everything Claude Code (GitHub)
 url: "https://github.com/affaan-m/ecc"
 category: framework
-verdict: watch
-verdict_reason: massive cross-harness skill/hook/agent system worth monitoring but high adoption complexity and scope overlap with existing stack
+summary: massive cross-harness skill/hook/agent system worth monitoring but high adoption complexity and scope overlap with existing stack
 tags: [skills, hooks, agents, rules, security, cross-harness, plugin, claude-code]
 workflows: []
 reviewed: 2026-06-10
@@ -19,8 +18,7 @@ overlaps: [ecc-plugin]
 
 ECC is a large-scale agent harness performance system for Claude Code and six other AI coding tools (Codex, Cursor, OpenCode, Gemini CLI, Zed, GitHub Copilot). At v2.0.0 (June 2026) it ships 64 specialized subagents, 261 skills, 84 legacy command shims, a hook automation system (PreToolUse/PostToolUse/Stop/SessionStart/End), language-specific rules (12 ecosystems), cross-platform Node.js scripts, a Tkinter desktop dashboard, and AgentShield — a static security scanner with 1,282 tests and 102 rules that runs a red-team/blue-team/auditor Opus pipeline against your Claude Code configuration. It also provides continuous learning v2 (instinct-based pattern extraction with confidence scoring), token optimization guidance, session memory persistence, and strategic compaction tooling. Install paths: Claude Code plugin (`/plugin install ecc@ecc`), shell installer (`install.sh`/`install.ps1`), or `npx ecc-install`. Selective profiles (minimal, core, full) allow targeted installation.
 
-## Why this verdict
-
+## Assessment
 **Watch.** ECC is the most comprehensive publicly available Claude Code enhancement system, with genuine engineering depth (cross-platform Node.js hooks, deterministic install state, 997+ internal tests, regression guards). AgentShield and the continuous learning v2 system are distinctive and potentially valuable in isolation. However, the full system is extremely large-scope and introduces significant overlap with the existing superpowers stack, kb integration, and local skills in this repo. The hook system fires broadly across all tool events and could interact unpredictably with existing hooks. The `ecc-plugin` entry already covers the plugin-hub surface; this entry supersedes that assessment with verified upstream content. Adoption should be component-scoped rather than full-install — specific skills, the AgentShield scanner, or individual agents may be worth cherry-picking.
 
 ## Mechanical details

@@ -3,8 +3,7 @@ name: autoharness
 title: Autoharness
 url: "https://github.com/kayba-ai/autoharness"
 category: framework
-verdict: watch
-verdict_reason: needs eval benchmarks first; pilot when we have eval criteria for our skills/agents
+summary: needs eval benchmarks first; pilot when we have eval criteria for our skills/agents
 tags: [harness, optimization, eval, benchmarks]
 reviewed: 2026-05-25
 acquired: 2026-05-25
@@ -24,8 +23,7 @@ A control plane for agent harnesses that proposes and applies changes to prompts
 - 7 proposal generators: `manual`, `failure_summary`, `local_template`, `local_command`, `openai_responses`, `codex_cli`, `claude_code`
 - Plugin system: `.autoharness/plugins/` or `AUTOHARNESS_PLUGIN_PATHS` env var
 
-## Why this verdict
-
+## Assessment
 The `generic_command` adapter works with any scoring command, making it compatible with bioinformatics pipelines. The blocker is defining a scoring function — "did this pipeline produce correct output for this test dataset?" requires a reference dataset and a correctness check before Autoharness can optimize anything. The framework itself is solid; the prerequisite is eval infrastructure, not a tool limitation.
 
 ## Mechanical details

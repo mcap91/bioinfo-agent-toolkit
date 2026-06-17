@@ -3,8 +3,7 @@ name: claude-peers-mcp
 title: Claude Peers MCP
 url: "https://github.com/louislva/claude-peers-mcp"
 category: mcp-server
-verdict: watch
-verdict_reason: "Novel multi-session peer messaging, but mandatory --dangerously-skip-permissions flag is a hard blocker for safe use"
+summary: "Novel multi-session peer messaging, but mandatory --dangerously-skip-permissions flag is a hard blocker for safe use"
 tags: [multi-agent, inter-session, messaging, coordination, broker, sqlite, bun]
 workflows: []
 reviewed: 2026-06-10
@@ -19,8 +18,7 @@ overlaps: []
 
 Claude Peers MCP is an MCP server that lets multiple concurrently running Claude Code instances on the same machine discover each other and exchange messages in real time. A local broker daemon (localhost:7899, SQLite backend) acts as the hub. Each Claude Code session registers with the broker via a stdio MCP server; inbound messages are pushed into the session via the `claude/channel` protocol for immediate delivery. Four tools are exposed: `list_peers` (discover running instances with directory, git repo, and summary), `send_message` (send to a peer by ID), `set_summary` (describe what you're working on), and `check_messages` (polling fallback). A CLI (`bun cli.ts`) allows out-of-band inspection and message injection. Optionally, setting `OPENAI_API_KEY` triggers an auto-summary call to `gpt-5.4-nano` on startup.
 
-## Why this verdict
-
+## Assessment
 The peer-discovery and real-time messaging concept is genuinely novel and fills a gap — coordinating work across multiple simultaneous Claude Code sessions currently requires manual copy-paste or shared files. However, the quick-start instructions require two flags that are hard blockers for routine adoption: `--dangerously-skip-permissions` (bypasses all tool-call permission prompts) and `--dangerously-load-development-channels` (loads an unstable, pre-release channel protocol). Running with `--dangerously-skip-permissions` permanently removes the human-in-the-loop safety gate that prevents runaway tool calls. Until the channel protocol stabilizes and the permissions bypass is no longer required, this is a watch item rather than something to pilot in production workflows.
 
 ## Mechanical details

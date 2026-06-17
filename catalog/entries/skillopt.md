@@ -3,8 +3,7 @@ name: skillopt
 title: SkillOpt
 url: "https://github.com/microsoft/SkillOpt"
 category: framework
-verdict: pilot
-verdict_reason: "Microsoft research framework that optimizes agent skills via training loops; +23.5 point lifts on Claude Code, Sleep mode for nightly skill consolidation is directly relevant"
+summary: "Microsoft research framework that optimizes agent skills via training loops; +23.5 point lifts on Claude Code, Sleep mode for nightly skill consolidation is directly relevant"
 tags: [skill-optimization, microsoft, training-loop, claude-code, codex, agent-skills, research]
 workflows: []
 reviewed: 2026-06-16
@@ -25,8 +24,7 @@ Results: across 6 benchmarks, 7 target models, and 3 execution harnesses (direct
 
 SkillOpt-Sleep (preview): a nightly offline companion for local coding agents that reviews past sessions, replays recurring tasks, and consolidates validated skills behind a held-out gate.
 
-## Why this verdict
-
+## Assessment
 The approach is novel and the results are strong — turning skill optimization into a principled training problem rather than ad-hoc iteration. The +19.1 point lift on Claude Code CLI is directly relevant to our skills. The SkillOpt-Sleep feature (nightly session review → skill consolidation) is exactly the kind of automated skill improvement loop we'd want for our own skills. Multi-backend support (OpenAI, Azure, Claude, Qwen, MiniMax) means we can use it with our existing model setup. The research paper backing (arXiv:2605.23904) gives confidence in the methodology. Pilot to test whether it can meaningfully improve our existing catalog-intake, debugging, and research skills.
 
 ## Mechanical details

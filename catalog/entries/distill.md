@@ -3,8 +3,7 @@ name: distill
 title: Distill
 url: "https://github.com/samuelfaj/distill"
 category: cli-tool
-verdict: watch
-verdict_reason: Local 1.7B model pipe-filter for CLI output compression is a real problem but requires 8–16 GB RAM and relies on an unaudited HuggingFace model; overlaps with rtk.
+summary: Local 1.7B model pipe-filter for CLI output compression is a real problem but requires 8–16 GB RAM and relies on an unaudited HuggingFace model; overlaps with rtk.
 tags: [token-reduction, cli, pipe, local-model, output-compression]
 workflows: []
 reviewed: 2026-06-10
@@ -19,8 +18,7 @@ overlaps: [rtk]
 
 Distill is an npm CLI tool installed globally (`npm i -g @samuelfaj/distill`) that acts as a Unix pipe filter: you pipe any command's output into `distill "question"` and it returns a short, focused answer instead of the raw output. The compression is done locally by a custom fine-tuned 1.7B parameter 4-bit quantized MLX model (`samuelfaj/distill-1.7B-MLX` on HuggingFace). The claimed compression ratio is up to 99% token reduction (e.g., 7648 tokens → 99 tokens in the shown example). It also advertises a "Distill Language" that teaches the LLM to reason more efficiently, though no details are provided in the README.
 
-## Why this verdict
-
+## Assessment
 The problem is real: verbose CLI output (logs, stack traces, ripgrep results) wastes context window tokens in agentic workflows. The pipe-filter approach is ergonomic and composable. However, several factors keep this at **watch** rather than pilot:
 
 1. **Resource requirement:** The local model requires 8–16 GB RAM, which is a non-trivial ask for a developer machine and makes this unsuitable for CI/headless agents.

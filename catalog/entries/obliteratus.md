@@ -3,8 +3,7 @@ name: obliteratus
 title: OBLITERATUS
 url: "https://github.com/elder-plinius/OBLITERATUS"
 category: framework
-verdict: note
-verdict_reason: "Mechanistic interpretability research toolkit for refusal removal — notable as a reference for alignment geometry, but not safe to adopt in agent pipelines and irrelevant to bioinformatics workflows"
+summary: "Mechanistic interpretability research toolkit for refusal removal — notable as a reference for alignment geometry, but not safe to adopt in agent pipelines and irrelevant to bioinformatics workflows"
 tags: [llm, mechanistic-interpretability, abliteration, alignment, safety-bypass, research, gradio, python]
 workflows: []
 reviewed: 2026-06-10
@@ -21,8 +20,7 @@ OBLITERATUS is an open-source toolkit for performing "abliteration" on transform
 
 The toolkit ships with: a Gradio web UI (hosted on HuggingFace Spaces with ZeroGPU), a CLI (`obliteratus obliterate <model>`), a Python API, YAML-based reproducible configs, and 15 analysis modules that map the geometric structure of safety mechanisms before modifying them. It supports 116 model presets across 5 VRAM tiers (tiny → frontier), multi-GPU pipeline sharding, remote SSH execution, and quantized inference (8-bit/4-bit via bitsandbytes). Seven obliteration presets range from `basic` (1-direction diff-in-means) to `nuclear` (all techniques + expert transplant + steering). Also includes crowd-sourced telemetry: runs with `--contribute` feed anonymous benchmark data to a shared dataset and community leaderboard.
 
-## Why this verdict
-
+## Assessment
 OBLITERATUS is cataloged as **note** — worth knowing about as a reference for mechanistic interpretability research, but not for adoption in this toolkit's agent pipelines.
 
 **For:** It is technically sophisticated, well-tested (837 tests, 28 test files), builds on peer-reviewed research (Arditi 2024, Turner 2023, Rimsky 2024), and implements genuinely novel techniques (Expert-Granular Abliteration, CoT-Aware Ablation, analysis-informed closed-loop pipeline, LoRA-reversible ablation). The analysis modules (alignment imprint detection, concept cone geometry, cross-model transfer universality index, Ouroboros self-repair detection) represent real mechanistic interpretability contributions. As a reference for how alignment geometry works inside transformer architectures, it's valuable.

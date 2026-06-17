@@ -3,8 +3,7 @@ name: crawl4ai
 title: Crawl4AI
 url: "https://github.com/unclecode/crawl4ai"
 category: framework
-verdict: pilot
-verdict_reason: "Best-in-class async web-to-Markdown crawler for agent/RAG pipelines, but Docker API has had dense critical CVEs; library mode is safe to pilot"
+summary: "Best-in-class async web-to-Markdown crawler for agent/RAG pipelines, but Docker API has had dense critical CVEs; library mode is safe to pilot"
 tags: [web-scraping, markdown, rag, agents, async, playwright, docker, llm-extraction]
 workflows: []
 reviewed: 2026-06-10
@@ -28,8 +27,7 @@ Core capabilities:
 - **Deployment:** Docker image with FastAPI server, JWT auth, monitoring dashboard, MCP integration (direct connection to AI tools)
 - **CLI:** `crwl <url> -o markdown`, deep crawl flags, LLM question mode
 
-## Why this verdict
-
+## Assessment
 Crawl4AI is the correct choice when an agent workflow needs to turn arbitrary web URLs into clean Markdown or structured JSON without building a crawler from scratch. It covers the full range from simple single-URL fetches to large multi-hop deep crawls with crash recovery. The 51K+ star community and active release cadence (multiple releases per month in 2025) indicate sustained maintenance.
 
 The `pilot` verdict (not `adopt`) is driven by two concerns:

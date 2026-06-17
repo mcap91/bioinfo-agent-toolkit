@@ -3,8 +3,7 @@ name: onyx-ai-platform
 title: Onyx AI Platform
 url: "https://github.com/onyx-dot-app/onyx"
 category: framework
-verdict: watch
-verdict_reason: "Full self-hostable AI platform with agentic RAG and MCP — notable architecture reference, but too deployment-heavy to adopt as a composable toolkit component"
+summary: "Full self-hostable AI platform with agentic RAG and MCP — notable architecture reference, but too deployment-heavy to adopt as a composable toolkit component"
 tags: [rag, agentic-rag, self-hosted, llm, mcp, knowledge-retrieval, enterprise, connectors]
 workflows: []
 reviewed: 2026-06-10
@@ -19,8 +18,7 @@ overlaps: []
 
 Onyx is a self-hostable, open-source AI application platform built on top of LLMs. It provides a full-featured chat UI combined with a hybrid vector+keyword index for agentic RAG, deep research flows, web search (Serper, Brave, SearXNG, Firecrawl/Exa), sandboxed code execution, artifact generation, voice mode, image generation, and MCP-based action integrations. It ships with 50+ pre-built data connectors (document stores, wikis, ticketing systems, etc.) for knowledge ingestion. Deployment is Docker, Kubernetes, or Helm/Terraform. The "Lite" mode requires under 1 GB RAM and runs a stripped-down stack; the full "Standard" mode adds Redis, MinIO, background job workers, and dedicated ML inference servers. Enterprise Edition adds SSO (OIDC/SAML/Google OAuth), SCIM provisioning, RBAC, analytics, query audit logs, PII scrubbing hooks, and whitelabeling.
 
-## Why this verdict
-
+## Assessment
 Onyx is a well-resourced, actively maintained project with broad feature coverage and a clean MIT license for the community edition. However, it is a full product platform rather than a composable component: adopting it means deploying and operating a multi-container stack. The catalog here is oriented toward skills, agent patterns, MCP servers, and lightweight CLI tools that integrate directly into Claude Code workflows. Onyx is worth watching as a reference architecture for (a) how agentic RAG pipelines are structured with hybrid retrieval, (b) how MCP can be used as the action/integration layer in a deployed AI product, and (c) how multi-connector knowledge ingestion is engineered at scale. If the project ever extracts its RAG pipeline or connector framework as a standalone library, that would be catalog-adopt territory.
 
 ## Mechanical details

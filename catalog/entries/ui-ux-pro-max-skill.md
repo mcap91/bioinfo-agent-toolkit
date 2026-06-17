@@ -3,8 +3,7 @@ name: ui-ux-pro-max-skill
 title: UI/UX Pro Max Skill
 url: "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill"
 category: skill
-verdict: watch
-verdict_reason: comprehensive design system generation but focused on general web/mobile UI; evaluate when dashboard/report aesthetics become a priority
+summary: comprehensive design system generation but focused on general web/mobile UI; evaluate when dashboard/report aesthetics become a priority
 install: "npm install -g uipro-cli && uipro init --ai claude"
 tags: [ui, ux, design-system, typography, color-palettes, dashboards, visualization]
 license: MIT
@@ -20,8 +19,7 @@ overlaps: [web-artifacts-builder]
 
 An AI skill that enhances Claude Code with professional UI/UX design capabilities. Uses 161 industry-specific reasoning rules to generate complete design systems (styles, colors, typography, components) matched to product type. Includes databases of 67 UI styles, 161 color palettes, 57 typography pairings, 25 chart types, and 99 UX/accessibility guidelines. Supports React, Next.js, Vue, Svelte, Angular, SwiftUI, Flutter, and more. Generates via MASTER.md persistence file with page-specific overrides. 82.7k stars, MIT licensed.
 
-## Why this verdict
-
+## Assessment
 We already have Web Artifacts Builder for interactive HTML reports/dashboards. UI/UX Pro Max goes much deeper into design systems — its 25 chart types and dashboard-specific guidance could improve data visualization quality for bioinformatics QC reports and analysis dashboards. However, our primary output is scientific data visualization, not consumer-facing UI. The skill's strength (industry-matched design systems for web/mobile products) doesn't align with our core need. Revisit if we build user-facing tools or need polished dashboards beyond what Web Artifacts Builder provides.
 
 ## Mechanical details

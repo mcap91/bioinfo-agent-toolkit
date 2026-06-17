@@ -3,8 +3,7 @@ name: grill-with-docs
 title: Grill With Docs
 url: "https://github.com/mattpocock/skills/blob/main/skills/engineering/grill-with-docs/SKILL.md"
 category: skill
-verdict: pilot
-verdict_reason: "Well-structured DDD design-review skill that enforces domain language, but relies on companion format files (CONTEXT-FORMAT.md, ADR-FORMAT.md) not bundled with the skill."
+summary: "Well-structured DDD design-review skill that enforces domain language, but relies on companion format files (CONTEXT-FORMAT.md, ADR-FORMAT.md) not bundled with the skill."
 tags: [domain-driven-design, design-review, documentation, adr, glossary, planning]
 workflows: []
 reviewed: 2026-06-10
@@ -28,8 +27,7 @@ Four core behaviours fire during the session:
 
 The skill expects a specific file layout: a root-level `CONTEXT.md` (glossary only, no implementation details), `docs/adr/` for decisions, and companion files `CONTEXT-FORMAT.md` and `ADR-FORMAT.md` that define the write formats. For multi-context repos, a `CONTEXT-MAP.md` at the root points to per-context `CONTEXT.md` files.
 
-## Why this verdict
-
+## Assessment
 Verdict: **pilot**
 
 The skill embodies sound DDD discipline — strict glossary enforcement, conservative ADR gating, and inline-capture beats batch-later for actually keeping docs current. The three-criterion ADR gate (hard-to-reverse + surprising + real trade-off) is one of the clearest ADR guidelines available in a skill format.

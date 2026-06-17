@@ -3,8 +3,8 @@ name: superpowers-verification-before-completion
 title: "Superpowers: Verification Before Completion"
 url: "https://github.com/obra/superpowers/blob/main/skills/verification-before-completion/SKILL.md"
 category: skill
-verdict: adopt
-verdict_reason: "canonical 'evidence before claims' gate skill — already active in this project and referenced by other catalog entries as the standard"
+decision_status: adopted
+summary: "canonical 'evidence before claims' gate skill — already active in this project and referenced by other catalog entries as the standard"
 tags: [verification, quality, agent-discipline, completion-gate, tdd]
 workflows: []
 reviewed: 2026-06-10
@@ -21,8 +21,7 @@ A Claude Code skill that enforces a hard gate before any completion claim, succe
 
 The skill defines an "Iron Law" (no completion claims without fresh verification evidence), a structured 5-step gate function, a table of common claim-to-requirement mappings (e.g., "tests pass" requires test-command output showing 0 failures, not a prior run), a "red flags — STOP" list (expressions like "should pass," "probably," satisfaction phrases like "Great!" or "Done!" before verification, trusting agent success reports), and a rationalization-prevention table addressing common excuses. It also covers regression testing (full red-green cycle required), agent delegation (always verify VCS diff, not agent self-report), and requirements verification (line-by-line checklist, not just passing tests).
 
-## Why this verdict
-
+## Assessment
 Adopt. This is the canonical obra/superpowers version of the verification discipline that the existing `verify-before-claim` catalog entry (Third Brain V5 variant) explicitly defers to as the standard. It is already installed in this project's `.claude/` directory and has been active across sessions. The skill directly addresses a failure mode observed repeatedly in agent workflows: false completion claims that break trust and produce wasted rework cycles. The 5-step gate is concrete, machine-followable, and free of ambiguity. The rationalization-prevention table is particularly effective at closing escape hatches agents use to skip verification under time/confidence pressure.
 
 The only nuance: the Third Brain V5 variant adds a probabilistic confidence model (expected-value scoring, single-source flagging) not present here. That extension is cataloged separately in `verify-before-claim` (verdict: note) and can be layered on if needed. For the baseline rule, this skill is the authoritative source.

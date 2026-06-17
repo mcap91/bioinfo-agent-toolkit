@@ -3,8 +3,7 @@ name: open-knowledge-format
 title: Open Knowledge Format (OKF)
 url: "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md"
 category: reference
-verdict: note
-verdict_reason: "Google's draft spec for agent-friendly knowledge representation using Markdown + YAML frontmatter; closely aligned with our wiki pattern but v0.1 draft status"
+summary: "Google's draft spec for agent-friendly knowledge representation using Markdown + YAML frontmatter; closely aligned with our wiki pattern but v0.1 draft status"
 tags: [knowledge-management, specification, google, markdown, frontmatter, agent-friendly, wiki]
 workflows: []
 reviewed: 2026-06-16
@@ -21,8 +20,7 @@ A specification (v0.1 draft) from Google Cloud Platform for representing knowled
 
 Key design principles: readable without tooling, parseable without SDKs, diffable in git, portable across tools. Deliberately minimal — only standardizes `type` as a required field; everything else is optional. Consumers must tolerate unknown types, unknown frontmatter keys, and broken links.
 
-## Why this verdict
-
+## Assessment
 The spec is remarkably close to patterns we already use: our kb wiki uses Markdown + YAML frontmatter, cross-linking, index generation, and hierarchical organization. OKF essentially formalizes the same approach as a portable interchange format. The "permissive consumption" philosophy (tolerate unknowns, don't reject on missing optional fields) is well-suited for agent-generated content. However, note rather than adopt because: (1) it's v0.1 draft with no tooling yet, (2) our existing wiki format already works well and is more feature-rich (search indexes, wikilinks, categories), (3) the spec adds no capabilities we don't already have, and (4) the primary value would be cross-organization knowledge exchange, which isn't a current need. Worth noting as validation that our approach aligns with Google's thinking, and as a potential interop target if knowledge exchange becomes relevant.
 
 ## Mechanical details

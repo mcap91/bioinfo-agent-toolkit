@@ -3,8 +3,7 @@ name: sota-scan
 title: sota-scan
 url: "https://github.com/MerlijnW70/sota-scan"
 category: skill
-verdict: pilot
-verdict_reason: "Useful comparative benchmarking skill for Claude Code, but single-contributor, no tests, and high token cost for exhaustive mode"
+summary: "Useful comparative benchmarking skill for Claude Code, but single-contributor, no tests, and high token cost for exhaustive mode"
 tags: [benchmarking, competitive-analysis, code-quality, claude-code, skill]
 workflows: []
 reviewed: 2026-06-10
@@ -20,8 +19,7 @@ sota-scan is a Claude Code skill that benchmarks your project against the top re
 
 Installation is two files: `SKILL.md` copied to `~/.claude/skills/sota-scan/` and `workflows/sota-scan-fanout.js` copied to `~/.claude/workflows/`. Invoked via `/sota-scan` or plain English ("Is my project top-tier?").
 
-## Why this verdict
-
+## Assessment
 The concept is sound and the output format is well-designed — concrete citations, peer-sorted comparisons (optional-flag for cross-paradigm borrowing), and ranked worst-first action items make this more actionable than typical LLM feedback. The three-tier depth model with transparent token cost estimates is good UX. The `.sota/` progress-tracking layer adds real value for tracking improvement across runs.
 
 Pilot rather than adopt because: (1) single contributor with no test suite or CI, so quality and maintenance durability are unproven; (2) the core value depends entirely on Claude's internet-search quality and hallucination rate — non-deterministic results are inherent to the approach; (3) token costs are non-trivial for exhaustive mode (400k+). Worth testing on a real project to validate output quality before building it into any workflow.
