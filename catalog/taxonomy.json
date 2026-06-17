@@ -1,0 +1,11 @@
+{
+  "canonical": {
+    "meta-skill": ["skill-generation", "skill-optimization", "skill-evolution", "skill-loader", "skill-discovery", "skill-pack", "agent-skills", "pattern-detection", "evolve", "evolution"],
+    "memory": ["agent-memory", "memory-graph"],
+    "orchestration": ["multi-agent", "agent-orchestration", "llm-orchestration", "ai-orchestration"],
+    "token-reduction": ["token-optimization", "token-efficiency", "cost-reduction", "context-compression", "output-compression"],
+    "handoff": ["session-resume", "context-handoff"],
+    "pdf": ["pdf-import"],
+    "knowledge-management": ["knowledge-base"]
+  }
+}
