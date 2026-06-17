@@ -7,8 +7,7 @@ name: test-tool
 title: "Test Tool"
 url: https://github.com/org/test-tool
 category: skill
-verdict: pilot
-verdict_reason: "looks promising"
+summary: "looks promising"
 tags: [testing]
 reviewed: 2026-06-03
 acquired: 2026-06-03
@@ -18,7 +17,7 @@ acquired: 2026-06-03
 
 A test tool.
 
-## Why this verdict
+## Assessment
 
 It looks good.
 
@@ -44,8 +43,8 @@ describe('validateEntry', () => {
     expect(result.errors.length).toBeGreaterThan(0);
   });
 
-  it('rejects entry with invalid verdict', () => {
-    const bad = validMarkdown.replace('verdict: pilot', 'verdict: maybe');
+  it('rejects entry with a retired verdict key', () => {
+    const bad = validMarkdown.replace('summary: "looks promising"', 'summary: "looks promising"\nverdict: maybe');
     const result = validateEntry(bad);
     expect(result.valid).toBe(false);
   });

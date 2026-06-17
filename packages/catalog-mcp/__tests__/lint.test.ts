@@ -11,8 +11,7 @@ describe('lintEntry', () => {
     title: 'Test Tool',
     url: 'https://github.com/org/test-tool',
     category: 'skill',
-    verdict: 'pilot',
-    verdict_reason: 'looks promising',
+    summary: 'looks promising',
     tags: ['testing'],
     reviewed: '2026-06-03',
   };
@@ -29,7 +28,7 @@ describe('lintEntry', () => {
     expect(result.errors[0]).toContain('title');
   });
 
-  it('errors on invalid verdict', () => {
+  it('errors on a retired verdict key', () => {
     const result = lintEntry('test-tool', { ...validFrontmatter, verdict: 'maybe' }, '');
     expect(result.errors.length).toBeGreaterThan(0);
   });
@@ -54,7 +53,7 @@ describe('lint --fix no longer adds a status field (removed in v2.1.0)', () => {
   let dir: string;
   // Errored (no tags -> schema fails) AND no status -> previously triggered the status default.
   const erroredNoStatus = (name: string) =>
-    `---\nname: ${name}\ntitle: "${name}"\nurl: https://x.com/${name}\ncategory: skill\nverdict: pilot\nverdict_reason: ok\nreviewed: 2026-06-08\n---\nbody\n`;
+    `---\nname: ${name}\ntitle: "${name}"\nurl: https://x.com/${name}\ncategory: skill\nsummary: ok\nreviewed: 2026-06-08\n---\nbody\n`;
 
   beforeEach(async () => {
     dir = await mkdtemp(path.join(os.tmpdir(), 'catalog-lint-'));
