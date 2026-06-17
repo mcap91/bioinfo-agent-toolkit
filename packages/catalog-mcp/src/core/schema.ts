@@ -14,20 +14,20 @@ export const CATEGORIES = [
   'reference',
 ] as const;
 
-export const VERDICTS = ['adopt', 'pilot', 'watch', 'note', 'skip'] as const;
+export const DECISION_STATUSES = ['adopted', 'rejected'] as const;
+export type DecisionStatus = (typeof DECISION_STATUSES)[number];
 
 export const SOURCES = ['manual', 'reddit', 'slack', 'email', 'other'] as const;
 
 export type Category = (typeof CATEGORIES)[number];
-export type Verdict = (typeof VERDICTS)[number];
 
 export const entrySchema = z.object({
   name: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'Must be kebab-case'),
   title: z.string().min(1),
   url: z.string().url().optional(),
   category: z.enum(CATEGORIES),
-  verdict: z.enum(VERDICTS),
-  verdict_reason: z.string().min(1),
+  decision_status: z.enum(DECISION_STATUSES).optional(),
+  summary: z.string().min(1),
   install: z.string().optional(),
   tags: z.array(z.string()).min(1),
   workflows: z.array(z.string()).optional(),
@@ -37,7 +37,7 @@ export const entrySchema = z.object({
   security_flags: z.array(z.string()).optional(),
   supersedes: z.array(z.string()).optional(),
   overlaps: z.array(z.string()).optional(),
-});
+}).strict();
 
 export type CatalogEntry = z.infer<typeof entrySchema>;
 
