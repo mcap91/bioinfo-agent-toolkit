@@ -16,6 +16,7 @@ interface SearchOptions {
 interface SearchResult {
   name: string;
   title: string;
+  url?: string;
   category: string;
   decision_status: string; // normalized: 'open' when unset
   summary: string;
@@ -66,6 +67,7 @@ export async function searchEntries(options: SearchOptions): Promise<SearchResul
       entry: {
         name,
         title: fm.title as string,
+        ...(fm.url ? { url: fm.url as string } : {}),
         category: fm.category as string,
         decision_status: status,
         summary: fm.summary as string,
