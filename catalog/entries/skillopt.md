@@ -2,9 +2,9 @@
 name: skillopt
 title: SkillOpt
 url: "https://github.com/microsoft/SkillOpt"
-category: framework
+category: meta-skill
 summary: "Microsoft research framework that optimizes agent skills via training loops; +23.5 point lifts on Claude Code, Sleep mode for nightly skill consolidation is directly relevant"
-tags: [skill-optimization, microsoft, training-loop, claude-code, codex, agent-skills, research]
+tags: [skill-optimization, microsoft, training-loop, claude-code, codex, agent-skills, research, meta-skill]
 workflows: []
 reviewed: 2026-06-16
 acquired: 2026-06-16

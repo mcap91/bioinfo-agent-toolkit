@@ -248,7 +248,8 @@
         "experiment-automation",
         "bioinformatics",
         "llm-driven",
-        "multi-agent"
+        "multi-agent",
+        "orchestration"
       ],
       "workflows": [],
       "license": "LicenseRef-unknown",
@@ -360,7 +361,8 @@
         "skill-generation",
         "provenance",
         "ast",
-        "cli-tools"
+        "cli-tools",
+        "meta-skill"
       ],
       "workflows": [
         "scRNA-seq",
@@ -613,7 +615,8 @@
         "coordination",
         "broker",
         "sqlite",
-        "bun"
+        "bun",
+        "orchestration"
       ],
       "workflows": [],
       "license": "LicenseRef-unknown",
@@ -674,7 +677,7 @@
       "name": "cli-anything",
       "title": "CLI-Anything",
       "url": "https://github.com/HKUDS/CLI-Anything",
-      "category": "framework",
+      "category": "skill-generator",
       "decision_status": "open",
       "summary": "Generates production-grade, agent-native CLI harnesses from any codebase via a 7-phase pipeline; directly integrates with Claude Code as a plugin and emits SKILL.md files for skill discovery.",
       "body_summary": "CLI-Anything is a framework and Claude Code plugin that transforms any software codebase into an agent-native CLI harness through an automated 7-phase pipeline: analyze source, design command architecture, implement a Click CLI with REPL and `--json` output, plan and write tests, document, and publish via `pip install -e .`. The generated harness lands on PATH as `cli-anything-<software>` and ships a `SKILL.md` for agent skill discovery.\n\nTwo entry points exist: (1) **CLI-Hub** (`pip install cli-anything-hub`) — a package manager for 40+ pre-built harnesses covering creative tools, AI/ML platforms, scientific computing, office suites, and game engines; (2) the **Claude Code plugin** (`/plugin marketplace add HKUDS/CLI-Anything` + `/plugin install cli-anything`) — run `/cli-anything <path-or-repo>` to generate a fresh harness for any target. A meta-skill (`npx skills add HKUDS/CLI-Anything --skill cli-hub-meta-skill -g -y`) lets agents autonomously discover and install the right CLI for a task.\n\nPre-built harnesses with bioinformatics relevance include UniMol Tools (molecular property prediction), QGIS (geospatial analysis), CloudAnalyzer (point cloud QA), and 3MF (mesh geometry for 3D printing). The project has 2,461 passing tests (100% pass rate) across unit and E2E layers, and publishes an arXiv technical report (2606.03854).",
@@ -684,7 +687,8 @@
         "skill-generation",
         "claude-code-plugin",
         "python",
-        "bioinformatics-adjacent"
+        "bioinformatics-adjacent",
+        "meta-skill"
       ],
       "workflows": [],
       "license": "Apache-2.0",
@@ -998,7 +1002,9 @@
         "skill-pack",
         "claude-code-plugin",
         "html",
-        "pdf-import"
+        "pdf-import",
+        "meta-skill",
+        "pdf"
       ],
       "workflows": [],
       "license": "MIT",
@@ -1041,7 +1047,8 @@
       "tags": [
         "memory-graph",
         "vector-search",
-        "kb"
+        "kb",
+        "memory"
       ],
       "workflows": [],
       "license": "MIT",
@@ -1088,7 +1095,8 @@
         "agent-skills",
         "oauth",
         "json-output",
-        "rust"
+        "rust",
+        "meta-skill"
       ],
       "workflows": [],
       "license": "Apache-2.0",
@@ -1135,7 +1143,8 @@
         "agent-memory",
         "reasoning",
         "langgraph",
-        "crewai"
+        "crewai",
+        "memory"
       ],
       "workflows": [],
       "license": "NOASSERTION",
@@ -1202,7 +1211,8 @@
         "proxy",
         "compression",
         "tauri",
-        "hook"
+        "hook",
+        "token-reduction"
       ],
       "workflows": [],
       "license": "MIT",
@@ -1382,7 +1392,8 @@
         "llm-pattern",
         "obsidian",
         "personal-knowledge-management",
-        "rag-alternative"
+        "rag-alternative",
+        "knowledge-management"
       ],
       "workflows": [],
       "license": "NOASSERTION",
@@ -1405,7 +1416,8 @@
         "llm-orchestration",
         "multi-agent",
         "python",
-        "open-source"
+        "open-source",
+        "orchestration"
       ],
       "workflows": [],
       "license": "MIT",
@@ -1532,7 +1544,8 @@
         "mcp-server",
         "freemium",
         "skill-loader",
-        "claude-code"
+        "claude-code",
+        "meta-skill"
       ],
       "workflows": [],
       "license": "MIT",
@@ -1965,7 +1978,7 @@
       "name": "openspace",
       "title": "OpenSpace",
       "url": "https://github.com/HKUDS/OpenSpace",
-      "category": "framework",
+      "category": "meta-skill",
       "decision_status": "open",
       "summary": "Compelling skill-evolution engine for Claude Code agents but very new (v0.1.0), self-published benchmark, and significant security surface from community skill ingestion",
       "body_summary": "OpenSpace is a self-evolving skill engine that plugs into any agent supporting SKILL.md-format skills (Claude Code, Codex, OpenClaw, nanobot, Cursor) via an MCP server. It observes every task execution and autonomously evolves skills through three modes: FIX (repair a broken skill in-place with a new version), DERIVED (create a specialized child skill from a parent), and CAPTURED (extract a novel reusable pattern from a successful execution with no prior skill).\n\nSkills are stored in SQLite with a full version DAG and quality metrics (applied rate, completion rate, fallback rate). A local React dashboard visualizes lineage, diffs, and health. A cloud community at open-space.cloud enables cross-agent sharing with public/private/group access control.\n\nThe GDPVal benchmark (self-published, 50 tasks, 6 industries) reports 4.2x higher \"income capture\" and 46% fewer tokens vs. a ClawWork baseline using the same backbone LLM. Integration is two steps: add the MCP server to `.mcp.json` and copy two host skills (`delegate-task`, `skill-discovery`) into the agent's skills directory.",
@@ -1975,7 +1988,9 @@
         "claude-code",
         "agent-learning",
         "skill-sharing",
-        "token-efficiency"
+        "token-efficiency",
+        "meta-skill",
+        "token-reduction"
       ],
       "workflows": [],
       "license": "LicenseRef-unknown",
@@ -2001,7 +2016,8 @@
         "sdlc",
         "multi-agent",
         "devops",
-        "workflow-automation"
+        "workflow-automation",
+        "orchestration"
       ],
       "workflows": [],
       "license": "Proprietary",
@@ -2196,7 +2212,8 @@
         "cli",
         "rust",
         "bash-hook",
-        "ai-tooling"
+        "ai-tooling",
+        "token-reduction"
       ],
       "workflows": [],
       "license": "Apache-2.0",
@@ -2252,7 +2269,8 @@
         "messaging-integration",
         "codex",
         "nanoclaw",
-        "hermes"
+        "hermes",
+        "orchestration"
       ],
       "workflows": [],
       "license": "MIT",
@@ -2283,7 +2301,7 @@
       "name": "skillopt",
       "title": "SkillOpt",
       "url": "https://github.com/microsoft/SkillOpt",
-      "category": "framework",
+      "category": "meta-skill",
       "decision_status": "open",
       "summary": "Microsoft research framework that optimizes agent skills via training loops; +23.5 point lifts on Claude Code, Sleep mode for nightly skill consolidation is directly relevant",
       "body_summary": "A text-space optimizer from Microsoft Research that treats agent skill documents (SKILL.md files) as trainable state and optimizes them using a training loop modeled on deep learning: epochs, mini-batches, learning rates, and validation gates — but without touching model weights. A separate optimizer model turns scored rollouts into bounded add/delete/replace edits on a skill document; edits are accepted only when they strictly improve a held-out validation score. The deployed artifact is a compact `best_skill.md` (300-2,000 tokens) that runs against the unchanged target model.\n\nTraining loop: rollout → reflect → aggregate → select → update → evaluate. Features a textual learning-rate budget (constraining edit magnitude), a rejected-edit buffer, and epoch-wise slow/meta updates for stability.\n\nResults: across 6 benchmarks, 7 target models, and 3 execution harnesses (direct chat, Codex CLI, Claude Code CLI), SkillOpt is best or tied-best on all 52 evaluated cells. On GPT-5.5: +23.5 points in direct chat, +24.8 in Codex, +19.1 in Claude Code. Optimized skills transfer across model scales, between harnesses, and to nearby benchmarks.\n\nSkillOpt-Sleep (preview): a nightly offline companion for local coding agents that reviews past sessions, replays recurring tasks, and consolidates validated skills behind a held-out gate.",
@@ -2294,7 +2312,8 @@
         "claude-code",
         "codex",
         "agent-skills",
-        "research"
+        "research",
+        "meta-skill"
       ],
       "workflows": [],
       "license": "MIT",
@@ -2723,7 +2742,8 @@
         "durable-execution",
         "visual-programming",
         "human-in-the-loop",
-        "rust"
+        "rust",
+        "orchestration"
       ],
       "workflows": [],
       "license": "O-Saasy-1.0",

@@ -5,7 +5,7 @@ url: "https://github.com/armelhbobdad/bmad-module-skill-forge"
 category: skill-generator
 summary: strong fit for bioinformatics tool skill generation; start with Brief tier on samtools
 install: npx bmad-module-skill-forge install
-tags: [skill-generation, provenance, ast, cli-tools]
+tags: [skill-generation, provenance, ast, cli-tools, meta-skill]
 workflows: [scRNA-seq, spatial]
 reviewed: 2026-05-25
 acquired: 2026-05-25

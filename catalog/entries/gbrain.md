@@ -5,7 +5,7 @@ url: "https://github.com/garrytan/gbrain"
 category: framework
 decision_status: rejected
 summary: kb wiki already provides persistent typed records with relationships and search
-tags: [memory-graph, vector-search, kb]
+tags: [memory-graph, vector-search, kb, memory]
 reviewed: 2026-05-25
 acquired: 2026-05-25
 supersedes: []
