@@ -7,8 +7,8 @@ import type { Category } from './schema.js';
 
 const REFERENCE_CATEGORIES = new Set(['reference', 'agent-pattern']);
 
-const INSTALLABLE_BODY = `\n## What it does\n\n## Why this verdict\n\n## Mechanical details\n\n## Security\n`;
-const REFERENCE_BODY = `\n## What it says\n\n## Why this verdict\n\n## What to adopt\n\n## Security\n`;
+const INSTALLABLE_BODY = `\n## What it does\n\n## Assessment\n\n## Mechanical details\n\n## Security\n`;
+const REFERENCE_BODY = `\n## What it says\n\n## Assessment\n\n## What to adopt\n\n## Security\n`;
 
 interface ScaffoldOptions {
   dir: string;
@@ -42,8 +42,7 @@ export async function scaffoldEntry(options: ScaffoldOptions): Promise<ScaffoldR
 
   lines.push(
     `category: ${options.category}`,
-    `verdict: pilot`,
-    `verdict_reason: ""`,
+    `summary: ""`,
     `tags: []`,
     `reviewed: ${today}`,
     `acquired: ${today}`,
