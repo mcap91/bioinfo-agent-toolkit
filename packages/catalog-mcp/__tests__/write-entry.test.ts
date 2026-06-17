@@ -10,8 +10,7 @@ name: test-tool
 title: "Test Tool"
 url: https://github.com/org/test-tool
 category: skill
-verdict: pilot
-verdict_reason: "looks promising"
+summary: "looks promising"
 tags: [testing]
 reviewed: 2026-06-03
 ---
@@ -20,7 +19,7 @@ reviewed: 2026-06-03
 
 A test tool.
 
-## Why this verdict
+## Assessment
 
 Looks good.
 
