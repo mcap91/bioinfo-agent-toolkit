@@ -3,8 +3,7 @@ name: architect-loop
 title: Architect Loop
 url: "https://github.com/DanMcInerney/architect-loop"
 category: agent-pattern
-verdict: pilot
-verdict_reason: "Research-backed cross-vendor agent loop with strong separation of concerns; excellent design patterns for gated, worktree-isolated multi-agent builds"
+summary: "Research-backed cross-vendor agent loop with strong separation of concerns; excellent design patterns for gated, worktree-isolated multi-agent builds"
 tags: [multi-agent, cross-vendor, claude-code-skill, codex, worktree-isolation, gates, research, orchestration]
 workflows: []
 reviewed: 2026-06-16
@@ -32,8 +31,7 @@ Two Claude Code skills that wire Claude Fable (architect/planner/reviewer) with 
 
 Repo is the only memory: `docs/HANDOFF.md` (pruned each session), `docs/gates/`, `docs/lanes/`, git history.
 
-## Why this verdict
-
+## Assessment
 **Pilot.** This is one of the most thoughtfully designed multi-agent orchestration patterns in the catalog:
 
 - **Research-backed design** — every choice is cited in DESIGN.md with a failure-mode table; not heuristics but observed evidence

@@ -3,8 +3,7 @@ name: openspace
 title: OpenSpace
 url: "https://github.com/HKUDS/OpenSpace"
 category: framework
-verdict: watch
-verdict_reason: "Compelling skill-evolution engine for Claude Code agents but very new (v0.1.0), self-published benchmark, and significant security surface from community skill ingestion"
+summary: "Compelling skill-evolution engine for Claude Code agents but very new (v0.1.0), self-published benchmark, and significant security surface from community skill ingestion"
 tags: [skill-evolution, mcp-server, claude-code, agent-learning, skill-sharing, token-efficiency]
 workflows: []
 reviewed: 2026-06-10
@@ -22,8 +21,7 @@ Skills are stored in SQLite with a full version DAG and quality metrics (applied
 
 The GDPVal benchmark (self-published, 50 tasks, 6 industries) reports 4.2x higher "income capture" and 46% fewer tokens vs. a ClawWork baseline using the same backbone LLM. Integration is two steps: add the MCP server to `.mcp.json` and copy two host skills (`delegate-task`, `skill-discovery`) into the agent's skills directory.
 
-## Why this verdict
-
+## Assessment
 The concept is directly aligned with this toolkit's domain — automating skill quality improvement for Claude Code is exactly the problem the toolkit addresses. The MCP-first integration and SKILL.md compatibility mean it could slot in without workflow changes.
 
 However, several factors argue for watching rather than piloting now:

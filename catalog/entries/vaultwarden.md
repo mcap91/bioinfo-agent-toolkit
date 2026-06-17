@@ -3,8 +3,8 @@ name: vaultwarden
 title: Vaultwarden
 url: "https://github.com/dani-garcia/vaultwarden"
 category: framework
-verdict: adopt
-verdict_reason: Production-grade self-hosted Bitwarden-compatible password server in Rust; fraction of the resource footprint of the official server
+decision_status: adopted
+summary: Production-grade self-hosted Bitwarden-compatible password server in Rust; fraction of the resource footprint of the official server
 tags: [password-manager, self-hosted, bitwarden, rust, docker, security, secrets]
 workflows: []
 reviewed: 2026-06-10
@@ -23,8 +23,7 @@ The server implements nearly the complete Bitwarden feature surface: personal va
 
 Vaultwarden is distributed as container images on ghcr.io, docker.io, and quay.io, and can also be built from source. It uses the Rocket web framework and stores data in SQLite (default), MySQL, or PostgreSQL. The recommended production setup pairs it with a TLS-terminating reverse proxy (nginx, Caddy, Traefik).
 
-## Why this verdict
-
+## Assessment
 Vaultwarden is the de-facto standard for self-hosted password management in the open-source community. It is extremely mature — originally released as `bitwarden_rs`, it has been actively maintained for years with a large contributor base and a thorough GitHub issue tracker. The Rust implementation gives strong memory-safety guarantees compared to the official .NET server. One of its active maintainers is now employed by Bitwarden and permitted to contribute on their own time, adding implicit alignment with upstream protocol changes.
 
 For individuals, families, and small organizations that want full Bitwarden client compatibility without the overhead of the official server stack (which requires Docker Compose with multiple services), Vaultwarden is an unambiguous adopt. The container image is small, startup is fast, and the SQLite default makes backup trivial (single file). The `adopt` verdict reflects that this is battle-tested infrastructure, not experimental software.

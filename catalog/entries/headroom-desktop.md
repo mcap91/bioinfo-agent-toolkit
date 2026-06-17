@@ -3,8 +3,7 @@ name: headroom-desktop
 title: Headroom Desktop
 url: "https://github.com/gglucass/headroom-desktop"
 category: plugin
-verdict: watch
-verdict_reason: "Solid local-first Claude Code cost optimizer with hook injection into ~/.claude/settings.json — worth monitoring given agent-lockdown relevance, but macOS-only stable and single-contributor"
+summary: "Solid local-first Claude Code cost optimizer with hook injection into ~/.claude/settings.json — worth monitoring given agent-lockdown relevance, but macOS-only stable and single-contributor"
 tags: [token-optimization, cost-reduction, claude-code, proxy, compression, tauri, hook]
 workflows: []
 reviewed: 2026-06-10
@@ -25,8 +24,7 @@ Compression benchmarks (self-reported from the underlying `headroom` library): J
 
 Stable target is macOS 14+ on Apple Silicon. Linux x86_64 builds exist as an experimental preview covering only the core proxy flow.
 
-## Why this verdict
-
+## Assessment
 **Watch** rather than pilot for three reasons:
 
 1. **Hook injection into agent settings.** The install path writes a `PreToolUse` hook and redirects `ANTHROPIC_BASE_URL` — the exact surface that the `agent-lockdown` skill is designed to harden and audit. Adopting a tool that modifies this surface deserves careful review before use in production agentic workflows.

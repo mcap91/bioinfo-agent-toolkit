@@ -2,8 +2,7 @@
 name: claude-decision-pressure-test-and-context-handoff
 title: "Claude Decision Pressure-Test & Context Handoff Prompts"
 category: reference
-verdict: note
-verdict_reason: Two reusable prompting patterns — steelman/red-team verdict loop and structured context handoff — worth keeping as copy-paste references
+summary: Two reusable prompting patterns — steelman/red-team verdict loop and structured context handoff — worth keeping as copy-paste references
 tags: [prompting, decision-making, context-management, red-teaming, handoff]
 workflows: []
 reviewed: 2026-06-10
@@ -25,8 +24,7 @@ A technique for recovering from long-running chats where context degradation cau
 
 Both techniques include complete copy-paste prompts.
 
-## Why this verdict
-
+## Assessment
 These are lightweight, zero-install prompting patterns applicable to any Claude workflow. Neither requires code, infrastructure, or external tools. The handoff pattern in particular is directly relevant to this project (kb-dispatch already uses a similar structured-handoff approach). They belong in the catalog as a note/reference rather than a full adopt verdict because they are informal community techniques with no formal publication, versioning, or maintenance.
 
 ## What to adopt

@@ -3,8 +3,7 @@ name: langflow
 title: Langflow
 url: "https://github.com/langflow-ai/langflow"
 category: framework
-verdict: watch
-verdict_reason: Heavy visual-builder platform with native MCP-server export; too large for direct adoption but worth monitoring for MCP workflow integration patterns.
+summary: Heavy visual-builder platform with native MCP-server export; too large for direct adoption but worth monitoring for MCP workflow integration patterns.
 tags: [visual-builder, agentic-workflows, mcp-server, llm-orchestration, multi-agent, python, open-source]
 workflows: []
 reviewed: 2026-06-10
@@ -19,8 +18,7 @@ overlaps: []
 
 Langflow is an open-source platform for visually building, testing, and deploying LLM-powered agent workflows. Users drag-and-drop components (LLM nodes, vector store connectors, tool nodes, logic gates) into a graph in a browser UI, then Langflow executes them as a Python-backed pipeline. Every completed flow can be published as a REST API endpoint or as an MCP server, making it callable from any MCP client. It ships with support for all major LLM providers (OpenAI, Anthropic, Groq, etc.), vector databases (Chroma, Pinecone, Weaviate, etc.), and common AI tools out of the box. A desktop app (Windows/macOS) bundles all Python dependencies for zero-setup local use.
 
-## Why this verdict
-
+## Assessment
 Watch — Langflow is a well-maintained, actively developed project backed by DataStax with a large contributor base (1000+). Its MCP-server export feature is directly relevant to this toolkit's direction (catalog-mcp, kb-dispatch), and its multi-agent orchestration patterns are worth studying. However, the framework is architecturally misaligned with the code-first, CLI-driven philosophy here: it requires running a persistent web server, brings a heavy frontend + Python dependency graph, and targets visual/no-code users more than programmatic agent authors. It is not something to install or depend on directly, but the MCP-export and visual-debugging patterns are worth tracking as the agentic tooling space matures.
 
 ## Mechanical details

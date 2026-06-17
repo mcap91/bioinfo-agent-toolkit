@@ -3,8 +3,8 @@ name: spiderbrain-v3
 title: Spiderbrain V3
 url: "https://github.com/SaroirCommunity/Spiderbrain-V3"
 category: framework
-verdict: skip
-verdict_reason: BSL license; master/column concept is the key takeaway for kb graph
+decision_status: rejected
+summary: BSL license; master/column concept is the key takeaway for kb graph
 tags: [dependency-graph, token-reduction, scoring, kb]
 reviewed: 2026-05-25
 acquired: 2026-05-25
@@ -21,8 +21,7 @@ Generates dependency graphs with importance scoring, file rankings, and per-clus
 
 Measured token reduction on a 154-node Next.js project: 77% tool call reduction (30 → 7), 84% input token savings (42.4K → 6.8K tokens), 70% API cost reduction.
 
-## Why this verdict
-
+## Assessment
 BSL 1.1 license on the core (commercial production requires a paid license; converts to Apache 2.0 after 4 years) rules out adoption. The table below shows where Spiderbrain V3 diverges from kb graph — primarily in its token-optimization purpose and scoring model.
 
 | Feature | Spiderbrain V3 | kb graph |

@@ -3,8 +3,7 @@ name: googleworkspace-cli
 title: Google Workspace CLI (gws)
 url: "https://github.com/googleworkspace/cli"
 category: cli-tool
-verdict: pilot
-verdict_reason: Rust CLI with agent-first JSON output and 100+ bundled SKILL.md files covering all Workspace APIs; pre-v1.0 with breaking changes expected
+summary: Rust CLI with agent-first JSON output and 100+ bundled SKILL.md files covering all Workspace APIs; pre-v1.0 with breaking changes expected
 tags: [google-workspace, gmail, drive, calendar, sheets, agent-skills, oauth, json-output, rust]
 workflows: []
 reviewed: 2026-06-10
@@ -22,8 +21,7 @@ The repository bundles 100+ SKILL.md files (one per supported API plus higher-le
 
 Authentication covers interactive OAuth, headless/CI credential export, service accounts, and pre-obtained access tokens. Credentials are encrypted at rest with AES-256-GCM using the OS keyring (or a file fallback).
 
-## Why this verdict
-
+## Assessment
 **Pilot.** The agent-skills bundle is immediately useful for this repo's focus on reusable Claude Code workflow components — 100+ SKILL.md files matching the catalog's native format is a large, directly applicable asset. The CLI itself is well-designed (structured JSON, typed exit codes, Model Armor integration), and the Apache-2.0 license is clean.
 
 The blockers for `adopt` are: (1) explicitly pre-v1.0 with documented breaking changes expected, (2) the full recommended OAuth scope preset (85+ scopes) is blocked for unverified apps, requiring careful scope selection in practice, and (3) runtime Discovery Document fetching introduces a network dependency at command-parse time with no documented certificate pinning. These are manageable but warrant piloting before committing workflows to it.

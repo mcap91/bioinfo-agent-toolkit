@@ -3,8 +3,7 @@ name: inbox-zero
 title: Inbox Zero
 url: "https://github.com/elie222/inbox-zero"
 category: framework
-verdict: note
-verdict_reason: "AI-powered self-hostable email management app — strong open-source email assistant, not a developer/agent toolkit."
+summary: "AI-powered self-hostable email management app — strong open-source email assistant, not a developer/agent toolkit."
 tags: [email, ai-assistant, gmail, productivity, self-hosted, open-source]
 workflows: []
 reviewed: 2026-06-10
@@ -23,8 +22,7 @@ Beyond basic AI sorting, Inbox Zero offers: a bulk unsubscriber that detects and
 
 The project is positioned as an open-source, self-hostable alternative to Fyxer. It has a hosted SaaS offering at getinboxzero.com and supports self-hosting via a one-command Docker CLI setup (`npx @inbox-zero/cli setup`). The stack is Next.js + Prisma + Upstash + Turborepo, with Docker images published on every main-branch commit.
 
-## Why this verdict
-
+## Assessment
 Inbox Zero is a polished, actively maintained consumer/prosumer email productivity application. It is not a developer toolkit, agent framework, MCP server, or composable skill — it is a standalone platform for managing one's personal inbox. Its value is clear for end-user email management, but it does not integrate into agentic coding workflows or bioinformatics pipelines in any direct way.
 
 A `note` verdict is appropriate here: the project is cataloged for awareness (it's a strong open-source AI email tool worth knowing about), but it is not something to adopt into agentic development workflows. The Slack/Telegram integration and "AI rules in plain English" design pattern are worth noting as reference points for anyone building similar AI-driven communication automation.

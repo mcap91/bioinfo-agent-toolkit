@@ -3,8 +3,7 @@ name: opencode-fff-search
 title: opencode-fff-search
 url: "https://github.com/ozgurulukir/opencode-fff-search"
 category: plugin
-verdict: watch
-verdict_reason: "Drop-in OpenCode grep/glob replacement with Rust-backed in-memory index, frecency ranking, and SIMD literal matching — 3-10x faster than process-spawning ripgrep at scale."
+summary: "Drop-in OpenCode grep/glob replacement with Rust-backed in-memory index, frecency ranking, and SIMD literal matching — 3-10x faster than process-spawning ripgrep at scale."
 tags: [opencode, search, grep, glob, rust, performance, fuzzy-search, lmdb, frecency, simd]
 workflows: []
 reviewed: 2026-06-10
@@ -27,8 +26,7 @@ opencode-fff-search is an OpenCode plugin that overrides the agent's built-in `g
 
 Benchmarks on the nodejs/node repo (48K files): single grep ~15ms vs ~45ms for a spawned ripgrep; 100 consecutive greps under 1 second vs ~5 minutes.
 
-## Why this verdict
-
+## Assessment
 **watch** — The search optimization patterns here (N-API in-process engine, frecency/LMDB, bigram pre-filter, SIMD matching, graceful fallback chain) are directly applicable to any AI coding agent that performs frequent file search. While this plugin targets OpenCode specifically, the architecture is a reference implementation worth tracking. The 100x throughput advantage on repeated searches is significant for agentic loops. The project is MIT-licensed, has 172 tests, and has a well-documented fallback strategy for the known recall gap. Not cataloged for immediate adoption (requires OpenCode 1.14+), but the patterns are valuable.
 
 ## Mechanical details

@@ -3,8 +3,7 @@ name: context-graph-compressor
 title: Context Graph Compressor
 url: "https://github.com/Adityapal67/context-graph-compressor"
 category: skill
-verdict: pilot
-verdict_reason: Structured JSON graph handoff with importance tagging and cross-LLM portability beats plain-text handoff skills; too new/single-contributor to adopt outright
+summary: Structured JSON graph handoff with importance tagging and cross-LLM portability beats plain-text handoff skills; too new/single-contributor to adopt outright
 tags: [context-management, handoff, token-reduction, json, claude-ai, cross-llm, session-resume]
 workflows: []
 reviewed: 2026-06-10
@@ -19,8 +18,7 @@ overlaps: [agent-session-resume]
 
 Compresses a long claude.ai chat conversation into a portable, minimal JSON context graph that can be pasted into a new session with any LLM. Outputs two modes: `compact` (~300–500 tokens, abbreviated keys for minimum token cost) and `readable` (full prose, for archiving or sharing). The graph encodes typed nodes (fact, decision, problem, goal, code, context), per-node importance (h/m/l), and optional relationship edges (depends_on, resolves, supersedes). Low-importance nodes are dropped in compact mode. A `handoff` top-level field provides a plain-English re-entry prompt for the receiving LLM. Installed via claude.ai Settings → Skills (upload `.skill` file). Triggered by natural-language phrases: "compress this chat", "handoff to new chat", "too many tokens, start fresh".
 
-## Why this verdict
-
+## Assessment
 The core idea is sound and meaningfully differentiated from existing handoff approaches: most handoff skills produce markdown bullet lists that are readable but not machine-parseable and carry no importance ranking. The structured JSON schema with typed nodes and h/m/l tagging lets a receiving LLM (or a program) prioritize what it must know vs. what is optional — a real improvement for context compression accuracy. Cross-LLM portability (GPT-4, Gemini, Mistral) is a genuine differentiator over Claude-only compaction. That said, the repo is newly created by a single contributor with no release history, no tests, and no CI; it is a pure prompt skill (SKILL.md only), so "testing" is qualitative. The claimed 97% token reduction is a headline number for a specific example, not a validated benchmark. Pilot is appropriate: worth adopting for claude.ai sessions where context overflow is a real problem, but should be evaluated against actual compression quality before treating it as a reliable production handoff mechanism.
 
 ## Mechanical details

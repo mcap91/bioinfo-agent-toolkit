@@ -3,8 +3,7 @@ name: scheduled-multi-agent-coordinator
 title: Scheduled Multi-Agent Coordinator Pattern
 url: "https://github.com/nanocoai/nanoclaw"
 category: agent-pattern
-verdict: note
-verdict_reason: Useful architecture pattern for persistent scheduled agents with coordinator + messaging; NanoClaw and Hermes are mature implementations
+summary: Useful architecture pattern for persistent scheduled agents with coordinator + messaging; NanoClaw and Hermes are mature implementations
 tags: [multi-agent, scheduling, coordinator, persistent-agent, messaging-integration, codex, nanoclaw, hermes]
 workflows: []
 reviewed: 2026-06-16
@@ -30,8 +29,7 @@ The post names two existing open-source multi-agent loop systems as starting poi
 
 **Hermes Agent** (hermes-agent.org by Nous Research) — a self-hosted multi-agent framework with a built-in learning loop (writes reusable skills after complex tasks). 32k+ GitHub stars, 200+ LLM backends, 40+ tools. The opencode-hermes-multiagent variant provides 17 specialized coding agents. MIT licensed, supports Linux/macOS/WSL2.
 
-## Why this verdict
-
+## Assessment
 **Note.** The pattern itself — scheduled persistent agents with coordinator oversight and messaging integration — is architecturally relevant to how we might scale automated workflows. However:
 
 - This is a concept/wish-list, not a deployable tool

@@ -3,8 +3,7 @@ name: agent-session-resume
 title: Agent Session Resume
 url: "https://github.com/hacktivist123/agent-session-resume"
 category: skill
-verdict: note
-verdict_reason: "Cross-agent session resume skill with structured checkpoint workflow; overlaps with our handoff skill but adds multi-agent-platform support (Codex, Cursor, Antigravity, OpenCode)"
+summary: "Cross-agent session resume skill with structured checkpoint workflow; overlaps with our handoff skill but adds multi-agent-platform support (Codex, Cursor, Antigravity, OpenCode)"
 tags: [handoff, session-resume, cross-agent, claude-code, codex, cursor]
 workflows: []
 reviewed: 2026-06-09
@@ -27,8 +26,7 @@ NOT DONE.
 Supports Claude Code, Codex, Cursor, Antigravity, and OpenCode. Installs via
 `npx skills add hacktivist123/agent-session-resume` or as a Claude Code plugin.
 
-## Why this verdict
-
+## Assessment
 **Note** rather than pilot or adopt. We already have a `handoff` skill in this repo that
 generates self-contained handoff prompts for fresh CLI agents and subagents. This tool
 solves a similar problem from the receiving side (resume) rather than the sending side

@@ -3,8 +3,7 @@ name: cobalt
 title: Cobalt
 url: "https://github.com/imputnet/cobalt"
 category: cli-tool
-verdict: note
-verdict_reason: "General-purpose media downloader with a self-hosted API; no agent, skill, or bioinformatics relevance."
+summary: "General-purpose media downloader with a self-hosted API; no agent, skill, or bioinformatics relevance."
 tags: [media-download, self-hosted, api, proxy, youtube, video]
 workflows: []
 reviewed: 2026-06-10
@@ -19,8 +18,7 @@ overlaps: []
 
 Cobalt is a self-hosted media downloading service. Users paste a public video/audio URL (YouTube, Twitter/X, TikTok, Instagram, etc.) into the web frontend or call the REST API, and cobalt streams the file back without caching it — acting as a transparent proxy to the platform's CDN. The monorepo ships three components: an API server (Node.js), a web frontend (SvelteKit), and shared packages. It is designed to be ad-free, tracker-free, and paywall-free, and explicitly limits itself to freely accessible public content only.
 
-## Why this verdict
-
+## Assessment
 Cobalt is a polished, actively maintained utility for downloading public media. It has no connection to agent orchestration, skill authoring, bioinformatics pipelines, or Claude Code tooling — the entire scope is consumer media retrieval. It is cataloged as `note` because it could be useful as a data-acquisition utility in a workflow that needs to pull publicly available video/audio data, but it offers nothing to adopt or pilot for the agent-toolkit use cases this catalog serves. Watch/pilot would overstate its relevance.
 
 ## Mechanical details

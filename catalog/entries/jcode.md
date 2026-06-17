@@ -3,8 +3,7 @@ name: jcode
 title: jcode
 url: "https://github.com/1jehuang/jcode"
 category: framework
-verdict: watch
-verdict_reason: "Feature-rich Rust coding agent harness with exceptional performance (14ms boot, 28MB RAM), swarm collaboration, and 30+ provider integrations; compelling alternative harness to watch"
+summary: "Feature-rich Rust coding agent harness with exceptional performance (14ms boot, 28MB RAM), swarm collaboration, and 30+ provider integrations; compelling alternative harness to watch"
 tags: [cli-agent, rust, multi-provider, swarm, memory, browser-automation, performance]
 workflows: []
 reviewed: 2026-06-16
@@ -21,8 +20,7 @@ A Rust-based coding agent harness (Claude Code / Codex alternative) optimized fo
 
 Notable features: Swarm mode (multiple agents in the same repo with automatic conflict detection and messaging), semantic memory system (embeds turns as vectors, retrieves related memories via cosine similarity, ambient consolidation), browser automation (Firefox Agent Bridge), self-dev mode (agent modifies its own source, builds, tests, and hot-reloads), side panels with inline Mermaid rendering, session resume from other harnesses (Claude Code, Codex, OpenCode, Pi), adaptive agent grep (adds file structure info to grep results), and interleaved input (sends while agent works without breaking KV cache).
 
-## Why this verdict
-
+## Assessment
 The performance numbers are legitimate and impressive — if running many concurrent sessions, jcode's ~10MB per session vs Claude Code's ~213MB is a 20x difference at scale. The swarm feature (automatic file-edit conflict detection between agents) solves a real problem for multi-agent repo work. The memory system with ambient consolidation is more sophisticated than most harness-level memory. However, watch rather than pilot because: (1) we're invested in the Claude Code ecosystem with plugins, hooks, and skills, (2) the self-dev mode where the agent modifies its own source code is a security concern, (3) no clear license file identified, and (4) the project is ambitious enough that stability/maturity questions apply. Worth monitoring for the swarm patterns and memory architecture ideas.
 
 ## Mechanical details

@@ -3,8 +3,7 @@ name: opendataloader-pdf
 title: OpenDataLoader PDF
 url: "https://github.com/opendataloader-project/opendataloader-pdf"
 category: cli-tool
-verdict: pilot
-verdict_reason: "Top-benchmarked open-source PDF parser with bounding boxes, formula extraction, and RAG-ready output — worth piloting for bioinformatics literature ingestion before committing."
+summary: "Top-benchmarked open-source PDF parser with bounding boxes, formula extraction, and RAG-ready output — worth piloting for bioinformatics literature ingestion before committing."
 tags: [pdf, rag, ocr, markdown, json, bioinformatics, langchain, accessibility]
 workflows: []
 reviewed: 2026-06-10
@@ -19,8 +18,7 @@ overlaps: [markitdown]
 
 OpenDataLoader PDF converts PDFs to structured Markdown, JSON (with per-element bounding boxes), HTML, or Tagged PDF. It runs in two modes: a fast deterministic local mode (Java-based, ~60 pages/sec on CPU) and a hybrid mode that routes complex pages to a local AI backend for higher accuracy. Hybrid mode adds OCR (80+ languages), borderless table extraction, LaTeX formula extraction, and AI-generated chart/image descriptions. A built-in prompt injection filter strips hidden text, off-page content, and invisible layers before content reaches an LLM. LangChain integration is available via `langchain-opendataloader-pdf`. There is also an accessibility pipeline that auto-tags untagged PDFs into Tagged PDFs (free, Apache 2.0); full PDF/UA export is an enterprise add-on.
 
-## Why this verdict
-
+## Assessment
 Pilot: the feature set is directly relevant to bioinformatics literature pipelines — multi-column layout handling, LaTeX formula extraction, scanned-paper OCR, and JSON bounding boxes for source citations in RAG answers. The self-reported benchmark places it #1 overall (0.907) across 200 real-world PDFs, ahead of docling (0.882), marker (0.861), and pymupdf4llm (0.732). Apache 2.0 with no copyleft obligations is clean for commercial or research use. The main reservations are: (1) Java 11+ is a heavyweight runtime dependency not always present in Python/bio environments; (2) benchmarks are self-reported and need independent confirmation; (3) each `convert()` call spawns a JVM process, so naive loop usage is slow — batching is required. These are manageable but warrant a pilot before adoption.
 
 ## Mechanical details

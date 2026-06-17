@@ -3,8 +3,7 @@ name: claude-meta-skill
 title: Claude Meta-Skill
 url: "https://github.com/YYH211/Claude-meta-skill"
 category: reference
-verdict: note
-verdict_reason: "Curated collection of 11 Claude Code skills; mostly Chinese-language or general-dev focused, with significant overlap to existing catalog entries"
+summary: "Curated collection of 11 Claude Code skills; mostly Chinese-language or general-dev focused, with significant overlap to existing catalog entries"
 tags: [claude-code, skills, collection, prompt-engineering, mcp, refactoring]
 workflows: []
 reviewed: 2026-06-16
@@ -19,8 +18,7 @@ overlaps: [bmad-skill-forge, obsidian-skills-kepano, one-skill-to-rule-them-all,
 
 A curated GitHub repository containing 11 ready-to-use Claude Code skills packaged as SKILL.md files with YAML frontmatter. Skills cover: skill creation guidance (create-skill-file), prompt optimization, deep reading analysis using 10+ thinking frameworks (SCQA, 5W2H, First Principles, etc.), DRY refactoring, frontend design, MCP server building, daily AI news aggregation, FastGPT workflow JSON generation, Manus-style file-based planning (3-file pattern), local git diff review, and Chinese software copyright registration material preparation. Installation is copy-based (`cp -r skill-dir .claude/skills/`).
 
-## Why this verdict
-
+## Assessment
 Several skills are Chinese-language only (prompt-optimize, dry-refactoring, frontend-design, local-diff-review, software-copyright-writer), limiting immediate utility. The general-development focus (frontend design, DRY refactoring) has no bioinformatics relevance. Key overlaps exist: create-skill-file duplicates our writing-skills workflow, planning-with-files duplicates our plan-me-this skill, and mcp-builder covers ground already in the catalog. The deep-reading-analyst skill (10+ thinking frameworks) and the 3-file planning pattern are the most novel ideas worth noting as reference material. No clear adoption path — cherry-picking individual skills is more practical than adopting the collection.
 
 ## Mechanical details

@@ -3,8 +3,7 @@ name: headroom
 title: Headroom
 url: "https://github.com/chopratejas/headroom"
 category: framework
-verdict: watch
-verdict_reason: "Powerful context compression with real benchmarks, but proxy/MITM position and headroom learn's CLAUDE.md writes are significant trust risks for adoption without review"
+summary: "Powerful context compression with real benchmarks, but proxy/MITM position and headroom learn's CLAUDE.md writes are significant trust risks for adoption without review"
 tags: [context-compression, token-reduction, mcp-server, proxy, memory, agent-wrap, claude-code]
 workflows: []
 reviewed: 2026-06-10
@@ -33,8 +32,7 @@ Additional features:
 
 Compression algorithms: SmartCrusher (JSON), CodeCompressor (AST-aware for Python/JS/Go/Rust/Java/C++), Kompress-base (HuggingFace ML model trained on agentic traces), image compression (40–90% via ML router).
 
-## Why this verdict
-
+## Assessment
 Watch rather than pilot or adopt for several reasons:
 
 1. **Proxy/MITM position**: The proxy and wrap modes sit in the critical path of all LLM traffic, including prompts containing secrets, credentials, and sensitive data. This is a significant trust boundary to cross without independent security review.

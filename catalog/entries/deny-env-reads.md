@@ -3,8 +3,7 @@ name: deny-env-reads
 title: Deny .env Reads via Permissions
 url: "https://code.claude.com/docs/en/settings"
 category: reference
-verdict: note
-verdict_reason: Useful security hygiene tip for Claude Code projects; documents a built-in feature rather than a new tool
+summary: Useful security hygiene tip for Claude Code projects; documents a built-in feature rather than a new tool
 tags: [security, permissions, claude-code, env-files, secrets]
 workflows: []
 reviewed: 2026-06-10
@@ -33,8 +32,7 @@ A practical tip for preventing Claude Code from reading sensitive environment fi
 
 This uses Claude Code's built-in permission system to enforce the restriction at the harness level, making it impossible for the agent to read those paths regardless of prompt behavior.
 
-## Why this verdict
-
+## Assessment
 **Note.** This documents a built-in Claude Code feature — there's nothing to install or adopt as external tooling. It's worth recording as a reference because: (1) the failure mode it addresses (agent reading `.env` despite prompt instructions) is real and common, (2) the fix is non-obvious to users who haven't read the settings docs, and (3) it complements the existing "Claude Code Remote Prompt Hardening" entry. Not elevated to `adopt` because it's a single config snippet, not a tool or pattern to integrate.
 
 ## Mechanical details / What to adopt

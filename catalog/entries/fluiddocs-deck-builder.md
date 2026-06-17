@@ -3,8 +3,7 @@ name: fluiddocs-deck-builder
 title: FluidDocs Deck Builder
 url: "https://github.com/FluidForm-ai/fluiddocs-deck-builder"
 category: plugin
-verdict: note
-verdict_reason: Well-built skill/plugin pack for HTML slide decks; interesting multi-reviewer architecture but outside bioinformatics workflows
+summary: Well-built skill/plugin pack for HTML slide decks; interesting multi-reviewer architecture but outside bioinformatics workflows
 tags: [presentation, slides, skill-pack, claude-code-plugin, html, pdf-import]
 workflows: []
 reviewed: 2026-06-10
@@ -19,8 +18,7 @@ overlaps: []
 
 Open-source Claude Code plugin that generates interactive HTML slide decks from one-line briefs. Ships five type-correct deck spines (pitch 14 slides, sales 11, launch 12, keynote 28, all-hands 15), a PDF/PPTX importer, and a critique skill. Each generated deck is a single self-contained HTML file with inline editing (press E), localStorage autosave, and Ctrl+S download. A multi-reviewer quality pipeline (Brand, Copy, Layout) runs in parallel when subagents are available. Optional deploy to fluiddocs.ai via included shell script.
 
-## Why this verdict
-
+## Assessment
 The skill architecture is well-executed — type-correct content spines per deck type, multi-reviewer pipeline, and clean SKILL.md format make it a good reference for how to structure a skill pack. However, slide decks are outside the bioinformatics/agent-tooling focus of this catalog. Note for architecture reference; no adoption path.
 
 ## Mechanical details

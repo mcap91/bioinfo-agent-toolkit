@@ -3,8 +3,7 @@ name: cli-anything
 title: CLI-Anything
 url: "https://github.com/HKUDS/CLI-Anything"
 category: framework
-verdict: pilot
-verdict_reason: "Generates production-grade, agent-native CLI harnesses from any codebase via a 7-phase pipeline; directly integrates with Claude Code as a plugin and emits SKILL.md files for skill discovery."
+summary: "Generates production-grade, agent-native CLI harnesses from any codebase via a 7-phase pipeline; directly integrates with Claude Code as a plugin and emits SKILL.md files for skill discovery."
 tags: [cli-generation, agent-native, skill-generation, claude-code-plugin, python, bioinformatics-adjacent]
 workflows: []
 reviewed: 2026-06-10
@@ -22,8 +21,7 @@ Two entry points exist: (1) **CLI-Hub** (`pip install cli-anything-hub`) — a p
 
 Pre-built harnesses with bioinformatics relevance include UniMol Tools (molecular property prediction), QGIS (geospatial analysis), CloudAnalyzer (point cloud QA), and 3MF (mesh geometry for 3D printing). The project has 2,461 passing tests (100% pass rate) across unit and E2E layers, and publishes an arXiv technical report (2606.03854).
 
-## Why this verdict
-
+## Assessment
 **Pilot** — the value proposition is high for bioinfo workflows: wrap any Python bioinformatics tool (ImageJ, RDKit, AlphaFold, DeepVariant, etc.) into a structured CLI that Claude Code can drive deterministically, without fragile UI automation. The SKILL.md output integrates directly with this project's skill infrastructure. The repo is actively maintained (PR activity through 2026-05-30), has a real test suite, and the Apache-2.0 license is clean.
 
 Caveats: generation requires a frontier-class model (Claude Sonnet/Opus 4.x) and typically needs one or more `/refine` passes to reach production quality. The pipeline runs code-generation over arbitrary target codebases, which means review of generated harnesses before adoption is essential. No bioinformatics-specific harnesses ship out of the box beyond UniMol — practitioners will need to run the generator for tools like GATK, Nextflow, or custom pipelines.

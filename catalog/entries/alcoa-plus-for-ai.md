@@ -3,8 +3,7 @@ name: alcoa-plus-for-ai
 title: AI Needs What ALCOA+ Gave Records
 url: "https://bryandownie.substack.com/p/ai-needs-what-alcoa-gave-records"
 category: reference
-verdict: note
-verdict_reason: Useful framing for regulated-AI governance but no actionable tool or framework yet — CASTEM teased but unpublished
+summary: Useful framing for regulated-AI governance but no actionable tool or framework yet — CASTEM teased but unpublished
 tags: [ai-governance, gxp, regulatory, data-integrity, pharma]
 workflows: []
 reviewed: 2026-06-10
@@ -21,8 +20,7 @@ Bryan Downie argues that generative AI breaks the traditional division of labor 
 
 Regulatory bodies (FDA, EMA, EU AI Act) are beginning to address this gap through guidance on model credibility, context-of-use, and lifecycle management. The article argues that operators need a mnemonic-level set of first principles — like ALCOA+ did for records — to reason about whether an AI system is fit to produce a given output. The author calls his forthcoming framework "CASTEM" but does not define it in this piece.
 
-## Why this verdict
-
+## Assessment
 **Note** — the article provides valuable conceptual framing for anyone working on AI in GxP/regulated bioinformatics (validation of AI-assisted pipelines, audit trails for AI-generated annotations). However, the promised actionable framework (CASTEM) is not yet published, and the piece itself is a position essay with no tool, code, or implementable methodology. Worth revisiting when CASTEM is published.
 
 ## Mechanical details / What to adopt

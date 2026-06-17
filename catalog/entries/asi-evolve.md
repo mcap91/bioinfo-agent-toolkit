@@ -3,8 +3,7 @@ name: asi-evolve
 title: ASI-Evolve
 url: "https://github.com/GAIR-NLP/ASI-Evolve"
 category: framework
-verdict: watch
-verdict_reason: "Impressive autonomous research-loop results but arbitrary code execution per round, no stated license, and very new (2026 academic repo)"
+summary: "Impressive autonomous research-loop results but arbitrary code execution per round, no stated license, and very new (2026 academic repo)"
 tags: [autonomous-research, agentic, evolutionary-search, experiment-automation, bioinformatics, llm-driven, multi-agent]
 workflows: []
 reviewed: 2026-06-10
@@ -19,8 +18,7 @@ overlaps: [era-empirical-research-assistant]
 
 ASI-Evolve is a general agentic framework that automates iterative research: it runs a LEARN → DESIGN → EXPERIMENT → ANALYZE loop autonomously, round after round, until it finds improved solutions. Three specialized agents drive each round — a Researcher (retrieves prior knowledge, proposes next candidate program), an Engineer (executes the candidate, collects structured metrics via a user-supplied eval script), and an Analyzer (distills outcomes into transferable lessons). Two persistent memory systems prevent circular exploration: a Cognition Store (FAISS-backed vector store seeded with domain knowledge, papers, and heuristics) and an Experiment Database (stores every trial with motivation, code, result, and analysis; parent selection uses UCB1, greedy, random, or MAP-Elites island sampling). The framework is domain-agnostic — the user supplies a problem description, a baseline program, and an evaluation script returning a numeric score; ASI-Evolve handles the rest. Published results cover neural architecture search (+0.97 pts over DeltaNet), pretraining data curation (+18 pts MMLU), RL algorithm design (+12.5 pts AMC32 vs GRPO), and drug-target interaction (+6.94 AUROC).
 
-## Why this verdict
-
+## Assessment
 The benchmark results are frontier-level and independently impressive. The architecture is principled — memory-augmented evolutionary search with structured logging is the right approach for automated research. However: (1) the framework is brand new (2026 academic release), with no observable test suite or CI; (2) each evaluation round executes arbitrary LLM-generated code via a user-supplied shell script, which is a meaningful operational risk if used against sensitive infrastructure or with untrusted eval environments; (3) the ERA — Empirical Research Assistant framework is already cataloged at watch with closely overlapping scope. Worth tracking as it matures and gains production hardening. The bioinformatics use case (drug-target interaction) is directly relevant to this toolkit's mission, making it worth revisiting once the repo stabilizes.
 
 ## Mechanical details
