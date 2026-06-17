@@ -1,6 +1,6 @@
 // packages/catalog-mcp/__tests__/schema.test.ts
 import { describe, it, expect } from 'vitest';
-import { entrySchema, CATEGORIES, VERDICTS } from '../src/core/schema.js';
+import { entrySchema, CATEGORIES, DECISION_STATUSES } from '../src/core/schema.js';
 
 describe('entrySchema', () => {
   const validEntry = {
@@ -8,8 +8,7 @@ describe('entrySchema', () => {
     title: 'Test Tool',
     url: 'https://github.com/org/test-tool',
     category: 'skill' as const,
-    verdict: 'pilot' as const,
-    verdict_reason: 'looks promising',
+    summary: 'looks promising',
     tags: ['testing'],
     reviewed: '2026-06-03',
   };
@@ -46,11 +45,6 @@ describe('entrySchema', () => {
     expect(result.success).toBe(false);
   });
 
-  it('rejects invalid verdict', () => {
-    const result = entrySchema.safeParse({ ...validEntry, verdict: 'maybe' });
-    expect(result.success).toBe(false);
-  });
-
   it('rejects invalid category', () => {
     const result = entrySchema.safeParse({ ...validEntry, category: 'banana' });
     expect(result.success).toBe(false);
@@ -62,13 +56,37 @@ describe('entrySchema', () => {
     if (result.success) {
       expect('status' in result.data).toBe(false);
     }
+    // .strict() also rejects a stray status key
+    expect(entrySchema.safeParse({ ...validEntry, status: 'approved' }).success).toBe(false);
   });
+});
 
-  it('ignores a stray legacy status key (zod strips unknown keys)', () => {
-    const result = entrySchema.safeParse({ ...validEntry, status: 'approved' });
-    expect(result.success).toBe(true);
-    if (result.success) {
-      expect('status' in result.data).toBe(false);
+describe('entrySchema decision_status migration', () => {
+  const base = {
+    name: 'foo-bar',
+    title: 'Foo Bar',
+    category: 'skill',
+    summary: 'one-line take',
+    tags: ['x'],
+    reviewed: '2026-06-16',
+  };
+
+  it('accepts an entry with no decision_status (open)', () => {
+    expect(entrySchema.safeParse(base).success).toBe(true);
+  });
+  it('accepts decision_status adopted/rejected', () => {
+    for (const s of DECISION_STATUSES) {
+      expect(entrySchema.safeParse({ ...base, decision_status: s }).success).toBe(true);
     }
+  });
+  it('rejects the retired verdict field via .strict()', () => {
+    expect(entrySchema.safeParse({ ...base, verdict: 'adopt' }).success).toBe(false);
+  });
+  it('rejects the retired verdict_reason field', () => {
+    expect(entrySchema.safeParse({ ...base, verdict_reason: 'x' }).success).toBe(false);
+  });
+  it('requires summary', () => {
+    const { summary, ...noSummary } = base;
+    expect(entrySchema.safeParse(noSummary).success).toBe(false);
   });
 });
