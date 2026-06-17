@@ -42,3 +42,7 @@ OpenRouter is a unified API gateway that routes LLM requests to multiple provide
 - **Data privacy:** All prompts and completions transit through OpenRouter servers before reaching the downstream provider. Users should review OpenRouter's data retention policy (they state they do not train on user data). Sensitive prompts are exposed to both OpenRouter and the downstream provider.
 - **Maintenance:** Actively maintained commercial service with regular model additions.
 - **security_flags rationale:** `proprietary-saas` (closed source), `credentials-required` (API key needed), `data-leaves-to-third-party` (prompts transit through OpenRouter before reaching the provider).
+
+## Usage notes
+
+- Use the OpenRouter model rankings (openrouter.ai/rankings) to scout and compare models when testing local/open LLMs.
