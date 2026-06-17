@@ -43,3 +43,5 @@ Note rather than watch because: (1) the platform is enterprise-focused with GPU-
 ## Usage notes
 
 - Pair with the OpenRouter rankings (openrouter.ai/rankings) to scout open models, then pull/test them from this build catalog.
+
+- **Claude Code proxy technique:** Clone a proxy repo, run a local server, point `ANTHROPIC_BASE_URL` to localhost, add NVIDIA API key, and map Claude models to NIM-hosted open-source models (e.g. Opus → DeepSeek-V4-Pro, Sonnet → Qwen3.5-122B-A10B). This captures the Claude Code harness (tool use, agent orchestration) while routing inference to alternative models. ⚠ Verify Anthropic ToS compliance before use — the intent is supplementing Claude Code with open-source models for specific tasks, not replacing the subscription. Relevant for self-hosted LLM infrastructure planning.
