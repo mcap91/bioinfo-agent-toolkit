@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-06-17",
-  "count": 124,
+  "generated": "2026-06-18",
+  "count": 125,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -1007,6 +1007,30 @@
       ],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/ecc-plugin.md"
+    },
+    {
+      "name": "epibench",
+      "title": "EpiBench",
+      "url": "https://latch.bio/epibench",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Verifiable 106-task benchmark for AI agents on short-horizon epigenomics analysis (ATAC/ChIP/CUT&Tag/methylation); no model-harness pair passed a majority (best 45%), with failures concentrated in assay-specific scientific judgment.",
+      "body_summary": "EpiBench (arXiv:2606.13602, submitted 11 Jun 2026 by Harihara Muralidharan, Reema Baskar, Soo Hee Lee, Tim Proctor, and Kenny Workman of Latch.bio) is a **verifiable benchmark for short-horizon epigenomics analysis**. It deconstructs real analysis workflows into 106 deterministic evaluations and…",
+      "tags": [
+        "benchmark",
+        "epigenomics",
+        "evaluation",
+        "bioinformatics",
+        "agents"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [
+        "license-unconfirmed",
+        "dataset-availability-unconfirmed"
+      ],
+      "reviewed": "2026-06-18",
+      "path": "catalog/entries/epibench.md"
     },
     {
       "name": "era-empirical-research-assistant",
