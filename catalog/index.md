@@ -1,6 +1,6 @@
 # Catalog Index
 
-Generated from 124 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
+Generated from 125 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
 
 ## By Decision Status
 
@@ -49,6 +49,7 @@ Generated from 124 entries in `catalog/entries/`. Regenerate with the catalog `i
 | [Distill](entries/distill.md) | cli-tool | open | Local 1.7B model pipe-filter for CLI output compression is a real problem but requires 8–16 GB RAM and relies on an unaudited HuggingFace model; overlaps with rtk. | token-reduction, cli, pipe, local-model, output-compression |
 | [DSPy](entries/dspy.md) | framework | open | Stanford NLP framework for programming (not prompting) LLMs via typed signatures, composable modules, and automatic prompt optimization; 35k stars, 433+ contributors, production use at scale — relevant for building optimized LLM pipelines | llm, prompt-optimization, framework, python, signatures, modules, agents, rag, stanford |
 | [ECC — Everything Claude Code (GitHub)](entries/ecc-github.md) | framework | open | massive cross-harness skill/hook/agent system worth monitoring but high adoption complexity and scope overlap with existing stack | skills, hooks, agents, rules, security, cross-harness, plugin, claude-code |
+| [EpiBench](entries/epibench.md) | reference | open | Verifiable 106-task benchmark for AI agents on short-horizon epigenomics analysis (ATAC/ChIP/CUT&Tag/methylation); no model-harness pair passed a majority (best 45%), with failures concentrated in assay-specific scientific judgment. | benchmark, epigenomics, evaluation, bioinformatics, agents |
 | [ERA — Empirical Research Assistant](entries/era-empirical-research-assistant.md) | framework | open | Interesting LLM+tree-search loop for scientific code generation, but Gemini-locked, research-grade, and not directly applicable to Claude Code workflows today | scientific-computing, code-generation, tree-search, llm-loop, bioinformatics, single-cell, python, google-research, research-paper |
 | [Everything Claude Code (ECC)](entries/ecc-plugin.md) | plugin | open | rate-limited (429 errors); trial when accessible | plugin, hub, all-in-one |
 | [FluidDocs Deck Builder](entries/fluiddocs-deck-builder.md) | plugin | open | Well-built skill/plugin pack for HTML slide decks; interesting multi-reviewer architecture but outside bioinformatics workflows | presentation, slides, skill-pack, claude-code-plugin, html, pdf-import, meta-skill, pdf |
@@ -189,6 +190,7 @@ Generated from 124 entries in `catalog/entries/`. Regenerate with the catalog `i
 - [Distill](entries/distill.md) — open — Local 1.7B model pipe-filter for CLI output compression is a real problem but requires 8–16 GB RAM and relies on an unaudited HuggingFace model; overlaps with rtk.
 - [DSPy](entries/dspy.md) — open — Stanford NLP framework for programming (not prompting) LLMs via typed signatures, composable modules, and automatic prompt optimization; 35k stars, 433+ contributors, production use at scale — relevant for building optimized LLM pipelines
 - [ECC — Everything Claude Code (GitHub)](entries/ecc-github.md) — open — massive cross-harness skill/hook/agent system worth monitoring but high adoption complexity and scope overlap with existing stack
+- [EpiBench](entries/epibench.md) — open — Verifiable 106-task benchmark for AI agents on short-horizon epigenomics analysis (ATAC/ChIP/CUT&Tag/methylation); no model-harness pair passed a majority (best 45%), with failures concentrated in assay-specific scientific judgment.
 - [ERA — Empirical Research Assistant](entries/era-empirical-research-assistant.md) — open — Interesting LLM+tree-search loop for scientific code generation, but Gemini-locked, research-grade, and not directly applicable to Claude Code workflows today
 - [Everything Claude Code (ECC)](entries/ecc-plugin.md) — open — rate-limited (429 errors); trial when accessible
 - [FluidDocs Deck Builder](entries/fluiddocs-deck-builder.md) — open — Well-built skill/plugin pack for HTML slide decks; interesting multi-reviewer architecture but outside bioinformatics workflows
@@ -387,6 +389,7 @@ Generated from 124 entries in `catalog/entries/`. Regenerate with the catalog `i
 - [Codebase Reasoning Topology](entries/codebase-reasoning-topology.md) — open — heavy for daily use but interesting as a pre-flight checklist concept
 - [Codex Memory Cleanup](entries/codex-memory-cleanup.md) — open — operational tip: delete state/log/global-state files if Codex performance degrades
 - [Deny .env Reads via Permissions](entries/deny-env-reads.md) — open — Useful security hygiene tip for Claude Code projects; documents a built-in feature rather than a new tool
+- [EpiBench](entries/epibench.md) — open — Verifiable 106-task benchmark for AI agents on short-horizon epigenomics analysis (ATAC/ChIP/CUT&Tag/methylation); no model-harness pair passed a majority (best 45%), with failures concentrated in assay-specific scientific judgment.
 - [GraphRAG & Agent Memory LinkedIn Series](entries/graphrag-agent-memory-linkedin-series.md) — open — Six-post series covering GraphRAG design, ontology modeling, and unified agent memory architecture — useful conceptual grounding for KG-backed agents.
 - [HuggingFace LLM Course](entries/huggingface-llm-course.md) — open — Free 12-chapter course covering transformers, fine-tuning, datasets, tokenizers, and reasoning models using the HuggingFace ecosystem; useful learning path but not a tool or workflow component
 - [Karpathy's 12 Rules for CLAUDE.md](entries/karpathy-12-rules.md) — open — Rules 6 (token budgets) and 12 (fail loud) not yet in our stack
