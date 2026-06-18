@@ -2,13 +2,35 @@
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
   "generated": "2026-06-18",
-  "count": 125,
+  "count": 129,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
     "open": "stockpiled, undecided"
   },
   "entries": [
+    {
+      "name": "a2a-protocol",
+      "title": "Agent2Agent (A2A) Protocol",
+      "url": "https://github.com/a2aproject/A2A",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Google/Linux Foundation open protocol for inter-agent communication — JSON-RPC 2.0 over HTTP, Agent Cards for discovery, async-first with streaming; SDKs in 6 languages; complements MCP (tool access) with agent-to-agent collaboration",
+      "body_summary": "Agent2Agent (A2A) is an open protocol from Google (now under the Linux Foundation) enabling AI agents built on different frameworks to communicate and collaborate as peers — not as tools. Agents remain opaque: they interact without sharing internal logic, memory, or tool implementations.\n\nCore mechanics:\n\n- **Discovery**: Agents publish an Agent Card (JSON) describing capabilities, endpoints, and auth requirements\n- **Communication**: JSON-RPC 2.0 over HTTP(S) — client agent sends Task requests containing Messages with Parts to a server agent\n- **Interaction modes**: Synchronous request/response, streaming (SSE), and async push notifications\n- **Data exchange**: Text, files, structured JSON, forms\n- **Task lifecycle**: Long-running tasks with status updates, human-in-the-loop support\n\nKey principles: simple (HTTP + JSON-RPC + SSE), enterprise-ready (auth, security, privacy, monitoring), async-first, modality-agnostic, opaque execution.\n\n**A2A vs MCP**: A2A handles agent-to-agent collaboration (peer communication). MCP handles agent-to-tool access (client-server tool invocation). They're complementary — an agent can use MCP to access tools and A2A to collaborate with other agents.\n\nSDKs: Python (`pip install a2a-sdk`), Go, JavaScript (`npm install @a2a-js/sdk`), Java (Maven), .NET (NuGet), Rust (`cargo add a2a-lf`).\n\nDeepLearning.AI course available covering ADK, LangGraph, and BeeAI integrations.\n\nDocs: https://a2aproject.github.io/A2A",
+      "tags": [
+        "a2a",
+        "protocol",
+        "agent-interop",
+        "multi-agent",
+        "google",
+        "linux-foundation"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-06-18",
+      "path": "catalog/entries/a2a-protocol.md"
+    },
     {
       "name": "adguard-home",
       "title": "AdGuard Home",
@@ -304,6 +326,27 @@
       "path": "catalog/entries/autoresearch.md"
     },
     {
+      "name": "awesome-a2a",
+      "title": "Awesome A2A",
+      "url": "https://github.com/ai-boost/awesome-a2a",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Curated ecosystem list for Google's Agent2Agent protocol — SDKs, framework integrations, community implementations, tools, and tutorials; use as discovery source for A2A-compatible agent infrastructure",
+      "body_summary": "Curated resource collection for the Agent2Agent (A2A) protocol ecosystem. Covers:\n\n- **Official resources**: Spec, documentation, Google's samples\n- **SDKs by language**: Python (`a2a-sdk`), Go, JS (`@a2a-js/sdk`), Java, .NET, Rust\n- **Framework integrations**: Official samples for Google ADK, LangGraph, CrewAI, Genkit; community implementations spanning dozens of frameworks\n- **Platforms & integrated solutions**: Commercial and open-source platforms with A2A support\n- **Tools & utilities**: Agent Cards, testing, observability, gateways\n- **Tutorials & articles**: Getting-started guides, architecture deep-dives, comparisons with MCP\n\nOrganized by category with brief descriptions and links. Actively maintained as the A2A ecosystem grows.",
+      "tags": [
+        "a2a",
+        "agent-interop",
+        "protocol",
+        "curated-list",
+        "multi-agent"
+      ],
+      "workflows": [],
+      "license": "CC0-1.0",
+      "security_flags": [],
+      "reviewed": "2026-06-18",
+      "path": "catalog/entries/awesome-a2a.md"
+    },
+    {
       "name": "awesome-claude-code",
       "title": "Awesome Claude Code",
       "url": "https://github.com/hesreallyhim/awesome-claude-code",
@@ -441,6 +484,28 @@
       "security_flags": [],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/castem-first-principles-model-mediated-work.md"
+    },
+    {
+      "name": "chromadb",
+      "title": "ChromaDB",
+      "url": "https://www.trychroma.com/products/chromadb",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source AI search infrastructure with vector, full-text, regex, and hybrid search — embedding-agnostic with Python/JS SDKs, serverless cloud option, and multi-modal retrieval; strong fit for literature/sequence RAG pipelines",
+      "body_summary": "ChromaDB is open-source search infrastructure for AI applications. It unifies dense vector search, sparse vector search (BM25, SPLADE), full-text search (trigram/regex), and metadata filtering in a single query interface with hybrid search combining multiple methods. Supports multi-modal retrieval across text, images, and audio.\n\nCore API is 4 functions — create collection, add documents, query, get. Embedding-model agnostic: works with OpenAI, Cohere, HuggingFace, sentence-transformers, or bring your own. Handles tokenization, embedding, and indexing automatically or accepts pre-computed embeddings.\n\nDeployment options: single-node via `pip install chromadb` / `npm install chromadb` / Docker (in-memory or persistent storage), Chroma Cloud (managed serverless with auto-scaling), or bring-your-own-cloud with VPC, multi-region replication, and point-in-time recovery.\n\nPerformance at 100k vectors (384 dim): p50 warm 20ms, p99 warm 57ms. Write throughput 30 MB/s (2000+ QPS). Up to 1M collections, 5M records per collection, 90-100% recall. Object-storage-optimized indexes with query-aware data tiering and caching.\n\nAdditional features: dataset versioning/forking for A/B testing, CLI tools, example projects for agentic search and AST-aware code search.\n\nDocs: https://docs.trychroma.com/docs/overview/introduction",
+      "tags": [
+        "vector-database",
+        "embeddings",
+        "search",
+        "RAG",
+        "AI-infrastructure",
+        "multi-modal"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-06-18",
+      "path": "catalog/entries/chromadb.md"
     },
     {
       "name": "cl4r1t4s",
@@ -2607,6 +2672,30 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/storybloq.md"
+    },
+    {
+      "name": "supabase",
+      "title": "Supabase",
+      "url": "https://supabase.com/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source Postgres development platform (Firebase alternative) with built-in auth, storage, realtime, edge functions, REST/GraphQL APIs, and pgvector AI toolkit — massive community (36K+ commits), self-hostable, Apache-2.0",
+      "body_summary": "Supabase is an open-source Firebase alternative built on Postgres and enterprise-grade open source tools. It provides a complete backend platform:\n\n- **Database**: Full Postgres with realtime functionality, backups, and extensions\n- **Auth**: Email/password, passwordless, OAuth, and mobile logins via GoTrue (JWT-based)\n- **Auto-generated APIs**: REST (PostgREST), GraphQL (pg_graphql), Realtime subscriptions (Elixir websocket server)\n- **Edge Functions**: Globally distributed server-side functions (Deno)\n- **Storage**: S3-backed file storage with Postgres-managed Row Level Security permissions\n- **AI + Vector toolkit**: pgvector integration for embeddings and vector similarity search\n- **Dashboard**: Web UI for database management\n\nArchitecture is modular — each component is a standalone open-source project: Postgres, PostgREST (REST), GoTrue (auth), Realtime (Elixir), Kong (API gateway), pg_graphql, postgres-meta. Client libraries mirror this: each sub-library is standalone for a single system.\n\nOfficial SDKs: JavaScript/TypeScript, Flutter/Dart, Swift, Python. Community SDKs: C#, Go, Java, Kotlin, Ruby, Rust, Godot. Migration paths from Amazon RDS, Auth0, Firebase, Heroku, MySQL, Neon, and others.\n\nSelf-hostable or use the hosted platform. AI-first development supported via MCP, plugins, and skills.\n\nDocs: https://supabase.com/docs",
+      "tags": [
+        "postgres",
+        "database",
+        "auth",
+        "storage",
+        "vector",
+        "BaaS",
+        "API",
+        "realtime"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-06-18",
+      "path": "catalog/entries/supabase.md"
     },
     {
       "name": "superpowers-verification-before-completion",

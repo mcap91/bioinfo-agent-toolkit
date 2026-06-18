@@ -1,6 +1,6 @@
 # Catalog Index
 
-Generated from 125 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
+Generated from 129 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
 
 ## By Decision Status
 
@@ -11,6 +11,7 @@ Generated from 125 entries in `catalog/entries/`. Regenerate with the catalog `i
 | [Advise Project Approach](entries/advise-project-approach.md) | skill | open | structured project-level architecture research with comparable analysis, cost checks, and tradeoff discipline; complements /catalog (tool-level) with project-level advisory | architecture, stack-selection, comparables, cost-analysis, project-strategy, decision-methodology |
 | [Advisor Strategy](entries/advisor-strategy.md) | agent-pattern | open | architectural concept for cost-effective agent orchestration; executor/advisor split | agents, cost-optimization, dispatch, patterns |
 | [Agent Session Resume](entries/agent-session-resume.md) | skill | open | Cross-agent session resume skill with structured checkpoint workflow; overlaps with our handoff skill but adds multi-agent-platform support (Codex, Cursor, Antigravity, OpenCode) | handoff, session-resume, cross-agent, claude-code, codex, cursor |
+| [Agent2Agent (A2A) Protocol](entries/a2a-protocol.md) | reference | open | Google/Linux Foundation open protocol for inter-agent communication — JSON-RPC 2.0 over HTTP, Agent Cards for discovery, async-first with streaming; SDKs in 6 languages; complements MCP (tool access) with agent-to-agent collaboration | a2a, protocol, agent-interop, multi-agent, google, linux-foundation |
 | [AI Memory Comparison](entries/ai-memory-comparison.md) | reference | open | Definitive source-backed survey of 73 open-source AI agent memory systems across 79 features — every claim cites public code or docs. | memory, agents, comparison, survey, mcp, rag, vector-db |
 | [AI Needs What ALCOA+ Gave Records](entries/alcoa-plus-for-ai.md) | reference | open | Useful framing for regulated-AI governance but no actionable tool or framework yet — CASTEM teased but unpublished | ai-governance, gxp, regulatory, data-integrity, pharma |
 | [AirLLM](entries/airllm.md) | framework | open | Clever layer-shard inference to run 70B models on 4GB VRAM, but maintenance has stalled since August 2024 while better-maintained alternatives (Ollama/llama.cpp) have matured. | llm-inference, low-vram, memory-optimization, python, huggingface, quantization |
@@ -18,12 +19,14 @@ Generated from 125 entries in `catalog/entries/`. Regenerate with the catalog `i
 | [ASI-Evolve](entries/asi-evolve.md) | framework | open | Impressive autonomous research-loop results but arbitrary code execution per round, no stated license, and very new (2026 academic repo) | autonomous-research, agentic, evolutionary-search, experiment-automation, bioinformatics, llm-driven, multi-agent, orchestration |
 | [Autoharness](entries/autoharness.md) | framework | open | needs eval benchmarks first; pilot when we have eval criteria for our skills/agents | harness, optimization, eval, benchmarks |
 | [Autoresearch](entries/autoresearch.md) | framework | open | Highly influential autonomous experimentation loop pattern, but ML-training-specific — transferable idea, not transferable code | autonomous-agents, ml-training, experimentation, karpathy, agent-loop |
+| [Awesome A2A](entries/awesome-a2a.md) | reference | open | Curated ecosystem list for Google's Agent2Agent protocol — SDKs, framework integrations, community implementations, tools, and tutorials; use as discovery source for A2A-compatible agent infrastructure | a2a, agent-interop, protocol, curated-list, multi-agent |
 | [Awesome Claude Code](entries/awesome-claude-code.md) | reference | open | curated Claude Code ecosystem list; use as discovery source for future catalog inbox items | awesome-list, skills, agents, hooks, orchestrators, discovery |
 | [BioMysteryBench](entries/biomysterybench.md) | reference | open | 99-problem bioinformatics research benchmark from Anthropic — directly useful for evaluating agent performance on real research tasks. | benchmark, bioinformatics, evaluation, dataset, research, anthropic |
 | [BMAD Skill Forge](entries/bmad-skill-forge.md) | skill-generator | open | strong fit for bioinformatics tool skill generation; start with Brief tier on samtools | skill-generation, provenance, ast, cli-tools, meta-skill |
 | [Book to Skill](entries/book-to-skill.md) | skill | open | directly useful for computational biology methods PDFs | pdf, knowledge, querying |
 | [Browser Use](entries/browser-use.md) | framework | open | MIT-licensed Python/Rust framework giving LLM agents real browser control — useful for web scraping, form automation, and accessing bioinformatics portals, but Rust-core beta is still experimental and full capability requires commercial cloud | browser-automation, web-scraping, agent, python, rust, claude-code-skill |
 | [CASTEM: First Principles for Model-Mediated Work](entries/castem-first-principles-model-mediated-work.md) | reference | open | Portable 6-criterion mnemonic (Credible, Auditable, Supervised, Traceable, Explainable, Monitored) for AI governance in regulated settings — good design checklist, no tooling. | ai-governance, compliance, regulated-ai, mnemonic, audit, validation, oversight |
+| [ChromaDB](entries/chromadb.md) | framework | open | Open-source AI search infrastructure with vector, full-text, regex, and hybrid search — embedding-agnostic with Python/JS SDKs, serverless cloud option, and multi-modal retrieval; strong fit for literature/sequence RAG pipelines | vector-database, embeddings, search, RAG, AI-infrastructure, multi-modal |
 | [CL4R1T4S](entries/cl4r1t4s.md) | reference | open | Collection of leaked AI system prompts; useful security-awareness reference but README contains embedded prompt injection | system-prompts, ai-transparency, security-awareness, prompt-injection |
 | [Claude Agent Teams](entries/agent-teams.md) | agent-pattern | open | primary interactive dispatch path; subscription billing, no API credits needed | agents, teams, dispatch, orchestration |
 | [Claude Code Remote Prompt Hardening](entries/claude-code-remote-prompt-hardening.md) | reference | open | env vars to block remote system prompt injection in Claude Code; operational hardening knowledge for security-sensitive environments | claude-code, security, privacy, env-vars, hardening, system-prompt, version-pinning |
@@ -114,6 +117,7 @@ Generated from 125 entries in `catalog/entries/`. Regenerate with the catalog `i
 | [Spiderbrain V3](entries/spiderbrain-v3.md) | framework | open | BSL license; master/column concept is the key takeaway for kb graph | dependency-graph, token-reduction, scoring, kb |
 | [Stirling PDF](entries/stirling-pdf.md) | cli-tool | open | Self-hosted REST API for 50+ PDF operations enables privacy-preserving agentic PDF workflows without external services | pdf, self-hosted, rest-api, docker, ocr, document-processing, automation |
 | [Storybloq](entries/storybloq.md) | framework | open | PolyForm Noncommercial license + heavy overlap with kb wiki | project-state, wiki, tickets, kb |
+| [Supabase](entries/supabase.md) | framework | open | Open-source Postgres development platform (Firebase alternative) with built-in auth, storage, realtime, edge functions, REST/GraphQL APIs, and pgvector AI toolkit — massive community (36K+ commits), self-hostable, Apache-2.0 | postgres, database, auth, storage, vector, BaaS, API, realtime |
 | [Superpowers: Verification Before Completion](entries/superpowers-verification-before-completion.md) | skill | open | canonical 'evidence before claims' gate skill — already active in this project and referenced by other catalog entries as the standard | verification, quality, agent-discipline, completion-gate, tdd |
 | [Syncthing](entries/syncthing.md) | cli-tool | open | Mature, audited, decentralized file sync daemon — production-grade for agent artifact persistence and cross-machine data sharing. | file-sync, decentralized, p2p, self-hosted, cross-platform, golang, tls, data-safety |
 | [Synthesize Bio](entries/synthesize-bio.md) | mcp-server | open | Generates synthetic human gene expression profiles on demand via natural-language prompts — unique bioinformatics capability, but proprietary SaaS requiring account and external API trust. | bioinformatics, rna-seq, gene-expression, synthetic-data, genomics, single-cell, bulk-rna |
@@ -154,6 +158,7 @@ Generated from 125 entries in `catalog/entries/`. Regenerate with the catalog `i
 - [Advise Project Approach](entries/advise-project-approach.md) — open — structured project-level architecture research with comparable analysis, cost checks, and tradeoff discipline; complements /catalog (tool-level) with project-level advisory
 - [Advisor Strategy](entries/advisor-strategy.md) — open — architectural concept for cost-effective agent orchestration; executor/advisor split
 - [Agent Session Resume](entries/agent-session-resume.md) — open — Cross-agent session resume skill with structured checkpoint workflow; overlaps with our handoff skill but adds multi-agent-platform support (Codex, Cursor, Antigravity, OpenCode)
+- [Agent2Agent (A2A) Protocol](entries/a2a-protocol.md) — open — Google/Linux Foundation open protocol for inter-agent communication — JSON-RPC 2.0 over HTTP, Agent Cards for discovery, async-first with streaming; SDKs in 6 languages; complements MCP (tool access) with agent-to-agent collaboration
 - [AI Memory Comparison](entries/ai-memory-comparison.md) — open — Definitive source-backed survey of 73 open-source AI agent memory systems across 79 features — every claim cites public code or docs.
 - [AI Needs What ALCOA+ Gave Records](entries/alcoa-plus-for-ai.md) — open — Useful framing for regulated-AI governance but no actionable tool or framework yet — CASTEM teased but unpublished
 - [AirLLM](entries/airllm.md) — open — Clever layer-shard inference to run 70B models on 4GB VRAM, but maintenance has stalled since August 2024 while better-maintained alternatives (Ollama/llama.cpp) have matured.
@@ -161,10 +166,12 @@ Generated from 125 entries in `catalog/entries/`. Regenerate with the catalog `i
 - [ASI-Evolve](entries/asi-evolve.md) — open — Impressive autonomous research-loop results but arbitrary code execution per round, no stated license, and very new (2026 academic repo)
 - [Autoharness](entries/autoharness.md) — open — needs eval benchmarks first; pilot when we have eval criteria for our skills/agents
 - [Autoresearch](entries/autoresearch.md) — open — Highly influential autonomous experimentation loop pattern, but ML-training-specific — transferable idea, not transferable code
+- [Awesome A2A](entries/awesome-a2a.md) — open — Curated ecosystem list for Google's Agent2Agent protocol — SDKs, framework integrations, community implementations, tools, and tutorials; use as discovery source for A2A-compatible agent infrastructure
 - [Awesome Claude Code](entries/awesome-claude-code.md) — open — curated Claude Code ecosystem list; use as discovery source for future catalog inbox items
 - [BioMysteryBench](entries/biomysterybench.md) — open — 99-problem bioinformatics research benchmark from Anthropic — directly useful for evaluating agent performance on real research tasks.
 - [Browser Use](entries/browser-use.md) — open — MIT-licensed Python/Rust framework giving LLM agents real browser control — useful for web scraping, form automation, and accessing bioinformatics portals, but Rust-core beta is still experimental and full capability requires commercial cloud
 - [CASTEM: First Principles for Model-Mediated Work](entries/castem-first-principles-model-mediated-work.md) — open — Portable 6-criterion mnemonic (Credible, Auditable, Supervised, Traceable, Explainable, Monitored) for AI governance in regulated settings — good design checklist, no tooling.
+- [ChromaDB](entries/chromadb.md) — open — Open-source AI search infrastructure with vector, full-text, regex, and hybrid search — embedding-agnostic with Python/JS SDKs, serverless cloud option, and multi-modal retrieval; strong fit for literature/sequence RAG pipelines
 - [CL4R1T4S](entries/cl4r1t4s.md) — open — Collection of leaked AI system prompts; useful security-awareness reference but README contains embedded prompt injection
 - [Claude Agent Teams](entries/agent-teams.md) — open — primary interactive dispatch path; subscription billing, no API credits needed
 - [Claude Code Remote Prompt Hardening](entries/claude-code-remote-prompt-hardening.md) — open — env vars to block remote system prompt injection in Claude Code; operational hardening knowledge for security-sensitive environments
@@ -254,6 +261,7 @@ Generated from 125 entries in `catalog/entries/`. Regenerate with the catalog `i
 - [Spiderbrain V3](entries/spiderbrain-v3.md) — open — BSL license; master/column concept is the key takeaway for kb graph
 - [Stirling PDF](entries/stirling-pdf.md) — open — Self-hosted REST API for 50+ PDF operations enables privacy-preserving agentic PDF workflows without external services
 - [Storybloq](entries/storybloq.md) — open — PolyForm Noncommercial license + heavy overlap with kb wiki
+- [Supabase](entries/supabase.md) — open — Open-source Postgres development platform (Firebase alternative) with built-in auth, storage, realtime, edge functions, REST/GraphQL APIs, and pgvector AI toolkit — massive community (36K+ commits), self-hostable, Apache-2.0
 - [Superpowers: Verification Before Completion](entries/superpowers-verification-before-completion.md) — open — canonical 'evidence before claims' gate skill — already active in this project and referenced by other catalog entries as the standard
 - [Syncthing](entries/syncthing.md) — open — Mature, audited, decentralized file sync daemon — production-grade for agent artifact persistence and cross-machine data sharing.
 - [Synthesize Bio](entries/synthesize-bio.md) — open — Generates synthetic human gene expression profiles on demand via natural-language prompts — unique bioinformatics capability, but proprietary SaaS requiring account and external API trust.
@@ -303,6 +311,7 @@ Generated from 125 entries in `catalog/entries/`. Regenerate with the catalog `i
 - [Autoharness](entries/autoharness.md) — open — needs eval benchmarks first; pilot when we have eval criteria for our skills/agents
 - [Autoresearch](entries/autoresearch.md) — open — Highly influential autonomous experimentation loop pattern, but ML-training-specific — transferable idea, not transferable code
 - [Browser Use](entries/browser-use.md) — open — MIT-licensed Python/Rust framework giving LLM agents real browser control — useful for web scraping, form automation, and accessing bioinformatics portals, but Rust-core beta is still experimental and full capability requires commercial cloud
+- [ChromaDB](entries/chromadb.md) — open — Open-source AI search infrastructure with vector, full-text, regex, and hybrid search — embedding-agnostic with Python/JS SDKs, serverless cloud option, and multi-modal retrieval; strong fit for literature/sequence RAG pipelines
 - [Claude Mem](entries/claude-mem.md) — open — kb wiki + Claude Code built-in memory cover our needs; adds SQLite + Chroma + worker complexity without clear benefit
 - [Claw Code](entries/claw-code.md) — open — Rust reimplementation of a CLI agent harness; self-described museum exhibit maintained by agents rather than a production tool
 - [Crawl4AI](entries/crawl4ai.md) — open — Best-in-class async web-to-Markdown crawler for agent/RAG pipelines, but Docker API has had dense critical CVEs; library mode is safe to pilot
@@ -340,6 +349,7 @@ Generated from 125 entries in `catalog/entries/`. Regenerate with the catalog `i
 - [Shannon (AI Pentester)](entries/shannon.md) — open — Autonomous white-box AI pentester that analyzes source code and executes real exploits against web apps/APIs; AGPL-3.0, proof-by-exploitation reports, but actively mutates target state and requires authorization context
 - [Spiderbrain V3](entries/spiderbrain-v3.md) — open — BSL license; master/column concept is the key takeaway for kb graph
 - [Storybloq](entries/storybloq.md) — open — PolyForm Noncommercial license + heavy overlap with kb wiki
+- [Supabase](entries/supabase.md) — open — Open-source Postgres development platform (Firebase alternative) with built-in auth, storage, realtime, edge functions, REST/GraphQL APIs, and pgvector AI toolkit — massive community (36K+ commits), self-hostable, Apache-2.0
 - [Third Brain V5 (Wiki/Knowledge Layer)](entries/third-brain-v5-wiki.md) — open — Obsidian-specific schema, heavy; staleness and contradiction detection concepts worth noting for kb
 - [Tolvi — Engineering Decision Vault](entries/tolvi.md) — open — Solid CAG/RAG dual-mode decision-capture design but pre-1.0, small project, and overlaps with kb already in use
 - [Vaultwarden](entries/vaultwarden.md) — open — Production-grade self-hosted Bitwarden-compatible password server in Rust; fraction of the resource footprint of the official server
@@ -374,8 +384,10 @@ Generated from 125 entries in `catalog/entries/`. Regenerate with the catalog `i
 
 ### reference
 
+- [Agent2Agent (A2A) Protocol](entries/a2a-protocol.md) — open — Google/Linux Foundation open protocol for inter-agent communication — JSON-RPC 2.0 over HTTP, Agent Cards for discovery, async-first with streaming; SDKs in 6 languages; complements MCP (tool access) with agent-to-agent collaboration
 - [AI Memory Comparison](entries/ai-memory-comparison.md) — open — Definitive source-backed survey of 73 open-source AI agent memory systems across 79 features — every claim cites public code or docs.
 - [AI Needs What ALCOA+ Gave Records](entries/alcoa-plus-for-ai.md) — open — Useful framing for regulated-AI governance but no actionable tool or framework yet — CASTEM teased but unpublished
+- [Awesome A2A](entries/awesome-a2a.md) — open — Curated ecosystem list for Google's Agent2Agent protocol — SDKs, framework integrations, community implementations, tools, and tutorials; use as discovery source for A2A-compatible agent infrastructure
 - [Awesome Claude Code](entries/awesome-claude-code.md) — open — curated Claude Code ecosystem list; use as discovery source for future catalog inbox items
 - [BioMysteryBench](entries/biomysterybench.md) — open — 99-problem bioinformatics research benchmark from Anthropic — directly useful for evaluating agent performance on real research tasks.
 - [CASTEM: First Principles for Model-Mediated Work](entries/castem-first-principles-model-mediated-work.md) — open — Portable 6-criterion mnemonic (Credible, Auditable, Supervised, Traceable, Explainable, Monitored) for AI governance in regulated settings — good design checklist, no tooling.
