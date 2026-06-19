@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-06-18",
-  "count": 129,
+  "generated": "2026-06-19",
+  "count": 143,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -118,6 +118,29 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/advisor-strategy.md"
+    },
+    {
+      "name": "agent-browser",
+      "title": "Agent Browser (Vercel Labs)",
+      "url": "https://github.com/vercel-labs/agent-browser",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Rust-native browser automation CLI for AI agents — snapshot-based accessibility tree with ref selectors, MCP server mode, annotated screenshots, multi-session isolation, plugin system, cloud provider integrations (Browserbase/Browserless/AWS AgentCore); Apache-2.0, Vercel-backed",
+      "body_summary": "Fast native Rust CLI for AI-agent-driven browser automation. Client-daemon architecture — daemon manages Chrome via CDP, CLI sends commands. Key capabilities:\n\n- **Snapshot refs**: accessibility tree with `@e1`-style refs for deterministic element selection — the core AI workflow\n- **MCP server mode**: `agent-browser mcp` with tool profiles (core, network, react, mobile, state, debug, tabs, all)\n- **Annotated screenshots**: numbered overlays matching ref IDs for multimodal agents\n- **Multi-session isolation**: named sessions with separate cookies, storage, auth state\n- **Auth management**: profile reuse, session persistence, encrypted vault, state import from running Chrome\n- **Plugin system**: out-of-process plugins for credential providers, cloud browsers, stealth, CAPTCHA solving\n- **Cloud providers**: Browserbase, Browserless, Browser Use, Kernel, AWS AgentCore — swap local Chrome for cloud browser with env vars\n- **React DevTools**: component tree, fiber inspection, render profiling, Suspense boundary analysis\n- **Web Vitals**: LCP/CLS/TTFB/FCP/INP metrics\n- **Batch execution**: multiple commands in one invocation to avoid per-command overhead\n- **iOS Simulator**: real Mobile Safari testing via Appium\n- **Observability dashboard**: live viewport streaming + activity feed on localhost",
+      "tags": [
+        "browser-automation",
+        "cli",
+        "mcp",
+        "rust",
+        "web-scraping",
+        "testing",
+        "ai-agent"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-06-19",
+      "path": "catalog/entries/agent-browser.md"
     },
     {
       "name": "agent-session-resume",
@@ -393,6 +416,28 @@
       "path": "catalog/entries/biomysterybench.md"
     },
     {
+      "name": "bitnet-cpp",
+      "title": "BitNet (bitnet.cpp)",
+      "url": "https://github.com/microsoft/BitNet",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Microsoft's official inference framework for 1-bit LLMs (BitNet b1.58) — runs 100B models on a single CPU at human reading speed (5-7 tok/s), 2-6x faster than FP16 with 55-82% energy reduction; optimized kernels for x86/ARM CPU and GPU",
+      "body_summary": "Official inference framework for 1-bit (ternary/1.58-bit) LLMs. Built on llama.cpp with specialized kernels for ternary weight matrices using lookup-table methods (from T-MAC).\n\nPerformance characteristics:\n- **ARM CPUs**: 1.37-5.07x speedup over FP16, 55-70% energy reduction\n- **x86 CPUs**: 2.37-6.17x speedup, 72-82% energy reduction\n- **100B model on single CPU**: achieves 5-7 tokens/second (human reading speed)\n- **GPU**: official GPU inference kernels (May 2025)\n- **Parallel kernels**: additional 1.15-2.1x speedup with configurable tiling and embedding quantization\n\nSupports Microsoft's official BitNet-b1.58-2B-4T model plus community 1-bit models (Falcon3, Llama3-8B-1.58, etc.).",
+      "tags": [
+        "llm-inference",
+        "quantization",
+        "1-bit",
+        "cpu-inference",
+        "edge-ai",
+        "local-llm"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-19",
+      "path": "catalog/entries/bitnet-cpp.md"
+    },
+    {
       "name": "bmad-skill-forge",
       "title": "BMAD Skill Forge",
       "url": "https://github.com/armelhbobdad/bmad-module-skill-forge",
@@ -415,6 +460,32 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/bmad-skill-forge.md"
+    },
+    {
+      "name": "boltz-api",
+      "title": "Boltz API (BoltzMol-1 / BoltzProt-1)",
+      "url": "https://boltz.bio/boltzmol-boltzprot-api",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Boltz's biomolecular design API — BoltzMol-1 (small-molecule hit discovery, 6/10 targets with <51 compounds each) and BoltzProt-1 (de novo nanobody design, 3x hit rate over BoltzGen); $0.025/prediction, Python/JS SDKs, first-party Claude Code integration",
+      "body_summary": "Commercial API serving three Boltz models for biomolecular design:\n\n- **BoltzMol-1**: small-molecule hit discovery pipeline — ranks buyable compounds or generates from 74B make-on-demand space; confirmed hits on 6/10 challenging targets testing only 28-51 compounds per target; includes ADME property models\n- **BoltzProt-1**: protein design pipeline — de novo nanobody design with Boltz-PPI scoring model; nearly 3x hit rate over BoltzGen; 58% of binders pass stringent developability panel\n- **Boltz-2**: biomolecular structure and affinity prediction (previously released)\n\nAPI-first design with Python and JavaScript SDKs, plus first-party integrations for Claude Code, Codex, and Gemini CLI. Designed for agentic workflows — the Boltz team uses it from agents on laptops to orchestrate large compute experiments.",
+      "tags": [
+        "drug-discovery",
+        "protein-design",
+        "structure-prediction",
+        "api",
+        "nanobody",
+        "small-molecule",
+        "bioinformatics"
+      ],
+      "workflows": [],
+      "license": "Proprietary",
+      "security_flags": [
+        "proprietary-saas",
+        "api-key-required"
+      ],
+      "reviewed": "2026-06-19",
+      "path": "catalog/entries/boltz-api.md"
     },
     {
       "name": "book-to-skill",
@@ -927,6 +998,29 @@
       "path": "catalog/entries/creating-claude-md.md"
     },
     {
+      "name": "crewai",
+      "title": "CrewAI",
+      "url": "https://github.com/crewAIInc/crewAI",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Lean Python multi-agent orchestration framework — role-based Crews for autonomous collaboration + event-driven Flows for precise control; MIT, 100K+ certified devs, Claude Code skills plugin, independent of LangChain",
+      "body_summary": "CrewAI is a standalone Python framework for orchestrating autonomous AI agents. Two core paradigms:\n\n- **Crews**: Teams of role-based agents with autonomous decision-making, dynamic task delegation, and collaborative problem-solving. Defined via YAML config (agents.yaml, tasks.yaml) with a Python crew class.\n- **Flows**: Event-driven workflows with `@start`, `@listen`, `@router` decorators, typed Pydantic state management, and conditional branching. Production-focused with precise execution control.\n\nThe two compose: Flows orchestrate Crews as steps, combining autonomy with deterministic control flow. Supports sequential and hierarchical processes, parallel task execution, memory, delegation, and human-in-the-loop.\n\nBuilt from scratch — no LangChain dependency. Connects to any LLM (OpenAI default, Ollama for local). CLI scaffolding (`crewai create crew <name>`). Ships official Claude Code skills plugin (`/plugin marketplace add crewAIInc/skills`) with 4 auto-activating skills. Also has an enterprise AMP suite (control plane, tracing, observability).",
+      "tags": [
+        "multi-agent",
+        "orchestration",
+        "python",
+        "agent-framework",
+        "llm"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "telemetry-default-on"
+      ],
+      "reviewed": "2026-06-19",
+      "path": "catalog/entries/crewai.md"
+    },
+    {
       "name": "crowdsec",
       "title": "CrowdSec",
       "url": "https://github.com/crowdsecurity/crowdsec",
@@ -949,6 +1043,27 @@
       "security_flags": [],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/crowdsec.md"
+    },
+    {
+      "name": "data-science-for-beginners",
+      "title": "Data Science for Beginners (Microsoft)",
+      "url": "https://github.com/microsoft/data-science-for-beginners",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Microsoft's free 10-week, 20-lesson data science curriculum covering ethics, statistics, Python/pandas, SQL, visualization (Matplotlib), cloud ML, and the DS lifecycle; project-based with quizzes, 50+ language translations",
+      "body_summary": "Free 10-week, 20-lesson data science curriculum from Microsoft Azure Cloud Advocates. Covers:\n\n1. **Introduction** (lessons 1-4): Defining DS, ethics, data classification, statistics & probability\n2. **Working with Data** (5-8): Relational/SQL, NoSQL, Python/Pandas, data preparation\n3.…",
+      "tags": [
+        "data-science",
+        "learning",
+        "python",
+        "statistics",
+        "visualization"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-19",
+      "path": "catalog/entries/data-science-for-beginners.md"
     },
     {
       "name": "deny-env-reads",
@@ -1126,6 +1241,50 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/era-empirical-research-assistant.md"
+    },
+    {
+      "name": "faster-whisper",
+      "title": "Faster Whisper",
+      "url": "https://github.com/SYSTRAN/faster-whisper",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "CTranslate2-based Whisper reimplementation — 4x faster than openai/whisper at same accuracy, int8 quantization, batched inference, VAD filtering, word-level timestamps; core ASR runtime for caption-less audio/video ingestion",
+      "body_summary": "Reimplementation of OpenAI's Whisper speech-to-text model using CTranslate2 for fast inference. Key capabilities:\n\n- **4x faster** than openai/whisper with identical accuracy, lower memory usage\n- **Batched transcription**: 13 min audio in 16-17s with batch_size=8 on RTX 3070 Ti\n- **Quantization**: int8 on both CPU and GPU — halves VRAM (2.9 GB vs 4.5 GB for large-v2)\n- **Word-level timestamps** via built-in support\n- **VAD filtering**: integrated Silero VAD to skip silence, configurable thresholds\n- **Distil-Whisper compatible**: works with distil-large-v3 for even faster inference\n- **No FFmpeg dependency**: uses PyAV for audio decoding (bundles FFmpeg libs)\n\nPython API — `WhisperModel.transcribe()` returns a generator of timestamped segments.",
+      "tags": [
+        "asr",
+        "whisper",
+        "transcription",
+        "audio",
+        "speech-to-text",
+        "ctranslate2",
+        "gpu"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-19",
+      "path": "catalog/entries/faster-whisper.md"
+    },
+    {
+      "name": "firecrawl",
+      "title": "Firecrawl",
+      "url": "https://github.com/mendableai/firecrawl",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Production-grade web scraping/search/interaction API for AI agents — clean markdown output, JS rendering, anti-bot handling, MCP server mode; AGPL-3.0, YC-backed, 40K+ stars, but copyleft license limits embedding",
+      "body_summary": "Firecrawl is a web data API that turns websites into LLM-ready content. Three core capabilities:\n\n- **Scrape**: Extract any URL as clean markdown, HTML, screenshots, or structured JSON. Handles JavaScript rendering, proxies, and anti-bot measures.\n- **Search**: Web search with full page content from results in one call.\n- **Interact**: Scrape a page then continue working with it — click buttons, fill forms, extract dynamic content via natural language or code.\n\nBuilt by Mendable (now Firecrawl), YC-backed. SDKs in JavaScript, Python, Java, and Elixir. Ships an MCP server for direct integration with Claude Code, Cursor, Windsurf, and VS Code. Also available as a CLI (`npx firecrawl-cli`).\n\nCloud-hosted service with free and paid tiers. Self-hosting is free under AGPL-3.0 but excludes managed-only features like the `/agent` endpoint.",
+      "tags": [
+        "web-scraping",
+        "mcp-server",
+        "rag",
+        "agent-infrastructure",
+        "markdown"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0-only",
+      "security_flags": [],
+      "reviewed": "2026-06-19",
+      "path": "catalog/entries/firecrawl.md"
     },
     {
       "name": "fluiddocs-deck-builder",
@@ -1419,6 +1578,31 @@
       "path": "catalog/entries/huggingface-llm-course.md"
     },
     {
+      "name": "iai-personal-memory-engine",
+      "title": "iai — Personal Memory Engine",
+      "url": "https://github.com/CodeAbra/iai-personal-memory-engine",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Fully local MCP-based personal memory engine for AI assistants — ambient capture, three-tier memory (episodic/semantic/procedural), custom storage engine (Hippo), clustering (MOSAIC), HD substrate (LilliHD), Rust embedder; macOS-only, English-only, MIT",
+      "body_summary": "A local MCP server giving Claude Code (and other MCP hosts) long-term personal memory. Three design principles: fully local, ambient (no \"remember this\"), and verbatim-first.\n\n**Three memory tiers:**\n- **Episodic**: Verbatim, timestamped transcript fragments. Write-once, never rewritten.\n- **Semantic**: Summaries induced from clusters of related episodes during idle consolidation.\n- **Procedural**: 11 stable parameters about the user (preferences, style, patterns) learned over time.\n\n**Custom internals (not wrappers):**\n- **Hippo**: Storage engine — encrypted records (AES-256-GCM), vector index, and graph in one local store.\n- **MOSAIC**: Community-detection algorithm for memory graph clustering, tuned for small heterogeneous graphs that mutate nightly.\n- **LilliHD**: Hyperdimensional memory substrate — distinct representations per memory tier with structural recall.\n- **Native engine**: Rust core for embedder and graph kernels (bge-small-en-v1.5, 384-dim).\n\n**Ambient operation:** Hooks capture every turn verbatim (UserPromptSubmit, Stop). SessionStart hook injects relevant memory prefix. Sleep cycles consolidate — cluster, summarize, decay old connections, reinforce frequently co-retrieved paths. One LLM call per night via `claude -p` (≤1% daily quota).",
+      "tags": [
+        "memory",
+        "mcp-server",
+        "claude-code",
+        "local-first",
+        "rust",
+        "embeddings"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "macos-only",
+        "hooks-modify-settings"
+      ],
+      "reviewed": "2026-06-19",
+      "path": "catalog/entries/iai-personal-memory-engine.md"
+    },
+    {
       "name": "immich",
       "title": "Immich",
       "url": "https://github.com/immich-app/immich",
@@ -1665,6 +1849,29 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/maxun.md"
+    },
+    {
+      "name": "mcp-server-youtube-transcript",
+      "title": "MCP Server YouTube Transcript",
+      "url": "https://github.com/kimtaeyoon83/mcp-server-youtube-transcript",
+      "category": "mcp-server",
+      "decision_status": "open",
+      "summary": "MCP server exposing a single get_transcript tool for YouTube videos — language fallback, optional timestamps, ad-strip filtering, zero transcript-fetch dependencies; fills the YouTube-to-markdown gap for learning-vault capture",
+      "body_summary": "MCP server that retrieves transcripts/captions from YouTube videos via a single `get_transcript` tool. Accepts full URLs, Shorts URLs, or bare video IDs. Features:\n\n- **Language fallback**: requests a language code (default `en`), falls back automatically to available languages\n- **Timestamps**: optional `[0:05]`-style timestamp prefixes per line\n- **Ad stripping**: filters sponsorship/ad segments using chapter markers (on by default)\n- **Zero external dependencies** for the transcript fetch itself (uses YouTube's internal caption endpoint)\n\nInstallable via npx (`@kimtaeyoon83/mcp-server-youtube-transcript`) — no build step for end users.",
+      "tags": [
+        "mcp",
+        "youtube",
+        "transcript",
+        "video",
+        "media-ingestion"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "single-contributor"
+      ],
+      "reviewed": "2026-06-19",
+      "path": "catalog/entries/mcp-server-youtube-transcript.md"
     },
     {
       "name": "mempalace",
@@ -1984,6 +2191,31 @@
       ],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/odysseus.md"
+    },
+    {
+      "name": "ols-mcp-server",
+      "title": "OLS MCP Server",
+      "url": "https://github.com/seandavi/ols-mcp-server",
+      "category": "mcp-server",
+      "decision_status": "open",
+      "summary": "MCP server for EBI Ontology Lookup Service — search terms, explore hierarchies, find similar terms across GO, HPO, MONDO, ChEBI, UBERON and all EBI-hosted ontologies; directly addresses LLM ontology hallucination problem",
+      "body_summary": "MCP server wrapping the EBI Ontology Lookup Service (OLS4) API. Provides 6 tools:\n\n- **Search Terms**: query across ontologies with flexible filtering\n- **Search Ontologies**: discover available ontologies and metadata\n- **Get Ontology Information**: detailed info about a specific ontology\n- **Get Term Information**: comprehensive details for a specific term\n- **Get Term Children / Ancestors**: navigate ontological hierarchies\n- **Find Similar Terms**: semantic similarity via LLM embeddings\n\nCovers all ontologies hosted by EBI OLS: Gene Ontology (GO), Human Phenotype Ontology (HP), MONDO, ChEBI, UBERON, EFO, and hundreds more.\n\nMotivated by a real problem: LLMs hallucinate ontology terms and identifiers. This server provides grounded, API-backed lookups so agents can reference real terms.",
+      "tags": [
+        "mcp",
+        "ontology",
+        "bioinformatics",
+        "gene-ontology",
+        "hpo",
+        "ebi",
+        "ols"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "single-contributor"
+      ],
+      "reviewed": "2026-06-19",
+      "path": "catalog/entries/ols-mcp-server.md"
     },
     {
       "name": "one-skill-to-rule-them-all",
@@ -2382,6 +2614,27 @@
       "path": "catalog/entries/qwen3-6-27b.md"
     },
     {
+      "name": "rag-retrieval-recipe",
+      "title": "RAG Retrieval Recipe",
+      "url": "https://en.wikipedia.org/wiki/Retrieval-augmented_generation",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Practitioner's RAG recipe — semantic chunking (500-1000 tokens, 100 overlap), embed once with nomic/mxbai, store in ChromaDB/Qdrant/LanceDB, retrieve top-20 → BGE rerank → top-5, cite source chunks in LLM output",
+      "body_summary": "A compact practitioner's recipe for production RAG pipelines:\n\n1. **Chunking**: Semantic chunking, 500-1000 tokens per chunk with 100-token overlap\n2. **Embedding**: Embed everything once using an embedding model like `nomic-embed-text` or `mxbai-embed-large`. Re-run only when documents change.\n3.…",
+      "tags": [
+        "rag",
+        "embeddings",
+        "vector-db",
+        "reranking",
+        "retrieval"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-06-19",
+      "path": "catalog/entries/rag-retrieval-recipe.md"
+    },
+    {
       "name": "remote-control",
       "title": "Remote Control",
       "url": "https://code.claude.com/docs/en/remote-control",
@@ -2559,6 +2812,27 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/skill-router.md"
+    },
+    {
+      "name": "skill-search-mcp",
+      "title": "Skill Search MCP",
+      "url": "https://github.com/sowhan/skill-search",
+      "category": "mcp-server",
+      "decision_status": "open",
+      "summary": "Semantic skill retrieval MCP for Claude Code — replaces per-turn skill listing tax (~7.3K tokens) with vector search over descriptions; saves 3.19% of 200K context window per turn at 117 skills, recall@3 of 0.79; MIT, service-free default",
+      "body_summary": "Replaces Claude Code's native per-turn skill listing (which injects name + description for every installed skill) with a two-part system:\n\n1. **generate_overrides.py**: Sets all skills to name-only in `.claude/settings.local.json`, freeing the description budget. A small allowlist (the router skill) stays fully visible.\n2. **MCP server** (4 tools): `search_skills` (semantic vector search over full descriptions), `get_skill`, `reindex`, `health`. Returns top-k relevant skills for the current task.\n\nA companion router skill acts as the always-on trigger — it tells Claude to call `search_skills` before guessing which skills to invoke.\n\nMeasured on 117 skills: native listing costs ~7,267 tokens/turn (3.63% of 200K). Name-only + skill-search costs ~887 tokens/turn (0.44%). Saves ~6,380 tokens/turn. Semantic matching fixes the name-bias problem — `a11y-debugging` surfaces for \"review my UI for accessibility\" despite no shared keywords.",
+      "tags": [
+        "claude-code",
+        "skills",
+        "mcp-server",
+        "vector-search",
+        "token-optimization"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-19",
+      "path": "catalog/entries/skill-search-mcp.md"
     },
     {
       "name": "skillopt",
@@ -3016,6 +3290,33 @@
       "path": "catalog/entries/verify-before-claim.md"
     },
     {
+      "name": "vidnote",
+      "title": "Vidnote",
+      "url": "https://github.com/amingilani/vidnote",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Self-hosted video-lecture-to-markdown converter with slide screenshots (Whisper + PySceneDetect); 'heavily vibe-coded' single-purpose tool — useful concept for certification-course capture but low polish and bus-factor 1",
+      "body_summary": "Containerized pipeline that converts a video lecture into a Markdown document with correlated slide screenshots:\n\n1. Extracts audio → transcribes with OpenAI Whisper\n2. Detects scene changes with PySceneDetect (ContentDetector, configurable threshold)\n3. Inserts slide screenshots at corresponding timestamps in the transcript\n4. Outputs `transcript.md` + `images/` directory\n\nRuns via Podman container. Batch processing supported via `batch_process.sh` (idempotent — skips already-processed videos).",
+      "tags": [
+        "video",
+        "transcription",
+        "slides",
+        "markdown",
+        "whisper",
+        "lecture-capture"
+      ],
+      "workflows": [],
+      "license": "UNLICENSED",
+      "security_flags": [
+        "single-contributor",
+        "no-tests",
+        "no-license",
+        "vibe-coded"
+      ],
+      "reviewed": "2026-06-19",
+      "path": "catalog/entries/vidnote.md"
+    },
+    {
       "name": "web-artifacts-builder",
       "title": "Web Artifacts Builder",
       "url": "https://github.com/anthropics/skills/blob/main/skills/web-artifacts-builder/SKILL.md",
@@ -3062,6 +3363,31 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/weft-language.md"
+    },
+    {
+      "name": "whisperx",
+      "title": "WhisperX",
+      "url": "https://github.com/m-bain/whisperX",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Whisper + wav2vec2 forced alignment + pyannote speaker diarization — 70x realtime batched transcription with accurate word-level timestamps and speaker IDs; builds on faster-whisper; ideal for lecture/interview transcripts",
+      "body_summary": "Builds on faster-whisper to add two critical capabilities for structured transcription:\n\n- **Word-level timestamps**: uses wav2vec2 forced alignment to produce accurate per-word timing (not just utterance-level)\n- **Speaker diarization**: pyannote-audio pipeline assigns speaker IDs to each word/segment\n- **70x realtime**: batched inference with faster-whisper backend, large-v2 in <8GB VRAM\n- **VAD preprocessing**: reduces hallucination and enables efficient batching with no WER degradation\n- **Sentence-level segments**: nltk sent_tokenize for subtitle-friendly output\n\nThree-stage pipeline: (1) transcribe with Whisper, (2) align with wav2vec2, (3) diarize with pyannote. Each stage can be run independently.\n\nPublished at INTERSPEECH 2023, 1st place at Ego4d transcription challenge.",
+      "tags": [
+        "asr",
+        "whisper",
+        "transcription",
+        "diarization",
+        "word-timestamps",
+        "speaker-id",
+        "audio"
+      ],
+      "workflows": [],
+      "license": "BSD-4-Clause",
+      "security_flags": [
+        "hf-token-required-for-diarization"
+      ],
+      "reviewed": "2026-06-19",
+      "path": "catalog/entries/whisperx.md"
     },
     {
       "name": "zero-to-mastery-ml",
