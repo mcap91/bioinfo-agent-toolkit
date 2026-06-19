@@ -1,6 +1,6 @@
 # Catalog Index
 
-Generated from 143 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
+Generated from 144 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
 
 ## By Decision Status
 
@@ -73,6 +73,7 @@ Generated from 143 entries in `catalog/entries/`. Regenerate with the catalog `i
 | [gstack](entries/gstack.md) | framework | open | kb dispatch covers the relevant orchestration patterns; browser/deployment out of scope | workflow, orchestration, browser, kb |
 | [Headroom](entries/headroom.md) | framework | open | Powerful context compression with real benchmarks, but proxy/MITM position and headroom learn's CLAUDE.md writes are significant trust risks for adoption without review | context-compression, token-reduction, mcp-server, proxy, memory, agent-wrap, claude-code |
 | [Headroom Desktop](entries/headroom-desktop.md) | plugin | open | Solid local-first Claude Code cost optimizer with hook injection into ~/.claude/settings.json — worth monitoring given agent-lockdown relevance, but macOS-only stable and single-contributor | token-optimization, cost-reduction, claude-code, proxy, compression, tauri, hook, token-reduction |
+| [Hugging Face Inference Providers](entries/huggingface-inference-providers.md) | framework | open | Unified API gateway routing inference to 15+ backend providers (Groq, Together AI, Cerebras, Replicate, etc.) via a single HF token; OpenAI-compatible, multi-task (LLM, VLM, image gen, embeddings, speech), with provider selection policies (:fastest, :cheapest, :preferred) | huggingface, inference, model-api, gateway, openai-compatible, multi-provider, serverless |
 | [HuggingFace LLM Course](entries/huggingface-llm-course.md) | reference | open | Free 12-chapter course covering transformers, fine-tuning, datasets, tokenizers, and reasoning models using the HuggingFace ecosystem; useful learning path but not a tool or workflow component | llm, transformers, fine-tuning, huggingface, educational, nlp, deep-learning |
 | [iai — Personal Memory Engine](entries/iai-personal-memory-engine.md) | framework | open | Fully local MCP-based personal memory engine for AI assistants — ambient capture, three-tier memory (episodic/semantic/procedural), custom storage engine (Hippo), clustering (MOSAIC), HD substrate (LilliHD), Rust embedder; macOS-only, English-only, MIT | memory, mcp-server, claude-code, local-first, rust, embeddings |
 | [Immich](entries/immich.md) | framework | open | Production-ready self-hosted Google Photos alternative with AI search; not agent tooling but solid self-hosted media infrastructure. | self-hosted, photo-management, video, mobile, ai-search, facial-recognition, oauth, docker |
@@ -232,6 +233,7 @@ Generated from 143 entries in `catalog/entries/`. Regenerate with the catalog `i
 - [gstack](entries/gstack.md) — open — kb dispatch covers the relevant orchestration patterns; browser/deployment out of scope
 - [Headroom](entries/headroom.md) — open — Powerful context compression with real benchmarks, but proxy/MITM position and headroom learn's CLAUDE.md writes are significant trust risks for adoption without review
 - [Headroom Desktop](entries/headroom-desktop.md) — open — Solid local-first Claude Code cost optimizer with hook injection into ~/.claude/settings.json — worth monitoring given agent-lockdown relevance, but macOS-only stable and single-contributor
+- [Hugging Face Inference Providers](entries/huggingface-inference-providers.md) — open — Unified API gateway routing inference to 15+ backend providers (Groq, Together AI, Cerebras, Replicate, etc.) via a single HF token; OpenAI-compatible, multi-task (LLM, VLM, image gen, embeddings, speech), with provider selection policies (:fastest, :cheapest, :preferred)
 - [HuggingFace LLM Course](entries/huggingface-llm-course.md) — open — Free 12-chapter course covering transformers, fine-tuning, datasets, tokenizers, and reasoning models using the HuggingFace ecosystem; useful learning path but not a tool or workflow component
 - [iai — Personal Memory Engine](entries/iai-personal-memory-engine.md) — open — Fully local MCP-based personal memory engine for AI assistants — ambient capture, three-tier memory (episodic/semantic/procedural), custom storage engine (Hippo), clustering (MOSAIC), HD substrate (LilliHD), Rust embedder; macOS-only, English-only, MIT
 - [Immich](entries/immich.md) — open — Production-ready self-hosted Google Photos alternative with AI search; not agent tooling but solid self-hosted media infrastructure.
@@ -360,6 +362,7 @@ Generated from 143 entries in `catalog/entries/`. Regenerate with the catalog `i
 - [Graphify](entries/graphify.md) — open — direct inspiration for kb graph; concepts like confidence-tagged edges and clustering worth learning from
 - [gstack](entries/gstack.md) — open — kb dispatch covers the relevant orchestration patterns; browser/deployment out of scope
 - [Headroom](entries/headroom.md) — open — Powerful context compression with real benchmarks, but proxy/MITM position and headroom learn's CLAUDE.md writes are significant trust risks for adoption without review
+- [Hugging Face Inference Providers](entries/huggingface-inference-providers.md) — open — Unified API gateway routing inference to 15+ backend providers (Groq, Together AI, Cerebras, Replicate, etc.) via a single HF token; OpenAI-compatible, multi-task (LLM, VLM, image gen, embeddings, speech), with provider selection policies (:fastest, :cheapest, :preferred)
 - [iai — Personal Memory Engine](entries/iai-personal-memory-engine.md) — open — Fully local MCP-based personal memory engine for AI assistants — ambient capture, three-tier memory (episodic/semantic/procedural), custom storage engine (Hippo), clustering (MOSAIC), HD substrate (LilliHD), Rust embedder; macOS-only, English-only, MIT
 - [Immich](entries/immich.md) — open — Production-ready self-hosted Google Photos alternative with AI search; not agent tooling but solid self-hosted media infrastructure.
 - [Inbox Zero](entries/inbox-zero.md) — open — AI-powered self-hostable email management app — strong open-source email assistant, not a developer/agent toolkit.

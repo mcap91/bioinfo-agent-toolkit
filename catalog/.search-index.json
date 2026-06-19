@@ -2,7 +2,7 @@
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
   "generated": "2026-06-19",
-  "count": 143,
+  "count": 144,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -1553,6 +1553,29 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/headroom.md"
+    },
+    {
+      "name": "huggingface-inference-providers",
+      "title": "Hugging Face Inference Providers",
+      "url": "https://huggingface.co/docs/inference-providers/index",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Unified API gateway routing inference to 15+ backend providers (Groq, Together AI, Cerebras, Replicate, etc.) via a single HF token; OpenAI-compatible, multi-task (LLM, VLM, image gen, embeddings, speech), with provider selection policies (:fastest, :cheapest, :preferred)",
+      "body_summary": "Hugging Face Inference Providers is a unified API layer that sits between your application and 15+ AI inference backends — Cerebras, Groq, Together AI, Replicate, Fal AI, SambaNova, DeepInfra, Fireworks, Novita, Scaleway, and others. You authenticate once with an HF token and route requests to any supported provider through a single interface. The system auto-selects the fastest available provider by default, or you append `:cheapest` or `:preferred` to the model ID to control routing.\n\nThree tiers exist under the \"Inference\" umbrella: (1) **Serverless Inference API** — free-tier, rate-limited, HF's own backend, good for prototyping and CPU-bound tasks like embeddings/classification; (2) **Inference Endpoints** — dedicated GPU instances you provision per-model ($0.50/hr+, scale-to-zero); (3) **Inference Providers** — the multi-provider gateway described above, pay-as-you-go at provider rates with no HF markup.\n\nTasks span chat completion (LLM and VLM), text-to-image, text-to-video, speech-to-text, feature extraction/embeddings, NER, summarization, and classification. The chat completions endpoint is an OpenAI API drop-in replacement (`https://router.huggingface.co/v1`).",
+      "tags": [
+        "huggingface",
+        "inference",
+        "model-api",
+        "gateway",
+        "openai-compatible",
+        "multi-provider",
+        "serverless"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-06-19",
+      "path": "catalog/entries/huggingface-inference-providers.md"
     },
     {
       "name": "huggingface-llm-course",
