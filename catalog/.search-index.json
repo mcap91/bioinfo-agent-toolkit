@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-06-19",
-  "count": 144,
+  "generated": "2026-06-22",
+  "count": 155,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -326,6 +326,26 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/autoharness.md"
+    },
+    {
+      "name": "automation-credit-dependency",
+      "title": "Automation Credit Dependency Pattern",
+      "url": "https://reddit.com",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Map who gets credit for the work before automating it — treat visibility as a technical dependency; invisible automation can damage careers even when it works perfectly",
+      "body_summary": "Practitioner account of automating an ops coordinator's 3-hour daily exception-handling workflow (Shippo → Airtable → Slack) into a 20-minute sanity check via n8n. The automation worked perfectly but made the coordinator's contribution invisible — she was pulled into a performance review because…",
+      "tags": [
+        "automation",
+        "human-factors",
+        "workflow-design",
+        "agent-pattern"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-06-22",
+      "path": "catalog/entries/automation-credit-dependency.md"
     },
     {
       "name": "autoresearch",
@@ -904,6 +924,27 @@
       "path": "catalog/entries/codebase-reasoning-topology.md"
     },
     {
+      "name": "codeburn",
+      "title": "CodeBurn",
+      "url": "https://github.com/getagentseal/codeburn",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Cross-tool AI spend observability dashboard — reads local session files from 31+ tools (Claude Code, Codex, Cursor, Gemini CLI, etc.), breaks down tokens and cost by task/model/project, waste detection with copy-paste fixes, model comparison, git-correlated yield tracking; MIT, fully local",
+      "body_summary": "Interactive TUI/web dashboard that reads session files already written to disk by AI coding tools and computes per-call token usage and cost. Supports 31 providers including Claude Code, Codex, Cursor, Gemini CLI, Kiro, Warp, Forge, Pi/OMP, Codebuff, Cline/Roo Code, Kimi, and more. Pricing pulled from LiteLLM (cached 24h) with hardcoded fallbacks for Claude and GPT-5 models.\n\nKey commands:\n- `npx codeburn` — interactive dashboard (last 7 days)\n- `codeburn optimize` — scan for waste patterns (re-read files, low read:edit ratio, bloated CLAUDE.md, unused MCP servers, ghost skills) with estimated savings and copy-paste fixes, graded A–F\n- `codeburn compare` — side-by-side model comparison (one-shot rate, retry rate, cost per edit, cache hit)\n- `codeburn yield` — correlates sessions with git commits to classify spend as productive/reverted/abandoned\n- `codeburn web` — local browser dashboard with charts\n- `codeburn overview` — plain-text monthly summary for pasting into Slack/PRs\n- Menu bar app (macOS) with real-time spend display\n\nTask classification is deterministic (13 categories from tool usage patterns and keywords, no LLM calls). One-shot rate tracks file-aware retry cycles. Multi-device aggregation via PIN-authorized LAN pairing. 162 currencies supported.",
+      "tags": [
+        "cost-tracking",
+        "token-analytics",
+        "observability",
+        "tui",
+        "claude-code"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-22",
+      "path": "catalog/entries/codeburn.md"
+    },
+    {
       "name": "codex-memory-cleanup",
       "title": "Codex Memory Cleanup",
       "category": "reference",
@@ -920,6 +961,27 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/codex-memory-cleanup.md"
+    },
+    {
+      "name": "codex-ssd-write-bug",
+      "title": "Codex Desktop SSD Write Issue",
+      "url": "https://reddit.com",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Codex Desktop's logs_2.sqlite writes ~7MB/s continuously (~222TB/year annualized); disable analytics first, SQLite trigger workaround cuts 96.5% — cautionary reference for long-running AI tool resource costs",
+      "body_summary": "Measured analysis of Codex Desktop's local logging on an always-on Mac. The `~/.codex/logs_2.sqlite` process writes ~846MB per 2-minute sample (~7MB/s). Annualized at sustained rate: ~222TB/year. The author's internal SSD reports 54.8TB total written with 2% wear, so this is meaningful but not…",
+      "tags": [
+        "codex",
+        "operational",
+        "ssd",
+        "logging",
+        "resource-management"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-06-22",
+      "path": "catalog/entries/codex-ssd-write-bug.md"
     },
     {
       "name": "context-graph-compressor",
@@ -1066,6 +1128,30 @@
       "path": "catalog/entries/data-science-for-beginners.md"
     },
     {
+      "name": "deep-live-cam",
+      "title": "Deep-Live-Cam",
+      "url": "https://github.com/hacksider/Deep-Live-Cam",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Real-time face swap and video deepfake from a single image — webcam live mode, multi-face mapping, mouth mask, GPU acceleration (CUDA/CoreML/DirectML/OpenVINO); built on InsightFace/GFPGAN; viral 50K+ stars but no stated SPDX license and uses non-commercial research models",
+      "body_summary": "Real-time face swapping application that takes a single source face image and applies it to a webcam feed or video. Core capabilities:\n\n- **Live webcam mode**: select a face image, click \"Live,\" stream via OBS\n- **Image/video mode**: swap faces in pre-recorded content\n- **Multi-face mapping**: different source faces on multiple subjects simultaneously\n- **Mouth mask**: retain original mouth movement for accurate lip sync\n- **GPU acceleration**: CUDA (NVIDIA), CoreML (Apple Silicon), DirectML (Windows), OpenVINO (Intel)\n- **Face enhancement**: GFPGAN post-processing for quality\n\nBuilt on InsightFace (inswapper_128_fp16.onnx) for face swapping and GFPGANv1.4 for face enhancement. Python 3.11, requires ffmpeg.",
+      "tags": [
+        "deepfake",
+        "face-swap",
+        "computer-vision",
+        "real-time",
+        "video"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0-only",
+      "security_flags": [
+        "non-commercial-models",
+        "ethical-risk"
+      ],
+      "reviewed": "2026-06-22",
+      "path": "catalog/entries/deep-live-cam.md"
+    },
+    {
       "name": "deny-env-reads",
       "title": "Deny .env Reads via Permissions",
       "url": "https://code.claude.com/docs/en/settings",
@@ -1111,6 +1197,49 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/distill.md"
+    },
+    {
+      "name": "dotclaude",
+      "title": "dotclaude",
+      "url": "https://github.com/poshan0126/dotclaude",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Turnkey .claude/ folder setup — 7 specialist agents (code/security/perf/doc reviewers, silent-failure-hunter, frontend-designer), 12 workflow skills (/ship, /pr-review, /tdd, /debug-fix, etc.), 6 modular rules, 8 safety/productivity hooks; marketplace-installable, evidence-based setup scan; MIT",
+      "body_summary": "A complete `.claude/` configuration kit distributed as a marketplace plugin or git clone. Includes:\n\n**7 specialist agents** (run in isolated context, auto-delegated or invoked with `@name`):\n- `@code-reviewer` — correctness, off-by-one, null deref, race conditions, missing tests\n- `@silent-failure-hunter` — empty catches, masked errors, floating promises, swallowed failures\n- `@pr-test-analyzer` — assertion-free tests, mock theater, tests that can't fail\n- `@security-reviewer` — injection, auth flaws, data exposure, crypto issues\n- `@performance-reviewer` — N+1 queries, unbounded queries, memory leaks, blocking I/O\n- `@frontend-designer` — anti-AI-slop UI design with design tokens and accessibility\n- `@doc-reviewer` — cross-references docs against actual source code\n\n**12 skills** (slash commands):\n- `/setupdotclaude` — evidence-based install: deep-scans codebase, interviews user, proposes justified plan\n- `/ship` — stage, commit, push, PR with confirmations\n- `/pr-review` — parallel multi-agent review with confidence-bucketed synthesis\n- `/tdd` — strict red-green-refactor loop\n- `/debug-fix [--fast]` — careful debug or hotfix mode\n- `/fix-issue` — GitHub issue to tested fix with regression test\n- `/catchup` — rebuild context after `/clear`, write handoff notes\n- `/context-budget` — estimate per-turn token cost of `.claude/` config\n\n**8 hooks**: protect-files, warn-large-files, scan-secrets, block-dangerous-commands, format-on-save (auto-detects Prettier/Black/Ruff/Biome/rustfmt/gofmt), auto-test, session-start, notify (native OS notifications).\n\n**6 rules**: code-quality, testing, database (path-scoped to migrations), error-handling (path-scoped to backend), security (path-scoped to API/auth), frontend (path-scoped to UI).",
+      "tags": [
+        "claude-code",
+        "plugin",
+        "agents",
+        "skills",
+        "hooks",
+        "workflow"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-22",
+      "path": "catalog/entries/dotclaude.md"
+    },
+    {
+      "name": "drevalpy",
+      "title": "DrEvalPy",
+      "url": "https://github.com/daisybio/drevalpy",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Python cancer cell line drug response prediction benchmark suite — maintained baseline model catalog, gold standard datasets (CTRPv2, GDSC1/2, CCLE, BeatAML2), application-driven evaluation splits (LPO/LCO/LDO/LTO), ablation studies, cross-study generalization, nf-core Nextflow pipeline; Nature Comms published, TUM/FU Berlin",
+      "body_summary": "Standardized evaluation framework for cancer drug response prediction models. Handles the full experimental loop: dataset download, preprocessing, model training, cross-validation with biologically meaningful splits, ablation/permutation testing, cross-study generalization, and paper-ready HTML reports.\n\nKey features:\n- **Model catalog**: maintained baselines (NaivePredictor, ElasticNet, RandomForest, SimpleNeuralNetwork, GradientBoosting, SRMF, DIPK, SuperFELTR, MultiViewRandomForest/NeuralNetwork) — no need to reimplement literature models\n- **Datasets**: CTRPv2, CTRPv1, CCLE, GDSC1, GDSC2, BeatAML2, PDX_Bruna, plus toy datasets\n- **Splitting strategies**: Leave-Pair-Out (LPO), Leave-Cell-Line-Out (LCO), Leave-Drug-Out (LDO), Leave-Tissue-Out (LTO) — tests real prediction scenarios\n- **Ablation**: permutation tests (SVRC/SVRD) and invariant ablation to verify feature contributions\n- **Measures**: LN_IC50, pEC50, AUC\n- **Pipeline**: nf-core/drugresponseeval Nextflow pipeline for HPC reproducibility\n- **Hyperparameter tuning**: optional Ray Tune integration for parallel tuning\n- **Reports**: `drevalpy-report` generates interactive HTML with comparison visualizations",
+      "tags": [
+        "drug-response",
+        "cancer",
+        "benchmarking",
+        "nextflow",
+        "bioinformatics"
+      ],
+      "workflows": [],
+      "license": "GPL-3.0-only",
+      "security_flags": [],
+      "reviewed": "2026-06-22",
+      "path": "catalog/entries/drevalpy.md"
     },
     {
       "name": "dspy",
@@ -1285,6 +1414,26 @@
       "security_flags": [],
       "reviewed": "2026-06-19",
       "path": "catalog/entries/firecrawl.md"
+    },
+    {
+      "name": "first-principles-destructor",
+      "title": "First Principles Destructor",
+      "url": "https://github.com/reshadat/first-principles-destructor",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "6-stage assumption-destruction skill — inventories hidden assumptions, strips to physics/math/logic floor, calculates 'convention tax', removes non-load-bearing conventions, rebuilds from reality; multi-platform (Claude Code, Codex, Gemini, Cursor, Kiro); MIT",
+      "body_summary": "A SKILL.md-based prompt skill that runs a structured 6-stage process on any statement, belief, or process:\n\n1. **Assumption Inventory** — surfaces 5–15 hidden assumptions\n2. **Reality Floor** — strips convention; what do physics/math/logic actually require?\n3. **Convention Tax Calculator** — quantifies the cost of maintaining each assumption\n4. **Assumption Removal Test** — what breaks, what costs more, what's purely optional?\n5. **Rebuilt Version** — reconstruct from reality, not habit\n6. **First Mover Question** — if this rebuilt version is possible, why doesn't it exist yet?\n\nMulti-platform installer covers Claude Code (global/project), Gemini CLI, Codex CLI, Cursor (.mdc rules), Kiro (.kiro/steering), and Claude.ai (.skill ZIP upload).",
+      "tags": [
+        "first-principles",
+        "reasoning",
+        "skill",
+        "multi-platform"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-22",
+      "path": "catalog/entries/first-principles-destructor.md"
     },
     {
       "name": "fluiddocs-deck-builder",
@@ -1977,6 +2126,27 @@
       "path": "catalog/entries/mex.md"
     },
     {
+      "name": "mit-opencourseware",
+      "title": "MIT OpenCourseWare (OCW)",
+      "url": "https://ocw.mit.edu/search/",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "MIT's free online course catalog — 2,500+ courses across all disciplines including linear algebra, statistics, biology, computer science; useful as source material for learning-vault ingestion and structured self-study",
+      "body_summary": "MIT's free and open publication of course materials from across the university. Covers mathematics (linear algebra, calculus, probability), computer science, biology, chemistry, engineering, and more. Each course typically includes lecture notes, assignments, exams, and sometimes video lectures.…",
+      "tags": [
+        "education",
+        "courses",
+        "learning",
+        "mit",
+        "open-access"
+      ],
+      "workflows": [],
+      "license": "CC-BY-NC-SA-4.0",
+      "security_flags": [],
+      "reviewed": "2026-06-22",
+      "path": "catalog/entries/mit-opencourseware.md"
+    },
+    {
       "name": "mlx-vlm-turboquant",
       "title": "mlx-vlm TurboQuant (Apple Silicon KV Cache Compression)",
       "url": "https://github.com/Blaizzy/mlx-vlm/pull/858",
@@ -2338,6 +2508,27 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/open-webui.md"
+    },
+    {
+      "name": "openai-python-sdk",
+      "title": "OpenAI Python SDK",
+      "url": "https://github.com/openai/openai-python",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Official Python client for the OpenAI API — GPT, o-series, Codex, DALL-E, Whisper, embeddings; typed Pydantic models, async support, streaming, function calling; MIT, PyPI",
+      "body_summary": "Official Python client library for the OpenAI API. Covers all API endpoints: chat completions (GPT-5.4-mini, GPT-5, o-series), embeddings, images (DALL-E), audio (Whisper/TTS), assistants, fine-tuning, batch, and files. Typed with Pydantic models, supports sync and async, streaming, and function/tool calling.\n\nBasic conversation loop with memory:\n```python\nfrom openai import OpenAI\nclient = OpenAI()\nmessages = [{\"role\": \"system\", \"content\": \"You are helpful.\"}]\nwhile True:\n    messages.append({\"role\": \"user\", \"content\": input(\"> \")})\n    resp = client.chat.completions.create(model=\"gpt-5.4-mini\", messages=messages)\n    messages.append(resp.choices[0].message)\n    print(resp.choices[0].message.content)\n```",
+      "tags": [
+        "openai",
+        "python",
+        "sdk",
+        "llm",
+        "api-client"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-06-22",
+      "path": "catalog/entries/openai-python-sdk.md"
     },
     {
       "name": "openclaw",
@@ -3244,6 +3435,28 @@
       "path": "catalog/entries/unforget.md"
     },
     {
+      "name": "unslop-skills",
+      "title": "Unslop Skills (UI / Text / Code)",
+      "url": "https://github.com/JCarterJohnson/vibecoded-design-tells",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Three Claude skills that flag and remove AI 'tells' — unslop-ui (vibe-coded website patterns), unslop-text (AI prose cadences), unslop-code (AI code artifacts); backed by 3.2M-post Reddit analysis across 47 subreddits, with standalone CI-gating scanners; MIT",
+      "body_summary": "Three Claude skills, each built from a Reddit-mined study of what people identify as AI-generated \"slop\":\n\n- **unslop-ui** — flags vibe-coded website patterns: shadcn/Tailwind defaults, AI-purple gradients, gradient hero text, emoji-as-icons, centered-hero-plus-three-cards layout, cream+serif+sage \"tasteful default.\" Build mode establishes a design brief before generation; audit mode scans existing code with line-level findings and a \"vibe score.\"\n- **unslop-text** — flags AI prose tells: em dashes, \"it's not just X, it's Y\" cadence, sycophantic openers, delve/leverage diction, \"in conclusion\" wrap-ups, leftover assistant boilerplate.\n- **unslop-code** — flags AI code tells: leftover chat artifacts, placeholder comments, emoji in code, swallowed errors, narrating comments, generic placeholder names, hallucinated APIs.\n\nEach skill includes a standalone scanner script that greps a codebase, prints findings with file/line references, and gates CI on exit code. Lines marked `unslop-ignore` are skipped.\n\nData: 3,214,533 posts scanned across 47 subreddits (2020–2026), 46,971 on-topic, 3,033 comments from 125 canonical threads. Tells ranked by share of on-topic comments, adversarially verified (11/12 held).",
+      "tags": [
+        "design",
+        "writing",
+        "code-quality",
+        "ai-detection",
+        "skill",
+        "claude-code"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-22",
+      "path": "catalog/entries/unslop-skills.md"
+    },
+    {
       "name": "vaultwarden",
       "title": "Vaultwarden",
       "url": "https://github.com/dani-garcia/vaultwarden",
@@ -3411,6 +3624,25 @@
       ],
       "reviewed": "2026-06-19",
       "path": "catalog/entries/whisperx.md"
+    },
+    {
+      "name": "windows-god-mode",
+      "title": "Windows 11 God Mode",
+      "url": "https://www.tomshardware.com/how-to/enable-god-mode-windows-11",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Windows 10/11 trick — create a folder named GodMode.{ED7BA470-8E54-465E-825C-99712043E01C} to get a flat list of 200+ Control Panel shortcuts; useful for quick access to buried settings like environment variables, audio devices, power options",
+      "body_summary": "Create a folder on the Windows desktop named `GodMode.{ED7BA470-8E54-465E-825C-99712043E01C}`. The folder becomes a flat, searchable list of 200+ Control Panel settings organized by category (Security, Power Options, Network, etc.). Individual shortcuts can be dragged to the desktop for one-click…",
+      "tags": [
+        "windows",
+        "tips",
+        "productivity"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-06-22",
+      "path": "catalog/entries/windows-god-mode.md"
     },
     {
       "name": "zero-to-mastery-ml",

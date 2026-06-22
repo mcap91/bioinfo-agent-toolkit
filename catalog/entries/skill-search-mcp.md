@@ -50,3 +50,10 @@ The service-free default (embedded Qdrant + fastembed ONNX) means no Docker or O
 - **Dependencies**: fastembed (ONNX), qdrant-client, tiktoken — standard ML stack, no unusual deps
 - **No dangerous patterns**: No eval, no shell injection, no credential handling beyond standard env vars
 - **Local-only by default**: Embedded Qdrant stores vectors at `~/.cache/skill-search/qdrant`, no external calls unless Ollama tier opted in
+
+## Usage notes
+
+- Author measured 117 skills → ~7,300 tokens injected every turn (~3.6% of 200K window) from skill descriptions alone. Name-only mode + semantic MCP retrieval drops this to ~900 tokens/turn.
+- Keyword matching misses skills whose names don't echo user wording (e.g. "review my UI for accessibility" won't surface a skill named "a11y-debugging")
+- The semantic retrieval recall is ~0.79 on the author's test set — not perfect but better than keyword overlap
+- Only pays off with many skills (hundreds); light installs won't notice the savings
