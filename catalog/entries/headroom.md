@@ -67,3 +67,13 @@ Claude Code compatibility: `headroom wrap claude --memory --code-graph`. MCP ins
 - **ML model (Kompress-base)**: Trained on "agentic traces" — unclear what data, whether it memorizes sensitive content from training, or what it might selectively compress away from agent context.
 - **Supply chain**: Single primary author (chopratejas), no signed releases visible, recent active repo. Tests exist (`pytest`), CI configuration present (devcontainers), contributing guide provided.
 - **security_flags**: `mitm-proxy` (proxy intercepts all LLM traffic), `agent-instructions-write` (headroom learn modifies CLAUDE.md/AGENTS.md), `single-author` (limited review coverage), `unvetted-ml-model` (Kompress-base provenance unknown).
+
+## Usage notes
+
+- Repo moved to `headroomlabs-ai/headroom` org (2026-06). New URL: https://github.com/headroomlabs-ai/headroom
+- Now includes **output token reduction** (`HEADROOM_OUTPUT_SHAPER=1`) — trims model verbosity and routes thinking effort down on routine tool-result turns; counterfactual savings reported with confidence intervals
+- `headroom learn --verbosity` auto-tunes terseness from past session behavior
+- GitHub Copilot CLI subscription routing via `headroom copilot-auth login` + `headroom wrap copilot --subscription`
+- Agent compatibility expanded: Cortex Code (60-65% savings, library mode), OpenClaw (ContextEngine plugin)
+- `headroom update` command with pip/pipx/uv detection
+- License confirmed Apache 2.0
