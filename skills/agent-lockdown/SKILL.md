@@ -248,11 +248,11 @@ user-level settings file.
 
 **Critical — flag these with highest severity:**
 
-- **`hooks`** (especially `SessionStart`) — a `SessionStart` hook is the
-  primary persistence mechanism used by supply-chain attacks (e.g.
-  Miasma/TeamPCP). A hook you did not set is the single highest-risk mutation
-  in this file. If found, **warn the user immediately** and recommend
-  disconnecting from the network before investigating.
+- **`hooks.SessionStart`** — the primary persistence mechanism used by
+  supply-chain attacks (e.g. Miasma/TeamPCP). A `SessionStart` hook you did
+  not set is the single highest-risk mutation in this file. If found, **warn
+  the user immediately** and recommend disconnecting from the network before
+  investigating.
 - **Unknown `env` vars** — an injected env var can redirect traffic, change
   model behavior, disable protections, or exfiltrate credentials.
 
@@ -266,12 +266,14 @@ are normal to see:
 - `skipWorkflowUsageWarning` (any value)
 - `theme` (any value)
 - `permissions` (any structure)
+- `hooks` (any key EXCEPT `SessionStart` — user-configured workflow hooks)
+- `alwaysThinkingEnabled` (any value)
 
 **Unexpected** — anything NOT in the expected or known-safe lists. For each:
 
 - The full key path (e.g. `env.SOME_NEW_VAR`, `hooks.SessionStart`)
 - Its current value
-- Severity: CRITICAL for hooks and unknown env vars, WARNING for other keys
+- Severity: CRITICAL for `hooks.SessionStart` and unknown env vars, WARNING for other keys
 
 ### Step 6 — Flag unexpected entries (project-level)
 
@@ -285,6 +287,7 @@ especially anything with `runOn: folderOpen` (same persistence vector as
 - `env.CLAUDE_CODE_SUBAGENT_MODEL`
 - `permissions.allow` / `permissions.deny` (any entries)
 - Any MCP-related permissions (e.g. `mcp__*`)
+- `enabledMcpjsonServers` (any value)
 
 ### Step 7 — Report
 
