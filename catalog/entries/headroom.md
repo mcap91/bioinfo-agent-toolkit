@@ -77,3 +77,10 @@ Claude Code compatibility: `headroom wrap claude --memory --code-graph`. MCP ins
 - Agent compatibility expanded: Cortex Code (60-65% savings, library mode), OpenClaw (ContextEngine plugin)
 - `headroom update` command with pip/pipx/uv detection
 - License confirmed Apache 2.0
+
+- **Org moved**: Project now at `github.com/headroomlabs-ai/headroom` (clone URL still references `chopratejas/headroom`)
+- **Output token reduction** (new): `HEADROOM_OUTPUT_SHAPER=1` enables verbosity steering (terse system prompt appendage) and effort routing (dials down thinking on routine tool-result turns). `headroom learn --verbosity` auto-calibrates from past sessions.
+- **Agent compatibility**: Confirmed working with Claude Code, Codex, Cursor, Aider, Copilot CLI, OpenClaw, OpenCode, Cortex Code via `headroom wrap <agent>`.
+- **Copilot subscription mode**: `headroom copilot-auth login` + `headroom wrap copilot --subscription` routes GitHub Copilot CLI traffic through proxy.
+- **Cross-agent memory**: `SharedContext().put / .get` enables compressed context passing across multi-agent workflows with auto-dedup and agent provenance.
+- **Output savings measurement**: `headroom output-savings` reports counterfactual estimate with 95% CI. Optional holdout group (`HEADROOM_OUTPUT_HOLDOUT=0.1`) for measured A/B comparison.
