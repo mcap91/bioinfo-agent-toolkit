@@ -11,8 +11,11 @@ description: Full catalog pipeline — Gmail pull, inbox curation, drain, and he
    timestamp of the last successful Gmail pull. Use it to scope the search (step 2).
 2. **Gather:**
    - Gmail: search `from:me subject:catalog after:{date from cursor, YYYY/MM/DD}`.
-   - Extract URLs from message bodies; capture prose bodies as fenced ```text blocks with a
-     `source:` line. Append all to `catalog/inbox.md`.
+   - **Filter duplicates:** Gmail `after:` has only day-level granularity, so the search will
+     return messages from earlier in the cursor day that were already processed. Compare each
+     message's `date` against the cursor timestamp and discard any message dated at or before it.
+   - Extract URLs from the remaining message bodies; capture prose bodies as fenced ```text
+     blocks with a `source:` line. Append all to `catalog/inbox.md`.
 3. **Update cursor:** call `config { action: "set-state", key: "gmail_last_pull_iso", value: "<now ISO>" }`
    with the current UTC timestamp. Do this **after** successfully appending to inbox, not before.
 4. **Curate** `catalog/inbox.md` with the user: delete junk; for any `⚠ needs-link` item
