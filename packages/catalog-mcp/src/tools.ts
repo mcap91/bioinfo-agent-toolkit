@@ -17,6 +17,10 @@ import { annotateEntry } from './core/annotate-entry.js';
 import { listGoals, getGoal, addGoal, updateGoal, removeGoal } from './core/goals.js';
 import { PROJECT_STATUSES, PRIORITIES } from './core/schema.js';
 import { drainInbox } from './core/drain.js';
+import { readFile } from 'node:fs/promises';
+import { catalogPaths } from './core/config.js';
+import { buildAndWriteGraph, queryNeighbors, queryTopic } from './core/graph/index.js';
+import type { GraphExport } from './core/graph/types.js';
 
 export interface ToolDef {
   name: string;
@@ -39,11 +43,15 @@ export const tools: ToolDef[] = [
         format: input.format as 'full' | 'decision_status' | 'workflow' | 'category',
       });
       const searchResult = await buildSearchIndex(dir);
+      const graphResult = await buildAndWriteGraph(dir);
       return {
         path: result.path,
         searchIndexPath: searchResult.path,
+        graphPath: graphResult.path,
         entryCount: result.entryCount,
         decisionStatusCounts: result.decisionStatusCounts,
+        graphNodeCount: graphResult.nodeCount,
+        graphEdgeCount: graphResult.edgeCount,
       };
     },
   },
@@ -85,6 +93,47 @@ export const tools: ToolDef[] = [
         category: input.category as string | undefined,
         limit: input.limit as number,
       });
+    },
+  },
+  {
+    name: 'graph-build',
+    description: 'Rebuild the catalog knowledge graph from current entries. Normally auto-runs via index; use this for on-demand rebuild.',
+    inputSchema: dirSchema,
+    handler: async (input) => {
+      const dir = resolveDir(input.dir as string | undefined);
+      return buildAndWriteGraph(dir);
+    },
+  },
+  {
+    name: 'graph-query',
+    description: 'Query the catalog knowledge graph. Use neighbors mode to explore connections from a known entry, or topic mode to discover entries by concept.',
+    inputSchema: dirSchema.extend({
+      mode: z.enum(['neighbors', 'topic']),
+      entry: z.string().optional().describe('Entry name (required for neighbors mode)'),
+      term: z.string().optional().describe('Search term (required for topic mode)'),
+      limit: z.number().int().positive().default(50),
+    }),
+    handler: async (input) => {
+      const dir = resolveDir(input.dir as string | undefined);
+      let graph: GraphExport;
+      try {
+        graph = JSON.parse(await readFile(catalogPaths(dir).graph, 'utf-8'));
+      } catch {
+        await buildAndWriteGraph(dir);
+        graph = JSON.parse(await readFile(catalogPaths(dir).graph, 'utf-8'));
+      }
+
+      const limit = input.limit as number;
+
+      if (input.mode === 'neighbors') {
+        const entry = input.entry as string | undefined;
+        if (!entry) return { error: 'entry is required for neighbors mode' };
+        return { mode: 'neighbors', query: entry, results: queryNeighbors(graph, entry, { limit }) };
+      }
+
+      const term = input.term as string | undefined;
+      if (!term) return { error: 'term is required for topic mode' };
+      return { mode: 'topic', query: term, results: queryTopic(graph, term, { limit }) };
     },
   },
   {
