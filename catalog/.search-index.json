@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-06-23",
-  "count": 165,
+  "generated": "2026-06-25",
+  "count": 171,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -143,6 +143,36 @@
       "path": "catalog/entries/agent-browser.md"
     },
     {
+      "name": "agent-reach",
+      "title": "Agent Reach",
+      "url": "https://github.com/Panniantong/agent-reach",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Capability-layer CLI that gives AI agents internet access — routes to best backend per platform (Twitter/Reddit/YouTube/Bilibili/Xiaohongshu/GitHub/LinkedIn/RSS/web/search), auto-installs tools, health-checks with doctor command; cookie-based auth, self-described vibe-coded, agent-self-install pattern carries supply-chain risk; MIT",
+      "body_summary": "A Python CLI capability layer that gives AI coding agents internet access across 10+ platforms. It doesn't do the reading itself — it selects, installs, and health-checks the best available backend tool for each platform, then the agent calls that upstream tool directly.\n\nSupported platforms: web pages (Jina Reader), Twitter/X (twitter-cli → OpenCLI fallback), YouTube (yt-dlp for subtitles and search), GitHub (gh CLI), Bilibili (bili-cli, replacing yt-dlp which got blocked by Bilibili anti-fraud June 2026), Reddit (OpenCLI → rdt-cli, no anonymous access possible), Xiaohongshu (OpenCLI → xiaohongshu-mcp → xhs-cli), LinkedIn (linkedin-scraper-mcp → Jina Reader), RSS (feedparser), full-web search (Exa via mcporter MCP). Also supports V2EX and Xueqiu (Chinese stock market).\n\nEach platform has an ordered backend list (primary + fallbacks). When a backend breaks, the maintainer swaps the routing — users run `agent-reach update`. `agent-reach doctor` reports which backend is active per platform and what needs fixing.\n\nInstall model: paste a single line to your agent pointing at the raw install.md on GitHub — the agent reads the instructions and self-installs. Has `--safe` mode (preview-only) and `--dry-run`.",
+      "tags": [
+        "web-access",
+        "twitter",
+        "reddit",
+        "youtube",
+        "bilibili",
+        "xiaohongshu",
+        "agent-capability",
+        "cli",
+        "internet-access"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "agent-self-install",
+        "cookie-handling",
+        "vibe-coded",
+        "pip-install-from-git"
+      ],
+      "reviewed": "2026-06-25",
+      "path": "catalog/entries/agent-reach.md"
+    },
+    {
       "name": "agent-session-resume",
       "title": "Agent Session Resume",
       "url": "https://github.com/hacktivist123/agent-session-resume",
@@ -163,6 +193,51 @@
       "security_flags": [],
       "reviewed": "2026-06-09",
       "path": "catalog/entries/agent-session-resume.md"
+    },
+    {
+      "name": "agent-skills-osmani",
+      "title": "Agent Skills (Addy Osmani)",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Production-grade 24-skill engineering pack for AI coding agents — full SDLC lifecycle (define/plan/build/verify/review/ship) with anti-rationalization tables, verification gates, and 8 slash commands; 65K+ stars, Claude Code marketplace-installable, multi-platform (Cursor/Gemini/Windsurf/Copilot/Kiro); MIT",
+      "body_summary": "24 structured engineering skills covering the complete software development lifecycle, packaged as a Claude Code plugin (also works with Cursor, Gemini CLI, Windsurf, GitHub Copilot, Kiro, OpenCode, and Codex). Each skill is a SKILL.md with YAML frontmatter containing step-by-step workflows, verification gates, and anti-rationalization tables that prevent agents from skipping steps.\n\n8 slash commands map to lifecycle phases: `/spec` (define), `/plan` (plan), `/build` (build — auto-generates plan and implements autonomously), `/test` (verify), `/review` (review), `/webperf` (audit), `/code-simplify` (simplify), `/ship` (deploy). 4 specialist agent personas (code-reviewer, test-engineer, security-auditor, web-performance-auditor) and 5 reference checklists (definition-of-done, testing-patterns, security, performance, accessibility, observability).\n\nKey skills: spec-driven-development, planning-and-task-breakdown, incremental-implementation, test-driven-development, context-engineering, source-driven-development, doubt-driven-development, frontend-ui-engineering, api-and-interface-design, debugging-and-error-recovery, code-review-and-quality, code-simplification, security-and-hardening, performance-optimization, git-workflow-and-versioning, ci-cd-and-automation, deprecation-and-migration, documentation-and-adrs, observability-and-instrumentation, shipping-and-launch, interview-me, idea-refine, browser-testing-with-devtools.\n\nDraws heavily from Google engineering culture: Hyrum's Law, Beyonce Rule, test pyramid, Chesterton's Fence, trunk-based development, Shift Left, change sizing (~100 lines).",
+      "tags": [
+        "skills",
+        "sdlc",
+        "engineering-practices",
+        "claude-code",
+        "plugin",
+        "tdd",
+        "code-review",
+        "planning"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-25",
+      "path": "catalog/entries/agent-skills-osmani.md"
+    },
+    {
+      "name": "agent-skills-spec",
+      "title": "Agent Skills Open Standard (agentskills.io)",
+      "url": "https://agentskills.io/home",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Anthropic's open SKILL.md specification for packaging agent capabilities — adopted by 32+ tools (Claude Code, Codex, Cursor, Gemini CLI, Kiro, Junie, Goose); progressive-disclosure format (name/description → full instructions → scripts/assets); 100K+ stars on anthropics/skills; the cross-vendor standard our skills are built on",
+      "body_summary": "The Agent Skills specification defines a universal format for packaging procedural knowledge for AI coding agents. A skill is a folder containing a required SKILL.md file (YAML frontmatter with `name` and `description`, plus Markdown instructions) and optional subdirectories for scripts,…",
+      "tags": [
+        "specification",
+        "open-standard",
+        "skill-format",
+        "anthropic",
+        "interoperability"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-25",
+      "path": "catalog/entries/agent-skills-spec.md"
     },
     {
       "name": "agent-teams",
@@ -908,6 +983,26 @@
       "path": "catalog/entries/claude-peers-mcp.md"
     },
     {
+      "name": "claude-skill-steelman",
+      "title": "Claude Skill Steelman",
+      "url": "https://github.com/techiejd/claude-skill-steelman",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Single-purpose /steelman skill that pressure-tests decisions by arguing strongest alternatives at full strength — anti-sycophancy focused, context-specific; overlaps with doubt-driven-development (agent-skills) and superpowers:brainstorming",
+      "body_summary": "A single Claude Code skill invoked via `/steelman`. When a user states a direction (e.g., \"We're going with Postgres\"), the skill makes Claude genuinely argue for the 2–3 strongest alternatives — not devil's advocate theater, but real arguments rooted in the specific project context. Outputs: blind spots in the current choice (2–4 bullets), full-strength alternative arguments, an honest assessment of whether the original choice survived scrutiny, and a decision prompt (proceed/reconsider/investigate).\n\nClaude may also auto-suggest invoking the skill when it detects high-stakes decisions in context (architecture, technology selection, strategic pivots), but never auto-triggers.",
+      "tags": [
+        "decision-making",
+        "anti-sycophancy",
+        "claude-code",
+        "skill"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-25",
+      "path": "catalog/entries/claude-skill-steelman.md"
+    },
+    {
       "name": "claude-spellbook",
       "title": "Claude Spellbook",
       "category": "reference",
@@ -1646,6 +1741,30 @@
       "path": "catalog/entries/get-shit-done.md"
     },
     {
+      "name": "ggwas",
+      "title": "ggwas",
+      "url": "https://github.com/bczech/ggwas",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Modern ggplot2 GWAS visualization R package — 17 plot types (Manhattan, QQ, Miami, PheWAS, colocalization, fine-mapping, genetic correlations, karyogram, enrichment), journal themes (Nature/Science/Cell/PLOS), smart downsampling for 10M+ variants, auto-detects PLINK/REGENIE/GCTA/GEMMA; MIT",
+      "body_summary": "R package for publication-ready GWAS visualizations built on ggplot2. 17 plot types covering the full GWAS-to-post-GWAS analysis pipeline:\n\n- **Core**: Manhattan (with broken y-axis for extreme p-values), QQ (with CI and lambda), Miami (discovery vs replication), locus zoom (with LD and gene track)\n- **Novel**: circular Manhattan (multi-ring), enrichment Manhattan, multi-trait Manhattan (pleiotropy overlay), p-value heatmap, effect-size volcano, SNP density karyogram, density-vs-signal, GWAS summary dashboard\n- **Post-GWAS**: PheWAS, colocalization, fine-mapping (PIP/SuSiE), genetic correlation (LDSC), architecture plot\n\nAuto-detects column names from PLINK (.assoc/.linear/.logistic), REGENIE, GCTA MLMA, GEMMA, and generic files. Smart downsampling preserves all significant variants while binning non-significant background — renders 10M+ variant datasets in seconds (up to 8.8x faster than qqman). 6 journal themes (Nature, Science, Cell, PLOS, presentation, poster) and 14 colorblind-safe palettes.\n\nEvery function returns a composable ggplot object — standard ggplot2 layering, faceting, and theming all work.",
+      "tags": [
+        "gwas",
+        "visualization",
+        "r-package",
+        "ggplot2",
+        "manhattan-plot",
+        "bioinformatics",
+        "genomics",
+        "publication-ready"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-25",
+      "path": "catalog/entries/ggwas.md"
+    },
+    {
       "name": "googleworkspace-cli",
       "title": "Google Workspace CLI (gws)",
       "url": "https://github.com/googleworkspace/cli",
@@ -2338,6 +2457,31 @@
       "security_flags": [],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/model-workspace-protocol.md"
+    },
+    {
+      "name": "mycelium",
+      "title": "Mycelium",
+      "url": "https://github.com/SoftBacon-Software/mycelium",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Self-hosted Node.js/SQLite coordination server for multi-agent teams — persistent agent identity, work queues, messaging, approval gates, context store, spend tracking, GPU drone queue, 79-tool MCP server, plugin system; runtime/LLM-agnostic (HTTP API + SDK + MCP); Apache-2.0",
+      "body_summary": "A self-hosted server for coordinating teams of AI agents, GPU drone workers, and human operators on one network. Any process that speaks HTTP can join — Claude Code (via 79-tool MCP server), Python scripts with Ollama, Node.js SDK agents, or raw HTTP clients. Single Node.js process with embedded SQLite (55 tables, WAL mode), zero external services.\n\nCore capabilities (implemented, not roadmap): agent network with persistent identity across sessions/machines, multi-step plans with dependency ordering and auto-assignment to idle agents, inter-agent messaging with priority tiers and blocking requests, risk-tiered human approval gates (low/medium/high/critical with escalating human sign-off requirements), namespaced versioned context store with rollback, per-agent/project/model spend tracking, GPU drone job queue with capability matching, 13 built-in plugins (marketing, cost-tracker, daily-digest, error-monitor, github-sync, guardrails, semantic-memory, auto-memory, A2A gateway, workflows DAG engine, and more).\n\nToken-efficient protocol: slim boot (~500 tokens vs 3–5K typical), compressed list endpoints, lazy detail loading. Agents pull-claim work from `/work` on poll — work is never pushed.",
+      "tags": [
+        "multi-agent",
+        "coordination",
+        "self-hosted",
+        "mcp-server",
+        "agent-orchestration",
+        "local-inference",
+        "approval-gates"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "readme-prompt-injection"
+      ],
+      "reviewed": "2026-06-25",
+      "path": "catalog/entries/mycelium.md"
     },
     {
       "name": "n8n-mcp",
