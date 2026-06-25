@@ -17,7 +17,7 @@ cp -r skills/<name> <your-project>/.claude/skills/<name>
 | [/handoff](skills/handoff/) | Generate a handoff prompt for a fresh CLI agent or subagent |
 | [/plan-me-this](skills/plan-me-this/) | Package a spec into phase docs + readme_this_current_task.md |
 | [/scripts-reference](skills/scripts-reference/) | Generate a clickable script reference doc |
-| [/catalog-intake](skills/catalog-intake/) | Scan and curate links into the catalog inbox, then drain to the queue |
+| [/catalog-intake](skills/catalog-intake/) | Pull links from Gmail, curate, drain to queue, run headless processing |
 | [/agent-lockdown](skills/agent-lockdown/) | Lock down a coding agent CLI — version pin, model pin, env hardening, secrets deny, integrity checkup |
 
 ## Tools
@@ -28,40 +28,80 @@ Context window usage bar for the Claude Code CLI. See [statusline/README.md](sta
 
 ## Catalog
 
-The `catalog/` directory tracks external skills, plugins, hooks, MCP servers, agent patterns, CLI tools, frameworks, and reference material — 116 assessed entries with summaries, security reviews, and tags.
+The `catalog/` directory tracks external skills, plugins, hooks, MCP servers, agent patterns, CLI tools, frameworks, and reference material — 171 assessed entries with summaries, security reviews, and tags.
 
 ### Using the catalog from another project
 
-The catalog ships a search index at [`catalog/.search-index.json`](catalog/.search-index.json) — a single JSON file any agent can read to find tools, benchmarks, skills, or frameworks without cloning this repo or running an MCP server.
+Register the catalog MCP server in your project's `.mcp.json` to give your agent access to search, graph traversal, and topic discovery across all catalog entries.
 
-**Add this to your project's CLAUDE.md** (or equivalent agent instructions):
+**Add to your project's `.mcp.json`:**
+
+```json
+{
+  "mcpServers": {
+    "bioinfo-catalog": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "--import",
+        "file:///PATH/TO/bioinfo-agent-toolkit/node_modules/tsx/dist/loader.mjs",
+        "PATH/TO/bioinfo-agent-toolkit/packages/catalog-mcp/src/server.ts"
+      ],
+      "env": {}
+    }
+  }
+}
+```
+
+Replace `PATH/TO` with the absolute path to your local clone of this repo.
+
+**Key tools for cross-repo use:**
+
+| Tool | Purpose |
+|---|---|
+| `search` | Keyword search with field-weighted ranking (title > tags > summary > body). Returns scores and truncation signal. |
+| `graph-query` | Knowledge graph traversal. `neighbors` mode: explore connections from a known entry (overlaps, shared tags, shared category). `topic` mode: discover entries by concept (substring match on tags/categories). |
+| `graph-build` | Rebuild the knowledge graph on demand (normally auto-rebuilds via `index`). |
+
+**Add retrieval instructions to your project's CLAUDE.md:**
 
 ```markdown
 ## External tool catalog
 
-When looking for tools, skills, benchmarks, frameworks, or MCP servers, check the
-bioinfo-agent-toolkit catalog first:
+This project registers the bioinfo-agent-toolkit catalog MCP server as `bioinfo-catalog`.
+Use it to find tools, skills, frameworks, or MCP servers:
 
-    https://raw.githubusercontent.com/mcap91/bioinfo-agent-toolkit/main/catalog/.search-index.json
-
-Fetch this file and search by tags, category, decision_status, or keywords in summary/body_summary.
-Decision status: adopted (in use), rejected (evaluated and ruled out); unset = open (stockpiled, undecided).
-For full details on any entry, read the file at the entry's `path` field from the same repo.
+- `search { query: "multi-agent orchestration" }` — keyword search
+- `graph-query { mode: "topic", term: "orchestration" }` — find entries by concept
+- `graph-query { mode: "neighbors", entry: "mycelium" }` — explore connections from a known entry
 ```
 
-An agent in your project can then `WebFetch` the URL (or `Read` it from a local clone) and search in-context — no MCP wiring needed.
+**Lightweight alternative (no MCP):** The catalog ships a search index at [`catalog/.search-index.json`](catalog/.search-index.json). Any agent can fetch it via URL and search in-context:
+
+```
+https://raw.githubusercontent.com/mcap91/bioinfo-agent-toolkit/main/catalog/.search-index.json
+```
 
 ### Managing the catalog
 
-The catalog is managed by an MCP tool server in [`packages/catalog-mcp/`](packages/catalog-mcp/) — 15 tools for intake, research support, validation, and data management (index, search, lint, scaffold, ingest, drain, fetch-url, build-prompt, validate-entry, write-entry, annotate-entry, queue, config, goals, reddit-extract). The server never makes LLM calls; the calling agent does all reasoning. Running the `index` tool regenerates both `catalog/index.md` and `catalog/.search-index.json`.
+The catalog is managed by an MCP tool server in [`packages/catalog-mcp/`](packages/catalog-mcp/) — 17 tools for intake, research support, validation, knowledge graph, and data management. The server never makes LLM calls; the calling agent does all reasoning.
+
+| Group | Tools |
+|---|---|
+| Intake | `ingest`, `drain`, `fetch-url`, `reddit-extract`, `build-prompt` |
+| Entries | `validate-entry`, `write-entry`, `annotate-entry`, `scaffold` |
+| Data | `index`, `search`, `lint`, `queue`, `config`, `goals` |
+| Graph | `graph-build`, `graph-query` |
+
+Running `index` regenerates `catalog/index.md`, `catalog/.search-index.json`, and `catalog/.graph.json`.
 
 ## Structure
 
 ```
 skills/<name>/         Skills (just a SKILL.md)
 statusline/            Context window status bar tool
-catalog/               External tool/skill catalog (data)
-packages/catalog-mcp/  Catalog MCP tool server (15 tools)
+catalog/               External tool/skill catalog (data + derived artifacts)
+packages/catalog-mcp/  Catalog MCP tool server (17 tools)
 docs/                  Public documentation
 ```
 
