@@ -59,7 +59,7 @@ wiki/                  Private wiki (separate repo, gitignored)
 
 ## Catalog MCP Server
 
-The catalog is managed by an MCP tool server at `packages/catalog-mcp/`. The server provides 15 tools for intake, research support, validation, and data management. It never makes LLM calls — the calling agent does all reasoning. The data lives in `catalog/` (entries, index, queue, config, goals, inbox, recipe).
+The catalog is managed by an MCP tool server at `packages/catalog-mcp/`. The server provides 17 tools for intake, research support, validation, knowledge graph, and data management. It never makes LLM calls — the calling agent does all reasoning. The data lives in `catalog/` (entries, index, queue, config, goals, inbox, recipe).
 
 ### Running the server
 
@@ -77,7 +77,7 @@ To add a tool to the catalog:
 
 ### Available tools
 
-`ingest`, `drain`, `fetch-url`, `reddit-extract`, `build-prompt`, `validate-entry`, `write-entry`, `annotate-entry`, `index`, `search`, `lint`, `scaffold`, `queue`, `config`, `goals`
+`ingest`, `drain`, `fetch-url`, `reddit-extract`, `build-prompt`, `validate-entry`, `write-entry`, `annotate-entry`, `index`, `search`, `lint`, `scaffold`, `queue`, `config`, `goals`, `graph-build`, `graph-query`
 
 ### Catalog pipeline — intake → processing
 
