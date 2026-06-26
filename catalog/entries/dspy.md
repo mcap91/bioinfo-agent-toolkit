@@ -49,3 +49,9 @@ For this project, DSPy is most relevant if we build structured LLM pipelines for
 - **Maintenance**: Very active — 6.4M+ monthly npm/pip downloads, regular releases
 - **Code quality**: Research-grade with production adoption. Well-documented API
 - **Dangerous patterns**: `PythonInterpreter` module executes arbitrary code (used for calc tool) — standard for code execution tools, requires sandboxing in production
+
+## Usage notes
+
+- **Minimal program pattern:** `dspy.Predict("subject -> haiku")(subject="x")` — string signatures are parsed into typed input/output fields, auto-generate instructions, and return `Prediction` objects with named attributes. Variable names in the signature double as semantic hints to the model (changing "haiku" to "limerick" changes model behavior and output attribute name).
+- **Adapter pipeline:** Signature + inputs → ChatAdapter renders messages (system instructions with field schema + user input) → LLM call (cached by default) → ChatAdapter parses response → Prediction object. Inspect with `dspy.inspect_history(n=1)`.
+- **Getting started tutorial:** https://dspy.ai/getting-started/first-program/
