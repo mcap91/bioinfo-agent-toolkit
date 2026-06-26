@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-06-25",
-  "count": 171,
+  "generated": "2026-06-26",
+  "count": 182,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -724,6 +724,26 @@
       "path": "catalog/entries/bubblewrap-pwa.md"
     },
     {
+      "name": "building-evals-anthropic",
+      "title": "Building Evals (Anthropic Cookbook)",
+      "url": "https://platform.claude.com/cookbook/misc-building-evals",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "Walks through the structure and grading approaches for offline LLM evaluations. Evals have four parts: an input prompt, model output, a golden answer, and a score. Three grading methods are covered:\n\n- **Code-based grading** — exact match or regex against structured outputs; fastest and most reliable when the eval can be designed for it.\n- **Human grading** — a human compares output to golden answer; most capable but slowest and most expensive.\n- **Model-based grading** — Claude grades its own outputs against golden answers via a grader prompt; nearly as capable as human grading at a fraction of the cost.\n\nKey design heuristics: prefer higher volume over higher quality questions, structure questions to enable automated grading (e.g. reformatting as multiple choice), and match eval distribution to real-world query distribution.",
+      "tags": [
+        "evaluation",
+        "grading",
+        "testing",
+        "claude",
+        "llm-ops"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-06-25",
+      "path": "catalog/entries/building-evals-anthropic.md"
+    },
+    {
       "name": "castem-first-principles-model-mediated-work",
       "title": "CASTEM: First Principles for Model-Mediated Work",
       "url": "https://www.linkedin.com/pulse/castem-first-principles-model-mediated-work-bryan-downie-ph-d--58mnc/",
@@ -1202,6 +1222,30 @@
       "path": "catalog/entries/context-graph-compressor.md"
     },
     {
+      "name": "contextual-retrieval-anthropic",
+      "title": "Contextual Retrieval (Anthropic Cookbook)",
+      "url": "https://platform.claude.com/cookbook/capabilities-contextual-embeddings-guide",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "Demonstrates three progressive techniques for improving RAG retrieval quality over a baseline chunked-embedding approach:\n\n1. **Contextual Embeddings** — Before embedding each chunk, Claude generates a short description situating the chunk within its source document. The context is prepended to the chunk before embedding. Improves Pass@10 from 87% to 92%. Prompt caching makes this practical: sequential same-document processing achieves ~62% cache hit rate, reducing ingestion cost from ~$9 to ~$3 for the demo corpus.\n\n2. **Contextual BM25 Hybrid Search** — Combines contextual semantic search with BM25 keyword search (via Elasticsearch) using weighted Reciprocal Rank Fusion (default 80% semantic / 20% BM25). Catches exact keyword matches that embeddings miss.\n\n3. **Reranking** — Over-retrieves 10x candidates, then uses Cohere's rerank model to score and select the top-k. Achieves 95.26% Pass@10 — a 47% reduction in retrieval failures vs baseline.\n\nUses Voyage AI for embeddings, Elasticsearch for BM25, and Cohere for reranking.",
+      "tags": [
+        "rag",
+        "embeddings",
+        "retrieval",
+        "bm25",
+        "reranking",
+        "claude",
+        "prompt-caching"
+      ],
+      "workflows": [],
+      "security_flags": [
+        "needs-api-key"
+      ],
+      "reviewed": "2026-06-25",
+      "path": "catalog/entries/contextual-retrieval-anthropic.md"
+    },
+    {
       "name": "crawl4ai",
       "title": "Crawl4AI",
       "url": "https://github.com/unclecode/crawl4ai",
@@ -1587,6 +1631,30 @@
       "path": "catalog/entries/era-empirical-research-assistant.md"
     },
     {
+      "name": "fast-bioinformatics-tool-replacements",
+      "title": "Fast Bioinformatics Tool Replacements",
+      "url": "https://www.reddit.com",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Practitioner-compiled list of faster (mostly Rust-based) drop-in replacements for common bioinformatics and Unix CLI tools — Falco for FastQC, grit for bedtools/deeptools, sambamba for samtools, rust-bio-tools/alignoth for GATK-Picard/IGV, crabz for pigz, plus general Unix speedups (sd, ripgrep, dust, dysk, aria2c)",
+      "body_summary": "A practitioner's compilation of significantly faster and more lightweight alternatives to standard bioinformatics pipeline tools, motivated by the desire to replace heavy Nextflow/Snakemake official pipelines with leaner custom processing. The replacements are primarily Rust-based reimplementations…",
+      "tags": [
+        "bioinformatics",
+        "performance",
+        "rust",
+        "cli-tools",
+        "fastqc",
+        "samtools",
+        "bedtools",
+        "gatk"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-06-26",
+      "path": "catalog/entries/fast-bioinformatics-tool-replacements.md"
+    },
+    {
       "name": "faster-whisper",
       "title": "Faster Whisper",
       "url": "https://github.com/SYSTRAN/faster-whisper",
@@ -1969,6 +2037,28 @@
       "path": "catalog/entries/headroom.md"
     },
     {
+      "name": "huggingface-agents-course",
+      "title": "HuggingFace Agents Course",
+      "url": "https://huggingface.co/learn/agents-course/unit1/dummy-agent-library",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Free framework-agnostic course on AI agent fundamentals — covers tool-calling loop mechanics (Thought/Action/Observation), stop-token control to prevent hallucinated observations, system prompt construction, and hands-on progression from dummy agents to smolagents/LangGraph/LlamaIndex",
+      "body_summary": "A free, multi-unit course from HuggingFace teaching AI agent concepts from first principles. Unit 1 builds a \"dummy agent\" — a raw Python implementation of the Thought → Action → Observation loop — to demonstrate the mechanics before introducing frameworks. Subsequent units cover smolagents,…",
+      "tags": [
+        "agents",
+        "course",
+        "huggingface",
+        "smolagents",
+        "tutorial",
+        "tool-calling"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-06-26",
+      "path": "catalog/entries/huggingface-agents-course.md"
+    },
+    {
       "name": "huggingface-inference-providers",
       "title": "Hugging Face Inference Providers",
       "url": "https://huggingface.co/docs/inference-providers/index",
@@ -2185,6 +2275,51 @@
       "path": "catalog/entries/karpathy-llm-wiki.md"
     },
     {
+      "name": "knowledge-graph-construction-anthropic",
+      "title": "Knowledge Graph Construction (Anthropic Cookbook)",
+      "url": "https://platform.claude.com/cookbook/capabilities-knowledge-graph-guide",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "End-to-end pipeline for constructing knowledge graphs from unstructured documents using Claude prompts instead of trained NER/RE models:\n\n1. **Extraction** — A single structured-output call per document extracts typed entities (PERSON, ORG, LOCATION, EVENT, ARTIFACT) and subject-predicate-object triples. Uses Pydantic schemas with `client.messages.parse()` for guaranteed valid output. Haiku handles this high-volume step.\n\n2. **Entity Resolution** — Claude clusters surface-form variants (e.g. \"Edwin Aldrin\" / \"Buzz Aldrin\") using extraction descriptions as disambiguation context. Catches cases string-similarity methods miss entirely. Sonnet handles this judgment-heavy step. Scales via blocking (group by cheap signals first, resolve within blocks of 50-100).\n\n3. **Graph Assembly** — Rewrites relation endpoints to canonical forms and loads into NetworkX MultiDiGraph. Nodes carry type, source documents, and mention counts.\n\n4. **Summarization** — Hub nodes get rich profiles synthesized across all mentioning documents, with structured time ranges and key facts.\n\n5. **Querying** — Serializes relevant subgraphs as triples and lets Claude answer multi-hop questions with edge-level citations.\n\nIncludes a precision/recall evaluation harness against gold-labeled triples.",
+      "tags": [
+        "knowledge-graph",
+        "entity-extraction",
+        "entity-resolution",
+        "structured-output",
+        "networkx",
+        "claude"
+      ],
+      "workflows": [],
+      "security_flags": [
+        "needs-api-key"
+      ],
+      "reviewed": "2026-06-25",
+      "path": "catalog/entries/knowledge-graph-construction-anthropic.md"
+    },
+    {
+      "name": "knowledge-work-plugins",
+      "title": "Knowledge Work Plugins (Anthropic)",
+      "url": "https://github.com/anthropics/knowledge-work-plugins",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "A marketplace of 11 open-source plugins that turn Claude into a role-specific specialist. Each plugin follows a standard structure:\n\n- `plugin.json` — manifest\n- `.mcp.json` — tool connections (MCP servers for CRMs, project trackers, data warehouses, etc.)\n- `commands/` — explicit slash commands (e.g. `/finance:reconciliation`, `/data:write-query`)\n- `skills/` — domain knowledge Claude draws on automatically when relevant\n\n**Available plugins:** productivity (Slack, Notion, Asana, Linear, Jira), sales (HubSpot, Close, Clay, ZoomInfo), customer-support (Intercom, HubSpot, Guru), product-management (Linear, Figma, Amplitude, Pendo), marketing (Canva, Figma, HubSpot, Ahrefs), legal (Box, Egnyte), finance (Snowflake, Databricks, BigQuery), data (Snowflake, Databricks, Hex, Amplitude), enterprise-search, bio-research (PubMed, BioRender, bioRxiv, ClinicalTrials.gov, ChEMBL, Synapse, Open Targets, Benchling), and cowork-plugin-management.\n\nInstallation via `claude plugin marketplace add` and `claude plugin install`. All file-based (markdown + JSON), no code or infrastructure required.",
+      "tags": [
+        "claude-cowork",
+        "claude-code",
+        "plugins",
+        "skills",
+        "connectors",
+        "mcp",
+        "bio-research"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-06-25",
+      "path": "catalog/entries/knowledge-work-plugins.md"
+    },
+    {
       "name": "langflow",
       "title": "Langflow",
       "url": "https://github.com/langflow-ai/langflow",
@@ -2210,6 +2345,28 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/langflow.md"
+    },
+    {
+      "name": "litellm",
+      "title": "LiteLLM",
+      "url": "https://github.com/BerriAI/litellm",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source Python SDK and self-hosted AI gateway (proxy server) providing a unified OpenAI-compatible interface to 100+ LLM providers — model routing, automatic fallbacks, cost tracking, per-team budgets, Redis caching, guardrails, MCP/A2A support; ~40K stars, 1300+ contributors, YC-backed; MIT",
+      "body_summary": "LiteLLM is an open-source Python SDK and self-hosted proxy server (AI Gateway) from BerriAI that provides a single OpenAI-compatible interface to call 100+ LLM providers — OpenAI, Anthropic, Gemini, AWS Bedrock, Azure, Cohere, HuggingFace, vLLM, NVIDIA NIM, and more. Any client that works with the OpenAI API works with the LiteLLM proxy without code changes.\n\nTwo modes of operation:\n- **Python SDK:** Direct library import for prototyping and scripts. Zero infrastructure.\n- **Proxy Server:** Self-hosted OpenAI-compatible gateway with key management, budgets, observability, and multi-tenant governance. Containerized, PostgreSQL-backed, optional Redis.",
+      "tags": [
+        "llm-gateway",
+        "api-proxy",
+        "model-routing",
+        "cost-tracking",
+        "openai-compatible",
+        "multi-provider"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-06-26",
+      "path": "catalog/entries/litellm.md"
     },
     {
       "name": "locate-anything",
@@ -2974,6 +3131,29 @@
       "path": "catalog/entries/opus-fable-mode.md"
     },
     {
+      "name": "outcomes-managed-agents",
+      "title": "Outcomes / Outcome Grader (Managed Agents)",
+      "url": "https://platform.claude.com/cookbook/managed-agents-cma-verify-with-outcome-grader",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "Demonstrates the Outcomes feature in Claude Managed Agents, which adds a verification loop to agent sessions:\n\n- **Rubric definition** — A `define_outcome` event provides a task description (for the writer) and a rubric (for the grader). The rubric must make the grader produce evidence — fetch URLs, verify quotes, check filing types — not just skim and approve.\n- **Independent grading** — The platform provisions a grader in its own context window with the same model and tools as the writer. The grader cannot see the writer's reasoning and re-checks the entire artifact each iteration.\n- **Revision loop** — After each writer turn, the grader scores per-criterion and either passes the output or returns a structured list of gaps. The writer revises and the loop runs again, up to `max_iterations` (default 3, max 20).\n- **Real example** — A research brief where the grader catches a press-release exhibit cited as a 10-K, forces the writer to find the actual SEC filing, and passes on the third iteration.\n\nKey rubric design principles: make criteria checkable with evidence, make the grader earn \"satisfied,\" describe goals not steps, anticipate writer shortcuts, mandate feedback format.",
+      "tags": [
+        "managed-agents",
+        "verification",
+        "grading",
+        "rubric",
+        "self-correction",
+        "claude"
+      ],
+      "workflows": [],
+      "security_flags": [
+        "needs-api-key"
+      ],
+      "reviewed": "2026-06-25",
+      "path": "catalog/entries/outcomes-managed-agents.md"
+    },
+    {
       "name": "overcut",
       "title": "Overcut — Agentic SDLC Orchestration",
       "url": "https://overcut.ai",
@@ -3119,6 +3299,51 @@
       "security_flags": [],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/ponytail.md"
+    },
+    {
+      "name": "prompt-versioning-managed-agents",
+      "title": "Prompt Versioning and Rollback (Managed Agents)",
+      "url": "https://platform.claude.com/cookbook/managed-agents-cma-prompt-versioning-and-rollback",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "Demonstrates prompt lifecycle management using Claude Managed Agents' versioning system:\n\n- **Version creation** — `agents.create` returns version 1; each `agents.update` produces a new immutable version with the same agent ID.\n- **Version pinning** — Sessions can pin to an exact version for controlled evaluation, or use the bare agent ID to always get the latest.\n- **Evaluation** — Runs a labeled test set against pinned versions to compare accuracy. The cookbook shows a support-ticket triage agent where a v2 prompt change causes billing-ticket routing to regress from 4/5 to 2/5.\n- **Rollback** — Callers simply switch back to passing the previous version number. No deployment needed.\n\nKey operational pattern: production callers always pin to an explicit version. Creating versions is exploratory; updating the production pin is the change that goes through review.",
+      "tags": [
+        "managed-agents",
+        "prompt-management",
+        "versioning",
+        "rollback",
+        "evaluation",
+        "claude"
+      ],
+      "workflows": [],
+      "security_flags": [
+        "needs-api-key"
+      ],
+      "reviewed": "2026-06-25",
+      "path": "catalog/entries/prompt-versioning-managed-agents.md"
+    },
+    {
+      "name": "qwen25-coder-32b",
+      "title": "Qwen2.5-Coder-32B-Instruct",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-Coder-32B-Instruct",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Alibaba's 32.5B-parameter code-specialized open-weight LLM — 64-layer transformer with GQA (40Q/8KV), 128K context via YaRN, trained on 5.5T tokens including source code and synthetic data; coding abilities reported as matching GPT-4o; Apache-2.0",
+      "body_summary": "Qwen2.5-Coder-32B-Instruct is the instruction-tuned variant of Alibaba's code-specialized large language model series (formerly CodeQwen). It is a 32.5B-parameter causal language model trained on 5.5 trillion tokens including source code, text-code grounding data, and synthetic data.\n\nThe model family covers six sizes (0.5B, 1.5B, 3B, 7B, 14B, 32B). The 32B variant is positioned as the strongest open-source code LLM at its release, with coding benchmarks reported as matching GPT-4o.",
+      "tags": [
+        "llm",
+        "code-generation",
+        "open-weights",
+        "qwen",
+        "alibaba",
+        "local-inference"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-06-26",
+      "path": "catalog/entries/qwen25-coder-32b.md"
     },
     {
       "name": "qwen3-6-27b",
@@ -3324,6 +3549,31 @@
       ],
       "reviewed": "2026-06-17",
       "path": "catalog/entries/shannon.md"
+    },
+    {
+      "name": "sira-superintelligent-retrieval-agent",
+      "title": "SIRA — Superintelligent Retrieval Agent",
+      "url": "https://arxiv.org/abs/2605.06647",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Meta research framework that compresses multi-round agentic retrieval into a single corpus-discriminative BM25 action — LLM enriches documents offline with missing vocabulary, predicts query-side evidence terms, validates via IDF tool calls, then issues one weighted sparse retrieval; outperforms dense retrievers and multi-round agents on BEIR/NQ/HotpotQA with no fine-tuning",
+      "body_summary": "SIRA (Superintelligent Retrieval Agent) is a retrieval framework from Meta AI (arxiv 2605.06647) that redefines \"superintelligent retrieval\" as the ability to compress multi-round exploratory search into a single, corpus-discriminative retrieval action. Instead of iteratively querying and reformulating like typical RAG agents, SIRA programs one precise weighted BM25 call.\n\nThe framework operates in two phases:\n\n**Offline corpus-side enrichment:** A frozen LLM processes each document once, proposing \"missing search vocabulary\" — synonyms, abbreviations, aliases, and domain-specific phrases a user might search for but which are absent from the document's original text.\n\n**Online query-side planning:** Given a query, the LLM predicts evidence vocabulary omitted by the query, then validates proposed expansion terms against corpus statistics via IDF tool calls. Terms that are absent, overly common, or unlikely to create retrieval margin are filtered. The final retrieval step is a single weighted BM25 call combining the original query with validated expansions.",
+      "tags": [
+        "retrieval",
+        "RAG",
+        "BM25",
+        "query-expansion",
+        "corpus-enrichment",
+        "sparse-retrieval",
+        "meta-ai"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [
+        "no-code-release"
+      ],
+      "reviewed": "2026-06-26",
+      "path": "catalog/entries/sira-superintelligent-retrieval-agent.md"
     },
     {
       "name": "skill-router",

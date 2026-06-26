@@ -19,6 +19,7 @@ cp -r skills/<name> <your-project>/.claude/skills/<name>
 | [/scripts-reference](skills/scripts-reference/) | Generate a clickable script reference doc |
 | [/catalog-intake](skills/catalog-intake/) | Pull links from Gmail, curate, drain to queue, run headless processing |
 | [/agent-lockdown](skills/agent-lockdown/) | Lock down a coding agent CLI — version pin, model pin, env hardening, secrets deny, integrity checkup |
+| [/explain-me-this](skills/explain-me-this/) | Discuss-and-explain persona — explains, researches, and helps you decide; no code or plans. Manual-only. |
 
 ## Tools
 
