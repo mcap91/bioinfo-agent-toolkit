@@ -19,7 +19,7 @@ reviewed: 2026-06-03
 
 A test tool.
 
-## Assessment
+## Differentiators
 
 Looks good.
 

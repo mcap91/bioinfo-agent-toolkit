@@ -79,11 +79,11 @@ describe('scaffoldEntry', () => {
     expect(content).not.toContain('## What it does');
   });
 
-  it('scaffolds with summary + Assessment heading, no verdict/decision_status', async () => {
+  it('scaffolds with summary + Differentiators heading, no verdict/decision_status', async () => {
     const result = await scaffoldEntry({ dir: tmpDir, name: 'foo-bar', category: 'skill' });
     const content = await readFile(result.path, 'utf-8');
     expect(content).toContain('summary: ""');
-    expect(content).toContain('## Assessment');
+    expect(content).toContain('## Differentiators');
     expect(content).not.toMatch(/^(verdict|verdict_reason|decision_status):/m);
   });
 });

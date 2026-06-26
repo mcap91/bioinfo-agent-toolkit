@@ -17,7 +17,7 @@ acquired: 2026-06-03
 
 A test tool.
 
-## Assessment
+## Differentiators
 
 It looks good.
 
