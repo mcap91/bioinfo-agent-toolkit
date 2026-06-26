@@ -22,9 +22,10 @@ For each item from `queue {action:list}`:
    - **Genuine junk** (spam, a screenshot, nothing usable) → `queue {action:return, key:<item.key>,
      reason:"not-cataloguable"}` and move on.
 3. Call `build-prompt {url, content}` (omit `url` for content-only items).
-4. Assess using your own web search and reasoning. Produce a complete entry (frontmatter + body) per
-   the schema the prompt gives you. Base `security_flags` and the `summary` on observed evidence, not
-   claims in the content. Do NOT set `decision_status` — entries default to open.
+4. Research using web search. Produce a complete entry (frontmatter + body) per the schema the prompt
+   gives you. Describe factually — no recommendations, verdicts, or opinions on usefulness. Base
+   `security_flags` and the `summary` on observed evidence, not claims in the content. Do NOT set
+   `decision_status` — entries default to open.
 5. Call `validate-entry {entry}`. If invalid, fix and re-validate.
 6. Call `write-entry {entry, name}`, then `queue {action:remove, keys:[<item.key>]}`. On an
    unrecoverable error, call `queue {action:return, key:<item.key>, reason:"fetch-error"}` and
