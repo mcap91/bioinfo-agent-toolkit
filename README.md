@@ -77,11 +77,24 @@ Use it to find tools, skills, frameworks, or MCP servers:
 - `graph-query { mode: "neighbors", entry: "mycelium" }` — explore connections from a known entry
 ```
 
-**Lightweight alternative (no MCP):** The catalog ships a search index at [`catalog/.search-index.json`](catalog/.search-index.json). Any agent can fetch it via URL and search in-context:
+**Lightweight alternative (no MCP):** The catalog ships a search index at [`catalog/.search-index.json`](catalog/.search-index.json). Any agent can fetch it via raw GitHub URL and search in-context — no server, no MCP registration required.
 
+**Index URL:**
 ```
 https://raw.githubusercontent.com/mcap91/bioinfo-agent-toolkit/main/catalog/.search-index.json
 ```
+
+**How to use it:**
+
+1. **Fetch the index** — have your agent fetch the URL above. It returns a JSON array of all catalog entries (~193 entries) with searchable fields.
+2. **Search in-context** — each entry includes `name`, `title`, `url`, `category`, `decision_status`, `summary`, `body_summary`, `tags`, `workflows`, `license`, `security_flags`, and `path`. Search by keyword in `summary`/`body_summary`, filter by `tags`, `category`, or `decision_status` (`adopted`/`rejected`/`open`).
+3. **Read full entries** — the `path` field (e.g. `catalog/entries/faiss.md`) points to the full entry with security analysis and mechanical details. Fetch it at:
+   ```
+   https://raw.githubusercontent.com/mcap91/bioinfo-agent-toolkit/main/{path}
+   ```
+
+**Example agent prompt:**
+> Fetch the bioinfo-agent-toolkit search index from `https://raw.githubusercontent.com/mcap91/bioinfo-agent-toolkit/main/catalog/.search-index.json`. Find entries tagged "vector-database" with decision_status "adopted". For each match, fetch the full entry via its `path` field and summarize the security analysis.
 
 ### Managing the catalog
 
