@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-06-26",
-  "count": 182,
+  "generated": "2026-07-02",
+  "count": 193,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -143,6 +143,27 @@
       "path": "catalog/entries/agent-browser.md"
     },
     {
+      "name": "agent-execution-governance",
+      "title": "Agent Execution Governance",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Discussion arguing the 'killer app' for AI agents is autonomous operational automation with trust infrastructure — identity, execution governance, verification receipts, routing, and observability — not consumer assistants",
+      "body_summary": "Argues that most AI agents (email assistants, meeting summaries, travel planners) fail to become daily-use tools because they stop at producing answers instead of being accountable for executing actions. The missing infrastructure is around trust and execution, not intelligence.\n\nInfrastructure…",
+      "tags": [
+        "agent-governance",
+        "trust",
+        "execution",
+        "observability",
+        "auditability",
+        "agent-philosophy"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-07-01",
+      "path": "catalog/entries/agent-execution-governance.md"
+    },
+    {
       "name": "agent-reach",
       "title": "Agent Reach",
       "url": "https://github.com/Panniantong/agent-reach",
@@ -258,6 +279,30 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/agent-teams.md"
+    },
+    {
+      "name": "agentic-rag-terminal-tools",
+      "title": "Agentic RAG with Terminal Tools (Direct Corpus Interaction)",
+      "url": "https://mixpeek.com/agentic-rag",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Research pattern where LLM agents with terminal tool access (grep, find, head, cat) outperform embedding-based retrieval across 13+ benchmarks — Direct Corpus Interaction (DCI) removes embedding model, vector index, and top-k retrieval entirely; adopted by Anthropic (Claude Code), Windsurf, Cline, Devin, Sourcegraph Amp",
+      "body_summary": "Research demonstrates that LLM agents with direct terminal tool access (grep, find, head, cat) outperform embedding-based retrieval systems. Formalized as Direct Corpus Interaction (DCI) — agents search raw text directly using general-purpose terminal tools instead of traditional embedding…",
+      "tags": [
+        "rag",
+        "retrieval",
+        "grep",
+        "terminal-tools",
+        "benchmarks",
+        "vector-search",
+        "information-retrieval",
+        "direct-corpus-interaction"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-07-01",
+      "path": "catalog/entries/agentic-rag-terminal-tools.md"
     },
     {
       "name": "ai-memory-comparison",
@@ -509,6 +554,31 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/awesome-claude-code.md"
+    },
+    {
+      "name": "bdh",
+      "title": "BDH (Dragon Hatchling)",
+      "url": "https://github.com/pathwaycom/bdh",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Post-transformer neural architecture from Pathway — biologically inspired sparse graph of neuron-like nodes with Hebbian working memory, scale-free topology, and GPU-friendly state-space formulation; matches GPT-2-scale transformers at 10M-1B parameters with interpretable activations; 97.4% on Sudoku Extreme (internal implementation) without chain-of-thought; runs on NVIDIA AI infrastructure and AWS",
+      "body_summary": "BDH (Brain Dragon Hatchling) is a biologically inspired LLM architecture that replaces dense self-attention with a sparse graph of neuron-like nodes connected by weighted synapses. Developed by researchers at Pathway.\n\nComputation proceeds through repeated cycles of local processing: active nodes propagate evidence to neighbors, synaptic connections strengthen through Hebbian learning, and only the strongest activations survive via competitive selection. Unlike transformers whose weights are fixed during inference, BDH continuously updates its synaptic state during processing — memory lives in the synapses, supporting theoretically unbounded context under linear-complexity constraints.\n\nThe modular structure of the neuron network emerges spontaneously during training rather than being engineered into blocks.",
+      "tags": [
+        "neural-architecture",
+        "post-transformer",
+        "neuroscience",
+        "sparse-networks",
+        "hebbian-learning",
+        "interpretability",
+        "reasoning"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [
+        "no-stated-license"
+      ],
+      "reviewed": "2026-07-01",
+      "path": "catalog/entries/bdh.md"
     },
     {
       "name": "biomysterybench",
@@ -767,6 +837,29 @@
       "path": "catalog/entries/castem-first-principles-model-mediated-work.md"
     },
     {
+      "name": "chatbotkit",
+      "title": "ChatBotKit",
+      "url": "https://chatbotkit.com/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Commercial AI agent platform with enterprise security (GDPR/CCPA), MCP integration, OAuth flows, observability dashboards, policy management, and modular architecture for composable datasets/skillsets/integrations; Forward Deployment platform for rapid AI product prototyping",
+      "body_summary": "ChatBotKit is a commercial AI agent platform providing operational control for deploying and running AI agents. Features include enterprise security (content filtering, data protection, GDPR/CCPA compliance), built-in OAuth and MCP (Model Context Protocol) integration, observability dashboards for monitoring conversations and debugging, and policy management for content policies, rate limits, and access controls.\n\nArchitecture is modular — agents are composed from reusable datasets, skillsets, and integrations.",
+      "tags": [
+        "agent-platform",
+        "chatbot",
+        "enterprise",
+        "mcp",
+        "oauth",
+        "observability",
+        "governance"
+      ],
+      "workflows": [],
+      "license": "Proprietary",
+      "security_flags": [],
+      "reviewed": "2026-07-01",
+      "path": "catalog/entries/chatbotkit.md"
+    },
+    {
       "name": "chromadb",
       "title": "ChromaDB",
       "url": "https://www.trychroma.com/products/chromadb",
@@ -1001,6 +1094,32 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/claude-peers-mcp.md"
+    },
+    {
+      "name": "claude-science",
+      "title": "Claude Science",
+      "url": "https://www.anthropic.com/news/claude-science-ai-workbench",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Anthropic's AI workbench for scientists — generalist coordinating agent with 60+ curated skills for genomics/proteomics/structural-biology/cheminformatics, native 3D molecular rendering, HPC/GPU compute management via Modal, reviewer agent for citation/calculation checking, NVIDIA BioNeMo integration (Evo 2, Boltz-2, OpenFold3); runs on existing Claude models; Pro/Max/Team/Enterprise beta",
+      "body_summary": "Claude Science is an AI workbench from Anthropic launched June 30, 2026 that integrates scientific tools and packages into a single research environment. Runs on existing Claude models (including Opus 4.8) — not a new model, but a new application layer. A generalist coordinating agent with 60+ curated skills handles multi-step research across genomics, single-cell analysis, proteomics, structural biology, and cheminformatics. Available in beta for Pro, Max, Team, and Enterprise plans on macOS and Linux.\n\nScientists interact conversationally — the agent queries databases, executes analyses, generates figures, and drafts manuscripts. A separate reviewer agent checks citations and calculations, flagging and correcting errors. Competitive landscape includes OpenAI's GPT-Rosalind (fine-tuned for biological reasoning, April 2026) and Google DeepMind's Gemini for Science (May 2026).",
+      "tags": [
+        "scientific-computing",
+        "genomics",
+        "proteomics",
+        "structural-biology",
+        "cheminformatics",
+        "single-cell",
+        "hpc",
+        "anthropic",
+        "claude",
+        "bioinformatics"
+      ],
+      "workflows": [],
+      "license": "Proprietary",
+      "security_flags": [],
+      "reviewed": "2026-07-01",
+      "path": "catalog/entries/claude-science.md"
     },
     {
       "name": "claude-skill-steelman",
@@ -1341,6 +1460,30 @@
       "path": "catalog/entries/crowdsec.md"
     },
     {
+      "name": "cupy",
+      "title": "CuPy",
+      "url": "https://github.com/cupy/cupy",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "NumPy/SciPy-compatible Python array library for GPU-accelerated computing — drop-in replacement on NVIDIA CUDA (12.x/13.x) and AMD ROCm 7.0 with low-level CUDA access (RawKernels, Streams, Runtime APIs); includes cuSignal; 11K stars, 127 contributors, MIT, Preferred Networks",
+      "body_summary": "CuPy is a NumPy/SciPy-compatible array library that runs existing NumPy/SciPy code on GPUs without code changes. Import `cupy` instead of `numpy` and operations execute on NVIDIA CUDA or AMD ROCm hardware. Also provides direct access to low-level CUDA features: RawKernels for custom CUDA C/C++ code, Streams for concurrent execution, and CUDA Runtime API calls. 11K GitHub stars, 127 contributors.\n\nIncludes cuSignal (merged in v13.0.0) for GPU-accelerated signal processing. Utilizes CUDA Toolkit libraries including cuBLAS, cuRAND, cuSOLVER, cuSPARSE, cuFFT, cuDNN, and NCCL. Used by Microsoft DeepSpeed, vLLM, DALI, spaCy, cuDF, and cuML.",
+      "tags": [
+        "gpu",
+        "numpy",
+        "scipy",
+        "cuda",
+        "rocm",
+        "array-computing",
+        "python",
+        "signal-processing"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-01",
+      "path": "catalog/entries/cupy.md"
+    },
+    {
       "name": "data-science-for-beginners",
       "title": "Data Science for Beginners (Microsoft)",
       "url": "https://github.com/microsoft/data-science-for-beginners",
@@ -1629,6 +1772,28 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/era-empirical-research-assistant.md"
+    },
+    {
+      "name": "faiss",
+      "title": "FAISS",
+      "url": "https://github.com/facebookresearch/faiss",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Meta's C++/Python library for efficient similarity search and clustering of dense vectors — billion-scale datasets, GPU acceleration (CUDA/ROCm), multiple index types (HNSW, NSG, IVF, PQ), L2/dot-product/cosine similarity; 40K+ stars, MIT",
+      "body_summary": "FAISS (Facebook AI Similarity Search) is a library for efficient similarity search and clustering of dense vectors, searching sets of vectors of any size including those that do not fit in RAM. Written in C++ with complete Python/NumPy wrappers. Developed at Meta's Fundamental AI Research group. ~40K GitHub stars.\n\nSupports three distance metrics: L2 (Euclidean), dot product, and cosine similarity. Index types range from exact brute-force search to approximate methods trading accuracy for speed and memory. Reported to index 1.5 trillion 144-dimensional vectors for internal Meta applications. Used as a core component in vector databases like OpenSearch, Milvus, and Vearch.",
+      "tags": [
+        "similarity-search",
+        "vector-search",
+        "clustering",
+        "gpu",
+        "embeddings",
+        "nearest-neighbor"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-01",
+      "path": "catalog/entries/faiss.md"
     },
     {
       "name": "fast-bioinformatics-tool-replacements",
@@ -1975,6 +2140,29 @@
       ],
       "reviewed": "2026-06-23",
       "path": "catalog/entries/hackingtool-plugin.md"
+    },
+    {
+      "name": "harness-engineering",
+      "title": "Harness Engineering (Fowler / Böckeler)",
+      "url": "https://martinfowler.com/articles/harness-engineering.html",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Martin Fowler article defining Agent = Model + Harness — taxonomy of agent controls: guides (feedforward) vs sensors (feedback), computational (deterministic) vs inferential (LLM-based), across three regulation levels (maintainability, architecture fitness, behavior); behavior verification identified as largely unsolved",
+      "body_summary": "Birgitta Böckeler's article on martinfowler.com frames AI agent architecture as Agent = Model + Harness, where the harness is everything except the model itself — the control system that makes model output trustworthy.\n\nThe harness taxonomy has two orthogonal dimensions:\n\n**Control direction:**\n-…",
+      "tags": [
+        "harness",
+        "agent-architecture",
+        "testing",
+        "linting",
+        "feedforward",
+        "feedback",
+        "controls-taxonomy"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-07-01",
+      "path": "catalog/entries/harness-engineering.md"
     },
     {
       "name": "headroom-desktop",
@@ -2594,6 +2782,28 @@
       "path": "catalog/entries/mlx-vlm-turboquant.md"
     },
     {
+      "name": "model-sovereignty-data-flywheel",
+      "title": "Model Sovereignty and Data Flywheel Strategy",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Practitioner argument for organizations owning fine-tuned models rather than depending on closed API providers — cites GPT 5.6 Sol government-approval access restriction, declining GPU costs, competitive data flywheels as moat, and negative-example datasets for hallucination reduction",
+      "body_summary": "Argues that dependence on closed LLM APIs (OpenAI, Anthropic) is a business risk, citing GPT 5.6 Sol's release being restricted to US government-approved companies — the White House reviewing customer-by-customer access for the first two weeks before general availability.\n\nKey claims:\n- Open-source…",
+      "tags": [
+        "fine-tuning",
+        "model-sovereignty",
+        "data-flywheel",
+        "open-source-models",
+        "self-hosted",
+        "vendor-independence",
+        "hallucination-reduction"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-07-01",
+      "path": "catalog/entries/model-sovereignty-data-flywheel.md"
+    },
+    {
       "name": "model-workspace-protocol",
       "title": "Model Workspace Protocol (MWP)",
       "url": "https://arxiv.org/abs/2603.16021",
@@ -3203,6 +3413,29 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/paperless-ngx.md"
+    },
+    {
+      "name": "parallel-local-inference",
+      "title": "Parallel Local Inference Pattern (vLLM)",
+      "url": "https://github.com/vllm-project/vllm",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Strategy for maximizing local GPU throughput by running multiple concurrent LLM agents via vLLM — exploits idle compute from memory-bandwidth bottleneck; 8-9x aggregate throughput over single-stream; per-agent throughput drops slightly but total throughput scales near-linearly with concurrency",
+      "body_summary": "GPU LLM inference is bottlenecked by memory bandwidth, leaving significant compute capacity idle during single-stream generation. vLLM's architecture enables multiple concurrent inference streams, allowing parallel agents to exploit this idle compute for higher aggregate throughput.\n\nBenchmarked…",
+      "tags": [
+        "vllm",
+        "local-inference",
+        "parallel-agents",
+        "gpu",
+        "throughput",
+        "llama-cpp",
+        "concurrent-inference"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-07-01",
+      "path": "catalog/entries/parallel-local-inference.md"
     },
     {
       "name": "pi-hole",
@@ -4002,6 +4235,34 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/ui-ux-pro-max-skill.md"
+    },
+    {
+      "name": "ultimate-deepseek-ultracode",
+      "title": "Ultimate DeepSeek UltraCode (Reasonix Fleet)",
+      "url": "https://github.com/Tatlatat/ultimate-deepseek-ultracode",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Claude Code extension routing Workflow/UltraCode fan-out lanes to DeepSeek v4-flash via a local Reasonix gateway — keeps Claude as main agent, runs subagent work on cheaper DeepSeek inference with ephemeral sessions and server-side cache optimization reaching 99%+ hit rates",
+      "body_summary": "A launcher + local gateway that routes Claude Code's Workflow/UltraCode fan-out lanes to DeepSeek v4-flash instead of Claude. Claude remains the main agent with all its normal tools, skills, plugins, auth, and model selection. Only the `agent()` lanes in Workflow scripts are redirected through a `reasonix_fleet` MCP server to DeepSeek.\n\nThe bundled fork engine (`deepseek-reasonix-engine`) runs each lane as a one-shot in-process Node turn with no persistent session state, preventing history bleed between concurrent lanes. Combined with a prefix prime-gate for server-side cache warming, fan-out cache hit rates reach 99%+ at steady state.",
+      "tags": [
+        "claude-code",
+        "deepseek",
+        "workflow",
+        "ultracode",
+        "fan-out",
+        "cost-optimization",
+        "mcp",
+        "inference-gateway"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [
+        "no-stated-license",
+        "hook-injection",
+        "subagent-policy-override"
+      ],
+      "reviewed": "2026-07-01",
+      "path": "catalog/entries/ultimate-deepseek-ultracode.md"
     },
     {
       "name": "understand-anything",
