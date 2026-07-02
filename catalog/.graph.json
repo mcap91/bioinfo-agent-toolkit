@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-26T18:28:38.472Z",
+  "generated_at": "2026-07-02T01:35:55.886Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -62,6 +62,15 @@
       "exists": true
     },
     {
+      "id": "agent-execution-governance",
+      "kind": "entry",
+      "title": "Agent Execution Governance",
+      "summary": "Discussion arguing the 'killer app' for AI agents is autonomous operational automation with trust infrastructure — identity, execution governance, verification receipts, routing, and observability — not consumer assistants",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "agent-reach",
       "kind": "entry",
       "title": "Agent Reach",
@@ -107,6 +116,16 @@
       "title": "Claude Agent Teams",
       "url": "https://code.claude.com/docs/en/agent-teams",
       "summary": "primary interactive dispatch path; subscription billing, no API credits needed",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "agentic-rag-terminal-tools",
+      "kind": "entry",
+      "title": "Agentic RAG with Terminal Tools (Direct Corpus Interaction)",
+      "url": "https://mixpeek.com/agentic-rag",
+      "summary": "Research pattern where LLM agents with terminal tool access (grep, find, head, cat) outperform embedding-based retrieval across 13+ benchmarks — Direct Corpus Interaction (DCI) removes embedding model, vector index, and top-k retrieval entirely; adopted by Anthropic (Claude Code), Windsurf, Cline, Devin, Sourcegraph Amp",
       "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
@@ -223,6 +242,16 @@
       "url": "https://github.com/hesreallyhim/awesome-claude-code",
       "summary": "curated Claude Code ecosystem list; use as discovery source for future catalog inbox items",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "bdh",
+      "kind": "entry",
+      "title": "BDH (Dragon Hatchling)",
+      "url": "https://github.com/pathwaycom/bdh",
+      "summary": "Post-transformer neural architecture from Pathway — biologically inspired sparse graph of neuron-like nodes with Hebbian working memory, scale-free topology, and GPU-friendly state-space formulation; matches GPT-2-scale transformers at 10M-1B parameters with interpretable activations; 97.4% on Sudoku Extreme (internal implementation) without chain-of-thought; runs on NVIDIA AI infrastructure and AWS",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -386,6 +415,16 @@
       "exists": true
     },
     {
+      "id": "chatbotkit",
+      "kind": "entry",
+      "title": "ChatBotKit",
+      "url": "https://chatbotkit.com/",
+      "summary": "Commercial AI agent platform with enterprise security (GDPR/CCPA), MCP integration, OAuth flows, observability dashboards, policy management, and modular architecture for composable datasets/skillsets/integrations; Forward Deployment platform for rapid AI product prototyping",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "chromadb",
       "kind": "entry",
       "title": "ChromaDB",
@@ -485,6 +524,16 @@
       "url": "https://github.com/louislva/claude-peers-mcp",
       "summary": "Novel multi-session peer messaging, but mandatory --dangerously-skip-permissions flag is a hard blocker for safe use",
       "category": "mcp-server",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "claude-science",
+      "kind": "entry",
+      "title": "Claude Science",
+      "url": "https://www.anthropic.com/news/claude-science-ai-workbench",
+      "summary": "Anthropic's AI workbench for scientists — generalist coordinating agent with 60+ curated skills for genomics/proteomics/structural-biology/cheminformatics, native 3D molecular rendering, HPC/GPU compute management via Modal, reviewer agent for citation/calculation checking, NVIDIA BioNeMo integration (Evo 2, Boltz-2, OpenFold3); runs on existing Claude models; Pro/Max/Team/Enterprise beta",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -636,6 +685,16 @@
       "exists": true
     },
     {
+      "id": "cupy",
+      "kind": "entry",
+      "title": "CuPy",
+      "url": "https://github.com/cupy/cupy",
+      "summary": "NumPy/SciPy-compatible Python array library for GPU-accelerated computing — drop-in replacement on NVIDIA CUDA (12.x/13.x) and AMD ROCm 7.0 with low-level CUDA access (RawKernels, Streams, Runtime APIs); includes cuSignal; 11K stars, 127 contributors, MIT, Preferred Networks",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "data-science-for-beginners",
       "kind": "entry",
       "title": "Data Science for Beginners (Microsoft)",
@@ -756,6 +815,16 @@
       "title": "ERA — Empirical Research Assistant",
       "url": "https://github.com/google-research/era",
       "summary": "Interesting LLM+tree-search loop for scientific code generation, but Gemini-locked, research-grade, and not directly applicable to Claude Code workflows today",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "faiss",
+      "kind": "entry",
+      "title": "FAISS",
+      "url": "https://github.com/facebookresearch/faiss",
+      "summary": "Meta's C++/Python library for efficient similarity search and clustering of dense vectors — billion-scale datasets, GPU acceleration (CUDA/ROCm), multiple index types (HNSW, NSG, IVF, PQ), L2/dot-product/cosine similarity; 40K+ stars, MIT",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -914,6 +983,16 @@
       "id": "handoff",
       "kind": "entry",
       "exists": false
+    },
+    {
+      "id": "harness-engineering",
+      "kind": "entry",
+      "title": "Harness Engineering (Fowler / Böckeler)",
+      "url": "https://martinfowler.com/articles/harness-engineering.html",
+      "summary": "Martin Fowler article defining Agent = Model + Harness — taxonomy of agent controls: guides (feedforward) vs sensors (feedback), computational (deterministic) vs inferential (LLM-based), across three regulation levels (maintainability, architecture fitness, behavior); behavior verification identified as largely unsolved",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
     },
     {
       "id": "headroom",
@@ -1176,6 +1255,15 @@
       "url": "https://github.com/Blaizzy/mlx-vlm/pull/858",
       "summary": "Production-quality Metal kernels implementing TurboQuant on Apple Silicon; benchmarked and ready for review but PR not yet merged",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "model-sovereignty-data-flywheel",
+      "kind": "entry",
+      "title": "Model Sovereignty and Data Flywheel Strategy",
+      "summary": "Practitioner argument for organizations owning fine-tuned models rather than depending on closed API providers — cites GPT 5.6 Sol government-approval access restriction, declining GPU costs, competitive data flywheels as moat, and negative-example datasets for hallucination reduction",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -1444,6 +1532,16 @@
       "exists": true
     },
     {
+      "id": "parallel-local-inference",
+      "kind": "entry",
+      "title": "Parallel Local Inference Pattern (vLLM)",
+      "url": "https://github.com/vllm-project/vllm",
+      "summary": "Strategy for maximizing local GPU throughput by running multiple concurrent LLM agents via vLLM — exploits idle compute from memory-bandwidth bottleneck; 8-9x aggregate throughput over single-stream; per-agent throughput drops slightly but total throughput scales near-linearly with concurrency",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "pi-hole",
       "kind": "entry",
       "title": "Pi-hole",
@@ -1592,6 +1690,11 @@
       "category": "framework",
       "decision_status": "open",
       "exists": true
+    },
+    {
+      "id": "sira",
+      "kind": "entry",
+      "exists": false
     },
     {
       "id": "sira-superintelligent-retrieval-agent",
@@ -1814,6 +1917,11 @@
       "exists": true
     },
     {
+      "id": "tag:agent-governance",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:agent-harness",
       "kind": "tag",
       "exists": true
@@ -1870,6 +1978,16 @@
     },
     {
       "id": "tag:agent-patterns",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:agent-philosophy",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:agent-platform",
       "kind": "tag",
       "exists": true
     },
@@ -2034,6 +2152,11 @@
       "exists": true
     },
     {
+      "id": "tag:array-computing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:asr",
       "kind": "tag",
       "exists": true
@@ -2060,6 +2183,11 @@
     },
     {
       "id": "tag:audit",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:auditability",
       "kind": "tag",
       "exists": true
     },
@@ -2219,7 +2347,17 @@
       "exists": true
     },
     {
+      "id": "tag:chatbot",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:checklist",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:cheminformatics",
       "kind": "tag",
       "exists": true
     },
@@ -2295,6 +2433,11 @@
     },
     {
       "id": "tag:cloud",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:clustering",
       "kind": "tag",
       "exists": true
     },
@@ -2389,6 +2532,11 @@
       "exists": true
     },
     {
+      "id": "tag:concurrent-inference",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:confidence-model",
       "kind": "tag",
       "exists": true
@@ -2425,6 +2573,11 @@
     },
     {
       "id": "tag:context-network",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:controls-taxonomy",
       "kind": "tag",
       "exists": true
     },
@@ -2534,6 +2687,11 @@
       "exists": true
     },
     {
+      "id": "tag:cuda",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:curated-list",
       "kind": "tag",
       "exists": true
@@ -2560,6 +2718,11 @@
     },
     {
       "id": "tag:data-extraction",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:data-flywheel",
       "kind": "tag",
       "exists": true
     },
@@ -2619,6 +2782,11 @@
       "exists": true
     },
     {
+      "id": "tag:deepseek",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:deferred-work",
       "kind": "tag",
       "exists": true
@@ -2670,6 +2838,11 @@
     },
     {
       "id": "tag:diarization",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:direct-corpus-interaction",
       "kind": "tag",
       "exists": true
     },
@@ -2844,6 +3017,11 @@
       "exists": true
     },
     {
+      "id": "tag:execution",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:experiment-automation",
       "kind": "tag",
       "exists": true
@@ -2874,7 +3052,22 @@
       "exists": true
     },
     {
+      "id": "tag:fan-out",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:fastqc",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:feedback",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:feedforward",
       "kind": "tag",
       "exists": true
     },
@@ -3024,6 +3217,11 @@
       "exists": true
     },
     {
+      "id": "tag:governance",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:gpt",
       "kind": "tag",
       "exists": true
@@ -3069,6 +3267,11 @@
       "exists": true
     },
     {
+      "id": "tag:hallucination-reduction",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:handoff",
       "kind": "tag",
       "exists": true
@@ -3080,6 +3283,11 @@
     },
     {
       "id": "tag:harness",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:hebbian-learning",
       "kind": "tag",
       "exists": true
     },
@@ -3105,6 +3313,11 @@
     },
     {
       "id": "tag:hooks",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:hpc",
       "kind": "tag",
       "exists": true
     },
@@ -3164,6 +3377,16 @@
       "exists": true
     },
     {
+      "id": "tag:inference-gateway",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:information-retrieval",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:infrastructure",
       "kind": "tag",
       "exists": true
@@ -3190,6 +3413,11 @@
     },
     {
       "id": "tag:interoperability",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:interpretability",
       "kind": "tag",
       "exists": true
     },
@@ -3310,6 +3538,11 @@
     },
     {
       "id": "tag:lint",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:linting",
       "kind": "tag",
       "exists": true
     },
@@ -3579,6 +3812,11 @@
       "exists": true
     },
     {
+      "id": "tag:model-sovereignty",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:modules",
       "kind": "tag",
       "exists": true
@@ -3634,6 +3872,11 @@
       "exists": true
     },
     {
+      "id": "tag:nearest-neighbor",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:network",
       "kind": "tag",
       "exists": true
@@ -3645,6 +3888,16 @@
     },
     {
       "id": "tag:networkx",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:neural-architecture",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:neuroscience",
       "kind": "tag",
       "exists": true
     },
@@ -3749,6 +4002,11 @@
       "exists": true
     },
     {
+      "id": "tag:open-source-models",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:open-standard",
       "kind": "tag",
       "exists": true
@@ -3840,6 +4098,11 @@
     },
     {
       "id": "tag:parallel",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:parallel-agents",
       "kind": "tag",
       "exists": true
     },
@@ -3964,6 +4227,11 @@
       "exists": true
     },
     {
+      "id": "tag:post-transformer",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:postgres",
       "kind": "tag",
       "exists": true
@@ -4040,6 +4308,11 @@
     },
     {
       "id": "tag:protein-design",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:proteomics",
       "kind": "tag",
       "exists": true
     },
@@ -4214,6 +4487,11 @@
       "exists": true
     },
     {
+      "id": "tag:rocm",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:rollback",
       "kind": "tag",
       "exists": true
@@ -4275,6 +4553,11 @@
     },
     {
       "id": "tag:scikit-learn",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:scipy",
       "kind": "tag",
       "exists": true
     },
@@ -4349,12 +4632,22 @@
       "exists": true
     },
     {
+      "id": "tag:signal-processing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:signatures",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:simd",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:similarity-search",
       "kind": "tag",
       "exists": true
     },
@@ -4444,6 +4737,11 @@
       "exists": true
     },
     {
+      "id": "tag:sparse-networks",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:sparse-retrieval",
       "kind": "tag",
       "exists": true
@@ -4505,6 +4803,11 @@
     },
     {
       "id": "tag:storage",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:structural-biology",
       "kind": "tag",
       "exists": true
     },
@@ -4599,12 +4902,22 @@
       "exists": true
     },
     {
+      "id": "tag:terminal-tools",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:testing",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:threat-intelligence",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:throughput",
       "kind": "tag",
       "exists": true
     },
@@ -4709,6 +5022,11 @@
       "exists": true
     },
     {
+      "id": "tag:trust",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:tts",
       "kind": "tag",
       "exists": true
@@ -4745,6 +5063,11 @@
     },
     {
       "id": "tag:ui",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ultracode",
       "kind": "tag",
       "exists": true
     },
@@ -4799,6 +5122,11 @@
       "exists": true
     },
     {
+      "id": "tag:vendor-independence",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:verification",
       "kind": "tag",
       "exists": true
@@ -4845,6 +5173,11 @@
     },
     {
       "id": "tag:vital-signs",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:vllm",
       "kind": "tag",
       "exists": true
     },
@@ -5008,6 +5341,16 @@
       "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
       "summary": "comprehensive design system generation but focused on general web/mobile UI; evaluate when dashboard/report aesthetics become a priority",
       "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "ultimate-deepseek-ultracode",
+      "kind": "entry",
+      "title": "Ultimate DeepSeek UltraCode (Reasonix Fleet)",
+      "url": "https://github.com/Tatlatat/ultimate-deepseek-ultracode",
+      "summary": "Claude Code extension routing Workflow/UltraCode fan-out lanes to DeepSeek v4-flash via a local Reasonix gateway — keeps Claude as main agent, runs subagent work on cheaper DeepSeek inference with ephemeral sessions and server-side cache optimization reaching 99%+ hit rates",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -5368,6 +5711,46 @@
       "relation": "tagged"
     },
     {
+      "source": "agent-execution-governance",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "agent-execution-governance",
+      "target": "harness-engineering",
+      "relation": "overlaps"
+    },
+    {
+      "source": "agent-execution-governance",
+      "target": "tag:agent-governance",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-execution-governance",
+      "target": "tag:agent-philosophy",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-execution-governance",
+      "target": "tag:auditability",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-execution-governance",
+      "target": "tag:execution",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-execution-governance",
+      "target": "tag:observability",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-execution-governance",
+      "target": "tag:trust",
+      "relation": "tagged"
+    },
+    {
       "source": "agent-reach",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -5575,6 +5958,56 @@
     {
       "source": "agent-teams",
       "target": "tag:teams",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-rag-terminal-tools",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "agentic-rag-terminal-tools",
+      "target": "sira",
+      "relation": "overlaps"
+    },
+    {
+      "source": "agentic-rag-terminal-tools",
+      "target": "tag:benchmarks",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-rag-terminal-tools",
+      "target": "tag:direct-corpus-interaction",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-rag-terminal-tools",
+      "target": "tag:grep",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-rag-terminal-tools",
+      "target": "tag:information-retrieval",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-rag-terminal-tools",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-rag-terminal-tools",
+      "target": "tag:retrieval",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-rag-terminal-tools",
+      "target": "tag:terminal-tools",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-rag-terminal-tools",
+      "target": "tag:vector-search",
       "relation": "tagged"
     },
     {
@@ -5973,6 +6406,51 @@
       "relation": "tagged"
     },
     {
+      "source": "bdh",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "bdh",
+      "target": "nanogpt",
+      "relation": "overlaps"
+    },
+    {
+      "source": "bdh",
+      "target": "tag:hebbian-learning",
+      "relation": "tagged"
+    },
+    {
+      "source": "bdh",
+      "target": "tag:interpretability",
+      "relation": "tagged"
+    },
+    {
+      "source": "bdh",
+      "target": "tag:neural-architecture",
+      "relation": "tagged"
+    },
+    {
+      "source": "bdh",
+      "target": "tag:neuroscience",
+      "relation": "tagged"
+    },
+    {
+      "source": "bdh",
+      "target": "tag:post-transformer",
+      "relation": "tagged"
+    },
+    {
+      "source": "bdh",
+      "target": "tag:reasoning",
+      "relation": "tagged"
+    },
+    {
+      "source": "bdh",
+      "target": "tag:sparse-networks",
+      "relation": "tagged"
+    },
+    {
       "source": "biomysterybench",
       "target": "cat:reference",
       "relation": "categorized"
@@ -6345,6 +6823,46 @@
     {
       "source": "castem-first-principles-model-mediated-work",
       "target": "tag:validation",
+      "relation": "tagged"
+    },
+    {
+      "source": "chatbotkit",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "chatbotkit",
+      "target": "tag:agent-platform",
+      "relation": "tagged"
+    },
+    {
+      "source": "chatbotkit",
+      "target": "tag:chatbot",
+      "relation": "tagged"
+    },
+    {
+      "source": "chatbotkit",
+      "target": "tag:enterprise",
+      "relation": "tagged"
+    },
+    {
+      "source": "chatbotkit",
+      "target": "tag:governance",
+      "relation": "tagged"
+    },
+    {
+      "source": "chatbotkit",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "chatbotkit",
+      "target": "tag:oauth",
+      "relation": "tagged"
+    },
+    {
+      "source": "chatbotkit",
+      "target": "tag:observability",
       "relation": "tagged"
     },
     {
@@ -6770,6 +7288,61 @@
     {
       "source": "claude-pee",
       "target": "tag:pty",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-science",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "claude-science",
+      "target": "tag:anthropic",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-science",
+      "target": "tag:bioinformatics",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-science",
+      "target": "tag:cheminformatics",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-science",
+      "target": "tag:claude",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-science",
+      "target": "tag:genomics",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-science",
+      "target": "tag:hpc",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-science",
+      "target": "tag:proteomics",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-science",
+      "target": "tag:scientific-computing",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-science",
+      "target": "tag:single-cell",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-science",
+      "target": "tag:structural-biology",
       "relation": "tagged"
     },
     {
@@ -7293,6 +7866,51 @@
       "relation": "tagged"
     },
     {
+      "source": "cupy",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "cupy",
+      "target": "tag:array-computing",
+      "relation": "tagged"
+    },
+    {
+      "source": "cupy",
+      "target": "tag:cuda",
+      "relation": "tagged"
+    },
+    {
+      "source": "cupy",
+      "target": "tag:gpu",
+      "relation": "tagged"
+    },
+    {
+      "source": "cupy",
+      "target": "tag:numpy",
+      "relation": "tagged"
+    },
+    {
+      "source": "cupy",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "cupy",
+      "target": "tag:rocm",
+      "relation": "tagged"
+    },
+    {
+      "source": "cupy",
+      "target": "tag:scipy",
+      "relation": "tagged"
+    },
+    {
+      "source": "cupy",
+      "target": "tag:signal-processing",
+      "relation": "tagged"
+    },
+    {
       "source": "data-science-for-beginners",
       "target": "cat:reference",
       "relation": "categorized"
@@ -7755,6 +8373,46 @@
     {
       "source": "era-empirical-research-assistant",
       "target": "tag:tree-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "faiss",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "faiss",
+      "target": "chromadb",
+      "relation": "overlaps"
+    },
+    {
+      "source": "faiss",
+      "target": "tag:clustering",
+      "relation": "tagged"
+    },
+    {
+      "source": "faiss",
+      "target": "tag:embeddings",
+      "relation": "tagged"
+    },
+    {
+      "source": "faiss",
+      "target": "tag:gpu",
+      "relation": "tagged"
+    },
+    {
+      "source": "faiss",
+      "target": "tag:nearest-neighbor",
+      "relation": "tagged"
+    },
+    {
+      "source": "faiss",
+      "target": "tag:similarity-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "faiss",
+      "target": "tag:vector-search",
       "relation": "tagged"
     },
     {
@@ -8350,6 +9008,46 @@
     {
       "source": "hackingtool-plugin",
       "target": "tag:security",
+      "relation": "tagged"
+    },
+    {
+      "source": "harness-engineering",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "harness-engineering",
+      "target": "tag:agent-architecture",
+      "relation": "tagged"
+    },
+    {
+      "source": "harness-engineering",
+      "target": "tag:controls-taxonomy",
+      "relation": "tagged"
+    },
+    {
+      "source": "harness-engineering",
+      "target": "tag:feedback",
+      "relation": "tagged"
+    },
+    {
+      "source": "harness-engineering",
+      "target": "tag:feedforward",
+      "relation": "tagged"
+    },
+    {
+      "source": "harness-engineering",
+      "target": "tag:harness",
+      "relation": "tagged"
+    },
+    {
+      "source": "harness-engineering",
+      "target": "tag:linting",
+      "relation": "tagged"
+    },
+    {
+      "source": "harness-engineering",
+      "target": "tag:testing",
       "relation": "tagged"
     },
     {
@@ -9453,6 +10151,46 @@
       "relation": "overlaps"
     },
     {
+      "source": "model-sovereignty-data-flywheel",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "model-sovereignty-data-flywheel",
+      "target": "tag:data-flywheel",
+      "relation": "tagged"
+    },
+    {
+      "source": "model-sovereignty-data-flywheel",
+      "target": "tag:fine-tuning",
+      "relation": "tagged"
+    },
+    {
+      "source": "model-sovereignty-data-flywheel",
+      "target": "tag:hallucination-reduction",
+      "relation": "tagged"
+    },
+    {
+      "source": "model-sovereignty-data-flywheel",
+      "target": "tag:model-sovereignty",
+      "relation": "tagged"
+    },
+    {
+      "source": "model-sovereignty-data-flywheel",
+      "target": "tag:open-source-models",
+      "relation": "tagged"
+    },
+    {
+      "source": "model-sovereignty-data-flywheel",
+      "target": "tag:self-hosted",
+      "relation": "tagged"
+    },
+    {
+      "source": "model-sovereignty-data-flywheel",
+      "target": "tag:vendor-independence",
+      "relation": "tagged"
+    },
+    {
       "source": "model-workspace-protocol",
       "target": "cat:reference",
       "relation": "categorized"
@@ -10435,6 +11173,46 @@
     {
       "source": "paperless-ngx",
       "target": "tag:self-hosted",
+      "relation": "tagged"
+    },
+    {
+      "source": "parallel-local-inference",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "parallel-local-inference",
+      "target": "tag:concurrent-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "parallel-local-inference",
+      "target": "tag:gpu",
+      "relation": "tagged"
+    },
+    {
+      "source": "parallel-local-inference",
+      "target": "tag:llama-cpp",
+      "relation": "tagged"
+    },
+    {
+      "source": "parallel-local-inference",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "parallel-local-inference",
+      "target": "tag:parallel-agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "parallel-local-inference",
+      "target": "tag:throughput",
+      "relation": "tagged"
+    },
+    {
+      "source": "parallel-local-inference",
+      "target": "tag:vllm",
       "relation": "tagged"
     },
     {
@@ -11801,6 +12579,56 @@
       "source": "ui-ux-pro-max-skill",
       "target": "web-artifacts-builder",
       "relation": "overlaps"
+    },
+    {
+      "source": "ultimate-deepseek-ultracode",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "ultimate-deepseek-ultracode",
+      "target": "frontier",
+      "relation": "overlaps"
+    },
+    {
+      "source": "ultimate-deepseek-ultracode",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "ultimate-deepseek-ultracode",
+      "target": "tag:cost-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "ultimate-deepseek-ultracode",
+      "target": "tag:deepseek",
+      "relation": "tagged"
+    },
+    {
+      "source": "ultimate-deepseek-ultracode",
+      "target": "tag:fan-out",
+      "relation": "tagged"
+    },
+    {
+      "source": "ultimate-deepseek-ultracode",
+      "target": "tag:inference-gateway",
+      "relation": "tagged"
+    },
+    {
+      "source": "ultimate-deepseek-ultracode",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "ultimate-deepseek-ultracode",
+      "target": "tag:ultracode",
+      "relation": "tagged"
+    },
+    {
+      "source": "ultimate-deepseek-ultracode",
+      "target": "tag:workflow",
+      "relation": "tagged"
     },
     {
       "source": "understand-anything",
