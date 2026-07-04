@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-02T01:35:55.886Z",
+  "generated_at": "2026-07-04T00:06:36.883Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -116,6 +116,16 @@
       "title": "Claude Agent Teams",
       "url": "https://code.claude.com/docs/en/agent-teams",
       "summary": "primary interactive dispatch path; subscription billing, no API credits needed",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "agentic-rag",
+      "kind": "entry",
+      "title": "Agentic RAG",
+      "url": "https://huggingface.co/learn/cookbook/agent_rag",
+      "summary": ">-",
       "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
@@ -355,6 +365,16 @@
       "exists": true
     },
     {
+      "id": "career-ops",
+      "kind": "entry",
+      "title": "Career-Ops",
+      "url": "https://github.com/santifer/career-ops",
+      "summary": ">-",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "castem-first-principles-model-mediated-work",
       "kind": "entry",
       "title": "CASTEM: First Principles for Model-Mediated Work",
@@ -587,6 +607,16 @@
       "exists": true
     },
     {
+      "id": "code-act",
+      "kind": "entry",
+      "title": "CodeAct",
+      "url": "https://github.com/xingyaoww/code-act",
+      "summary": ">-",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "codebase-reasoning-topology",
       "kind": "entry",
       "title": "Codebase Reasoning Topology",
@@ -641,6 +671,16 @@
       "url": "https://platform.claude.com/cookbook/capabilities-contextual-embeddings-guide",
       "summary": ">-",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "coolify",
+      "kind": "entry",
+      "title": "Coolify",
+      "url": "https://github.com/coollabsio/coolify",
+      "summary": ">-",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -721,6 +761,16 @@
       "url": "https://code.claude.com/docs/en/settings",
       "summary": "Useful security hygiene tip for Claude Code projects; documents a built-in feature rather than a new tool",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "dify",
+      "kind": "entry",
+      "title": "Dify",
+      "url": "https://github.com/langgenius/dify",
+      "summary": ">-",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -920,12 +970,32 @@
       "exists": true
     },
     {
+      "id": "glama",
+      "kind": "entry",
+      "title": "Glama",
+      "url": "https://glama.ai/mcp/servers",
+      "summary": ">-",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "googleworkspace-cli",
       "kind": "entry",
       "title": "Google Workspace CLI (gws)",
       "url": "https://github.com/googleworkspace/cli",
       "summary": "Rust CLI with agent-first JSON output and 100+ bundled SKILL.md files covering all Workspace APIs; pre-v1.0 with breaking changes expected",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "gradio",
+      "kind": "entry",
+      "title": "Gradio",
+      "url": "https://gradio.app/",
+      "summary": ">-",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -1066,6 +1136,16 @@
       "url": "https://github.com/immich-app/immich",
       "summary": "Production-ready self-hosted Google Photos alternative with AI search; not agent tooling but solid self-hosted media infrastructure.",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "impeccable",
+      "kind": "entry",
+      "title": "Impeccable",
+      "url": "https://github.com/pbakaus/impeccable",
+      "summary": ">-",
+      "category": "skill",
       "decision_status": "open",
       "exists": true
     },
@@ -1472,6 +1552,16 @@
       "exists": true
     },
     {
+      "id": "openhands",
+      "kind": "entry",
+      "title": "OpenHands",
+      "url": "https://github.com/OpenHands/openhands",
+      "summary": ">-",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "openrouter",
       "kind": "entry",
       "title": "OpenRouter",
@@ -1737,6 +1827,26 @@
       "exists": true
     },
     {
+      "id": "skills-cli",
+      "kind": "entry",
+      "title": "Skills CLI (skills.sh)",
+      "url": "https://github.com/vercel-labs/skills",
+      "summary": ">-",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "smithery",
+      "kind": "entry",
+      "title": "Smithery",
+      "url": "https://smithery.ai/",
+      "summary": ">-",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "smolagents",
       "kind": "entry",
       "title": "smolagents",
@@ -1837,12 +1947,22 @@
       "exists": true
     },
     {
+      "id": "tag:ACP",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:AI-infrastructure",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:API",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ATS",
       "kind": "tag",
       "exists": true
     },
@@ -1857,7 +1977,52 @@
       "exists": true
     },
     {
+      "id": "tag:CLI",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:Docker",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:LLM-agents",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:LLM-platform",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:LLMOps",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:MCP",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:PDF-generation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:PaaS",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:RAG",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:UI",
       "kind": "tag",
       "exists": true
     },
@@ -2107,6 +2272,11 @@
       "exists": true
     },
     {
+      "id": "tag:anti-patterns",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:anti-sycophancy",
       "kind": "tag",
       "exists": true
@@ -2218,6 +2388,11 @@
     },
     {
       "id": "tag:bash-hook",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:batch-processing",
       "kind": "tag",
       "exists": true
     },
@@ -2478,6 +2653,11 @@
     },
     {
       "id": "tag:coding",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:coding-agent",
       "kind": "tag",
       "exists": true
     },
@@ -2747,6 +2927,11 @@
       "exists": true
     },
     {
+      "id": "tag:databases",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:dataset",
       "kind": "tag",
       "exists": true
@@ -2802,7 +2987,17 @@
       "exists": true
     },
     {
+      "id": "tag:demo",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:dependency-graph",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:deployment",
       "kind": "tag",
       "exists": true
     },
@@ -3117,6 +3312,11 @@
       "exists": true
     },
     {
+      "id": "tag:frontend",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:frontmatter",
       "kind": "tag",
       "exists": true
@@ -3317,6 +3517,11 @@
       "exists": true
     },
     {
+      "id": "tag:hosting",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:hpc",
       "kind": "tag",
       "exists": true
@@ -3443,6 +3648,11 @@
     },
     {
       "id": "tag:isolation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:job-search",
       "kind": "tag",
       "exists": true
     },
@@ -3822,6 +4032,11 @@
       "exists": true
     },
     {
+      "id": "tag:multi-CLI",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:multi-agent",
       "kind": "tag",
       "exists": true
@@ -4083,6 +4298,11 @@
     },
     {
       "id": "tag:p2p",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:package-manager",
       "kind": "tag",
       "exists": true
     },
@@ -4422,6 +4642,11 @@
       "exists": true
     },
     {
+      "id": "tag:registry",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:regulated-ai",
       "kind": "tag",
       "exists": true
@@ -4603,6 +4828,11 @@
     },
     {
       "id": "tag:self-hosted",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:self-query",
       "kind": "tag",
       "exists": true
     },
@@ -4977,6 +5207,11 @@
       "exists": true
     },
     {
+      "id": "tag:tool-directory",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:tool-use",
       "kind": "tag",
       "exists": true
@@ -5127,6 +5362,11 @@
       "exists": true
     },
     {
+      "id": "tag:vercel",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:verification",
       "kind": "tag",
       "exists": true
@@ -5193,6 +5433,11 @@
     },
     {
       "id": "tag:web-access",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:web-app",
       "kind": "tag",
       "exists": true
     },
@@ -6011,6 +6256,41 @@
       "relation": "tagged"
     },
     {
+      "source": "agentic-rag",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "agentic-rag",
+      "target": "tag:RAG",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-rag",
+      "target": "tag:agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-rag",
+      "target": "tag:retrieval",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-rag",
+      "target": "tag:self-query",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-rag",
+      "target": "tag:smolagents",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-rag",
+      "target": "tag:vector-search",
+      "relation": "tagged"
+    },
+    {
       "source": "ai-memory-comparison",
       "target": "cat:reference",
       "relation": "categorized"
@@ -6781,6 +7061,41 @@
       "relation": "tagged"
     },
     {
+      "source": "career-ops",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "career-ops",
+      "target": "tag:ATS",
+      "relation": "tagged"
+    },
+    {
+      "source": "career-ops",
+      "target": "tag:PDF-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "career-ops",
+      "target": "tag:batch-processing",
+      "relation": "tagged"
+    },
+    {
+      "source": "career-ops",
+      "target": "tag:job-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "career-ops",
+      "target": "tag:multi-CLI",
+      "relation": "tagged"
+    },
+    {
+      "source": "career-ops",
+      "target": "tag:skills",
+      "relation": "tagged"
+    },
+    {
       "source": "castem-first-principles-model-mediated-work",
       "target": "ai-needs-what-alcoa-gave-records",
       "relation": "overlaps"
@@ -7511,6 +7826,36 @@
       "relation": "tagged"
     },
     {
+      "source": "code-act",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "code-act",
+      "target": "tag:LLM-agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "code-act",
+      "target": "tag:agent-framework",
+      "relation": "tagged"
+    },
+    {
+      "source": "code-act",
+      "target": "tag:code-execution",
+      "relation": "tagged"
+    },
+    {
+      "source": "code-act",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "code-act",
+      "target": "tag:research-paper",
+      "relation": "tagged"
+    },
+    {
       "source": "codebase-reasoning-topology",
       "target": "cat:reference",
       "relation": "categorized"
@@ -7713,6 +8058,41 @@
     {
       "source": "contextual-retrieval-anthropic",
       "target": "tag:retrieval",
+      "relation": "tagged"
+    },
+    {
+      "source": "coolify",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "coolify",
+      "target": "tag:Docker",
+      "relation": "tagged"
+    },
+    {
+      "source": "coolify",
+      "target": "tag:PaaS",
+      "relation": "tagged"
+    },
+    {
+      "source": "coolify",
+      "target": "tag:databases",
+      "relation": "tagged"
+    },
+    {
+      "source": "coolify",
+      "target": "tag:deployment",
+      "relation": "tagged"
+    },
+    {
+      "source": "coolify",
+      "target": "tag:infrastructure",
+      "relation": "tagged"
+    },
+    {
+      "source": "coolify",
+      "target": "tag:self-hosted",
       "relation": "tagged"
     },
     {
@@ -8013,6 +8393,46 @@
     {
       "source": "deny-env-reads",
       "target": "tag:security",
+      "relation": "tagged"
+    },
+    {
+      "source": "dify",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "dify",
+      "target": "tag:LLM-platform",
+      "relation": "tagged"
+    },
+    {
+      "source": "dify",
+      "target": "tag:LLMOps",
+      "relation": "tagged"
+    },
+    {
+      "source": "dify",
+      "target": "tag:RAG",
+      "relation": "tagged"
+    },
+    {
+      "source": "dify",
+      "target": "tag:agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "dify",
+      "target": "tag:self-hosted",
+      "relation": "tagged"
+    },
+    {
+      "source": "dify",
+      "target": "tag:visual-builder",
+      "relation": "tagged"
+    },
+    {
+      "source": "dify",
+      "target": "tag:workflow",
       "relation": "tagged"
     },
     {
@@ -8776,6 +9196,36 @@
       "relation": "tagged"
     },
     {
+      "source": "glama",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "glama",
+      "target": "tag:MCP",
+      "relation": "tagged"
+    },
+    {
+      "source": "glama",
+      "target": "tag:discovery",
+      "relation": "tagged"
+    },
+    {
+      "source": "glama",
+      "target": "tag:gateway",
+      "relation": "tagged"
+    },
+    {
+      "source": "glama",
+      "target": "tag:registry",
+      "relation": "tagged"
+    },
+    {
+      "source": "glama",
+      "target": "tag:tool-directory",
+      "relation": "tagged"
+    },
+    {
       "source": "googleworkspace-cli",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -8828,6 +9278,41 @@
     {
       "source": "googleworkspace-cli",
       "target": "tag:sheets",
+      "relation": "tagged"
+    },
+    {
+      "source": "gradio",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "gradio",
+      "target": "tag:UI",
+      "relation": "tagged"
+    },
+    {
+      "source": "gradio",
+      "target": "tag:demo",
+      "relation": "tagged"
+    },
+    {
+      "source": "gradio",
+      "target": "tag:huggingface",
+      "relation": "tagged"
+    },
+    {
+      "source": "gradio",
+      "target": "tag:machine-learning",
+      "relation": "tagged"
+    },
+    {
+      "source": "gradio",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "gradio",
+      "target": "tag:web-app",
       "relation": "tagged"
     },
     {
@@ -9383,6 +9868,46 @@
     {
       "source": "immich",
       "target": "tag:video",
+      "relation": "tagged"
+    },
+    {
+      "source": "impeccable",
+      "target": "cat:skill",
+      "relation": "categorized"
+    },
+    {
+      "source": "impeccable",
+      "target": "tag:UI",
+      "relation": "tagged"
+    },
+    {
+      "source": "impeccable",
+      "target": "tag:anti-patterns",
+      "relation": "tagged"
+    },
+    {
+      "source": "impeccable",
+      "target": "tag:design",
+      "relation": "tagged"
+    },
+    {
+      "source": "impeccable",
+      "target": "tag:frontend",
+      "relation": "tagged"
+    },
+    {
+      "source": "impeccable",
+      "target": "tag:linting",
+      "relation": "tagged"
+    },
+    {
+      "source": "impeccable",
+      "target": "tag:multi-CLI",
+      "relation": "tagged"
+    },
+    {
+      "source": "impeccable",
+      "target": "tag:skills",
       "relation": "tagged"
     },
     {
@@ -10946,6 +11471,41 @@
       "relation": "tagged"
     },
     {
+      "source": "openhands",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "openhands",
+      "target": "tag:ACP",
+      "relation": "tagged"
+    },
+    {
+      "source": "openhands",
+      "target": "tag:Docker",
+      "relation": "tagged"
+    },
+    {
+      "source": "openhands",
+      "target": "tag:agent-framework",
+      "relation": "tagged"
+    },
+    {
+      "source": "openhands",
+      "target": "tag:automation",
+      "relation": "tagged"
+    },
+    {
+      "source": "openhands",
+      "target": "tag:coding-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "openhands",
+      "target": "tag:self-hosted",
+      "relation": "tagged"
+    },
+    {
       "source": "openrouter",
       "target": "cat:framework",
       "relation": "categorized"
@@ -11973,6 +12533,76 @@
     {
       "source": "skillopt",
       "target": "tag:training-loop",
+      "relation": "tagged"
+    },
+    {
+      "source": "skills-cli",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "skills-cli",
+      "target": "tag:CLI",
+      "relation": "tagged"
+    },
+    {
+      "source": "skills-cli",
+      "target": "tag:agent-skills",
+      "relation": "tagged"
+    },
+    {
+      "source": "skills-cli",
+      "target": "tag:discovery",
+      "relation": "tagged"
+    },
+    {
+      "source": "skills-cli",
+      "target": "tag:package-manager",
+      "relation": "tagged"
+    },
+    {
+      "source": "skills-cli",
+      "target": "tag:skills",
+      "relation": "tagged"
+    },
+    {
+      "source": "skills-cli",
+      "target": "tag:vercel",
+      "relation": "tagged"
+    },
+    {
+      "source": "smithery",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "smithery",
+      "target": "tag:CLI",
+      "relation": "tagged"
+    },
+    {
+      "source": "smithery",
+      "target": "tag:MCP",
+      "relation": "tagged"
+    },
+    {
+      "source": "smithery",
+      "target": "tag:discovery",
+      "relation": "tagged"
+    },
+    {
+      "source": "smithery",
+      "target": "tag:hosting",
+      "relation": "tagged"
+    },
+    {
+      "source": "smithery",
+      "target": "tag:registry",
+      "relation": "tagged"
+    },
+    {
+      "source": "smithery",
+      "target": "tag:tool-directory",
       "relation": "tagged"
     },
     {
