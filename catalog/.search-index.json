@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-07-02",
-  "count": 193,
+  "generated": "2026-07-04",
+  "count": 204,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -303,6 +303,27 @@
       "security_flags": [],
       "reviewed": "2026-07-01",
       "path": "catalog/entries/agentic-rag-terminal-tools.md"
+    },
+    {
+      "name": "agentic-rag",
+      "title": "Agentic RAG",
+      "url": "https://huggingface.co/learn/cookbook/agent_rag",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "Agentic RAG wraps a vector-database retriever as a tool available to an LLM agent. Instead\nof embedding the user's raw question for a single retrieval pass, the agent:\n\n1. **Reformulates the query** into affirmative-form statements closer to the target\n   documents (recovering the HyDE technique)…",
+      "tags": [
+        "RAG",
+        "retrieval",
+        "agents",
+        "smolagents",
+        "vector-search",
+        "self-query"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-03",
+      "path": "catalog/entries/agentic-rag.md"
     },
     {
       "name": "ai-memory-comparison",
@@ -814,6 +835,27 @@
       "path": "catalog/entries/building-evals-anthropic.md"
     },
     {
+      "name": "career-ops",
+      "title": "Career-Ops",
+      "url": "https://github.com/santifer/career-ops",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "Career-Ops turns any AI coding CLI into a job search command center. It evaluates job\noffers against a user profile using a structured scoring system (10 weighted dimensions),\ngenerates tailored ATS-optimized CVs as PDFs, scans career portals automatically, and\ntracks everything in a markdown-based…",
+      "tags": [
+        "job-search",
+        "skills",
+        "PDF-generation",
+        "ATS",
+        "batch-processing",
+        "multi-CLI"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-03",
+      "path": "catalog/entries/career-ops.md"
+    },
+    {
       "name": "castem-first-principles-model-mediated-work",
       "title": "CASTEM: First Principles for Model-Mediated Work",
       "url": "https://www.linkedin.com/pulse/castem-first-principles-model-mediated-work-bryan-downie-ph-d--58mnc/",
@@ -1234,6 +1276,26 @@
       "path": "catalog/entries/cobalt.md"
     },
     {
+      "name": "code-act",
+      "title": "CodeAct",
+      "url": "https://github.com/xingyaoww/code-act",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "CodeAct proposes using executable Python code as a unified action space for LLM agents.\nIntegrated with a Python interpreter, agents can execute code actions and dynamically\nrevise prior actions or emit new actions based on execution results through multi-turn\ninteractions. This replaces…",
+      "tags": [
+        "agent-framework",
+        "code-execution",
+        "LLM-agents",
+        "python",
+        "research-paper"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-03",
+      "path": "catalog/entries/code-act.md"
+    },
+    {
       "name": "codebase-reasoning-topology",
       "title": "Codebase Reasoning Topology",
       "category": "reference",
@@ -1363,6 +1425,29 @@
       ],
       "reviewed": "2026-06-25",
       "path": "catalog/entries/contextual-retrieval-anthropic.md"
+    },
+    {
+      "name": "coolify",
+      "title": "Coolify",
+      "url": "https://github.com/coollabsio/coolify",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "Coolify manages servers, applications, and databases on your own hardware via SSH. It\nprovides a web dashboard for deployments, resource monitoring, log streaming, and\none-click rollback. Supports VPS, bare metal, and Raspberry Pi.\n\n- **Git-push deployments**: push to a connected branch, Coolify…",
+      "tags": [
+        "PaaS",
+        "self-hosted",
+        "deployment",
+        "Docker",
+        "databases",
+        "infrastructure"
+      ],
+      "workflows": [],
+      "security_flags": [
+        "prior-cves"
+      ],
+      "reviewed": "2026-07-03",
+      "path": "catalog/entries/coolify.md"
     },
     {
       "name": "crawl4ai",
@@ -1548,6 +1633,28 @@
       "security_flags": [],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/deny-env-reads.md"
+    },
+    {
+      "name": "dify",
+      "title": "Dify",
+      "url": "https://github.com/langgenius/dify",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "Dify provides an intuitive visual interface for building AI applications — from chatbots\nto complex multi-step agent workflows. It combines workflow orchestration, RAG document\ningestion/retrieval, agent tool use, model management, and production observability into\na single platform.\n\n- **Visual…",
+      "tags": [
+        "LLM-platform",
+        "workflow",
+        "RAG",
+        "agents",
+        "LLMOps",
+        "self-hosted",
+        "visual-builder"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-03",
+      "path": "catalog/entries/dify.md"
     },
     {
       "name": "distill",
@@ -1998,6 +2105,26 @@
       "path": "catalog/entries/ggwas.md"
     },
     {
+      "name": "glama",
+      "title": "Glama",
+      "url": "https://glama.ai/mcp/servers",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "Glama indexes the Model Context Protocol ecosystem — submit a GitHub repo and it indexes\nevery tool, schema, and annotation. Servers appear in search, categories, and\nrecommendations. An in-browser inspector lets visitors exercise tools with real JSON-RPC\ncalls without cloning or building anything…",
+      "tags": [
+        "MCP",
+        "registry",
+        "discovery",
+        "gateway",
+        "tool-directory"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-03",
+      "path": "catalog/entries/glama.md"
+    },
+    {
       "name": "googleworkspace-cli",
       "title": "Google Workspace CLI (gws)",
       "url": "https://github.com/googleworkspace/cli",
@@ -2026,6 +2153,27 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/googleworkspace-cli.md"
+    },
+    {
+      "name": "gradio",
+      "title": "Gradio",
+      "url": "https://gradio.app/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "Gradio lets developers create interactive web UIs for machine learning models, APIs, or\narbitrary Python functions in a few lines of code. It handles the frontend automatically —\nno JavaScript, CSS, or web hosting experience required. Users interact through the browser\nwhile Python functions run on…",
+      "tags": [
+        "python",
+        "machine-learning",
+        "UI",
+        "demo",
+        "web-app",
+        "huggingface"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-03",
+      "path": "catalog/entries/gradio.md"
     },
     {
       "name": "graphify",
@@ -2340,6 +2488,28 @@
       "security_flags": [],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/immich.md"
+    },
+    {
+      "name": "impeccable",
+      "title": "Impeccable",
+      "url": "https://github.com/pbakaus/impeccable",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "Impeccable provides design vocabulary and quality enforcement for AI coding agents. It\ncatches common AI-generated frontend tells (Inter everywhere, purple gradients, nested\ncards, gray text on colored backgrounds, bounce easing) through 45 deterministic detector\nrules that run without an LLM. On…",
+      "tags": [
+        "design",
+        "frontend",
+        "UI",
+        "anti-patterns",
+        "linting",
+        "multi-CLI",
+        "skills"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-03",
+      "path": "catalog/entries/impeccable.md"
     },
     {
       "name": "inbox-zero",
@@ -3263,6 +3433,27 @@
       "path": "catalog/entries/opendataloader-pdf.md"
     },
     {
+      "name": "openhands",
+      "title": "OpenHands",
+      "url": "https://github.com/OpenHands/openhands",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "OpenHands (formerly OpenDevin) provides an Agent Canvas UI and Agent Server for running\ncoding agents as a self-hosted, always-on engineering team. It supports starting\nconversations, automating tasks (report generation, GitHub issue decomposition), and\nintegrating with third-party services.\n\n-…",
+      "tags": [
+        "agent-framework",
+        "coding-agent",
+        "self-hosted",
+        "automation",
+        "ACP",
+        "Docker"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-03",
+      "path": "catalog/entries/openhands.md"
+    },
+    {
       "name": "openrouter",
       "title": "OpenRouter",
       "url": "https://openrouter.ai/",
@@ -3871,6 +4062,48 @@
       "security_flags": [],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/skillopt.md"
+    },
+    {
+      "name": "skills-cli",
+      "title": "Skills CLI (skills.sh)",
+      "url": "https://github.com/vercel-labs/skills",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "The Skills CLI (`npx skills`) is a package manager for agent skills — modular SKILL.md\npackages that extend AI coding agent capabilities with specialized knowledge, workflows,\nand tools. It provides discovery, installation, update checking, and scaffolding for new\nskills.\n\n- `npx skills find…",
+      "tags": [
+        "skills",
+        "package-manager",
+        "discovery",
+        "CLI",
+        "agent-skills",
+        "vercel"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-03",
+      "path": "catalog/entries/skills-cli.md"
+    },
+    {
+      "name": "smithery",
+      "title": "Smithery",
+      "url": "https://smithery.ai/",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "Smithery is a central hub for discovering, installing, and hosting Model Context Protocol\nservers. Developers can search thousands of MCP servers, install them locally via the\nSmithery CLI, or run them as hosted remote endpoints on Smithery's infrastructure with no\nsetup of their own.\n\n- **Registry…",
+      "tags": [
+        "MCP",
+        "registry",
+        "discovery",
+        "hosting",
+        "CLI",
+        "tool-directory"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-03",
+      "path": "catalog/entries/smithery.md"
     },
     {
       "name": "smolagents",

@@ -51,3 +51,5 @@ Cataloged because: (1) the OpenAI-compatible gateway with provider selection pol
 - Claude Code proxy technique (same pattern as nvidia-build): set `ANTHROPIC_BASE_URL=https://router.huggingface.co/v1`, provide `HF_TOKEN`, and route to open models through the HF gateway. Same caveats apply — verify Anthropic ToS compliance; intent is supplementing with open-source models for specific tasks.
 - For model discovery, use the HF Hub model cards and the Inference Playground (`huggingface.co/playground`) to test models before committing to a provider.
 - Provider selection tip: use `:cheapest` for batch/background workloads where latency doesn't matter; `:fastest` for interactive/agentic use.
+
+- HF Pro plan ($9/month) with serverless inference can supplement agent building as a cheaper alternative to calling `claude -p` or Codex headless for open-source model workloads
