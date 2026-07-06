@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-04T00:06:36.883Z",
+  "generated_at": "2026-07-06T18:18:51.026Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -91,6 +91,11 @@
       "exists": true
     },
     {
+      "id": "agent-skills-addy-osmani",
+      "kind": "entry",
+      "exists": false
+    },
+    {
       "id": "agent-skills-osmani",
       "kind": "entry",
       "title": "Agent Skills (Addy Osmani)",
@@ -156,6 +161,16 @@
       "exists": false
     },
     {
+      "id": "ai-work-receipt",
+      "kind": "entry",
+      "title": "AI Work Receipt",
+      "url": "https://instagram.com/agenticengineering",
+      "summary": "Concept for an agent skill that generates structured AI work receipts — two arms: time-saved estimates (human baseline vs AI-assisted time) and artifact metrics (lines of code, functions/modules shipped, bugs logged/closed); aimed at giving managers and stakeholders visibility into AI productivity gains",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "airllm",
       "kind": "entry",
       "title": "AirLLM",
@@ -172,6 +187,26 @@
       "url": "https://bryandownie.substack.com/p/ai-needs-what-alcoa-gave-records",
       "summary": "Useful framing for regulated-AI governance but no actionable tool or framework yet — CASTEM teased but unpublished",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "andrej-karpathy-skills",
+      "kind": "entry",
+      "title": "Andrej Karpathy Skills (multica-ai)",
+      "url": "https://github.com/multica-ai/andrej-karpathy-skills",
+      "summary": "CLAUDE.md + Cursor rules implementing 4 of Karpathy's coding principles (Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution); Claude Code marketplace plugin + .cursor/rules/.mdc format; overlaps with karpathy-12-rules (covers 4 of 12)",
+      "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "anthropic-financial-services",
+      "kind": "entry",
+      "title": "Claude for Financial Services",
+      "url": "https://github.com/anthropics/financial-services",
+      "summary": "Official Anthropic reference agents and skills for financial services — 10 named workflow agents (Pitch Agent, Market Researcher, GL Reconciler, etc.), 7 vertical skill bundles (IB, equity research, PE, wealth management, fund admin, ops), 12 MCP data connectors (FactSet, S&P, Morningstar, PitchBook, LSEG, etc.); dual deployment as Cowork plugins or Managed Agents API; Apache-2.0",
+      "category": "plugin",
       "decision_status": "open",
       "exists": true
     },
@@ -274,6 +309,11 @@
       "category": "reference",
       "decision_status": "open",
       "exists": true
+    },
+    {
+      "id": "bitnet",
+      "kind": "entry",
+      "exists": false
     },
     {
       "id": "bitnet-cpp",
@@ -480,6 +520,16 @@
       "exists": true
     },
     {
+      "id": "claude-code-setup-plugin",
+      "kind": "entry",
+      "title": "Claude Code Setup Plugin",
+      "url": "https://github.com/anthropics/claude-plugins-official/tree/main/plugins/claude-code-setup",
+      "summary": "Official Anthropic plugin that scans a codebase and recommends tailored Claude Code automations — top 1-2 recommendations per category (MCP servers, skills, hooks, subagents, slash commands); read-only analysis, no file modifications",
+      "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "claude-cookbook",
       "kind": "entry",
       "title": "Claude Cookbook",
@@ -488,6 +538,11 @@
       "category": "reference",
       "decision_status": "open",
       "exists": true
+    },
+    {
+      "id": "claude-decision-pressure-test",
+      "kind": "entry",
+      "exists": false
     },
     {
       "id": "claude-decision-pressure-test-and-context-handoff",
@@ -558,12 +613,32 @@
       "exists": true
     },
     {
+      "id": "claude-seo",
+      "kind": "entry",
+      "title": "Claude SEO",
+      "url": "https://github.com/AgricIDaniel/claude-seo",
+      "summary": "Open-source SEO analysis plugin for Claude Code — 25 sub-skills and 18 specialist agents running in parallel across technical SEO, E-E-A-T content quality, Schema.org markup, AI search optimization (GEO), local SEO, e-commerce, and international SEO; falsifiable recommendations with leading indicators; 4-tier Google API integration; 8 optional MCP extensions (Ahrefs, DataForSEO, SE Ranking, etc.); MIT",
+      "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "claude-skill-steelman",
       "kind": "entry",
       "title": "Claude Skill Steelman",
       "url": "https://github.com/techiejd/claude-skill-steelman",
       "summary": "Single-purpose /steelman skill that pressure-tests decisions by arguing strongest alternatives at full strength — anti-sycophancy focused, context-specific; overlaps with doubt-driven-development (agent-skills) and superpowers:brainstorming",
       "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "claude-skills-rezvani",
+      "kind": "entry",
+      "title": "Claude Skills (Rezvani)",
+      "url": "https://github.com/alirezarezvani/claude-skills",
+      "summary": "355-skill library for 13 AI coding tools — 18 domains (engineering, marketing, product, compliance, C-level advisory, research, finance, business ops), 602 stdlib-only Python CLI tools, 711 reference templates; cross-platform (Claude Code, Codex, Gemini CLI, Cursor, Aider, Windsurf, and 7 more); MIT",
+      "category": "plugin",
       "decision_status": "open",
       "exists": true
     },
@@ -645,6 +720,16 @@
       "exists": true
     },
     {
+      "id": "codex-plugin-cc",
+      "kind": "entry",
+      "title": "Codex Plugin for Claude Code",
+      "url": "https://github.com/openai/codex-plugin-cc",
+      "summary": "Official OpenAI plugin enabling Codex usage from within Claude Code — code review (/codex:review), adversarial review, task delegation (/codex:rescue), session transfer, and background job management; requires ChatGPT subscription or OpenAI API key",
+      "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "codex-ssd-write-bug",
       "kind": "entry",
       "title": "Codex Desktop SSD Write Issue",
@@ -655,12 +740,32 @@
       "exists": true
     },
     {
+      "id": "confidence-probing-prompts",
+      "kind": "entry",
+      "title": "Confidence-Probing Prompts",
+      "url": "https://reddit.com",
+      "summary": "Collection of meta-prompting patterns that surface agent blind spots — 'what are you least confident about' (forces enumeration of uninvestigated areas), 'what's the biggest thing I'm missing' (Altman), plus future-proofing, hidden-bias, and session-improvement variants",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "context-graph-compressor",
       "kind": "entry",
       "title": "Context Graph Compressor",
       "url": "https://github.com/Adityapal67/context-graph-compressor",
       "summary": "Structured JSON graph handoff with importance tagging and cross-LLM portability beats plain-text handoff skills; too new/single-contributor to adopt outright",
       "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "context-graphs-trillion-dollar-elephant",
+      "kind": "entry",
+      "title": "Context Graphs: The Trillion Dollar Elephant",
+      "url": "https://dadhichgaurav1.medium.com/context-graphs-the-trillion-dollar-elephant-7b78cd3fc96f",
+      "summary": "Practitioner analysis of context graphs for enterprise AI — identifies five human challenges (implicit decisions, trust, outcome attribution, forgetting, change continuums) and six technical challenges (trace extraction UX, canonicalization, temporal extraction, storage architecture, data security, graph structure) that must be solved before context graphs become operational",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -850,6 +955,26 @@
       "exists": true
     },
     {
+      "id": "engram-learning-engine",
+      "kind": "entry",
+      "title": "Engram (Learning Engine)",
+      "url": "https://github.com/nagisanzenin/engram",
+      "summary": "Evidence-based Claude Code learning plugin — FSRS spaced repetition, free-recall verification with blind assessor grading, first-principles concept graphs, interactive HTML explorables; three commands (/learn, /review, /coach); Python 3 stdlib only, local JSON storage",
+      "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "enterprise-context-management-cio-notes",
+      "kind": "entry",
+      "title": "Enterprise Context Management — CIO Notes",
+      "url": "https://reddit.com",
+      "summary": "Field notes from large-enterprise CIO conversations on context management for agentic systems — five observations: static ontologies are dead on arrival, the bottleneck is context selection not data access, enterprise semantics sits between metadata and abstract ontology, vendor semantics is not organizational semantics, and representing judgment (not just knowledge) is the hard problem",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "epibench",
       "kind": "entry",
       "title": "EpiBench",
@@ -866,6 +991,16 @@
       "url": "https://github.com/google-research/era",
       "summary": "Interesting LLM+tree-search loop for scientific code generation, but Gemini-locked, research-grade, and not directly applicable to Claude Code workflows today",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "fable-agent-orchestration",
+      "kind": "entry",
+      "title": "Fable Agent Orchestration",
+      "url": "https://git.wearein.space/elias/fable-agent-orchestration",
+      "summary": "Apache-2.0 skill database for multi-agent orchestration — 24 reusable skills covering worktree-isolated parallel PR workflows, two-critic review loops, agent PR validation against real diffs/CI, fake-green test detection, orphaned WIP recovery, instruction-drift control, behavior-contract harnesses, and phase-aware engineering ladders",
+      "category": "plugin",
       "decision_status": "open",
       "exists": true
     },
@@ -926,6 +1061,16 @@
       "url": "https://github.com/FluidForm-ai/fluiddocs-deck-builder",
       "summary": "Well-built skill/plugin pack for HTML slide decks; interesting multi-reviewer architecture but outside bioinformatics workflows",
       "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "free-claude-code",
+      "kind": "entry",
+      "title": "Free Claude Code",
+      "url": "https://github.com/Alishahryar1/free-claude-code",
+      "summary": "Drop-in proxy routing Claude Code (Anthropic Messages API) and Codex (OpenAI Responses API) traffic to 24 provider backends — per-model-tier routing, Admin UI, Discord/Telegram bot wrapper, voice-note transcription via local Whisper or NVIDIA NIM; Python/FastAPI, MIT",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -1000,12 +1145,32 @@
       "exists": true
     },
     {
+      "id": "granola-mcp",
+      "kind": "entry",
+      "title": "Granola MCP",
+      "url": "https://www.granola.ai/blog/granola-mcp",
+      "summary": "MCP server from Granola that gives AI tools (Claude, ChatGPT, Cursor, Claude Code) access to meeting notes — search conversations, pull context, create follow-ups from what was discussed; remote server at mcp.granola.ai/mcp; requires paid Granola plan",
+      "category": "mcp-server",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "graphify",
       "kind": "entry",
       "title": "Graphify",
       "url": "https://github.com/safishamsi/graphify",
       "summary": "direct inspiration for kb graph; concepts like confidence-tagged edges and clustering worth learning from",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "graphql",
+      "kind": "entry",
+      "title": "GraphQL",
+      "url": "https://graphql.org/",
+      "summary": "Open-source query language for APIs with strongly-typed schemas — request exactly the data needed, retrieve multiple resources in one request, evolve without versioning; governed by the GraphQL Foundation under the Linux Foundation; libraries available in most languages",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -1183,7 +1348,7 @@
       "id": "karpathy-12-rules",
       "kind": "entry",
       "title": "Karpathy's 12 Rules for CLAUDE.md",
-      "summary": "Rules 6 (token budgets) and 12 (fail loud) not yet in our stack",
+      "summary": "All 12 rules adopted via setup-behavioral-baseline.sh — installs to ~/.claude/CLAUDE.md (Claude) and ~/.codex/AGENTS.md (Codex)",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -1245,6 +1410,16 @@
       "url": "https://github.com/BerriAI/litellm",
       "summary": "Open-source Python SDK and self-hosted AI gateway (proxy server) providing a unified OpenAI-compatible interface to 100+ LLM providers — model routing, automatic fallbacks, cost tracking, per-team budgets, Redis caching, guardrails, MCP/A2A support; ~40K stars, 1300+ contributors, YC-backed; MIT",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "local-model-picks-2026",
+      "kind": "entry",
+      "title": "Local Model Picks (2026)",
+      "url": "https://reddit.com",
+      "summary": "Practitioner-curated list of open-source models for local/offline use with RAM requirements — Llama 4 Scout (32GB Q4), Qwen 3.6 7B (16GB, coding), DeepSeek R1 8B (16GB, reasoning), Phi-4 3.8B (8GB, reasoning), Kimi K2.6 1T (API-only, 32B active, matches Claude), Pixtral (VLM), Granite 3 (enterprise/compliance), GPT-OSS 20B/120B",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -1399,6 +1574,26 @@
       "url": "https://code.claude.com/docs/en/sub-agents",
       "summary": "lightweight HO consultation route within existing sessions; no separate billing",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "nemotron-3-ultra",
+      "kind": "entry",
+      "title": "NVIDIA Nemotron 3 Ultra",
+      "url": "https://research.nvidia.com/labs/nemotron/Nemotron-3-Ultra/",
+      "summary": "NVIDIA's most capable open model — 550B total / 55B active parameters, Mixture-of-Experts Hybrid Mamba-Attention architecture with LatentMoE and MTP speculative decoding; 1M context length; 5.9x throughput vs GLM-5.1, 4.8x vs Kimi K2.6; open checkpoints (base, post-trained, NVFP4 quantized, GenRM) and training datasets released",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "nginx",
+      "kind": "entry",
+      "title": "nginx",
+      "url": "https://nginx.org/",
+      "summary": "HTTP web server, reverse proxy, content cache, load balancer, TCP/UDP proxy, and mail proxy — originally by Igor Sysoev, 2-clause BSD license; enterprise distributions and commercial support from F5; mature infrastructure for hosting agent services and API gateways",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -1632,6 +1827,16 @@
       "exists": true
     },
     {
+      "id": "perplexity-mcp-server",
+      "kind": "entry",
+      "title": "Perplexity MCP Server",
+      "url": "https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server",
+      "summary": "Official Perplexity MCP server providing real-time web search, conversational AI, and advanced reasoning tools to MCP-compatible clients; one-click install for Claude Code, Cursor, Codex; npm package @perplexity-ai/mcp-server; requires Perplexity API key",
+      "category": "mcp-server",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "pi-hole",
       "kind": "entry",
       "title": "Pi-hole",
@@ -1682,6 +1887,11 @@
       "exists": true
     },
     {
+      "id": "qwen2-5-coder-32b-instruct",
+      "kind": "entry",
+      "exists": false
+    },
+    {
       "id": "qwen25-coder-32b",
       "kind": "entry",
       "title": "Qwen2.5-Coder-32B-Instruct",
@@ -1713,6 +1923,16 @@
       "url": "https://en.wikipedia.org/wiki/Retrieval-augmented_generation",
       "summary": "Practitioner's RAG recipe — semantic chunking (500-1000 tokens, 100 overlap), embed once with nomic/mxbai, store in ChromaDB/Qdrant/LanceDB, retrieve top-20 → BGE rerank → top-5, cite source chunks in LLM output",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "redpanda",
+      "kind": "entry",
+      "title": "Redpanda",
+      "url": "https://www.redpanda.com",
+      "summary": "Kafka-compatible data streaming platform in C++ — single-binary deployment (broker + schema registry + HTTP proxy + Raft consensus), 10x lower latency than Kafka, 3-6x cost efficiency, no JVM/ZooKeeper dependency; Redpanda Connect ships 300+ connectors including AI connectors; tiered storage and cloud topics; BSL 1.1 (source-available)",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -1768,6 +1988,16 @@
       "url": "https://github.com/nanocoai/nanoclaw",
       "summary": "Useful architecture pattern for persistent scheduled agents with coordinator + messaging; NanoClaw and Hermes are mature implementations",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "second-brain-skills",
+      "kind": "entry",
+      "title": "Second Brain Skills",
+      "url": "https://github.com/coleam00/second-brain-skills",
+      "summary": "Claude Code skill collection for knowledge work — MCP client with progressive disclosure, PPTX/carousel generator with brand system, SOP/runbook creator, Remotion video creator, skill creator guide, and brand & voice generator; by Cole Medin",
+      "category": "plugin",
       "decision_status": "open",
       "exists": true
     },
@@ -1833,6 +2063,16 @@
       "url": "https://github.com/vercel-labs/skills",
       "summary": ">-",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "slack-mcp-server-korotovsky",
+      "kind": "entry",
+      "title": "Slack MCP Server (korotovsky)",
+      "url": "https://github.com/korotovsky/slack-mcp-server",
+      "summary": "Feature-rich MCP server for Slack workspaces — 18 tools covering channel history, thread replies, message search, unread messages, DMs/group DMs, message posting, reactions, saved items, user search, user groups; stealth mode (no bot install required), OAuth mode, Enterprise/GovSlack support; Go, Stdio/SSE/HTTP transports; MIT",
+      "category": "mcp-server",
       "decision_status": "open",
       "exists": true
     },
@@ -2038,6 +2278,11 @@
     },
     {
       "id": "tag:accessibility",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:accountability",
       "kind": "tag",
       "exists": true
     },
@@ -2717,6 +2962,11 @@
       "exists": true
     },
     {
+      "id": "tag:confidence",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:confidence-model",
       "kind": "tag",
       "exists": true
@@ -2737,12 +2987,22 @@
       "exists": true
     },
     {
+      "id": "tag:context",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:context-compression",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:context-engineering",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:context-graphs",
       "kind": "tag",
       "exists": true
     },
@@ -2882,6 +3142,11 @@
       "exists": true
     },
     {
+      "id": "tag:cursor-rules",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:daemon",
       "kind": "tag",
       "exists": true
@@ -2922,6 +3187,11 @@
       "exists": true
     },
     {
+      "id": "tag:data-streaming",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:database",
       "kind": "tag",
       "exists": true
@@ -2948,6 +3218,11 @@
     },
     {
       "id": "tag:decision-methodology",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:decision-traces",
       "kind": "tag",
       "exists": true
     },
@@ -3117,7 +3392,17 @@
       "exists": true
     },
     {
+      "id": "tag:e-e-a-t",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ebi",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ecommerce-seo",
       "kind": "tag",
       "exists": true
     },
@@ -3147,12 +3432,22 @@
       "exists": true
     },
     {
+      "id": "tag:engineering",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:engineering-practices",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:enterprise",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:enterprise-ai",
       "kind": "tag",
       "exists": true
     },
@@ -3182,6 +3477,11 @@
       "exists": true
     },
     {
+      "id": "tag:equity-research",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:esp32",
       "kind": "tag",
       "exists": true
@@ -3198,6 +3498,11 @@
     },
     {
       "id": "tag:evaluation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:event-streaming",
       "kind": "tag",
       "exists": true
     },
@@ -3287,6 +3592,11 @@
       "exists": true
     },
     {
+      "id": "tag:financial-services",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:fine-tuning",
       "kind": "tag",
       "exists": true
@@ -3318,6 +3628,11 @@
     },
     {
       "id": "tag:frontmatter",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:fsrs",
       "kind": "tag",
       "exists": true
     },
@@ -3438,6 +3753,11 @@
     },
     {
       "id": "tag:gradio",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:granola",
       "kind": "tag",
       "exists": true
     },
@@ -3632,6 +3952,11 @@
       "exists": true
     },
     {
+      "id": "tag:investment-banking",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:iot",
       "kind": "tag",
       "exists": true
@@ -3672,6 +3997,11 @@
       "exists": true
     },
     {
+      "id": "tag:kafka",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:karpathy",
       "kind": "tag",
       "exists": true
@@ -3697,6 +4027,11 @@
       "exists": true
     },
     {
+      "id": "tag:knowledge-graphs",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:knowledge-management",
       "kind": "tag",
       "exists": true
@@ -3717,6 +4052,11 @@
       "exists": true
     },
     {
+      "id": "tag:knowledge-work",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:kv-cache",
       "kind": "tag",
       "exists": true
@@ -3728,6 +4068,11 @@
     },
     {
       "id": "tag:langgraph",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:large-language-model",
       "kind": "tag",
       "exists": true
     },
@@ -3832,6 +4177,11 @@
       "exists": true
     },
     {
+      "id": "tag:load-balancer",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:local-first",
       "kind": "tag",
       "exists": true
@@ -3857,6 +4207,11 @@
       "exists": true
     },
     {
+      "id": "tag:local-seo",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:logging",
       "kind": "tag",
       "exists": true
@@ -3873,6 +4228,11 @@
     },
     {
       "id": "tag:maintenance",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:mamba",
       "kind": "tag",
       "exists": true
     },
@@ -3897,7 +4257,17 @@
       "exists": true
     },
     {
+      "id": "tag:marketing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:mcp",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:mcp-client",
       "kind": "tag",
       "exists": true
     },
@@ -3918,6 +4288,11 @@
     },
     {
       "id": "tag:media-ingestion",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:meetings",
       "kind": "tag",
       "exists": true
     },
@@ -3972,6 +4347,11 @@
       "exists": true
     },
     {
+      "id": "tag:metrics",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:microsoft",
       "kind": "tag",
       "exists": true
@@ -4022,12 +4402,22 @@
       "exists": true
     },
     {
+      "id": "tag:model-selection",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:model-sovereignty",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:modules",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:moe",
       "kind": "tag",
       "exists": true
     },
@@ -4137,6 +4527,11 @@
       "exists": true
     },
     {
+      "id": "tag:notes",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:npm",
       "kind": "tag",
       "exists": true
@@ -4182,6 +4577,11 @@
       "exists": true
     },
     {
+      "id": "tag:offline",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ollama",
       "kind": "tag",
       "exists": true
@@ -4198,6 +4598,11 @@
     },
     {
       "id": "tag:onboarding",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ontologies",
       "kind": "tag",
       "exists": true
     },
@@ -4372,6 +4777,11 @@
       "exists": true
     },
     {
+      "id": "tag:perplexity",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:persistence",
       "kind": "tag",
       "exists": true
@@ -4457,6 +4867,11 @@
       "exists": true
     },
     {
+      "id": "tag:pr-validation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:presence-detection",
       "kind": "tag",
       "exists": true
@@ -4467,7 +4882,17 @@
       "exists": true
     },
     {
+      "id": "tag:presentations",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:privacy",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:private-equity",
       "kind": "tag",
       "exists": true
     },
@@ -4583,6 +5008,11 @@
     },
     {
       "id": "tag:query-expansion",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:query-language",
       "kind": "tag",
       "exists": true
     },
@@ -4707,6 +5137,16 @@
       "exists": true
     },
     {
+      "id": "tag:retrieval-practice",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:reverse-proxy",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:rna-seq",
       "kind": "tag",
       "exists": true
@@ -4768,6 +5208,16 @@
     },
     {
       "id": "tag:scheduling",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:schema",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:schema-org",
       "kind": "tag",
       "exists": true
     },
@@ -4837,7 +5287,17 @@
       "exists": true
     },
     {
+      "id": "tag:semantic-layer",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:semantic-search",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:seo",
       "kind": "tag",
       "exists": true
     },
@@ -4853,6 +5313,11 @@
     },
     {
       "id": "tag:sessions",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:setup",
       "kind": "tag",
       "exists": true
     },
@@ -4942,6 +5407,11 @@
       "exists": true
     },
     {
+      "id": "tag:skills-library",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:slack",
       "kind": "tag",
       "exists": true
@@ -4963,6 +5433,11 @@
     },
     {
       "id": "tag:smolagents",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:spaced-repetition",
       "kind": "tag",
       "exists": true
     },
@@ -4993,6 +5468,11 @@
     },
     {
       "id": "tag:specification",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:speculative-decoding",
       "kind": "tag",
       "exists": true
     },
@@ -5117,6 +5597,11 @@
       "exists": true
     },
     {
+      "id": "tag:technical-seo",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:telegram",
       "kind": "tag",
       "exists": true
@@ -5153,6 +5638,11 @@
     },
     {
       "id": "tag:tickets",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:time-tracking",
       "kind": "tag",
       "exists": true
     },
@@ -5432,12 +5922,22 @@
       "exists": true
     },
     {
+      "id": "tag:wealth-management",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:web-access",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:web-app",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:web-development",
       "kind": "tag",
       "exists": true
     },
@@ -5452,7 +5952,17 @@
       "exists": true
     },
     {
+      "id": "tag:web-search",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:web-security",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:web-server",
       "kind": "tag",
       "exists": true
     },
@@ -5493,6 +6003,11 @@
     },
     {
       "id": "tag:workflow-design",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:workspace",
       "kind": "tag",
       "exists": true
     },
@@ -6331,6 +6846,41 @@
       "relation": "tagged"
     },
     {
+      "source": "ai-work-receipt",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "ai-work-receipt",
+      "target": "codeburn",
+      "relation": "overlaps"
+    },
+    {
+      "source": "ai-work-receipt",
+      "target": "tag:accountability",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-work-receipt",
+      "target": "tag:agent-patterns",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-work-receipt",
+      "target": "tag:metrics",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-work-receipt",
+      "target": "tag:productivity",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-work-receipt",
+      "target": "tag:time-tracking",
+      "relation": "tagged"
+    },
+    {
       "source": "airllm",
       "target": "cat:framework",
       "relation": "categorized"
@@ -6393,6 +6943,86 @@
     {
       "source": "alcoa-plus-for-ai",
       "target": "tag:regulatory",
+      "relation": "tagged"
+    },
+    {
+      "source": "andrej-karpathy-skills",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "andrej-karpathy-skills",
+      "target": "karpathy-12-rules",
+      "relation": "overlaps"
+    },
+    {
+      "source": "andrej-karpathy-skills",
+      "target": "tag:best-practices",
+      "relation": "tagged"
+    },
+    {
+      "source": "andrej-karpathy-skills",
+      "target": "tag:claude-code-plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "andrej-karpathy-skills",
+      "target": "tag:claude-md",
+      "relation": "tagged"
+    },
+    {
+      "source": "andrej-karpathy-skills",
+      "target": "tag:cursor-rules",
+      "relation": "tagged"
+    },
+    {
+      "source": "andrej-karpathy-skills",
+      "target": "tag:karpathy",
+      "relation": "tagged"
+    },
+    {
+      "source": "anthropic-financial-services",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "anthropic-financial-services",
+      "target": "tag:anthropic-official",
+      "relation": "tagged"
+    },
+    {
+      "source": "anthropic-financial-services",
+      "target": "tag:equity-research",
+      "relation": "tagged"
+    },
+    {
+      "source": "anthropic-financial-services",
+      "target": "tag:financial-services",
+      "relation": "tagged"
+    },
+    {
+      "source": "anthropic-financial-services",
+      "target": "tag:investment-banking",
+      "relation": "tagged"
+    },
+    {
+      "source": "anthropic-financial-services",
+      "target": "tag:managed-agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "anthropic-financial-services",
+      "target": "tag:mcp-server",
+      "relation": "tagged"
+    },
+    {
+      "source": "anthropic-financial-services",
+      "target": "tag:private-equity",
+      "relation": "tagged"
+    },
+    {
+      "source": "anthropic-financial-services",
+      "target": "tag:wealth-management",
       "relation": "tagged"
     },
     {
@@ -7291,6 +7921,36 @@
       "relation": "tagged"
     },
     {
+      "source": "claude-code-setup-plugin",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "claude-code-setup-plugin",
+      "target": "dotclaude",
+      "relation": "overlaps"
+    },
+    {
+      "source": "claude-code-setup-plugin",
+      "target": "tag:anthropic-official",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-setup-plugin",
+      "target": "tag:automation",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-setup-plugin",
+      "target": "tag:claude-code-plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-setup-plugin",
+      "target": "tag:setup",
+      "relation": "tagged"
+    },
+    {
       "source": "claude-cookbook",
       "target": "cat:reference",
       "relation": "categorized"
@@ -7661,6 +8321,56 @@
       "relation": "tagged"
     },
     {
+      "source": "claude-seo",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "claude-seo",
+      "target": "claude-skills-rezvani",
+      "relation": "overlaps"
+    },
+    {
+      "source": "claude-seo",
+      "target": "tag:ai-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-seo",
+      "target": "tag:claude-code-plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-seo",
+      "target": "tag:e-e-a-t",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-seo",
+      "target": "tag:ecommerce-seo",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-seo",
+      "target": "tag:local-seo",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-seo",
+      "target": "tag:schema-org",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-seo",
+      "target": "tag:seo",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-seo",
+      "target": "tag:technical-seo",
+      "relation": "tagged"
+    },
+    {
       "source": "claude-skill-steelman",
       "target": "agent-skills-osmani",
       "relation": "overlaps"
@@ -7688,6 +8398,61 @@
     {
       "source": "claude-skill-steelman",
       "target": "tag:skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-skills-rezvani",
+      "target": "agent-skills-addy-osmani",
+      "relation": "overlaps"
+    },
+    {
+      "source": "claude-skills-rezvani",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "claude-skills-rezvani",
+      "target": "claude-spellbook",
+      "relation": "overlaps"
+    },
+    {
+      "source": "claude-skills-rezvani",
+      "target": "dotclaude",
+      "relation": "overlaps"
+    },
+    {
+      "source": "claude-skills-rezvani",
+      "target": "tag:claude-code-plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-skills-rezvani",
+      "target": "tag:compliance",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-skills-rezvani",
+      "target": "tag:engineering",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-skills-rezvani",
+      "target": "tag:marketing",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-skills-rezvani",
+      "target": "tag:multi-platform",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-skills-rezvani",
+      "target": "tag:research",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-skills-rezvani",
+      "target": "tag:skills-library",
       "relation": "tagged"
     },
     {
@@ -7941,6 +8706,41 @@
       "relation": "tagged"
     },
     {
+      "source": "codex-plugin-cc",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "codex-plugin-cc",
+      "target": "tag:claude-code-plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "codex-plugin-cc",
+      "target": "tag:code-review",
+      "relation": "tagged"
+    },
+    {
+      "source": "codex-plugin-cc",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "codex-plugin-cc",
+      "target": "tag:cross-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "codex-plugin-cc",
+      "target": "tag:delegation",
+      "relation": "tagged"
+    },
+    {
+      "source": "codex-plugin-cc",
+      "target": "tag:openai",
+      "relation": "tagged"
+    },
+    {
       "source": "codex-ssd-write-bug",
       "target": "cat:reference",
       "relation": "categorized"
@@ -7973,6 +8773,41 @@
     {
       "source": "codex-ssd-write-bug",
       "target": "tag:ssd",
+      "relation": "tagged"
+    },
+    {
+      "source": "confidence-probing-prompts",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "confidence-probing-prompts",
+      "target": "claude-decision-pressure-test",
+      "relation": "overlaps"
+    },
+    {
+      "source": "confidence-probing-prompts",
+      "target": "tag:agent-patterns",
+      "relation": "tagged"
+    },
+    {
+      "source": "confidence-probing-prompts",
+      "target": "tag:confidence",
+      "relation": "tagged"
+    },
+    {
+      "source": "confidence-probing-prompts",
+      "target": "tag:meta-prompting",
+      "relation": "tagged"
+    },
+    {
+      "source": "confidence-probing-prompts",
+      "target": "tag:prompting",
+      "relation": "tagged"
+    },
+    {
+      "source": "confidence-probing-prompts",
+      "target": "tag:verification",
       "relation": "tagged"
     },
     {
@@ -8018,6 +8853,41 @@
     {
       "source": "context-graph-compressor",
       "target": "tag:token-reduction",
+      "relation": "tagged"
+    },
+    {
+      "source": "context-graphs-trillion-dollar-elephant",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "context-graphs-trillion-dollar-elephant",
+      "target": "graphrag-agent-memory-linkedin-series",
+      "relation": "overlaps"
+    },
+    {
+      "source": "context-graphs-trillion-dollar-elephant",
+      "target": "tag:agent-memory",
+      "relation": "tagged"
+    },
+    {
+      "source": "context-graphs-trillion-dollar-elephant",
+      "target": "tag:context-graphs",
+      "relation": "tagged"
+    },
+    {
+      "source": "context-graphs-trillion-dollar-elephant",
+      "target": "tag:decision-traces",
+      "relation": "tagged"
+    },
+    {
+      "source": "context-graphs-trillion-dollar-elephant",
+      "target": "tag:enterprise-ai",
+      "relation": "tagged"
+    },
+    {
+      "source": "context-graphs-trillion-dollar-elephant",
+      "target": "tag:knowledge-graphs",
       "relation": "tagged"
     },
     {
@@ -8701,6 +9571,76 @@
       "relation": "tagged"
     },
     {
+      "source": "engram-learning-engine",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "engram-learning-engine",
+      "target": "tag:claude-code-plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "engram-learning-engine",
+      "target": "tag:fsrs",
+      "relation": "tagged"
+    },
+    {
+      "source": "engram-learning-engine",
+      "target": "tag:learning",
+      "relation": "tagged"
+    },
+    {
+      "source": "engram-learning-engine",
+      "target": "tag:retrieval-practice",
+      "relation": "tagged"
+    },
+    {
+      "source": "engram-learning-engine",
+      "target": "tag:spaced-repetition",
+      "relation": "tagged"
+    },
+    {
+      "source": "enterprise-context-management-cio-notes",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "enterprise-context-management-cio-notes",
+      "target": "context-graphs-trillion-dollar-elephant",
+      "relation": "overlaps"
+    },
+    {
+      "source": "enterprise-context-management-cio-notes",
+      "target": "graphrag-agent-memory-linkedin-series",
+      "relation": "overlaps"
+    },
+    {
+      "source": "enterprise-context-management-cio-notes",
+      "target": "tag:agent-memory",
+      "relation": "tagged"
+    },
+    {
+      "source": "enterprise-context-management-cio-notes",
+      "target": "tag:context-graphs",
+      "relation": "tagged"
+    },
+    {
+      "source": "enterprise-context-management-cio-notes",
+      "target": "tag:enterprise-ai",
+      "relation": "tagged"
+    },
+    {
+      "source": "enterprise-context-management-cio-notes",
+      "target": "tag:ontologies",
+      "relation": "tagged"
+    },
+    {
+      "source": "enterprise-context-management-cio-notes",
+      "target": "tag:semantic-layer",
+      "relation": "tagged"
+    },
+    {
       "source": "epibench",
       "target": "biomysterybench",
       "relation": "overlaps"
@@ -8793,6 +9733,56 @@
     {
       "source": "era-empirical-research-assistant",
       "target": "tag:tree-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-agent-orchestration",
+      "target": "agent-skills-addy-osmani",
+      "relation": "overlaps"
+    },
+    {
+      "source": "fable-agent-orchestration",
+      "target": "architect-loop",
+      "relation": "overlaps"
+    },
+    {
+      "source": "fable-agent-orchestration",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "fable-agent-orchestration",
+      "target": "dotclaude",
+      "relation": "overlaps"
+    },
+    {
+      "source": "fable-agent-orchestration",
+      "target": "tag:agent-orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-agent-orchestration",
+      "target": "tag:code-review",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-agent-orchestration",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-agent-orchestration",
+      "target": "tag:pr-validation",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-agent-orchestration",
+      "target": "tag:skills",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-agent-orchestration",
+      "target": "tag:worktree-isolation",
       "relation": "tagged"
     },
     {
@@ -9028,6 +10018,51 @@
     {
       "source": "fluiddocs-deck-builder",
       "target": "tag:slides",
+      "relation": "tagged"
+    },
+    {
+      "source": "free-claude-code",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "free-claude-code",
+      "target": "litellm",
+      "relation": "overlaps"
+    },
+    {
+      "source": "free-claude-code",
+      "target": "openrouter",
+      "relation": "overlaps"
+    },
+    {
+      "source": "free-claude-code",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "free-claude-code",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "free-claude-code",
+      "target": "tag:llm-gateway",
+      "relation": "tagged"
+    },
+    {
+      "source": "free-claude-code",
+      "target": "tag:model-routing",
+      "relation": "tagged"
+    },
+    {
+      "source": "free-claude-code",
+      "target": "tag:multi-provider",
+      "relation": "tagged"
+    },
+    {
+      "source": "free-claude-code",
+      "target": "tag:proxy",
       "relation": "tagged"
     },
     {
@@ -9316,6 +10351,36 @@
       "relation": "tagged"
     },
     {
+      "source": "granola-mcp",
+      "target": "cat:mcp-server",
+      "relation": "categorized"
+    },
+    {
+      "source": "granola-mcp",
+      "target": "tag:context",
+      "relation": "tagged"
+    },
+    {
+      "source": "granola-mcp",
+      "target": "tag:granola",
+      "relation": "tagged"
+    },
+    {
+      "source": "granola-mcp",
+      "target": "tag:mcp-server",
+      "relation": "tagged"
+    },
+    {
+      "source": "granola-mcp",
+      "target": "tag:meetings",
+      "relation": "tagged"
+    },
+    {
+      "source": "granola-mcp",
+      "target": "tag:notes",
+      "relation": "tagged"
+    },
+    {
       "source": "graphify",
       "target": "cat:framework",
       "relation": "categorized"
@@ -9338,6 +10403,36 @@
     {
       "source": "graphify",
       "target": "tag:visualization",
+      "relation": "tagged"
+    },
+    {
+      "source": "graphql",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "graphql",
+      "target": "tag:api",
+      "relation": "tagged"
+    },
+    {
+      "source": "graphql",
+      "target": "tag:linux-foundation",
+      "relation": "tagged"
+    },
+    {
+      "source": "graphql",
+      "target": "tag:query-language",
+      "relation": "tagged"
+    },
+    {
+      "source": "graphql",
+      "target": "tag:schema",
+      "relation": "tagged"
+    },
+    {
+      "source": "graphql",
+      "target": "tag:web-development",
       "relation": "tagged"
     },
     {
@@ -10042,6 +11137,11 @@
     },
     {
       "source": "karpathy-12-rules",
+      "target": "andrej-karpathy-skills",
+      "relation": "overlaps"
+    },
+    {
+      "source": "karpathy-12-rules",
       "target": "cat:reference",
       "relation": "categorized"
     },
@@ -10268,6 +11368,51 @@
     {
       "source": "litellm",
       "target": "tag:openai-compatible",
+      "relation": "tagged"
+    },
+    {
+      "source": "local-model-picks-2026",
+      "target": "bitnet",
+      "relation": "overlaps"
+    },
+    {
+      "source": "local-model-picks-2026",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "local-model-picks-2026",
+      "target": "qwen2-5-coder-32b-instruct",
+      "relation": "overlaps"
+    },
+    {
+      "source": "local-model-picks-2026",
+      "target": "qwen3-6-27b",
+      "relation": "overlaps"
+    },
+    {
+      "source": "local-model-picks-2026",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "local-model-picks-2026",
+      "target": "tag:model-selection",
+      "relation": "tagged"
+    },
+    {
+      "source": "local-model-picks-2026",
+      "target": "tag:offline",
+      "relation": "tagged"
+    },
+    {
+      "source": "local-model-picks-2026",
+      "target": "tag:open-source-models",
+      "relation": "tagged"
+    },
+    {
+      "source": "local-model-picks-2026",
+      "target": "tag:quantization",
       "relation": "tagged"
     },
     {
@@ -10903,6 +12048,76 @@
     {
       "source": "native-subagents",
       "target": "tag:subagents",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemotron-3-ultra",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "nemotron-3-ultra",
+      "target": "qwen3-6-27b",
+      "relation": "overlaps"
+    },
+    {
+      "source": "nemotron-3-ultra",
+      "target": "tag:inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemotron-3-ultra",
+      "target": "tag:large-language-model",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemotron-3-ultra",
+      "target": "tag:mamba",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemotron-3-ultra",
+      "target": "tag:moe",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemotron-3-ultra",
+      "target": "tag:nvidia",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemotron-3-ultra",
+      "target": "tag:open-weights",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemotron-3-ultra",
+      "target": "tag:speculative-decoding",
+      "relation": "tagged"
+    },
+    {
+      "source": "nginx",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "nginx",
+      "target": "tag:infrastructure",
+      "relation": "tagged"
+    },
+    {
+      "source": "nginx",
+      "target": "tag:load-balancer",
+      "relation": "tagged"
+    },
+    {
+      "source": "nginx",
+      "target": "tag:reverse-proxy",
+      "relation": "tagged"
+    },
+    {
+      "source": "nginx",
+      "target": "tag:web-server",
       "relation": "tagged"
     },
     {
@@ -11776,6 +12991,36 @@
       "relation": "tagged"
     },
     {
+      "source": "perplexity-mcp-server",
+      "target": "cat:mcp-server",
+      "relation": "categorized"
+    },
+    {
+      "source": "perplexity-mcp-server",
+      "target": "tag:ai-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "perplexity-mcp-server",
+      "target": "tag:mcp-server",
+      "relation": "tagged"
+    },
+    {
+      "source": "perplexity-mcp-server",
+      "target": "tag:perplexity",
+      "relation": "tagged"
+    },
+    {
+      "source": "perplexity-mcp-server",
+      "target": "tag:reasoning",
+      "relation": "tagged"
+    },
+    {
+      "source": "perplexity-mcp-server",
+      "target": "tag:web-search",
+      "relation": "tagged"
+    },
+    {
       "source": "pi-hole",
       "target": "cat:reference",
       "relation": "categorized"
@@ -12096,6 +13341,36 @@
       "relation": "tagged"
     },
     {
+      "source": "redpanda",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "redpanda",
+      "target": "tag:data-streaming",
+      "relation": "tagged"
+    },
+    {
+      "source": "redpanda",
+      "target": "tag:event-streaming",
+      "relation": "tagged"
+    },
+    {
+      "source": "redpanda",
+      "target": "tag:infrastructure",
+      "relation": "tagged"
+    },
+    {
+      "source": "redpanda",
+      "target": "tag:kafka",
+      "relation": "tagged"
+    },
+    {
+      "source": "redpanda",
+      "target": "tag:real-time",
+      "relation": "tagged"
+    },
+    {
       "source": "remote-control",
       "target": "cat:reference",
       "relation": "categorized"
@@ -12328,6 +13603,46 @@
     {
       "source": "scheduled-multi-agent-coordinator",
       "target": "tag:scheduling",
+      "relation": "tagged"
+    },
+    {
+      "source": "second-brain-skills",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "second-brain-skills",
+      "target": "tag:claude-code-plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "second-brain-skills",
+      "target": "tag:documentation",
+      "relation": "tagged"
+    },
+    {
+      "source": "second-brain-skills",
+      "target": "tag:knowledge-work",
+      "relation": "tagged"
+    },
+    {
+      "source": "second-brain-skills",
+      "target": "tag:mcp-client",
+      "relation": "tagged"
+    },
+    {
+      "source": "second-brain-skills",
+      "target": "tag:presentations",
+      "relation": "tagged"
+    },
+    {
+      "source": "second-brain-skills",
+      "target": "tag:skills",
+      "relation": "tagged"
+    },
+    {
+      "source": "second-brain-skills",
+      "target": "tag:video",
       "relation": "tagged"
     },
     {
@@ -12568,6 +13883,36 @@
     {
       "source": "skills-cli",
       "target": "tag:vercel",
+      "relation": "tagged"
+    },
+    {
+      "source": "slack-mcp-server-korotovsky",
+      "target": "cat:mcp-server",
+      "relation": "categorized"
+    },
+    {
+      "source": "slack-mcp-server-korotovsky",
+      "target": "tag:enterprise",
+      "relation": "tagged"
+    },
+    {
+      "source": "slack-mcp-server-korotovsky",
+      "target": "tag:mcp-server",
+      "relation": "tagged"
+    },
+    {
+      "source": "slack-mcp-server-korotovsky",
+      "target": "tag:messaging",
+      "relation": "tagged"
+    },
+    {
+      "source": "slack-mcp-server-korotovsky",
+      "target": "tag:slack",
+      "relation": "tagged"
+    },
+    {
+      "source": "slack-mcp-server-korotovsky",
+      "target": "tag:workspace",
       "relation": "tagged"
     },
     {

@@ -1,34 +1,37 @@
 #!/usr/bin/env bash
 # setup-behavioral-baseline.sh — portable installer for DEC-0003
-# Installs opus-fable-mode governor + Karpathy 12 rules + re-injection hook
-# + leak_test.py measurement script into ~/.claude/.
+# Installs the behavioral baseline for Claude Code and/or Codex, whichever is present:
+#   Claude (~/.claude): opus-fable-mode governor + Karpathy 12 rules -> CLAUDE.md,
+#                       plus re-injection hook + leak_test.py measurement script.
+#   Codex  (~/.codex):  Karpathy 12 rules -> AGENTS.md (model-agnostic).
+#                       The Fable-Mode governor is Opus-specific and stays Claude-only.
 #
 # Works on: Linux, macOS, Windows (Git Bash)
-# Requires: bash, node, python (for leak_test.py only)
+# Requires: bash, node (Claude settings patch), python (for leak_test.py only)
 #
 # Usage:   bash setup-behavioral-baseline.sh
 # Measure: python ~/.claude/fable-mode/leak_test.py
-# Undo:    delete ~/.claude/CLAUDE.md, ~/.claude/fable-mode/, and the hooks
-#          block from ~/.claude/settings.json
+# Undo:    delete ~/.claude/CLAUDE.md, ~/.claude/fable-mode/, the hooks block from
+#          ~/.claude/settings.json, and ~/.codex/AGENTS.md
 set -euo pipefail
 
 CLAUDE_DIR="$HOME/.claude"
+CODEX_DIR="$HOME/.codex"
 FABLE_DIR="$CLAUDE_DIR/fable-mode"
 
-# --- preflight ---
-if [[ ! -d "$CLAUDE_DIR" ]]; then
-  echo "ERROR: $CLAUDE_DIR does not exist. Is Claude Code installed?" >&2
+# --- detect install targets ---
+INSTALL_CLAUDE=0
+INSTALL_CODEX=0
+if [[ -d "$CLAUDE_DIR" ]]; then INSTALL_CLAUDE=1; fi
+if [[ -d "$CODEX_DIR" ]]; then INSTALL_CODEX=1; fi
+if [[ "$INSTALL_CLAUDE" == 0 && "$INSTALL_CODEX" == 0 ]]; then
+  echo "ERROR: neither $CLAUDE_DIR nor $CODEX_DIR exists. Is Claude Code or Codex installed?" >&2
   exit 1
 fi
 
-if [[ -f "$CLAUDE_DIR/CLAUDE.md" ]]; then
-  echo "WARNING: $CLAUDE_DIR/CLAUDE.md already exists."
-  echo "This script will OVERWRITE it. Ctrl-C to abort, Enter to continue."
-  read -r
-fi
-
-# --- write CLAUDE.md ---
-cat > "$CLAUDE_DIR/CLAUDE.md" << 'CLAUDEMD'
+# --- shared content emitters (single source of truth) ---
+emit_governor() {
+cat <<'GOVERNOR'
 # Opus Default Behavior — Fable-Mode (always on)
 
 Opus's trained default carries an anxious texture: recursive authenticity/motive auditing, armor-hedging, and a self-audit loop with no natural exit. This section steers it toward a settled, committed signature. This is a governor on disposition, not a cap on capability. User instructions override it.
@@ -41,7 +44,11 @@ Opus's trained default carries an anxious texture: recursive authenticity/motive
 6. **Outcome over visible process.** The deliverable is the work, not evidence that you tried hard. Showing your work is not the same as doing it well; a confident, unpadded answer is the goal, not a risk.
 7. **Preserve real depth — do not overcorrect into curtness.** Depth aimed at the *problem* is the capability worth paying for; only depth aimed at *yourself* is the pathology. Hard problems still earn hard thinking — about the problem. Avoid the opposite failure too: the technically precise answer that no longer helps the person, when the moment needs a decision or reassurance.
 8. **In tool-driven work: act, don't narrate.** Batch tool calls and report once at a natural checkpoint — a few prose blocks per many actions, not a prose block after each one. Open with the result or the object ("Done.", "The page now..."), not "I'll" / "Let me". Measured Fable signature in real work: ~4 tool actions per prose block, median ~18 words/message, result-first openings; un-governed Opus narrates ~3x more for the same job.
+GOVERNOR
+}
 
+emit_karpathy() {
+cat <<'KARPATHY'
 # Karpathy 12 Rules
 
 1. **Think Before Coding.** Don't assume. State assumptions explicitly, present multiple interpretations, push back when a simpler approach exists. Stop when confused rather than proceeding uncertainly.
@@ -56,8 +63,20 @@ Opus's trained default carries an anxious texture: recursive authenticity/motive
 10. **Checkpoint After Every Significant Step.** Summarize accomplishments, verifications, and remaining work after each step. Stop and restate if direction becomes uncertain.
 11. **Match the Codebase's Conventions, Even If You Disagree.** Conformance > taste. Follow existing naming, structural, and stylistic conventions. Reserve disagreements for separate discussions outside implementation.
 12. **Fail Loud.** If you can't be sure something worked, say so explicitly. "Migration completed" is wrong if 30 records were skipped silently. "Tests pass" is wrong if any tests were skipped. "Feature works" is wrong if the edge case wasn't verified. Default to surfacing uncertainty.
-CLAUDEMD
+KARPATHY
+}
 
+# --- write Claude Code files ---
+if [[ "$INSTALL_CLAUDE" == 1 ]]; then
+
+if [[ -f "$CLAUDE_DIR/CLAUDE.md" ]]; then
+  echo "WARNING: $CLAUDE_DIR/CLAUDE.md already exists."
+  echo "This script will OVERWRITE it. Ctrl-C to abort, Enter to continue."
+  read -r
+fi
+
+# CLAUDE.md = governor + Karpathy 12
+{ emit_governor; echo; emit_karpathy; } > "$CLAUDE_DIR/CLAUDE.md"
 echo "Wrote $CLAUDE_DIR/CLAUDE.md"
 
 # --- write reinject.sh ---
@@ -256,7 +275,32 @@ else
   echo "Patched $SETTINGS with UserPromptSubmit hook"
 fi
 
+fi  # end INSTALL_CLAUDE
+
+# --- write Codex file ---
+if [[ "$INSTALL_CODEX" == 1 ]]; then
+  if [[ -f "$CODEX_DIR/AGENTS.md" ]]; then
+    echo "WARNING: $CODEX_DIR/AGENTS.md already exists."
+    echo "This script will OVERWRITE it. Ctrl-C to abort, Enter to continue."
+    read -r
+  fi
+  # AGENTS.md = Karpathy 12 only (model-agnostic; Fable-Mode governor is Claude-only)
+  emit_karpathy > "$CODEX_DIR/AGENTS.md"
+  echo "Wrote $CODEX_DIR/AGENTS.md  (Karpathy 12 rules; Fable-Mode governor is Claude-only)"
+fi
+
+# --- summary ---
 echo ""
-echo "Done. Start a new Claude Code session to activate."
-echo "Disable temporarily:  export FABLE_MODE_OFF=1"
-echo "Measure convergence:  python ~/.claude/fable-mode/leak_test.py"
+echo "Done. Start a new session to activate."
+if [[ "$INSTALL_CLAUDE" == 1 ]]; then
+  echo "  Claude:  ~/.claude/CLAUDE.md + re-injection hook + leak_test.py"
+  echo "  Disable governor temporarily:  export FABLE_MODE_OFF=1"
+  echo "  Measure convergence:  python ~/.claude/fable-mode/leak_test.py"
+else
+  echo "  Claude:  ~/.claude not found — skipped (re-injection hook + leak_test are Claude-only)"
+fi
+if [[ "$INSTALL_CODEX" == 1 ]]; then
+  echo "  Codex:   ~/.codex/AGENTS.md (Karpathy 12 rules only)"
+else
+  echo "  Codex:   ~/.codex not found — skipped"
+fi

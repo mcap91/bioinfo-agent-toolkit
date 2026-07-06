@@ -44,3 +44,11 @@ The spec is remarkably close to patterns we already use: our kb wiki uses Markdo
 - **Supply chain**: Google Cloud Platform official repository
 - **Dangerous patterns**: None — it's a specification for Markdown files
 - **Maintenance**: Draft v0.1; initial publication; Google Cloud backing suggests continued development
+
+## Mechanical details / What to adopt
+
+- OKF v0.1 required fields: only `type` is mandatory in YAML frontmatter; optional structured fields include `title`, `description`, `resource`, `tags`, `timestamp`
+- Reference implementations shipped: (1) BigQuery enrichment agent that drafts OKF concept docs per table/view with LLM-driven documentation citation enrichment, (2) static HTML visualizer rendering any OKF bundle as an interactive graph in a single self-contained file, (3) three sample bundles (GA4 e-commerce, Stack Overflow, Bitcoin public datasets)
+- Three design principles: minimally opinionated (spec defines interoperability surface, not content model), producer/consumer independence (human-authored and LLM-generated bundles are interchangeable), format-not-platform (no proprietary account/SDK required)
+- Cross-linking via normal markdown links turns the directory into a relationship graph; optional `index.md` for progressive disclosure and `log.md` for chronological change history
+- Google Cloud Knowledge Catalog can ingest OKF bundles natively
