@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-07-04",
-  "count": 204,
+  "generated": "2026-07-06",
+  "count": 226,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -349,6 +349,27 @@
       "path": "catalog/entries/ai-memory-comparison.md"
     },
     {
+      "name": "ai-work-receipt",
+      "title": "AI Work Receipt",
+      "url": "https://instagram.com/agenticengineering",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Concept for an agent skill that generates structured AI work receipts — two arms: time-saved estimates (human baseline vs AI-assisted time) and artifact metrics (lines of code, functions/modules shipped, bugs logged/closed); aimed at giving managers and stakeholders visibility into AI productivity gains",
+      "body_summary": "Concept from @agenticengineering (Instagram) for a skill/prompt that asks the agent to review completed work and generate a structured \"AI work receipt\" with two measurement arms:\n\n**Arm 1 — Time saved:**\n- Human baseline: how long this would have taken manually\n- AI-assisted time: how long it…",
+      "tags": [
+        "productivity",
+        "metrics",
+        "time-tracking",
+        "agent-patterns",
+        "accountability"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/ai-work-receipt.md"
+    },
+    {
       "name": "airllm",
       "title": "AirLLM",
       "url": "https://github.com/lyogavin/airllm",
@@ -394,6 +415,51 @@
       "security_flags": [],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/alcoa-plus-for-ai.md"
+    },
+    {
+      "name": "andrej-karpathy-skills",
+      "title": "Andrej Karpathy Skills (multica-ai)",
+      "url": "https://github.com/multica-ai/andrej-karpathy-skills",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "CLAUDE.md + Cursor rules implementing 4 of Karpathy's coding principles (Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution); Claude Code marketplace plugin + .cursor/rules/.mdc format; overlaps with karpathy-12-rules (covers 4 of 12)",
+      "body_summary": "A single CLAUDE.md file derived from Andrej Karpathy's observations on LLM coding pitfalls, packaged as a Claude Code marketplace plugin. Also ships a `.cursor/rules/karpathy-guidelines.mdc` for Cursor and an `AGENTS.md` reference. Four principles: Think Before Coding, Simplicity First, Surgical…",
+      "tags": [
+        "claude-md",
+        "cursor-rules",
+        "best-practices",
+        "karpathy",
+        "claude-code-plugin"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/andrej-karpathy-skills.md"
+    },
+    {
+      "name": "anthropic-financial-services",
+      "title": "Claude for Financial Services",
+      "url": "https://github.com/anthropics/financial-services",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Official Anthropic reference agents and skills for financial services — 10 named workflow agents (Pitch Agent, Market Researcher, GL Reconciler, etc.), 7 vertical skill bundles (IB, equity research, PE, wealth management, fund admin, ops), 12 MCP data connectors (FactSet, S&P, Morningstar, PitchBook, LSEG, etc.); dual deployment as Cowork plugins or Managed Agents API; Apache-2.0",
+      "body_summary": "Official Anthropic repository of reference agents, skills, slash commands, and MCP data connectors for financial-services workflows. Everything ships in dual form: as Claude Cowork plugins and as Claude Managed Agent templates deployable via `/v1/agents`.\n\n**10 named agents:**\n1. **Pitch Agent** — comps, precedents, LBO → branded pitch deck end-to-end\n2. **Meeting Prep Agent** — briefing pack before client meetings\n3. **Market Researcher** — sector/theme → industry overview, competitive landscape, peer comps, ideas shortlist\n4. **Earnings Reviewer** — earnings call + filings → model update → note draft\n5. **Model Builder** — DCF, LBO, 3-statement, comps — live in Excel\n6. **Valuation Reviewer** — ingests GP packages, runs valuation template, stages LP reporting\n7. **GL Reconciler** — finds breaks, traces root cause, routes for sign-off\n8. **Month-End Closer** — accruals, roll-forwards, variance commentary\n9. **Statement Auditor** — audits LP statements before distribution\n10. **KYC Screener** — parses onboarding docs, runs rules engine, flags gaps\n\n**7 vertical plugins:** financial-analysis (core), investment-banking, equity-research, private-equity, wealth-management, fund-admin, operations. Plus 2 partner-built verticals (LSEG, S&P Global).\n\n**12 MCP data connectors:** Daloopa, Morningstar, S&P Global (Kensho), FactSet, Moody's, MT Newswires, Aiera, LSEG, PitchBook, Chronograph, Egnyte, Box.",
+      "tags": [
+        "anthropic-official",
+        "financial-services",
+        "investment-banking",
+        "equity-research",
+        "private-equity",
+        "wealth-management",
+        "mcp-server",
+        "managed-agents"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/anthropic-financial-services.md"
     },
     {
       "name": "aperture-cli",
@@ -970,6 +1036,26 @@
       "path": "catalog/entries/claude-code-remote-prompt-hardening.md"
     },
     {
+      "name": "claude-code-setup-plugin",
+      "title": "Claude Code Setup Plugin",
+      "url": "https://github.com/anthropics/claude-plugins-official/tree/main/plugins/claude-code-setup",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Official Anthropic plugin that scans a codebase and recommends tailored Claude Code automations — top 1-2 recommendations per category (MCP servers, skills, hooks, subagents, slash commands); read-only analysis, no file modifications",
+      "body_summary": "Official Anthropic Claude Code plugin that analyzes a codebase and recommends the top 1–2 automations in each of five categories:\n\n1. **MCP Servers** — external integrations (e.g., context7 for docs, Playwright for frontend)\n2. **Skills** — packaged expertise (e.g., Plan agent, frontend-design)\n3. **Hooks** — automatic actions (e.g., auto-format, auto-lint, block sensitive files)\n4. **Subagents** — specialized reviewers (e.g., security, performance, accessibility)\n5. **Slash Commands** — quick workflows (e.g., /test, /pr-review, /explain)\n\nRead-only — analyzes but does not modify files.",
+      "tags": [
+        "claude-code-plugin",
+        "setup",
+        "automation",
+        "anthropic-official"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/claude-code-setup-plugin.md"
+    },
+    {
       "name": "claude-cookbook",
       "title": "Claude Cookbook",
       "url": "https://platform.claude.com/cookbook/",
@@ -1164,6 +1250,30 @@
       "path": "catalog/entries/claude-science.md"
     },
     {
+      "name": "claude-seo",
+      "title": "Claude SEO",
+      "url": "https://github.com/AgricIDaniel/claude-seo",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Open-source SEO analysis plugin for Claude Code — 25 sub-skills and 18 specialist agents running in parallel across technical SEO, E-E-A-T content quality, Schema.org markup, AI search optimization (GEO), local SEO, e-commerce, and international SEO; falsifiable recommendations with leading indicators; 4-tier Google API integration; 8 optional MCP extensions (Ahrefs, DataForSEO, SE Ranking, etc.); MIT",
+      "body_summary": "Claude Code plugin that runs parallel SEO audits across 7 domains: technical SEO, content quality (E-E-A-T), Schema.org markup, AI search optimization (GEO/AEO), local SEO, e-commerce SEO, and international SEO. 25 slash commands, 18 specialist agents that can run up to 15 simultaneously.\n\n**Key commands:** `/seo audit <url>` (full parallel site audit), `/seo page <url>` (deep single-page), `/seo technical`, `/seo content`, `/seo schema` (detect/validate/generate), `/seo geo` (AI Overviews optimization), `/seo local` (GBP/NAP/citations), `/seo maps` (geo-grid/GBP audit), `/seo backlinks`, `/seo cluster` (SERP-based semantic clustering), `/seo drift` (SQLite-based monitoring), `/seo ecommerce`, `/seo google` (GSC/PageSpeed/CrUX/GA4/PDF reports).\n\n**4-tier Google API integration:** Tier 0 (API key → PageSpeed/CrUX), Tier 1 (+OAuth → Search Console/Indexing API), Tier 2 (+GA4 config → organic traffic), Tier 3 (+Ads token → Keyword Planner).",
+      "tags": [
+        "claude-code-plugin",
+        "seo",
+        "technical-seo",
+        "schema-org",
+        "ai-search",
+        "e-e-a-t",
+        "local-seo",
+        "ecommerce-seo"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/claude-seo.md"
+    },
+    {
       "name": "claude-skill-steelman",
       "title": "Claude Skill Steelman",
       "url": "https://github.com/techiejd/claude-skill-steelman",
@@ -1182,6 +1292,29 @@
       "security_flags": [],
       "reviewed": "2026-06-25",
       "path": "catalog/entries/claude-skill-steelman.md"
+    },
+    {
+      "name": "claude-skills-rezvani",
+      "title": "Claude Skills (Rezvani)",
+      "url": "https://github.com/alirezarezvani/claude-skills",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "355-skill library for 13 AI coding tools — 18 domains (engineering, marketing, product, compliance, C-level advisory, research, finance, business ops), 602 stdlib-only Python CLI tools, 711 reference templates; cross-platform (Claude Code, Codex, Gemini CLI, Cursor, Aider, Windsurf, and 7 more); MIT",
+      "body_summary": "Comprehensive skill library providing 355 skills across 18 domains for 13 AI coding tools. Each skill includes a SKILL.md, optional Python CLI tools (602 total, all stdlib-only), and reference documents (711 templates/checklists).\n\n**Domains:** Engineering Core (52), Engineering POWERFUL (81), Product (17), Marketing (48), Productivity (7), Research Academic (9), Research Operations (5), Project Management (9), Regulatory & QM (19), Compliance OS (9), C-Level Advisory (68), Business & Growth (5), Business Operations (7), Commercial (8), Finance (4), Loop Library (1), Markdown → HTML (5), Landing (1).\n\n**Supported tools:** Claude Code, OpenAI Codex, Gemini CLI, OpenClaw, Hermes Agent, Mistral Vibe, Cursor, Aider, Windsurf, Kilo Code, OpenCode, Augment, Antigravity. Conversion script (`scripts/convert.sh --tool all`) generates native formats for each.",
+      "tags": [
+        "claude-code-plugin",
+        "skills-library",
+        "multi-platform",
+        "engineering",
+        "marketing",
+        "compliance",
+        "research"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/claude-skills-rezvani.md"
     },
     {
       "name": "claude-spellbook",
@@ -1354,6 +1487,28 @@
       "path": "catalog/entries/codex-memory-cleanup.md"
     },
     {
+      "name": "codex-plugin-cc",
+      "title": "Codex Plugin for Claude Code",
+      "url": "https://github.com/openai/codex-plugin-cc",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Official OpenAI plugin enabling Codex usage from within Claude Code — code review (/codex:review), adversarial review, task delegation (/codex:rescue), session transfer, and background job management; requires ChatGPT subscription or OpenAI API key",
+      "body_summary": "Official OpenAI plugin that lets Claude Code users delegate work to Codex without leaving their session. Provides seven slash commands:\n\n- **/codex:review** — runs a Codex code review on uncommitted changes or branch diff (`--base <ref>`); supports `--background`\n- **/codex:adversarial-review** — steerable review that challenges implementation and design decisions, pressure-tests assumptions and tradeoffs; accepts custom focus text\n- **/codex:rescue** — delegates a task to Codex via a `codex-rescue` subagent (investigate bugs, try fixes, continue previous tasks); supports `--model`, `--effort`, `--resume`, `--fresh`\n- **/codex:transfer** — creates a persistent Codex thread from the current Claude Code session, prints a `codex resume <session-id>` command for continuing in Codex\n- **/codex:status** — shows running and recent Codex jobs for the current repo\n- **/codex:result** — shows final output for a finished job, includes session ID for reopening in Codex\n- **/codex:cancel** — cancels an active background job\n- **/codex:setup** — checks Codex install/auth, optionally enables a review gate (Stop hook that runs targeted Codex review on Claude's responses)",
+      "tags": [
+        "claude-code-plugin",
+        "codex",
+        "openai",
+        "code-review",
+        "cross-agent",
+        "delegation"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/codex-plugin-cc.md"
+    },
+    {
       "name": "codex-ssd-write-bug",
       "title": "Codex Desktop SSD Write Issue",
       "url": "https://reddit.com",
@@ -1373,6 +1528,27 @@
       "security_flags": [],
       "reviewed": "2026-06-22",
       "path": "catalog/entries/codex-ssd-write-bug.md"
+    },
+    {
+      "name": "confidence-probing-prompts",
+      "title": "Confidence-Probing Prompts",
+      "url": "https://reddit.com",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Collection of meta-prompting patterns that surface agent blind spots — 'what are you least confident about' (forces enumeration of uninvestigated areas), 'what's the biggest thing I'm missing' (Altman), plus future-proofing, hidden-bias, and session-improvement variants",
+      "body_summary": "Two primary prompting patterns plus four variants for surfacing what an AI agent hasn't properly investigated or what the user is missing about a situation.\n\n**Primary patterns:**\n\n1. **\"What are you least confident about right now?\"** — forces the agent to enumerate 6–7 areas it didn't properly investigate. Author reports ~25% of the time one item is a major issue the agent acted on without understanding. Follow-up: have the agent investigate each issue exhaustively.\n\n2. **\"What's the biggest thing I'm missing about the situation right now? What don't I realize?\"** — attributed to Sam Altman. Surfaces the user's blind spots rather than the agent's.\n\n**Community-contributed variants:**\n\n3. **Future-proofing:** \"If this breaks in 3 months, what's the most likely reason?\"\n4. **Innovation:** \"If you could add one unrequested, industry-leading feature, what would it be?\"\n5. **Hidden biases:** \"What assumptions did you make that you never stated explicitly?\"\n6. **Session improvement:** \"What could I have done differently to make this session smoother?\"",
+      "tags": [
+        "prompting",
+        "meta-prompting",
+        "agent-patterns",
+        "confidence",
+        "verification"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/confidence-probing-prompts.md"
     },
     {
       "name": "context-graph-compressor",
@@ -1401,6 +1577,27 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/context-graph-compressor.md"
+    },
+    {
+      "name": "context-graphs-trillion-dollar-elephant",
+      "title": "Context Graphs: The Trillion Dollar Elephant",
+      "url": "https://dadhichgaurav1.medium.com/context-graphs-the-trillion-dollar-elephant-7b78cd3fc96f",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Practitioner analysis of context graphs for enterprise AI — identifies five human challenges (implicit decisions, trust, outcome attribution, forgetting, change continuums) and six technical challenges (trace extraction UX, canonicalization, temporal extraction, storage architecture, data security, graph structure) that must be solved before context graphs become operational",
+      "body_summary": "Gaurav Dadhich's response to Foundation Capital's (Jaya Gupta / Ashu Garg) \"trillion-dollar context graph\" thesis. Agrees the opportunity is real — context graphs that trace enterprise decision-reasoning could power AI managers and \"1-person unicorn\" companies — but argues the path is harder than…",
+      "tags": [
+        "context-graphs",
+        "enterprise-ai",
+        "knowledge-graphs",
+        "decision-traces",
+        "agent-memory"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/context-graphs-trillion-dollar-elephant.md"
     },
     {
       "name": "contextual-retrieval-anthropic",
@@ -1827,6 +2024,48 @@
       "path": "catalog/entries/ecc-plugin.md"
     },
     {
+      "name": "engram-learning-engine",
+      "title": "Engram (Learning Engine)",
+      "url": "https://github.com/nagisanzenin/engram",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Evidence-based Claude Code learning plugin — FSRS spaced repetition, free-recall verification with blind assessor grading, first-principles concept graphs, interactive HTML explorables; three commands (/learn, /review, /coach); Python 3 stdlib only, local JSON storage",
+      "body_summary": "Claude Code plugin that turns the agent into a personal tutor with evidence-based learning mechanics. Three commands:\n\n- **/learn <topic>** — decomposes any topic (code or non-code) into a first-principles concept graph ordered by chains of necessity, not textbook chapter order\n- **/review** — 2–4 minute free-recall sessions on FSRS-scheduled concepts; the scheduler fits to the learner's own review history over time\n- **/coach** — shows retention stats and serves a local HTML dashboard\n\nImplements four replicated learning-science findings: structure (dependency-ordered decomposition), generation (predict/attempt before being told — pretesting effect), retention (testing as learning via free recall), honest adaptation (adapts from measured retention, not learning styles).",
+      "tags": [
+        "claude-code-plugin",
+        "spaced-repetition",
+        "learning",
+        "fsrs",
+        "retrieval-practice"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/engram-learning-engine.md"
+    },
+    {
+      "name": "enterprise-context-management-cio-notes",
+      "title": "Enterprise Context Management — CIO Notes",
+      "url": "https://reddit.com",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Field notes from large-enterprise CIO conversations on context management for agentic systems — five observations: static ontologies are dead on arrival, the bottleneck is context selection not data access, enterprise semantics sits between metadata and abstract ontology, vendor semantics is not organizational semantics, and representing judgment (not just knowledge) is the hard problem",
+      "body_summary": "Practitioner notes from conversations with a large-enterprise CIO and their peer network about semantic layers, ontologies, and agentic systems. Key observations:\n\n**Enterprise state of play:**\n- Large enterprises are disproportionately focused on internal agents (reducing talent costs), not…",
+      "tags": [
+        "context-graphs",
+        "enterprise-ai",
+        "ontologies",
+        "semantic-layer",
+        "agent-memory"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/enterprise-context-management-cio-notes.md"
+    },
+    {
       "name": "epibench",
       "title": "EpiBench",
       "url": "https://latch.bio/epibench",
@@ -1879,6 +2118,28 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/era-empirical-research-assistant.md"
+    },
+    {
+      "name": "fable-agent-orchestration",
+      "title": "Fable Agent Orchestration",
+      "url": "https://git.wearein.space/elias/fable-agent-orchestration",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Apache-2.0 skill database for multi-agent orchestration — 24 reusable skills covering worktree-isolated parallel PR workflows, two-critic review loops, agent PR validation against real diffs/CI, fake-green test detection, orphaned WIP recovery, instruction-drift control, behavior-contract harnesses, and phase-aware engineering ladders",
+      "body_summary": "A public-clean skill database for Fable-style agent orchestration. Provides 24 reusable SKILL.md files implementing a conductor/worker model: a lead agent splits work into independent slices, launches build agents in isolated git worktrees, tracks workers in a parent registry, requires PR-based output, runs dual-critic review, and merges on green evidence.\n\n**Core loop:** split → launch per-slice agents in worktrees → dispatch packets (role/scope/invariant/proof-gate/output-contract) → track in registry → require PR (not merge) → two-critic review (test critic + code critic) → verify claims against diff and CI → merge one at a time on green → relaunch next slice → never stop while reversible work remains.",
+      "tags": [
+        "agent-orchestration",
+        "skills",
+        "multi-agent",
+        "code-review",
+        "worktree-isolation",
+        "pr-validation"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/fable-agent-orchestration.md"
     },
     {
       "name": "faiss",
@@ -2013,6 +2274,28 @@
       "security_flags": [],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/fluiddocs-deck-builder.md"
+    },
+    {
+      "name": "free-claude-code",
+      "title": "Free Claude Code",
+      "url": "https://github.com/Alishahryar1/free-claude-code",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Drop-in proxy routing Claude Code (Anthropic Messages API) and Codex (OpenAI Responses API) traffic to 24 provider backends — per-model-tier routing, Admin UI, Discord/Telegram bot wrapper, voice-note transcription via local Whisper or NVIDIA NIM; Python/FastAPI, MIT",
+      "body_summary": "FastAPI proxy server that intercepts Claude Code's Anthropic API calls (`/v1/messages`, `/v1/models`) and Codex's OpenAI Responses API calls (`/v1/responses`), routing them to any of 24 provider backends. Includes launcher scripts (`fcc-claude`, `fcc-codex`) that configure environment variables and launch the real CLI tools pointed at the local proxy.\n\n**24 providers:** NVIDIA NIM, OpenRouter, Google AI Studio (Gemini), DeepSeek, Mistral La Plateforme, Mistral Codestral, OpenCode Zen, OpenCode Go, Vercel AI Gateway, Hugging Face Inference Providers, Cohere, GitHub Models, Wafer, Kimi, MiniMax, Cerebras, Groq, SambaNova, Fireworks AI, Cloudflare, Z.ai, LM Studio, llama.cpp, Ollama.\n\n**Per-tier routing:** `MODEL_OPUS`, `MODEL_SONNET`, `MODEL_HAIKU` can each target a different provider, with `MODEL` as fallback. Codex uses the `MODEL` default through `fcc-codex`.",
+      "tags": [
+        "proxy",
+        "claude-code",
+        "codex",
+        "model-routing",
+        "llm-gateway",
+        "multi-provider"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/free-claude-code.md"
     },
     {
       "name": "frontier",
@@ -2176,6 +2459,27 @@
       "path": "catalog/entries/gradio.md"
     },
     {
+      "name": "granola-mcp",
+      "title": "Granola MCP",
+      "url": "https://www.granola.ai/blog/granola-mcp",
+      "category": "mcp-server",
+      "decision_status": "open",
+      "summary": "MCP server from Granola that gives AI tools (Claude, ChatGPT, Cursor, Claude Code) access to meeting notes — search conversations, pull context, create follow-ups from what was discussed; remote server at mcp.granola.ai/mcp; requires paid Granola plan",
+      "body_summary": "MCP server that connects AI tools to Granola's meeting notes. Once connected, the AI tool can access the user's meeting transcripts and notes on demand — search past conversations, pull relevant context into current work, create action items and follow-ups.\n\n**Use cases from announcement:**\n- In Claude Code or Cursor: create tickets for bugs discussed in meetings, scaffold features based on agreements\n- Sprint planning: update Linear boards from standup notes\n- Sales calls: draft CRM notes from actual discussion\n- Proposals: use discovery conversations as context",
+      "tags": [
+        "mcp-server",
+        "meetings",
+        "notes",
+        "context",
+        "granola"
+      ],
+      "workflows": [],
+      "license": "proprietary",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/granola-mcp.md"
+    },
+    {
       "name": "graphify",
       "title": "Graphify",
       "url": "https://github.com/safishamsi/graphify",
@@ -2194,6 +2498,27 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/graphify.md"
+    },
+    {
+      "name": "graphql",
+      "title": "GraphQL",
+      "url": "https://graphql.org/",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Open-source query language for APIs with strongly-typed schemas — request exactly the data needed, retrieve multiple resources in one request, evolve without versioning; governed by the GraphQL Foundation under the Linux Foundation; libraries available in most languages",
+      "body_summary": "Open-source query language for APIs and a server-side runtime. Clients define the structure of the data they need, and the server returns exactly that shape — no over-fetching or under-fetching. APIs are organized around types and fields rather than endpoints, with a strongly-typed schema that enables tooling, validation, and self-documentation.\n\n**Five design principles:** hierarchical (queries mirror UI structure), strongly-typed (syntactic validation before execution), client-specified (clients control what data they receive at field level), introspective (schema is queryable), and community-driven.",
+      "tags": [
+        "api",
+        "query-language",
+        "schema",
+        "web-development",
+        "linux-foundation"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/graphql.md"
     },
     {
       "name": "graphrag-agent-memory-linkedin-series",
@@ -2596,7 +2921,7 @@
       "title": "Karpathy's 12 Rules for CLAUDE.md",
       "category": "reference",
       "decision_status": "open",
-      "summary": "Rules 6 (token budgets) and 12 (fail loud) not yet in our stack",
+      "summary": "All 12 rules adopted via setup-behavioral-baseline.sh — installs to ~/.claude/CLAUDE.md (Claude) and ~/.codex/AGENTS.md (Codex)",
       "body_summary": "A 12-rule framework for CLAUDE.md best practices, sourced from a Reddit r/AskVibecoders post. The original 4 rules cover: think before coding, simplicity first, surgical changes, goal-driven execution. Eight additional rules expand coverage to agent loops, multi-step tasks, and silent failure…",
       "tags": [
         "claude-md",
@@ -2725,6 +3050,27 @@
       "security_flags": [],
       "reviewed": "2026-06-26",
       "path": "catalog/entries/litellm.md"
+    },
+    {
+      "name": "local-model-picks-2026",
+      "title": "Local Model Picks (2026)",
+      "url": "https://reddit.com",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Practitioner-curated list of open-source models for local/offline use with RAM requirements — Llama 4 Scout (32GB Q4), Qwen 3.6 7B (16GB, coding), DeepSeek R1 8B (16GB, reasoning), Phi-4 3.8B (8GB, reasoning), Kimi K2.6 1T (API-only, 32B active, matches Claude), Pixtral (VLM), Granite 3 (enterprise/compliance), GPT-OSS 20B/120B",
+      "body_summary": "Practitioner's selection of open-source models for local/offline use, organized by purpose and RAM requirements:\n\n| Model | RAM | Purpose | Notes |\n|-------|-----|---------|-------|\n| Llama 4 Scout | 32GB (Q4 quant) | General use | — |\n| Qwen 3.6 7B | 16GB | Coding | — |\n| DeepSeek R1 8B | 16GB |…",
+      "tags": [
+        "local-inference",
+        "open-source-models",
+        "quantization",
+        "offline",
+        "model-selection"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/local-model-picks-2026.md"
     },
     {
       "name": "locate-anything",
@@ -3088,6 +3434,49 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/native-subagents.md"
+    },
+    {
+      "name": "nemotron-3-ultra",
+      "title": "NVIDIA Nemotron 3 Ultra",
+      "url": "https://research.nvidia.com/labs/nemotron/Nemotron-3-Ultra/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "NVIDIA's most capable open model — 550B total / 55B active parameters, Mixture-of-Experts Hybrid Mamba-Attention architecture with LatentMoE and MTP speculative decoding; 1M context length; 5.9x throughput vs GLM-5.1, 4.8x vs Kimi K2.6; open checkpoints (base, post-trained, NVFP4 quantized, GenRM) and training datasets released",
+      "body_summary": "NVIDIA's flagship open-weight LLM — 550 billion total parameters with 55 billion active per token via Mixture-of-Experts. Uses a hybrid Mamba-Attention architecture combining state-space models with attention layers, plus LatentMoE for improved accuracy and MTP (Multi-Token Prediction) layers for native speculative decoding.\n\n**Key specs:**\n- 550B total / 55B active parameters (MoE)\n- Hybrid Mamba-Attention architecture\n- Up to 1M token context length\n- Pretrained in NVFP4 (4-bit floating point)\n- Post-trained with SFT + RL + Multi-teacher On-Policy Distillation (MOPD)\n- Inference-time reasoning budget control",
+      "tags": [
+        "nvidia",
+        "open-weights",
+        "moe",
+        "mamba",
+        "large-language-model",
+        "inference",
+        "speculative-decoding"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/nemotron-3-ultra.md"
+    },
+    {
+      "name": "nginx",
+      "title": "nginx",
+      "url": "https://nginx.org/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "HTTP web server, reverse proxy, content cache, load balancer, TCP/UDP proxy, and mail proxy — originally by Igor Sysoev, 2-clause BSD license; enterprise distributions and commercial support from F5; mature infrastructure for hosting agent services and API gateways",
+      "body_summary": "HTTP web server, reverse proxy, content cache, load balancer, TCP/UDP proxy server, and mail proxy server. One of the most widely deployed web servers globally, used for serving static content, reverse-proxying to application servers, load balancing, and SSL termination.",
+      "tags": [
+        "web-server",
+        "reverse-proxy",
+        "load-balancer",
+        "infrastructure"
+      ],
+      "workflows": [],
+      "license": "BSD-2-Clause",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/nginx.md"
     },
     {
       "name": "nvidia-build",
@@ -3629,6 +4018,27 @@
       "path": "catalog/entries/parallel-local-inference.md"
     },
     {
+      "name": "perplexity-mcp-server",
+      "title": "Perplexity MCP Server",
+      "url": "https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server",
+      "category": "mcp-server",
+      "decision_status": "open",
+      "summary": "Official Perplexity MCP server providing real-time web search, conversational AI, and advanced reasoning tools to MCP-compatible clients; one-click install for Claude Code, Cursor, Codex; npm package @perplexity-ai/mcp-server; requires Perplexity API key",
+      "body_summary": "Official MCP server from Perplexity that connects AI assistants to Perplexity's search and reasoning capabilities. Enables real-time web search, conversational AI, and advanced reasoning within any MCP-compatible client's workflow.",
+      "tags": [
+        "mcp-server",
+        "perplexity",
+        "web-search",
+        "reasoning",
+        "ai-search"
+      ],
+      "workflows": [],
+      "license": "proprietary",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/perplexity-mcp-server.md"
+    },
+    {
       "name": "pi-hole",
       "title": "Pi-hole",
       "url": "https://github.com/pi-hole/pi-hole",
@@ -3815,6 +4225,27 @@
       "path": "catalog/entries/rag-retrieval-recipe.md"
     },
     {
+      "name": "redpanda",
+      "title": "Redpanda",
+      "url": "https://www.redpanda.com",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Kafka-compatible data streaming platform in C++ — single-binary deployment (broker + schema registry + HTTP proxy + Raft consensus), 10x lower latency than Kafka, 3-6x cost efficiency, no JVM/ZooKeeper dependency; Redpanda Connect ships 300+ connectors including AI connectors; tiered storage and cloud topics; BSL 1.1 (source-available)",
+      "body_summary": "Kafka-compatible data streaming platform written in C++ instead of Java. Single-binary deployment bundles broker, schema registry, HTTP proxy, and Raft consensus — eliminates ZooKeeper/KRaft, JVM, and separate schema registry dependencies. Natively supports the Kafka API, so existing Kafka clients and tooling work without changes.\n\n**Key components:**\n- **Redpanda Streaming** — the core broker with built-in schema registry, tiered storage, and continuous partition balancing\n- **Redpanda Connect** — 300+ data, CDC, and AI connectors (stateless), replacing Kafka Connect\n- **Redpanda Console** — open-source UI that also works with Apache Kafka",
+      "tags": [
+        "data-streaming",
+        "kafka",
+        "event-streaming",
+        "real-time",
+        "infrastructure"
+      ],
+      "workflows": [],
+      "license": "BSL-1.1",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/redpanda.md"
+    },
+    {
       "name": "remote-control",
       "title": "Remote Control",
       "url": "https://code.claude.com/docs/en/remote-control",
@@ -3944,6 +4375,29 @@
       "security_flags": [],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/scheduled-multi-agent-coordinator.md"
+    },
+    {
+      "name": "second-brain-skills",
+      "title": "Second Brain Skills",
+      "url": "https://github.com/coleam00/second-brain-skills",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Claude Code skill collection for knowledge work — MCP client with progressive disclosure, PPTX/carousel generator with brand system, SOP/runbook creator, Remotion video creator, skill creator guide, and brand & voice generator; by Cole Medin",
+      "body_summary": "Collection of Claude Code skills that extend the agent from a coding tool into a \"second brain\" for knowledge work. Six skills with progressive disclosure — metadata always in context, body loaded when triggered, resources on demand.\n\n**Skills included:**\n\n1. **MCP Client** — connects Claude Code to external MCP servers (Zapier, GitHub, Sequential Thinking, etc.) with on-demand tool schema loading to avoid context bloat; Python script wrapping stdio/SSE/HTTP transports; config format matches Claude Desktop\n2. **PPTX Generator** — professional 16:9 presentations and square LinkedIn carousels using python-pptx; 16 slide layout templates, 5 carousel layouts, batch generation (max 5 slides at a time), visual-first layout selection (\"content-slide is the LAST RESORT\")\n3. **Brand & Voice Generator** — creates `brand.json`, `config.json`, `brand-system.md`, `tone-of-voice.md` files that power the PPTX Generator and guide all other skills; includes 5 example voice configurations (Technical Educator, Calm Authority, Builder's Perspective, Approachable Expert, Contrarian Thinker)\n4. **SOP Creator** — runbooks, playbooks, and technical documentation; 12 document types across Tech/Engineering, Operations/Business, Content/Creative, and General; universal structure with Definition of Done as the most important element\n5. **Remotion Video Creator** — programmatic video creation using React with Remotion; 28 modular rules covering animations, compositions, assets, captions, charts, 3D, transitions, maps; credited to official remotion-dev/skills by Jonny Burger\n6. **Skill Creator** — guide for creating new skills with the correct anatomy (SKILL.md + scripts/ + references/ + assets/), creation process, and progressive disclosure principles",
+      "tags": [
+        "claude-code-plugin",
+        "skills",
+        "knowledge-work",
+        "presentations",
+        "video",
+        "documentation",
+        "mcp-client"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/second-brain-skills.md"
     },
     {
       "name": "shannon",
@@ -4083,6 +4537,27 @@
       "security_flags": [],
       "reviewed": "2026-07-03",
       "path": "catalog/entries/skills-cli.md"
+    },
+    {
+      "name": "slack-mcp-server-korotovsky",
+      "title": "Slack MCP Server (korotovsky)",
+      "url": "https://github.com/korotovsky/slack-mcp-server",
+      "category": "mcp-server",
+      "decision_status": "open",
+      "summary": "Feature-rich MCP server for Slack workspaces — 18 tools covering channel history, thread replies, message search, unread messages, DMs/group DMs, message posting, reactions, saved items, user search, user groups; stealth mode (no bot install required), OAuth mode, Enterprise/GovSlack support; Go, Stdio/SSE/HTTP transports; MIT",
+      "body_summary": "MCP server for Slack workspaces providing 18 tools across messaging, search, reactions, saved items, and user management. Supports three authentication modes: stealth (browser tokens xoxc/xoxd, no bot install or permissions needed), OAuth (xoxp user tokens), and bot (xoxb, limited access). 30,000+ monthly visitors, 9,000+ users.\n\n**18 tools:**\n1. `conversations_history` — channel/DM messages with smart date/count-based limits\n2. `conversations_replies` — thread messages with pagination\n3. `conversations_add_message` — post to channels/DMs (disabled by default, channel-restrictable)\n4. `conversations_search_messages` — search with filters (date, user, channel, mentions, threads-only)\n5. `channels_list` — list channels with type filtering and popularity sorting\n6. `reactions_add` / `reactions_remove` — emoji reactions (disabled by default)\n7. `users_search` — search by name/email/display name, returns DM channel ID\n8. `usergroups_list` / `create` / `update` / `users_update` / `me` — full user group management\n9. `conversations_unreads` — unread messages across all channels with priority sorting (DMs > partner > internal)\n10. `conversations_mark` — mark as read (disabled by default)\n11. `saved_list` / `saved_update` / `saved_clear_completed` — Slack \"Save for Later\" management",
+      "tags": [
+        "mcp-server",
+        "slack",
+        "messaging",
+        "workspace",
+        "enterprise"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/slack-mcp-server-korotovsky.md"
     },
     {
       "name": "smithery",
