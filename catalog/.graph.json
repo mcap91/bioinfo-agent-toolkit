@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T18:18:51.026Z",
+  "generated_at": "2026-07-06T20:52:21.567Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -291,6 +291,16 @@
       "exists": true
     },
     {
+      "id": "axolotl",
+      "kind": "entry",
+      "title": "Axolotl",
+      "url": "https://github.com/axolotl-ai-cloud/axolotl",
+      "summary": "Open-source LLM post-training framework — YAML-driven pipeline for SFT, LoRA/QLoRA, DPO/KTO/ORPO, GRPO, reward modeling, pretraining, multimodal (vision/audio); ND parallelism (CP+TP+FSDP), ScatterMoE fused LoRA, MoE expert quantization, QAT, sequence parallelism; built-in agent docs CLI; Apache 2.0",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "bdh",
       "kind": "entry",
       "title": "BDH (Dragon Hatchling)",
@@ -510,6 +520,16 @@
       "exists": false
     },
     {
+      "id": "claude-code-local-model-switching",
+      "kind": "entry",
+      "title": "Claude Code Local Model Switching",
+      "url": "https://docs.anthropic.com/en/docs/claude-code",
+      "summary": "Shell alias technique for swapping Claude Code between cloud Anthropic, local Ollama/LM Studio, and API-based OSS models (OpenRouter/DeepSeek) via ANTHROPIC_BASE_URL and ANTHROPIC_AUTH_TOKEN environment variables; includes KV cache fix (CLAUDE_CODE_ATTRIBUTION_HEADER=0) and Qwen 3.6 35B config",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "claude-code-remote-prompt-hardening",
       "kind": "entry",
       "title": "Claude Code Remote Prompt Hardening",
@@ -707,6 +727,16 @@
       "url": "https://github.com/getagentseal/codeburn",
       "summary": "Cross-tool AI spend observability dashboard — reads local session files from 31+ tools (Claude Code, Codex, Cursor, Gemini CLI, etc.), breaks down tokens and cost by task/model/project, waste detection with copy-paste fixes, model comparison, git-correlated yield tracking; MIT, fully local",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "codegraph",
+      "kind": "entry",
+      "title": "CodeGraph",
+      "url": "https://github.com/colbymchenry/codegraph",
+      "summary": "Pre-indexed code knowledge graph via MCP — tree-sitter extracts symbols/edges into SQLite, single codegraph_explore tool returns verbatim source + call paths + blast radius in one call; auto-syncs on file changes via native OS watcher; 34 languages, framework route detection (17 frameworks), cross-language bridging (Swift↔ObjC, React Native, Expo); 100% local, MIT",
+      "category": "mcp-server",
       "decision_status": "open",
       "exists": true
     },
@@ -1414,12 +1444,32 @@
       "exists": true
     },
     {
+      "id": "llamafactory",
+      "kind": "entry",
+      "title": "LLaMA Factory",
+      "url": "https://github.com/hiyouga/LlamaFactory",
+      "summary": "Unified fine-tuning framework for 100+ LLMs and VLMs — zero-code web UI (LLaMA Board) and CLI; supports SFT, LoRA/QLoRA (2–8 bit), DPO/KTO/ORPO/PPO, reward modeling, pretraining; multimodal (image/video/audio); vLLM/SGLang inference; NVIDIA/AMD/Ascend NPU/CPU; used by Amazon, NVIDIA, Aliyun; ACL 2024; Apache 2.0",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "local-model-picks-2026",
       "kind": "entry",
       "title": "Local Model Picks (2026)",
       "url": "https://reddit.com",
       "summary": "Practitioner-curated list of open-source models for local/offline use with RAM requirements — Llama 4 Scout (32GB Q4), Qwen 3.6 7B (16GB, coding), DeepSeek R1 8B (16GB, reasoning), Phi-4 3.8B (8GB, reasoning), Kimi K2.6 1T (API-only, 32B active, matches Claude), Pixtral (VLM), Granite 3 (enterprise/compliance), GPT-OSS 20B/120B",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "localai",
+      "kind": "entry",
+      "title": "LocalAI",
+      "url": "https://github.com/mudler/localai",
+      "summary": "Open-source local AI engine — drop-in OpenAI/Anthropic/ElevenLabs API compatibility across 60+ backends (llama.cpp, vLLM, whisper.cpp, stable-diffusion, MLX, etc.); supports LLMs, vision, voice, image, video on any hardware (NVIDIA/AMD/Intel/Apple/Vulkan/CPU); multi-user auth with quotas, built-in agents with MCP/RAG/tool use, distributed cluster mode, fine-tuning UI, WebRTC realtime audio; MIT",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -1440,6 +1490,16 @@
       "url": "https://github.com/microsoft/markitdown",
       "summary": "directly useful for converting PDFs, Excel, PPTX, and other docs to markdown for LLM pipelines; MIT, Microsoft-maintained",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "matt-pocock-skills",
+      "kind": "entry",
+      "title": "Matt Pocock Skills",
+      "url": "https://github.com/mattpocock/skills",
+      "summary": "Collection of 17 composable Claude Code skills for disciplined engineering — grilling sessions (alignment interviews before coding), domain modeling (CONTEXT.md + ADRs), TDD red-green-refactor loop, codebase architecture audits with HTML reports, issue triage state machine, PRD synthesis, bug diagnosis loop, code review (standards + spec axes); installable via npx skills",
+      "category": "skill",
       "decision_status": "open",
       "exists": true
     },
@@ -1480,6 +1540,16 @@
       "url": "https://github.com/cwinvestments/memstack",
       "summary": "Free-tier skill library is substantial but the PyPI MCP loader performs opaque license checks and stores credentials in-process, warranting supply-chain caution before adoption",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "mergekit",
+      "kind": "entry",
+      "title": "mergekit",
+      "url": "https://github.com/arcee-ai/mergekit",
+      "summary": "Toolkit for merging pre-trained LLMs — 16+ merge methods (SLERP, TIES, DARE, DELLA, task arithmetic, linear, Karcher mean, etc.); out-of-core merging on CPU or with 8GB VRAM; MoE construction from dense models; LoRA extraction; evolutionary merge methods; multi-stage merging; tokenizer transplantation; Frankenmerging (layer assembly); EMNLP 2024 paper; LGPL-3.0",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -1652,6 +1722,11 @@
       "exists": true
     },
     {
+      "id": "ollama",
+      "kind": "entry",
+      "exists": false
+    },
+    {
       "id": "ols-mcp-server",
       "kind": "entry",
       "title": "OLS MCP Server",
@@ -1703,6 +1778,16 @@
       "url": "https://github.com/open-webui/open-webui",
       "summary": "Leading self-hosted LLM web UI with RAG, pipelines, and enterprise auth — relevant infrastructure context but custom non-SPDX license limits adoption",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "open-weight-models-june-2026",
+      "kind": "entry",
+      "title": "Open Weight Models That Matter (June 2026)",
+      "url": "https://openrouter.ai/blog/insights/the-open-weight-models-that-matter-june-2026/",
+      "summary": "OpenRouter analysis of the four open-weight models that matter as of June 2026 — DeepSeek V4 Flash (best cost/performance, 79% SWE-bench, $0.05/$0.24 per M tokens), GLM 5.2 (#1 open-weight intelligence index, Opus-class planning), MiniMax M3 (multimodal image/video, 1M context, MiniMax Sparse Attention), NVIDIA Nemotron 3 Ultra (US-built, hybrid Mamba-2+Transformer MoE, 550B/55B-active, free route available)",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -1773,6 +1858,16 @@
       "url": "https://github.com/HKUDS/OpenSpace",
       "summary": "Compelling skill-evolution engine for Claude Code agents but very new (v0.1.0), self-published benchmark, and significant security surface from community skill ingestion",
       "category": "meta-skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "openwiki",
+      "kind": "entry",
+      "title": "OpenWiki",
+      "url": "https://github.com/langchain-ai/openwiki",
+      "summary": "LangChain CLI that generates and maintains agent-oriented codebase documentation in an openwiki/ directory; auto-updates via CI (GitHub Actions / GitLab CI) on each push; appends references to AGENTS.md/CLAUDE.md so coding agents discover the wiki; supports OpenRouter, Fireworks, Baseten, OpenAI, Anthropic, and OpenAI-compatible endpoints",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -1945,6 +2040,11 @@
       "category": "reference",
       "decision_status": "open",
       "exists": true
+    },
+    {
+      "id": "repomix",
+      "kind": "entry",
+      "exists": false
     },
     {
       "id": "repowire",
@@ -2308,6 +2408,11 @@
     },
     {
       "id": "tag:agent-capability",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:agent-context",
       "kind": "tag",
       "exists": true
     },
@@ -2787,6 +2892,11 @@
       "exists": true
     },
     {
+      "id": "tag:ci-cd",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:claude",
       "kind": "tag",
       "exists": true
@@ -2818,6 +2928,11 @@
     },
     {
       "id": "tag:claude-code-skill",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:claude-code-skills",
       "kind": "tag",
       "exists": true
     },
@@ -2877,6 +2992,11 @@
       "exists": true
     },
     {
+      "id": "tag:code-intelligence",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:code-quality",
       "kind": "tag",
       "exists": true
@@ -2888,6 +3008,11 @@
     },
     {
       "id": "tag:codebase-analysis",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:codebase-wiki",
       "kind": "tag",
       "exists": true
     },
@@ -3152,6 +3277,11 @@
       "exists": true
     },
     {
+      "id": "tag:dare",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:dark-pool",
       "kind": "tag",
       "exists": true
@@ -3327,6 +3457,11 @@
       "exists": true
     },
     {
+      "id": "tag:distributed-training",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:divergent-thinking",
       "kind": "tag",
       "exists": true
@@ -3363,6 +3498,16 @@
     },
     {
       "id": "tag:domain-driven-design",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:domain-modeling",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:dpo",
       "kind": "tag",
       "exists": true
     },
@@ -3433,6 +3578,11 @@
     },
     {
       "id": "tag:engineering",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:engineering-discipline",
       "kind": "tag",
       "exists": true
     },
@@ -3632,6 +3782,11 @@
       "exists": true
     },
     {
+      "id": "tag:fsdp",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:fsrs",
       "kind": "tag",
       "exists": true
@@ -3688,6 +3843,16 @@
     },
     {
       "id": "tag:ggplot2",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:gguf",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:glm",
       "kind": "tag",
       "exists": true
     },
@@ -3772,7 +3937,17 @@
       "exists": true
     },
     {
+      "id": "tag:grilling",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:grounding",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:grpo",
       "kind": "tag",
       "exists": true
     },
@@ -3888,6 +4063,16 @@
     },
     {
       "id": "tag:image-analysis",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:image-generation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:impact-analysis",
       "kind": "tag",
       "exists": true
     },
@@ -4167,7 +4352,22 @@
       "exists": true
     },
     {
+      "id": "tag:llm-server",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:llm-tools",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:llm-ui",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:lm-studio",
       "kind": "tag",
       "exists": true
     },
@@ -4213,6 +4413,11 @@
     },
     {
       "id": "tag:logging",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:lora",
       "kind": "tag",
       "exists": true
     },
@@ -4327,6 +4532,11 @@
       "exists": true
     },
     {
+      "id": "tag:meta",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:meta-ai",
       "kind": "tag",
       "exists": true
@@ -4367,6 +4577,11 @@
       "exists": true
     },
     {
+      "id": "tag:minimax",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:mit",
       "kind": "tag",
       "exists": true
@@ -4397,6 +4612,11 @@
       "exists": true
     },
     {
+      "id": "tag:model-merging",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:model-routing",
       "kind": "tag",
       "exists": true
@@ -4408,6 +4628,11 @@
     },
     {
       "id": "tag:model-sovereignty",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:model-switching",
       "kind": "tag",
       "exists": true
     },
@@ -4478,6 +4703,11 @@
     },
     {
       "id": "tag:nearest-neighbor",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:nemotron",
       "kind": "tag",
       "exists": true
     },
@@ -4632,6 +4862,11 @@
       "exists": true
     },
     {
+      "id": "tag:open-weight-models",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:open-weights",
       "kind": "tag",
       "exists": true
@@ -4648,6 +4883,11 @@
     },
     {
       "id": "tag:opencode",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:openrouter",
       "kind": "tag",
       "exists": true
     },
@@ -4857,12 +5097,22 @@
       "exists": true
     },
     {
+      "id": "tag:post-training",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:post-transformer",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:postgres",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ppo",
       "kind": "tag",
       "exists": true
     },
@@ -4883,6 +5133,11 @@
     },
     {
       "id": "tag:presentations",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:pricing",
       "kind": "tag",
       "exists": true
     },
@@ -4993,6 +5248,16 @@
     },
     {
       "id": "tag:python",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:pytorch",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:qlora",
       "kind": "tag",
       "exists": true
     },
@@ -5143,6 +5408,21 @@
     },
     {
       "id": "tag:reverse-proxy",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:reward-modeling",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:rl",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:rlhf",
       "kind": "tag",
       "exists": true
     },
@@ -5422,6 +5702,11 @@
       "exists": true
     },
     {
+      "id": "tag:slerp",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:slides",
       "kind": "tag",
       "exists": true
@@ -5503,6 +5788,11 @@
     },
     {
       "id": "tag:state-ownership",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:static-analysis",
       "kind": "tag",
       "exists": true
     },
@@ -5642,6 +5932,11 @@
       "exists": true
     },
     {
+      "id": "tag:ties",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:time-tracking",
       "kind": "tag",
       "exists": true
@@ -5743,6 +6038,16 @@
     },
     {
       "id": "tag:tree-sitter",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:triage",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:triton",
       "kind": "tag",
       "exists": true
     },
@@ -5912,6 +6217,11 @@
       "exists": true
     },
     {
+      "id": "tag:vram-optimization",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:vrs",
       "kind": "tag",
       "exists": true
@@ -5963,6 +6273,16 @@
     },
     {
       "id": "tag:web-server",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:web-ui",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:weight-merging",
       "kind": "tag",
       "exists": true
     },
@@ -6076,6 +6396,26 @@
       "exists": true
     },
     {
+      "id": "torchtune",
+      "kind": "entry",
+      "title": "torchtune",
+      "url": "https://github.com/meta-pytorch/torchtune",
+      "summary": "PyTorch-native post-training library by Meta — composable building blocks (not trainers) for SFT, LoRA, QLoRA, DPO, GRPO, quantization, evaluation; YAML-driven recipes under 600 LOC; composable parallelism (FSDP2, TP, SP, CP, expert parallel for MoE); in-backward optimizer fusion; works on single 24GB GPU to multi-node clusters; v0.6 stable; Apache 2.0",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "trl",
+      "kind": "entry",
+      "title": "TRL (Transformers Reinforcement Learning)",
+      "url": "https://huggingface.co/docs/trl/en/index",
+      "summary": "Hugging Face full-stack post-training library — SFT, GRPO, DPO, reward modeling, PPO, and more; vLLM integration for online RL; Harbor sandboxed agent training; vision-language model alignment; co-located vLLM for GPU efficiency; integrated with transformers/PEFT/DeepSpeed/Liger Kernel; Apache 2.0",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "turboquant",
       "kind": "entry",
       "title": "TurboQuant — Extreme KV Cache Compression",
@@ -6140,6 +6480,16 @@
       "url": "https://github.com/JCarterJohnson/vibecoded-design-tells",
       "summary": "Three Claude skills that flag and remove AI 'tells' — unslop-ui (vibe-coded website patterns), unslop-text (AI prose cadences), unslop-code (AI code artifacts); backed by 3.2M-post Reddit analysis across 47 subreddits, with standalone CI-gating scanners; MIT",
       "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "unsloth",
+      "kind": "entry",
+      "title": "Unsloth",
+      "url": "https://github.com/unslothai/unsloth",
+      "summary": "LLM fine-tuning and inference framework — trains 500+ models up to 2x faster with 70% less VRAM via custom Triton kernels; Unsloth Studio web UI for running/training text, audio, vision, embedding models; supports LoRA, full fine-tune, RL (GRPO), FP8, pretraining; GGUF/safetensors export; NVIDIA/AMD/Intel/Apple Silicon; API endpoint for Claude Code/Codex integration; Apache 2.0 (core) + AGPL-3.0 (Studio UI)",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -7316,6 +7666,71 @@
       "relation": "tagged"
     },
     {
+      "source": "axolotl",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "axolotl",
+      "target": "llamafactory",
+      "relation": "overlaps"
+    },
+    {
+      "source": "axolotl",
+      "target": "tag:distributed-training",
+      "relation": "tagged"
+    },
+    {
+      "source": "axolotl",
+      "target": "tag:dpo",
+      "relation": "tagged"
+    },
+    {
+      "source": "axolotl",
+      "target": "tag:fine-tuning",
+      "relation": "tagged"
+    },
+    {
+      "source": "axolotl",
+      "target": "tag:grpo",
+      "relation": "tagged"
+    },
+    {
+      "source": "axolotl",
+      "target": "tag:lora",
+      "relation": "tagged"
+    },
+    {
+      "source": "axolotl",
+      "target": "tag:moe",
+      "relation": "tagged"
+    },
+    {
+      "source": "axolotl",
+      "target": "tag:multimodal",
+      "relation": "tagged"
+    },
+    {
+      "source": "axolotl",
+      "target": "tag:post-training",
+      "relation": "tagged"
+    },
+    {
+      "source": "axolotl",
+      "target": "tag:qlora",
+      "relation": "tagged"
+    },
+    {
+      "source": "axolotl",
+      "target": "trl",
+      "relation": "overlaps"
+    },
+    {
+      "source": "axolotl",
+      "target": "unsloth",
+      "relation": "overlaps"
+    },
+    {
       "source": "bdh",
       "target": "cat:framework",
       "relation": "categorized"
@@ -7878,6 +8293,61 @@
     {
       "source": "cl4r1t4s",
       "target": "tag:system-prompts",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-local-model-switching",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "claude-code-local-model-switching",
+      "target": "free-claude-code",
+      "relation": "overlaps"
+    },
+    {
+      "source": "claude-code-local-model-switching",
+      "target": "local-model-picks-2026",
+      "relation": "overlaps"
+    },
+    {
+      "source": "claude-code-local-model-switching",
+      "target": "openrouter",
+      "relation": "overlaps"
+    },
+    {
+      "source": "claude-code-local-model-switching",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-local-model-switching",
+      "target": "tag:env-vars",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-local-model-switching",
+      "target": "tag:lm-studio",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-local-model-switching",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-local-model-switching",
+      "target": "tag:model-switching",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-local-model-switching",
+      "target": "tag:ollama",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-local-model-switching",
+      "target": "tag:openrouter",
       "relation": "tagged"
     },
     {
@@ -8683,6 +9153,66 @@
     {
       "source": "codeburn",
       "target": "tag:tui",
+      "relation": "tagged"
+    },
+    {
+      "source": "codegraph",
+      "target": "cat:mcp-server",
+      "relation": "categorized"
+    },
+    {
+      "source": "codegraph",
+      "target": "repomix",
+      "relation": "overlaps"
+    },
+    {
+      "source": "codegraph",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "codegraph",
+      "target": "tag:code-intelligence",
+      "relation": "tagged"
+    },
+    {
+      "source": "codegraph",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "codegraph",
+      "target": "tag:cursor",
+      "relation": "tagged"
+    },
+    {
+      "source": "codegraph",
+      "target": "tag:impact-analysis",
+      "relation": "tagged"
+    },
+    {
+      "source": "codegraph",
+      "target": "tag:knowledge-graph",
+      "relation": "tagged"
+    },
+    {
+      "source": "codegraph",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "codegraph",
+      "target": "tag:sqlite",
+      "relation": "tagged"
+    },
+    {
+      "source": "codegraph",
+      "target": "tag:static-analysis",
+      "relation": "tagged"
+    },
+    {
+      "source": "codegraph",
+      "target": "tag:tree-sitter",
       "relation": "tagged"
     },
     {
@@ -11371,6 +11901,71 @@
       "relation": "tagged"
     },
     {
+      "source": "llamafactory",
+      "target": "axolotl",
+      "relation": "overlaps"
+    },
+    {
+      "source": "llamafactory",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "llamafactory",
+      "target": "tag:distributed-training",
+      "relation": "tagged"
+    },
+    {
+      "source": "llamafactory",
+      "target": "tag:dpo",
+      "relation": "tagged"
+    },
+    {
+      "source": "llamafactory",
+      "target": "tag:fine-tuning",
+      "relation": "tagged"
+    },
+    {
+      "source": "llamafactory",
+      "target": "tag:lora",
+      "relation": "tagged"
+    },
+    {
+      "source": "llamafactory",
+      "target": "tag:multimodal",
+      "relation": "tagged"
+    },
+    {
+      "source": "llamafactory",
+      "target": "tag:ppo",
+      "relation": "tagged"
+    },
+    {
+      "source": "llamafactory",
+      "target": "tag:qlora",
+      "relation": "tagged"
+    },
+    {
+      "source": "llamafactory",
+      "target": "tag:vllm",
+      "relation": "tagged"
+    },
+    {
+      "source": "llamafactory",
+      "target": "tag:web-ui",
+      "relation": "tagged"
+    },
+    {
+      "source": "llamafactory",
+      "target": "trl",
+      "relation": "overlaps"
+    },
+    {
+      "source": "llamafactory",
+      "target": "unsloth",
+      "relation": "overlaps"
+    },
+    {
       "source": "local-model-picks-2026",
       "target": "bitnet",
       "relation": "overlaps"
@@ -11413,6 +12008,71 @@
     {
       "source": "local-model-picks-2026",
       "target": "tag:quantization",
+      "relation": "tagged"
+    },
+    {
+      "source": "localai",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "localai",
+      "target": "ollama",
+      "relation": "overlaps"
+    },
+    {
+      "source": "localai",
+      "target": "open-webui",
+      "relation": "overlaps"
+    },
+    {
+      "source": "localai",
+      "target": "tag:agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "localai",
+      "target": "tag:asr",
+      "relation": "tagged"
+    },
+    {
+      "source": "localai",
+      "target": "tag:image-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "localai",
+      "target": "tag:llm-server",
+      "relation": "tagged"
+    },
+    {
+      "source": "localai",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "localai",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "localai",
+      "target": "tag:multi-modal",
+      "relation": "tagged"
+    },
+    {
+      "source": "localai",
+      "target": "tag:openai-compatible",
+      "relation": "tagged"
+    },
+    {
+      "source": "localai",
+      "target": "tag:self-hosted",
+      "relation": "tagged"
+    },
+    {
+      "source": "localai",
+      "target": "tag:tts",
       "relation": "tagged"
     },
     {
@@ -11488,6 +12148,61 @@
     {
       "source": "markitdown",
       "target": "tag:pdf",
+      "relation": "tagged"
+    },
+    {
+      "source": "matt-pocock-skills",
+      "target": "andrej-karpathy-skills",
+      "relation": "overlaps"
+    },
+    {
+      "source": "matt-pocock-skills",
+      "target": "cat:skill",
+      "relation": "categorized"
+    },
+    {
+      "source": "matt-pocock-skills",
+      "target": "grill-with-docs",
+      "relation": "overlaps"
+    },
+    {
+      "source": "matt-pocock-skills",
+      "target": "tag:architecture",
+      "relation": "tagged"
+    },
+    {
+      "source": "matt-pocock-skills",
+      "target": "tag:claude-code-skills",
+      "relation": "tagged"
+    },
+    {
+      "source": "matt-pocock-skills",
+      "target": "tag:code-review",
+      "relation": "tagged"
+    },
+    {
+      "source": "matt-pocock-skills",
+      "target": "tag:domain-modeling",
+      "relation": "tagged"
+    },
+    {
+      "source": "matt-pocock-skills",
+      "target": "tag:engineering-discipline",
+      "relation": "tagged"
+    },
+    {
+      "source": "matt-pocock-skills",
+      "target": "tag:grilling",
+      "relation": "tagged"
+    },
+    {
+      "source": "matt-pocock-skills",
+      "target": "tag:tdd",
+      "relation": "tagged"
+    },
+    {
+      "source": "matt-pocock-skills",
+      "target": "tag:triage",
       "relation": "tagged"
     },
     {
@@ -11683,6 +12398,51 @@
     {
       "source": "memstack",
       "target": "tag:tts",
+      "relation": "tagged"
+    },
+    {
+      "source": "mergekit",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "mergekit",
+      "target": "tag:dare",
+      "relation": "tagged"
+    },
+    {
+      "source": "mergekit",
+      "target": "tag:llm-tools",
+      "relation": "tagged"
+    },
+    {
+      "source": "mergekit",
+      "target": "tag:lora",
+      "relation": "tagged"
+    },
+    {
+      "source": "mergekit",
+      "target": "tag:model-merging",
+      "relation": "tagged"
+    },
+    {
+      "source": "mergekit",
+      "target": "tag:moe",
+      "relation": "tagged"
+    },
+    {
+      "source": "mergekit",
+      "target": "tag:slerp",
+      "relation": "tagged"
+    },
+    {
+      "source": "mergekit",
+      "target": "tag:ties",
+      "relation": "tagged"
+    },
+    {
+      "source": "mergekit",
+      "target": "tag:weight-merging",
       "relation": "tagged"
     },
     {
@@ -12526,6 +13286,61 @@
       "relation": "tagged"
     },
     {
+      "source": "open-weight-models-june-2026",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "open-weight-models-june-2026",
+      "target": "local-model-picks-2026",
+      "relation": "overlaps"
+    },
+    {
+      "source": "open-weight-models-june-2026",
+      "target": "openrouter",
+      "relation": "overlaps"
+    },
+    {
+      "source": "open-weight-models-june-2026",
+      "target": "tag:benchmarks",
+      "relation": "tagged"
+    },
+    {
+      "source": "open-weight-models-june-2026",
+      "target": "tag:deepseek",
+      "relation": "tagged"
+    },
+    {
+      "source": "open-weight-models-june-2026",
+      "target": "tag:glm",
+      "relation": "tagged"
+    },
+    {
+      "source": "open-weight-models-june-2026",
+      "target": "tag:minimax",
+      "relation": "tagged"
+    },
+    {
+      "source": "open-weight-models-june-2026",
+      "target": "tag:model-selection",
+      "relation": "tagged"
+    },
+    {
+      "source": "open-weight-models-june-2026",
+      "target": "tag:nemotron",
+      "relation": "tagged"
+    },
+    {
+      "source": "open-weight-models-june-2026",
+      "target": "tag:open-weight-models",
+      "relation": "tagged"
+    },
+    {
+      "source": "open-weight-models-june-2026",
+      "target": "tag:pricing",
+      "relation": "tagged"
+    },
+    {
       "source": "openai-python-sdk",
       "target": "cat:framework",
       "relation": "categorized"
@@ -12793,6 +13608,41 @@
     {
       "source": "openspace",
       "target": "tag:token-reduction",
+      "relation": "tagged"
+    },
+    {
+      "source": "openwiki",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "openwiki",
+      "target": "tag:agent-context",
+      "relation": "tagged"
+    },
+    {
+      "source": "openwiki",
+      "target": "tag:ci-cd",
+      "relation": "tagged"
+    },
+    {
+      "source": "openwiki",
+      "target": "tag:cli",
+      "relation": "tagged"
+    },
+    {
+      "source": "openwiki",
+      "target": "tag:codebase-wiki",
+      "relation": "tagged"
+    },
+    {
+      "source": "openwiki",
+      "target": "tag:documentation",
+      "relation": "tagged"
+    },
+    {
+      "source": "openwiki",
+      "target": "tag:langchain",
       "relation": "tagged"
     },
     {
@@ -14446,6 +15296,141 @@
       "relation": "tagged"
     },
     {
+      "source": "torchtune",
+      "target": "axolotl",
+      "relation": "overlaps"
+    },
+    {
+      "source": "torchtune",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "torchtune",
+      "target": "llamafactory",
+      "relation": "overlaps"
+    },
+    {
+      "source": "torchtune",
+      "target": "tag:distributed-training",
+      "relation": "tagged"
+    },
+    {
+      "source": "torchtune",
+      "target": "tag:dpo",
+      "relation": "tagged"
+    },
+    {
+      "source": "torchtune",
+      "target": "tag:fine-tuning",
+      "relation": "tagged"
+    },
+    {
+      "source": "torchtune",
+      "target": "tag:fsdp",
+      "relation": "tagged"
+    },
+    {
+      "source": "torchtune",
+      "target": "tag:lora",
+      "relation": "tagged"
+    },
+    {
+      "source": "torchtune",
+      "target": "tag:meta",
+      "relation": "tagged"
+    },
+    {
+      "source": "torchtune",
+      "target": "tag:post-training",
+      "relation": "tagged"
+    },
+    {
+      "source": "torchtune",
+      "target": "tag:pytorch",
+      "relation": "tagged"
+    },
+    {
+      "source": "torchtune",
+      "target": "tag:qlora",
+      "relation": "tagged"
+    },
+    {
+      "source": "torchtune",
+      "target": "trl",
+      "relation": "overlaps"
+    },
+    {
+      "source": "torchtune",
+      "target": "unsloth",
+      "relation": "overlaps"
+    },
+    {
+      "source": "trl",
+      "target": "axolotl",
+      "relation": "overlaps"
+    },
+    {
+      "source": "trl",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "trl",
+      "target": "llamafactory",
+      "relation": "overlaps"
+    },
+    {
+      "source": "trl",
+      "target": "tag:dpo",
+      "relation": "tagged"
+    },
+    {
+      "source": "trl",
+      "target": "tag:fine-tuning",
+      "relation": "tagged"
+    },
+    {
+      "source": "trl",
+      "target": "tag:grpo",
+      "relation": "tagged"
+    },
+    {
+      "source": "trl",
+      "target": "tag:huggingface",
+      "relation": "tagged"
+    },
+    {
+      "source": "trl",
+      "target": "tag:post-training",
+      "relation": "tagged"
+    },
+    {
+      "source": "trl",
+      "target": "tag:ppo",
+      "relation": "tagged"
+    },
+    {
+      "source": "trl",
+      "target": "tag:reward-modeling",
+      "relation": "tagged"
+    },
+    {
+      "source": "trl",
+      "target": "tag:rlhf",
+      "relation": "tagged"
+    },
+    {
+      "source": "trl",
+      "target": "tag:vllm",
+      "relation": "tagged"
+    },
+    {
+      "source": "trl",
+      "target": "unsloth",
+      "relation": "overlaps"
+    },
+    {
       "source": "turboquant",
       "target": "airllm",
       "relation": "overlaps"
@@ -14714,6 +15699,76 @@
       "source": "unslop-skills",
       "target": "tag:writing",
       "relation": "tagged"
+    },
+    {
+      "source": "unsloth",
+      "target": "axolotl",
+      "relation": "overlaps"
+    },
+    {
+      "source": "unsloth",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "unsloth",
+      "target": "llamafactory",
+      "relation": "overlaps"
+    },
+    {
+      "source": "unsloth",
+      "target": "tag:fine-tuning",
+      "relation": "tagged"
+    },
+    {
+      "source": "unsloth",
+      "target": "tag:gguf",
+      "relation": "tagged"
+    },
+    {
+      "source": "unsloth",
+      "target": "tag:grpo",
+      "relation": "tagged"
+    },
+    {
+      "source": "unsloth",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "unsloth",
+      "target": "tag:lora",
+      "relation": "tagged"
+    },
+    {
+      "source": "unsloth",
+      "target": "tag:quantization",
+      "relation": "tagged"
+    },
+    {
+      "source": "unsloth",
+      "target": "tag:rl",
+      "relation": "tagged"
+    },
+    {
+      "source": "unsloth",
+      "target": "tag:training",
+      "relation": "tagged"
+    },
+    {
+      "source": "unsloth",
+      "target": "tag:triton",
+      "relation": "tagged"
+    },
+    {
+      "source": "unsloth",
+      "target": "tag:vram-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "unsloth",
+      "target": "trl",
+      "relation": "overlaps"
     },
     {
       "source": "unusual-whales-mcp",

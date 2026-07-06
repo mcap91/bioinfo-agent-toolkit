@@ -2,7 +2,7 @@
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
   "generated": "2026-07-06",
-  "count": 226,
+  "count": 238,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -643,6 +643,31 @@
       "path": "catalog/entries/awesome-claude-code.md"
     },
     {
+      "name": "axolotl",
+      "title": "Axolotl",
+      "url": "https://github.com/axolotl-ai-cloud/axolotl",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source LLM post-training framework — YAML-driven pipeline for SFT, LoRA/QLoRA, DPO/KTO/ORPO, GRPO, reward modeling, pretraining, multimodal (vision/audio); ND parallelism (CP+TP+FSDP), ScatterMoE fused LoRA, MoE expert quantization, QAT, sequence parallelism; built-in agent docs CLI; Apache 2.0",
+      "body_summary": "Framework for LLM post-training and fine-tuning with a single YAML config file covering the full pipeline: dataset preprocessing, training, evaluation, quantization, and inference.\n\n### Training methods\n\n- **Supervised fine-tuning** — full, LoRA, QLoRA, GPTQ, QAT (quantization-aware training)\n- **Preference tuning** — DPO, IPO, KTO, ORPO, SimPO, GDPO (Generalized DPO)\n- **Reinforcement learning** — GRPO\n- **Reward modeling** — outcome RM and process RM (PRM)\n- **Pretraining** — continual pretraining with text diffusion support\n- **Multimodal** — LLaMA-Vision, Qwen2-VL, Pixtral, LLaVA, SmolVLM2, GLM-4.6V, InternVL 3.5, Gemma 3n, Voxtral (audio)\n\n### Performance optimizations\n\n- Multipacking, Flash Attention 2/3/4, Xformers, Flex Attention, SageAttention, Liger Kernel, Cut Cross Entropy\n- ScatterMoE LoRA (custom Triton kernels on MoE expert weights)\n- MoE expert quantization (`quantize_moe_experts: true`) for reduced VRAM with FSDP2\n- Sequence Parallelism (SP) for context length scaling\n- ND Parallelism (CP + TP + FSDP within and across nodes)\n- Multi-GPU (FSDP1, FSDP2, DeepSpeed), multi-node (Torchrun, Ray)\n- EAFT (Entropy-Aware Focal Training), Scalable Softmax for long context\n- Distributed Muon optimizer for FSDP2 pretraining\n\n### Model support\n\nGPT-OSS, LLaMA 1–4, Mistral/Mixtral, Qwen 2–3.6, Gemma 1–4, DeepSeek, GLM, Phi, Granite, and many more. Day-0/Day-1 support for new model releases.",
+      "tags": [
+        "fine-tuning",
+        "lora",
+        "qlora",
+        "dpo",
+        "grpo",
+        "moe",
+        "multimodal",
+        "distributed-training",
+        "post-training"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/axolotl.md"
+    },
+    {
       "name": "bdh",
       "title": "BDH (Dragon Hatchling)",
       "url": "https://github.com/pathwaycom/bdh",
@@ -1011,6 +1036,29 @@
       ],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/cl4r1t4s.md"
+    },
+    {
+      "name": "claude-code-local-model-switching",
+      "title": "Claude Code Local Model Switching",
+      "url": "https://docs.anthropic.com/en/docs/claude-code",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Shell alias technique for swapping Claude Code between cloud Anthropic, local Ollama/LM Studio, and API-based OSS models (OpenRouter/DeepSeek) via ANTHROPIC_BASE_URL and ANTHROPIC_AUTH_TOKEN environment variables; includes KV cache fix (CLAUDE_CODE_ATTRIBUTION_HEADER=0) and Qwen 3.6 35B config",
+      "body_summary": "Describes a shell alias pattern for instantly switching Claude Code's backend between three modes:\n\n1. **Cloud (Anthropic subscription):** unset `ANTHROPIC_BASE_URL` and `ANTHROPIC_AUTH_TOKEN`, launch `claude` normally\n2. **Local OSS (Ollama / LM Studio):** set `ANTHROPIC_AUTH_TOKEN=ollama`, `ANTHROPIC_BASE_URL=http://localhost:11434` (Ollama) or `:1234` (LM Studio), launch `claude --model <model>`\n3. **Cloud OSS (OpenRouter / DeepSeek):** set `ANTHROPIC_API_KEY=<key>`, `ANTHROPIC_BASE_URL=https://openrouter.ai`, launch `claude --model deepseek/deepseek-coder`\n\n### KV cache performance fix\n\nClaude Code appends a changing attribution header to every prompt by default. For local models this invalidates the KV cache on every turn, degrading inference speed by ~90%. Setting `CLAUDE_CODE_ATTRIBUTION_HEADER=0` disables this.\n\n### Qwen 3.6 35B config\n\nIncludes a sample model config block for Qwen 3.6 35B (4-bit quantized) with reasoning enabled: 64K context, 8K output, temperature 0.6, top_p 0.95, `enable_thinking: true`.",
+      "tags": [
+        "claude-code",
+        "local-inference",
+        "ollama",
+        "lm-studio",
+        "openrouter",
+        "model-switching",
+        "env-vars"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/claude-code-local-model-switching.md"
     },
     {
       "name": "claude-code-remote-prompt-hardening",
@@ -1467,6 +1515,32 @@
       "security_flags": [],
       "reviewed": "2026-06-22",
       "path": "catalog/entries/codeburn.md"
+    },
+    {
+      "name": "codegraph",
+      "title": "CodeGraph",
+      "url": "https://github.com/colbymchenry/codegraph",
+      "category": "mcp-server",
+      "decision_status": "open",
+      "summary": "Pre-indexed code knowledge graph via MCP — tree-sitter extracts symbols/edges into SQLite, single codegraph_explore tool returns verbatim source + call paths + blast radius in one call; auto-syncs on file changes via native OS watcher; 34 languages, framework route detection (17 frameworks), cross-language bridging (Swift↔ObjC, React Native, Expo); 100% local, MIT",
+      "body_summary": "MCP server that builds a pre-indexed knowledge graph of a codebase's symbols, call edges, and dependencies using tree-sitter parsing into a local SQLite database (`.codegraph/codegraph.db`). Exposes a single `codegraph_explore` MCP tool that returns verbatim source, call paths (including dynamic-dispatch hops), and blast-radius summaries in one call — replacing the agent's typical grep/glob/read crawl loop.\n\nAuto-syncs via native OS file watcher (FSEvents/inotify/ReadDirectoryChangesW) with debounced incremental re-index. Per-file staleness banners warn the agent when a file is pending re-index.\n\n### Language coverage\n\n34 languages: TypeScript, JavaScript, ArkTS, Python, Go, Rust, Java, C#, VB.NET, PHP, Ruby, C, C++, CUDA, Objective-C, Metal, Swift, Kotlin, Scala, Dart, Lua, Luau, R, Nix, Erlang, CFML, COBOL, Solidity, Terraform/OpenTofu, Svelte, Vue, Astro, Liquid, Pascal/Delphi.\n\n### Framework-aware routing\n\nDetects URL routing patterns and links them to handlers across 17 frameworks: Django, Flask, FastAPI, Express, NestJS, Laravel, Drupal, Rails, Spring, Play, Gin/chi/gorilla, Axum/actix/Rocket, ASP.NET, Vapor, React Router/SvelteKit, Vue Router/Nuxt, Astro.\n\n### Cross-language bridging\n\nBridges cross-language boundaries in mixed iOS/React Native/Expo codebases: Swift↔ObjC `@objc` bridging, React Native legacy bridge (`RCT_EXPORT_METHOD`), TurboModules, native→JS event emitters, Expo Modules DSL, Fabric/Paper view components.",
+      "tags": [
+        "code-intelligence",
+        "knowledge-graph",
+        "mcp",
+        "tree-sitter",
+        "sqlite",
+        "static-analysis",
+        "impact-analysis",
+        "claude-code",
+        "cursor",
+        "codex"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/codegraph.md"
     },
     {
       "name": "codex-memory-cleanup",
@@ -3052,6 +3126,31 @@
       "path": "catalog/entries/litellm.md"
     },
     {
+      "name": "llamafactory",
+      "title": "LLaMA Factory",
+      "url": "https://github.com/hiyouga/LlamaFactory",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Unified fine-tuning framework for 100+ LLMs and VLMs — zero-code web UI (LLaMA Board) and CLI; supports SFT, LoRA/QLoRA (2–8 bit), DPO/KTO/ORPO/PPO, reward modeling, pretraining; multimodal (image/video/audio); vLLM/SGLang inference; NVIDIA/AMD/Ascend NPU/CPU; used by Amazon, NVIDIA, Aliyun; ACL 2024; Apache 2.0",
+      "body_summary": "Unified framework for fine-tuning 100+ LLMs and VLMs with both a zero-code Gradio web UI (LLaMA Board) and CLI. Single YAML config drives dataset prep, training, evaluation, and inference.\n\n### Training methods\n\n- **Supervised fine-tuning** — full, freeze-tuning, LoRA, QLoRA (2/3/4/5/6/8-bit via AQLM/AWQ/GPTQ/LLM.int8/HQQ/EETQ), OFT/QOFT\n- **Preference tuning** — DPO, IPO, KTO, ORPO, SimPO\n- **Reinforcement learning** — PPO, GRPO (via companion EasyR1 framework)\n- **Reward modeling** — outcome RM and process RM (PRM)\n- **Pretraining** — continual pretraining\n\n### Optimizers and techniques\n\nGaLore, BAdam, APOLLO, Adam-mini, Muon, DoRA, LongLoRA, LLaMA Pro, Mixture-of-Depths, LoRA+, LoftQ, PiSSA, NEFTune, rsLoRA, FlashAttention-2, Unsloth integration, Liger Kernel, KTransformers, Scalable Softmax\n\n### Model support\n\n100+ models: LLaMA 1–4, DeepSeek (including R1), Qwen 2–3.6, Gemma 1–3n, Mistral/Mixtral, GLM 4–4.5, Phi 3–4, Falcon, InternLM/InternVL, MiniCPM, and many more. Day-0/Day-1 support for new releases.\n\n### Multimodal\n\nVision (LLaMA-Vision, Qwen2-VL/3-VL, Pixtral, LLaVA, InternVL, GLM-4.6V, Gemma 3n), audio (Qwen2-Audio, Voxtral, MiniCPM-o), video (Qwen3-VL)\n\n### Inference\n\nOpenAI-style API deployment via vLLM or SGLang backends. Gradio chat UI. Ollama modelfile export.",
+      "tags": [
+        "fine-tuning",
+        "lora",
+        "qlora",
+        "dpo",
+        "ppo",
+        "multimodal",
+        "web-ui",
+        "distributed-training",
+        "vllm"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/llamafactory.md"
+    },
+    {
       "name": "local-model-picks-2026",
       "title": "Local Model Picks (2026)",
       "url": "https://reddit.com",
@@ -3071,6 +3170,32 @@
       "security_flags": [],
       "reviewed": "2026-07-06",
       "path": "catalog/entries/local-model-picks-2026.md"
+    },
+    {
+      "name": "localai",
+      "title": "LocalAI",
+      "url": "https://github.com/mudler/localai",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source local AI engine — drop-in OpenAI/Anthropic/ElevenLabs API compatibility across 60+ backends (llama.cpp, vLLM, whisper.cpp, stable-diffusion, MLX, etc.); supports LLMs, vision, voice, image, video on any hardware (NVIDIA/AMD/Intel/Apple/Vulkan/CPU); multi-user auth with quotas, built-in agents with MCP/RAG/tool use, distributed cluster mode, fine-tuning UI, WebRTC realtime audio; MIT",
+      "body_summary": "Self-hosted AI engine that runs any model locally with drop-in API compatibility for OpenAI, Anthropic, and ElevenLabs endpoints. Modular backend architecture — each backend (llama.cpp, vLLM, SGLang, transformers, whisper.cpp, diffusers, MLX, etc.) is pulled as a separate OCI image only when needed.\n\n### Modalities\n\n- **Text generation** — llama.cpp, vLLM, SGLang, transformers, MLX\n- **Speech-to-text** — whisper.cpp, parakeet.cpp (NeMo port), vibevoice.cpp, voxtral.c\n- **Text-to-speech** — Piper (60 voices / 42 languages), vibevoice.cpp (voice cloning)\n- **Image generation** — stable-diffusion, diffusers, Ideogram4\n- **Vision** — VLM support, llama.cpp video input\n- **Object detection** — rf-detr.cpp, locate-anything.cpp\n- **Audio** — realtime speech-to-speech API with WebRTC, voice activity detection (Silero-VAD), audio event classification (ced.cpp)\n\n### Platform features\n\n- **Multi-user** — API key auth, OIDC, per-user quotas with predictive analytics, usage attribution\n- **Agents** — built-in autonomous agents with tool use, RAG, MCP support, skills, SSE streaming, Agent Hub\n- **Distributed mode** — horizontal scaling with PostgreSQL + NATS, VRAM-aware routing, autoscaling, prefix-cache-aware routing\n- **Fine-tuning** — in-UI fine-tuning with TRL, auto-export to GGUF, on-the-fly quantization\n- **Biometric backends** — voice-detect.cpp (speaker recognition), face-detect.cpp (face detection/recognition/anti-spoofing) — native C++/ggml, no Python at inference",
+      "tags": [
+        "local-inference",
+        "openai-compatible",
+        "multi-modal",
+        "self-hosted",
+        "llm-server",
+        "mcp",
+        "agents",
+        "tts",
+        "asr",
+        "image-generation"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/localai.md"
     },
     {
       "name": "locate-anything",
@@ -3120,6 +3245,30 @@
       "security_flags": [],
       "reviewed": "2026-05-27",
       "path": "catalog/entries/markitdown.md"
+    },
+    {
+      "name": "matt-pocock-skills",
+      "title": "Matt Pocock Skills",
+      "url": "https://github.com/mattpocock/skills",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Collection of 17 composable Claude Code skills for disciplined engineering — grilling sessions (alignment interviews before coding), domain modeling (CONTEXT.md + ADRs), TDD red-green-refactor loop, codebase architecture audits with HTML reports, issue triage state machine, PRD synthesis, bug diagnosis loop, code review (standards + spec axes); installable via npx skills",
+      "body_summary": "Collection of 17 Claude Code skills split into user-invoked (orchestration) and model-invoked (reusable discipline). Designed to be small, composable, and model-agnostic. Addresses four failure modes: misalignment (grilling sessions), verbosity (shared domain language via CONTEXT.md), broken code (TDD + diagnosis loops), and architectural decay (codebase design audits).\n\n### User-invoked skills (engineering)\n\n- **grill-with-docs** — alignment interview that also builds a shared domain language (CONTEXT.md) and ADRs\n- **grill-me** — general-purpose grilling session for plans/designs\n- **triage** — moves issues through a state machine of triage roles with configurable labels\n- **improve-codebase-architecture** — scans for \"deepening\" opportunities, produces HTML report, then grills through selected improvements\n- **to-issues** — breaks plans/specs/PRDs into independently-grabbable vertical-slice issues\n- **to-prd** — synthesizes current conversation into a PRD and publishes to issue tracker\n- **ask-matt** — router that recommends which skill fits the situation\n\n### Model-invoked skills (engineering)\n\n- **tdd** — red-green-refactor loop, one vertical slice at a time\n- **diagnosing-bugs** — reproduce → minimise → hypothesise → instrument → fix → regression-test\n- **research** — investigates questions against primary sources, outputs cited Markdown, runs as background agent\n- **prototype** — throwaway prototypes (terminal apps for logic, multiple UI variations for design)\n- **domain-modeling** — challenges terms against glossary, stress-tests with edge cases, updates CONTEXT.md\n- **codebase-design** — deep module design vocabulary (lots of behavior behind small interfaces)\n- **code-review** — two parallel sub-agents: Standards (coding standards + Fowler smells) and Spec (faithfulness to issue/PRD)\n\n### Productivity skills\n\n- **handoff** — compacts conversation into a handoff document for another agent\n- **teach** — multi-session teaching using current directory as workspace\n- **writing-great-skills** — reference for writing predictable skills",
+      "tags": [
+        "claude-code-skills",
+        "engineering-discipline",
+        "domain-modeling",
+        "tdd",
+        "code-review",
+        "grilling",
+        "architecture",
+        "triage"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/matt-pocock-skills.md"
     },
     {
       "name": "maxun",
@@ -3226,6 +3375,30 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/memstack.md"
+    },
+    {
+      "name": "mergekit",
+      "title": "mergekit",
+      "url": "https://github.com/arcee-ai/mergekit",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Toolkit for merging pre-trained LLMs — 16+ merge methods (SLERP, TIES, DARE, DELLA, task arithmetic, linear, Karcher mean, etc.); out-of-core merging on CPU or with 8GB VRAM; MoE construction from dense models; LoRA extraction; evolutionary merge methods; multi-stage merging; tokenizer transplantation; Frankenmerging (layer assembly); EMNLP 2024 paper; LGPL-3.0",
+      "body_summary": "Toolkit for merging pre-trained language model checkpoints by operating directly in weight space. Uses an out-of-core approach with lazy tensor loading to perform merges on minimal hardware (CPU-only or 8GB VRAM).\n\n### Merge methods (16+)\n\n| Method | Core idea |\n|--------|-----------|\n| Linear | Weighted average of parameters |\n| SLERP | Spherical linear interpolation (2 models) |\n| NuSLERP | Enhanced SLERP with flexible weighting |\n| Multi-SLERP | Barycentric SLERP for 3+ models |\n| Karcher Mean | Riemannian barycenter on manifolds |\n| Task Arithmetic | Combine \"task vectors\" (diffs from base) |\n| TIES | Task arithmetic + sparsification + sign consensus |\n| DARE | Task arithmetic + random pruning + rescaling |\n| DELLA | Task arithmetic + adaptive magnitude-based pruning |\n| Model Breadcrumbs | Task arithmetic + outlier removal |\n| SCE | Adaptive matrix-level weighting by variance |\n| Model Stock | Geometric weight calculation for interpolation |\n| Nearswap | Interpolate where parameters are similar |\n| Arcee Fusion | Dynamic thresholding for salient features |\n| Passthrough | Direct tensor copy (Frankenmerging) |\n\n### Additional capabilities\n\n- **MoE construction** — merge multiple dense models into a mixture of experts (`mergekit-moe`)\n- **LoRA extraction** — extract PEFT-compatible low-rank approximations from fine-tuned models (`mergekit-extract-lora`)\n- **Evolutionary merge** — automated merge optimization via evolutionary search\n- **Multi-stage merging** — chain multiple merge configs in a single YAML (`mergekit-multi`)\n- **Raw PyTorch merging** — merge arbitrary `.pt`/`.safetensors` checkpoints (`mergekit-pytorch`)\n- **Tokenizer transplantation** — align vocabularies between models for speculative decoding or distillation (`mergekit-tokensurgeon`)\n- **Interpolated gradients** — per-layer parameter interpolation for fine-grained control\n\n### Tokenizer handling\n\nUnion, base, or specific-model vocabularies. Per-token embedding source overrides. Automatic embedding matrix alignment across models before merge. Chat template configuration (auto-detect, built-in presets, or custom Jinja2).",
+      "tags": [
+        "model-merging",
+        "weight-merging",
+        "lora",
+        "moe",
+        "slerp",
+        "ties",
+        "dare",
+        "llm-tools"
+      ],
+      "workflows": [],
+      "license": "LGPL-3.0",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/mergekit.md"
     },
     {
       "name": "mex",
@@ -3726,6 +3899,30 @@
       "path": "catalog/entries/open-webui.md"
     },
     {
+      "name": "open-weight-models-june-2026",
+      "title": "Open Weight Models That Matter (June 2026)",
+      "url": "https://openrouter.ai/blog/insights/the-open-weight-models-that-matter-june-2026/",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "OpenRouter analysis of the four open-weight models that matter as of June 2026 — DeepSeek V4 Flash (best cost/performance, 79% SWE-bench, $0.05/$0.24 per M tokens), GLM 5.2 (#1 open-weight intelligence index, Opus-class planning), MiniMax M3 (multimodal image/video, 1M context, MiniMax Sparse Attention), NVIDIA Nemotron 3 Ultra (US-built, hybrid Mamba-2+Transformer MoE, 550B/55B-active, free route available)",
+      "body_summary": "OpenRouter's June 2026 analysis of the four most impactful open-weight models, positioned as the field maintains a consistent 3–6 month gap behind closed frontier labs without that gap widening.\n\n- ~284B params / ~13B active MoE, 1M context, MIT licensed\n- 79.0% SWE-bench Verified (Pro variant:…",
+      "tags": [
+        "open-weight-models",
+        "model-selection",
+        "deepseek",
+        "glm",
+        "minimax",
+        "nemotron",
+        "pricing",
+        "benchmarks"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/open-weight-models-june-2026.md"
+    },
+    {
       "name": "openai-python-sdk",
       "title": "OpenAI Python SDK",
       "url": "https://github.com/openai/openai-python",
@@ -3895,6 +4092,28 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/openspace.md"
+    },
+    {
+      "name": "openwiki",
+      "title": "OpenWiki",
+      "url": "https://github.com/langchain-ai/openwiki",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "LangChain CLI that generates and maintains agent-oriented codebase documentation in an openwiki/ directory; auto-updates via CI (GitHub Actions / GitLab CI) on each push; appends references to AGENTS.md/CLAUDE.md so coding agents discover the wiki; supports OpenRouter, Fireworks, Baseten, OpenAI, Anthropic, and OpenAI-compatible endpoints",
+      "body_summary": "CLI tool that writes and maintains documentation for a codebase, targeting AI coding agents as the primary audience. On first run (`openwiki --init`), it generates documentation into an `openwiki/` directory. On subsequent runs or via `--update`, it refreshes documentation based on repository changes.\n\nAutomatically appends prompting to `AGENTS.md` and/or `CLAUDE.md` instructing coding agents to reference the wiki for context. Ships with CI workflow templates for GitHub Actions and GitLab CI that automatically open PRs/merge requests with documentation updates on push.\n\n### Inference providers\n\nSupports OpenRouter, Fireworks, Baseten, OpenAI, Anthropic, and any OpenAI-compatible endpoint (e.g. LiteLLM gateway). Pre-defined models include GLM 5.2, Kimi K2.6, Sonnet 5; custom model IDs accepted for each provider. Credentials stored in `~/.openwiki/.env`. Optional LangSmith tracing integration.",
+      "tags": [
+        "documentation",
+        "codebase-wiki",
+        "langchain",
+        "ci-cd",
+        "agent-context",
+        "cli"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/openwiki.md"
     },
     {
       "name": "opus-fable-mode",
@@ -4882,6 +5101,56 @@
       "path": "catalog/entries/tolvi.md"
     },
     {
+      "name": "torchtune",
+      "title": "torchtune",
+      "url": "https://github.com/meta-pytorch/torchtune",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "PyTorch-native post-training library by Meta — composable building blocks (not trainers) for SFT, LoRA, QLoRA, DPO, GRPO, quantization, evaluation; YAML-driven recipes under 600 LOC; composable parallelism (FSDP2, TP, SP, CP, expert parallel for MoE); in-backward optimizer fusion; works on single 24GB GPU to multi-node clusters; v0.6 stable; Apache 2.0",
+      "body_summary": "PyTorch-native post-training library built around composable building blocks rather than monolithic trainers. Each training recipe is self-contained (under 600 lines of code), designed to be read and modified directly.\n\n### Training workflow\n\n- **Dataset preparation** — download and prepare datasets from HF Hub or local storage\n- **Fine-tuning** — full fine-tune, LoRA, QLoRA with hackable model builders\n- **Preference optimization** — DPO, GRPO\n- **Quantization** — post-training quantization via torchao (4-bit, 8-bit)\n- **Evaluation** — integrated with EleutherAI's LM Evaluation Harness\n- **Inference** — local inference testing, ExecuTorch export for mobile/edge\n\n### Parallelism stack\n\nComposable parallelism built on PyTorch DTensor: FSDP2, tensor parallel, sequence parallel, context parallel, expert parallel (MoE), loss parallel. The same components scale from a single GPU to multi-node clusters without rewriting the training loop.\n\n### Performance\n\n- In-backward optimizer fusion reduces gradient-buffer lifetime for large models\n- Memory-efficient recipes tested on single 24GB consumer GPUs\n- YAML-driven configs (Hydra-inspired) with orthogonal optimization switches\n\n### Model support\n\nLlama 1–4, Gemma 2, Qwen 2.5, and others. Checkpoint compatibility with HF Hub and production inference systems.",
+      "tags": [
+        "fine-tuning",
+        "pytorch",
+        "lora",
+        "qlora",
+        "dpo",
+        "fsdp",
+        "distributed-training",
+        "post-training",
+        "meta"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/torchtune.md"
+    },
+    {
+      "name": "trl",
+      "title": "TRL (Transformers Reinforcement Learning)",
+      "url": "https://huggingface.co/docs/trl/en/index",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Hugging Face full-stack post-training library — SFT, GRPO, DPO, reward modeling, PPO, and more; vLLM integration for online RL; Harbor sandboxed agent training; vision-language model alignment; co-located vLLM for GPU efficiency; integrated with transformers/PEFT/DeepSpeed/Liger Kernel; Apache 2.0",
+      "body_summary": "Full-stack library for post-training transformer language models, integrated with Hugging Face transformers. Provides trainers for supervised fine-tuning, reinforcement learning, and preference optimization.\n\n### Training methods\n\n- **SFT** — supervised fine-tuning\n- **GRPO** — Group Relative Policy Optimization (with vLLM support)\n- **DPO** — Direct Preference Optimization\n- **PPO** — Proximal Policy Optimization\n- **Reward modeling** — train reward models for RLHF\n- **Harbor** — train agents against sandboxed task suites (instruction + sandbox image + in-sandbox verifier) via GRPOTrainer's `environment_factory`\n\n### Key features\n\n- vLLM integration for online RL with co-located inference (no separate GPU allocation)\n- Vision-language model alignment\n- PEFT/LoRA integration\n- DeepSpeed and Liger Kernel support\n- Dataset format documentation and training FAQ",
+      "tags": [
+        "fine-tuning",
+        "rlhf",
+        "dpo",
+        "grpo",
+        "ppo",
+        "reward-modeling",
+        "huggingface",
+        "vllm",
+        "post-training"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/trl.md"
+    },
+    {
       "name": "turboquant",
       "title": "TurboQuant — Extreme KV Cache Compression",
       "url": "https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/",
@@ -5035,6 +5304,32 @@
       "security_flags": [],
       "reviewed": "2026-06-22",
       "path": "catalog/entries/unslop-skills.md"
+    },
+    {
+      "name": "unsloth",
+      "title": "Unsloth",
+      "url": "https://github.com/unslothai/unsloth",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "LLM fine-tuning and inference framework — trains 500+ models up to 2x faster with 70% less VRAM via custom Triton kernels; Unsloth Studio web UI for running/training text, audio, vision, embedding models; supports LoRA, full fine-tune, RL (GRPO), FP8, pretraining; GGUF/safetensors export; NVIDIA/AMD/Intel/Apple Silicon; API endpoint for Claude Code/Codex integration; Apache 2.0 (core) + AGPL-3.0 (Studio UI)",
+      "body_summary": "Framework for fine-tuning and running LLMs with custom Triton and mathematical kernels that reduce VRAM usage by up to 70% and increase training speed by up to 2x with no accuracy loss. Two interfaces: Unsloth Core (Python library) and Unsloth Studio (web UI).\n\n### Training capabilities\n\n- **Fine-tuning methods** — LoRA, full fine-tuning, 4-bit, 16-bit, FP8\n- **Reinforcement learning** — GRPO with 80% less VRAM, advanced batching for 7x longer context RL\n- **Pretraining** — supports 500K+ context training on 80GB GPUs for 20B models\n- **Data Recipes** — auto-create datasets from PDF, CSV, DOCX in visual-node workflow editor\n- **Model export** — GGUF, 16-bit safetensors, and other formats\n- **MoE optimization** — 12x faster MoE training with 35% less VRAM (DeepSeek, GLM, Qwen, gpt-oss)\n- **Embedding fine-tuning** — 1.8–3.3x faster\n- **Multi-GPU** — supported, with improvements in progress\n\n### Inference\n\n- Search, download, and run models (GGUF, LoRA adapters, safetensors)\n- Tool calling with self-healing, web search, code execution in sandbox\n- API inference endpoint deployable as backend for Claude Code and Codex\n- Chat with images, audio, PDFs, code, DOCX\n- Connect to external providers (OpenAI, Anthropic) or servers (vLLM, Ollama)\n\n### Unsloth Studio (web UI)\n\n- Live training observability — loss, GPU usage, customizable graphs\n- Visual data recipe editor\n- In-UI model search and management\n- Remote access via Cloudflare HTTPS tunnel (`--secure`)",
+      "tags": [
+        "fine-tuning",
+        "lora",
+        "rl",
+        "grpo",
+        "quantization",
+        "gguf",
+        "local-inference",
+        "training",
+        "vram-optimization",
+        "triton"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-07-06",
+      "path": "catalog/entries/unsloth.md"
     },
     {
       "name": "unusual-whales-mcp",
