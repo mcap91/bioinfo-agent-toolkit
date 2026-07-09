@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-07-06",
-  "count": 238,
+  "generated": "2026-07-09",
+  "count": 246,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -118,6 +118,33 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/advisor-strategy.md"
+    },
+    {
+      "name": "advisor-tool",
+      "title": "Advisor Tool (Claude Code / Claude API)",
+      "url": "https://code.claude.com/docs/en/advisor",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Anthropic server-side tool that lets Claude consult a second, at-least-as-capable model at decision points (before committing to an approach, on recurring errors, before declaring done); the advisor receives the full conversation and returns guidance Claude applies; configured via /advisor, advisorModel, or --advisor; billed at the advisor model's rates; the concrete feature behind the advisor-strategy concept",
+      "body_summary": "The advisor tool is an Anthropic server-executed tool that lets the main Claude model consult a second, typically stronger model at key moments in a task. The advisor always receives the full conversation (every tool call and result) and returns guidance that Claude applies before continuing. It…",
+      "tags": [
+        "claude-code",
+        "claude-api",
+        "advisor",
+        "model-escalation",
+        "cost-optimization",
+        "anthropic",
+        "server-tool"
+      ],
+      "workflows": [],
+      "license": "proprietary",
+      "security_flags": [
+        "proprietary-feature",
+        "anthropic-api-only",
+        "token-billing-exposure"
+      ],
+      "reviewed": "2026-07-09",
+      "path": "catalog/entries/advisor-tool.md"
     },
     {
       "name": "agent-browser",
@@ -1038,6 +1065,36 @@
       "path": "catalog/entries/cl4r1t4s.md"
     },
     {
+      "name": "claude-autoresearch",
+      "title": "Claude Autoresearch (uditgoenka)",
+      "url": "https://github.com/uditgoenka/autoresearch",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Claude Code / OpenCode / Codex skill+command pack generalizing Karpathy's autoresearch loop (constraint + mechanical metric + autonomous iteration + git rollback) to any domain — 14 commands (autoresearch, plan, debug, fix, security, ship, scenario, predict, learn, reason, probe, improve, evals, regression), a v2.2 orchestrator that derives a success predicate from a plain-language goal, and 9 always-on safety hooks; MIT",
+      "body_summary": "An installable command/skill pack that generalizes Andrej Karpathy's `autoresearch` (an autonomous ML-experiment loop) into a domain-agnostic \"improvement engine\" for Claude Code, OpenCode, and OpenAI Codex. The core loop is: review state + git history + results log → make one focused change →…",
+      "tags": [
+        "autoresearch",
+        "karpathy",
+        "agent-loop",
+        "claude-code",
+        "opencode",
+        "codex",
+        "hooks",
+        "iteration",
+        "autonomous-agents"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "always-on-session-hooks",
+        "tool-call-interception",
+        "npx-or-plugin-install",
+        "ephemeral-db-migration-command"
+      ],
+      "reviewed": "2026-07-09",
+      "path": "catalog/entries/claude-autoresearch.md"
+    },
+    {
       "name": "claude-code-local-model-switching",
       "title": "Claude Code Local Model Switching",
       "url": "https://docs.anthropic.com/en/docs/claude-code",
@@ -1581,6 +1638,33 @@
       "security_flags": [],
       "reviewed": "2026-07-06",
       "path": "catalog/entries/codex-plugin-cc.md"
+    },
+    {
+      "name": "codex-reasoning-token-collapse",
+      "title": "Codex 5.5 Reasoning-Token Collapse Evidence",
+      "url": "https://github.com/NickalasLight/codex-reasoning-bug-516-token",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Public-safe evidence repo investigating a suspected Codex (gpt-5.5) failure where some turns terminate at exact 512-family reasoning-token counts (516/1034/1552); ships Python analyzers plus a blind multi-reviewer audit harness; across manual, rule-assisted, and blind audits, removing the suspected instruction section did not meaningfully reduce concerning clustered hits",
+      "body_summary": "Repository documenting a suspected pattern in OpenAI Codex (model `gpt-5.5`) where some agent turns terminate at exact \"512-family\" reasoning-token counts — observed cluster values 516, 1034, 1552. The original suspected trigger was the final `## Intermediary updates` section of the Codex 5.5…",
+      "tags": [
+        "codex",
+        "gpt-5.5",
+        "reasoning-tokens",
+        "evidence",
+        "analysis-scripts",
+        "model-behavior",
+        "reference"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [
+        "no-license-stated",
+        "single-maintainer",
+        "reads-local-transcripts"
+      ],
+      "reviewed": "2026-07-09",
+      "path": "catalog/entries/codex-reasoning-token-collapse.md"
     },
     {
       "name": "codex-ssd-write-bug",
@@ -2285,6 +2369,33 @@
       "path": "catalog/entries/faster-whisper.md"
     },
     {
+      "name": "finding-unknowns-skills",
+      "title": "Finding Unknowns Skills",
+      "url": "https://github.com/Neeeophytee/finding-unknowns-skills",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "8 installable SKILL.md skills distilled (with attribution) from Thariq Shihipar's essay on finding your unknowns — blindspot-pass, brainstorm-prototypes, interview-me, reference-hunt, implementation-plan (before), implementation-notes (during), pitch-packager and change-quiz (after); each keys its trigger on the situation and the essay's literal phrases; MIT, cross-agent (Claude Code / Codex / any agentskills.io reader)",
+      "body_summary": "A community project (MIT, explicitly not an official Anthropic repository) packaging eight installable skills that operationalize Thariq Shihipar's (Anthropic, Claude Code team) essay \"A Field Guide to Fable: Finding Your Unknowns.\" The framing: your prompt is a map, the codebase and world are the…",
+      "tags": [
+        "skills",
+        "claude-code",
+        "codex",
+        "planning",
+        "unknowns",
+        "prompt-clarification",
+        "multi-platform",
+        "community"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "single-maintainer",
+        "community-distillation"
+      ],
+      "reviewed": "2026-07-09",
+      "path": "catalog/entries/finding-unknowns-skills.md"
+    },
+    {
       "name": "firecrawl",
       "title": "Firecrawl",
       "url": "https://github.com/mendableai/firecrawl",
@@ -2770,6 +2881,33 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/headroom.md"
+    },
+    {
+      "name": "herdr",
+      "title": "Herdr",
+      "url": "https://github.com/ogulcancelik/herdr",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Terminal-based agent multiplexer (single Rust binary) — real terminal panes for many coding agents at a glance, detach/reattach across terminals or SSH with sessions surviving restarts, tmux-style keyboard + mouse, a plugin marketplace, and a pure socket API that lets agents themselves spawn panes and wait on each other; dual-licensed AGPL-3.0 / commercial",
+      "body_summary": "- Detach and reattach: agents keep running after you detach (`ctrl+b q`), reattach from any terminal or over SSH, and sessions survive restarts.\n- Agents as users: a pure socket API lets agents themselves spawn panes, read output, and wait on each other (a documented \"agent skill\" covers this usage).\n- Input: tmux-style prefix keybindings plus first-class mouse (click, drag, split).\n- Plugins: a marketplace extends panes and workflows.",
+      "tags": [
+        "terminal-multiplexer",
+        "agent-orchestration",
+        "tui",
+        "rust",
+        "session-persistence",
+        "socket-api",
+        "plugins"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0-or-later",
+      "security_flags": [
+        "curl-pipe-sh-installer",
+        "dual-license-commercial-required",
+        "windows-beta"
+      ],
+      "reviewed": "2026-07-09",
+      "path": "catalog/entries/herdr.md"
     },
     {
       "name": "huggingface-agents-course",
@@ -3800,6 +3938,36 @@
       "path": "catalog/entries/ols-mcp-server.md"
     },
     {
+      "name": "omnigent",
+      "title": "Omnigent",
+      "url": "https://github.com/omnigent-ai/omnigent",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source 'meta-harness' giving a common orchestration layer over Claude Code, Codex, Cursor, OpenCode, Hermes, Pi, and custom YAML agents — swap/combine harnesses, mix vendors in one session, drive from terminal/browser/phone, run in cloud sandboxes (Modal/E2B/Daytona/etc.), and enforce approval/spend/tool policies; Python 3.12+, degraded native Windows mode",
+      "body_summary": "- Multi-device: sessions follow you across terminal, browser (local web UI at `:6767`), phone, and a macOS desktop app; messages, sub-agents, terminals, and files stay in sync.\n- Collaboration: share a live session, co-drive a running session (`omnigent attach`), or fork it (`omnigent run --fork`); multi-user accounts via `OMNIGENT_AUTH_ENABLED=1`, invite links, optional OIDC.\n- Cloud sandboxes: run sessions in disposable Modal, Daytona, Islo, E2B, CoreWeave, Kubernetes, OpenShell, Boxlite, or Databricks sandboxes; deploy the server via docker compose, Render/Railway/Fly/HF Spaces/Cloudflare/Databricks Apps, or reach a laptop server via Cloudflare tunnel / Tailscale.\n- Policies: server-, agent-, and session-level policies (stricter session rules checked first) that allow/block/ask before shell commands or file writes, cap tool calls, and enforce spend budgets.\n- Example agents: Polly (multi-agent coding orchestrator delegating to worktree sub-agents and cross-vendor reviewers) and Debby (two-headed Claude+GPT brainstorming partner).",
+      "tags": [
+        "meta-harness",
+        "orchestration",
+        "multi-agent",
+        "claude-code",
+        "codex",
+        "cursor",
+        "sandboxing",
+        "policies",
+        "mobile"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [
+        "curl-pipe-sh-installer",
+        "license-not-stated-in-readme",
+        "degraded-windows-sandbox",
+        "runs-multiple-coding-agents"
+      ],
+      "reviewed": "2026-07-09",
+      "path": "catalog/entries/omnigent.md"
+    },
+    {
       "name": "one-skill-to-rule-them-all",
       "title": "One Skill to Rule Them All",
       "url": "https://github.com/rebelytics/one-skill-to-rule-them-all",
@@ -3988,6 +4156,34 @@
       "security_flags": [],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/opencode-fff-search.md"
+    },
+    {
+      "name": "opencode-go",
+      "title": "OpenCode Go",
+      "url": "https://opencode.ai/go",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Low-cost subscription from the OpenCode team ($5 first month, then $10/month) giving access to popular open coding models — GLM-5.2/5.1, Kimi K2.7 Code/K2.6, Qwen3.7/3.6, MiniMax M2.7/M3, DeepSeek V4 Pro/Flash, MiMo — through OpenCode or any agent; dollar-value usage limits, models hosted US/EU/Singapore with a stated zero-retention policy; set up via OpenCode Zen + an API key",
+      "body_summary": "OpenCode Go is a paid subscription from the OpenCode team that provides access to a curated set of popular open-source coding models at low cost — $5 for the first month, then $10/month. It works like any other provider in OpenCode (or any agent): you subscribe via OpenCode Zen, get an API key, and…",
+      "tags": [
+        "opencode",
+        "model-access",
+        "subscription",
+        "glm-5.2",
+        "open-models",
+        "coding-agent",
+        "llm-gateway",
+        "reference"
+      ],
+      "workflows": [],
+      "license": "proprietary",
+      "security_flags": [
+        "proprietary-saas",
+        "api-key-required",
+        "data-leaves-to-third-party"
+      ],
+      "reviewed": "2026-07-09",
+      "path": "catalog/entries/opencode-go.md"
     },
     {
       "name": "opendataloader-pdf",
@@ -4909,6 +5105,33 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/storybloq.md"
+    },
+    {
+      "name": "subtext",
+      "title": "Subtext",
+      "url": "https://github.com/ninjahawk/Subtext",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Live Jacobian-lens viewer that renders a local model's internal 'global workspace' during chat — reads Anthropic's Jacobian lens at 9 layers per token over Qwen3.5-4B, showing verdicts/plans forming before they are spoken; browser canvas + per-token ledger, scrubbable GPU-free replays; validated against Anthropic's reference impl; Apache-2.0",
+      "body_summary": "Subtext is an independent, Apache-2.0 tool that visualizes a language model's internal \"global workspace\" live during a conversation. It builds on Anthropic's Jacobian-lens research (the \"J-space\" / global-workspace work): the Jacobian lens transports a residual-stream activation at any layer into…",
+      "tags": [
+        "interpretability",
+        "jacobian-lens",
+        "global-workspace",
+        "mechanistic-interpretability",
+        "qwen",
+        "local-inference",
+        "visualization",
+        "research"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "single-contributor",
+        "unaudited-model-download"
+      ],
+      "reviewed": "2026-07-09",
+      "path": "catalog/entries/subtext.md"
     },
     {
       "name": "supabase",

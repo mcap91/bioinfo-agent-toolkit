@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T20:52:21.567Z",
+  "generated_at": "2026-07-09T23:14:27.257Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -48,6 +48,16 @@
       "url": "https://claude.com/blog/the-advisor-strategy",
       "summary": "architectural concept for cost-effective agent orchestration; executor/advisor split",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "advisor-tool",
+      "kind": "entry",
+      "title": "Advisor Tool (Claude Code / Claude API)",
+      "url": "https://code.claude.com/docs/en/advisor",
+      "summary": "Anthropic server-side tool that lets Claude consult a second, at-least-as-capable model at decision points (before committing to an approach, on recurring errors, before declaring done); the advisor receives the full conversation and returns guidance Claude applies; configured via /advisor, advisorModel, or --advisor; billed at the advisor model's rates; the concrete feature behind the advisor-strategy concept",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -520,6 +530,16 @@
       "exists": false
     },
     {
+      "id": "claude-autoresearch",
+      "kind": "entry",
+      "title": "Claude Autoresearch (uditgoenka)",
+      "url": "https://github.com/uditgoenka/autoresearch",
+      "summary": "Claude Code / OpenCode / Codex skill+command pack generalizing Karpathy's autoresearch loop (constraint + mechanical metric + autonomous iteration + git rollback) to any domain — 14 commands (autoresearch, plan, debug, fix, security, ship, scenario, predict, learn, reason, probe, improve, evals, regression), a v2.2 orchestrator that derives a success predicate from a plain-language goal, and 9 always-on safety hooks; MIT",
+      "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "claude-code-local-model-switching",
       "kind": "entry",
       "title": "Claude Code Local Model Switching",
@@ -756,6 +776,16 @@
       "url": "https://github.com/openai/codex-plugin-cc",
       "summary": "Official OpenAI plugin enabling Codex usage from within Claude Code — code review (/codex:review), adversarial review, task delegation (/codex:rescue), session transfer, and background job management; requires ChatGPT subscription or OpenAI API key",
       "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "codex-reasoning-token-collapse",
+      "kind": "entry",
+      "title": "Codex 5.5 Reasoning-Token Collapse Evidence",
+      "url": "https://github.com/NickalasLight/codex-reasoning-bug-516-token",
+      "summary": "Public-safe evidence repo investigating a suspected Codex (gpt-5.5) failure where some turns terminate at exact 512-family reasoning-token counts (516/1034/1552); ships Python analyzers plus a blind multi-reviewer audit harness; across manual, rule-assisted, and blind audits, removing the suspected instruction section did not meaningfully reduce concerning clustered hits",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -1065,6 +1095,16 @@
       "exists": true
     },
     {
+      "id": "finding-unknowns-skills",
+      "kind": "entry",
+      "title": "Finding Unknowns Skills",
+      "url": "https://github.com/Neeeophytee/finding-unknowns-skills",
+      "summary": "8 installable SKILL.md skills distilled (with attribution) from Thariq Shihipar's essay on finding your unknowns — blindspot-pass, brainstorm-prototypes, interview-me, reference-hunt, implementation-plan (before), implementation-notes (during), pitch-packager and change-quiz (after); each keys its trigger on the situation and the essay's literal phrases; MIT, cross-agent (Claude Code / Codex / any agentskills.io reader)",
+      "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "firecrawl",
       "kind": "entry",
       "title": "Firecrawl",
@@ -1276,6 +1316,16 @@
       "url": "https://github.com/gglucass/headroom-desktop",
       "summary": "Solid local-first Claude Code cost optimizer with hook injection into ~/.claude/settings.json — worth monitoring given agent-lockdown relevance, but macOS-only stable and single-contributor",
       "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "herdr",
+      "kind": "entry",
+      "title": "Herdr",
+      "url": "https://github.com/ogulcancelik/herdr",
+      "summary": "Terminal-based agent multiplexer (single Rust binary) — real terminal panes for many coding agents at a glance, detach/reattach across terminals or SSH with sessions surviving restarts, tmux-style keyboard + mouse, a plugin marketplace, and a pure socket API that lets agents themselves spawn panes and wait on each other; dual-licensed AGPL-3.0 / commercial",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -1737,6 +1787,16 @@
       "exists": true
     },
     {
+      "id": "omnigent",
+      "kind": "entry",
+      "title": "Omnigent",
+      "url": "https://github.com/omnigent-ai/omnigent",
+      "summary": "Open-source 'meta-harness' giving a common orchestration layer over Claude Code, Codex, Cursor, OpenCode, Hermes, Pi, and custom YAML agents — swap/combine harnesses, mix vendors in one session, drive from terminal/browser/phone, run in cloud sandboxes (Modal/E2B/Daytona/etc.), and enforce approval/spend/tool policies; Python 3.12+, degraded native Windows mode",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "one-skill-to-rule-them-all",
       "kind": "entry",
       "title": "One Skill to Rule Them All",
@@ -1818,6 +1878,16 @@
       "url": "https://github.com/ozgurulukir/opencode-fff-search",
       "summary": "Drop-in OpenCode grep/glob replacement with Rust-backed in-memory index, frecency ranking, and SIMD literal matching — 3-10x faster than process-spawning ripgrep at scale.",
       "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "opencode-go",
+      "kind": "entry",
+      "title": "OpenCode Go",
+      "url": "https://opencode.ai/go",
+      "summary": "Low-cost subscription from the OpenCode team ($5 first month, then $10/month) giving access to popular open coding models — GLM-5.2/5.1, Kimi K2.7 Code/K2.6, Qwen3.7/3.6, MiniMax M2.7/M3, DeepSeek V4 Pro/Flash, MiMo — through OpenCode or any agent; dollar-value usage limits, models hosted US/EU/Singapore with a stated zero-retention policy; set up via OpenCode Zen + an API key",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -2237,6 +2307,16 @@
       "exists": true
     },
     {
+      "id": "subtext",
+      "kind": "entry",
+      "title": "Subtext",
+      "url": "https://github.com/ninjahawk/Subtext",
+      "summary": "Live Jacobian-lens viewer that renders a local model's internal 'global workspace' during chat — reads Anthropic's Jacobian lens at 9 layers per token over Qwen3.5-4B, showing verdicts/plans forming before they are spoken; browser canvas + per-token ledger, scrubbable GPU-free replays; validated against Anthropic's reference impl; Apache-2.0",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "supabase",
       "kind": "entry",
       "title": "Supabase",
@@ -2393,6 +2473,11 @@
     },
     {
       "id": "tag:adr",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:advisor",
       "kind": "tag",
       "exists": true
     },
@@ -2607,6 +2692,11 @@
       "exists": true
     },
     {
+      "id": "tag:analysis-scripts",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:android",
       "kind": "tag",
       "exists": true
@@ -2728,6 +2818,11 @@
     },
     {
       "id": "tag:autonomous-research",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:autoresearch",
       "kind": "tag",
       "exists": true
     },
@@ -3043,6 +3138,11 @@
     },
     {
       "id": "tag:color-palettes",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:community",
       "kind": "tag",
       "exists": true
     },
@@ -3657,6 +3757,11 @@
       "exists": true
     },
     {
+      "id": "tag:evidence",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:evolutionary-search",
       "kind": "tag",
       "exists": true
@@ -3857,7 +3962,17 @@
       "exists": true
     },
     {
+      "id": "tag:glm-5.2",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:glob",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:global-workspace",
       "kind": "tag",
       "exists": true
     },
@@ -3903,6 +4018,11 @@
     },
     {
       "id": "tag:gpt",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:gpt-5.5",
       "kind": "tag",
       "exists": true
     },
@@ -4158,6 +4278,16 @@
     },
     {
       "id": "tag:isolation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:iteration",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:jacobian-lens",
       "kind": "tag",
       "exists": true
     },
@@ -4542,6 +4672,11 @@
       "exists": true
     },
     {
+      "id": "tag:meta-harness",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:meta-prompting",
       "kind": "tag",
       "exists": true
@@ -4607,7 +4742,22 @@
       "exists": true
     },
     {
+      "id": "tag:model-access",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:model-api",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:model-behavior",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:model-escalation",
       "kind": "tag",
       "exists": true
     },
@@ -4843,6 +4993,11 @@
     },
     {
       "id": "tag:open-access",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:open-models",
       "kind": "tag",
       "exists": true
     },
@@ -5097,6 +5252,11 @@
       "exists": true
     },
     {
+      "id": "tag:policies",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:post-training",
       "kind": "tag",
       "exists": true
@@ -5178,6 +5338,11 @@
     },
     {
       "id": "tag:prompt-caching",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:prompt-clarification",
       "kind": "tag",
       "exists": true
     },
@@ -5322,6 +5487,11 @@
       "exists": true
     },
     {
+      "id": "tag:reasoning-tokens",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:red-teaming",
       "kind": "tag",
       "exists": true
@@ -5333,6 +5503,11 @@
     },
     {
       "id": "tag:refactoring",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:reference",
       "kind": "tag",
       "exists": true
     },
@@ -5477,6 +5652,11 @@
       "exists": true
     },
     {
+      "id": "tag:sandboxing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:scaffold",
       "kind": "tag",
       "exists": true
@@ -5582,7 +5762,17 @@
       "exists": true
     },
     {
+      "id": "tag:server-tool",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:serverless",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:session-persistence",
       "kind": "tag",
       "exists": true
     },
@@ -5722,6 +5912,11 @@
       "exists": true
     },
     {
+      "id": "tag:socket-api",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:spaced-repetition",
       "kind": "tag",
       "exists": true
@@ -5827,6 +6022,11 @@
       "exists": true
     },
     {
+      "id": "tag:subscription",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:supply-chain",
       "kind": "tag",
       "exists": true
@@ -5903,6 +6103,11 @@
     },
     {
       "id": "tag:tensorflow",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:terminal-multiplexer",
       "kind": "tag",
       "exists": true
     },
@@ -6108,6 +6313,11 @@
     },
     {
       "id": "tag:unix-philosophy",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:unknowns",
       "kind": "tag",
       "exists": true
     },
@@ -6773,6 +6983,56 @@
     {
       "source": "advisor-strategy",
       "target": "tag:patterns",
+      "relation": "tagged"
+    },
+    {
+      "source": "advisor-tool",
+      "target": "advisor-strategy",
+      "relation": "overlaps"
+    },
+    {
+      "source": "advisor-tool",
+      "target": "agent-teams",
+      "relation": "overlaps"
+    },
+    {
+      "source": "advisor-tool",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "advisor-tool",
+      "target": "tag:advisor",
+      "relation": "tagged"
+    },
+    {
+      "source": "advisor-tool",
+      "target": "tag:anthropic",
+      "relation": "tagged"
+    },
+    {
+      "source": "advisor-tool",
+      "target": "tag:claude-api",
+      "relation": "tagged"
+    },
+    {
+      "source": "advisor-tool",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "advisor-tool",
+      "target": "tag:cost-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "advisor-tool",
+      "target": "tag:model-escalation",
+      "relation": "tagged"
+    },
+    {
+      "source": "advisor-tool",
+      "target": "tag:server-tool",
       "relation": "tagged"
     },
     {
@@ -8296,6 +8556,66 @@
       "relation": "tagged"
     },
     {
+      "source": "claude-autoresearch",
+      "target": "andrej-karpathy-skills",
+      "relation": "overlaps"
+    },
+    {
+      "source": "claude-autoresearch",
+      "target": "autoresearch",
+      "relation": "overlaps"
+    },
+    {
+      "source": "claude-autoresearch",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "claude-autoresearch",
+      "target": "tag:agent-loop",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-autoresearch",
+      "target": "tag:autonomous-agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-autoresearch",
+      "target": "tag:autoresearch",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-autoresearch",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-autoresearch",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-autoresearch",
+      "target": "tag:hooks",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-autoresearch",
+      "target": "tag:iteration",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-autoresearch",
+      "target": "tag:karpathy",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-autoresearch",
+      "target": "tag:opencode",
+      "relation": "tagged"
+    },
+    {
       "source": "claude-code-local-model-switching",
       "target": "cat:agent-pattern",
       "relation": "categorized"
@@ -9268,6 +9588,56 @@
     {
       "source": "codex-plugin-cc",
       "target": "tag:openai",
+      "relation": "tagged"
+    },
+    {
+      "source": "codex-reasoning-token-collapse",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "codex-reasoning-token-collapse",
+      "target": "codex-memory-cleanup",
+      "relation": "overlaps"
+    },
+    {
+      "source": "codex-reasoning-token-collapse",
+      "target": "codex-ssd-write-bug",
+      "relation": "overlaps"
+    },
+    {
+      "source": "codex-reasoning-token-collapse",
+      "target": "tag:analysis-scripts",
+      "relation": "tagged"
+    },
+    {
+      "source": "codex-reasoning-token-collapse",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "codex-reasoning-token-collapse",
+      "target": "tag:evidence",
+      "relation": "tagged"
+    },
+    {
+      "source": "codex-reasoning-token-collapse",
+      "target": "tag:gpt-5.5",
+      "relation": "tagged"
+    },
+    {
+      "source": "codex-reasoning-token-collapse",
+      "target": "tag:model-behavior",
+      "relation": "tagged"
+    },
+    {
+      "source": "codex-reasoning-token-collapse",
+      "target": "tag:reasoning-tokens",
+      "relation": "tagged"
+    },
+    {
+      "source": "codex-reasoning-token-collapse",
+      "target": "tag:reference",
       "relation": "tagged"
     },
     {
@@ -10441,6 +10811,61 @@
       "relation": "tagged"
     },
     {
+      "source": "finding-unknowns-skills",
+      "target": "agent-skills-spec",
+      "relation": "overlaps"
+    },
+    {
+      "source": "finding-unknowns-skills",
+      "target": "cat:skill",
+      "relation": "categorized"
+    },
+    {
+      "source": "finding-unknowns-skills",
+      "target": "skills-cli",
+      "relation": "overlaps"
+    },
+    {
+      "source": "finding-unknowns-skills",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "finding-unknowns-skills",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "finding-unknowns-skills",
+      "target": "tag:community",
+      "relation": "tagged"
+    },
+    {
+      "source": "finding-unknowns-skills",
+      "target": "tag:multi-platform",
+      "relation": "tagged"
+    },
+    {
+      "source": "finding-unknowns-skills",
+      "target": "tag:planning",
+      "relation": "tagged"
+    },
+    {
+      "source": "finding-unknowns-skills",
+      "target": "tag:prompt-clarification",
+      "relation": "tagged"
+    },
+    {
+      "source": "finding-unknowns-skills",
+      "target": "tag:skills",
+      "relation": "tagged"
+    },
+    {
+      "source": "finding-unknowns-skills",
+      "target": "tag:unknowns",
+      "relation": "tagged"
+    },
+    {
       "source": "firecrawl",
       "target": "browser-use",
       "relation": "overlaps"
@@ -11258,6 +11683,46 @@
     {
       "source": "headroom",
       "target": "tag:token-reduction",
+      "relation": "tagged"
+    },
+    {
+      "source": "herdr",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "herdr",
+      "target": "tag:agent-orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "herdr",
+      "target": "tag:plugins",
+      "relation": "tagged"
+    },
+    {
+      "source": "herdr",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "herdr",
+      "target": "tag:session-persistence",
+      "relation": "tagged"
+    },
+    {
+      "source": "herdr",
+      "target": "tag:socket-api",
+      "relation": "tagged"
+    },
+    {
+      "source": "herdr",
+      "target": "tag:terminal-multiplexer",
+      "relation": "tagged"
+    },
+    {
+      "source": "herdr",
+      "target": "tag:tui",
       "relation": "tagged"
     },
     {
@@ -13121,6 +13586,61 @@
       "relation": "tagged"
     },
     {
+      "source": "omnigent",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "omnigent",
+      "target": "frontier",
+      "relation": "overlaps"
+    },
+    {
+      "source": "omnigent",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "omnigent",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "omnigent",
+      "target": "tag:cursor",
+      "relation": "tagged"
+    },
+    {
+      "source": "omnigent",
+      "target": "tag:meta-harness",
+      "relation": "tagged"
+    },
+    {
+      "source": "omnigent",
+      "target": "tag:mobile",
+      "relation": "tagged"
+    },
+    {
+      "source": "omnigent",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "omnigent",
+      "target": "tag:orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "omnigent",
+      "target": "tag:policies",
+      "relation": "tagged"
+    },
+    {
+      "source": "omnigent",
+      "target": "tag:sandboxing",
+      "relation": "tagged"
+    },
+    {
       "source": "one-skill-to-rule-them-all",
       "target": "cat:meta-skill",
       "relation": "categorized"
@@ -13448,6 +13968,51 @@
     {
       "source": "opencode-fff-search",
       "target": "tag:simd",
+      "relation": "tagged"
+    },
+    {
+      "source": "opencode-go",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "opencode-go",
+      "target": "tag:coding-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "opencode-go",
+      "target": "tag:glm-5.2",
+      "relation": "tagged"
+    },
+    {
+      "source": "opencode-go",
+      "target": "tag:llm-gateway",
+      "relation": "tagged"
+    },
+    {
+      "source": "opencode-go",
+      "target": "tag:model-access",
+      "relation": "tagged"
+    },
+    {
+      "source": "opencode-go",
+      "target": "tag:open-models",
+      "relation": "tagged"
+    },
+    {
+      "source": "opencode-go",
+      "target": "tag:opencode",
+      "relation": "tagged"
+    },
+    {
+      "source": "opencode-go",
+      "target": "tag:reference",
+      "relation": "tagged"
+    },
+    {
+      "source": "opencode-go",
+      "target": "tag:subscription",
       "relation": "tagged"
     },
     {
@@ -14968,6 +15533,51 @@
     {
       "source": "storybloq",
       "target": "tag:wiki",
+      "relation": "tagged"
+    },
+    {
+      "source": "subtext",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "subtext",
+      "target": "tag:global-workspace",
+      "relation": "tagged"
+    },
+    {
+      "source": "subtext",
+      "target": "tag:interpretability",
+      "relation": "tagged"
+    },
+    {
+      "source": "subtext",
+      "target": "tag:jacobian-lens",
+      "relation": "tagged"
+    },
+    {
+      "source": "subtext",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "subtext",
+      "target": "tag:mechanistic-interpretability",
+      "relation": "tagged"
+    },
+    {
+      "source": "subtext",
+      "target": "tag:qwen",
+      "relation": "tagged"
+    },
+    {
+      "source": "subtext",
+      "target": "tag:research",
+      "relation": "tagged"
+    },
+    {
+      "source": "subtext",
+      "target": "tag:visualization",
       "relation": "tagged"
     },
     {
