@@ -1,11 +1,12 @@
 # Catalog Index
 
-Generated from 246 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
+Generated from 254 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
 
 ## By Decision Status
 
 | Item | Category | Status | Reason | Tags |
 |---|---|---|---|---|
+| [A Global Workspace in Language Models](entries/anthropic-global-workspace.md) | reference | open | Anthropic interpretability research identifying the \"J-space\" — a small set of internal neural patterns in Claude that function as a global workspace for deliberate reasoning, reportable thoughts, and internal monitoring; includes J-lens technique for reading model thoughts not expressed in output | interpretability, anthropic, consciousness, j-space, j-lens, global-workspace-theory, model-internals, safety-monitoring |
 | [AdGuard Home](entries/adguard-home.md) | framework | open | Production-ready network-wide DNS ad/tracker blocker — infrastructure tool, not an agent/dev workflow component | dns, privacy, ad-blocking, network, self-hosted, docker |
 | [ADHD](entries/adhd.md) | skill | open | parallel divergent ideation via isolated cognitive frames; overlaps with superpowers:brainstorming but the frame isolation and scoring mechanics are worth studying | ideation, brainstorming, parallel, divergent-thinking, cognitive-frames, subagents |
 | [Advise Project Approach](entries/advise-project-approach.md) | skill | open | structured project-level architecture research with comparable analysis, cost checks, and tradeoff discipline; complements /catalog (tool-level) with project-level advisory | architecture, stack-selection, comparables, cost-analysis, project-strategy, decision-methodology |
@@ -44,6 +45,7 @@ Generated from 246 entries in `catalog/entries/`. Regenerate with the catalog `i
 | [Browser Use](entries/browser-use.md) | framework | open | MIT-licensed Python/Rust framework giving LLM agents real browser control — useful for web scraping, form automation, and accessing bioinformatics portals, but Rust-core beta is still experimental and full capability requires commercial cloud | browser-automation, web-scraping, agent, python, rust, claude-code-skill |
 | [Bubblewrap (containers)](entries/bubblewrap-containers.md) | cli-tool | open | Low-level unprivileged Linux sandboxing tool using user namespaces — used by Flatpak, creates empty mount namespaces with selective filesystem binding; C, LGPL-2.0+, mature and auditable | sandbox, linux, security, namespaces, isolation |
 | [Bubblewrap (PWA)](entries/bubblewrap-pwa.md) | cli-tool | open | Google Chrome Labs CLI for wrapping Progressive Web Apps as Android Trusted Web Activity (TWA) APKs — Node.js toolchain with core library, CLI, and validator; Apache-2.0 | pwa, android, twa, mobile, google |
+| [Build AI Agents Free](entries/build-ai-agents-free.md) | reference | open | Beginner tutorial for building a working AI agent ($0, no credit card) using LangChain/LangGraph + Groq free tier (Llama 3.3 70B) with Gemini fallback; covers the plan→act→observe loop, custom tools, conversation memory, and provider failover | tutorial, langchain, langgraph, groq, gemini, agents, beginner, free-tier, python |
 | [Building Evals (Anthropic Cookbook)](entries/building-evals-anthropic.md) | agent-pattern | open | >- | evaluation, grading, testing, claude, llm-ops |
 | [Career-Ops](entries/career-ops.md) | cli-tool | open | >- | job-search, skills, PDF-generation, ATS, batch-processing, multi-CLI |
 | [CASTEM: First Principles for Model-Mediated Work](entries/castem-first-principles-model-mediated-work.md) | reference | open | Portable 6-criterion mnemonic (Credible, Auditable, Supervised, Traceable, Explainable, Monitored) for AI governance in regulated settings — good design checklist, no tooling. | ai-governance, compliance, regulated-ai, mnemonic, audit, validation, oversight |
@@ -52,6 +54,7 @@ Generated from 246 entries in `catalog/entries/`. Regenerate with the catalog `i
 | [CL4R1T4S](entries/cl4r1t4s.md) | reference | open | Collection of leaked AI system prompts; useful security-awareness reference but README contains embedded prompt injection | system-prompts, ai-transparency, security-awareness, prompt-injection |
 | [Claude Agent Teams](entries/agent-teams.md) | agent-pattern | open | primary interactive dispatch path; subscription billing, no API credits needed | agents, teams, dispatch, orchestration |
 | [Claude Autoresearch (uditgoenka)](entries/claude-autoresearch.md) | plugin | open | Claude Code / OpenCode / Codex skill+command pack generalizing Karpathy's autoresearch loop (constraint + mechanical metric + autonomous iteration + git rollback) to any domain — 14 commands (autoresearch, plan, debug, fix, security, ship, scenario, predict, learn, reason, probe, improve, evals, regression), a v2.2 orchestrator that derives a success predicate from a plain-language goal, and 9 always-on safety hooks; MIT | autoresearch, karpathy, agent-loop, claude-code, opencode, codex, hooks, iteration, autonomous-agents |
+| [Claude Code Fable Cost Playbook](entries/claude-code-fable-cost-playbook.md) | agent-pattern | open | Six-technique playbook for reducing Claude Fable 5 spend inside Claude Code CLI — effort-level tuning, subagent model tiering, prompt-cache preservation, hard budget caps, and the advisor alternative pattern | claude-code, cost-optimization, fable, effort-levels, subagents, prompt-caching, budget |
 | [Claude Code Local Model Switching](entries/claude-code-local-model-switching.md) | agent-pattern | open | Shell alias technique for swapping Claude Code between cloud Anthropic, local Ollama/LM Studio, and API-based OSS models (OpenRouter/DeepSeek) via ANTHROPIC_BASE_URL and ANTHROPIC_AUTH_TOKEN environment variables; includes KV cache fix (CLAUDE_CODE_ATTRIBUTION_HEADER=0) and Qwen 3.6 35B config | claude-code, local-inference, ollama, lm-studio, openrouter, model-switching, env-vars |
 | [Claude Code Remote Prompt Hardening](entries/claude-code-remote-prompt-hardening.md) | reference | open | env vars to block remote system prompt injection in Claude Code; operational hardening knowledge for security-sensitive environments | claude-code, security, privacy, env-vars, hardening, system-prompt, version-pinning |
 | [Claude Code Setup Plugin](entries/claude-code-setup-plugin.md) | plugin | open | Official Anthropic plugin that scans a codebase and recommends tailored Claude Code automations — top 1-2 recommendations per category (MCP servers, skills, hooks, subagents, slash commands); read-only analysis, no file modifications | claude-code-plugin, setup, automation, anthropic-official |
@@ -119,6 +122,7 @@ Generated from 246 entries in `catalog/entries/`. Regenerate with the catalog `i
 | [Get Shit Done (GSD)](entries/get-shit-done.md) | framework | open | deprecated (moved to GSD Redux); superpowers skill system already covers meta-prompting and spec-driven development | meta-prompting, context-engineering, spec-driven, claude-md, workflow, kb |
 | [ggwas](entries/ggwas.md) | framework | open | Modern ggplot2 GWAS visualization R package — 17 plot types (Manhattan, QQ, Miami, PheWAS, colocalization, fine-mapping, genetic correlations, karyogram, enrichment), journal themes (Nature/Science/Cell/PLOS), smart downsampling for 10M+ variants, auto-detects PLINK/REGENIE/GCTA/GEMMA; MIT | gwas, visualization, r-package, ggplot2, manhattan-plot, bioinformatics, genomics, publication-ready |
 | [Glama](entries/glama.md) | reference | open | >- | MCP, registry, discovery, gateway, tool-directory |
+| [Google Cloud Knowledge Catalog](entries/google-knowledge-catalog.md) | framework | open | Google Cloud's Gemini-powered data catalog and metadata management platform (formerly Dataplex); builds a dynamic context graph of structured/unstructured data assets for AI agent grounding, with MCP server integration for context retrieval | data-catalog, metadata, google-cloud, gemini, mcp, knowledge-graph, data-governance, ai-agents |
 | [Google Workspace CLI (gws)](entries/googleworkspace-cli.md) | cli-tool | open | Rust CLI with agent-first JSON output and 100+ bundled SKILL.md files covering all Workspace APIs; pre-v1.0 with breaking changes expected | google-workspace, gmail, drive, calendar, sheets, agent-skills, oauth, json-output, rust, meta-skill |
 | [Gradio](entries/gradio.md) | framework | open | >- | python, machine-learning, UI, demo, web-app, huggingface |
 | [Granola MCP](entries/granola-mcp.md) | mcp-server | open | MCP server from Granola that gives AI tools (Claude, ChatGPT, Cursor, Claude Code) access to meeting notes — search conversations, pull context, create follow-ups from what was discussed; remote server at mcp.granola.ai/mcp; requires paid Granola plan | mcp-server, meetings, notes, context, granola |
@@ -146,6 +150,7 @@ Generated from 246 entries in `catalog/entries/`. Regenerate with the catalog `i
 | [Knowledge Graph Construction (Anthropic Cookbook)](entries/knowledge-graph-construction-anthropic.md) | agent-pattern | open | >- | knowledge-graph, entity-extraction, entity-resolution, structured-output, networkx, claude |
 | [Knowledge Work Plugins (Anthropic)](entries/knowledge-work-plugins.md) | framework | open | >- | claude-cowork, claude-code, plugins, skills, connectors, mcp, bio-research |
 | [Langflow](entries/langflow.md) | framework | open | Heavy visual-builder platform with native MCP-server export; too large for direct adoption but worth monitoring for MCP workflow integration patterns. | visual-builder, agentic-workflows, mcp-server, llm-orchestration, multi-agent, python, open-source, orchestration |
+| [Leantime](entries/leantime.md) | framework | open | Open-source project management system designed for non-project managers; combines strategy, planning, and execution with neurodivergence-friendly UX (ADHD, dyslexia, autism); self-hosted PHP/MySQL with Docker support, AGPLv3 | project-management, self-hosted, kanban, gantt, php, docker, neurodivergent, adhd, open-source |
 | [LiteLLM](entries/litellm.md) | framework | open | Open-source Python SDK and self-hosted AI gateway (proxy server) providing a unified OpenAI-compatible interface to 100+ LLM providers — model routing, automatic fallbacks, cost tracking, per-team budgets, Redis caching, guardrails, MCP/A2A support; ~40K stars, 1300+ contributors, YC-backed; MIT | llm-gateway, api-proxy, model-routing, cost-tracking, openai-compatible, multi-provider |
 | [LLaMA Factory](entries/llamafactory.md) | framework | open | Unified fine-tuning framework for 100+ LLMs and VLMs — zero-code web UI (LLaMA Board) and CLI; supports SFT, LoRA/QLoRA (2–8 bit), DPO/KTO/ORPO/PPO, reward modeling, pretraining; multimodal (image/video/audio); vLLM/SGLang inference; NVIDIA/AMD/Ascend NPU/CPU; used by Amazon, NVIDIA, Aliyun; ACL 2024; Apache 2.0 | fine-tuning, lora, qlora, dpo, ppo, multimodal, web-ui, distributed-training, vllm |
 | [Local Model Picks (2026)](entries/local-model-picks-2026.md) | reference | open | Practitioner-curated list of open-source models for local/offline use with RAM requirements — Llama 4 Scout (32GB Q4), Qwen 3.6 7B (16GB, coding), DeepSeek R1 8B (16GB, reasoning), Phi-4 3.8B (8GB, reasoning), Kimi K2.6 1T (API-only, 32B active, matches Claude), Pixtral (VLM), Granite 3 (enterprise/compliance), GPT-OSS 20B/120B | local-inference, open-source-models, quantization, offline, model-selection |
@@ -155,10 +160,12 @@ Generated from 246 entries in `catalog/entries/`. Regenerate with the catalog `i
 | [Matt Pocock Skills](entries/matt-pocock-skills.md) | skill | open | Collection of 17 composable Claude Code skills for disciplined engineering — grilling sessions (alignment interviews before coding), domain modeling (CONTEXT.md + ADRs), TDD red-green-refactor loop, codebase architecture audits with HTML reports, issue triage state machine, PRD synthesis, bug diagnosis loop, code review (standards + spec axes); installable via npx skills | claude-code-skills, engineering-discipline, domain-modeling, tdd, code-review, grilling, architecture, triage |
 | [Maxun](entries/maxun.md) | framework | open | Capable no-code web data platform with MCP support and LLM extraction, but early-stage and AGPLv3 copyleft limits commercial embedding | web-scraping, data-extraction, no-code, mcp-server, llm, crawling, self-hosted |
 | [MCP Server YouTube Transcript](entries/mcp-server-youtube-transcript.md) | mcp-server | open | MCP server exposing a single get_transcript tool for YouTube videos — language fallback, optional timestamps, ad-strip filtering, zero transcript-fetch dependencies; fills the YouTube-to-markdown gap for learning-vault capture | mcp, youtube, transcript, video, media-ingestion |
+| [Medley](entries/medley.md) | plugin | open | Y Combinator-backed Claude Code/Codex plugin providing /mission command for multi-agent orchestration — decomposes goals into coordinated plans across multiple models (Claude, GPT, Gemini, Grok, Qwen, DeepSeek, Ollama), with browser-based mission board for visibility | claude-code, codex, multi-agent, orchestration, plugin, multi-model, yc |
 | [MemPalace](entries/mempalace.md) | framework | open | Local-first AI memory with 96.6% R@5 retrieval, 33 MCP tools, verbatim storage, and pluggable backends; strong benchmarks and Claude Code integration make it worth trialing | memory, semantic-search, mcp-server, local-first, chromadb, knowledge-graph, claude-code |
 | [MemStack](entries/memstack.md) | framework | open | Free-tier skill library is substantial but the PyPI MCP loader performs opaque license checks and stores credentials in-process, warranting supply-chain caution before adoption | skills, memory, sqlite, hooks, tts, mcp-server, freemium, skill-loader, claude-code, meta-skill |
 | [mergekit](entries/mergekit.md) | cli-tool | open | Toolkit for merging pre-trained LLMs — 16+ merge methods (SLERP, TIES, DARE, DELLA, task arithmetic, linear, Karcher mean, etc.); out-of-core merging on CPU or with 8GB VRAM; MoE construction from dense models; LoRA extraction; evolutionary merge methods; multi-stage merging; tokenizer transplantation; Frankenmerging (layer assembly); EMNLP 2024 paper; LGPL-3.0 | model-merging, weight-merging, lora, moe, slerp, ties, dare, llm-tools |
 | [mex](entries/mex.md) | cli-tool | open | Structured markdown scaffold + 11-checker drift-detection CLI for persistent AI agent memory; provider-neutral, ~60% token reduction claims, but single-contributor and overlaps with kb wiki + built-in memory | agent-memory, context-management, drift-detection, scaffold, cli |
+| [Minimal Agent Integration Philosophy](entries/minimal-agent-integration.md) | agent-pattern | open | Practitioner philosophy arguing that production AI agents succeed with one deeply-connected surface (typically inbox+calendar via MCP) rather than broad multi-tool architectures; narrow-and-deep beats wide-and-shallow for auditability and sustained use | agents, mcp, integration-strategy, production-patterns, architecture, philosophy |
 | [MIT OpenCourseWare (OCW)](entries/mit-opencourseware.md) | reference | open | MIT's free online course catalog — 2,500+ courses across all disciplines including linear algebra, statistics, biology, computer science; useful as source material for learning-vault ingestion and structured self-study | education, courses, learning, mit, open-access |
 | [mlx-vlm TurboQuant (Apple Silicon KV Cache Compression)](entries/mlx-vlm-turboquant.md) | framework | open | Production-quality Metal kernels implementing TurboQuant on Apple Silicon; benchmarked and ready for review but PR not yet merged | quantization, kv-cache, apple-silicon, mlx, metal, inference, vision-language |
 | [Model Sovereignty and Data Flywheel Strategy](entries/model-sovereignty-data-flywheel.md) | reference | open | Practitioner argument for organizations owning fine-tuned models rather than depending on closed API providers — cites GPT 5.6 Sol government-approval access restriction, declining GPU costs, competitive data flywheels as moat, and negative-example datasets for hallucination reduction | fine-tuning, model-sovereignty, data-flywheel, open-source-models, self-hosted, vendor-independence, hallucination-reduction |
@@ -197,6 +204,7 @@ Generated from 246 entries in `catalog/entries/`. Regenerate with the catalog `i
 | [Perplexity MCP Server](entries/perplexity-mcp-server.md) | mcp-server | open | Official Perplexity MCP server providing real-time web search, conversational AI, and advanced reasoning tools to MCP-compatible clients; one-click install for Claude Code, Cursor, Codex; npm package @perplexity-ai/mcp-server; requires Perplexity API key | mcp-server, perplexity, web-search, reasoning, ai-search |
 | [Pi-hole](entries/pi-hole.md) | reference | open | Network-wide DNS ad blocker — mature infrastructure tool, informational for lab network hygiene | dns, ad-blocking, privacy, self-hosted, network, sinkhole, dhcp |
 | [PII Detection / Compliance Skills](entries/pii-detection.md) | skill | open | HIPAA/CCPA/PCI-DSS coverage; pilot if handling sensitive data | pii, compliance, hipaa, ccpa, security |
+| [Pilotfish](entries/pilotfish.md) | skill | open | Multi-model orchestration layer for Claude Code — six agent roles (haiku scouts, sonnet executor, opus judgment, adversarial verifier, security) that delegate from a frontier orchestrator; one-prompt install to ~/.claude/, benchmarked at 96% of all-Fable performance for 46% cost | claude-code, multi-model, orchestration, subagents, cost-optimization, fable, skill |
 | [Piyaz](entries/piyaz.md) | framework | open | Agentic workspace where people and AI coding agents collaborate on projects — context network with dependency-graph task management, 6 MCP tools, end-to-end composer orchestration (Claude Code), plugins for Codex/Cursor/Antigravity; hosted + self-hostable, AGPL-3.0 | project-management, agent-workspace, context-network, task-graph, mcp, multi-agent, claude-code |
 | [Ponytail](entries/ponytail.md) | plugin | open | YAGNI enforcement plugin with strong benchmarks (80-94% less code, 47-77% cheaper); multi-platform support and clean design make it worth trialing | claude-code, codex, plugin, yagni, minimalism, code-quality, over-engineering |
 | [Prompt Versioning and Rollback (Managed Agents)](entries/prompt-versioning-managed-agents.md) | agent-pattern | open | >- | managed-agents, prompt-management, versioning, rollback, evaluation, claude |
@@ -255,6 +263,59 @@ Generated from 246 entries in `catalog/entries/`. Regenerate with the catalog `i
 
 ## By Workflow
 
+### agent-design
+
+- [Minimal Agent Integration Philosophy](entries/minimal-agent-integration.md) — open — Practitioner philosophy arguing that production AI agents succeed with one deeply-connected surface (typically inbox+calendar via MCP) rather than broad multi-tool architectures; narrow-and-deep beats wide-and-shallow for auditability and sustained use
+
+### agent-development
+
+- [Build AI Agents Free](entries/build-ai-agents-free.md) — open — Beginner tutorial for building a working AI agent ($0, no credit card) using LangChain/LangGraph + Groq free tier (Llama 3.3 70B) with Gemini fallback; covers the plan→act→observe loop, custom tools, conversation memory, and provider failover
+
+### agent-grounding
+
+- [Google Cloud Knowledge Catalog](entries/google-knowledge-catalog.md) — open — Google Cloud's Gemini-powered data catalog and metadata management platform (formerly Dataplex); builds a dynamic context graph of structured/unstructured data assets for AI agent grounding, with MCP server integration for context retrieval
+
+### agent-orchestration
+
+- [Medley](entries/medley.md) — open — Y Combinator-backed Claude Code/Codex plugin providing /mission command for multi-agent orchestration — decomposes goals into coordinated plans across multiple models (Claude, GPT, Gemini, Grok, Qwen, DeepSeek, Ollama), with browser-based mission board for visibility
+- [Pilotfish](entries/pilotfish.md) — open — Multi-model orchestration layer for Claude Code — six agent roles (haiku scouts, sonnet executor, opus judgment, adversarial verifier, security) that delegate from a frontier orchestrator; one-prompt install to ~/.claude/, benchmarked at 96% of all-Fable performance for 46% cost
+
+### code-generation
+
+- [Pilotfish](entries/pilotfish.md) — open — Multi-model orchestration layer for Claude Code — six agent roles (haiku scouts, sonnet executor, opus judgment, adversarial verifier, security) that delegate from a frontier orchestrator; one-prompt install to ~/.claude/, benchmarked at 96% of all-Fable performance for 46% cost
+
+### code-review
+
+- [Pilotfish](entries/pilotfish.md) — open — Multi-model orchestration layer for Claude Code — six agent roles (haiku scouts, sonnet executor, opus judgment, adversarial verifier, security) that delegate from a frontier orchestrator; one-prompt install to ~/.claude/, benchmarked at 96% of all-Fable performance for 46% cost
+
+### data-discovery
+
+- [Google Cloud Knowledge Catalog](entries/google-knowledge-catalog.md) — open — Google Cloud's Gemini-powered data catalog and metadata management platform (formerly Dataplex); builds a dynamic context graph of structured/unstructured data assets for AI agent grounding, with MCP server integration for context retrieval
+
+### gtm
+
+- [Medley](entries/medley.md) — open — Y Combinator-backed Claude Code/Codex plugin providing /mission command for multi-agent orchestration — decomposes goals into coordinated plans across multiple models (Claude, GPT, Gemini, Grok, Qwen, DeepSeek, Ollama), with browser-based mission board for visibility
+
+### learning
+
+- [Build AI Agents Free](entries/build-ai-agents-free.md) — open — Beginner tutorial for building a working AI agent ($0, no credit card) using LangChain/LangGraph + Groq free tier (Llama 3.3 70B) with Gemini fallback; covers the plan→act→observe loop, custom tools, conversation memory, and provider failover
+
+### metadata-enrichment
+
+- [Google Cloud Knowledge Catalog](entries/google-knowledge-catalog.md) — open — Google Cloud's Gemini-powered data catalog and metadata management platform (formerly Dataplex); builds a dynamic context graph of structured/unstructured data assets for AI agent grounding, with MCP server integration for context retrieval
+
+### model-monitoring
+
+- [A Global Workspace in Language Models](entries/anthropic-global-workspace.md) — open — Anthropic interpretability research identifying the \"J-space\" — a small set of internal neural patterns in Claude that function as a global workspace for deliberate reasoning, reportable thoughts, and internal monitoring; includes J-lens technique for reading model thoughts not expressed in output
+
+### project-planning
+
+- [Leantime](entries/leantime.md) — open — Open-source project management system designed for non-project managers; combines strategy, planning, and execution with neurodivergence-friendly UX (ADHD, dyslexia, autism); self-hosted PHP/MySQL with Docker support, AGPLv3
+
+### safety-evaluation
+
+- [A Global Workspace in Language Models](entries/anthropic-global-workspace.md) — open — Anthropic interpretability research identifying the \"J-space\" — a small set of internal neural patterns in Claude that function as a global workspace for deliberate reasoning, reportable thoughts, and internal monitoring; includes J-lens technique for reading model thoughts not expressed in output
+
 ### scRNA-seq
 
 - [BMAD Skill Forge](entries/bmad-skill-forge.md) — open — strong fit for bioinformatics tool skill generation; start with Brief tier on samtools
@@ -267,6 +328,18 @@ Generated from 246 entries in `catalog/entries/`. Regenerate with the catalog `i
 - [Book to Skill](entries/book-to-skill.md) — open — directly useful for computational biology methods PDFs
 - [LocateAnything](entries/locate-anything.md) — open — novel parallel box decoding for vision-language grounding; 3B model on HuggingFace; evaluate for spatial/histology image analysis when pipeline matures
 - [Web Artifacts Builder](entries/web-artifacts-builder.md) — open — use when markdown isn't enough for interactive reports/dashboards
+
+### task-decomposition
+
+- [Medley](entries/medley.md) — open — Y Combinator-backed Claude Code/Codex plugin providing /mission command for multi-agent orchestration — decomposes goals into coordinated plans across multiple models (Claude, GPT, Gemini, Grok, Qwen, DeepSeek, Ollama), with browser-based mission board for visibility
+
+### task-management
+
+- [Leantime](entries/leantime.md) — open — Open-source project management system designed for non-project managers; combines strategy, planning, and execution with neurodivergence-friendly UX (ADHD, dyslexia, autism); self-hosted PHP/MySQL with Docker support, AGPLv3
+
+### time-tracking
+
+- [Leantime](entries/leantime.md) — open — Open-source project management system designed for non-project managers; combines strategy, planning, and execution with neurodivergence-friendly UX (ADHD, dyslexia, autism); self-hosted PHP/MySQL with Docker support, AGPLv3
 
 ### General
 
@@ -314,6 +387,7 @@ Generated from 246 entries in `catalog/entries/`. Regenerate with the catalog `i
 - [CL4R1T4S](entries/cl4r1t4s.md) — open — Collection of leaked AI system prompts; useful security-awareness reference but README contains embedded prompt injection
 - [Claude Agent Teams](entries/agent-teams.md) — open — primary interactive dispatch path; subscription billing, no API credits needed
 - [Claude Autoresearch (uditgoenka)](entries/claude-autoresearch.md) — open — Claude Code / OpenCode / Codex skill+command pack generalizing Karpathy's autoresearch loop (constraint + mechanical metric + autonomous iteration + git rollback) to any domain — 14 commands (autoresearch, plan, debug, fix, security, ship, scenario, predict, learn, reason, probe, improve, evals, regression), a v2.2 orchestrator that derives a success predicate from a plain-language goal, and 9 always-on safety hooks; MIT
+- [Claude Code Fable Cost Playbook](entries/claude-code-fable-cost-playbook.md) — open — Six-technique playbook for reducing Claude Fable 5 spend inside Claude Code CLI — effort-level tuning, subagent model tiering, prompt-cache preservation, hard budget caps, and the advisor alternative pattern
 - [Claude Code Local Model Switching](entries/claude-code-local-model-switching.md) — open — Shell alias technique for swapping Claude Code between cloud Anthropic, local Ollama/LM Studio, and API-based OSS models (OpenRouter/DeepSeek) via ANTHROPIC_BASE_URL and ANTHROPIC_AUTH_TOKEN environment variables; includes KV cache fix (CLAUDE_CODE_ATTRIBUTION_HEADER=0) and Qwen 3.6 35B config
 - [Claude Code Remote Prompt Hardening](entries/claude-code-remote-prompt-hardening.md) — open — env vars to block remote system prompt injection in Claude Code; operational hardening knowledge for security-sensitive environments
 - [Claude Code Setup Plugin](entries/claude-code-setup-plugin.md) — open — Official Anthropic plugin that scans a codebase and recommends tailored Claude Code automations — top 1-2 recommendations per category (MCP servers, skills, hooks, subagents, slash commands); read-only analysis, no file modifications
@@ -525,12 +599,14 @@ Generated from 246 entries in `catalog/entries/`. Regenerate with the catalog `i
 - [Automation Credit Dependency Pattern](entries/automation-credit-dependency.md) — open — Map who gets credit for the work before automating it — treat visibility as a technical dependency; invisible automation can damage careers even when it works perfectly
 - [Building Evals (Anthropic Cookbook)](entries/building-evals-anthropic.md) — open — >-
 - [Claude Agent Teams](entries/agent-teams.md) — open — primary interactive dispatch path; subscription billing, no API credits needed
+- [Claude Code Fable Cost Playbook](entries/claude-code-fable-cost-playbook.md) — open — Six-technique playbook for reducing Claude Fable 5 spend inside Claude Code CLI — effort-level tuning, subagent model tiering, prompt-cache preservation, hard budget caps, and the advisor alternative pattern
 - [Claude Code Local Model Switching](entries/claude-code-local-model-switching.md) — open — Shell alias technique for swapping Claude Code between cloud Anthropic, local Ollama/LM Studio, and API-based OSS models (OpenRouter/DeepSeek) via ANTHROPIC_BASE_URL and ANTHROPIC_AUTH_TOKEN environment variables; includes KV cache fix (CLAUDE_CODE_ATTRIBUTION_HEADER=0) and Qwen 3.6 35B config
 - [Claude Native Subagents](entries/native-subagents.md) — open — lightweight HO consultation route within existing sessions; no separate billing
 - [CodeAct](entries/code-act.md) — open — >-
 - [Confidence-Probing Prompts](entries/confidence-probing-prompts.md) — open — Collection of meta-prompting patterns that surface agent blind spots — 'what are you least confident about' (forces enumeration of uninvestigated areas), 'what's the biggest thing I'm missing' (Altman), plus future-proofing, hidden-bias, and session-improvement variants
 - [Contextual Retrieval (Anthropic Cookbook)](entries/contextual-retrieval-anthropic.md) — open — >-
 - [Knowledge Graph Construction (Anthropic Cookbook)](entries/knowledge-graph-construction-anthropic.md) — open — >-
+- [Minimal Agent Integration Philosophy](entries/minimal-agent-integration.md) — open — Practitioner philosophy arguing that production AI agents succeed with one deeply-connected surface (typically inbox+calendar via MCP) rather than broad multi-tool architectures; narrow-and-deep beats wide-and-shallow for auditability and sustained use
 - [Outcomes / Outcome Grader (Managed Agents)](entries/outcomes-managed-agents.md) — open — >-
 - [Parallel Local Inference Pattern (vLLM)](entries/parallel-local-inference.md) — open — Strategy for maximizing local GPU throughput by running multiple concurrent LLM agents via vLLM — exploits idle compute from memory-bandwidth bottleneck; 8-9x aggregate throughput over single-stream; per-agent throughput drops slightly but total throughput scales near-linearly with concurrency
 - [Prompt Versioning and Rollback (Managed Agents)](entries/prompt-versioning-managed-agents.md) — open — >-
@@ -602,6 +678,7 @@ Generated from 246 entries in `catalog/entries/`. Regenerate with the catalog `i
 - [gbrain](entries/gbrain.md) — open — kb wiki already provides persistent typed records with relationships and search
 - [Get Shit Done (GSD)](entries/get-shit-done.md) — open — deprecated (moved to GSD Redux); superpowers skill system already covers meta-prompting and spec-driven development
 - [ggwas](entries/ggwas.md) — open — Modern ggplot2 GWAS visualization R package — 17 plot types (Manhattan, QQ, Miami, PheWAS, colocalization, fine-mapping, genetic correlations, karyogram, enrichment), journal themes (Nature/Science/Cell/PLOS), smart downsampling for 10M+ variants, auto-detects PLINK/REGENIE/GCTA/GEMMA; MIT
+- [Google Cloud Knowledge Catalog](entries/google-knowledge-catalog.md) — open — Google Cloud's Gemini-powered data catalog and metadata management platform (formerly Dataplex); builds a dynamic context graph of structured/unstructured data assets for AI agent grounding, with MCP server integration for context retrieval
 - [Gradio](entries/gradio.md) — open — >-
 - [Graphify](entries/graphify.md) — open — direct inspiration for kb graph; concepts like confidence-tagged edges and clustering worth learning from
 - [gstack](entries/gstack.md) — open — kb dispatch covers the relevant orchestration patterns; browser/deployment out of scope
@@ -614,6 +691,7 @@ Generated from 246 entries in `catalog/entries/`. Regenerate with the catalog `i
 - [Karakeep](entries/karakeep.md) — open — Self-hostable AI bookmark manager with REST API, official agent skills, and Ollama support — agent-friendly but self-described as under heavy development.
 - [Knowledge Work Plugins (Anthropic)](entries/knowledge-work-plugins.md) — open — >-
 - [Langflow](entries/langflow.md) — open — Heavy visual-builder platform with native MCP-server export; too large for direct adoption but worth monitoring for MCP workflow integration patterns.
+- [Leantime](entries/leantime.md) — open — Open-source project management system designed for non-project managers; combines strategy, planning, and execution with neurodivergence-friendly UX (ADHD, dyslexia, autism); self-hosted PHP/MySQL with Docker support, AGPLv3
 - [LiteLLM](entries/litellm.md) — open — Open-source Python SDK and self-hosted AI gateway (proxy server) providing a unified OpenAI-compatible interface to 100+ LLM providers — model routing, automatic fallbacks, cost tracking, per-team budgets, Redis caching, guardrails, MCP/A2A support; ~40K stars, 1300+ contributors, YC-backed; MIT
 - [LLaMA Factory](entries/llamafactory.md) — open — Unified fine-tuning framework for 100+ LLMs and VLMs — zero-code web UI (LLaMA Board) and CLI; supports SFT, LoRA/QLoRA (2–8 bit), DPO/KTO/ORPO/PPO, reward modeling, pretraining; multimodal (image/video/audio); vLLM/SGLang inference; NVIDIA/AMD/Ascend NPU/CPU; used by Amazon, NVIDIA, Aliyun; ACL 2024; Apache 2.0
 - [LocalAI](entries/localai.md) — open — Open-source local AI engine — drop-in OpenAI/Anthropic/ElevenLabs API compatibility across 60+ backends (llama.cpp, vLLM, whisper.cpp, stable-diffusion, MLX, etc.); supports LLMs, vision, voice, image, video on any hardware (NVIDIA/AMD/Intel/Apple/Vulkan/CPU); multi-user auth with quotas, built-in agents with MCP/RAG/tool use, distributed cluster mode, fine-tuning UI, WebRTC realtime audio; MIT
@@ -702,6 +780,7 @@ Generated from 246 entries in `catalog/entries/`. Regenerate with the catalog `i
 - [Frontier](entries/frontier.md) — open — Well-architected multi-harness orchestration runtime for Claude Code; early preview but the token-economics argument and delegation model are sound
 - [Hackingtool Plugin](entries/hackingtool-plugin.md) — open — Claude Code plugin wrapping 183 pentesting/OSINT tools from Z4nzu/hackingtool — auto-selects backend (native Bash, WSL, Docker with purpose-built images), 56 plug-and-play / 127 environment-dependent tools across 20+ categories; MIT
 - [Headroom Desktop](entries/headroom-desktop.md) — open — Solid local-first Claude Code cost optimizer with hook injection into ~/.claude/settings.json — worth monitoring given agent-lockdown relevance, but macOS-only stable and single-contributor
+- [Medley](entries/medley.md) — open — Y Combinator-backed Claude Code/Codex plugin providing /mission command for multi-agent orchestration — decomposes goals into coordinated plans across multiple models (Claude, GPT, Gemini, Grok, Qwen, DeepSeek, Ollama), with browser-based mission board for visibility
 - [opencode-fff-search](entries/opencode-fff-search.md) — open — Drop-in OpenCode grep/glob replacement with Rust-backed in-memory index, frecency ranking, and SIMD literal matching — 3-10x faster than process-spawning ripgrep at scale.
 - [Ponytail](entries/ponytail.md) — open — YAGNI enforcement plugin with strong benchmarks (80-94% less code, 47-77% cheaper); multi-platform support and clean design make it worth trialing
 - [Second Brain Skills](entries/second-brain-skills.md) — open — Claude Code skill collection for knowledge work — MCP client with progressive disclosure, PPTX/carousel generator with brand system, SOP/runbook creator, Remotion video creator, skill creator guide, and brand & voice generator; by Cole Medin
@@ -709,6 +788,7 @@ Generated from 246 entries in `catalog/entries/`. Regenerate with the catalog `i
 
 ### reference
 
+- [A Global Workspace in Language Models](entries/anthropic-global-workspace.md) — open — Anthropic interpretability research identifying the \"J-space\" — a small set of internal neural patterns in Claude that function as a global workspace for deliberate reasoning, reportable thoughts, and internal monitoring; includes J-lens technique for reading model thoughts not expressed in output
 - [Advisor Tool (Claude Code / Claude API)](entries/advisor-tool.md) — open — Anthropic server-side tool that lets Claude consult a second, at-least-as-capable model at decision points (before committing to an approach, on recurring errors, before declaring done); the advisor receives the full conversation and returns guidance Claude applies; configured via /advisor, advisorModel, or --advisor; billed at the advisor model's rates; the concrete feature behind the advisor-strategy concept
 - [Agent Execution Governance](entries/agent-execution-governance.md) — open — Discussion arguing the 'killer app' for AI agents is autonomous operational automation with trust infrastructure — identity, execution governance, verification receipts, routing, and observability — not consumer assistants
 - [Agent Skills Open Standard (agentskills.io)](entries/agent-skills-spec.md) — open — Anthropic's open SKILL.md specification for packaging agent capabilities — adopted by 32+ tools (Claude Code, Codex, Cursor, Gemini CLI, Kiro, Junie, Goose); progressive-disclosure format (name/description → full instructions → scripts/assets); 100K+ stars on anthropics/skills; the cross-vendor standard our skills are built on
@@ -718,6 +798,7 @@ Generated from 246 entries in `catalog/entries/`. Regenerate with the catalog `i
 - [Awesome A2A](entries/awesome-a2a.md) — open — Curated ecosystem list for Google's Agent2Agent protocol — SDKs, framework integrations, community implementations, tools, and tutorials; use as discovery source for A2A-compatible agent infrastructure
 - [Awesome Claude Code](entries/awesome-claude-code.md) — open — curated Claude Code ecosystem list; use as discovery source for future catalog inbox items
 - [BioMysteryBench](entries/biomysterybench.md) — open — 99-problem bioinformatics research benchmark from Anthropic — directly useful for evaluating agent performance on real research tasks.
+- [Build AI Agents Free](entries/build-ai-agents-free.md) — open — Beginner tutorial for building a working AI agent ($0, no credit card) using LangChain/LangGraph + Groq free tier (Llama 3.3 70B) with Gemini fallback; covers the plan→act→observe loop, custom tools, conversation memory, and provider failover
 - [CASTEM: First Principles for Model-Mediated Work](entries/castem-first-principles-model-mediated-work.md) — open — Portable 6-criterion mnemonic (Credible, Auditable, Supervised, Traceable, Explainable, Monitored) for AI governance in regulated settings — good design checklist, no tooling.
 - [CL4R1T4S](entries/cl4r1t4s.md) — open — Collection of leaked AI system prompts; useful security-awareness reference but README contains embedded prompt injection
 - [Claude Code Remote Prompt Hardening](entries/claude-code-remote-prompt-hardening.md) — open — env vars to block remote system prompt injection in Claude Code; operational hardening knowledge for security-sensitive environments
@@ -777,6 +858,7 @@ Generated from 246 entries in `catalog/entries/`. Regenerate with the catalog `i
 - [Matt Pocock Skills](entries/matt-pocock-skills.md) — open — Collection of 17 composable Claude Code skills for disciplined engineering — grilling sessions (alignment interviews before coding), domain modeling (CONTEXT.md + ADRs), TDD red-green-refactor loop, codebase architecture audits with HTML reports, issue triage state machine, PRD synthesis, bug diagnosis loop, code review (standards + spec axes); installable via npx skills
 - [Obsidian Skills (Kepano)](entries/obsidian-skills.md) — open — Obsidian-specific; Defuddle (web→clean markdown) and skill packaging patterns worth noting
 - [PII Detection / Compliance Skills](entries/pii-detection.md) — open — HIPAA/CCPA/PCI-DSS coverage; pilot if handling sensitive data
+- [Pilotfish](entries/pilotfish.md) — open — Multi-model orchestration layer for Claude Code — six agent roles (haiku scouts, sonnet executor, opus judgment, adversarial verifier, security) that delegate from a frontier orchestrator; one-prompt install to ~/.claude/, benchmarked at 96% of all-Fable performance for 46% cost
 - [sota-scan](entries/sota-scan.md) — open — Useful comparative benchmarking skill for Claude Code, but single-contributor, no tests, and high token cost for exhaustive mode
 - [Superpowers: Verification Before Completion](entries/superpowers-verification-before-completion.md) — open — canonical 'evidence before claims' gate skill — already active in this project and referenced by other catalog entries as the standard
 - [Tutorial Creator](entries/tutorial-creator.md) — open — good for knowledge retention and onboarding
