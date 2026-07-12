@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-07-09",
-  "count": 246,
+  "generated": "2026-07-12",
+  "count": 254,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -489,6 +489,33 @@
       "path": "catalog/entries/anthropic-financial-services.md"
     },
     {
+      "name": "anthropic-global-workspace",
+      "title": "A Global Workspace in Language Models",
+      "url": "https://www.anthropic.com/research/global-workspace",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Anthropic interpretability research identifying the \\\"J-space\\\" — a small set of internal neural patterns in Claude that function as a global workspace for deliberate reasoning, reportable thoughts, and internal monitoring; includes J-lens technique for reading model thoughts not expressed in output",
+      "body_summary": "A research paper and blog post from Anthropic presenting evidence that Claude has developed an internal \"global workspace\" — a small collection of neural activation patterns (the \"J-space\") that play a privileged role compared to all other internal processing. The J-space was not designed but…",
+      "tags": [
+        "interpretability",
+        "anthropic",
+        "consciousness",
+        "j-space",
+        "j-lens",
+        "global-workspace-theory",
+        "model-internals",
+        "safety-monitoring"
+      ],
+      "workflows": [
+        "model-monitoring",
+        "safety-evaluation"
+      ],
+      "license": "proprietary",
+      "security_flags": [],
+      "reviewed": "2026-07-12",
+      "path": "catalog/entries/anthropic-global-workspace.md"
+    },
+    {
       "name": "aperture-cli",
       "title": "Aperture CLI",
       "url": "https://github.com/tailscale/aperture-cli",
@@ -933,6 +960,34 @@
       "path": "catalog/entries/bubblewrap-pwa.md"
     },
     {
+      "name": "build-ai-agents-free",
+      "title": "Build AI Agents Free",
+      "url": "https://github.com/Moh4696/build-ai-agents-free",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Beginner tutorial for building a working AI agent ($0, no credit card) using LangChain/LangGraph + Groq free tier (Llama 3.3 70B) with Gemini fallback; covers the plan→act→observe loop, custom tools, conversation memory, and provider failover",
+      "body_summary": "A step-by-step tutorial (with runnable code) for building an AI agent entirely on free infrastructure. Targets complete beginners — no prior experience assumed. Uses LangChain's `create_agent` + LangGraph with Groq's free Llama 3.3 70B (~14,400 requests/day, no card) as primary model and Google…",
+      "tags": [
+        "tutorial",
+        "langchain",
+        "langgraph",
+        "groq",
+        "gemini",
+        "agents",
+        "beginner",
+        "free-tier",
+        "python"
+      ],
+      "workflows": [
+        "agent-development",
+        "learning"
+      ],
+      "license": "unknown",
+      "security_flags": [],
+      "reviewed": "2026-07-12",
+      "path": "catalog/entries/build-ai-agents-free.md"
+    },
+    {
       "name": "building-evals-anthropic",
       "title": "Building Evals (Anthropic Cookbook)",
       "url": "https://platform.claude.com/cookbook/misc-building-evals",
@@ -1093,6 +1148,29 @@
       ],
       "reviewed": "2026-07-09",
       "path": "catalog/entries/claude-autoresearch.md"
+    },
+    {
+      "name": "claude-code-fable-cost-playbook",
+      "title": "Claude Code Fable Cost Playbook",
+      "url": "https://community.anthropic.com",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Six-technique playbook for reducing Claude Fable 5 spend inside Claude Code CLI — effort-level tuning, subagent model tiering, prompt-cache preservation, hard budget caps, and the advisor alternative pattern",
+      "body_summary": "A practitioner-compiled cost-optimization guide for running Claude Fable 5 (priced at $10/M input, $50/M output) inside Claude Code without runaway bills. Covers six techniques that compose together.\n\n1. **Effort-level tuning.** `\\effort low` reduces output token generation by ~80% with negligible…",
+      "tags": [
+        "claude-code",
+        "cost-optimization",
+        "fable",
+        "effort-levels",
+        "subagents",
+        "prompt-caching",
+        "budget"
+      ],
+      "workflows": [],
+      "license": "n/a",
+      "security_flags": [],
+      "reviewed": "2026-07-12",
+      "path": "catalog/entries/claude-code-fable-cost-playbook.md"
     },
     {
       "name": "claude-code-local-model-switching",
@@ -2593,6 +2671,37 @@
       "path": "catalog/entries/glama.md"
     },
     {
+      "name": "google-knowledge-catalog",
+      "title": "Google Cloud Knowledge Catalog",
+      "url": "https://github.com/GoogleCloudPlatform/knowledge-catalog",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Google Cloud's Gemini-powered data catalog and metadata management platform (formerly Dataplex); builds a dynamic context graph of structured/unstructured data assets for AI agent grounding, with MCP server integration for context retrieval",
+      "body_summary": "Google Cloud Knowledge Catalog (rebranded from Dataplex Universal Catalog in April 2026) is a fully managed data cataloging and metadata management platform. It automatically harvests technical metadata from BigQuery, AlloyDB, Spanner, Cloud SQL, Firestore, Looker, and third-party systems, then…",
+      "tags": [
+        "data-catalog",
+        "metadata",
+        "google-cloud",
+        "gemini",
+        "mcp",
+        "knowledge-graph",
+        "data-governance",
+        "ai-agents"
+      ],
+      "workflows": [
+        "data-discovery",
+        "metadata-enrichment",
+        "agent-grounding"
+      ],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "cloud-hosted",
+        "requires-gcp-auth"
+      ],
+      "reviewed": "2026-07-12",
+      "path": "catalog/entries/google-knowledge-catalog.md"
+    },
+    {
       "name": "googleworkspace-cli",
       "title": "Google Workspace CLI (gws)",
       "url": "https://github.com/googleworkspace/cli",
@@ -3242,6 +3351,38 @@
       "path": "catalog/entries/langflow.md"
     },
     {
+      "name": "leantime",
+      "title": "Leantime",
+      "url": "https://github.com/leantime/leantime",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source project management system designed for non-project managers; combines strategy, planning, and execution with neurodivergence-friendly UX (ADHD, dyslexia, autism); self-hosted PHP/MySQL with Docker support, AGPLv3",
+      "body_summary": "Leantime is a self-hosted, open-source project management system positioned as an alternative to ClickUp, Monday, Asana, and Jira. It targets non-project-manager users and is explicitly designed with neurodivergent users in mind (ADHD, dyslexia, autism).\n\n- **Task management.** Kanban boards, Gantt…",
+      "tags": [
+        "project-management",
+        "self-hosted",
+        "kanban",
+        "gantt",
+        "php",
+        "docker",
+        "neurodivergent",
+        "adhd",
+        "open-source"
+      ],
+      "workflows": [
+        "project-planning",
+        "task-management",
+        "time-tracking"
+      ],
+      "license": "AGPL-3.0",
+      "security_flags": [
+        "self-hosted",
+        "requires-database"
+      ],
+      "reviewed": "2026-07-12",
+      "path": "catalog/entries/leantime.md"
+    },
+    {
       "name": "litellm",
       "title": "LiteLLM",
       "url": "https://github.com/BerriAI/litellm",
@@ -3459,6 +3600,37 @@
       "path": "catalog/entries/mcp-server-youtube-transcript.md"
     },
     {
+      "name": "medley",
+      "title": "Medley",
+      "url": "https://www.medley.sh/",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Y Combinator-backed Claude Code/Codex plugin providing /mission command for multi-agent orchestration — decomposes goals into coordinated plans across multiple models (Claude, GPT, Gemini, Grok, Qwen, DeepSeek, Ollama), with browser-based mission board for visibility",
+      "body_summary": "Medley is a plugin for Claude Code and Codex that adds a `/mission` command for multi-agent task orchestration. When invoked, it decomposes a goal into a structured plan, assigns steps to a coordinated team of agents (potentially using different models), and executes them sequentially, in parallel,…",
+      "tags": [
+        "claude-code",
+        "codex",
+        "multi-agent",
+        "orchestration",
+        "plugin",
+        "multi-model",
+        "yc"
+      ],
+      "workflows": [
+        "agent-orchestration",
+        "task-decomposition",
+        "gtm"
+      ],
+      "license": "proprietary",
+      "security_flags": [
+        "requires-api-keys",
+        "cloud-service",
+        "waitlist"
+      ],
+      "reviewed": "2026-07-12",
+      "path": "catalog/entries/medley.md"
+    },
+    {
       "name": "mempalace",
       "title": "MemPalace",
       "url": "https://github.com/MemPalace/mempalace",
@@ -3561,6 +3733,30 @@
       ],
       "reviewed": "2026-06-17",
       "path": "catalog/entries/mex.md"
+    },
+    {
+      "name": "minimal-agent-integration",
+      "title": "Minimal Agent Integration Philosophy",
+      "url": "https://community.anthropic.com",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Practitioner philosophy arguing that production AI agents succeed with one deeply-connected surface (typically inbox+calendar via MCP) rather than broad multi-tool architectures; narrow-and-deep beats wide-and-shallow for auditability and sustained use",
+      "body_summary": "A practitioner essay (with community discussion) arguing against the common pattern of wiring AI agents into many tools before validating one. Based on 30+ agent builds for founders and small teams.\n\nThe failure mode is not the model — it is surface area. Every tool connection is a place the agent…",
+      "tags": [
+        "agents",
+        "mcp",
+        "integration-strategy",
+        "production-patterns",
+        "architecture",
+        "philosophy"
+      ],
+      "workflows": [
+        "agent-design"
+      ],
+      "license": "n/a",
+      "security_flags": [],
+      "reviewed": "2026-07-12",
+      "path": "catalog/entries/minimal-agent-integration.md"
     },
     {
       "name": "mit-opencourseware",
@@ -4498,6 +4694,35 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/pii-detection.md"
+    },
+    {
+      "name": "pilotfish",
+      "title": "Pilotfish",
+      "url": "https://github.com/Nanako0129/pilotfish",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Multi-model orchestration layer for Claude Code — six agent roles (haiku scouts, sonnet executor, opus judgment, adversarial verifier, security) that delegate from a frontier orchestrator; one-prompt install to ~/.claude/, benchmarked at 96% of all-Fable performance for 46% cost",
+      "body_summary": "Pilotfish is an installable orchestration layer for Claude Code that implements the \"frontier model plans, cheaper models execute\" pattern. It defines six agent roles pinned to cost-appropriate model tiers, with a CLAUDE.md policy that delegates by task type. One-prompt install; writes only to…",
+      "tags": [
+        "claude-code",
+        "multi-model",
+        "orchestration",
+        "subagents",
+        "cost-optimization",
+        "fable",
+        "skill"
+      ],
+      "workflows": [
+        "code-generation",
+        "code-review",
+        "agent-orchestration"
+      ],
+      "license": "MIT",
+      "security_flags": [
+        "writes-to-user-home"
+      ],
+      "reviewed": "2026-07-12",
+      "path": "catalog/entries/pilotfish.md"
     },
     {
       "name": "piyaz",

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-09T23:14:27.257Z",
+  "generated_at": "2026-07-12T19:01:15.055Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -221,6 +221,16 @@
       "exists": true
     },
     {
+      "id": "anthropic-global-workspace",
+      "kind": "entry",
+      "title": "A Global Workspace in Language Models",
+      "url": "https://www.anthropic.com/research/global-workspace",
+      "summary": "Anthropic interpretability research identifying the \\\"J-space\\\" — a small set of internal neural patterns in Claude that function as a global workspace for deliberate reasoning, reportable thoughts, and internal monitoring; includes J-lens technique for reading model thoughts not expressed in output",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "aperture-cli",
       "kind": "entry",
       "title": "Aperture CLI",
@@ -415,6 +425,16 @@
       "exists": true
     },
     {
+      "id": "build-ai-agents-free",
+      "kind": "entry",
+      "title": "Build AI Agents Free",
+      "url": "https://github.com/Moh4696/build-ai-agents-free",
+      "summary": "Beginner tutorial for building a working AI agent ($0, no credit card) using LangChain/LangGraph + Groq free tier (Llama 3.3 70B) with Gemini fallback; covers the plan→act→observe loop, custom tools, conversation memory, and provider failover",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "building-evals-anthropic",
       "kind": "entry",
       "title": "Building Evals (Anthropic Cookbook)",
@@ -536,6 +556,16 @@
       "url": "https://github.com/uditgoenka/autoresearch",
       "summary": "Claude Code / OpenCode / Codex skill+command pack generalizing Karpathy's autoresearch loop (constraint + mechanical metric + autonomous iteration + git rollback) to any domain — 14 commands (autoresearch, plan, debug, fix, security, ship, scenario, predict, learn, reason, probe, improve, evals, regression), a v2.2 orchestrator that derives a success predicate from a plain-language goal, and 9 always-on safety hooks; MIT",
       "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "claude-code-fable-cost-playbook",
+      "kind": "entry",
+      "title": "Claude Code Fable Cost Playbook",
+      "url": "https://community.anthropic.com",
+      "summary": "Six-technique playbook for reducing Claude Fable 5 spend inside Claude Code CLI — effort-level tuning, subagent model tiering, prompt-cache preservation, hard budget caps, and the advisor alternative pattern",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -1195,6 +1225,16 @@
       "exists": true
     },
     {
+      "id": "google-knowledge-catalog",
+      "kind": "entry",
+      "title": "Google Cloud Knowledge Catalog",
+      "url": "https://github.com/GoogleCloudPlatform/knowledge-catalog",
+      "summary": "Google Cloud's Gemini-powered data catalog and metadata management platform (formerly Dataplex); builds a dynamic context graph of structured/unstructured data assets for AI agent grounding, with MCP server integration for context retrieval",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "googleworkspace-cli",
       "kind": "entry",
       "title": "Google Workspace CLI (gws)",
@@ -1484,6 +1524,16 @@
       "exists": true
     },
     {
+      "id": "leantime",
+      "kind": "entry",
+      "title": "Leantime",
+      "url": "https://github.com/leantime/leantime",
+      "summary": "Open-source project management system designed for non-project managers; combines strategy, planning, and execution with neurodivergence-friendly UX (ADHD, dyslexia, autism); self-hosted PHP/MySQL with Docker support, AGPLv3",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "litellm",
       "kind": "entry",
       "title": "LiteLLM",
@@ -1574,6 +1624,16 @@
       "exists": true
     },
     {
+      "id": "medley",
+      "kind": "entry",
+      "title": "Medley",
+      "url": "https://www.medley.sh/",
+      "summary": "Y Combinator-backed Claude Code/Codex plugin providing /mission command for multi-agent orchestration — decomposes goals into coordinated plans across multiple models (Claude, GPT, Gemini, Grok, Qwen, DeepSeek, Ollama), with browser-based mission board for visibility",
+      "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "mempalace",
       "kind": "entry",
       "title": "MemPalace",
@@ -1610,6 +1670,16 @@
       "url": "https://github.com/theDakshJaitly/mex",
       "summary": "Structured markdown scaffold + 11-checker drift-detection CLI for persistent AI agent memory; provider-neutral, ~60% token reduction claims, but single-contributor and overlaps with kb wiki + built-in memory",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "minimal-agent-integration",
+      "kind": "entry",
+      "title": "Minimal Agent Integration Philosophy",
+      "url": "https://community.anthropic.com",
+      "summary": "Practitioner philosophy arguing that production AI agents succeed with one deeply-connected surface (typically inbox+calendar via MCP) rather than broad multi-tool architectures; narrow-and-deep beats wide-and-shallow for auditability and sustained use",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -2017,6 +2087,16 @@
       "title": "PII Detection / Compliance Skills",
       "url": "https://github.com/gosprinto/compliance-skills",
       "summary": "HIPAA/CCPA/PCI-DSS coverage; pilot if handling sensitive data",
+      "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "pilotfish",
+      "kind": "entry",
+      "title": "Pilotfish",
+      "url": "https://github.com/Nanako0129/pilotfish",
+      "summary": "Multi-model orchestration layer for Claude Code — six agent roles (haiku scouts, sonnet executor, opus judgment, adversarial verifier, security) that delegate from a frontier orchestrator; one-prompt install to ~/.claude/, benchmarked at 96% of all-Fable performance for 46% cost",
       "category": "skill",
       "decision_status": "open",
       "exists": true
@@ -2472,6 +2552,11 @@
       "exists": true
     },
     {
+      "id": "tag:adhd",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:adr",
       "kind": "tag",
       "exists": true
@@ -2633,6 +2718,11 @@
     },
     {
       "id": "tag:ai-agent",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ai-agents",
       "kind": "tag",
       "exists": true
     },
@@ -2847,6 +2937,11 @@
       "exists": true
     },
     {
+      "id": "tag:beginner",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:behavioral-tuning",
       "kind": "tag",
       "exists": true
@@ -2928,6 +3023,11 @@
     },
     {
       "id": "tag:browser-automation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:budget",
       "kind": "tag",
       "exists": true
     },
@@ -3207,6 +3307,11 @@
       "exists": true
     },
     {
+      "id": "tag:consciousness",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:consultation",
       "kind": "tag",
       "exists": true
@@ -3392,12 +3497,22 @@
       "exists": true
     },
     {
+      "id": "tag:data-catalog",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:data-extraction",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:data-flywheel",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:data-governance",
       "kind": "tag",
       "exists": true
     },
@@ -3667,6 +3782,11 @@
       "exists": true
     },
     {
+      "id": "tag:effort-levels",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:email",
       "kind": "tag",
       "exists": true
@@ -3792,6 +3912,11 @@
       "exists": true
     },
     {
+      "id": "tag:fable",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:fable-5",
       "kind": "tag",
       "exists": true
@@ -3872,6 +3997,11 @@
       "exists": true
     },
     {
+      "id": "tag:free-tier",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:freemium",
       "kind": "tag",
       "exists": true
@@ -3907,6 +4037,11 @@
       "exists": true
     },
     {
+      "id": "tag:gantt",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:gates",
       "kind": "tag",
       "exists": true
@@ -3918,6 +4053,11 @@
     },
     {
       "id": "tag:gatk",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:gemini",
       "kind": "tag",
       "exists": true
     },
@@ -3977,6 +4117,11 @@
       "exists": true
     },
     {
+      "id": "tag:global-workspace-theory",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:glossary",
       "kind": "tag",
       "exists": true
@@ -3998,6 +4143,11 @@
     },
     {
       "id": "tag:google",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:google-cloud",
       "kind": "tag",
       "exists": true
     },
@@ -4058,6 +4208,11 @@
     },
     {
       "id": "tag:grilling",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:groq",
       "kind": "tag",
       "exists": true
     },
@@ -4227,6 +4382,11 @@
       "exists": true
     },
     {
+      "id": "tag:integration-strategy",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:integrations",
       "kind": "tag",
       "exists": true
@@ -4287,6 +4447,16 @@
       "exists": true
     },
     {
+      "id": "tag:j-lens",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:j-space",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:jacobian-lens",
       "kind": "tag",
       "exists": true
@@ -4313,6 +4483,11 @@
     },
     {
       "id": "tag:kafka",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:kanban",
       "kind": "tag",
       "exists": true
     },
@@ -4687,6 +4862,11 @@
       "exists": true
     },
     {
+      "id": "tag:metadata",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:metal",
       "kind": "tag",
       "exists": true
@@ -4758,6 +4938,11 @@
     },
     {
       "id": "tag:model-escalation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:model-internals",
       "kind": "tag",
       "exists": true
     },
@@ -4878,6 +5063,11 @@
     },
     {
       "id": "tag:neural-architecture",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:neurodivergent",
       "kind": "tag",
       "exists": true
     },
@@ -5202,7 +5392,17 @@
       "exists": true
     },
     {
+      "id": "tag:philosophy",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:photo-management",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:php",
       "kind": "tag",
       "exists": true
     },
@@ -5308,6 +5508,11 @@
     },
     {
       "id": "tag:private-equity",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:production-patterns",
       "kind": "tag",
       "exists": true
     },
@@ -5638,6 +5843,11 @@
     },
     {
       "id": "tag:safety-bypass",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:safety-monitoring",
       "kind": "tag",
       "exists": true
     },
@@ -6558,6 +6768,11 @@
     },
     {
       "id": "tag:yagni",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:yc",
       "kind": "tag",
       "exists": true
     },
@@ -7636,6 +7851,51 @@
       "relation": "tagged"
     },
     {
+      "source": "anthropic-global-workspace",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "anthropic-global-workspace",
+      "target": "tag:anthropic",
+      "relation": "tagged"
+    },
+    {
+      "source": "anthropic-global-workspace",
+      "target": "tag:consciousness",
+      "relation": "tagged"
+    },
+    {
+      "source": "anthropic-global-workspace",
+      "target": "tag:global-workspace-theory",
+      "relation": "tagged"
+    },
+    {
+      "source": "anthropic-global-workspace",
+      "target": "tag:interpretability",
+      "relation": "tagged"
+    },
+    {
+      "source": "anthropic-global-workspace",
+      "target": "tag:j-lens",
+      "relation": "tagged"
+    },
+    {
+      "source": "anthropic-global-workspace",
+      "target": "tag:j-space",
+      "relation": "tagged"
+    },
+    {
+      "source": "anthropic-global-workspace",
+      "target": "tag:model-internals",
+      "relation": "tagged"
+    },
+    {
+      "source": "anthropic-global-workspace",
+      "target": "tag:safety-monitoring",
+      "relation": "tagged"
+    },
+    {
       "source": "aperture-cli",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -8336,6 +8596,56 @@
       "relation": "tagged"
     },
     {
+      "source": "build-ai-agents-free",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "build-ai-agents-free",
+      "target": "tag:agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "build-ai-agents-free",
+      "target": "tag:beginner",
+      "relation": "tagged"
+    },
+    {
+      "source": "build-ai-agents-free",
+      "target": "tag:free-tier",
+      "relation": "tagged"
+    },
+    {
+      "source": "build-ai-agents-free",
+      "target": "tag:gemini",
+      "relation": "tagged"
+    },
+    {
+      "source": "build-ai-agents-free",
+      "target": "tag:groq",
+      "relation": "tagged"
+    },
+    {
+      "source": "build-ai-agents-free",
+      "target": "tag:langchain",
+      "relation": "tagged"
+    },
+    {
+      "source": "build-ai-agents-free",
+      "target": "tag:langgraph",
+      "relation": "tagged"
+    },
+    {
+      "source": "build-ai-agents-free",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "build-ai-agents-free",
+      "target": "tag:tutorial",
+      "relation": "tagged"
+    },
+    {
       "source": "building-evals-anthropic",
       "target": "cat:agent-pattern",
       "relation": "categorized"
@@ -8613,6 +8923,61 @@
     {
       "source": "claude-autoresearch",
       "target": "tag:opencode",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-fable-cost-playbook",
+      "target": "advisor-strategy",
+      "relation": "overlaps"
+    },
+    {
+      "source": "claude-code-fable-cost-playbook",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "claude-code-fable-cost-playbook",
+      "target": "claude-code-local-model-switching",
+      "relation": "overlaps"
+    },
+    {
+      "source": "claude-code-fable-cost-playbook",
+      "target": "native-subagents",
+      "relation": "overlaps"
+    },
+    {
+      "source": "claude-code-fable-cost-playbook",
+      "target": "tag:budget",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-fable-cost-playbook",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-fable-cost-playbook",
+      "target": "tag:cost-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-fable-cost-playbook",
+      "target": "tag:effort-levels",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-fable-cost-playbook",
+      "target": "tag:fable",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-fable-cost-playbook",
+      "target": "tag:prompt-caching",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-fable-cost-playbook",
+      "target": "tag:subagents",
       "relation": "tagged"
     },
     {
@@ -11216,6 +11581,51 @@
       "relation": "tagged"
     },
     {
+      "source": "google-knowledge-catalog",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "google-knowledge-catalog",
+      "target": "tag:ai-agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "google-knowledge-catalog",
+      "target": "tag:data-catalog",
+      "relation": "tagged"
+    },
+    {
+      "source": "google-knowledge-catalog",
+      "target": "tag:data-governance",
+      "relation": "tagged"
+    },
+    {
+      "source": "google-knowledge-catalog",
+      "target": "tag:gemini",
+      "relation": "tagged"
+    },
+    {
+      "source": "google-knowledge-catalog",
+      "target": "tag:google-cloud",
+      "relation": "tagged"
+    },
+    {
+      "source": "google-knowledge-catalog",
+      "target": "tag:knowledge-graph",
+      "relation": "tagged"
+    },
+    {
+      "source": "google-knowledge-catalog",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "google-knowledge-catalog",
+      "target": "tag:metadata",
+      "relation": "tagged"
+    },
+    {
       "source": "googleworkspace-cli",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -12321,6 +12731,56 @@
       "relation": "tagged"
     },
     {
+      "source": "leantime",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "leantime",
+      "target": "tag:adhd",
+      "relation": "tagged"
+    },
+    {
+      "source": "leantime",
+      "target": "tag:docker",
+      "relation": "tagged"
+    },
+    {
+      "source": "leantime",
+      "target": "tag:gantt",
+      "relation": "tagged"
+    },
+    {
+      "source": "leantime",
+      "target": "tag:kanban",
+      "relation": "tagged"
+    },
+    {
+      "source": "leantime",
+      "target": "tag:neurodivergent",
+      "relation": "tagged"
+    },
+    {
+      "source": "leantime",
+      "target": "tag:open-source",
+      "relation": "tagged"
+    },
+    {
+      "source": "leantime",
+      "target": "tag:php",
+      "relation": "tagged"
+    },
+    {
+      "source": "leantime",
+      "target": "tag:project-management",
+      "relation": "tagged"
+    },
+    {
+      "source": "leantime",
+      "target": "tag:self-hosted",
+      "relation": "tagged"
+    },
+    {
       "source": "litellm",
       "target": "cat:framework",
       "relation": "categorized"
@@ -12741,6 +13201,56 @@
       "relation": "tagged"
     },
     {
+      "source": "medley",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "medley",
+      "target": "pilotfish",
+      "relation": "overlaps"
+    },
+    {
+      "source": "medley",
+      "target": "scheduled-multi-agent-coordinator",
+      "relation": "overlaps"
+    },
+    {
+      "source": "medley",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "medley",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "medley",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "medley",
+      "target": "tag:multi-model",
+      "relation": "tagged"
+    },
+    {
+      "source": "medley",
+      "target": "tag:orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "medley",
+      "target": "tag:plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "medley",
+      "target": "tag:yc",
+      "relation": "tagged"
+    },
+    {
       "source": "mempalace",
       "target": "ai-memory-comparison",
       "relation": "overlaps"
@@ -12953,6 +13463,46 @@
     {
       "source": "mex",
       "target": "tag:scaffold",
+      "relation": "tagged"
+    },
+    {
+      "source": "minimal-agent-integration",
+      "target": "advisor-strategy",
+      "relation": "overlaps"
+    },
+    {
+      "source": "minimal-agent-integration",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "minimal-agent-integration",
+      "target": "tag:agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "minimal-agent-integration",
+      "target": "tag:architecture",
+      "relation": "tagged"
+    },
+    {
+      "source": "minimal-agent-integration",
+      "target": "tag:integration-strategy",
+      "relation": "tagged"
+    },
+    {
+      "source": "minimal-agent-integration",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "minimal-agent-integration",
+      "target": "tag:philosophy",
+      "relation": "tagged"
+    },
+    {
+      "source": "minimal-agent-integration",
+      "target": "tag:production-patterns",
       "relation": "tagged"
     },
     {
@@ -14503,6 +15053,61 @@
     {
       "source": "pii-detection",
       "target": "tag:security",
+      "relation": "tagged"
+    },
+    {
+      "source": "pilotfish",
+      "target": "advisor-strategy",
+      "relation": "overlaps"
+    },
+    {
+      "source": "pilotfish",
+      "target": "cat:skill",
+      "relation": "categorized"
+    },
+    {
+      "source": "pilotfish",
+      "target": "claude-code-fable-cost-playbook",
+      "relation": "overlaps"
+    },
+    {
+      "source": "pilotfish",
+      "target": "native-subagents",
+      "relation": "overlaps"
+    },
+    {
+      "source": "pilotfish",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "pilotfish",
+      "target": "tag:cost-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "pilotfish",
+      "target": "tag:fable",
+      "relation": "tagged"
+    },
+    {
+      "source": "pilotfish",
+      "target": "tag:multi-model",
+      "relation": "tagged"
+    },
+    {
+      "source": "pilotfish",
+      "target": "tag:orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "pilotfish",
+      "target": "tag:skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "pilotfish",
+      "target": "tag:subagents",
       "relation": "tagged"
     },
     {

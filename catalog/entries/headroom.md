@@ -84,3 +84,5 @@ Claude Code compatibility: `headroom wrap claude --memory --code-graph`. MCP ins
 - **Copilot subscription mode**: `headroom copilot-auth login` + `headroom wrap copilot --subscription` routes GitHub Copilot CLI traffic through proxy.
 - **Cross-agent memory**: `SharedContext().put / .get` enables compressed context passing across multi-agent workflows with auto-dedup and agent provenance.
 - **Output savings measurement**: `headroom output-savings` reports counterfactual estimate with 95% CI. Optional holdout group (`HEADROOM_OUTPUT_HOLDOUT=0.1`) for measured A/B comparison.
+
+- r/claudeskills post (July 2026): user reports 47% reduction in tool-result tokens — matches the codebase exploration benchmark (78,502 → 41,254 tokens). The 47% figure represents the conservative end; log-heavy and search-heavy workflows see 73–92% reduction.
