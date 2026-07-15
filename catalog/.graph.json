@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-12T19:01:15.055Z",
+  "generated_at": "2026-07-15T04:39:25.336Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -201,6 +201,16 @@
       "exists": true
     },
     {
+      "id": "amazon-bedrock",
+      "kind": "entry",
+      "title": "Amazon Bedrock",
+      "url": "https://aws.amazon.com/bedrock/",
+      "summary": "AWS managed platform for building generative AI applications — 100+ foundation models (Amazon Nova, Anthropic Claude, OpenAI GPT-5.x, Meta Llama, DeepSeek, Mistral, etc.) through one API; AgentCore for production agent deployment with any framework (LangChain, OpenAI Agents SDK, Claude Agent SDK, Strands); Knowledge Bases for RAG; Guardrails; model distillation, prompt caching, intelligent routing; enterprise security (SOC, ISO, FedRAMP High, HIPAA eligible)",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "andrej-karpathy-skills",
       "kind": "entry",
       "title": "Andrej Karpathy Skills (multica-ai)",
@@ -362,6 +372,16 @@
       "url": "https://blaxel.ai/",
       "summary": "Cloud infrastructure for autonomous agents — persistent microVM sandboxes with ~25ms resume, Agent Drive distributed filesystem, MCP server hosting, outbound firewalling, model gateway; SOC 2/HIPAA/ISO 27001, YC-backed, $7.3M seed from First Round",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "blitzos",
+      "kind": "entry",
+      "title": "BlitzOS",
+      "url": "https://github.com/blitzdotdev/blitzos",
+      "summary": "Context-repo system for Claude Code cloud VMs — generates a private GitHub repo (CLAUDE.md map + git submodule references + sessions log) so every new cloud agent boots knowing your repos, conventions, and what previous agents did; one-click multi-repo launch via blitzos.com, self-hostable on Cloudflare; MIT",
+      "category": "plugin",
       "decision_status": "open",
       "exists": true
     },
@@ -1095,6 +1115,15 @@
       "exists": true
     },
     {
+      "id": "fable-orchestrator-pattern",
+      "kind": "entry",
+      "title": "Fable Orchestrator Pattern (Multi-Model Delegation)",
+      "summary": "Workflow pattern using Claude Fable as principal orchestrator with cheaper models (Sonnet, Opus, Codex/GPT-5.6) as execution workers — Fable plans and judges, workers implement and review in loops; achieves ~92–96% of Fable-solo quality at 40–63% of the cost; implemented via Claude Code agents, Codex CLI persistent threads, or the advisor tool",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "faiss",
       "kind": "entry",
       "title": "FAISS",
@@ -1121,6 +1150,16 @@
       "url": "https://github.com/SYSTRAN/faster-whisper",
       "summary": "CTranslate2-based Whisper reimplementation — 4x faster than openai/whisper at same accuracy, int8 quantization, batched inference, VAD filtering, word-level timestamps; core ASR runtime for caption-less audio/video ingestion",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "field-guide-to-fable-finding-unknowns",
+      "kind": "entry",
+      "title": "A Field Guide to Fable: Finding Your Unknowns",
+      "url": "https://x.com/trq212/status/2073100352921215386",
+      "summary": "Anthropic engineer Thariq Shihipar's framework for working with capable AI models — the bottleneck shifts from model ability to specification quality; five techniques (blind-spot pass, interviews, references, rough mockups, brainstorms) for surfacing assumptions before they compound into costly rework; 2M views in 3 days",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -1494,6 +1533,16 @@
       "exists": false
     },
     {
+      "id": "kb",
+      "kind": "entry",
+      "title": "kb (Repo-Local Wiki + Agent Dispatch + Graph)",
+      "url": "https://github.com/mcap91/kb",
+      "summary": "Agent-facing toolkit providing a structured repo-local wiki (MCP + CLI), reviewed multi-agent dispatch with sandboxed launches and write-scope enforcement, and deterministic code-first graph extraction; runs from its own checkout and targets consuming repos via --dir; MCP servers for wiki (10 tools) and dispatch (9 tools); MIT",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "knowledge-graph-construction-anthropic",
       "kind": "entry",
       "title": "Knowledge Graph Construction (Anthropic Cookbook)",
@@ -1863,6 +1912,15 @@
       "url": "https://github.com/omnigent-ai/omnigent",
       "summary": "Open-source 'meta-harness' giving a common orchestration layer over Claude Code, Codex, Cursor, OpenCode, Hermes, Pi, and custom YAML agents — swap/combine harnesses, mix vendors in one session, drive from terminal/browser/phone, run in cloud sandboxes (Modal/E2B/Daytona/etc.), and enforce approval/spend/tool policies; Python 3.12+, degraded native Windows mode",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "on-prem-llm-deployment-architecture",
+      "kind": "entry",
+      "title": "On-Prem LLM Deployment Architecture (Hardware + Inference Stack Selection)",
+      "summary": "Community-sourced reference on selecting hardware (NVIDIA DGX Spark, RTX multi-GPU, Apple Silicon Mac Studio Ultra, AMD Instinct) and inference stacks (vLLM, SGLang, llama.cpp, MLX, Ollama, Open WebUI) for self-hosted LLM serving at 10–20 concurrent users; covers memory sizing, throughput data, and real deployment reports",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -2397,6 +2455,16 @@
       "exists": true
     },
     {
+      "id": "suede-creator-skills",
+      "kind": "entry",
+      "title": "Suede Creator Skills",
+      "url": "https://github.com/JasonColapietro/suede-creator-skills",
+      "summary": "MIT-licensed pack of 25 Claude Code / Codex skills covering multi-agent orchestration (WIP collision detection, rollback trees), Codex worker fleets (Claude plans + parallel Codex CLI workers), A-F code review grading across 7 lanes with instant-F triggers, AI eval framework, design/copy/SEO audits, and consumer automation; ships MCP server with 7 tools",
+      "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "supabase",
       "kind": "entry",
       "title": "Supabase",
@@ -2697,6 +2765,11 @@
       "exists": true
     },
     {
+      "id": "tag:agentcore",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:agentic",
       "kind": "tag",
       "exists": true
@@ -2733,6 +2806,11 @@
     },
     {
       "id": "tag:ai-detection",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ai-eval",
       "kind": "tag",
       "exists": true
     },
@@ -2918,6 +2996,11 @@
     },
     {
       "id": "tag:awesome-list",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:aws",
       "kind": "tag",
       "exists": true
     },
@@ -3163,6 +3246,11 @@
     },
     {
       "id": "tag:cloud",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:cloud-sessions",
       "kind": "tag",
       "exists": true
     },
@@ -3647,6 +3735,11 @@
       "exists": true
     },
     {
+      "id": "tag:dgx-spark",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:dhcp",
       "kind": "tag",
       "exists": true
@@ -4097,6 +4190,11 @@
       "exists": true
     },
     {
+      "id": "tag:github",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:glm",
       "kind": "tag",
       "exists": true
@@ -4197,6 +4295,11 @@
       "exists": true
     },
     {
+      "id": "tag:graph",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:graphrag",
       "kind": "tag",
       "exists": true
@@ -4227,6 +4330,11 @@
       "exists": true
     },
     {
+      "id": "tag:guardrails",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:gwas",
       "kind": "tag",
       "exists": true
@@ -4248,6 +4356,11 @@
     },
     {
       "id": "tag:hardening",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:hardware",
       "kind": "tag",
       "exists": true
     },
@@ -4508,6 +4621,11 @@
     },
     {
       "id": "tag:knowledge-base",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:knowledge-bases",
       "kind": "tag",
       "exists": true
     },
@@ -4942,6 +5060,11 @@
       "exists": true
     },
     {
+      "id": "tag:model-gateway",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:model-internals",
       "kind": "tag",
       "exists": true
@@ -5008,6 +5131,11 @@
     },
     {
       "id": "tag:multi-provider",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:multi-repo",
       "kind": "tag",
       "exists": true
     },
@@ -5248,6 +5376,11 @@
     },
     {
       "id": "tag:options",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:opus",
       "kind": "tag",
       "exists": true
     },
@@ -6123,6 +6256,11 @@
     },
     {
       "id": "tag:socket-api",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:sonnet",
       "kind": "tag",
       "exists": true
     },
@@ -7771,6 +7909,71 @@
       "relation": "tagged"
     },
     {
+      "source": "amazon-bedrock",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "amazon-bedrock",
+      "target": "litellm",
+      "relation": "overlaps"
+    },
+    {
+      "source": "amazon-bedrock",
+      "target": "nvidia-build",
+      "relation": "overlaps"
+    },
+    {
+      "source": "amazon-bedrock",
+      "target": "tag:agentcore",
+      "relation": "tagged"
+    },
+    {
+      "source": "amazon-bedrock",
+      "target": "tag:agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "amazon-bedrock",
+      "target": "tag:aws",
+      "relation": "tagged"
+    },
+    {
+      "source": "amazon-bedrock",
+      "target": "tag:cloud",
+      "relation": "tagged"
+    },
+    {
+      "source": "amazon-bedrock",
+      "target": "tag:enterprise",
+      "relation": "tagged"
+    },
+    {
+      "source": "amazon-bedrock",
+      "target": "tag:guardrails",
+      "relation": "tagged"
+    },
+    {
+      "source": "amazon-bedrock",
+      "target": "tag:knowledge-bases",
+      "relation": "tagged"
+    },
+    {
+      "source": "amazon-bedrock",
+      "target": "tag:model-gateway",
+      "relation": "tagged"
+    },
+    {
+      "source": "amazon-bedrock",
+      "target": "tag:multi-provider",
+      "relation": "tagged"
+    },
+    {
+      "source": "amazon-bedrock",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
       "source": "andrej-karpathy-skills",
       "target": "cat:plugin",
       "relation": "categorized"
@@ -8408,6 +8611,51 @@
     {
       "source": "blaxel",
       "target": "tag:sandbox",
+      "relation": "tagged"
+    },
+    {
+      "source": "blitzos",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "blitzos",
+      "target": "claude-mem",
+      "relation": "overlaps"
+    },
+    {
+      "source": "blitzos",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "blitzos",
+      "target": "tag:cloud-sessions",
+      "relation": "tagged"
+    },
+    {
+      "source": "blitzos",
+      "target": "tag:context-management",
+      "relation": "tagged"
+    },
+    {
+      "source": "blitzos",
+      "target": "tag:github",
+      "relation": "tagged"
+    },
+    {
+      "source": "blitzos",
+      "target": "tag:multi-repo",
+      "relation": "tagged"
+    },
+    {
+      "source": "blitzos",
+      "target": "tag:self-hosted",
+      "relation": "tagged"
+    },
+    {
+      "source": "blitzos",
+      "target": "tag:session-persistence",
       "relation": "tagged"
     },
     {
@@ -11051,6 +11299,71 @@
       "relation": "tagged"
     },
     {
+      "source": "fable-orchestrator-pattern",
+      "target": "advisor-strategy",
+      "relation": "overlaps"
+    },
+    {
+      "source": "fable-orchestrator-pattern",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "fable-orchestrator-pattern",
+      "target": "frontier",
+      "relation": "overlaps"
+    },
+    {
+      "source": "fable-orchestrator-pattern",
+      "target": "native-subagents",
+      "relation": "overlaps"
+    },
+    {
+      "source": "fable-orchestrator-pattern",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-orchestrator-pattern",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-orchestrator-pattern",
+      "target": "tag:cost-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-orchestrator-pattern",
+      "target": "tag:delegation",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-orchestrator-pattern",
+      "target": "tag:fable",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-orchestrator-pattern",
+      "target": "tag:multi-model",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-orchestrator-pattern",
+      "target": "tag:opus",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-orchestrator-pattern",
+      "target": "tag:orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-orchestrator-pattern",
+      "target": "tag:sonnet",
+      "relation": "tagged"
+    },
+    {
       "source": "faiss",
       "target": "cat:framework",
       "relation": "categorized"
@@ -11173,6 +11486,51 @@
     {
       "source": "faster-whisper",
       "target": "tag:whisper",
+      "relation": "tagged"
+    },
+    {
+      "source": "field-guide-to-fable-finding-unknowns",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "field-guide-to-fable-finding-unknowns",
+      "target": "tag:agent-pattern",
+      "relation": "tagged"
+    },
+    {
+      "source": "field-guide-to-fable-finding-unknowns",
+      "target": "tag:anthropic",
+      "relation": "tagged"
+    },
+    {
+      "source": "field-guide-to-fable-finding-unknowns",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "field-guide-to-fable-finding-unknowns",
+      "target": "tag:fable",
+      "relation": "tagged"
+    },
+    {
+      "source": "field-guide-to-fable-finding-unknowns",
+      "target": "tag:prompting",
+      "relation": "tagged"
+    },
+    {
+      "source": "field-guide-to-fable-finding-unknowns",
+      "target": "tag:specification",
+      "relation": "tagged"
+    },
+    {
+      "source": "field-guide-to-fable-finding-unknowns",
+      "target": "tag:unknowns",
+      "relation": "tagged"
+    },
+    {
+      "source": "field-guide-to-fable-finding-unknowns",
+      "target": "tag:workflow",
       "relation": "tagged"
     },
     {
@@ -12609,6 +12967,56 @@
       "source": "karpathy-llm-wiki",
       "target": "third-brain-v5-wiki",
       "relation": "overlaps"
+    },
+    {
+      "source": "kb",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "kb",
+      "target": "tag:agent-infrastructure",
+      "relation": "tagged"
+    },
+    {
+      "source": "kb",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "kb",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "kb",
+      "target": "tag:dispatch",
+      "relation": "tagged"
+    },
+    {
+      "source": "kb",
+      "target": "tag:graph",
+      "relation": "tagged"
+    },
+    {
+      "source": "kb",
+      "target": "tag:knowledge-management",
+      "relation": "tagged"
+    },
+    {
+      "source": "kb",
+      "target": "tag:mcp-server",
+      "relation": "tagged"
+    },
+    {
+      "source": "kb",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "kb",
+      "target": "tag:wiki",
+      "relation": "tagged"
     },
     {
       "source": "knowledge-graph-construction-anthropic",
@@ -14188,6 +14596,76 @@
     {
       "source": "omnigent",
       "target": "tag:sandboxing",
+      "relation": "tagged"
+    },
+    {
+      "source": "on-prem-llm-deployment-architecture",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "on-prem-llm-deployment-architecture",
+      "target": "open-webui",
+      "relation": "overlaps"
+    },
+    {
+      "source": "on-prem-llm-deployment-architecture",
+      "target": "parallel-local-inference",
+      "relation": "overlaps"
+    },
+    {
+      "source": "on-prem-llm-deployment-architecture",
+      "target": "tag:apple-silicon",
+      "relation": "tagged"
+    },
+    {
+      "source": "on-prem-llm-deployment-architecture",
+      "target": "tag:deployment",
+      "relation": "tagged"
+    },
+    {
+      "source": "on-prem-llm-deployment-architecture",
+      "target": "tag:dgx-spark",
+      "relation": "tagged"
+    },
+    {
+      "source": "on-prem-llm-deployment-architecture",
+      "target": "tag:gpu",
+      "relation": "tagged"
+    },
+    {
+      "source": "on-prem-llm-deployment-architecture",
+      "target": "tag:hardware",
+      "relation": "tagged"
+    },
+    {
+      "source": "on-prem-llm-deployment-architecture",
+      "target": "tag:inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "on-prem-llm-deployment-architecture",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "on-prem-llm-deployment-architecture",
+      "target": "tag:ollama",
+      "relation": "tagged"
+    },
+    {
+      "source": "on-prem-llm-deployment-architecture",
+      "target": "tag:privacy",
+      "relation": "tagged"
+    },
+    {
+      "source": "on-prem-llm-deployment-architecture",
+      "target": "tag:self-hosted",
+      "relation": "tagged"
+    },
+    {
+      "source": "on-prem-llm-deployment-architecture",
+      "target": "tag:vllm",
       "relation": "tagged"
     },
     {
@@ -16183,6 +16661,71 @@
     {
       "source": "subtext",
       "target": "tag:visualization",
+      "relation": "tagged"
+    },
+    {
+      "source": "suede-creator-skills",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "suede-creator-skills",
+      "target": "get-shit-done",
+      "relation": "overlaps"
+    },
+    {
+      "source": "suede-creator-skills",
+      "target": "native-subagents",
+      "relation": "overlaps"
+    },
+    {
+      "source": "suede-creator-skills",
+      "target": "tag:ai-eval",
+      "relation": "tagged"
+    },
+    {
+      "source": "suede-creator-skills",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "suede-creator-skills",
+      "target": "tag:code-review",
+      "relation": "tagged"
+    },
+    {
+      "source": "suede-creator-skills",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "suede-creator-skills",
+      "target": "tag:design",
+      "relation": "tagged"
+    },
+    {
+      "source": "suede-creator-skills",
+      "target": "tag:mcp-server",
+      "relation": "tagged"
+    },
+    {
+      "source": "suede-creator-skills",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "suede-creator-skills",
+      "target": "tag:orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "suede-creator-skills",
+      "target": "tag:seo",
+      "relation": "tagged"
+    },
+    {
+      "source": "suede-creator-skills",
+      "target": "tag:skills",
       "relation": "tagged"
     },
     {
