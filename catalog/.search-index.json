@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-07-12",
-  "count": 254,
+  "generated": "2026-07-15",
+  "count": 261,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -444,6 +444,32 @@
       "path": "catalog/entries/alcoa-plus-for-ai.md"
     },
     {
+      "name": "amazon-bedrock",
+      "title": "Amazon Bedrock",
+      "url": "https://aws.amazon.com/bedrock/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "AWS managed platform for building generative AI applications — 100+ foundation models (Amazon Nova, Anthropic Claude, OpenAI GPT-5.x, Meta Llama, DeepSeek, Mistral, etc.) through one API; AgentCore for production agent deployment with any framework (LangChain, OpenAI Agents SDK, Claude Agent SDK, Strands); Knowledge Bases for RAG; Guardrails; model distillation, prompt caching, intelligent routing; enterprise security (SOC, ISO, FedRAMP High, HIPAA eligible)",
+      "body_summary": "AWS's managed platform for generative AI, serving 100,000+ organizations. Provides a unified API to 100+ foundation models from ~18 providers, plus infrastructure for agents, RAG, customization, and governance.\n\nSingle API to models from Amazon (Nova Micro/Lite/Pro/Premier, Canvas, Reel, Sonic),…",
+      "tags": [
+        "aws",
+        "cloud",
+        "model-gateway",
+        "agents",
+        "rag",
+        "guardrails",
+        "enterprise",
+        "multi-provider",
+        "agentcore",
+        "knowledge-bases"
+      ],
+      "workflows": [],
+      "license": "proprietary",
+      "security_flags": [],
+      "reviewed": "2026-07-15",
+      "path": "catalog/entries/amazon-bedrock.md"
+    },
+    {
       "name": "andrej-karpathy-skills",
       "title": "Andrej Karpathy Skills (multica-ai)",
       "url": "https://github.com/multica-ai/andrej-karpathy-skills",
@@ -818,6 +844,29 @@
       ],
       "reviewed": "2026-06-23",
       "path": "catalog/entries/blaxel.md"
+    },
+    {
+      "name": "blitzos",
+      "title": "BlitzOS",
+      "url": "https://github.com/blitzdotdev/blitzos",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Context-repo system for Claude Code cloud VMs — generates a private GitHub repo (CLAUDE.md map + git submodule references + sessions log) so every new cloud agent boots knowing your repos, conventions, and what previous agents did; one-click multi-repo launch via blitzos.com, self-hostable on Cloudflare; MIT",
+      "body_summary": "Addresses the cold-start problem of Claude Code cloud sessions: every new VM boots knowing nothing about the user's repos, conventions, or prior work. BlitzOS generates a \"context repo\" — a private GitHub repository that serves as the bootstrap payload for cloud agents:\n\n```\nyour-context-repo/…",
+      "tags": [
+        "claude-code",
+        "cloud-sessions",
+        "context-management",
+        "multi-repo",
+        "github",
+        "session-persistence",
+        "self-hosted"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-15",
+      "path": "catalog/entries/blitzos.md"
     },
     {
       "name": "bmad-skill-forge",
@@ -2378,6 +2427,30 @@
       "path": "catalog/entries/fable-agent-orchestration.md"
     },
     {
+      "name": "fable-orchestrator-pattern",
+      "title": "Fable Orchestrator Pattern (Multi-Model Delegation)",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Workflow pattern using Claude Fable as principal orchestrator with cheaper models (Sonnet, Opus, Codex/GPT-5.6) as execution workers — Fable plans and judges, workers implement and review in loops; achieves ~92–96% of Fable-solo quality at 40–63% of the cost; implemented via Claude Code agents, Codex CLI persistent threads, or the advisor tool",
+      "body_summary": "A multi-model orchestration pattern where Fable (Claude's most capable model, $10/$50 per million tokens input/output) serves as the principal orchestrator — planning, decomposing tasks, reviewing diffs, and making judgment calls — while cheaper models handle volume work:\n\n**Core flow (from…",
+      "tags": [
+        "claude-code",
+        "fable",
+        "orchestration",
+        "multi-model",
+        "cost-optimization",
+        "codex",
+        "sonnet",
+        "opus",
+        "delegation"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-07-15",
+      "path": "catalog/entries/fable-orchestrator-pattern.md"
+    },
+    {
       "name": "faiss",
       "title": "FAISS",
       "url": "https://github.com/facebookresearch/faiss",
@@ -2445,6 +2518,30 @@
       "security_flags": [],
       "reviewed": "2026-06-19",
       "path": "catalog/entries/faster-whisper.md"
+    },
+    {
+      "name": "field-guide-to-fable-finding-unknowns",
+      "title": "A Field Guide to Fable: Finding Your Unknowns",
+      "url": "https://x.com/trq212/status/2073100352921215386",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Anthropic engineer Thariq Shihipar's framework for working with capable AI models — the bottleneck shifts from model ability to specification quality; five techniques (blind-spot pass, interviews, references, rough mockups, brainstorms) for surfacing assumptions before they compound into costly rework; 2M views in 3 days",
+      "body_summary": "Essay by Thariq Shihipar (Anthropic, Claude Code team) arguing that with sufficiently capable models, the quality bottleneck shifts from \"can the model do the task\" to \"did you specify the task correctly.\" Central metaphor: the map (your prompts and context) vs the territory (the codebase and real…",
+      "tags": [
+        "prompting",
+        "workflow",
+        "fable",
+        "claude-code",
+        "specification",
+        "unknowns",
+        "anthropic",
+        "agent-pattern"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-07-15",
+      "path": "catalog/entries/field-guide-to-fable-finding-unknowns.md"
     },
     {
       "name": "finding-unknowns-skills",
@@ -3277,6 +3374,31 @@
       "security_flags": [],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/karpathy-llm-wiki.md"
+    },
+    {
+      "name": "kb",
+      "title": "kb (Repo-Local Wiki + Agent Dispatch + Graph)",
+      "url": "https://github.com/mcap91/kb",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Agent-facing toolkit providing a structured repo-local wiki (MCP + CLI), reviewed multi-agent dispatch with sandboxed launches and write-scope enforcement, and deterministic code-first graph extraction; runs from its own checkout and targets consuming repos via --dir; MCP servers for wiki (10 tools) and dispatch (9 tools); MIT",
+      "body_summary": "An agent-facing toolkit with three subsystems, all operating from a single kb checkout targeting any number of consuming repos via `--dir`:\n\n**Wiki** (MCP + CLI): Structured repo-local wiki with typed records (work items, decisions, issues, initiatives, areas, sources), ID allocation with prefix…",
+      "tags": [
+        "wiki",
+        "dispatch",
+        "multi-agent",
+        "mcp-server",
+        "graph",
+        "knowledge-management",
+        "claude-code",
+        "codex",
+        "agent-infrastructure"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-15",
+      "path": "catalog/entries/kb.md"
     },
     {
       "name": "knowledge-graph-construction-anthropic",
@@ -4162,6 +4284,32 @@
       ],
       "reviewed": "2026-07-09",
       "path": "catalog/entries/omnigent.md"
+    },
+    {
+      "name": "on-prem-llm-deployment-architecture",
+      "title": "On-Prem LLM Deployment Architecture (Hardware + Inference Stack Selection)",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Community-sourced reference on selecting hardware (NVIDIA DGX Spark, RTX multi-GPU, Apple Silicon Mac Studio Ultra, AMD Instinct) and inference stacks (vLLM, SGLang, llama.cpp, MLX, Ollama, Open WebUI) for self-hosted LLM serving at 10–20 concurrent users; covers memory sizing, throughput data, and real deployment reports",
+      "body_summary": "Community discussion on choosing hardware and software for a fully private, on-prem ChatGPT-like platform serving 10–20 daily active users within a ~300-employee company. Requirements: no data leaves the network, web chat with auth, RAG over internal docs, agents/tool-calling, coding assistance,…",
+      "tags": [
+        "self-hosted",
+        "local-inference",
+        "gpu",
+        "hardware",
+        "vllm",
+        "ollama",
+        "inference",
+        "deployment",
+        "privacy",
+        "dgx-spark",
+        "apple-silicon"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-07-15",
+      "path": "catalog/entries/on-prem-llm-deployment-architecture.md"
     },
     {
       "name": "one-skill-to-rule-them-all",
@@ -5357,6 +5505,32 @@
       ],
       "reviewed": "2026-07-09",
       "path": "catalog/entries/subtext.md"
+    },
+    {
+      "name": "suede-creator-skills",
+      "title": "Suede Creator Skills",
+      "url": "https://github.com/JasonColapietro/suede-creator-skills",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "MIT-licensed pack of 25 Claude Code / Codex skills covering multi-agent orchestration (WIP collision detection, rollback trees), Codex worker fleets (Claude plans + parallel Codex CLI workers), A-F code review grading across 7 lanes with instant-F triggers, AI eval framework, design/copy/SEO audits, and consumer automation; ships MCP server with 7 tools",
+      "body_summary": "A collection of 25 SKILL.md files for Claude Code and OpenAI Codex, organized into five domains:\n\n**Agent orchestration:** `suede-agent-teams` coordinates agent lanes with WIP collision detection, RFC mode, feature-flag strategy, rollback trees, and a handoff checklist that requires evidence before…",
+      "tags": [
+        "claude-code",
+        "codex",
+        "skills",
+        "code-review",
+        "multi-agent",
+        "orchestration",
+        "mcp-server",
+        "ai-eval",
+        "seo",
+        "design"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-15",
+      "path": "catalog/entries/suede-creator-skills.md"
     },
     {
       "name": "supabase",
