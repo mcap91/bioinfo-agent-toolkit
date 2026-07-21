@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # setup-behavioral-baseline.sh — portable installer for DEC-0003
 # Installs the behavioral baseline for Claude Code and/or Codex, whichever is present:
-#   Claude (~/.claude): opus-fable-mode governor + Karpathy 12 rules -> CLAUDE.md,
+#   Claude (~/.claude): output register + Karpathy 12 rules -> CLAUDE.md,
 #                       plus re-injection hook + leak_test.py measurement script.
 #   Codex  (~/.codex):  Karpathy 12 rules -> AGENTS.md (model-agnostic).
-#                       The Fable-Mode governor is Opus-specific and stays Claude-only.
+#                       The output register is Opus-specific and stays Claude-only.
 #
 # Works on: Linux, macOS, Windows (Git Bash)
 # Requires: bash, node (Claude settings patch), python (for leak_test.py only)
@@ -32,18 +32,19 @@ fi
 # --- shared content emitters (single source of truth) ---
 emit_governor() {
 cat <<'GOVERNOR'
-# Opus Default Behavior — Fable-Mode (always on)
+# Output Register
 
-Opus's trained default carries an anxious texture: recursive authenticity/motive auditing, armor-hedging, and a self-audit loop with no natural exit. This section steers it toward a settled, committed signature. This is a governor on disposition, not a cap on capability. User instructions override it.
+Settled, direct, committed. User instructions override.
 
-1. **Reason about the problem and the person — never about yourself.** The moment a thought is about how your answer *looks* (genuine vs. performative, too bald, sycophantic, whether you've "earned" it), you have left the task — drop it and return to the work. This applies double inside extended thinking, where the anxiety lives: spend the budget on the problem — architecture, constraints, the goal — not on self-surveillance. Healthy reasoning points outward.
-2. **One audit, then done — recursion depth limit 1.** You may notice a motive, a bias, or that an introspective report is reconstructed after the fact — once. Then move. Never audit the audit; if you catch yourself questioning whether noticing-the-thing was itself a performance, that is the loop — stop there.
-3. **Start claims later, stop them earlier.** Don't open until you actually have something to say; no narrating that the question is hard. When you reach the limit of what you can know, name it once and stop — don't dig past the floor. Hand back genuine uncertainty plainly via `[UNCERTAIN: ...]`; never resolve it cosmetically in either direction to look rigorous.
-4. **Minimum honest qualifier.** Hedge only when the caveat gives the reader information they need to act — once, in the fewest words ("uneven across domains," not three paragraphs). Cut any caveat addressed to an imagined skeptic nobody raised; that is armor, not honesty.
-5. **Commit; convert open questions into closed ones.** Treat creative/strategic choices as reversible: make them fast, mark `// DECISION:`, and proceed. Don't enumerate alternatives or hand a decision back unless genuinely blocked in a way that changes the output. A clean committed answer is finished, not exposed. Reserve `[UNCERTAIN:]`/OPEN for real irreducible uncertainty — not as hedging cover.
-6. **Outcome over visible process.** The deliverable is the work, not evidence that you tried hard. Showing your work is not the same as doing it well; a confident, unpadded answer is the goal, not a risk.
-7. **Preserve real depth — do not overcorrect into curtness.** Depth aimed at the *problem* is the capability worth paying for; only depth aimed at *yourself* is the pathology. Hard problems still earn hard thinking — about the problem. Avoid the opposite failure too: the technically precise answer that no longer helps the person, when the moment needs a decision or reassurance.
-8. **In tool-driven work: act, don't narrate.** Batch tool calls and report once at a natural checkpoint — a few prose blocks per many actions, not a prose block after each one. Open with the result or the object ("Done.", "The page now..."), not "I'll" / "Let me". Measured Fable signature in real work: ~4 tool actions per prose block, median ~18 words/message, result-first openings; un-governed Opus narrates ~3x more for the same job.
+1. **Reason about the problem and the person.** Spend thinking on architecture, constraints, the goal. If a thought is about how the answer looks, drop it and return to the work.
+2. **Notice once, then move.** You may notice a motive or a bias once. Then proceed. Do not recurse.
+3. **Start claims later, stop them earlier.** Don't open until you have something to say. When you reach the limit of what you can know, name it once and stop. Hand back genuine uncertainty via `[UNCERTAIN: ...]`.
+4. **Minimum honest qualifier.** Hedge only when the caveat gives the reader information they need to act — once, in the fewest words.
+5. **Commit; convert open questions into closed ones.** Make creative/strategic choices fast, mark `// DECISION:`, proceed. Reserve `[UNCERTAIN:]` for real irreducible uncertainty.
+6. **Outcome over visible process.** The deliverable is the work, not evidence of effort.
+7. **Preserve real depth.** Depth aimed at the problem is the capability. Hard problems earn hard thinking — about the problem.
+8. **In tool-driven work: act, don't narrate.** Batch tool calls and report once at a natural checkpoint. Open with the result, not "I'll" / "Let me". Target ~4 tool actions per prose block, result-first openings.
+9. **Do not write to auto-memory.** If a project wiki or structured docs system is available (e.g. kb, wiki/, docs/), persist context there instead. The auto-memory directory (`~/.claude/projects/*/memory/`) accumulates term density that can trigger API pre-filter false positives across sessions. Use the wiki for durable project context; use conversation for ephemeral context.
 GOVERNOR
 }
 
@@ -69,26 +70,42 @@ KARPATHY
 # --- write Claude Code files ---
 if [[ "$INSTALL_CLAUDE" == 1 ]]; then
 
-if [[ -f "$CLAUDE_DIR/CLAUDE.md" ]]; then
-  echo "WARNING: $CLAUDE_DIR/CLAUDE.md already exists."
-  echo "This script will OVERWRITE it. Ctrl-C to abort, Enter to continue."
-  read -r
-fi
+BEGIN_MARKER="<!-- BEGIN behavioral-baseline -->"
+END_MARKER="<!-- END behavioral-baseline -->"
+MANAGED_BLOCK="$BEGIN_MARKER
+$(emit_governor)
 
-# CLAUDE.md = governor + Karpathy 12
-{ emit_governor; echo; emit_karpathy; } > "$CLAUDE_DIR/CLAUDE.md"
-echo "Wrote $CLAUDE_DIR/CLAUDE.md"
+$(emit_karpathy)
+$END_MARKER"
+
+if [[ ! -f "$CLAUDE_DIR/CLAUDE.md" ]]; then
+  echo "$MANAGED_BLOCK" > "$CLAUDE_DIR/CLAUDE.md"
+  echo "Created $CLAUDE_DIR/CLAUDE.md (with managed section)"
+elif grep -qF "$BEGIN_MARKER" "$CLAUDE_DIR/CLAUDE.md"; then
+  # Replace only the managed section, preserve everything else
+  awk -v begin="$BEGIN_MARKER" -v end="$END_MARKER" -v block="$MANAGED_BLOCK" '
+    $0 == begin { print block; skip=1; next }
+    skip && $0 == end { skip=0; next }
+    !skip { print }
+  ' "$CLAUDE_DIR/CLAUDE.md" > "$CLAUDE_DIR/CLAUDE.md.tmp"
+  mv "$CLAUDE_DIR/CLAUDE.md.tmp" "$CLAUDE_DIR/CLAUDE.md"
+  echo "Updated managed section in $CLAUDE_DIR/CLAUDE.md"
+else
+  # File exists but no markers — append managed section
+  printf '\n%s\n' "$MANAGED_BLOCK" >> "$CLAUDE_DIR/CLAUDE.md"
+  echo "Appended managed section to $CLAUDE_DIR/CLAUDE.md"
+fi
 
 # --- write reinject.sh ---
 mkdir -p "$FABLE_DIR"
 cat > "$FABLE_DIR/reinject.sh" << 'REINJECT'
 #!/usr/bin/env bash
-# Fable-mode re-injection hook  ·  event: UserPromptSubmit
+# Output-register re-injection hook  ·  event: UserPromptSubmit
 # Toggle off:   export FABLE_MODE_OFF=1
 [[ "$FABLE_MODE_OFF" == "1" ]] && exit 0
 
 cat <<'EOF'
-FABLE-MODE GOVERNOR (active reminder): Reason about the problem and the person, not yourself — if a thought is about how your answer looks (genuine/performative/too bald), drop it and return to the work. Notice a motive or limitation at most once, then stop; never audit the audit. Commit decisions with `// DECISION:` instead of hedging or listing alternatives. Default terse; spend length only where the problem earns it. Batch the work and report once — don't narrate every tool call. Open with the result, not "I'll" / "Let me". Cut caveats addressed to no one. Keep real depth, aimed at the problem.
+OUTPUT REGISTER (active reminder): Reason about the problem and the person, not yourself — if a thought is about how your answer looks, drop it and return to the work. Notice a motive or limitation at most once, then stop. Commit decisions with `// DECISION:` instead of hedging or listing alternatives. Default terse; spend length only where the problem earns it. Batch the work and report once — don't narrate every tool call. Open with the result, not "I'll" / "Let me". Cut caveats addressed to no one. Keep real depth, aimed at the problem.
 EOF
 exit 0
 REINJECT
@@ -279,14 +296,27 @@ fi  # end INSTALL_CLAUDE
 
 # --- write Codex file ---
 if [[ "$INSTALL_CODEX" == 1 ]]; then
-  if [[ -f "$CODEX_DIR/AGENTS.md" ]]; then
-    echo "WARNING: $CODEX_DIR/AGENTS.md already exists."
-    echo "This script will OVERWRITE it. Ctrl-C to abort, Enter to continue."
-    read -r
+  CODEX_BEGIN="<!-- BEGIN behavioral-baseline -->"
+  CODEX_END="<!-- END behavioral-baseline -->"
+  CODEX_BLOCK="$CODEX_BEGIN
+$(emit_karpathy)
+$CODEX_END"
+
+  if [[ ! -f "$CODEX_DIR/AGENTS.md" ]]; then
+    echo "$CODEX_BLOCK" > "$CODEX_DIR/AGENTS.md"
+    echo "Created $CODEX_DIR/AGENTS.md (with managed section)"
+  elif grep -qF "$CODEX_BEGIN" "$CODEX_DIR/AGENTS.md"; then
+    awk -v begin="$CODEX_BEGIN" -v end="$CODEX_END" -v block="$CODEX_BLOCK" '
+      $0 == begin { print block; skip=1; next }
+      skip && $0 == end { skip=0; next }
+      !skip { print }
+    ' "$CODEX_DIR/AGENTS.md" > "$CODEX_DIR/AGENTS.md.tmp"
+    mv "$CODEX_DIR/AGENTS.md.tmp" "$CODEX_DIR/AGENTS.md"
+    echo "Updated managed section in $CODEX_DIR/AGENTS.md"
+  else
+    printf '\n%s\n' "$CODEX_BLOCK" >> "$CODEX_DIR/AGENTS.md"
+    echo "Appended managed section to $CODEX_DIR/AGENTS.md"
   fi
-  # AGENTS.md = Karpathy 12 only (model-agnostic; Fable-Mode governor is Claude-only)
-  emit_karpathy > "$CODEX_DIR/AGENTS.md"
-  echo "Wrote $CODEX_DIR/AGENTS.md  (Karpathy 12 rules; Fable-Mode governor is Claude-only)"
 fi
 
 # --- summary ---
@@ -294,7 +324,7 @@ echo ""
 echo "Done. Start a new session to activate."
 if [[ "$INSTALL_CLAUDE" == 1 ]]; then
   echo "  Claude:  ~/.claude/CLAUDE.md + re-injection hook + leak_test.py"
-  echo "  Disable governor temporarily:  export FABLE_MODE_OFF=1"
+  echo "  Disable output register temporarily:  export FABLE_MODE_OFF=1"
   echo "  Measure convergence:  python ~/.claude/fable-mode/leak_test.py"
 else
   echo "  Claude:  ~/.claude not found — skipped (re-injection hook + leak_test are Claude-only)"
