@@ -1,6 +1,6 @@
 ---
 name: agent-lockdown
-description: Lock down an interactive coding agent CLI — version pin, model pin, env hardening, secrets deny rules, model selector, and integrity checkup with injection detection. Modes — lockdown (default), checkup (integrity audit), upgrade-check (diff CLI versions).
+description: Pin an interactive coding agent CLI to a reproducible state — version pin, model pin, env config, file-read deny rules, model selector, and integrity checkup. Modes — lockdown (default), checkup (integrity audit), upgrade-check (diff CLI versions).
 ---
 
 # Agent lockdown
