@@ -39,7 +39,7 @@ the initial retrieval pass.
 <!-- END kb-managed -->
 
 
-A collection of reusable Claude Code skills, subagent definitions, and orchestration guides for bioinformatics workflows.
+A collection of reusable Claude Code skills, subagent definitions, and orchestration guides for scientific workflows.
 
 ## Project Structure
 
