@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-07-15",
-  "count": 261,
+  "generated": "2026-07-22",
+  "count": 272,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -542,6 +542,27 @@
       "path": "catalog/entries/anthropic-global-workspace.md"
     },
     {
+      "name": "anthropic-prompt-caching-guide",
+      "title": "Anthropic Prompt Caching Design & Optimization Guide",
+      "url": "https://github.com/anthropics/skills/blob/main/skills/claude-api/shared/prompt-caching.md",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "The official Anthropic reference for designing prompt-building code that\nmaximizes cache hit rates. Part of the `anthropics/skills` repository,\nused by the bundled `claude-api` skill.\n\nPrompt caching is a prefix match. Any change anywhere in the prefix\ninvalidates everything after it. The cache key…",
+      "tags": [
+        "prompt-caching",
+        "anthropic-api",
+        "optimization",
+        "cost-reduction",
+        "claude-api-skill",
+        "official"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-21",
+      "path": "catalog/entries/anthropic-prompt-caching-guide.md"
+    },
+    {
       "name": "aperture-cli",
       "title": "Aperture CLI",
       "url": "https://github.com/tailscale/aperture-cli",
@@ -721,6 +742,30 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/awesome-claude-code.md"
+    },
+    {
+      "name": "awesome-harness-engineering",
+      "title": "Awesome Harness Engineering",
+      "url": "https://github.com/ai-boost/awesome-harness-engineering",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "A comprehensive awesome list organizing resources for building, testing,\nand operating AI agent harnesses. Covers the full harness engineering\nsurface area across multiple dimensions.\n\n- Subagent architecture patterns\n- Context management and memory systems\n- Tool systems and MCP integrations\n-…",
+      "tags": [
+        "awesome-list",
+        "harness-engineering",
+        "agent-orchestration",
+        "mcp",
+        "memory",
+        "evaluation",
+        "observability",
+        "permissions",
+        "curated"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-21",
+      "path": "catalog/entries/awesome-harness-engineering.md"
     },
     {
       "name": "axolotl",
@@ -1167,6 +1212,28 @@
       ],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/cl4r1t4s.md"
+    },
+    {
+      "name": "claude-api-prefilter-false-positive",
+      "title": "Claude API Pre-Filter False-Positive Troubleshooting",
+      "url": "https://docs.anthropic.com/en/docs/about-claude/models",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "A field-tested diagnosis and fix recipe for Claude Code sessions that become\ncompletely blocked — every turn returns a synthetic refusal record — due to\nthe API pre-filter pattern-matching bio- or security-adjacent language across\nthe combined request payload.\n\n1. **Injected context** (CLAUDE.md,…",
+      "tags": [
+        "claude-code",
+        "safety-classifier",
+        "false-positive",
+        "troubleshooting",
+        "api",
+        "context-injection",
+        "auto-memory"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-21",
+      "path": "catalog/entries/claude-api-prefilter-false-positive.md"
     },
     {
       "name": "claude-autoresearch",
@@ -2636,6 +2703,29 @@
       "path": "catalog/entries/fluiddocs-deck-builder.md"
     },
     {
+      "name": "fluxmem",
+      "title": "FluxMem: Continuously Evolving Memory Connectivity",
+      "url": "https://arxiv.org/abs/2505.00000",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "A memory architecture for AI agents that treats memory as an evolving\ngraph of interconnected nodes rather than a flat retrieval store.\n\n- **Semantic memory**: factual knowledge — documents, dialogue history,\n  tool instructions\n- **Episodic memory**: concrete experiences — observations, actions…",
+      "tags": [
+        "memory",
+        "agent-memory",
+        "research-paper",
+        "rag",
+        "semantic-memory",
+        "episodic-memory",
+        "procedural-memory",
+        "self-repair"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-21",
+      "path": "catalog/entries/fluxmem.md"
+    },
+    {
       "name": "free-claude-code",
       "title": "Free Claude Code",
       "url": "https://github.com/Alishahryar1/free-claude-code",
@@ -2848,6 +2938,28 @@
       "security_flags": [],
       "reviewed": "2026-07-03",
       "path": "catalog/entries/gradio.md"
+    },
+    {
+      "name": "granola-cli",
+      "title": "Granola CLI",
+      "url": "https://github.com/theantichris/granola",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "A Go CLI that exports data from the Granola meeting note-taking app to\nlocal files for backup, migration, or offline access.\n\n### Notes export (API-based)\n\nReads Supabase credentials from Granola's local config, authenticates\nwith the Granola API, fetches all documents as JSON, converts ProseMirror\nJSON to Markdown, and writes files with YAML frontmatter (ID, timestamps,\ntags).\n\n### Transcripts export (cache-based)\n\nReads Granola's local cache file (double-JSON encoded), extracts transcript\nsegments by document ID, formats with timestamps and speaker labels\n(\"System\" for others, \"You\" for the user's microphone), and writes text\nfiles with metadata headers.\n\n### Features\n\n- Incremental export — only processes new or changed content\n- Cross-platform — macOS, Linux, Windows\n- Configurable via `.granola.toml` or CLI flags\n- Pre-built binaries for all platforms via GoReleaser",
+      "tags": [
+        "meeting-notes",
+        "export",
+        "backup",
+        "markdown",
+        "transcripts",
+        "granola",
+        "data-portability"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-21",
+      "path": "catalog/entries/granola-cli.md"
     },
     {
       "name": "granola-mcp",
@@ -3857,6 +3969,29 @@
       "path": "catalog/entries/mex.md"
     },
     {
+      "name": "microsoft-eval-guide",
+      "title": "Microsoft Eval Guide",
+      "url": "https://github.com/microsoft/eval-guide",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "A plugin providing six skills that walk through a five-stage evaluation\nlifecycle for AI agents built on Microsoft Copilot Studio. Grounded in\nMicrosoft's Practical Guidance on Agent Evaluation — a 10-step playbook.\n\n### Skills\n\n- **/eval-guide**: full eval lifecycle — discover, plan, generate, run,\n  interpret\n- **/eval-suite-planner**: populated Eval Suite Template workbook + HTML\n  review page for eval sets, methods, gates, human inputs\n- **/eval-generator**: test cases for single-response and conversation\n  (multi-turn) evaluation modes; outputs Copilot Studio-importable CSV\n- **/eval-result-interpreter**: SHIP/ITERATE/BLOCK verdict with root-cause\n  classification\n- **/eval-triage-and-improvement**: interactive diagnosis and remediation\n  for failing evals\n- **/eval-faq**: methodology questions answered from Microsoft's eval\n  ecosystem\n\n### Five stages\n\n0. **Discover**: articulate agent purpose, success criteria, risk tier\n1. **Plan**: scope eval depth by architecture, set pass-rate targets/gates\n2. **Generate & Baseline**: produce test-case CSVs or conversation\n   blueprints; design regression partition\n3. **Run**: execute baseline against a live agent (requires running agent)\n4. **Interpret & Improve**: triage results, gate-based verdict, optimization\n   loop\n\nStages 0–2 work from just an agent description — no running agent required.\n\n### Architecture-aware scoping\n\nAutomatically adjusts evaluation depth based on agent architecture:\nprompt-level (response quality, tone, boundaries), RAG/knowledge-grounded\n(adds retrieval accuracy, grounding, hallucination prevention), or agentic\n(adds tool selection, action correctness, error recovery, task completion).\n\n### Interactive dashboards\n\nEach stage generates a standalone HTML dashboard (zero dependencies, served\nby a Python script) for inline review and editing. Feedback auto-saves via\nlocalStorage. Final deliverables (.docx, .csv) are generated only after\ndashboard confirmation.\n\n### Installation\n\nClaude Code: `claude plugin marketplace add microsoft/eval-guide`.\nGitHub Copilot: `npx skills add microsoft/eval-guide`. Optional companion\nplugin `skills-for-copilot-studio` enables live agent connection via\nDirectLine API.",
+      "tags": [
+        "evaluation",
+        "testing",
+        "claude-code-plugin",
+        "copilot",
+        "copilot-studio",
+        "microsoft",
+        "agent-eval",
+        "test-generation"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-21",
+      "path": "catalog/entries/microsoft-eval-guide.md"
+    },
+    {
       "name": "minimal-agent-integration",
       "title": "Minimal Agent Integration Philosophy",
       "url": "https://community.anthropic.com",
@@ -4286,6 +4421,36 @@
       "path": "catalog/entries/omnigent.md"
     },
     {
+      "name": "omniroute",
+      "title": "OmniRoute",
+      "url": "https://github.com/diegosouzapw/OmniRoute",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "OmniRoute is a self-hosted AI gateway that sits between coding tools and LLM\nproviders. It exposes a single OpenAI-compatible endpoint\n(`http://localhost:20128/v1`) and routes requests across a catalog of 271+\nproviders, 90+ of which have free tiers (40+ free forever).\n\n### Routing\n\nThe system provides 18 routing strategies: priority, fill-first, weighted,\nround-robin, power-of-two-choices, least-used, random, cost-optimized,\nheadroom, reset-window, context-relay, context-optimized, LKGP\n(last-known-good-path), auto (12-factor live scoring), fusion (fan-out to\npanel + judge synthesis), and pipeline (chained stages).\n\n\"Combos\" chain models across providers — when quota runs out, a provider\nfails, or costs spike, the combo silently falls back to the next model.\nZero-config `auto` variants (`auto/coding`, `auto/fast`, `auto/cheap`,\n`auto/smart`) build virtual combos scored live.\n\n### Token compression\n\nAn 11-engine composable pipeline runs transparently on every request:\nSession-Dedup, CCR (archive behind retrieve markers), RTK (tool-result\nfiltering), Headroom (tabular compaction via GCF codec), Relevance\n(extractive scoring), Caveman (rule-based prose compression), LLMLingua-2\n(ML semantic pruning via MobileBERT ONNX), Lite (whitespace trimming),\nAggressive (summarization + aging), and Ultra (heuristic token pruning).\nPresets range from Lite (~15%) to Stacked RTK→Caveman (78–95%).\n\n### Quota-Share\n\nDistributes a provider's time-based quota across multiple keys in a pool\nusing DRR scheduling, with per-connection concurrency, multi-window buckets,\nand session stickiness for prompt-cache integrity.\n\n### Protocols\n\n- MCP server: 104 tools across stdio, HTTP stream, and SSE transports\n- A2A agent protocol: 6 skills, JSON-RPC 2.0 + SSE\n- Full CLI with 80+ commands, interactive TUI chat, setup wizard, diagnostics\n\n### Platforms\n\nRuns via npm (global), Docker (multi-arch), Electron desktop app, Termux\n(Android), PWA, Nix flake, Podman, and from source. Remote mode supports\ndriving a VPS instance from a local CLI via scoped access tokens.",
+      "tags": [
+        "ai-gateway",
+        "llm-router",
+        "openai-compatible",
+        "multi-provider",
+        "token-compression",
+        "mcp-server",
+        "a2a",
+        "failover",
+        "routing",
+        "cost-optimization",
+        "proxy"
+      ],
+      "workflows": [],
+      "security_flags": [
+        "transparent MITM/TPROXY capture of CLI traffic that ignores proxy env vars",
+        "TLS fingerprint stealth (JA3/JA4 spoofing via wreq-js) to evade provider detection",
+        "loopback-only restriction on process-spawning routes"
+      ],
+      "reviewed": "2026-07-21",
+      "path": "catalog/entries/omniroute.md"
+    },
+    {
       "name": "on-prem-llm-deployment-architecture",
       "title": "On-Prem LLM Deployment Architecture (Hardware + Inference Stack Selection)",
       "category": "reference",
@@ -4310,6 +4475,28 @@
       "security_flags": [],
       "reviewed": "2026-07-15",
       "path": "catalog/entries/on-prem-llm-deployment-architecture.md"
+    },
+    {
+      "name": "one-person-ai-company-framework",
+      "title": "One-Person AI Company Framework",
+      "url": "https://www.reddit.com/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "A practitioner's framework distilled from operating a real business\n(growth consulting for agencies/startups) almost entirely on AI agents\nfor six months, from a single git repo. Each principle includes both\nwhat held up and where it broke.\n\n1. **Context as code**: move the company to plain files…",
+      "tags": [
+        "agent-pattern",
+        "solo-founder",
+        "automation",
+        "approval-queue",
+        "taste-loop",
+        "reversibility",
+        "operations"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-21",
+      "path": "catalog/entries/one-person-ai-company-framework.md"
     },
     {
       "name": "one-skill-to-rule-them-all",
@@ -4433,6 +4620,29 @@
       "security_flags": [],
       "reviewed": "2026-07-06",
       "path": "catalog/entries/open-weight-models-june-2026.md"
+    },
+    {
+      "name": "openai-codex-claude-code-proxy",
+      "title": "OpenAI Codex Claude Code Proxy",
+      "url": "https://github.com/MikeChongCan/OpenAI-Codex-Claude-Code-Proxy",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "Two shell launchers (`claudex-oai` for OpenAI/Codex OAuth, `claudex` for\nAzure OpenAI) that start Claude Code with GPT-5.6 Sol as the main model,\nrouting through a local CLIProxyAPI instance that translates Anthropic\nMessages API requests to the OpenAI Responses API.\n\n### Architecture\n\n```\nClaude Code → localhost:8317 → CLIProxyAPI → Codex OAuth or Azure OpenAI\n```\n\nAzure and OpenAI subscription models use separate prefixed names\n(`gpt-5.6-sol` vs `azure-gpt-5.6-sol`) to prevent cross-billing.\n\n### Model mapping\n\n- `opus` → Sol (main agent)\n- `sonnet` → Terra (implementation/review subagents)\n- `haiku` → Luna (fast exploration/simple checks)\n\nThe launcher appends a routing policy to the system prompt and disables\nthe bundled `claude-api` skill. Per-subagent tier selection is supported\nvia `model: sonnet` or `model: haiku` declarations, with a session-wide\noverride available via `CLAUDEX_SUBAGENT_MODEL`.\n\n### Configuration\n\n- Deferred tool loading (`ENABLE_TOOL_SEARCH=true`) to stay under Azure's\n  128-tool limit\n- Effort mode enabled by default\n- `.env` file for Azure endpoint, API key, and deployment names\n- CLIProxyAPI handles OAuth credential storage in `~/.cli-proxy-api`\n\n### Diagnostics\n\n- `doctor.sh`: tests Azure and protocol translation\n- `cache-doctor.py`: verifies Azure prompt-cache hits through the proxy\n- Offline unit tests + live smoke tests\n\n### Security\n\nProxy listens on 127.0.0.1 only. Generated config is mode 0600. Launchers\nunset `ANTHROPIC_API_KEY` to prevent accidental direct Anthropic billing.\nNever enables `--dangerously-skip-permissions`.",
+      "tags": [
+        "claude-code",
+        "proxy",
+        "openai",
+        "azure",
+        "gpt",
+        "cliproxyapi",
+        "model-routing",
+        "subagent"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-21",
+      "path": "catalog/entries/openai-codex-claude-code-proxy.md"
     },
     {
       "name": "openai-python-sdk",
@@ -4921,6 +5131,27 @@
       "security_flags": [],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/ponytail.md"
+    },
+    {
+      "name": "prompt-caching-mcp",
+      "title": "Prompt Caching MCP",
+      "url": "https://github.com/flightlesstux/prompt-caching",
+      "category": "mcp-server",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "An MCP server that helps developers building applications with the Anthropic\nSDK optimize prompt caching. It automatically places `cache_control`\nbreakpoints on stable content blocks so cached reads cost 0.1x instead of\n1x full input price.\n\n### Target audience\n\nDevelopers writing their own Anthropic API applications (Python scripts,\nNode apps, AI agents). Claude Code already handles prompt caching for its\nown sessions automatically — this plugin addresses the layer where custom\ncode calls the API directly.\n\n### Tools\n\n- **optimize_messages**: injects `cache_control` breakpoints into a messages\n  array before Anthropic API calls; returns optimized array + change summary\n- **get_cache_stats**: cumulative token savings for current session — hit\n  rate, tokens saved, estimated cost reduction\n- **reset_cache_stats**: reset session statistics\n- **analyze_cacheability**: dry-run showing which segments would be cached\n  and estimated savings without modifying anything\n\n### Caching strategy\n\nIdentifies three types of stable content: system prompts (cached on first\nturn, reused every subsequent turn), tool definitions (cached once per\nsession), and large user messages (cached when exceeding a configurable\ntoken threshold). Break-even at turn 2; every turn after is pure savings.\n\n### Benchmarks (measured against Anthropic API with Sonnet)\n\n- Bug fix (20 turns): 85% savings\n- Refactor 5 files (15 turns): 80% savings\n- General coding (40 turns): 92% savings\n- Repeated file reads (5x5): 90% savings\n\n### Installation\n\nAvailable as a Claude Code plugin (`/plugin marketplace add`) or via npm\n(`npm install -g prompt-caching-mcp`) for Cursor, Windsurf, Zed,\nContinue.dev, or any MCP client. Optional `.prompt-cache.json` config\nfor tuning thresholds.",
+      "tags": [
+        "prompt-caching",
+        "anthropic-api",
+        "mcp",
+        "token-optimization",
+        "cost-reduction",
+        "claude-code-plugin"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-21",
+      "path": "catalog/entries/prompt-caching-mcp.md"
     },
     {
       "name": "prompt-versioning-managed-agents",
@@ -5811,6 +6042,27 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/tutorial-creator.md"
+    },
+    {
+      "name": "uber-agentic-pods",
+      "title": "Uber Agentic Pods",
+      "url": "https://www.uber.com/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "An organizational pattern for deploying AI agents at enterprise scale.\nInstead of relying on written process documents, engineers spend the\nfirst two days shadowing employees to learn how tasks are actually\nperformed.\n\n- **Days 1–2**: shadow employees, observe real workflows\n- **Day 3**: select…",
+      "tags": [
+        "agent-pattern",
+        "enterprise",
+        "workflow-automation",
+        "cross-functional",
+        "sprint",
+        "uber"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-21",
+      "path": "catalog/entries/uber-agentic-pods.md"
     },
     {
       "name": "ui-ux-pro-max-skill",

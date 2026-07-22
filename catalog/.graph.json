@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T04:39:25.336Z",
+  "generated_at": "2026-07-22T02:26:56.845Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -241,6 +241,16 @@
       "exists": true
     },
     {
+      "id": "anthropic-prompt-caching-guide",
+      "kind": "entry",
+      "title": "Anthropic Prompt Caching Design & Optimization Guide",
+      "url": "https://github.com/anthropics/skills/blob/main/skills/claude-api/shared/prompt-caching.md",
+      "summary": ">-",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "aperture-cli",
       "kind": "entry",
       "title": "Aperture CLI",
@@ -316,6 +326,16 @@
       "title": "Awesome Claude Code",
       "url": "https://github.com/hesreallyhim/awesome-claude-code",
       "summary": "curated Claude Code ecosystem list; use as discovery source for future catalog inbox items",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "awesome-harness-engineering",
+      "kind": "entry",
+      "title": "Awesome Harness Engineering",
+      "url": "https://github.com/ai-boost/awesome-harness-engineering",
+      "summary": ">-",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -568,6 +588,16 @@
       "id": "claude-agent-teams",
       "kind": "entry",
       "exists": false
+    },
+    {
+      "id": "claude-api-prefilter-false-positive",
+      "kind": "entry",
+      "title": "Claude API Pre-Filter False-Positive Troubleshooting",
+      "url": "https://docs.anthropic.com/en/docs/about-claude/models",
+      "summary": ">-",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
     },
     {
       "id": "claude-autoresearch",
@@ -1204,6 +1234,16 @@
       "exists": true
     },
     {
+      "id": "fluxmem",
+      "kind": "entry",
+      "title": "FluxMem: Continuously Evolving Memory Connectivity",
+      "url": "https://arxiv.org/abs/2505.00000",
+      "summary": ">-",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "free-claude-code",
       "kind": "entry",
       "title": "Free Claude Code",
@@ -1290,6 +1330,16 @@
       "url": "https://gradio.app/",
       "summary": ">-",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "granola-cli",
+      "kind": "entry",
+      "title": "Granola CLI",
+      "url": "https://github.com/theantichris/granola",
+      "summary": ">-",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -1723,6 +1773,16 @@
       "exists": true
     },
     {
+      "id": "microsoft-eval-guide",
+      "kind": "entry",
+      "title": "Microsoft Eval Guide",
+      "url": "https://github.com/microsoft/eval-guide",
+      "summary": ">-",
+      "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "minimal-agent-integration",
       "kind": "entry",
       "title": "Minimal Agent Integration Philosophy",
@@ -1916,11 +1976,31 @@
       "exists": true
     },
     {
+      "id": "omniroute",
+      "kind": "entry",
+      "title": "OmniRoute",
+      "url": "https://github.com/diegosouzapw/OmniRoute",
+      "summary": ">-",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "on-prem-llm-deployment-architecture",
       "kind": "entry",
       "title": "On-Prem LLM Deployment Architecture (Hardware + Inference Stack Selection)",
       "summary": "Community-sourced reference on selecting hardware (NVIDIA DGX Spark, RTX multi-GPU, Apple Silicon Mac Studio Ultra, AMD Instinct) and inference stacks (vLLM, SGLang, llama.cpp, MLX, Ollama, Open WebUI) for self-hosted LLM serving at 10–20 concurrent users; covers memory sizing, throughput data, and real deployment reports",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "one-person-ai-company-framework",
+      "kind": "entry",
+      "title": "One-Person AI Company Framework",
+      "url": "https://www.reddit.com/",
+      "summary": ">-",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -1976,6 +2056,16 @@
       "url": "https://openrouter.ai/blog/insights/the-open-weight-models-that-matter-june-2026/",
       "summary": "OpenRouter analysis of the four open-weight models that matter as of June 2026 — DeepSeek V4 Flash (best cost/performance, 79% SWE-bench, $0.05/$0.24 per M tokens), GLM 5.2 (#1 open-weight intelligence index, Opus-class planning), MiniMax M3 (multimodal image/video, 1M context, MiniMax Sparse Attention), NVIDIA Nemotron 3 Ultra (US-built, hybrid Mamba-2+Transformer MoE, 550B/55B-active, free route available)",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "openai-codex-claude-code-proxy",
+      "kind": "entry",
+      "title": "OpenAI Codex Claude Code Proxy",
+      "url": "https://github.com/MikeChongCan/OpenAI-Codex-Claude-Code-Proxy",
+      "summary": ">-",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -2176,6 +2266,16 @@
       "url": "https://github.com/DietrichGebert/ponytail",
       "summary": "YAGNI enforcement plugin with strong benchmarks (80-94% less code, 47-77% cheaper); multi-platform support and clean design make it worth trialing",
       "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "prompt-caching-mcp",
+      "kind": "entry",
+      "title": "Prompt Caching MCP",
+      "url": "https://github.com/flightlesstux/prompt-caching",
+      "summary": ">-",
+      "category": "mcp-server",
       "decision_status": "open",
       "exists": true
     },
@@ -2660,6 +2760,11 @@
       "exists": true
     },
     {
+      "id": "tag:agent-eval",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:agent-framework",
       "kind": "tag",
       "exists": true
@@ -2815,6 +2920,11 @@
       "exists": true
     },
     {
+      "id": "tag:ai-gateway",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ai-governance",
       "kind": "tag",
       "exists": true
@@ -2875,6 +2985,11 @@
       "exists": true
     },
     {
+      "id": "tag:anthropic-api",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:anthropic-official",
       "kind": "tag",
       "exists": true
@@ -2916,6 +3031,11 @@
     },
     {
       "id": "tag:approval-gates",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:approval-queue",
       "kind": "tag",
       "exists": true
     },
@@ -2975,6 +3095,11 @@
       "exists": true
     },
     {
+      "id": "tag:auto-memory",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:automation",
       "kind": "tag",
       "exists": true
@@ -3001,6 +3126,16 @@
     },
     {
       "id": "tag:aws",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:azure",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:backup",
       "kind": "tag",
       "exists": true
     },
@@ -3190,6 +3325,11 @@
       "exists": true
     },
     {
+      "id": "tag:claude-api-skill",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:claude-code",
       "kind": "tag",
       "exists": true
@@ -3241,6 +3381,11 @@
     },
     {
       "id": "tag:cli-tools",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:cliproxyapi",
       "kind": "tag",
       "exists": true
     },
@@ -3425,6 +3570,11 @@
       "exists": true
     },
     {
+      "id": "tag:context-injection",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:context-management",
       "kind": "tag",
       "exists": true
@@ -3451,6 +3601,16 @@
     },
     {
       "id": "tag:coordinator",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:copilot",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:copilot-studio",
       "kind": "tag",
       "exists": true
     },
@@ -3515,6 +3675,11 @@
       "exists": true
     },
     {
+      "id": "tag:cross-functional",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:cross-harness",
       "kind": "tag",
       "exists": true
@@ -3546,6 +3711,11 @@
     },
     {
       "id": "tag:cuda",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:curated",
       "kind": "tag",
       "exists": true
     },
@@ -3606,6 +3776,11 @@
     },
     {
       "id": "tag:data-integrity",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:data-portability",
       "kind": "tag",
       "exists": true
     },
@@ -3940,6 +4115,11 @@
       "exists": true
     },
     {
+      "id": "tag:episodic-memory",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:equity-research",
       "kind": "tag",
       "exists": true
@@ -4005,6 +4185,11 @@
       "exists": true
     },
     {
+      "id": "tag:export",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:fable",
       "kind": "tag",
       "exists": true
@@ -4021,6 +4206,16 @@
     },
     {
       "id": "tag:facial-recognition",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:failover",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:false-positive",
       "kind": "tag",
       "exists": true
     },
@@ -4366,6 +4561,11 @@
     },
     {
       "id": "tag:harness",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:harness-engineering",
       "kind": "tag",
       "exists": true
     },
@@ -4775,6 +4975,11 @@
       "exists": true
     },
     {
+      "id": "tag:llm-router",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:llm-server",
       "kind": "tag",
       "exists": true
@@ -4916,6 +5121,11 @@
     },
     {
       "id": "tag:media-ingestion",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:meeting-notes",
       "kind": "tag",
       "exists": true
     },
@@ -5275,6 +5485,11 @@
       "exists": true
     },
     {
+      "id": "tag:official",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:offline",
       "kind": "tag",
       "exists": true
@@ -5366,6 +5581,11 @@
     },
     {
       "id": "tag:operational",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:operations",
       "kind": "tag",
       "exists": true
     },
@@ -5641,6 +5861,11 @@
     },
     {
       "id": "tag:private-equity",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:procedural-memory",
       "kind": "tag",
       "exists": true
     },
@@ -5925,6 +6150,11 @@
       "exists": true
     },
     {
+      "id": "tag:reversibility",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:reward-modeling",
       "kind": "tag",
       "exists": true
@@ -5976,6 +6206,11 @@
     },
     {
       "id": "tag:safety-bypass",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:safety-classifier",
       "kind": "tag",
       "exists": true
     },
@@ -6090,7 +6325,17 @@
       "exists": true
     },
     {
+      "id": "tag:self-repair",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:semantic-layer",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:semantic-memory",
       "kind": "tag",
       "exists": true
     },
@@ -6260,6 +6505,11 @@
       "exists": true
     },
     {
+      "id": "tag:solo-founder",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:sonnet",
       "kind": "tag",
       "exists": true
@@ -6306,6 +6556,11 @@
     },
     {
       "id": "tag:speech-to-text",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:sprint",
       "kind": "tag",
       "exists": true
     },
@@ -6365,6 +6620,11 @@
       "exists": true
     },
     {
+      "id": "tag:subagent",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:subagents",
       "kind": "tag",
       "exists": true
@@ -6420,6 +6680,11 @@
       "exists": true
     },
     {
+      "id": "tag:taste-loop",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:tauri",
       "kind": "tag",
       "exists": true
@@ -6461,6 +6726,11 @@
     },
     {
       "id": "tag:terminal-tools",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:test-generation",
       "kind": "tag",
       "exists": true
     },
@@ -6525,6 +6795,11 @@
       "exists": true
     },
     {
+      "id": "tag:token-compression",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:token-efficiency",
       "kind": "tag",
       "exists": true
@@ -6575,6 +6850,11 @@
       "exists": true
     },
     {
+      "id": "tag:transcripts",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:transformer",
       "kind": "tag",
       "exists": true
@@ -6601,6 +6881,11 @@
     },
     {
       "id": "tag:triton",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:troubleshooting",
       "kind": "tag",
       "exists": true
     },
@@ -6641,6 +6926,11 @@
     },
     {
       "id": "tag:typography",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:uber",
       "kind": "tag",
       "exists": true
     },
@@ -6994,6 +7284,16 @@
       "title": "Tutorial Creator",
       "summary": "good for knowledge retention and onboarding",
       "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "uber-agentic-pods",
+      "kind": "entry",
+      "title": "Uber Agentic Pods",
+      "url": "https://www.uber.com/",
+      "summary": ">-",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -8099,6 +8399,41 @@
       "relation": "tagged"
     },
     {
+      "source": "anthropic-prompt-caching-guide",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "anthropic-prompt-caching-guide",
+      "target": "tag:anthropic-api",
+      "relation": "tagged"
+    },
+    {
+      "source": "anthropic-prompt-caching-guide",
+      "target": "tag:claude-api-skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "anthropic-prompt-caching-guide",
+      "target": "tag:cost-reduction",
+      "relation": "tagged"
+    },
+    {
+      "source": "anthropic-prompt-caching-guide",
+      "target": "tag:official",
+      "relation": "tagged"
+    },
+    {
+      "source": "anthropic-prompt-caching-guide",
+      "target": "tag:optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "anthropic-prompt-caching-guide",
+      "target": "tag:prompt-caching",
+      "relation": "tagged"
+    },
+    {
       "source": "aperture-cli",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -8386,6 +8721,56 @@
     {
       "source": "awesome-claude-code",
       "target": "tag:skills",
+      "relation": "tagged"
+    },
+    {
+      "source": "awesome-harness-engineering",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "awesome-harness-engineering",
+      "target": "tag:agent-orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "awesome-harness-engineering",
+      "target": "tag:awesome-list",
+      "relation": "tagged"
+    },
+    {
+      "source": "awesome-harness-engineering",
+      "target": "tag:curated",
+      "relation": "tagged"
+    },
+    {
+      "source": "awesome-harness-engineering",
+      "target": "tag:evaluation",
+      "relation": "tagged"
+    },
+    {
+      "source": "awesome-harness-engineering",
+      "target": "tag:harness-engineering",
+      "relation": "tagged"
+    },
+    {
+      "source": "awesome-harness-engineering",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "awesome-harness-engineering",
+      "target": "tag:memory",
+      "relation": "tagged"
+    },
+    {
+      "source": "awesome-harness-engineering",
+      "target": "tag:observability",
+      "relation": "tagged"
+    },
+    {
+      "source": "awesome-harness-engineering",
+      "target": "tag:permissions",
       "relation": "tagged"
     },
     {
@@ -9111,6 +9496,46 @@
     {
       "source": "cl4r1t4s",
       "target": "tag:system-prompts",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-api-prefilter-false-positive",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "claude-api-prefilter-false-positive",
+      "target": "tag:api",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-api-prefilter-false-positive",
+      "target": "tag:auto-memory",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-api-prefilter-false-positive",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-api-prefilter-false-positive",
+      "target": "tag:context-injection",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-api-prefilter-false-positive",
+      "target": "tag:false-positive",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-api-prefilter-false-positive",
+      "target": "tag:safety-classifier",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-api-prefilter-false-positive",
+      "target": "tag:troubleshooting",
       "relation": "tagged"
     },
     {
@@ -11699,6 +12124,51 @@
       "relation": "tagged"
     },
     {
+      "source": "fluxmem",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "fluxmem",
+      "target": "tag:agent-memory",
+      "relation": "tagged"
+    },
+    {
+      "source": "fluxmem",
+      "target": "tag:episodic-memory",
+      "relation": "tagged"
+    },
+    {
+      "source": "fluxmem",
+      "target": "tag:memory",
+      "relation": "tagged"
+    },
+    {
+      "source": "fluxmem",
+      "target": "tag:procedural-memory",
+      "relation": "tagged"
+    },
+    {
+      "source": "fluxmem",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "fluxmem",
+      "target": "tag:research-paper",
+      "relation": "tagged"
+    },
+    {
+      "source": "fluxmem",
+      "target": "tag:self-repair",
+      "relation": "tagged"
+    },
+    {
+      "source": "fluxmem",
+      "target": "tag:semantic-memory",
+      "relation": "tagged"
+    },
+    {
       "source": "free-claude-code",
       "target": "cat:framework",
       "relation": "categorized"
@@ -12071,6 +12541,46 @@
     {
       "source": "gradio",
       "target": "tag:web-app",
+      "relation": "tagged"
+    },
+    {
+      "source": "granola-cli",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "granola-cli",
+      "target": "tag:backup",
+      "relation": "tagged"
+    },
+    {
+      "source": "granola-cli",
+      "target": "tag:data-portability",
+      "relation": "tagged"
+    },
+    {
+      "source": "granola-cli",
+      "target": "tag:export",
+      "relation": "tagged"
+    },
+    {
+      "source": "granola-cli",
+      "target": "tag:granola",
+      "relation": "tagged"
+    },
+    {
+      "source": "granola-cli",
+      "target": "tag:markdown",
+      "relation": "tagged"
+    },
+    {
+      "source": "granola-cli",
+      "target": "tag:meeting-notes",
+      "relation": "tagged"
+    },
+    {
+      "source": "granola-cli",
+      "target": "tag:transcripts",
       "relation": "tagged"
     },
     {
@@ -13874,6 +14384,51 @@
       "relation": "tagged"
     },
     {
+      "source": "microsoft-eval-guide",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "microsoft-eval-guide",
+      "target": "tag:agent-eval",
+      "relation": "tagged"
+    },
+    {
+      "source": "microsoft-eval-guide",
+      "target": "tag:claude-code-plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "microsoft-eval-guide",
+      "target": "tag:copilot-studio",
+      "relation": "tagged"
+    },
+    {
+      "source": "microsoft-eval-guide",
+      "target": "tag:copilot",
+      "relation": "tagged"
+    },
+    {
+      "source": "microsoft-eval-guide",
+      "target": "tag:evaluation",
+      "relation": "tagged"
+    },
+    {
+      "source": "microsoft-eval-guide",
+      "target": "tag:microsoft",
+      "relation": "tagged"
+    },
+    {
+      "source": "microsoft-eval-guide",
+      "target": "tag:test-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "microsoft-eval-guide",
+      "target": "tag:testing",
+      "relation": "tagged"
+    },
+    {
       "source": "minimal-agent-integration",
       "target": "advisor-strategy",
       "relation": "overlaps"
@@ -14599,6 +15154,66 @@
       "relation": "tagged"
     },
     {
+      "source": "omniroute",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "omniroute",
+      "target": "tag:a2a",
+      "relation": "tagged"
+    },
+    {
+      "source": "omniroute",
+      "target": "tag:ai-gateway",
+      "relation": "tagged"
+    },
+    {
+      "source": "omniroute",
+      "target": "tag:cost-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "omniroute",
+      "target": "tag:failover",
+      "relation": "tagged"
+    },
+    {
+      "source": "omniroute",
+      "target": "tag:llm-router",
+      "relation": "tagged"
+    },
+    {
+      "source": "omniroute",
+      "target": "tag:mcp-server",
+      "relation": "tagged"
+    },
+    {
+      "source": "omniroute",
+      "target": "tag:multi-provider",
+      "relation": "tagged"
+    },
+    {
+      "source": "omniroute",
+      "target": "tag:openai-compatible",
+      "relation": "tagged"
+    },
+    {
+      "source": "omniroute",
+      "target": "tag:proxy",
+      "relation": "tagged"
+    },
+    {
+      "source": "omniroute",
+      "target": "tag:routing",
+      "relation": "tagged"
+    },
+    {
+      "source": "omniroute",
+      "target": "tag:token-compression",
+      "relation": "tagged"
+    },
+    {
       "source": "on-prem-llm-deployment-architecture",
       "target": "cat:reference",
       "relation": "categorized"
@@ -14666,6 +15281,46 @@
     {
       "source": "on-prem-llm-deployment-architecture",
       "target": "tag:vllm",
+      "relation": "tagged"
+    },
+    {
+      "source": "one-person-ai-company-framework",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "one-person-ai-company-framework",
+      "target": "tag:agent-pattern",
+      "relation": "tagged"
+    },
+    {
+      "source": "one-person-ai-company-framework",
+      "target": "tag:approval-queue",
+      "relation": "tagged"
+    },
+    {
+      "source": "one-person-ai-company-framework",
+      "target": "tag:automation",
+      "relation": "tagged"
+    },
+    {
+      "source": "one-person-ai-company-framework",
+      "target": "tag:operations",
+      "relation": "tagged"
+    },
+    {
+      "source": "one-person-ai-company-framework",
+      "target": "tag:reversibility",
+      "relation": "tagged"
+    },
+    {
+      "source": "one-person-ai-company-framework",
+      "target": "tag:solo-founder",
+      "relation": "tagged"
+    },
+    {
+      "source": "one-person-ai-company-framework",
+      "target": "tag:taste-loop",
       "relation": "tagged"
     },
     {
@@ -14886,6 +15541,51 @@
     {
       "source": "open-weight-models-june-2026",
       "target": "tag:pricing",
+      "relation": "tagged"
+    },
+    {
+      "source": "openai-codex-claude-code-proxy",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "openai-codex-claude-code-proxy",
+      "target": "tag:azure",
+      "relation": "tagged"
+    },
+    {
+      "source": "openai-codex-claude-code-proxy",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "openai-codex-claude-code-proxy",
+      "target": "tag:cliproxyapi",
+      "relation": "tagged"
+    },
+    {
+      "source": "openai-codex-claude-code-proxy",
+      "target": "tag:gpt",
+      "relation": "tagged"
+    },
+    {
+      "source": "openai-codex-claude-code-proxy",
+      "target": "tag:model-routing",
+      "relation": "tagged"
+    },
+    {
+      "source": "openai-codex-claude-code-proxy",
+      "target": "tag:openai",
+      "relation": "tagged"
+    },
+    {
+      "source": "openai-codex-claude-code-proxy",
+      "target": "tag:proxy",
+      "relation": "tagged"
+    },
+    {
+      "source": "openai-codex-claude-code-proxy",
+      "target": "tag:subagent",
       "relation": "tagged"
     },
     {
@@ -15671,6 +16371,41 @@
     {
       "source": "ponytail",
       "target": "tag:yagni",
+      "relation": "tagged"
+    },
+    {
+      "source": "prompt-caching-mcp",
+      "target": "cat:mcp-server",
+      "relation": "categorized"
+    },
+    {
+      "source": "prompt-caching-mcp",
+      "target": "tag:anthropic-api",
+      "relation": "tagged"
+    },
+    {
+      "source": "prompt-caching-mcp",
+      "target": "tag:claude-code-plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "prompt-caching-mcp",
+      "target": "tag:cost-reduction",
+      "relation": "tagged"
+    },
+    {
+      "source": "prompt-caching-mcp",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "prompt-caching-mcp",
+      "target": "tag:prompt-caching",
+      "relation": "tagged"
+    },
+    {
+      "source": "prompt-caching-mcp",
+      "target": "tag:token-optimization",
       "relation": "tagged"
     },
     {
@@ -17251,6 +17986,41 @@
     {
       "source": "tutorial-creator",
       "target": "tag:tutorials",
+      "relation": "tagged"
+    },
+    {
+      "source": "uber-agentic-pods",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "uber-agentic-pods",
+      "target": "tag:agent-pattern",
+      "relation": "tagged"
+    },
+    {
+      "source": "uber-agentic-pods",
+      "target": "tag:cross-functional",
+      "relation": "tagged"
+    },
+    {
+      "source": "uber-agentic-pods",
+      "target": "tag:enterprise",
+      "relation": "tagged"
+    },
+    {
+      "source": "uber-agentic-pods",
+      "target": "tag:sprint",
+      "relation": "tagged"
+    },
+    {
+      "source": "uber-agentic-pods",
+      "target": "tag:uber",
+      "relation": "tagged"
+    },
+    {
+      "source": "uber-agentic-pods",
+      "target": "tag:workflow-automation",
       "relation": "tagged"
     },
     {
