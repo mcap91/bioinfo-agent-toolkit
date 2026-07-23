@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-22T02:26:56.845Z",
+  "generated_at": "2026-07-23T02:32:29.147Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -1135,6 +1135,16 @@
       "exists": true
     },
     {
+      "id": "ergon-wrong-turn-logger",
+      "kind": "entry",
+      "title": "ergon-wrong-turn-logger",
+      "url": "https://github.com/ergon-automation-labs/ergon-wrong-turn-logger",
+      "summary": "CLI that logs development 'wrong turns' (bad assumptions, missed edge cases, broken designs) to a searchable local SQLite database, with list/stats/search commands; framed for solo, team, and AI-assisted workflows.",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "fable-agent-orchestration",
       "kind": "entry",
       "title": "Fable Agent Orchestration",
@@ -1649,6 +1659,16 @@
       "url": "https://github.com/hiyouga/LlamaFactory",
       "summary": "Unified fine-tuning framework for 100+ LLMs and VLMs — zero-code web UI (LLaMA Board) and CLI; supports SFT, LoRA/QLoRA (2–8 bit), DPO/KTO/ORPO/PPO, reward modeling, pretraining; multimodal (image/video/audio); vLLM/SGLang inference; NVIDIA/AMD/Ascend NPU/CPU; used by Amazon, NVIDIA, Aliyun; ACL 2024; Apache 2.0",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "llmfit",
+      "kind": "entry",
+      "title": "llmfit",
+      "url": "https://github.com/AlexsJones/llmfit",
+      "summary": "Terminal tool that detects local hardware (RAM/CPU/GPU/VRAM) and scores LLM models across fit, speed, quality, and context to report which will run well locally; ships an interactive TUI and a JSON-emitting CLI for agent/script use.",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -2505,6 +2525,15 @@
       "exists": true
     },
     {
+      "id": "software-cost-estimation-models",
+      "kind": "entry",
+      "title": "Software Cost Estimation Models (COCOMO II & Alternatives)",
+      "summary": "Reference on algorithmic software cost-estimation models — COCOMO II's three sub-models and effort/schedule formulas, plus alternatives (Putnam/SLIM, Function Point Analysis, SEER-SEM, story points, Wideband Delphi, analogy-based) — and their fit for git-derived, zero-touch size metrics.",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "sota-scan",
       "kind": "entry",
       "title": "sota-scan",
@@ -3140,6 +3169,11 @@
       "exists": true
     },
     {
+      "id": "tag:bash",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:bash-hook",
       "kind": "tag",
       "exists": true
@@ -3405,6 +3439,11 @@
       "exists": true
     },
     {
+      "id": "tag:cocomo-ii",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:code-agent",
       "kind": "tag",
       "exists": true
@@ -3625,6 +3664,11 @@
       "exists": true
     },
     {
+      "id": "tag:cost-estimation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:cost-optimization",
       "kind": "tag",
       "exists": true
@@ -3816,6 +3860,11 @@
     },
     {
       "id": "tag:decentralized",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:decision-log",
       "kind": "tag",
       "exists": true
     },
@@ -4315,6 +4364,11 @@
       "exists": true
     },
     {
+      "id": "tag:function-points",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:fuzzy-search",
       "kind": "tag",
       "exists": true
@@ -4381,6 +4435,11 @@
     },
     {
       "id": "tag:gguf",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:git-metrics",
       "kind": "tag",
       "exists": true
     },
@@ -4556,6 +4615,11 @@
     },
     {
       "id": "tag:hardware",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:hardware-detection",
       "kind": "tag",
       "exists": true
     },
@@ -4830,6 +4894,11 @@
       "exists": true
     },
     {
+      "id": "tag:knowledge-capture",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:knowledge-graph",
       "kind": "tag",
       "exists": true
@@ -4896,6 +4965,11 @@
     },
     {
       "id": "tag:lecture-capture",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:lessons-learned",
       "kind": "tag",
       "exists": true
     },
@@ -5970,6 +6044,11 @@
       "exists": true
     },
     {
+      "id": "tag:putnam-slim",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:pwa",
       "kind": "tag",
       "exists": true
@@ -6141,6 +6220,11 @@
     },
     {
       "id": "tag:retrieval-practice",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:retrospective",
       "kind": "tag",
       "exists": true
     },
@@ -6501,6 +6585,11 @@
     },
     {
       "id": "tag:socket-api",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:software-metrics",
       "kind": "tag",
       "exists": true
     },
@@ -11674,6 +11763,46 @@
       "relation": "tagged"
     },
     {
+      "source": "ergon-wrong-turn-logger",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "ergon-wrong-turn-logger",
+      "target": "tag:bash",
+      "relation": "tagged"
+    },
+    {
+      "source": "ergon-wrong-turn-logger",
+      "target": "tag:cli",
+      "relation": "tagged"
+    },
+    {
+      "source": "ergon-wrong-turn-logger",
+      "target": "tag:decision-log",
+      "relation": "tagged"
+    },
+    {
+      "source": "ergon-wrong-turn-logger",
+      "target": "tag:knowledge-capture",
+      "relation": "tagged"
+    },
+    {
+      "source": "ergon-wrong-turn-logger",
+      "target": "tag:lessons-learned",
+      "relation": "tagged"
+    },
+    {
+      "source": "ergon-wrong-turn-logger",
+      "target": "tag:retrospective",
+      "relation": "tagged"
+    },
+    {
+      "source": "ergon-wrong-turn-logger",
+      "target": "tag:sqlite",
+      "relation": "tagged"
+    },
+    {
       "source": "fable-agent-orchestration",
       "target": "agent-skills-addy-osmani",
       "relation": "overlaps"
@@ -13807,6 +13936,56 @@
       "source": "llamafactory",
       "target": "unsloth",
       "relation": "overlaps"
+    },
+    {
+      "source": "llmfit",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "llmfit",
+      "target": "tag:hardware-detection",
+      "relation": "tagged"
+    },
+    {
+      "source": "llmfit",
+      "target": "tag:llama-cpp",
+      "relation": "tagged"
+    },
+    {
+      "source": "llmfit",
+      "target": "tag:llm-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "llmfit",
+      "target": "tag:local-llm",
+      "relation": "tagged"
+    },
+    {
+      "source": "llmfit",
+      "target": "tag:mlx",
+      "relation": "tagged"
+    },
+    {
+      "source": "llmfit",
+      "target": "tag:model-selection",
+      "relation": "tagged"
+    },
+    {
+      "source": "llmfit",
+      "target": "tag:ollama",
+      "relation": "tagged"
+    },
+    {
+      "source": "llmfit",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "llmfit",
+      "target": "tag:tui",
+      "relation": "tagged"
     },
     {
       "source": "local-model-picks-2026",
@@ -17221,6 +17400,41 @@
     {
       "source": "smolagents",
       "target": "tag:sandbox",
+      "relation": "tagged"
+    },
+    {
+      "source": "software-cost-estimation-models",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "software-cost-estimation-models",
+      "target": "tag:cocomo-ii",
+      "relation": "tagged"
+    },
+    {
+      "source": "software-cost-estimation-models",
+      "target": "tag:cost-estimation",
+      "relation": "tagged"
+    },
+    {
+      "source": "software-cost-estimation-models",
+      "target": "tag:function-points",
+      "relation": "tagged"
+    },
+    {
+      "source": "software-cost-estimation-models",
+      "target": "tag:git-metrics",
+      "relation": "tagged"
+    },
+    {
+      "source": "software-cost-estimation-models",
+      "target": "tag:putnam-slim",
+      "relation": "tagged"
+    },
+    {
+      "source": "software-cost-estimation-models",
+      "target": "tag:software-metrics",
       "relation": "tagged"
     },
     {

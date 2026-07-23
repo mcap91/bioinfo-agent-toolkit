@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-07-22",
-  "count": 272,
+  "generated": "2026-07-23",
+  "count": 275,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -2472,6 +2472,31 @@
       "path": "catalog/entries/era-empirical-research-assistant.md"
     },
     {
+      "name": "ergon-wrong-turn-logger",
+      "title": "ergon-wrong-turn-logger",
+      "url": "https://github.com/ergon-automation-labs/ergon-wrong-turn-logger",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "CLI that logs development 'wrong turns' (bad assumptions, missed edge cases, broken designs) to a searchable local SQLite database, with list/stats/search commands; framed for solo, team, and AI-assisted workflows.",
+      "body_summary": "A command-line tool that records \"wrong turns\" — bad assumptions, missed edge cases, or designs that broke — to a searchable SQLite database at `~/.ergon/wrong-turns.db`. Each entry captures a type (technical/process/pattern), a description, a \"should have done\" correction, and optional impact, tags, and project. Commands: `log` (via flags or interactive prompts), `list` (last 10, filterable by `--type`), `stats` (counts by type), `search \"<term>\"`, and `init`. The README frames three use cases — individual retrospection, shared team knowledge, and logging corrections when an AI assistant (e.g. Claude) suggests something wrong — and positions the tool within a broader \"agent-operable infrastructure\" methodology, closing with a consulting pitch from Ergon Automation Labs.",
+      "tags": [
+        "decision-log",
+        "knowledge-capture",
+        "sqlite",
+        "retrospective",
+        "lessons-learned",
+        "bash",
+        "cli"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "install-sh-script"
+      ],
+      "reviewed": "2026-07-22",
+      "path": "catalog/entries/ergon-wrong-turn-logger.md"
+    },
+    {
       "name": "fable-agent-orchestration",
       "title": "Fable Agent Orchestration",
       "url": "https://git.wearein.space/elias/fable-agent-orchestration",
@@ -3662,6 +3687,34 @@
       "security_flags": [],
       "reviewed": "2026-07-06",
       "path": "catalog/entries/llamafactory.md"
+    },
+    {
+      "name": "llmfit",
+      "title": "llmfit",
+      "url": "https://github.com/AlexsJones/llmfit",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Terminal tool that detects local hardware (RAM/CPU/GPU/VRAM) and scores LLM models across fit, speed, quality, and context to report which will run well locally; ships an interactive TUI and a JSON-emitting CLI for agent/script use.",
+      "body_summary": "llmfit is a Rust terminal tool that right-sizes LLM models to the local machine. It detects hardware (RAM, CPU, GPU/VRAM, and backend), then scores every model in its catalog across four dimensions — memory fit, estimated speed, quality, and context length. It ships an interactive TUI (default) and a classic CLI mode, and handles multi-GPU setups, MoE architectures, and dynamic quantization selection. Supported local runtime providers are Ollama, llama.cpp, MLX, Docker Model Runner, and LM Studio. Speed estimates come from a memory-bandwidth model grounded in runtime sampling and community measurements; `llmfit info` reports the inputs behind each estimate plus commands to verify it on the local machine. A benchmarking feature (`llmfit bench`) measures real tok/s and time-to-first-token against a running provider — results are saved locally and can be contributed back as PRs to a community leaderboard directly from the TUI.",
+      "tags": [
+        "llm-inference",
+        "hardware-detection",
+        "model-selection",
+        "rust",
+        "tui",
+        "ollama",
+        "llama-cpp",
+        "mlx",
+        "local-llm"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "curl-pipe-sh-install",
+        "community-submitted-benchmark-data"
+      ],
+      "reviewed": "2026-07-22",
+      "path": "catalog/entries/llmfit.md"
     },
     {
       "name": "local-model-picks-2026",
@@ -5620,6 +5673,27 @@
       "security_flags": [],
       "reviewed": "2026-06-23",
       "path": "catalog/entries/smolagents.md"
+    },
+    {
+      "name": "software-cost-estimation-models",
+      "title": "Software Cost Estimation Models (COCOMO II & Alternatives)",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Reference on algorithmic software cost-estimation models — COCOMO II's three sub-models and effort/schedule formulas, plus alternatives (Putnam/SLIM, Function Point Analysis, SEER-SEM, story points, Wideband Delphi, analogy-based) — and their fit for git-derived, zero-touch size metrics.",
+      "body_summary": "Covers COCOMO II (Constructive Cost Model, USC) and its alternatives as inputs to an automated, git-derived cost estimator.\n\n- **COCOMO II sub-models:** Application Composition (early prototyping; Object Points), Early Design (requirements known, pre-architecture; Function Points + a small…",
+      "tags": [
+        "cost-estimation",
+        "cocomo-ii",
+        "putnam-slim",
+        "function-points",
+        "software-metrics",
+        "git-metrics"
+      ],
+      "workflows": [],
+      "license": "unknown",
+      "security_flags": [],
+      "reviewed": "2026-07-22",
+      "path": "catalog/entries/software-cost-estimation-models.md"
     },
     {
       "name": "sota-scan",

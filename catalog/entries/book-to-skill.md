@@ -25,6 +25,12 @@ Bioinformatics work regularly involves large reference PDFs (tool manuals, metho
 
 Source is a Reddit r/claudeskills post. No public repo URL confirmed at review time. Pilot by applying to one comp bio reference text (e.g., a STAR aligner manual or Seurat vignette compilation) and evaluating retrieval accuracy before broader use.
 
+- **Update (2026-07-22):** Canonical repository confirmed at https://github.com/virgiliojr94/book-to-skill (MIT license) — resolving the "no repo confirmed / license unknown" gap noted above. Distributed as an Agent Skill on the open SKILL.md standard for Claude Code, GitHub Copilot CLI, and Amp; install via `git clone https://github.com/virgiliojr94/book-to-skill.git ~/.claude/skills/book-to-skill`, then run `/book-to-skill <path|folder|glob>`.
+- Supported inputs: PDF, EPUB, DOCX, TXT, Markdown, reStructuredText, AsciiDoc, HTML, RTF, MOBI/AZW. Extractors tried in order per format (PDF → pdftotext/pypdf/pdfminer or Docling for technical books with tables/code; EPUB → ebooklib → stdlib zipfile). `python3 scripts/extract.py --check` reports which extractors are installed.
+- Generates a skill folder: `SKILL.md` core (~4K tokens) + one file per chapter (loaded on demand, ~1K each) + `glossary.md`, `patterns.md`, `cheatsheet.md`. Chapter auto-segmentation needs explicit "Chapter N" headings.
+- A separate, optional standalone extractor exists via `pip install book-to-skill`; it installs only the text-extraction engine (CLI), **not** the agent skill.
+- README reports 24×–51× fewer tokens than context-dumping a book to answer one question, measured via `tools/discovery_tax.py` on three real books. Processing is local; the tool ships no book content.
+
 ## Security
 
 License is unknown — the skill originates from a Reddit community post with no associated repository or explicit license grant. Treat it as use-at-will with no redistribution guarantees; re-verify if a canonical repo surfaces. No `security_flags` apply: this skill is pure prompt text with no code execution, no external network calls, no file-system writes, and no dependency installation. The only data-handling consideration is that the source PDF is read into Claude's context window — ensure PDFs containing sensitive or proprietary content are not processed through shared or logged endpoints.
