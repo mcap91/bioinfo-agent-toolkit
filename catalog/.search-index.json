@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-07-23",
-  "count": 275,
+  "generated": "2026-07-28",
+  "count": 292,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -983,6 +983,28 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/book-to-skill.md"
+    },
+    {
+      "name": "boris-cherny-claude-md",
+      "title": "Boris Cherny's CLAUDE.md",
+      "url": "https://gist.github.com/hqman/e29cb6386c539d795767e8c3fd2c959b",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "A widely-shared CLAUDE.md (attributed to Boris Cherny) codifying a Claude Code operating discipline: plan-mode-by-default, liberal subagent use, a self-improvement lessons loop, verification-before-done, demanding elegance, and autonomous bug fixing, plus a tasks/todo.md + tasks/lessons.md task-management convention.",
+      "body_summary": "This GitHub gist is a CLAUDE.md configuration, presented as \"Boris Cherny's CLAUDE.md,\" that encodes a set of operating rules for driving Claude Code. It is a reusable technique/configuration artifact rather than a tool. Its content is organized in three parts:\n\n**Workflow Orchestration**\n1. *Plan…",
+      "tags": [
+        "claude-md",
+        "workflow",
+        "agent-configuration",
+        "plan-mode",
+        "subagents",
+        "verification",
+        "claude-code"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-07-27",
+      "path": "catalog/entries/boris-cherny-claude-md.md"
     },
     {
       "name": "browser-use",
@@ -2300,6 +2322,30 @@
       "path": "catalog/entries/dspy.md"
     },
     {
+      "name": "duckdb",
+      "title": "DuckDB",
+      "url": "https://github.com/duckdb/duckdb",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "High-performance in-process analytical (OLAP) SQL database. Rich SQL dialect (window functions, correlated subqueries, nested types), zero-config, embeddable; runs as a standalone CLI and as clients for Python, R, Java, Wasm, etc., with direct querying of CSV/Parquet files and pandas/dplyr integration. MIT.",
+      "body_summary": "DuckDB is an in-process analytical SQL database management system designed for fast, reliable, portable, and easy analytical (OLAP) workloads. It provides a rich SQL dialect extending well beyond basic SQL — arbitrary and nested correlated subqueries, window functions, collations, and complex/nested types (arrays, structs, maps) — plus extensions. It runs embedded in the host process with no separate server, available as a standalone CLI and as clients for Python, R, Java, WebAssembly, and more, with deep integrations for packages like pandas and dplyr. Files can be queried directly, e.g. `SELECT * FROM 'myfile.parquet'` or `'myfile.csv'`.",
+      "tags": [
+        "database",
+        "sql",
+        "olap",
+        "analytics",
+        "embedded",
+        "parquet",
+        "columnar",
+        "in-process"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-27",
+      "path": "catalog/entries/duckdb.md"
+    },
+    {
       "name": "e2b",
       "title": "E2B",
       "url": "https://github.com/e2b-dev/e2b",
@@ -2815,6 +2861,30 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/gbrain.md"
+    },
+    {
+      "name": "geolibre",
+      "title": "GeoLibre",
+      "url": "https://github.com/opengeos/GeoLibre",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Lightweight, cloud-native open-source GIS platform (opengeos) for visualizing, exploring, and analyzing geospatial data locally. Built on Tauri v2, React, MapLibre GL JS, DuckDB-WASM Spatial, and deck.gl; the same workspace runs as a native desktop app, native Android app, in the browser, and inside Jupyter, with 700+ browser-side GIS tools and Earth + planetary basemaps. MIT.",
+      "body_summary": "GeoLibre is a free, open-source, lightweight cloud-native GIS platform for visualizing, exploring, and analyzing geospatial data while keeping data local and private. The same workspace runs as a native desktop app (Windows/macOS/Linux), a native Android app, in any modern web browser, and inside…",
+      "tags": [
+        "gis",
+        "geospatial",
+        "mapping",
+        "duckdb-wasm",
+        "deck-gl",
+        "maplibre",
+        "tauri",
+        "jupyter"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-27",
+      "path": "catalog/entries/geolibre.md"
     },
     {
       "name": "get-shit-done",
@@ -3418,6 +3488,30 @@
       "path": "catalog/entries/inbox-zero.md"
     },
     {
+      "name": "jax",
+      "title": "JAX",
+      "url": "https://github.com/jax-ml/jax",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Python library for accelerator-oriented array computing and composable function transformations: jax.grad (autodiff to any order, forward/reverse), jax.jit (XLA compilation to CPU/GPU/TPU), and jax.vmap (auto-vectorization), plus sharding APIs to scale across thousands of devices. Apache-2.0; a research project, not an official Google product.",
+      "body_summary": "JAX is a Python library for accelerator-oriented array computation and program transformation. It can automatically differentiate native Python and NumPy functions — through loops, branches, recursion, and closures — via `jax.grad`, supporting forward- and reverse-mode differentiation composed to arbitrary order. It uses XLA to compile and run NumPy-style programs on CPUs, GPUs, and TPUs (`jax.jit`), and auto-vectorizes functions across array axes with `jax.vmap`. These transformations compose arbitrarily. For scaling, JAX offers compiler-based automatic parallelization, explicit sharding with automatic partitioning, and manual per-device programming with explicit collectives, addressable through a mesh/`PartitionSpec` sharding API.\n\nThe README notes JAX is a research project, not an official Google product, and to \"expect sharp edges.\"",
+      "tags": [
+        "machine-learning",
+        "autodiff",
+        "jit",
+        "xla",
+        "gpu",
+        "tpu",
+        "numpy",
+        "numerical-computing"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-07-27",
+      "path": "catalog/entries/jax.md"
+    },
+    {
       "name": "jcode",
       "title": "jcode",
       "url": "https://github.com/1jehuang/jcode",
@@ -3662,6 +3756,30 @@
       "security_flags": [],
       "reviewed": "2026-06-26",
       "path": "catalog/entries/litellm.md"
+    },
+    {
+      "name": "llama-index",
+      "title": "LlamaIndex",
+      "url": "https://github.com/run-llama/llama_index",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source Python data framework for building LLM/RAG and document-agent apps: data connectors, indices/graphs, retrievers, and query engines to augment LLMs with private data, with 300+ integration packages (LLMs, embeddings, vector stores) on LlamaHub. Pairs with the commercial LlamaParse/Parse agentic-OCR platform. MIT.",
+      "body_summary": "LlamaIndex is an open-source Python framework for building LLM applications over private data. It provides data connectors to ingest sources and formats (APIs, PDFs, docs, SQL), ways to structure data as indices and graphs, and a retrieval/query interface that returns knowledge-augmented output for a given prompt. A high-level API can ingest and query data in a few lines; lower-level APIs allow customizing connectors, indices, retrievers, query engines, and rerankers. It integrates with outer frameworks (LangChain, Flask, Docker, and others).\n\nThe library is namespaced: `llama-index` is a starter package bundling core plus common integrations, while `llama-index-core` installs core alone for pairing with any of 300+ integration packages on LlamaHub. LlamaParse/Parse is the company's separate commercial platform for agentic OCR, parsing, extraction, and indexing (130+ formats), usable with the framework or standalone.",
+      "tags": [
+        "rag",
+        "llm",
+        "data-framework",
+        "retrieval",
+        "vector-store",
+        "document-agents",
+        "ocr",
+        "llamaparse"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-27",
+      "path": "catalog/entries/llama-index.md"
     },
     {
       "name": "llamafactory",
@@ -3918,6 +4036,32 @@
       "path": "catalog/entries/medley.md"
     },
     {
+      "name": "meetily",
+      "title": "Meetily",
+      "url": "https://github.com/Zackriya-Solutions/meetily",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Privacy-first, self-hosted AI meeting assistant (Zackriya Solutions) that captures, transcribes, and summarizes meetings entirely on the local machine. Tauri desktop app (Rust backend, Next.js frontend) with live Whisper/Parakeet transcription, mic+system audio capture, and summaries via Ollama (local) or optional Claude/Groq/OpenRouter/OpenAI endpoints. MIT (Community Edition); a paid PRO tier exists.",
+      "body_summary": "Meetily is a privacy-first AI meeting assistant that runs on the local machine, capturing meetings, transcribing them in real time, and generating summaries without sending data to the cloud by default. It is a single self-contained Tauri application with a Rust backend and Next.js frontend, for macOS, Windows, and Linux. Transcription runs locally with Whisper or Parakeet models; it captures microphone and system audio simultaneously with ducking/clipping prevention, and supports GPU acceleration (Metal/CoreML on Apple Silicon; CUDA on NVIDIA; Vulkan on AMD/Intel). It can import existing audio files to transcribe or re-transcribe with a different model/language. Summaries use a configurable AI provider — Ollama (local, recommended) or Claude, Groq, OpenRouter, or a custom OpenAI-compatible endpoint. The open-source Community Edition is MIT; a separate paid \"Meetily PRO\" (different codebase) adds higher-accuracy models, custom templates, advanced exports, auto-join, and planned speaker diarization.",
+      "tags": [
+        "meeting-notes",
+        "transcription",
+        "whisper",
+        "parakeet",
+        "local-first",
+        "tauri",
+        "ollama",
+        "privacy"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "optional-cloud-llm-egress"
+      ],
+      "reviewed": "2026-07-27",
+      "path": "catalog/entries/meetily.md"
+    },
+    {
       "name": "mempalace",
       "title": "MemPalace",
       "url": "https://github.com/MemPalace/mempalace",
@@ -4157,6 +4301,30 @@
       "security_flags": [],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/model-workspace-protocol.md"
+    },
+    {
+      "name": "motion-design-skill",
+      "title": "Motion Design Skill",
+      "url": "https://github.com/LottieFiles/motion-design-skill",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "LottieFiles agent skill teaching universal, implementation-agnostic motion-design principles — timing, easing, choreography, and Disney's 12 principles adapted for UI — so agents choose motion intent before writing animation code. Works with any system (CSS, Framer Motion, GSAP, Lottie, Spring); ships philosophy, pattern recipes, and reference tables. Installs via npx skills add. MIT.",
+      "body_summary": "Motion Design Skill (by LottieFiles) is a philosophy-first, implementation-agnostic agent skill that teaches coding agents to \"think like motion directors\" — choosing timing, easing, choreography, and emotional intent before writing any animation code. It is framework-agnostic, applying to CSS,…",
+      "tags": [
+        "motion-design",
+        "animation",
+        "ui",
+        "skill",
+        "claude-code",
+        "css",
+        "framer-motion",
+        "gsap"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-27",
+      "path": "catalog/entries/motion-design-skill.md"
     },
     {
       "name": "mycelium",
@@ -4990,6 +5158,30 @@
       "path": "catalog/entries/overcut.md"
     },
     {
+      "name": "pandera",
+      "title": "Pandera",
+      "url": "https://github.com/unionai-oss/pandera",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Union.ai's dataframe validation library: define schemas (object-based DataFrameSchema or class-based DataFrameModel) with typed columns, built-in and custom checks, and validate pandas/polars/pyspark and other dataframe-like objects for correctness in data pipelines. MIT.",
+      "body_summary": "Pandera is an open-source data-validation library (a Union.ai project) that provides an expressive API for validating dataframe-like objects, aiming to make data pipelines more readable and robust with statistically typed dataframes. Schemas can be defined two ways: an object-based API (`pa.DataFrameSchema({...})` with `pa.Column(type, pa.Check...)`) or a class-based API (`class Schema(pa.DataFrameModel)` with typed fields, `pa.Field(...)`, and `@pa.check` methods). Checks cover types, ranges, membership, and arbitrary custom predicates. It supports multiple backends including pandas, polars, and pyspark.\n\nAs of v0.24.0 the recommended import for pandas is `import pandera.pandas as pa`; using the top-level `pandera` module for pandas structures emits a `FutureWarning` and is slated for deprecation in v0.29.0.",
+      "tags": [
+        "data-validation",
+        "schema",
+        "pandas",
+        "polars",
+        "pyspark",
+        "dataframes",
+        "testing",
+        "union-ai"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-27",
+      "path": "catalog/entries/pandera.md"
+    },
+    {
       "name": "paperless-ngx",
       "title": "Paperless-ngx",
       "url": "https://github.com/paperless-ngx/paperless-ngx",
@@ -5038,6 +5230,34 @@
       "security_flags": [],
       "reviewed": "2026-07-01",
       "path": "catalog/entries/parallel-local-inference.md"
+    },
+    {
+      "name": "penecho",
+      "title": "PenEcho",
+      "url": "https://github.com/penecho/penecho",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Local-first AI canvas: put a question, equation, diagram, or half-formed idea anywhere on an infinite canvas and PenEcho reads the marks and their spatial relationships and answers beside them. Node server + browser UI; pluggable LLM source (Claude CLI, Codex CLI, Kimi CLI, or OpenAI/Anthropic API). A Kimi Open Source Friend. AGPL-3.0-only.",
+      "body_summary": "PenEcho is an open-source \"think with AI beyond the chat box\" tool: a shared canvas where handwriting, equations, diagrams, and spatial context become part of the conversation. It runs as a local Node.js server with a browser canvas UI. A user draws or writes anywhere on a large (20,000×20,000) canvas and pauses; PenEcho sends only the relevant canvas crop and geometry to the selected model, which returns a movable draft (answers, hints, formulas, plots, diagrams) placed beside the marks and kept separate from confirmed ink until accepted. It supports images, sandboxed HTML/animation widgets, Mermaid flowcharts, image search, and local snapshot/PNG export. The model executor is pluggable: Claude Code CLI, Codex CLI, Kimi CLI, or an OpenAI-compatible / Anthropic-compatible API endpoint, each with a reasoning-effort control. It is an official member of Moonshot AI's \"Kimi Open Source Friends\" program.",
+      "tags": [
+        "ai-canvas",
+        "handwriting-recognition",
+        "diagrams",
+        "whiteboard",
+        "local-first",
+        "claude-cli",
+        "codex-cli",
+        "agpl"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0-only",
+      "security_flags": [
+        "binds-all-interfaces-by-default",
+        "plaintext-credentials-at-rest",
+        "launches-local-cli-processes"
+      ],
+      "reviewed": "2026-07-27",
+      "path": "catalog/entries/penecho.md"
     },
     {
       "name": "perplexity-mcp-server",
@@ -5136,6 +5356,34 @@
       "path": "catalog/entries/pilotfish.md"
     },
     {
+      "name": "pinchtab",
+      "title": "PinchTab",
+      "url": "https://github.com/pinchtab/pinchtab",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Standalone Go HTTP server (~16MB single binary) that gives AI agents control of Chrome via a CLI and HTTP API: token-efficient text extraction (~800 tokens/page), headless/headed profiles, multi-instance orchestration, an MCP server, and a dashboard. Local-first by default (binds 127.0.0.1, sensitive endpoints off). MIT.",
+      "body_summary": "PinchTab is a standalone HTTP server, distributed as a ~16MB self-contained Go binary, that gives AI agents direct control over Chrome. Agents navigate pages, extract structured content, and interact with the DOM through a CLI (`pinchtab nav/snap/click/fill/press/text`) or an HTTP API, using stable accessibility element refs rather than coordinates. It emphasizes token efficiency (~800 tokens/page via text extraction, which it benchmarks as cheaper than screenshots). Features include headless and headed modes, named browser profiles with persistent sessions (cookies/logins/extensions), multi-instance orchestration with isolated profiles, external-Chrome attach (advanced), site audits and visual comparison (`pinchtab audit`/`compare`), an MCP server, a dashboard, and a background daemon. Windows support is best-effort; macOS/Linux are the primary tested targets.",
+      "tags": [
+        "browser-automation",
+        "ai-agents",
+        "chrome",
+        "cdp",
+        "go",
+        "http-api",
+        "mcp",
+        "headless"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "privileged-control-surface",
+        "curl-pipe-sh-install",
+        "network-exposure-if-misconfigured"
+      ],
+      "reviewed": "2026-07-27",
+      "path": "catalog/entries/pinchtab.md"
+    },
+    {
       "name": "piyaz",
       "title": "Piyaz",
       "url": "https://github.com/FrkAk/piyaz/",
@@ -5161,6 +5409,30 @@
       ],
       "reviewed": "2026-06-23",
       "path": "catalog/entries/piyaz.md"
+    },
+    {
+      "name": "polars",
+      "title": "Polars",
+      "url": "https://github.com/pola-rs/polars",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Rust-core columnar DataFrame library with a multi-threaded, vectorized (SIMD) query engine and lazy query optimizer; Python/Rust/Node/R APIs, Apache Arrow memory model, streaming out-of-core execution, and readers/writers for CSV/JSON/Parquet/Delta/Arrow/databases/cloud storage. MIT.",
+      "body_summary": "Polars is an open-source DataFrame library for single-machine data manipulation. Its core is written in Rust with a multi-threaded query engine, vectorized/columnar processing, and SIMD, built on the Apache Arrow memory model for zero-copy interchange. It exposes both an eager API and a lazy API; the lazy API runs queries through a query optimizer. A streaming API supports out-of-core processing of datasets larger than memory. APIs are available for Python, Rust, Node.js, and R.\n\nPolars reads and writes CSV and JSON (text); Parquet, Delta Lake, Avro, and Excel (binary); Feather/Arrow IPC; databases (MySQL, Postgres, SQL Server, SQLite, Redshift, Oracle); and cloud object storage (S3, Azure Blob/File).\n\nA commercial managed offering, Polars Cloud, runs the same API with cloud or on-prem deployment; the open-source library is independent of it.",
+      "tags": [
+        "dataframes",
+        "rust",
+        "apache-arrow",
+        "query-engine",
+        "simd",
+        "out-of-core",
+        "data-processing",
+        "python"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-27",
+      "path": "catalog/entries/polars.md"
     },
     {
       "name": "ponytail",
@@ -5228,6 +5500,30 @@
       ],
       "reviewed": "2026-06-25",
       "path": "catalog/entries/prompt-versioning-managed-agents.md"
+    },
+    {
+      "name": "pyscript",
+      "title": "PyScript",
+      "url": "https://github.com/pyscript/pyscript",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source platform for running Python in the browser via Pyodide (CPython on WASM) or MicroPython; embed Python in HTML with a <script type='py'/'mpy'> tag to build browser apps that run client-side on desktop, mobile, or any browser. Born at Anaconda; Apache-2.0.",
+      "body_summary": "PyScript is an open-source platform for running Python in the web browser. It builds on Pyodide (a WebAssembly build of CPython), MicroPython, WASM, and standard web technologies, letting developers embed Python directly in HTML using `<script type=\"py\">` (Pyodide) or `<script type=\"mpy\">` (MicroPython) tags. Code runs client-side wherever a browser runs — desktop, laptop, mobile, or tablet — with no server-side Python. It supports terminal output, rich in-browser applications, and interoperation with the DOM and web APIs.\n\nPyScript began at Anaconda Inc.; its core contributors are employed by Anaconda to work on the project, which is otherwise an independent open-source effort.",
+      "tags": [
+        "python",
+        "webassembly",
+        "browser",
+        "pyodide",
+        "micropython",
+        "wasm",
+        "frontend",
+        "anaconda"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-07-27",
+      "path": "catalog/entries/pyscript.md"
     },
     {
       "name": "qwen25-coder-32b",
@@ -5369,6 +5665,30 @@
       "path": "catalog/entries/repowire.md"
     },
     {
+      "name": "robyn",
+      "title": "Robyn",
+      "url": "https://github.com/sparckles/Robyn",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Async Python web framework with a Rust runtime (PyO3); sync/async handlers, dynamic routing, middleware, WebSockets, built-in OpenAPI generation, Jinja2 templating, hot reload, CLI scaffolding, plus built-in AI-agent routing and an MCP server mode. No external server needed. BSD-licensed.",
+      "body_summary": "Robyn is an async Python web framework whose runtime is written in Rust (via PyO3), so it needs no external server for production. Handlers are defined with decorators (`@app.get(\"/\")`, sync or async) on a `Robyn(__file__)` app started with `app.start(port=...)`. Features include a multithreaded runtime with multi-core scaling, dynamic URL routing and sub-routers, before/after middleware, WebSockets, dependency injection, built-in form-data handling, static file serving and file responses, streaming/SSE, startup/shutdown events, exception handling, automatic OpenAPI generation, Jinja2 templating, hot reloading, project scaffolding via CLI, and experimental io-uring support. Recent additions include built-in AI-agent routing/execution and a Model Context Protocol (MCP) server mode to connect the app to AI applications.",
+      "tags": [
+        "web-framework",
+        "python",
+        "rust",
+        "async",
+        "api",
+        "websockets",
+        "mcp",
+        "high-performance"
+      ],
+      "workflows": [],
+      "license": "BSD-2-Clause",
+      "security_flags": [],
+      "reviewed": "2026-07-27",
+      "path": "catalog/entries/robyn.md"
+    },
+    {
       "name": "rtk",
       "title": "rtk — CLI Proxy for LLM Token Reduction",
       "url": "https://github.com/rtk-ai/rtk",
@@ -5393,6 +5713,32 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/rtk.md"
+    },
+    {
+      "name": "ruff",
+      "title": "Ruff",
+      "url": "https://github.com/astral-sh/ruff",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Rust-written Python linter and formatter from Astral; re-implements 900+ rules (Flake8 + dozens of plugins, isort, pydocstyle, pyupgrade) and a Black-compatible formatter behind one interface, with built-in caching, autofix, pyproject.toml config, and editor/pre-commit/GitHub Action integrations. MIT.",
+      "body_summary": "Ruff is a Python linter and code formatter written in Rust, developed by Astral (creators of uv and ty). It re-implements over 900 lint rules as first-party Rust code, covering the checks of Flake8 and dozens of its plugins, isort, pydocstyle, pyupgrade, autoflake, and others, plus a formatter with drop-in parity to Black. A single binary replaces the separate tools while running one to three orders of magnitude faster. It supports autofix (e.g. removing unused imports), built-in result caching, hierarchical/cascading configuration for monorepos, and Python 3.14. It is used by projects including FastAPI, Pandas, SciPy, Apache Airflow, Hugging Face, and the Anthropic Python SDK.",
+      "tags": [
+        "python",
+        "linter",
+        "formatter",
+        "static-analysis",
+        "rust",
+        "code-quality",
+        "astral",
+        "pre-commit"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "curl-pipe-sh-install"
+      ],
+      "reviewed": "2026-07-27",
+      "path": "catalog/entries/ruff.md"
     },
     {
       "name": "ruview-wifi-sensing",
@@ -5524,6 +5870,30 @@
       ],
       "reviewed": "2026-06-26",
       "path": "catalog/entries/sira-superintelligent-retrieval-agent.md"
+    },
+    {
+      "name": "sira",
+      "title": "SIRA (Superintelligent Retrieval Agent)",
+      "url": "https://github.com/facebookresearch/sira",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Meta (FAIR) research pipeline that uses LLMs to enrich both documents and queries to improve BM25 retrieval without training. Five stages: data prep, BM25 indexing, corpus enrichment (LLM indexing phrases), query expansion (LLM search terms), and LLM pointwise reranking; reports SOTA on BEIR using only inference-time compute. MIT.",
+      "body_summary": "SIRA (Superintelligent Retrieval Agent) is a research codebase from Meta's FAIR (facebookresearch) implementing a multi-stage retrieval pipeline that uses LLMs to enrich both documents and queries, improving BM25 retrieval quality without any training. The pipeline has five stages: data preparation, BM25 indexing, corpus enrichment (LLM-generated indexing phrases added to documents), query expansion (LLM-generated search terms), and LLM-based pointwise reranking. The authors report state-of-the-art results on the BEIR benchmark suite using only inference-time compute (no fine-tuning). It ships a configurable pipeline runner that can process one or many BEIR datasets and run selected stages, and can auto-start a local LLM server. Introduced in the paper \"Superintelligent Retrieval Agent: The Next Frontier of Information Retrieval\" (arXiv 2605.06647).",
+      "tags": [
+        "information-retrieval",
+        "bm25",
+        "rag",
+        "reranking",
+        "query-expansion",
+        "llm",
+        "beir",
+        "meta"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-27",
+      "path": "catalog/entries/sira.md"
     },
     {
       "name": "skill-router",
@@ -5979,6 +6349,30 @@
       "path": "catalog/entries/teampcp-miasma-npm-supply-chain-attack-2026.md"
     },
     {
+      "name": "textual",
+      "title": "Textual",
+      "url": "https://github.com/Textualize/textual",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Textualize's Python TUI framework for building cross-platform terminal user interfaces with a simple, optionally-async API and a large widget library (buttons, trees, data tables, inputs, text areas); apps can also be served to a web browser via textual serve / Textual Web. MIT.",
+      "body_summary": "Textual is a Python framework for building cross-platform user interfaces that run in the terminal or a web browser, from Textualize. It offers a simple, declarative API with CSS-like styling, a flexible layout system, predefined themes, and a widget library spanning buttons, tree controls, data tables, inputs, and text areas. It is asynchronous under the hood but does not require the developer to use async. The `textual-dev` package provides a dev console that connects from a second terminal to surface logs, print statements, and events. Apps include a fuzzy-search command palette (ctrl+p) and can be served to the web with `textual serve` or the Textual Web service.",
+      "tags": [
+        "tui",
+        "terminal",
+        "python",
+        "ui-framework",
+        "textualize",
+        "async",
+        "widgets",
+        "cli"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-27",
+      "path": "catalog/entries/textual.md"
+    },
+    {
       "name": "third-brain-v5-wiki",
       "title": "Third Brain V5 (Wiki/Knowledge Layer)",
       "url": "https://github.com/Mark393295827/third-brain-v5-skills",
@@ -5998,6 +6392,30 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/third-brain-v5-wiki.md"
+    },
+    {
+      "name": "threejs-skills",
+      "title": "Three.js Skills",
+      "url": "https://github.com/CloudAI-X/threejs-skills",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Skill bundle (CloudAI-X) shipping 10 Three.js SKILL.md sub-skills for AI coding agents: fundamentals, geometry, materials, textures, lighting, loaders, animation, interaction, shaders, and post-processing — each triggering on the matching 3D/WebGL task. Installs via npx skills add. MIT.",
+      "body_summary": "Three.js Skills (by CloudAI-X) is an agent skill bundle that ships 10 individual `SKILL.md` files, each teaching a coding agent one area of the Three.js 3D/WebGL library and activating when a prompt matches that area:\n\n- **threejs-fundamentals** — scene setup, cameras, renderer, Object3D hierarchy,…",
+      "tags": [
+        "threejs",
+        "3d",
+        "webgl",
+        "skill-bundle",
+        "web-development",
+        "claude-code",
+        "shaders",
+        "animation"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-07-27",
+      "path": "catalog/entries/threejs-skills.md"
     },
     {
       "name": "tolvi",

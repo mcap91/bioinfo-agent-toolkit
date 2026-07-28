@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-23T02:32:29.147Z",
+  "generated_at": "2026-07-28T00:24:04.928Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -431,6 +431,16 @@
       "title": "Book to Skill",
       "summary": "directly useful for computational biology methods PDFs",
       "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "boris-cherny-claude-md",
+      "kind": "entry",
+      "title": "Boris Cherny's CLAUDE.md",
+      "url": "https://gist.github.com/hqman/e29cb6386c539d795767e8c3fd2c959b",
+      "summary": "A widely-shared CLAUDE.md (attributed to Boris Cherny) codifying a Claude Code operating discipline: plan-mode-by-default, liberal subagent use, a self-improvement lessons loop, verification-before-done, demanding elegance, and autonomous bug fixing, plus a tasks/todo.md + tasks/lessons.md task-management convention.",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -1060,6 +1070,16 @@
       "exists": true
     },
     {
+      "id": "duckdb",
+      "kind": "entry",
+      "title": "DuckDB",
+      "url": "https://github.com/duckdb/duckdb",
+      "summary": "High-performance in-process analytical (OLAP) SQL database. Rich SQL dialect (window functions, correlated subqueries, nested types), zero-config, embeddable; runs as a standalone CLI and as clients for Python, R, Java, Wasm, etc., with direct querying of CSV/Parquet files and pandas/dplyr integration. MIT.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "e2b",
       "kind": "entry",
       "title": "E2B",
@@ -1279,6 +1299,16 @@
       "title": "gbrain",
       "url": "https://github.com/garrytan/gbrain",
       "summary": "kb wiki already provides persistent typed records with relationships and search",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "geolibre",
+      "kind": "entry",
+      "title": "GeoLibre",
+      "url": "https://github.com/opengeos/GeoLibre",
+      "summary": "Lightweight, cloud-native open-source GIS platform (opengeos) for visualizing, exploring, and analyzing geospatial data locally. Built on Tauri v2, React, MapLibre GL JS, DuckDB-WASM Spatial, and deck.gl; the same workspace runs as a native desktop app, native Android app, in the browser, and inside Jupyter, with 700+ browser-side GIS tools and Earth + planetary basemaps. MIT.",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -1544,6 +1574,16 @@
       "exists": true
     },
     {
+      "id": "jax",
+      "kind": "entry",
+      "title": "JAX",
+      "url": "https://github.com/jax-ml/jax",
+      "summary": "Python library for accelerator-oriented array computing and composable function transformations: jax.grad (autodiff to any order, forward/reverse), jax.jit (XLA compilation to CPU/GPU/TPU), and jax.vmap (auto-vectorization), plus sharding APIs to scale across thousands of devices. Apache-2.0; a research project, not an official Google product.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "jcode",
       "kind": "entry",
       "title": "jcode",
@@ -1653,6 +1693,16 @@
       "exists": true
     },
     {
+      "id": "llama-index",
+      "kind": "entry",
+      "title": "LlamaIndex",
+      "url": "https://github.com/run-llama/llama_index",
+      "summary": "Open-source Python data framework for building LLM/RAG and document-agent apps: data connectors, indices/graphs, retrievers, and query engines to augment LLMs with private data, with 300+ integration packages (LLMs, embeddings, vector stores) on LlamaHub. Pairs with the commercial LlamaParse/Parse agentic-OCR platform. MIT.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "llamafactory",
       "kind": "entry",
       "title": "LLaMA Factory",
@@ -1753,6 +1803,16 @@
       "exists": true
     },
     {
+      "id": "meetily",
+      "kind": "entry",
+      "title": "Meetily",
+      "url": "https://github.com/Zackriya-Solutions/meetily",
+      "summary": "Privacy-first, self-hosted AI meeting assistant (Zackriya Solutions) that captures, transcribes, and summarizes meetings entirely on the local machine. Tauri desktop app (Rust backend, Next.js frontend) with live Whisper/Parakeet transcription, mic+system audio capture, and summaries via Ollama (local) or optional Claude/Groq/OpenRouter/OpenAI endpoints. MIT (Community Edition); a paid PRO tier exists.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "mempalace",
       "kind": "entry",
       "title": "MemPalace",
@@ -1848,6 +1908,16 @@
       "url": "https://arxiv.org/abs/2603.16021",
       "summary": "Research paper proposing filesystem structure as agent orchestration; numbered folders + markdown prompts replace multi-agent frameworks for sequential workflows",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "motion-design-skill",
+      "kind": "entry",
+      "title": "Motion Design Skill",
+      "url": "https://github.com/LottieFiles/motion-design-skill",
+      "summary": "LottieFiles agent skill teaching universal, implementation-agnostic motion-design principles — timing, easing, choreography, and Disney's 12 principles adapted for UI — so agents choose motion intent before writing animation code. Works with any system (CSS, Framer Motion, GSAP, Lottie, Spring); ships philosophy, pattern recipes, and reference tables. Installs via npx skills add. MIT.",
+      "category": "skill",
       "decision_status": "open",
       "exists": true
     },
@@ -2210,6 +2280,16 @@
       "exists": true
     },
     {
+      "id": "pandera",
+      "kind": "entry",
+      "title": "Pandera",
+      "url": "https://github.com/unionai-oss/pandera",
+      "summary": "Union.ai's dataframe validation library: define schemas (object-based DataFrameSchema or class-based DataFrameModel) with typed columns, built-in and custom checks, and validate pandas/polars/pyspark and other dataframe-like objects for correctness in data pipelines. MIT.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "paperless-ngx",
       "kind": "entry",
       "title": "Paperless-ngx",
@@ -2226,6 +2306,16 @@
       "url": "https://github.com/vllm-project/vllm",
       "summary": "Strategy for maximizing local GPU throughput by running multiple concurrent LLM agents via vLLM — exploits idle compute from memory-bandwidth bottleneck; 8-9x aggregate throughput over single-stream; per-agent throughput drops slightly but total throughput scales near-linearly with concurrency",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "penecho",
+      "kind": "entry",
+      "title": "PenEcho",
+      "url": "https://github.com/penecho/penecho",
+      "summary": "Local-first AI canvas: put a question, equation, diagram, or half-formed idea anywhere on an infinite canvas and PenEcho reads the marks and their spatial relationships and answers beside them. Node server + browser UI; pluggable LLM source (Claude CLI, Codex CLI, Kimi CLI, or OpenAI/Anthropic API). A Kimi Open Source Friend. AGPL-3.0-only.",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -2270,11 +2360,31 @@
       "exists": true
     },
     {
+      "id": "pinchtab",
+      "kind": "entry",
+      "title": "PinchTab",
+      "url": "https://github.com/pinchtab/pinchtab",
+      "summary": "Standalone Go HTTP server (~16MB single binary) that gives AI agents control of Chrome via a CLI and HTTP API: token-efficient text extraction (~800 tokens/page), headless/headed profiles, multi-instance orchestration, an MCP server, and a dashboard. Local-first by default (binds 127.0.0.1, sensitive endpoints off). MIT.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "piyaz",
       "kind": "entry",
       "title": "Piyaz",
       "url": "https://github.com/FrkAk/piyaz/",
       "summary": "Agentic workspace where people and AI coding agents collaborate on projects — context network with dependency-graph task management, 6 MCP tools, end-to-end composer orchestration (Claude Code), plugins for Codex/Cursor/Antigravity; hosted + self-hostable, AGPL-3.0",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "polars",
+      "kind": "entry",
+      "title": "Polars",
+      "url": "https://github.com/pola-rs/polars",
+      "summary": "Rust-core columnar DataFrame library with a multi-threaded, vectorized (SIMD) query engine and lazy query optimizer; Python/Rust/Node/R APIs, Apache Arrow memory model, streaming out-of-core execution, and readers/writers for CSV/JSON/Parquet/Delta/Arrow/databases/cloud storage. MIT.",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -2306,6 +2416,16 @@
       "url": "https://platform.claude.com/cookbook/managed-agents-cma-prompt-versioning-and-rollback",
       "summary": ">-",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "pyscript",
+      "kind": "entry",
+      "title": "PyScript",
+      "url": "https://github.com/pyscript/pyscript",
+      "summary": "Open-source platform for running Python in the browser via Pyodide (CPython on WASM) or MicroPython; embed Python in HTML with a <script type='py'/'mpy'> tag to build browser apps that run client-side on desktop, mobile, or any browser. Born at Anaconda; Apache-2.0.",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -2385,6 +2505,16 @@
       "exists": true
     },
     {
+      "id": "robyn",
+      "kind": "entry",
+      "title": "Robyn",
+      "url": "https://github.com/sparckles/Robyn",
+      "summary": "Async Python web framework with a Rust runtime (PyO3); sync/async handlers, dynamic routing, middleware, WebSockets, built-in OpenAPI generation, Jinja2 templating, hot reload, CLI scaffolding, plus built-in AI-agent routing and an MCP server mode. No external server needed. BSD-licensed.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "rtk",
       "kind": "entry",
       "title": "rtk — CLI Proxy for LLM Token Reduction",
@@ -2398,6 +2528,16 @@
       "id": "rtk-cli-proxy",
       "kind": "entry",
       "exists": false
+    },
+    {
+      "id": "ruff",
+      "kind": "entry",
+      "title": "Ruff",
+      "url": "https://github.com/astral-sh/ruff",
+      "summary": "Rust-written Python linter and formatter from Astral; re-implements 900+ rules (Flake8 + dozens of plugins, isort, pydocstyle, pyupgrade) and a Black-compatible formatter behind one interface, with built-in caching, autofix, pyproject.toml config, and editor/pre-commit/GitHub Action integrations. MIT.",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
     },
     {
       "id": "ruview-wifi-sensing",
@@ -2442,7 +2582,12 @@
     {
       "id": "sira",
       "kind": "entry",
-      "exists": false
+      "title": "SIRA (Superintelligent Retrieval Agent)",
+      "url": "https://github.com/facebookresearch/sira",
+      "summary": "Meta (FAIR) research pipeline that uses LLMs to enrich both documents and queries to improve BM25 retrieval without training. Five stages: data prep, BM25 indexing, corpus enrichment (LLM indexing phrases), query expansion (LLM search terms), and LLM pointwise reranking; reports SOTA on BEIR using only inference-time compute. MIT.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
     },
     {
       "id": "sira-superintelligent-retrieval-agent",
@@ -2644,6 +2789,11 @@
       "exists": true
     },
     {
+      "id": "tag:3d",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ACP",
       "kind": "tag",
       "exists": true
@@ -2775,6 +2925,11 @@
     },
     {
       "id": "tag:agent-capability",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:agent-configuration",
       "kind": "tag",
       "exists": true
     },
@@ -2924,6 +3079,11 @@
       "exists": true
     },
     {
+      "id": "tag:agpl",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ai-agent",
       "kind": "tag",
       "exists": true
@@ -2935,6 +3095,11 @@
     },
     {
       "id": "tag:ai-assistant",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ai-canvas",
       "kind": "tag",
       "exists": true
     },
@@ -2999,12 +3164,27 @@
       "exists": true
     },
     {
+      "id": "tag:anaconda",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:analysis-scripts",
       "kind": "tag",
       "exists": true
     },
     {
+      "id": "tag:analytics",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:android",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:animation",
       "kind": "tag",
       "exists": true
     },
@@ -3030,6 +3210,11 @@
     },
     {
       "id": "tag:anti-sycophancy",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:apache-arrow",
       "kind": "tag",
       "exists": true
     },
@@ -3099,6 +3284,11 @@
       "exists": true
     },
     {
+      "id": "tag:astral",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:async",
       "kind": "tag",
       "exists": true
@@ -3125,6 +3315,11 @@
     },
     {
       "id": "tag:auto-memory",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:autodiff",
       "kind": "tag",
       "exists": true
     },
@@ -3195,6 +3390,11 @@
     },
     {
       "id": "tag:behavioral-tuning",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:beir",
       "kind": "tag",
       "exists": true
     },
@@ -3319,6 +3519,11 @@
       "exists": true
     },
     {
+      "id": "tag:cdp",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:chatbot",
       "kind": "tag",
       "exists": true
@@ -3335,6 +3540,11 @@
     },
     {
       "id": "tag:chromadb",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:chrome",
       "kind": "tag",
       "exists": true
     },
@@ -3360,6 +3570,11 @@
     },
     {
       "id": "tag:claude-api-skill",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:claude-cli",
       "kind": "tag",
       "exists": true
     },
@@ -3489,6 +3704,11 @@
       "exists": true
     },
     {
+      "id": "tag:codex-cli",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:coding",
       "kind": "tag",
       "exists": true
@@ -3510,6 +3730,11 @@
     },
     {
       "id": "tag:color-palettes",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:columnar",
       "kind": "tag",
       "exists": true
     },
@@ -3749,6 +3974,11 @@
       "exists": true
     },
     {
+      "id": "tag:css",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ctranslate2",
       "kind": "tag",
       "exists": true
@@ -3814,6 +4044,11 @@
       "exists": true
     },
     {
+      "id": "tag:data-framework",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:data-governance",
       "kind": "tag",
       "exists": true
@@ -3825,6 +4060,11 @@
     },
     {
       "id": "tag:data-portability",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:data-processing",
       "kind": "tag",
       "exists": true
     },
@@ -3844,12 +4084,22 @@
       "exists": true
     },
     {
+      "id": "tag:data-validation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:database",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:databases",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:dataframes",
       "kind": "tag",
       "exists": true
     },
@@ -3885,6 +4135,11 @@
     },
     {
       "id": "tag:decisions",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:deck-gl",
       "kind": "tag",
       "exists": true
     },
@@ -3969,6 +4224,11 @@
       "exists": true
     },
     {
+      "id": "tag:diagrams",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:diarization",
       "kind": "tag",
       "exists": true
@@ -4005,6 +4265,11 @@
     },
     {
       "id": "tag:docker",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:document-agents",
       "kind": "tag",
       "exists": true
     },
@@ -4064,6 +4329,11 @@
       "exists": true
     },
     {
+      "id": "tag:duckdb-wasm",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:durable-execution",
       "kind": "tag",
       "exists": true
@@ -4105,6 +4375,11 @@
     },
     {
       "id": "tag:email",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:embedded",
       "kind": "tag",
       "exists": true
     },
@@ -4324,6 +4599,16 @@
       "exists": true
     },
     {
+      "id": "tag:formatter",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:framer-motion",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:framework",
       "kind": "tag",
       "exists": true
@@ -4429,12 +4714,22 @@
       "exists": true
     },
     {
+      "id": "tag:geospatial",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ggplot2",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:gguf",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:gis",
       "kind": "tag",
       "exists": true
     },
@@ -4480,6 +4775,11 @@
     },
     {
       "id": "tag:gmail",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:go",
       "kind": "tag",
       "exists": true
     },
@@ -4584,6 +4884,11 @@
       "exists": true
     },
     {
+      "id": "tag:gsap",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:guardrails",
       "kind": "tag",
       "exists": true
@@ -4605,6 +4910,11 @@
     },
     {
       "id": "tag:handoff",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:handwriting-recognition",
       "kind": "tag",
       "exists": true
     },
@@ -4634,12 +4944,22 @@
       "exists": true
     },
     {
+      "id": "tag:headless",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:hebbian-learning",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:hermes",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:high-performance",
       "kind": "tag",
       "exists": true
     },
@@ -4680,6 +5000,11 @@
     },
     {
       "id": "tag:html",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:http-api",
       "kind": "tag",
       "exists": true
     },
@@ -4725,6 +5050,11 @@
     },
     {
       "id": "tag:impact-analysis",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:in-process",
       "kind": "tag",
       "exists": true
     },
@@ -4835,6 +5165,11 @@
     },
     {
       "id": "tag:jacobian-lens",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:jit",
       "kind": "tag",
       "exists": true
     },
@@ -4979,6 +5314,11 @@
       "exists": true
     },
     {
+      "id": "tag:linter",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:linting",
       "kind": "tag",
       "exists": true
@@ -4995,6 +5335,11 @@
     },
     {
       "id": "tag:llama-cpp",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:llamaparse",
       "kind": "tag",
       "exists": true
     },
@@ -5154,6 +5499,16 @@
       "exists": true
     },
     {
+      "id": "tag:maplibre",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:mapping",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:markdown",
       "kind": "tag",
       "exists": true
@@ -5279,6 +5634,11 @@
       "exists": true
     },
     {
+      "id": "tag:micropython",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:microsoft",
       "kind": "tag",
       "exists": true
@@ -5385,6 +5745,11 @@
     },
     {
       "id": "tag:moe",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:motion-design",
       "kind": "tag",
       "exists": true
     },
@@ -5519,6 +5884,11 @@
       "exists": true
     },
     {
+      "id": "tag:numerical-computing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:numpy",
       "kind": "tag",
       "exists": true
@@ -5565,6 +5935,11 @@
     },
     {
       "id": "tag:offline",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:olap",
       "kind": "tag",
       "exists": true
     },
@@ -5694,6 +6069,11 @@
       "exists": true
     },
     {
+      "id": "tag:out-of-core",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:output-compression",
       "kind": "tag",
       "exists": true
@@ -5730,6 +6110,11 @@
     },
     {
       "id": "tag:paperless",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:parakeet",
       "kind": "tag",
       "exists": true
     },
@@ -5859,6 +6244,11 @@
       "exists": true
     },
     {
+      "id": "tag:plan-mode",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:planning",
       "kind": "tag",
       "exists": true
@@ -5875,6 +6265,11 @@
     },
     {
       "id": "tag:plugins",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:polars",
       "kind": "tag",
       "exists": true
     },
@@ -5905,6 +6300,11 @@
     },
     {
       "id": "tag:pr-validation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:pre-commit",
       "kind": "tag",
       "exists": true
     },
@@ -6054,6 +6454,16 @@
       "exists": true
     },
     {
+      "id": "tag:pyodide",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:pyspark",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:python",
       "kind": "tag",
       "exists": true
@@ -6075,6 +6485,11 @@
     },
     {
       "id": "tag:quantization",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:query-engine",
       "kind": "tag",
       "exists": true
     },
@@ -6464,6 +6879,11 @@
       "exists": true
     },
     {
+      "id": "tag:shaders",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:sheets",
       "kind": "tag",
       "exists": true
@@ -6500,6 +6920,11 @@
     },
     {
       "id": "tag:skill",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:skill-bundle",
       "kind": "tag",
       "exists": true
     },
@@ -6650,6 +7075,11 @@
     },
     {
       "id": "tag:sprint",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:sql",
       "kind": "tag",
       "exists": true
     },
@@ -6809,6 +7239,11 @@
       "exists": true
     },
     {
+      "id": "tag:terminal",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:terminal-multiplexer",
       "kind": "tag",
       "exists": true
@@ -6829,7 +7264,17 @@
       "exists": true
     },
     {
+      "id": "tag:textualize",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:threat-intelligence",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:threejs",
       "kind": "tag",
       "exists": true
     },
@@ -6915,6 +7360,11 @@
     },
     {
       "id": "tag:tool-use",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:tpu",
       "kind": "tag",
       "exists": true
     },
@@ -7029,12 +7479,22 @@
       "exists": true
     },
     {
+      "id": "tag:ui-framework",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ultracode",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:ultraworkers",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:union-ai",
       "kind": "tag",
       "exists": true
     },
@@ -7085,6 +7545,11 @@
     },
     {
       "id": "tag:vector-search",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:vector-store",
       "kind": "tag",
       "exists": true
     },
@@ -7169,6 +7634,11 @@
       "exists": true
     },
     {
+      "id": "tag:wasm",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:wealth-management",
       "kind": "tag",
       "exists": true
@@ -7190,6 +7660,11 @@
     },
     {
       "id": "tag:web-extraction",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:web-framework",
       "kind": "tag",
       "exists": true
     },
@@ -7219,12 +7694,37 @@
       "exists": true
     },
     {
+      "id": "tag:webassembly",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:webgl",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:websockets",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:weight-merging",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:whisper",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:whiteboard",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:widgets",
       "kind": "tag",
       "exists": true
     },
@@ -7284,6 +7784,11 @@
       "exists": true
     },
     {
+      "id": "tag:xla",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:yagni",
       "kind": "tag",
       "exists": true
@@ -7318,12 +7823,32 @@
       "exists": true
     },
     {
+      "id": "textual",
+      "kind": "entry",
+      "title": "Textual",
+      "url": "https://github.com/Textualize/textual",
+      "summary": "Textualize's Python TUI framework for building cross-platform terminal user interfaces with a simple, optionally-async API and a large widget library (buttons, trees, data tables, inputs, text areas); apps can also be served to a web browser via textual serve / Textual Web. MIT.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "third-brain-v5-wiki",
       "kind": "entry",
       "title": "Third Brain V5 (Wiki/Knowledge Layer)",
       "url": "https://github.com/Mark393295827/third-brain-v5-skills",
       "summary": "Obsidian-specific schema, heavy; staleness and contradiction detection concepts worth noting for kb",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "threejs-skills",
+      "kind": "entry",
+      "title": "Three.js Skills",
+      "url": "https://github.com/CloudAI-X/threejs-skills",
+      "summary": "Skill bundle (CloudAI-X) shipping 10 Three.js SKILL.md sub-skills for AI coding agents: fundamentals, geometry, materials, textures, lighting, loaders, animation, interaction, shaders, and post-processing — each triggering on the matching 3D/WebGL task. Installs via npx skills add. MIT.",
+      "category": "skill",
       "decision_status": "open",
       "exists": true
     },
@@ -9220,6 +9745,51 @@
     {
       "source": "book-to-skill",
       "target": "tag:querying",
+      "relation": "tagged"
+    },
+    {
+      "source": "boris-cherny-claude-md",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "boris-cherny-claude-md",
+      "target": "creating-claude-md",
+      "relation": "overlaps"
+    },
+    {
+      "source": "boris-cherny-claude-md",
+      "target": "tag:agent-configuration",
+      "relation": "tagged"
+    },
+    {
+      "source": "boris-cherny-claude-md",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "boris-cherny-claude-md",
+      "target": "tag:claude-md",
+      "relation": "tagged"
+    },
+    {
+      "source": "boris-cherny-claude-md",
+      "target": "tag:plan-mode",
+      "relation": "tagged"
+    },
+    {
+      "source": "boris-cherny-claude-md",
+      "target": "tag:subagents",
+      "relation": "tagged"
+    },
+    {
+      "source": "boris-cherny-claude-md",
+      "target": "tag:verification",
+      "relation": "tagged"
+    },
+    {
+      "source": "boris-cherny-claude-md",
+      "target": "tag:workflow",
       "relation": "tagged"
     },
     {
@@ -11493,6 +12063,51 @@
       "relation": "tagged"
     },
     {
+      "source": "duckdb",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "duckdb",
+      "target": "tag:analytics",
+      "relation": "tagged"
+    },
+    {
+      "source": "duckdb",
+      "target": "tag:columnar",
+      "relation": "tagged"
+    },
+    {
+      "source": "duckdb",
+      "target": "tag:database",
+      "relation": "tagged"
+    },
+    {
+      "source": "duckdb",
+      "target": "tag:embedded",
+      "relation": "tagged"
+    },
+    {
+      "source": "duckdb",
+      "target": "tag:in-process",
+      "relation": "tagged"
+    },
+    {
+      "source": "duckdb",
+      "target": "tag:olap",
+      "relation": "tagged"
+    },
+    {
+      "source": "duckdb",
+      "target": "tag:parquet",
+      "relation": "tagged"
+    },
+    {
+      "source": "duckdb",
+      "target": "tag:sql",
+      "relation": "tagged"
+    },
+    {
       "source": "e2b",
       "target": "blaxel",
       "relation": "overlaps"
@@ -12420,6 +13035,51 @@
     {
       "source": "gbrain",
       "target": "tag:vector-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "geolibre",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "geolibre",
+      "target": "tag:deck-gl",
+      "relation": "tagged"
+    },
+    {
+      "source": "geolibre",
+      "target": "tag:duckdb-wasm",
+      "relation": "tagged"
+    },
+    {
+      "source": "geolibre",
+      "target": "tag:geospatial",
+      "relation": "tagged"
+    },
+    {
+      "source": "geolibre",
+      "target": "tag:gis",
+      "relation": "tagged"
+    },
+    {
+      "source": "geolibre",
+      "target": "tag:jupyter",
+      "relation": "tagged"
+    },
+    {
+      "source": "geolibre",
+      "target": "tag:maplibre",
+      "relation": "tagged"
+    },
+    {
+      "source": "geolibre",
+      "target": "tag:mapping",
+      "relation": "tagged"
+    },
+    {
+      "source": "geolibre",
+      "target": "tag:tauri",
       "relation": "tagged"
     },
     {
@@ -13443,6 +14103,51 @@
       "relation": "tagged"
     },
     {
+      "source": "jax",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "jax",
+      "target": "tag:autodiff",
+      "relation": "tagged"
+    },
+    {
+      "source": "jax",
+      "target": "tag:gpu",
+      "relation": "tagged"
+    },
+    {
+      "source": "jax",
+      "target": "tag:jit",
+      "relation": "tagged"
+    },
+    {
+      "source": "jax",
+      "target": "tag:machine-learning",
+      "relation": "tagged"
+    },
+    {
+      "source": "jax",
+      "target": "tag:numerical-computing",
+      "relation": "tagged"
+    },
+    {
+      "source": "jax",
+      "target": "tag:numpy",
+      "relation": "tagged"
+    },
+    {
+      "source": "jax",
+      "target": "tag:tpu",
+      "relation": "tagged"
+    },
+    {
+      "source": "jax",
+      "target": "tag:xla",
+      "relation": "tagged"
+    },
+    {
       "source": "jcode",
       "target": "cat:framework",
       "relation": "categorized"
@@ -13870,6 +14575,51 @@
     {
       "source": "litellm",
       "target": "tag:openai-compatible",
+      "relation": "tagged"
+    },
+    {
+      "source": "llama-index",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "llama-index",
+      "target": "tag:data-framework",
+      "relation": "tagged"
+    },
+    {
+      "source": "llama-index",
+      "target": "tag:document-agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "llama-index",
+      "target": "tag:llamaparse",
+      "relation": "tagged"
+    },
+    {
+      "source": "llama-index",
+      "target": "tag:llm",
+      "relation": "tagged"
+    },
+    {
+      "source": "llama-index",
+      "target": "tag:ocr",
+      "relation": "tagged"
+    },
+    {
+      "source": "llama-index",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "llama-index",
+      "target": "tag:retrieval",
+      "relation": "tagged"
+    },
+    {
+      "source": "llama-index",
+      "target": "tag:vector-store",
       "relation": "tagged"
     },
     {
@@ -14348,6 +15098,51 @@
       "relation": "tagged"
     },
     {
+      "source": "meetily",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "meetily",
+      "target": "tag:local-first",
+      "relation": "tagged"
+    },
+    {
+      "source": "meetily",
+      "target": "tag:meeting-notes",
+      "relation": "tagged"
+    },
+    {
+      "source": "meetily",
+      "target": "tag:ollama",
+      "relation": "tagged"
+    },
+    {
+      "source": "meetily",
+      "target": "tag:parakeet",
+      "relation": "tagged"
+    },
+    {
+      "source": "meetily",
+      "target": "tag:privacy",
+      "relation": "tagged"
+    },
+    {
+      "source": "meetily",
+      "target": "tag:tauri",
+      "relation": "tagged"
+    },
+    {
+      "source": "meetily",
+      "target": "tag:transcription",
+      "relation": "tagged"
+    },
+    {
+      "source": "meetily",
+      "target": "tag:whisper",
+      "relation": "tagged"
+    },
+    {
       "source": "mempalace",
       "target": "ai-memory-comparison",
       "relation": "overlaps"
@@ -14815,6 +15610,51 @@
     {
       "source": "model-workspace-protocol",
       "target": "tag:unix-philosophy",
+      "relation": "tagged"
+    },
+    {
+      "source": "motion-design-skill",
+      "target": "cat:skill",
+      "relation": "categorized"
+    },
+    {
+      "source": "motion-design-skill",
+      "target": "tag:animation",
+      "relation": "tagged"
+    },
+    {
+      "source": "motion-design-skill",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "motion-design-skill",
+      "target": "tag:css",
+      "relation": "tagged"
+    },
+    {
+      "source": "motion-design-skill",
+      "target": "tag:framer-motion",
+      "relation": "tagged"
+    },
+    {
+      "source": "motion-design-skill",
+      "target": "tag:gsap",
+      "relation": "tagged"
+    },
+    {
+      "source": "motion-design-skill",
+      "target": "tag:motion-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "motion-design-skill",
+      "target": "tag:skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "motion-design-skill",
+      "target": "tag:ui",
       "relation": "tagged"
     },
     {
@@ -16233,6 +17073,51 @@
       "relation": "tagged"
     },
     {
+      "source": "pandera",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "pandera",
+      "target": "tag:data-validation",
+      "relation": "tagged"
+    },
+    {
+      "source": "pandera",
+      "target": "tag:dataframes",
+      "relation": "tagged"
+    },
+    {
+      "source": "pandera",
+      "target": "tag:pandas",
+      "relation": "tagged"
+    },
+    {
+      "source": "pandera",
+      "target": "tag:polars",
+      "relation": "tagged"
+    },
+    {
+      "source": "pandera",
+      "target": "tag:pyspark",
+      "relation": "tagged"
+    },
+    {
+      "source": "pandera",
+      "target": "tag:schema",
+      "relation": "tagged"
+    },
+    {
+      "source": "pandera",
+      "target": "tag:testing",
+      "relation": "tagged"
+    },
+    {
+      "source": "pandera",
+      "target": "tag:union-ai",
+      "relation": "tagged"
+    },
+    {
       "source": "paperless-ngx",
       "target": "cat:framework",
       "relation": "categorized"
@@ -16310,6 +17195,51 @@
     {
       "source": "parallel-local-inference",
       "target": "tag:vllm",
+      "relation": "tagged"
+    },
+    {
+      "source": "penecho",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "penecho",
+      "target": "tag:agpl",
+      "relation": "tagged"
+    },
+    {
+      "source": "penecho",
+      "target": "tag:ai-canvas",
+      "relation": "tagged"
+    },
+    {
+      "source": "penecho",
+      "target": "tag:claude-cli",
+      "relation": "tagged"
+    },
+    {
+      "source": "penecho",
+      "target": "tag:codex-cli",
+      "relation": "tagged"
+    },
+    {
+      "source": "penecho",
+      "target": "tag:diagrams",
+      "relation": "tagged"
+    },
+    {
+      "source": "penecho",
+      "target": "tag:handwriting-recognition",
+      "relation": "tagged"
+    },
+    {
+      "source": "penecho",
+      "target": "tag:local-first",
+      "relation": "tagged"
+    },
+    {
+      "source": "penecho",
+      "target": "tag:whiteboard",
       "relation": "tagged"
     },
     {
@@ -16468,6 +17398,56 @@
       "relation": "tagged"
     },
     {
+      "source": "pinchtab",
+      "target": "browser-use",
+      "relation": "overlaps"
+    },
+    {
+      "source": "pinchtab",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "pinchtab",
+      "target": "tag:ai-agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "pinchtab",
+      "target": "tag:browser-automation",
+      "relation": "tagged"
+    },
+    {
+      "source": "pinchtab",
+      "target": "tag:cdp",
+      "relation": "tagged"
+    },
+    {
+      "source": "pinchtab",
+      "target": "tag:chrome",
+      "relation": "tagged"
+    },
+    {
+      "source": "pinchtab",
+      "target": "tag:go",
+      "relation": "tagged"
+    },
+    {
+      "source": "pinchtab",
+      "target": "tag:headless",
+      "relation": "tagged"
+    },
+    {
+      "source": "pinchtab",
+      "target": "tag:http-api",
+      "relation": "tagged"
+    },
+    {
+      "source": "pinchtab",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
       "source": "piyaz",
       "target": "cat:framework",
       "relation": "categorized"
@@ -16510,6 +17490,51 @@
     {
       "source": "piyaz",
       "target": "tag:task-graph",
+      "relation": "tagged"
+    },
+    {
+      "source": "polars",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "polars",
+      "target": "tag:apache-arrow",
+      "relation": "tagged"
+    },
+    {
+      "source": "polars",
+      "target": "tag:data-processing",
+      "relation": "tagged"
+    },
+    {
+      "source": "polars",
+      "target": "tag:dataframes",
+      "relation": "tagged"
+    },
+    {
+      "source": "polars",
+      "target": "tag:out-of-core",
+      "relation": "tagged"
+    },
+    {
+      "source": "polars",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "polars",
+      "target": "tag:query-engine",
+      "relation": "tagged"
+    },
+    {
+      "source": "polars",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "polars",
+      "target": "tag:simd",
       "relation": "tagged"
     },
     {
@@ -16620,6 +17645,51 @@
     {
       "source": "prompt-versioning-managed-agents",
       "target": "tag:versioning",
+      "relation": "tagged"
+    },
+    {
+      "source": "pyscript",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "pyscript",
+      "target": "tag:anaconda",
+      "relation": "tagged"
+    },
+    {
+      "source": "pyscript",
+      "target": "tag:browser",
+      "relation": "tagged"
+    },
+    {
+      "source": "pyscript",
+      "target": "tag:frontend",
+      "relation": "tagged"
+    },
+    {
+      "source": "pyscript",
+      "target": "tag:micropython",
+      "relation": "tagged"
+    },
+    {
+      "source": "pyscript",
+      "target": "tag:pyodide",
+      "relation": "tagged"
+    },
+    {
+      "source": "pyscript",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "pyscript",
+      "target": "tag:wasm",
+      "relation": "tagged"
+    },
+    {
+      "source": "pyscript",
+      "target": "tag:webassembly",
       "relation": "tagged"
     },
     {
@@ -16868,6 +17938,51 @@
       "relation": "tagged"
     },
     {
+      "source": "robyn",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "robyn",
+      "target": "tag:api",
+      "relation": "tagged"
+    },
+    {
+      "source": "robyn",
+      "target": "tag:async",
+      "relation": "tagged"
+    },
+    {
+      "source": "robyn",
+      "target": "tag:high-performance",
+      "relation": "tagged"
+    },
+    {
+      "source": "robyn",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "robyn",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "robyn",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "robyn",
+      "target": "tag:web-framework",
+      "relation": "tagged"
+    },
+    {
+      "source": "robyn",
+      "target": "tag:websockets",
+      "relation": "tagged"
+    },
+    {
       "source": "rtk",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -16905,6 +18020,51 @@
     {
       "source": "rtk",
       "target": "tag:token-reduction",
+      "relation": "tagged"
+    },
+    {
+      "source": "ruff",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "ruff",
+      "target": "tag:astral",
+      "relation": "tagged"
+    },
+    {
+      "source": "ruff",
+      "target": "tag:code-quality",
+      "relation": "tagged"
+    },
+    {
+      "source": "ruff",
+      "target": "tag:formatter",
+      "relation": "tagged"
+    },
+    {
+      "source": "ruff",
+      "target": "tag:linter",
+      "relation": "tagged"
+    },
+    {
+      "source": "ruff",
+      "target": "tag:pre-commit",
+      "relation": "tagged"
+    },
+    {
+      "source": "ruff",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "ruff",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "ruff",
+      "target": "tag:static-analysis",
       "relation": "tagged"
     },
     {
@@ -17150,6 +18310,51 @@
     {
       "source": "sira-superintelligent-retrieval-agent",
       "target": "tag:sparse-retrieval",
+      "relation": "tagged"
+    },
+    {
+      "source": "sira",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "sira",
+      "target": "tag:beir",
+      "relation": "tagged"
+    },
+    {
+      "source": "sira",
+      "target": "tag:bm25",
+      "relation": "tagged"
+    },
+    {
+      "source": "sira",
+      "target": "tag:information-retrieval",
+      "relation": "tagged"
+    },
+    {
+      "source": "sira",
+      "target": "tag:llm",
+      "relation": "tagged"
+    },
+    {
+      "source": "sira",
+      "target": "tag:meta",
+      "relation": "tagged"
+    },
+    {
+      "source": "sira",
+      "target": "tag:query-expansion",
+      "relation": "tagged"
+    },
+    {
+      "source": "sira",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "sira",
+      "target": "tag:reranking",
       "relation": "tagged"
     },
     {
@@ -17923,6 +19128,51 @@
       "relation": "tagged"
     },
     {
+      "source": "textual",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "textual",
+      "target": "tag:async",
+      "relation": "tagged"
+    },
+    {
+      "source": "textual",
+      "target": "tag:cli",
+      "relation": "tagged"
+    },
+    {
+      "source": "textual",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "textual",
+      "target": "tag:terminal",
+      "relation": "tagged"
+    },
+    {
+      "source": "textual",
+      "target": "tag:textualize",
+      "relation": "tagged"
+    },
+    {
+      "source": "textual",
+      "target": "tag:tui",
+      "relation": "tagged"
+    },
+    {
+      "source": "textual",
+      "target": "tag:ui-framework",
+      "relation": "tagged"
+    },
+    {
+      "source": "textual",
+      "target": "tag:widgets",
+      "relation": "tagged"
+    },
+    {
       "source": "third-brain-v5-wiki",
       "target": "cat:framework",
       "relation": "categorized"
@@ -17950,6 +19200,51 @@
     {
       "source": "third-brain-v5-wiki",
       "target": "tag:wiki",
+      "relation": "tagged"
+    },
+    {
+      "source": "threejs-skills",
+      "target": "cat:skill",
+      "relation": "categorized"
+    },
+    {
+      "source": "threejs-skills",
+      "target": "tag:3d",
+      "relation": "tagged"
+    },
+    {
+      "source": "threejs-skills",
+      "target": "tag:animation",
+      "relation": "tagged"
+    },
+    {
+      "source": "threejs-skills",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "threejs-skills",
+      "target": "tag:shaders",
+      "relation": "tagged"
+    },
+    {
+      "source": "threejs-skills",
+      "target": "tag:skill-bundle",
+      "relation": "tagged"
+    },
+    {
+      "source": "threejs-skills",
+      "target": "tag:threejs",
+      "relation": "tagged"
+    },
+    {
+      "source": "threejs-skills",
+      "target": "tag:web-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "threejs-skills",
+      "target": "tag:webgl",
       "relation": "tagged"
     },
     {
