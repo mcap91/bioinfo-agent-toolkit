@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-28T00:24:04.928Z",
+  "generated_at": "2026-07-29T03:46:15.127Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -136,6 +136,16 @@
       "exists": true
     },
     {
+      "id": "agentchassis",
+      "kind": "entry",
+      "title": "AgentChassis — multi-agent code-orchestration system with durable work-record contracts",
+      "url": "https://github.com/node-bio/portfolio-wiki-tools",
+      "summary": "Splits agentic coding into orchestrator/worker/reviewer roles governed by durable work-record contracts. The agent that defines the work cannot implement it — every task carries scope, acceptance criteria, and validation before any code is written. Workers are kernel-confined to declared file scope via Linux bubblewrap. Git-committed dispatch state enables crash-resumable coordination, exact-slice review at frozen SHAs, deterministic squash candidates independent of main, and automatic forge handoff (PR creation). Supports Claude and Codex families; Agy fails closed. Source-available under Elastic License 2.0; optional hosted Chassis Control Engine (CCE) adds org-level admission and signed attestation.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "agentic-rag",
       "kind": "entry",
       "title": "Agentic RAG",
@@ -152,6 +162,16 @@
       "url": "https://mixpeek.com/agentic-rag",
       "summary": "Research pattern where LLM agents with terminal tool access (grep, find, head, cat) outperform embedding-based retrieval across 13+ benchmarks — Direct Corpus Interaction (DCI) removes embedding model, vector index, and top-k retrieval entirely; adopted by Anthropic (Claude Code), Windsurf, Cline, Devin, Sourcegraph Amp",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "ai-job-search",
+      "kind": "entry",
+      "title": "AI Job Search",
+      "url": "https://github.com/MadsLorentzen/ai-job-search",
+      "summary": "AI-powered job application framework built on Claude Code. Fork-and-own workflow: /setup (self-profiling from documents or interview), /scrape (multi-portal search with fit scoring), /apply (drafter-reviewer pipeline producing tailored LaTeX CV + cover letter with PDF verification loop and ATS text-layer check). Also ships /interview prep, /rank batch scoring, /outcome tracking, /gmail-sync, /notion-sync, /html-report dashboard, /upskill gap analysis, /expand competency enrichment, /add-portal and /add-template generators. Danish job portals built-in; LinkedIn and freehire.me for other markets; /add-portal scaffolds new portals. MIT.",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -940,6 +960,16 @@
       "exists": true
     },
     {
+      "id": "cpubrrr",
+      "kind": "entry",
+      "title": "cpubrrr",
+      "url": "https://github.com/arizqi/cpubrrr",
+      "summary": "From-scratch CPU-only LLM inference engine in Rust that beats llama.cpp's CPU path on MoE models. Hand-written NEON/SME kernels, quad-interleaved weight layout, integer-accumulation Q8_K, worker-driven execution. Runs gpt-oss:20b at ~77 tok/s and Qwen3-Coder-30B at ~92 tok/s on Apple M4 Max (CPU only). OpenAI-compatible API server included. Dual MIT/Apache-2.0.",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "crawl4ai",
       "kind": "entry",
       "title": "Crawl4AI",
@@ -1429,6 +1459,16 @@
       "title": "Grill With Docs",
       "url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/grill-with-docs/SKILL.md",
       "summary": "Well-structured DDD design-review skill that enforces domain language, but relies on companion format files (CONTEXT-FORMAT.md, ADR-FORMAT.md) not bundled with the skill.",
+      "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "gsap-animation-expert",
+      "kind": "entry",
+      "title": "GSAP Animation Expert Skill",
+      "url": "https://mcpmarket.com/tools/skills/gsap-animation-expert",
+      "summary": "Claude Code skill providing GSAP (GreenSock Animation Platform) animation expertise — timelines, ScrollTrigger, SVG morphing, stagger patterns, easing, and React integration via the useGSAP hook. Covers basic tweens, position parameters, horizontal scroll sections, text split animations, and scroll-reveal patterns. Single SKILL.md file. Attributed to Brookside BI.",
       "category": "skill",
       "decision_status": "open",
       "exists": true
@@ -2330,6 +2370,16 @@
       "exists": true
     },
     {
+      "id": "pi-coding-agent",
+      "kind": "entry",
+      "title": "Pi Coding Agent",
+      "url": "https://github.com/earendil-works/pi",
+      "summary": "Minimal, extensible terminal coding agent harness by Mario Zechner (Earendil Works). Four core tools (read, write, edit, bash), ~200-token system prompt, 37+ models across 20+ providers (Anthropic, OpenAI, Google, Bedrock, etc.). Extensible via TypeScript extensions, skills, prompt templates, themes, and packages — deliberately omits MCP, sub-agents, plan mode, and permission popups in favor of user-built alternatives. Tree-structured sessions with branching, compaction, and forking. SDK/RPC modes for embedding. MIT. ~78k GitHub stars.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "pi-hole",
       "kind": "entry",
       "title": "Pi-hole",
@@ -3044,6 +3094,11 @@
       "exists": true
     },
     {
+      "id": "tag:agent-testing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:agent-workspace",
       "kind": "tag",
       "exists": true
@@ -3260,6 +3315,11 @@
     },
     {
       "id": "tag:archive",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:arm",
       "kind": "tag",
       "exists": true
     },
@@ -3514,6 +3574,11 @@
       "exists": true
     },
     {
+      "id": "tag:career",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ccpa",
       "kind": "tag",
       "exists": true
@@ -3545,6 +3610,11 @@
     },
     {
       "id": "tag:chrome",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ci",
       "kind": "tag",
       "exists": true
     },
@@ -3625,6 +3695,11 @@
     },
     {
       "id": "tag:cli-generation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:cli-tool",
       "kind": "tag",
       "exists": true
     },
@@ -3919,6 +3994,16 @@
       "exists": true
     },
     {
+      "id": "tag:cover-letter",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:cpu",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:cpu-inference",
       "kind": "tag",
       "exists": true
@@ -4005,6 +4090,11 @@
     },
     {
       "id": "tag:cursor-rules",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:cv",
       "kind": "tag",
       "exists": true
     },
@@ -4309,6 +4399,11 @@
       "exists": true
     },
     {
+      "id": "tag:drafter-reviewer",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:drift-detection",
       "kind": "tag",
       "exists": true
@@ -4370,6 +4465,11 @@
     },
     {
       "id": "tag:effort-levels",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:elv2",
       "kind": "tag",
       "exists": true
     },
@@ -4510,6 +4610,11 @@
     },
     {
       "id": "tag:export",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:extensible",
       "kind": "tag",
       "exists": true
     },
@@ -4739,6 +4844,11 @@
       "exists": true
     },
     {
+      "id": "tag:git-native",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:github",
       "kind": "tag",
       "exists": true
@@ -4855,6 +4965,11 @@
     },
     {
       "id": "tag:graphrag",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:greensock",
       "kind": "tag",
       "exists": true
     },
@@ -5169,6 +5284,11 @@
       "exists": true
     },
     {
+      "id": "tag:javascript",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:jit",
       "kind": "tag",
       "exists": true
@@ -5289,6 +5409,11 @@
       "exists": true
     },
     {
+      "id": "tag:latex",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:learning",
       "kind": "tag",
       "exists": true
@@ -5335,6 +5460,11 @@
     },
     {
       "id": "tag:llama-cpp",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:llama-cpp-alternative",
       "kind": "tag",
       "exists": true
     },
@@ -5535,6 +5665,11 @@
     },
     {
       "id": "tag:mcp-server",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:measurement",
       "kind": "tag",
       "exists": true
     },
@@ -5820,6 +5955,11 @@
     },
     {
       "id": "tag:nemotron",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:neon",
       "kind": "tag",
       "exists": true
     },
@@ -6409,6 +6549,11 @@
       "exists": true
     },
     {
+      "id": "tag:prompts",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:protein-design",
       "kind": "tag",
       "exists": true
@@ -6525,6 +6670,11 @@
     },
     {
       "id": "tag:rag-alternative",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:react",
       "kind": "tag",
       "exists": true
     },
@@ -6775,6 +6925,11 @@
     },
     {
       "id": "tag:scoring",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:scrolltrigger",
       "kind": "tag",
       "exists": true
     },
@@ -7229,6 +7384,11 @@
       "exists": true
     },
     {
+      "id": "tag:telemetry",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:templates",
       "kind": "tag",
       "exists": true
@@ -7265,6 +7425,11 @@
     },
     {
       "id": "tag:textualize",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:themes",
       "kind": "tag",
       "exists": true
     },
@@ -7460,6 +7625,11 @@
     },
     {
       "id": "tag:twitter",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:typescript",
       "kind": "tag",
       "exists": true
     },
@@ -7749,6 +7919,11 @@
       "exists": true
     },
     {
+      "id": "tag:work-records",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:workflow",
       "kind": "tag",
       "exists": true
@@ -7853,6 +8028,16 @@
       "exists": true
     },
     {
+      "id": "thunderjar",
+      "kind": "entry",
+      "title": "Thunderjar",
+      "url": "https://github.com/dwjohnston/thunderjar",
+      "summary": "Comparative testing framework for coding agents — holds three of four variables (codebase state, prompt configuration, model, harness) constant and varies the fourth, then applies objective measurements (compilation, test pass, file assertions, token consumption, lint compliance, correctness). For evaluating whether prompt/model/harness changes actually improve agent output. Early-stage project by dwjohnston.",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "tolvi",
       "kind": "entry",
       "title": "Tolvi — Engineering Decision Vault",
@@ -7869,6 +8054,16 @@
       "url": "https://github.com/meta-pytorch/torchtune",
       "summary": "PyTorch-native post-training library by Meta — composable building blocks (not trainers) for SFT, LoRA, QLoRA, DPO, GRPO, quantization, evaluation; YAML-driven recipes under 600 LOC; composable parallelism (FSDP2, TP, SP, CP, expert parallel for MoE); in-backward optimizer fusion; works on single 24GB GPU to multi-node clusters; v0.6 stable; Apache 2.0",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "trigger-tree",
+      "kind": "entry",
+      "title": "trigger-tree",
+      "url": "https://github.com/Hedde/trigger_tree",
+      "summary": "Documentation-discovery telemetry for Claude Code / Codex. Measures whether CLAUDE.md directives change agent behavior via deterministic local probes — per-directive adherence rates, file/folder heat maps, A-F docs-health grade, CI discoverability gate. All local, stdlib-only Python, zero tokens for measurement. Claude Code plugin (/tt) and standalone CLI (pipx install trigger-tree). MIT.",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -8598,6 +8793,56 @@
       "relation": "tagged"
     },
     {
+      "source": "agentchassis",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "agentchassis",
+      "target": "tag:a2a",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentchassis",
+      "target": "tag:code-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentchassis",
+      "target": "tag:elv2",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentchassis",
+      "target": "tag:git-native",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentchassis",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentchassis",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentchassis",
+      "target": "tag:orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentchassis",
+      "target": "tag:sandbox",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentchassis",
+      "target": "tag:work-records",
+      "relation": "tagged"
+    },
+    {
       "source": "agentic-rag-terminal-tools",
       "target": "cat:agent-pattern",
       "relation": "categorized"
@@ -8680,6 +8925,61 @@
     {
       "source": "agentic-rag",
       "target": "tag:vector-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-job-search",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "ai-job-search",
+      "target": "tag:automation",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-job-search",
+      "target": "tag:career",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-job-search",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-job-search",
+      "target": "tag:cover-letter",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-job-search",
+      "target": "tag:cv",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-job-search",
+      "target": "tag:drafter-reviewer",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-job-search",
+      "target": "tag:job-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-job-search",
+      "target": "tag:latex",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-job-search",
+      "target": "tag:skills",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-job-search",
+      "target": "tag:workflow",
       "relation": "tagged"
     },
     {
@@ -11563,6 +11863,61 @@
       "relation": "tagged"
     },
     {
+      "source": "cpubrrr",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "cpubrrr",
+      "target": "tag:apple-silicon",
+      "relation": "tagged"
+    },
+    {
+      "source": "cpubrrr",
+      "target": "tag:arm",
+      "relation": "tagged"
+    },
+    {
+      "source": "cpubrrr",
+      "target": "tag:cpu",
+      "relation": "tagged"
+    },
+    {
+      "source": "cpubrrr",
+      "target": "tag:llama-cpp-alternative",
+      "relation": "tagged"
+    },
+    {
+      "source": "cpubrrr",
+      "target": "tag:llm-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "cpubrrr",
+      "target": "tag:moe",
+      "relation": "tagged"
+    },
+    {
+      "source": "cpubrrr",
+      "target": "tag:neon",
+      "relation": "tagged"
+    },
+    {
+      "source": "cpubrrr",
+      "target": "tag:performance",
+      "relation": "tagged"
+    },
+    {
+      "source": "cpubrrr",
+      "target": "tag:quantization",
+      "relation": "tagged"
+    },
+    {
+      "source": "cpubrrr",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
       "source": "crawl4ai",
       "target": "cat:framework",
       "relation": "categorized"
@@ -13545,6 +13900,61 @@
     {
       "source": "grill-with-docs",
       "target": "tag:planning",
+      "relation": "tagged"
+    },
+    {
+      "source": "gsap-animation-expert",
+      "target": "cat:skill",
+      "relation": "categorized"
+    },
+    {
+      "source": "gsap-animation-expert",
+      "target": "motion-design-skill",
+      "relation": "overlaps"
+    },
+    {
+      "source": "gsap-animation-expert",
+      "target": "tag:animation",
+      "relation": "tagged"
+    },
+    {
+      "source": "gsap-animation-expert",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "gsap-animation-expert",
+      "target": "tag:greensock",
+      "relation": "tagged"
+    },
+    {
+      "source": "gsap-animation-expert",
+      "target": "tag:gsap",
+      "relation": "tagged"
+    },
+    {
+      "source": "gsap-animation-expert",
+      "target": "tag:javascript",
+      "relation": "tagged"
+    },
+    {
+      "source": "gsap-animation-expert",
+      "target": "tag:react",
+      "relation": "tagged"
+    },
+    {
+      "source": "gsap-animation-expert",
+      "target": "tag:scrolltrigger",
+      "relation": "tagged"
+    },
+    {
+      "source": "gsap-animation-expert",
+      "target": "tag:skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "gsap-animation-expert",
+      "target": "tag:web-development",
       "relation": "tagged"
     },
     {
@@ -17273,6 +17683,61 @@
       "relation": "tagged"
     },
     {
+      "source": "pi-coding-agent",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "pi-coding-agent",
+      "target": "tag:cli-tool",
+      "relation": "tagged"
+    },
+    {
+      "source": "pi-coding-agent",
+      "target": "tag:coding-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "pi-coding-agent",
+      "target": "tag:extensible",
+      "relation": "tagged"
+    },
+    {
+      "source": "pi-coding-agent",
+      "target": "tag:multi-provider",
+      "relation": "tagged"
+    },
+    {
+      "source": "pi-coding-agent",
+      "target": "tag:sdk",
+      "relation": "tagged"
+    },
+    {
+      "source": "pi-coding-agent",
+      "target": "tag:sessions",
+      "relation": "tagged"
+    },
+    {
+      "source": "pi-coding-agent",
+      "target": "tag:skills",
+      "relation": "tagged"
+    },
+    {
+      "source": "pi-coding-agent",
+      "target": "tag:terminal",
+      "relation": "tagged"
+    },
+    {
+      "source": "pi-coding-agent",
+      "target": "tag:themes",
+      "relation": "tagged"
+    },
+    {
+      "source": "pi-coding-agent",
+      "target": "tag:typescript",
+      "relation": "tagged"
+    },
+    {
       "source": "pi-hole",
       "target": "cat:reference",
       "relation": "categorized"
@@ -19248,6 +19713,56 @@
       "relation": "tagged"
     },
     {
+      "source": "thunderjar",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "thunderjar",
+      "target": "tag:agent-testing",
+      "relation": "tagged"
+    },
+    {
+      "source": "thunderjar",
+      "target": "tag:benchmarking",
+      "relation": "tagged"
+    },
+    {
+      "source": "thunderjar",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "thunderjar",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "thunderjar",
+      "target": "tag:comparison",
+      "relation": "tagged"
+    },
+    {
+      "source": "thunderjar",
+      "target": "tag:evaluation",
+      "relation": "tagged"
+    },
+    {
+      "source": "thunderjar",
+      "target": "tag:measurement",
+      "relation": "tagged"
+    },
+    {
+      "source": "thunderjar",
+      "target": "tag:prompts",
+      "relation": "tagged"
+    },
+    {
+      "source": "thunderjar",
+      "target": "trigger-tree",
+      "relation": "overlaps"
+    },
+    {
       "source": "tolvi",
       "target": "cat:framework",
       "relation": "categorized"
@@ -19366,6 +19881,56 @@
       "source": "torchtune",
       "target": "unsloth",
       "relation": "overlaps"
+    },
+    {
+      "source": "trigger-tree",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "trigger-tree",
+      "target": "tag:ci",
+      "relation": "tagged"
+    },
+    {
+      "source": "trigger-tree",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "trigger-tree",
+      "target": "tag:claude-md",
+      "relation": "tagged"
+    },
+    {
+      "source": "trigger-tree",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "trigger-tree",
+      "target": "tag:documentation",
+      "relation": "tagged"
+    },
+    {
+      "source": "trigger-tree",
+      "target": "tag:hooks",
+      "relation": "tagged"
+    },
+    {
+      "source": "trigger-tree",
+      "target": "tag:measurement",
+      "relation": "tagged"
+    },
+    {
+      "source": "trigger-tree",
+      "target": "tag:observability",
+      "relation": "tagged"
+    },
+    {
+      "source": "trigger-tree",
+      "target": "tag:telemetry",
+      "relation": "tagged"
     },
     {
       "source": "trl",
