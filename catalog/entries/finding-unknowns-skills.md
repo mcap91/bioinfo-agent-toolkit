@@ -29,3 +29,7 @@ Before implementation: `blindspot-pass` (surface unknown unknowns in an unfamili
 ## Security
 
 MIT-licensed skill text; the techniques are attributed to Thariq Shihipar's public essay. The skills are prompt/instruction text (no scripts), installed into your agent's skill directory — the usual consideration is that installed skills add model-visible instructions that fire on their triggers. Community project maintained by a single author; installation pulls from a third-party GitHub repo or via npx.
+
+## Usage notes
+
+- Pack expanded from 8 to 11 skills (as of late July 2026). Three new skills from Thariq Shihipar's second essay on context engineering for Claude 5 models: **context-audit** (reads all instruction layers as the model receives them, sorts into conflict/duplicate/obvious/model-handles-this-now/real-gotcha, outputs a cut list as a diff), **agent-interface-design** (for building tools/MCP servers/scripts an agent calls — design parameters instead of usage examples, since examples constrain newer models to shown paths), **progressive-disclosure** (splits oversized skills/specs into entry file plus conditionally-loaded files; user-invoked only in Claude Code, but Codex CLI v0.143.0 ignores disable-model-invocation and loads it unconditionally).
