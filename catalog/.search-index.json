@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-07-29",
-  "count": 299,
+  "generated": "2026-08-02",
+  "count": 312,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -30,6 +30,32 @@
       "security_flags": [],
       "reviewed": "2026-06-18",
       "path": "catalog/entries/a2a-protocol.md"
+    },
+    {
+      "name": "adeptly",
+      "title": "Adeptly",
+      "url": "https://github.com/ShopDevX/adeptlydev",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Plan-first companion GUI for Claude Code — drafts structured plans with inline Claude Code feature recommendations (subagents, skills, hooks, MCP, plan mode), scores feature coverage and token hygiene, then optionally executes plans as a role pipeline (Architect→Builder→Medic→Reviewer→Security→Pilot) via headless claude CLI; local-first Next.js app, MIT",
+      "body_summary": "Adeptly is a local web UI (Next.js on localhost:3000) that sits upstream of Claude Code implementation. Given a natural-language task description, it uses the local `claude --print` CLI to draft a structured plan (problem, approach, files to change, Mermaid diagrams, risks, approval status) with specific Claude Code features named inline — subagents, skills, hooks, MCP servers, plan mode, /security-review, auto-memory — annotated with hover tooltips explaining when and why to use each.\n\nKey capabilities as of v0.7:\n\n- **Feature Coverage scoring**: measures how many of Claude Code's 30+ features a plan uses, surfaces missing high-value ones with one-click additions.\n- **Token Hygiene scoring**: rates plan efficiency against cost-saving habits (Plan Mode first, Explore subagent for search, /clear between tasks, cache-friendly ordering, Haiku for mechanical work).\n- **Recipe generation**: structured workflow output — subagent allocation, skills with when-to-invoke, hooks to wire, expected turns and cost estimate.\n- **Crew runner**: executes the approved plan as a role pipeline — Architect (read-only code mapping) → Approval Gate → Builder (branch + implement) → Medic (build/test + self-heal) → Reviewer + Security (diff review) → Pilot (commit, push, PR). Dry-run by default; live runs require plan approval + `ADEPTLY_LIVE=1`.\n- **Usage ledger**: records token/cost receipts to `.adeptly/usage.jsonl` with cache-hit % and cost-by-model breakdowns.\n- **Multi-developer workflow**: plans are markdown files in `docs/plans/` tracked in git. Approvals in JSON alongside. No backend, no accounts.\n- **CLI feature refresh**: asks the local `claude` CLI what features exist, avoiding stale built-in catalogues.",
+      "tags": [
+        "claude-code",
+        "planning",
+        "orchestration",
+        "crew",
+        "subagents",
+        "skills",
+        "hooks",
+        "feature-discovery",
+        "local-first",
+        "next-js"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-08-02",
+      "path": "catalog/entries/adeptly.md"
     },
     {
       "name": "adguard-home",
@@ -868,6 +894,32 @@
       "path": "catalog/entries/bdh.md"
     },
     {
+      "name": "bedrock-agentcore-gateway",
+      "title": "Amazon Bedrock AgentCore Gateway",
+      "url": "https://aws.amazon.com/blogs/machine-learning/introducing-amazon-bedrock-agentcore-gateway-transforming-enterprise-ai-agent-tool-development/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Fully managed AWS service that converts REST APIs and Lambda functions into MCP-compatible tool servers — zero-code MCP creation from OpenAPI/Smithy specs, semantic tool discovery, OAuth inbound + IAM/API-key/OAuth outbound auth, CloudWatch observability; solves M×N agent-to-tool integration at enterprise scale",
+      "body_summary": "Amazon Bedrock AgentCore Gateway is a fully managed AWS service that acts as a centralized MCP tool server for AI agents. It converts existing REST APIs (via OpenAPI or Smithy specs) and AWS Lambda functions into MCP-compatible tools without writing MCP server code. Agents connect to a single gateway endpoint and discover/invoke tools through the standard MCP protocol.\n\nCore capabilities:\n\n- **Zero-code MCP creation**: Point at an OpenAPI spec (inline or S3) or Lambda ARN with a tool schema, and Gateway exposes them as MCP tools.\n- **Semantic tool discovery**: Optional built-in `x_amz_bedrock_agentcore_search` tool that lets agents find relevant tools via natural language queries, addressing \"tool overload\" when agents face hundreds of tools.\n- **Dual-sided security**: Inbound OAuth (MCP auth spec compliant — works with Cognito, Okta, Auth0, or any OAuth provider) + outbound auth per target (IAM roles for Lambda/Smithy, API keys or 2LO OAuth for REST APIs). Credentials managed through AgentCore Identity.\n- **Composition**: Multiple APIs, functions, and tools behind a single MCP endpoint.\n- **Observability**: CloudWatch metrics (latency, error rates, concurrent executions, p50/p90/p99) and CloudTrail audit logging.\n- **Framework integrations**: Works with Strands Agents, LangChain/LangGraph, and any MCP-compatible client via streamable HTTP transport.\n\nPart of the broader Amazon Bedrock AgentCore suite (Runtime, Identity, Code Interpreter, Memory, Browser, Observability).",
+      "tags": [
+        "aws",
+        "bedrock",
+        "mcp",
+        "agent-tools",
+        "gateway",
+        "enterprise",
+        "oauth",
+        "lambda",
+        "openapi",
+        "semantic-search"
+      ],
+      "workflows": [],
+      "license": "proprietary",
+      "security_flags": [],
+      "reviewed": "2026-08-02",
+      "path": "catalog/entries/bedrock-agentcore-gateway.md"
+    },
+    {
       "name": "biomysterybench",
       "title": "BioMysteryBench",
       "url": "https://huggingface.co/datasets/Anthropic/BioMysteryBench-full",
@@ -1152,6 +1204,30 @@
       "security_flags": [],
       "reviewed": "2026-07-12",
       "path": "catalog/entries/build-ai-agents-free.md"
+    },
+    {
+      "name": "build-your-own-x",
+      "title": "Build Your Own X",
+      "url": "https://github.com/codecrafters-io/build-your-own-x",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Curated compilation of step-by-step tutorials for recreating technologies from scratch — covers 30+ categories (databases, compilers, OS, neural networks, game engines, Git, Docker, regex, web servers, etc.) across 20+ languages; 350K+ stars; CC0 licensed",
+      "body_summary": "A curated directory of \"build it from scratch\" tutorials organized by technology category. Each entry links to an external tutorial that walks through reimplementing a real system (database, compiler, OS kernel, neural network, web server, etc.) in a specific language. Categories include 3D renderers, AI models, BitTorrent clients, blockchains, bots, CLIs, databases, Docker, emulators, frontend frameworks, games, Git, memory allocators, network stacks, neural networks, operating systems, physics engines, programming languages, regex engines, search engines, shells, template engines, text editors, visual recognition, voxel engines, web browsers, and web servers.\n\nLanguages represented include C, C++, C#, Python, JavaScript, TypeScript, Go, Rust, Ruby, Java, Haskell, Elixir, OCaml, Nim, Lua, and others. The repository has 350K+ GitHub stars and is maintained by CodeCrafters, Inc.",
+      "tags": [
+        "tutorials",
+        "learning",
+        "from-scratch",
+        "programming",
+        "systems",
+        "compilers",
+        "databases",
+        "networking"
+      ],
+      "workflows": [],
+      "license": "CC0-1.0",
+      "security_flags": [],
+      "reviewed": "2026-08-02",
+      "path": "catalog/entries/build-your-own-x.md"
     },
     {
       "name": "building-evals-anthropic",
@@ -1754,6 +1830,29 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/cli-anything.md"
+    },
+    {
+      "name": "cloud-session-context-repo",
+      "title": "Cloud Session Context Repository Pattern",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Pattern for persistent multi-session Claude Code cloud workflows — shared context repo (CLAUDE.md + .gitmodules + session handoff notes + skills), launcher webapp generating parameterized session URLs, status feed for monitoring; git as the sync layer, no backend",
+      "body_summary": "A practitioner-reported pattern for productive use of Claude Code's cloud sessions (disposable Linux VMs included with Pro/Max subscriptions). Solves the problem that every new cloud session starts with no context about the user's work.\n\nTwo components:\n\n1. **Context repository** (private git repo opened by every cloud session first):\n   - `CLAUDE.md` — maps repos, architecture, conventions, workflows\n   - `.gitmodules` — references actual project repos without copying code (keeps context repo tiny)\n   - `sessions/` — short handoff notes from previous agents (what changed, what was discovered, what needs work)\n   - `skills/` — skills that should be available in cloud sessions (they don't auto-appear)\n\n2. **Launcher website** (small self-hosted page):\n   - Generates `claude.ai/code` URLs with pre-filled repositories and initial prompt\n   - User picks a project, types a task, and it opens Claude Code with context repo + project repos + prompt\n   - Agents send one-line status updates back to the site (working/quiet/done feed)\n   - Requires enabling custom network access and allowlisting the website domain\n   - No credentials stored — repo access uses Anthropic's existing GitHub integration\n\nWorkflow: Open site from phone → pick project → give small testable task → close laptop → review diff/PR later.\n\nCommunity-validated best practices from discussion:\n- Have agents report a \"blocked\" status for stuck-on-input situations\n- Gate context repo changes through PRs to prevent agents overwriting each other\n- Always run project tests before reporting \"done\"",
+      "tags": [
+        "claude-code",
+        "cloud-sessions",
+        "context",
+        "handoff",
+        "session-resume",
+        "git",
+        "orchestration",
+        "multi-repo"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-08-02",
+      "path": "catalog/entries/cloud-session-context-repo.md"
     },
     {
       "name": "cobalt",
@@ -3154,6 +3253,30 @@
       "path": "catalog/entries/granola-mcp.md"
     },
     {
+      "name": "graph-engineering",
+      "title": "Graph Engineering (Agentic Pattern)",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Emerging paradigm for designing multi-agent AI systems as explicit directed graphs — deterministic backbone orchestrating LLM-powered nodes, typed edges for control flow/data passing, declarative topology as a versionable artifact; supersedes single-agent loop patterns at scale",
+      "body_summary": "Graph engineering is the practice of designing and operating multi-agent AI systems as explicit directed graphs where nodes are heterogeneous (agents, deterministic functions, routers, joins, tools, human checkpoints) and edges represent control flow, data dependencies, and delegation rules. The topology itself is treated as a programmable, versionable artifact rather than an emergent result of prompt engineering.\n\nCore principles:\n\n- **Deterministic backbone**: The overall flow is orchestrated by deterministic logic (Python code, state machines, workflow engines). LLM intelligence is deployed only at specific nodes where reasoning is needed. Control returns to the backbone after each LLM step.\n- **Evolutionary progression**: Start with one agent → add a retry/reflection loop → split into specialists (researcher, builder, reviewer) → connect them with a graph where the workflow, not the prompt, decides who runs next based on state, results, or failures.\n- **Typed edges**: Edges encode routing conditions — implemented as deterministic Python logic or LLM classifiers. The engineering discipline lives in the edges, not the nodes.\n- **Declarative structure**: A graph requires declaring the structure upfront — who owns what, what depends on what, what happens when a branch fails — unlike single-agent loops where architecture is deferred.\n\nThe pattern reflects Anthropic's own engineering guidance: the \"winning approach\" is a deterministic backbone orchestrating the flow, with agents invoked intentionally at specific steps.",
+      "tags": [
+        "multi-agent",
+        "orchestration",
+        "graph",
+        "deterministic",
+        "workflow",
+        "langgraph",
+        "autogen",
+        "architecture",
+        "agentic-design"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-08-02",
+      "path": "catalog/entries/graph-engineering.md"
+    },
+    {
       "name": "graphify",
       "title": "Graphify",
       "url": "https://github.com/safishamsi/graphify",
@@ -3936,6 +4059,29 @@
       "path": "catalog/entries/llmfit.md"
     },
     {
+      "name": "local-model-adversarial-workflow",
+      "title": "Local Model + Cloud Adversarial Workflow",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Multi-model orchestration pattern — local 27B model (Qwen) handles drafting, planning, and implementation; cloud models (Opus, GPT) do adversarial code reviews; repeated review loops until green; domain-specific MCP tools for database/web verification reduce hallucinations and token costs",
+      "body_summary": "A practitioner-reported workflow pattern for cost-effective AI-assisted development using a local small model (Qwen 27B) as the primary workhorse with cloud frontier models (Opus, GPT) for quality gates:\n\n1. **Draft a plan** with local 27B model\n2. **Iterate over the plan** and output a spec markdown\n3. **Review the spec** with Opus/GPT, adjust with findings\n4. **Implement** with local 27B, create a PR\n5. **Adversarial code reviews** from Opus, GPT, and 27B independently. Collect all findings and summarize a complete review with Opus.\n6. **Implement changes** with 27B\n7. **Re-review loop** with Opus/27B until everything passes\n\nKey observations from the practitioner:\n\n- Local 27B consistently finds issues that Opus/GPT miss in adversarial reviews — different model architectures surface different blind spots.\n- Having Opus rate the quality of all reviews (including its own and 27B's) provides a meta-quality signal.\n- Domain-specific MCP tool extensions (database copy queries, cached domain-specific web search, structured data loading) let the local model do work that would otherwise consume heavy token budgets on cloud models.\n- The workflow keeps cloud model costs under a $20/month subscription budget while maintaining high code quality through adversarial review diversity.",
+      "tags": [
+        "multi-model",
+        "local-inference",
+        "adversarial-review",
+        "qwen",
+        "cost-optimization",
+        "code-review",
+        "domain-tools",
+        "orchestration"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-08-02",
+      "path": "catalog/entries/local-model-adversarial-workflow.md"
+    },
+    {
       "name": "local-model-picks-2026",
       "title": "Local Model Picks (2026)",
       "url": "https://reddit.com",
@@ -4083,6 +4229,31 @@
       "path": "catalog/entries/maxun.md"
     },
     {
+      "name": "mcp-2026-07-28-spec",
+      "title": "MCP 2026-07-28 Specification Update",
+      "url": "https://venturebeat.com/orchestration/mcp-just-got-its-biggest-update-ever-heres-what-changes-for-ai-agents",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Major MCP spec release (informally 'v2') — fully stateless architecture removing sticky-routing requirement, hardened auth model, 12-month deprecation policy, graduated extensions for server-rendered UIs and async tasks; stewarded by AAIF (Linux Foundation, 240 members); 250M SDK downloads/week",
+      "body_summary": "The MCP 2026-07-28 specification is the largest update to the Model Context Protocol since its initial release. Informally called \"v2\" by the community, it finalizes MCP's transition to a fully stateless architecture, hardens the authentication model, establishes a formal 12-month deprecation policy, and graduates two capabilities — interactive server-rendered interfaces (UI) and long-running asynchronous tasks — into official protocol extensions.\n\nKey changes:\n\n- **Fully stateless architecture**: Removes the requirement for persistent sessions between MCP clients and specific server instances. Under the old design, if the server holding session state disappeared, the agent's work disappeared with it. The new model lets organizations run MCP servers behind standard load balancers using existing Kubernetes and cloud-native DevOps tooling.\n- **Hardened authentication**: Strengthens OAuth and OIDC authorization, addressing a known class of attacks against the prior auth model.\n- **Deprecation policy**: Formal 12-month deprecation window for protocol changes, giving implementors stability guarantees.\n- **Graduated extensions**: Server-rendered UIs and async tasks (long-running operations) move from experimental to official extensions.\n\nThe update is stewarded by the Agentic AI Foundation (AAIF), a directed fund under the Linux Foundation. AAIF has grown from ~40 members at its December inauguration to 240, with SDK downloads doubling in six months to ~250 million per week. The publicly released MCP tool ecosystem grew from ~5,000 to 177,000 tools over the past year.",
+      "tags": [
+        "mcp",
+        "protocol",
+        "specification",
+        "stateless",
+        "authentication",
+        "agentic-ai-foundation",
+        "linux-foundation",
+        "enterprise",
+        "scalability"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-08-02",
+      "path": "catalog/entries/mcp-2026-07-28-spec.md"
+    },
+    {
       "name": "mcp-server-youtube-transcript",
       "title": "MCP Server YouTube Transcript",
       "url": "https://github.com/kimtaeyoon83/mcp-server-youtube-transcript",
@@ -4104,6 +4275,31 @@
       ],
       "reviewed": "2026-06-19",
       "path": "catalog/entries/mcp-server-youtube-transcript.md"
+    },
+    {
+      "name": "mcp-tunnels",
+      "title": "MCP Tunnels (Anthropic)",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Anthropic research-preview feature connecting Claude to MCP servers inside private networks — outbound-only tunnel via cloudflared + Anthropic proxy, no inbound firewall rules or public endpoints needed; completes the enterprise security story for Claude Managed Agents alongside self-hosted sandboxes",
+      "body_summary": "MCP Tunnels is an Anthropic research-preview feature that connects Claude to MCP servers running inside private networks without exposing them to the public internet. It reverses the connection direction: instead of Claude reaching into a private network, a small connector inside the network reaches out and holds the line open.\n\nThe tunnel stack has two components running inside the customer's network:\n\n1. **cloudflared**: Cloudflare's open-source tunnel connector. Initiates outbound-only connections to the tunnel edge and carries encrypted traffic from Anthropic to the proxy.\n2. **Proxy**: Anthropic's routing component. Receives traffic from the tunnel, terminates a second layer of encryption, and routes each request to the correct internal MCP server based on hostname.\n\nThis eliminates the need for inbound firewall rules, public endpoints, or IP allowlisting. Enterprise teams can connect internal databases, private APIs, and on-prem knowledge bases to Claude without exposing those systems publicly.\n\nThe feature is part of Anthropic's broader MCP Connector infrastructure, which also includes embedded UI, enterprise-managed auth, and observability. Together with self-hosted sandboxes, MCP Tunnels addresses the two blockers that made MCP impractical for regulated environments: inbound network exposure and per-developer credential sprawl.",
+      "tags": [
+        "mcp",
+        "anthropic",
+        "tunnels",
+        "enterprise",
+        "private-network",
+        "firewall",
+        "cloudflare",
+        "managed-agents",
+        "security"
+      ],
+      "workflows": [],
+      "license": "proprietary",
+      "security_flags": [],
+      "reviewed": "2026-08-02",
+      "path": "catalog/entries/mcp-tunnels.md"
     },
     {
       "name": "medley",
@@ -4686,6 +4882,59 @@
       ],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/odysseus.md"
+    },
+    {
+      "name": "oh-my-hermes",
+      "title": "Oh My Hermes (OMH)",
+      "url": "https://github.com/rlaope/oh-my-hermes",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Operating layer for Hermes Agent — 101 installable workflow skills across six capability families (plan, build, research, code, create, operate) with deterministic routing, evidence boundaries, review-first project memory, and multi-language classification; Python-based, local-first control plane",
+      "body_summary": "Oh My Hermes (OMH) is a professional operating layer for the Hermes Agent (by Nous Research). It packages 101 installable workflow skills behind six human-readable capability families: Clarify and plan (interviews, planning, decisions), Build with leverage (parallel work, goal tracking, team coordination), Research and learn (source-backed evidence with freshness and quality boundaries), Code and ship safely (executor-neutral coding prep, code review, QA), Create polished deliverables (websites, visuals, reports, decks, PDFs with quality gates), and Remember and operate (review-first project memory, operational observability).\n\nOMH does not replace Hermes — it sits above individual Hermes-native skills as a governed routing and evidence layer. When a request arrives, OMH classifies it (supporting English, Korean, Japanese, Chinese, Spanish, French, German, and Hindi without a translation API), returns the recommended capability family, skill, owner, and next action, and tracks what is still unverified. Coding handoffs include repository constraints, scope, acceptance criteria, worktree guidance, and verification gates; supported executors include Codex, Claude Code, Hermes runtime, and generic executors.\n\nCore architectural principle: three-state evidence tracking — Prepared (route/plan/prompt is ready), Observed (a runtime recorded that an action occurred), and Verified (a matching test, review, or gate passed). \"Prepared\" is never conflated with execution or verification.",
+      "tags": [
+        "hermes-agent",
+        "workflow",
+        "skills",
+        "routing",
+        "evidence-gates",
+        "project-memory",
+        "multi-language",
+        "orchestration",
+        "coding-handoffs"
+      ],
+      "workflows": [],
+      "license": "UNLICENSED",
+      "security_flags": [
+        "curl-pipe-sh-install"
+      ],
+      "reviewed": "2026-08-02",
+      "path": "catalog/entries/oh-my-hermes.md"
+    },
+    {
+      "name": "olmocr",
+      "title": "olmOCR",
+      "url": "https://github.com/allenai/olmocr",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "AI2's VLM-based PDF/image-to-Markdown toolkit — 7B parameter model converts PDFs with equations, tables, handwriting, multi-column layouts into clean Markdown; <$200/M pages; multi-node S3-coordinated batch pipeline; ships comprehensive benchmark (7K+ test cases); Apache 2.0",
+      "body_summary": "olmOCR is a toolkit from the Allen Institute for AI (AI2) that converts PDFs, PNGs, and JPEGs into clean Markdown using a 7B-parameter vision language model (based on Qwen2.5-VL, fine-tuned with SFT and GRPO RL training). It handles equations, tables, handwriting, complex formatting, multi-column layouts, figures, and insets while preserving natural reading order and automatically removing headers/footers.\n\nKey capabilities:\n\n- **Single-file conversion**: `olmocr ./workspace --markdown --pdfs document.pdf`\n- **Batch pipeline**: Process millions of PDFs with multi-node coordination via AWS S3 work queues. Workers grab items from a shared queue automatically.\n- **Remote inference**: Use any OpenAI-compatible endpoint (vLLM, DeepInfra, Parasail, Cirrascale) with `--server` flag. Lightweight install (`pip install olmocr`) when using remote inference — no GPU dependencies.\n- **Docker support**: Pre-built images (~30GB with model included) for containerized deployment.\n- **Benchmark suite (olmOCR-Bench)**: 7,000+ test cases across 1,400 documents covering ArXiv, old scans, math, tables, headers/footers, multi-column, long tiny text. v0.4.0 scores 82.4, competitive with Chandra OCR (83.1) and Infinity-Parser (82.5).\n\nOutputs in Dolma format (AI2's data format) and optionally Markdown. Cost is under $200 USD per million pages converted.",
+      "tags": [
+        "ocr",
+        "pdf",
+        "markdown",
+        "vlm",
+        "document-processing",
+        "allen-ai",
+        "vllm",
+        "batch-pipeline",
+        "benchmark",
+        "bioinformatics"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-08-02",
+      "path": "catalog/entries/olmocr.md"
     },
     {
       "name": "ols-mcp-server",
@@ -5974,6 +6223,30 @@
       "path": "catalog/entries/shannon.md"
     },
     {
+      "name": "single-agent-synchronous-workflow",
+      "title": "Single-Agent Synchronous Workflow",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Argument and configuration for denying the Agent tool in Claude Code — single-agent synchronous workflows preserve context evidence (subagent summaries lose the backing data), enable mid-run interruption, and improve cache efficiency; adversarial review via in-repo documentation compliance agents is the endorsed exception",
+      "body_summary": "A practitioner-reported workflow philosophy arguing that single-agent synchronous workflows outperform multi-agent orchestration for feature implementation in Claude Code. The core claim: when an orchestrator sends work to a subagent, it takes the returned summary as fact without access to the evidence gathered to support it — there's no way to distinguish \"I verified this\" from \"I concluded this.\"\n\nKey arguments:\n\n- **Evidence loss**: Subagent context is discarded after summarization. The orchestrator can't audit the prose it receives. In a single-agent session, evidence remains cached and available.\n- **Cost accounting**: The discarded subagent context is the real bill — you lose the evidence and pay to re-read it later. Single-agent sessions keep it cached.\n- **Interruptibility**: Single-agent work can be stopped when you see a bad premise developing. Parallel subagents are uninterruptible by construction — you find out afterward.\n- **Cited research**: Xu et al. \"Rethinking the Value of Multi-Agent Workflow\" found that running multi-agent workflows through one agent instead of separate instances produced comparable or better results.\n\nThe practitioner's configuration denies the Agent tool entirely plus most meta-tools (AskUserQuestion, EnterPlanMode, TaskCreate, Workflow, etc.), achieving ~35% usage of a $100/week subscription while accomplishing 3-6 months of pre-agent work per week.\n\n**Endorsed exception**: Adversarial review agents. Separate agents for architecture boundary compliance, coding guidelines, documentation guidelines, and testing best practices — each inspecting changes against in-repo documentation. The key: review agents check compliance with documented standards, not open-ended assessment. This workflow catches enough defects that human code review rarely finds meaningful issues. Each miss becomes signal that in-repo documentation needs improvement.\n\nThe practitioner's desired (but unavailable) feature: per-skill/tool scoping of the Agent tool — adversarial review on, delegated implementation off.",
+      "tags": [
+        "single-agent",
+        "synchronous",
+        "anti-pattern",
+        "subagents",
+        "context",
+        "interruptibility",
+        "cost-optimization",
+        "code-review",
+        "claude-code"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-08-02",
+      "path": "catalog/entries/single-agent-synchronous-workflow.md"
+    },
+    {
       "name": "sira-superintelligent-retrieval-agent",
       "title": "SIRA — Superintelligent Retrieval Agent",
       "url": "https://arxiv.org/abs/2605.06647",
@@ -6061,6 +6334,32 @@
       "security_flags": [],
       "reviewed": "2026-06-19",
       "path": "catalog/entries/skill-search-mcp.md"
+    },
+    {
+      "name": "skillforge",
+      "title": "SkillForge",
+      "url": "https://github.com/tripleyak/SkillForge",
+      "category": "meta-skill",
+      "decision_status": "open",
+      "summary": "Evidence-driven skill creator for Claude Code/Codex — RED/GREEN baseline testing (fresh agent without skill vs. with skill), cross-runtime dedup and compilation, per-skill regression evals, ecosystem doctor for trigger collisions/duplicates, opt-in friction mining from session history, proactive advisor via hooks; MIT",
+      "body_summary": "SkillForge is a meta-skill that routes any skill-related request (use, improve, create, compose) through an evidence-driven pipeline. Its core principle: skill quality is a property of behavior, not documents — a skill is done when a fresh agent demonstrably does better with it than without it.\n\nThe v6 pipeline (ground-up rework after external audit):\n\n1. **Phase 0 TRIAGE**: Index + word-boundary matching routes to USE, IMPROVE, CREATE, COMPOSE, or CLARIFY. Deduplication against every skill across runtimes (personal, Codex, Claude Code plugin cache).\n2. **Phase 0b RED GATE**: Fresh subagent attempts the task WITHOUT the skill. If it succeeds anyway, no skill is needed — creation stops.\n3. **Phase 1 ANALYSIS**: Load-bearing lenses (Inversion, Pareto, Root Cause), failure-form matching against baseline results.\n4. **Phase 2 SPEC**: Tiered specification (minimal default / full for infrastructure), decisions documented with WHY.\n5. **Phase 3 GENERATE**: Fresh-context subagent receives ONLY the spec + baseline failures (no contamination from prior context).\n6. **Phase 4 GREEN GATE**: With-skill runs must clear the recorded baseline failures; trigger tests verified.\n7. **Phase 5 REVIEW**: Automated lint (`validate_skill.py`) + one adversarial reviewer charged to refute.\n8. **Phase 6 SHIP**: Skills ship with `evals/` (trigger queries + behavioral scenarios) + `run_skill_evals.py` for permanent regression testing.\n\nToolbox of Python scripts (stdlib-only, Python 3.8+):\n- `discover_skills.py` — build/refresh cross-runtime skill index\n- `triage_skill_request.py` — route a request with JSON output\n- `validate_skill.py` — full validation + lint for a skill directory\n- `run_skill_evals.py` — run a skill's regression evals (optionally `--live`)\n- `skillforge_doctor.py` — ecosystem health: trigger collisions, duplicates, stale refs, budget violations, pinned models\n- `compile_skill.py` — cross-runtime compile (`--target claude|codex|agentskills`)\n- `mine_skill_friction.py` — mine local session transcripts for skill gaps (requires `--consent`)\n- `package_skill.py` — package as `.skill` archive\n- GitHub Actions CI workflow template included",
+      "tags": [
+        "meta-skill",
+        "skill-creation",
+        "testing",
+        "evals",
+        "baseline",
+        "cross-runtime",
+        "ecosystem-health",
+        "claude-code",
+        "codex",
+        "dedup"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-08-02",
+      "path": "catalog/entries/skillforge.md"
     },
     {
       "name": "skillopt",
@@ -6170,6 +6469,30 @@
       "security_flags": [],
       "reviewed": "2026-06-23",
       "path": "catalog/entries/smolagents.md"
+    },
+    {
+      "name": "socratic",
+      "title": "Socratic",
+      "url": "https://github.com/m4vic/socratic",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Self-interrogation skill packaging 697 engineering questions across 15 domains — agent silently works through relevant questions, reads codebase, applies defaults, and only escalates genuine authority decisions to user; Core (90 questions) and Full (697) modes; knowledge-backed packs for specialist depth; MIT",
+      "body_summary": "Socratic is a self-interrogation skill for AI coding agents. It packages 697 questions across 15 engineering domains (requirements, frontend, backend, data, API design, security, infrastructure, testing, observability, AI/LLM, mobile, product/UX, cost/performance, compliance, team/maintenance) into a reasoning loop the agent runs silently before writing code.\n\nThe agent classifies the task, detects relevant domains via signal words (e.g., \"auth\" → Security, \"database\" → Data), loads the smallest useful question set, self-answers by reading the codebase and applying engineering defaults, then surfaces only assumptions, risks, and the few genuinely open questions (ideally 0-3) that require human authority (budget, vendor, legal risk, irreversible calls).\n\nTwo depth modes:\n\n- **Core** (default): Top ~90 highest-signal questions. For prototypes, internal tools, one-off builds, day-to-day tasks.\n- **Full**: Complete 697-question bank. For production systems, public APIs, auth, payments, PII, regulated data, deep audits.\n\n**Knowledge-backed packs** add specialist depth after domain selection: software design (complexity, interfaces), data systems (distributed data, reliability), threat modeling (trust boundaries, abuse paths), AI engineering (LLM eval, retrieval, cost). Packs are compressed decision patterns from engineering books — what to ask, default answers, tradeoffs, common mistakes, escalation conditions, verification steps.\n\nDomain selection is dynamic — can grow mid-build as the agent discovers new requirements (e.g., finding an unexpected persistent store adds the Data domain). Testing and Requirements domains are always included.",
+      "tags": [
+        "self-interrogation",
+        "engineering-review",
+        "requirements",
+        "pre-implementation",
+        "questions",
+        "planning",
+        "verification",
+        "multi-domain"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-08-02",
+      "path": "catalog/entries/socratic.md"
     },
     {
       "name": "software-cost-estimation-models",
