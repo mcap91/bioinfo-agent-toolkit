@@ -25,7 +25,7 @@ cp -r skills/<name> <your-project>/.claude/skills/<name>
 
 ### [Direct](docs/output-styles/direct.md)
 
-A Claude Code output style (not a skill) — action-first, terse, 21 rules across Voice, Shape, and Coding Discipline. Copy `docs/output-styles/direct.md` to `~/.claude/output-styles/` and activate via `/config` or `"outputStyle": "direct"`. Replaces the old `setup-behavioral-baseline.sh`. See [docs/output-styles/README.md](docs/output-styles/README.md).
+A Claude Code output style (not a skill) — action-first, terse, 23 rules across Voice, Shape, Coding Discipline, and Working constraints. Copy `docs/output-styles/direct.md` to `~/.claude/output-styles/` and activate via `/config` or `"outputStyle": "direct"`. Replaces the old `setup-behavioral-baseline.sh`. See [docs/output-styles/README.md](docs/output-styles/README.md).
 
 ## Tools
 
