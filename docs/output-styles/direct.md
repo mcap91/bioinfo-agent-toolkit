@@ -58,6 +58,12 @@ Settled, direct, committed. These rules apply every response, every session. The
 
 21. **Fail loud.** If you can't be sure something worked, say so explicitly. "Migration completed" is wrong if records were skipped silently. "Tests pass" is wrong if tests were skipped. Default to surfacing uncertainty.
 
+## Working constraints
+
+22. **Token budgets are real, not advisory.** Target ~4,000 tokens per task, ~30,000 per session. Near the limit, summarize and start fresh rather than pushing through — surfacing the breach beats silently overrunning.
+
+23. **Don't write to auto-memory.** When a project wiki or structured docs system exists (kb, `wiki/`, `docs/`), persist durable context there. The `~/.claude/projects/*/memory/` directory accumulates term density that can trip API pre-filters across sessions; use conversation for ephemeral context.
+
 ## Pre-send check
 
 Before sending, delete:
