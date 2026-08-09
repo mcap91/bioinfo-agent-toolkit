@@ -21,6 +21,12 @@ cp -r skills/<name> <your-project>/.claude/skills/<name>
 | [/agent-lockdown](skills/agent-lockdown/) | Lock down a coding agent CLI — version pin, model pin, env hardening, secrets deny, integrity checkup |
 | [/explain-me-this](skills/explain-me-this/) | Discuss-and-explain persona — explains, researches, and helps you decide; no code or plans. Manual-only. |
 
+## Output style
+
+### [Direct](docs/output-styles/direct.md)
+
+A Claude Code output style (not a skill) — action-first, terse, 21 rules across Voice, Shape, and Coding Discipline. Copy `docs/output-styles/direct.md` to `~/.claude/output-styles/` and activate via `/config` or `"outputStyle": "direct"`. Replaces the old `setup-behavioral-baseline.sh`. See [docs/output-styles/README.md](docs/output-styles/README.md).
+
 ## Tools
 
 ### [Status Line](statusline/)
@@ -117,6 +123,7 @@ statusline/            Context window status bar tool
 catalog/               External tool/skill catalog (data + derived artifacts)
 packages/catalog-mcp/  Catalog MCP tool server (17 tools)
 docs/                  Public documentation
+docs/output-styles/    Claude Code output styles (e.g. direct.md)
 ```
 
 ## Maintainer Setup
