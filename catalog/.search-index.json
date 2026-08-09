@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-08-02",
-  "count": 312,
+  "generated": "2026-08-09",
+  "count": 343,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -217,6 +217,56 @@
       "path": "catalog/entries/agent-execution-governance.md"
     },
     {
+      "name": "agent-first-architecture",
+      "title": "Agent-First Architecture (The LLM Calls the Code)",
+      "url": "https://example.com",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Architecture pattern where a general coding agent (Claude Code, Codex, OpenCode) running on a VPS is the orchestrator, calling deterministic scripts and connectors from a repo, inverting the usual app-calls-LLM relationship",
+      "body_summary": "Describes an architectural inversion: \"code no longer calls the LLM — the LLM calls the code.\" Instead of building a dedicated application that embeds an LLM API call inside its own control flow, the pattern uses a general-purpose coding agent (Codex, Claude Code, OpenCode) as the top-level orchestrator, typically running unattended on a VPS. The agent operates against a repository containing natural-language instructions, deterministic scripts, and connectors (API wrappers, data fetchers, notifiers). The agent reads instructions, decides what to do, and invokes the deterministic code only when a step genuinely needs to be deterministic — the agent itself is the system, not a component bolted onto one.",
+      "tags": [
+        "agent-architecture",
+        "orchestration",
+        "vps",
+        "deterministic-code",
+        "general-agent",
+        "tool-calling"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/agent-first-architecture.md"
+    },
+    {
+      "name": "agent-plugins-vscode",
+      "title": "Agent Plugins in VS Code (Agent Plugins 1.0)",
+      "url": "https://code.visualstudio.com/docs/agent-customization/agent-plugins",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "VS Code docs for Agent Plugins 1.0, an open vendor-neutral standard (Vercel, AWS, Cursor, GitHub, Microsoft, OpenAI) for packaging portable Agent Skills + MCP servers into one installable plugin folder, working across VS Code, GitHub Copilot, Cursor, ChatGPT/Codex, and Kiro; Claude Code is not a coalition member but plugins install into it via format translation",
+      "body_summary": "Agent Plugins 1.0 was announced August 6, 2026 by a coalition (Vercel, AWS, Cursor/Anysphere, GitHub, Microsoft, OpenAI) as an open standard for packaging AI agent extensions. A plugin is a directory with a `plugin.json` manifest, an optional `skills/` folder holding Agent Skills (the SKILL.md…",
+      "tags": [
+        "agent-plugins",
+        "open-standard",
+        "mcp",
+        "skills",
+        "vs-code",
+        "github-copilot",
+        "plugin-marketplace",
+        "interoperability"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [
+        "implicit-trust-mcp-install",
+        "no-provenance-verification",
+        "spec-status-ambiguous"
+      ],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/agent-plugins-vscode.md"
+    },
+    {
       "name": "agent-reach",
       "title": "Agent Reach",
       "url": "https://github.com/Panniantong/agent-reach",
@@ -358,6 +408,29 @@
       "path": "catalog/entries/agentchassis.md"
     },
     {
+      "name": "agentic-memory-benchmark",
+      "title": "Agentic Memory Index — Benchmark of AI Agent Memory Systems",
+      "url": "https://example.com",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Benchmark of 8 AI agent memory systems across 2176 tasks (272 scored per system: 200 fact-recall + 72 never-stored hallucination checks), in which a plain curated markdown wiki outscored all commercial memory products tested",
+      "body_summary": "Reports results from an \"Agentic Memory Index\" benchmark evaluating 8 AI agent memory systems across 2176 total tasks, with 272 scored tasks per system: 200 fact-recall questions (facts that were previously stored and must be retrieved correctly) plus 72 questions about facts that were never stored…",
+      "tags": [
+        "memory",
+        "benchmark",
+        "agent-memory",
+        "evaluation",
+        "markdown",
+        "mem0",
+        "rag-alternative"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/agentic-memory-benchmark.md"
+    },
+    {
       "name": "agentic-rag-terminal-tools",
       "title": "Agentic RAG with Terminal Tools (Direct Corpus Interaction)",
       "url": "https://mixpeek.com/agentic-rag",
@@ -401,6 +474,30 @@
       "security_flags": [],
       "reviewed": "2026-07-03",
       "path": "catalog/entries/agentic-rag.md"
+    },
+    {
+      "name": "ai-for-beginners",
+      "title": "AI for Beginners (Microsoft)",
+      "url": "https://github.com/microsoft/AI-For-Beginners",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Microsoft's free 12-week, 24-lesson AI curriculum covering symbolic AI (GOFAI), neural networks and deep learning in PyTorch and TensorFlow, computer vision (CNNs, autoencoders, GANs, detection, segmentation), NLP (embeddings, RNNs, Transformers/BERT, NER, LLMs), genetic algorithms, deep RL, multi-agent systems, and AI ethics; lessons ship as executable Jupyter notebooks with quizzes and labs, in 50+ language translations",
+      "body_summary": "A free, self-paced introductory AI curriculum published by Microsoft (Azure Cloud Advocates; primary author Dmitry Soshnikov, PhD). Structured as 12 weeks / 24 lessons plus extras, it covers:\n\n- **Introduction & Symbolic AI**: history of AI, knowledge representation, expert systems, ontologies, concept graphs (GOFAI).\n- **Neural networks**: perceptron, multi-layer perceptron built from scratch, framework intro (PyTorch/TensorFlow/Keras), overfitting.\n- **Computer vision**: OpenCV, CNNs and CNN architectures, transfer learning, autoencoders/VAEs, GANs and style transfer, object detection, semantic segmentation (U-Net).\n- **NLP**: text representation (BoW/TF-IDF), word embeddings (Word2Vec/GloVe), language modeling, RNNs, generative RNNs, Transformers/BERT, named entity recognition, large language models and prompt programming.\n- **Other techniques**: genetic algorithms, deep reinforcement learning, multi-agent systems.\n- **Ethics**: AI ethics and responsible AI. Extras cover multi-modal networks (CLIP, VQGAN).\n\nExplicitly out of scope (deferred to sibling curricula): classic ML, Cognitive Services applications, specific cloud ML frameworks, conversational AI/chatbots, and the deep mathematics of deep learning.",
+      "tags": [
+        "ai",
+        "learning",
+        "curriculum",
+        "deep-learning",
+        "pytorch",
+        "tensorflow",
+        "computer-vision",
+        "nlp"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/ai-for-beginners.md"
     },
     {
       "name": "ai-job-search",
@@ -716,6 +813,30 @@
       "path": "catalog/entries/asi-evolve.md"
     },
     {
+      "name": "attention-control",
+      "title": "Attention Control",
+      "url": "https://github.com/aaddrick/attention-control",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Output style / skill for coding agents applying air-traffic-control communication discipline (fixed message shape + controlled vocabulary) to agent prose, combining the shape rules from 'i-have-adhd' with the language rules from 'asd-ste100'; ships as a native Claude Code output style and as a skill/rules-file for Codex, Cursor, Gemini CLI, GitHub Copilot, and Zed.",
+      "body_summary": "Attention Control reshapes an agent's prose output using two combined disciplines borrowed from aviation air-traffic-control phraseology: a fixed message shape (instruction first, background last) and controlled vocabulary (one word, one meaning). It targets \"a reader with ADHD\" specifically, on the premise that the shape rules derived for that reader also help any reader under load — tired, on a phone, or with many open tabs. On Claude Code it installs as a native output style (`claude plugin marketplace add aaddrick/attention-control` then `claude plugin install attention-control@attention-control`, selected via `/config` → Output style, or set persistently via the top-level `outputStyle` key in `~/.claude/settings.json`). Claude Code is the only harness in this project with a native output-style slot; for Codex, Cursor, Gemini CLI, GitHub Copilot, and Zed the same rules ship as an installable skill, a rules file, or an `AGENTS.md` block instead.",
+      "tags": [
+        "output-style",
+        "adhd",
+        "accessibility",
+        "prompt-engineering",
+        "claude-code",
+        "codex",
+        "simplified-technical-english",
+        "eval-harness"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/attention-control.md"
+    },
+    {
       "name": "autoharness",
       "title": "Autoharness",
       "url": "https://github.com/kayba-ai/autoharness",
@@ -820,6 +941,29 @@
       "path": "catalog/entries/awesome-claude-code.md"
     },
     {
+      "name": "awesome-design-md",
+      "title": "awesome-design-md",
+      "url": "https://github.com/voltagent/awesome-design-md",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Curated collection of 60+ DESIGN.md files — plain-text design-system documents (a Google Stitch concept) analyzed from real company websites — intended to be dropped into a project so AI coding/design agents generate UI consistent with that brand's visual language",
+      "body_summary": "DESIGN.md, per the README, is a concept introduced by Google Stitch: a plain-markdown design-system document, analogous to how AGENTS.md tells a coding agent how to build a project, except DESIGN.md tells a design-capable agent how the project should look. This repository is a curated collection of…",
+      "tags": [
+        "design-system",
+        "design-md",
+        "ui-generation",
+        "brand-design",
+        "google-stitch",
+        "curated-list",
+        "frontend"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/awesome-design-md.md"
+    },
+    {
       "name": "awesome-harness-engineering",
       "title": "Awesome Harness Engineering",
       "url": "https://github.com/ai-boost/awesome-harness-engineering",
@@ -867,6 +1011,33 @@
       "security_flags": [],
       "reviewed": "2026-07-06",
       "path": "catalog/entries/axolotl.md"
+    },
+    {
+      "name": "azure-ai-foundry-chat-starter",
+      "title": "Get Started with AI Chat (Azure AI Foundry)",
+      "url": "https://github.com/Azure-Samples/get-started-with-ai-chat",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Microsoft starter template that deploys a RAG-capable chat web app to Azure Container Apps using Microsoft Foundry models and Azure AI Search for file-grounded, cited responses; deployable via azd up or a guided Copilot CLI /up skill; explicitly marked not production-ready without added security hardening",
+      "body_summary": "Deploys a web-based chat application to Azure Container Apps that talks to a Microsoft Foundry project/Foundry Tools deployment (default model `gpt-4o-mini`). Supports two modes: direct model chat, or Retrieval-Augmented Generation against files uploaded and indexed into Azure AI Search, with the app returning cited responses. Optional Application Insights + Log Analytics wiring gives request tracing for debugging and performance monitoring in the Foundry portal.",
+      "tags": [
+        "azure",
+        "ai-foundry",
+        "rag",
+        "chat",
+        "azd",
+        "azure-container-apps",
+        "azure-ai-search",
+        "starter-template",
+        "application-insights"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "vendor-marked-not-production-ready"
+      ],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/azure-ai-foundry-chat-starter.md"
     },
     {
       "name": "bdh",
@@ -1414,6 +1585,48 @@
       "path": "catalog/entries/claude-autoresearch.md"
     },
     {
+      "name": "claude-code-commands-announcement",
+      "title": "Claude Code Commands: /ultraplan, /powerup, /insights",
+      "url": "https://example.com",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Announcement of three Claude Code CLI features shipped alongside Claude Code Web: /ultraplan (beta, browser-based plan review), /powerup (interactive feature-discovery lessons), /insights (session-analysis reports)",
+      "body_summary": "Announces three Claude Code features, shipped alongside Claude Code Web (claude.ai/code):\n\n- **`/ultraplan` (beta)** — sends a planning task to Claude Code on the web for browser-based plan review with inline comments; the reviewed plan can then be executed remotely or sent back to the CLI for…",
+      "tags": [
+        "claude-code",
+        "claude-code-web",
+        "ultraplan",
+        "powerup",
+        "insights",
+        "announcement"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/claude-code-commands-announcement.md"
+    },
+    {
+      "name": "claude-code-commands-reference",
+      "title": "Claude Code Commands Reference",
+      "url": "https://code.claude.com/docs/en/commands",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Anthropic's official reference documentation for every Claude Code CLI slash command, covering description, parameters, aliases, and minimum CLI version per command as of v2.1.224",
+      "body_summary": "The official Anthropic documentation page enumerating every built-in Claude Code CLI slash command, current as of CLI v2.1.224. Each entry documents the command's syntax and arguments, a description of its behavior, any aliases, and the minimum CLI version required (many entries note version-gated…",
+      "tags": [
+        "claude-code",
+        "documentation",
+        "slash-commands",
+        "cli-reference",
+        "anthropic-official"
+      ],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/claude-code-commands-reference.md"
+    },
+    {
       "name": "claude-code-fable-cost-playbook",
       "title": "Claude Code Fable Cost Playbook",
       "url": "https://community.anthropic.com",
@@ -1501,6 +1714,29 @@
       "security_flags": [],
       "reviewed": "2026-07-06",
       "path": "catalog/entries/claude-code-setup-plugin.md"
+    },
+    {
+      "name": "claude-code-system-prompt-internals",
+      "title": "Claude Code System Prompt Internals (Short vs. Long Preset)",
+      "url": "https://example.com",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Reverse-engineering investigation showing Claude Code ships two different system prompt presets (~11k chars for Opus 5, ~29k chars for Sonnet 5), gated by CLAUDE_CODE_SIMPLE_SYSTEM_PROMPT and a server-side CLAUDE_CODE_BASALT_COVE rollout flag; forcing the long preset on Opus 5 stacks ~20k redundant tokens rather than helping",
+      "body_summary": "An investigation into Claude Code's system prompt architecture, testing on CLI version v2.1.221, finds two entirely different system prompt presets in use depending on model:\n\n- A **short preset** (~11k characters), used for Opus 5\n- A **long preset** (~29k characters), used for Sonnet 5, which…",
+      "tags": [
+        "claude-code",
+        "system-prompt",
+        "reverse-engineering",
+        "env-vars",
+        "opus",
+        "sonnet",
+        "verbosity"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/claude-code-system-prompt-internals.md"
     },
     {
       "name": "claude-cookbook",
@@ -1853,6 +2089,30 @@
       "security_flags": [],
       "reviewed": "2026-08-02",
       "path": "catalog/entries/cloud-session-context-repo.md"
+    },
+    {
+      "name": "cloudflare-os",
+      "title": "Cloudflare OS",
+      "url": "https://github.com/cloudflare/cloudflare-os",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Cloudflare's open-sourced internal 'agent workspace' platform on Workers/Durable Objects — sandboxed per-user 'Gadgets' (AI-built mini-apps) governed by capability-based 'Gatekeeper' services that mediate external-API access and support async human-in-the-loop approval",
+      "body_summary": "Cloudflare OS is an \"AI productivity environment\" that Cloudflare built and used internally, now released as open source (v2, a full rewrite of an internal v1) so other organizations can fork it into \"Your Company OS.\" It provides three parts: an agent chat UI preloaded with company context, sandboxed application development where agents build small personal apps called \"Gadgets,\" and a capability-based security layer called \"Gatekeepers\" that mediates every connection between an agent/Gadget and an external service.\n\n**Gadgets**: instead of a shared multi-tenant SaaS app, each user gets their own private, sandboxed instance of whatever app they ask an agent to build (e.g., a slide-deck tool, a whiteboard, a game). The server half runs in a Cloudflare Dynamic Worker Facet with no default internet access; the client half runs in a sandboxed iframe that can only talk to its own server via Cap'n Web RPC over `postMessage`. Because client and server communicate over Cap'n Web, every Gadget automatically exposes an agent-callable API with no separate MCP server needed. Gadgets support real-time multiplayer (each is backed by a Durable Object) and can be shared as \"Blueprints\" — copyable source templates, not shared hosted instances, so a recipient gets their own independently modifiable copy.\n\n**Gatekeepers**: a per-external-service Worker that wraps that service's native API in a Cap'n Web interface, handles OAuth, restricts access to only the specific resource introduced to an agent, logs every action, and supports side-effecting actions. For actions requiring approval, a Gatekeeper simulates the outcome locally so the agent can keep working immediately; the human reviews and approves/rejects the queued real actions later (individually or in bulk), instead of the agent blocking synchronously on each approval. Shipped Gatekeepers in the repo cover GitHub, Google, Cloudflare, Supabase, Notion, Confluence, email, Home Assistant, Slack, Spotify, and ZoomInfo APIs.\n\nAccess is capability-based and zero-by-default: neither an agent nor a Gadget has access to any external resource until a human (or the agent, pending human approval) explicitly introduces that specific resource — a contrast to MCP setups where configured servers are ambiently available in every chat.",
+      "tags": [
+        "cloudflare-workers",
+        "durable-objects",
+        "agent-workspace",
+        "sandboxing",
+        "capability-based-security",
+        "gadgets",
+        "mcp-alternative",
+        "apache-2.0"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/cloudflare-os.md"
     },
     {
       "name": "cobalt",
@@ -2336,6 +2596,28 @@
       "path": "catalog/entries/data-science-for-beginners.md"
     },
     {
+      "name": "decomposition-over-context",
+      "title": "Decomposition Over Context: Chat Is the Wrong Abstraction",
+      "url": "https://example.com",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Argues larger context windows aren't the fix for agentic-coding limits — task decomposition with explicit ownership, dependencies, and file boundaries is; illustrated with a TESTER/FIXER agent split and an issue-based parallel-implementation workflow",
+      "body_summary": "Central argument: \"chat is the wrong abstraction for software engineering.\" Bigger context windows are framed as treating the symptom, not the cause — a context window is working memory for the current turn, not project memory across a whole effort. Compaction preserves the conversation's gist but…",
+      "tags": [
+        "context-engineering",
+        "decomposition",
+        "subagents",
+        "software-engineering-workflow",
+        "github-issues",
+        "agent-orchestration"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/decomposition-over-context.md"
+    },
+    {
       "name": "deep-live-cam",
       "title": "Deep-Live-Cam",
       "url": "https://github.com/hacksider/Deep-Live-Cam",
@@ -2360,6 +2642,32 @@
       "path": "catalog/entries/deep-live-cam.md"
     },
     {
+      "name": "deepseek-and-destroy",
+      "title": "DeepSeek and Destroy",
+      "url": "https://github.com/frozenpepper/deepseek-and-destroy",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Portable, multi-harness coding-agent skill in which an expensive orchestrator model decomposes and gates a multi-phase implementation plan while routing survey, implementation, review, and verification work to cheap DeepSeek-v4-flash workers via OpenCode CLI, using a worker proof-obligation discipline meant to catch tests that pass for the wrong reason.",
+      "body_summary": "DeepSeek and Destroy (DSD) is a coding-agent skill for executing large, multi-phase implementation plans while reserving an expensive orchestrator model (e.g. Opus) for plan-wide judgment and routing repository-scale grunt work — survey, discovery, bounded implementation, verification, independent review, repair, and evidence synthesis — to cheap worker models. The default worker backend is `opencode-go/deepseek-v4-flash`, dispatched via the OpenCode CLI. The core loop: plan → phase survey/discovery when needed → a bounded task with stable acceptance-criteria IDs (AC-001, etc.) and \"Proof Obligations\" → a fresh implementer → a fresh independent reviewer → pass/fail gate (fixer loop on fail) → phase-level verification workers and a fresh phase auditor → orchestrator phase gate → next phase. It runs until the plan is complete, a genuine human-level blocker is reached, or the user pauses/abandons it — a finished task or phase, or a review failure, is explicitly not treated as a stopping condition.",
+      "tags": [
+        "multi-agent",
+        "orchestration",
+        "deepseek",
+        "opencode",
+        "cost-optimization",
+        "plan-execution",
+        "worker-pattern",
+        "codex",
+        "claude-code",
+        "kilocode"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/deepseek-and-destroy.md"
+    },
+    {
       "name": "deny-env-reads",
       "title": "Deny .env Reads via Permissions",
       "url": "https://code.claude.com/docs/en/settings",
@@ -2379,6 +2687,31 @@
       "security_flags": [],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/deny-env-reads.md"
+    },
+    {
+      "name": "developer-roadmap",
+      "title": "Developer Roadmap (roadmap.sh)",
+      "url": "https://github.com/nilbuild/developer-roadmap",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Content repository behind roadmap.sh — interactive, node-based learning roadmaps and topic guides for developer career paths (frontend, backend, DevOps, AI, etc.); each roadmap topic is a Markdown file (roadmaps/<slug>/content/<topic>@<node-id>.md) linked to an interactive graph on the website. This URL is a read-only fork of the canonical kamranahmedse/developer-roadmap; content is copyright-restricted (personal use only)",
+      "body_summary": "The source content for roadmap.sh: a large set of interactive, node-based roadmaps and guides that map learning paths for developer roles and technologies (e.g. frontend, backend, DevOps, full-stack, AI/data, plus role- and skill-based roadmaps). Each roadmap is an interactive graph on the website whose nodes are clickable; the text behind a node lives in a Markdown file at `roadmaps/<roadmap-slug>/content/<topic-slug>@<node-id>.md`. The `<node-id>` in the filename is what binds the content to its node, so filenames must be preserved. Merged content changes sync to the website automatically. `scripts/` holds maintainer sync tooling.",
+      "tags": [
+        "learning",
+        "roadmaps",
+        "career",
+        "curriculum",
+        "developer-education",
+        "reference"
+      ],
+      "workflows": [],
+      "license": "custom-restrictive",
+      "security_flags": [
+        "fork-not-canonical-upstream",
+        "content-license-restrictive"
+      ],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/developer-roadmap.md"
     },
     {
       "name": "dify",
@@ -2595,6 +2928,51 @@
       ],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/ecc-plugin.md"
+    },
+    {
+      "name": "embodied-agent-design-patterns",
+      "title": "Embodied Agent Design Patterns (Physical Robot)",
+      "url": "https://example.com",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Four lessons from embedding an agent with persistent memory and tool access into a physical robot: reflexes must bypass the model, memory needs periodic consolidation and audit trails, tool access needs active restriction, and inline action-timing beats raw model capability for perceived intelligence",
+      "body_summary": "Reports four design lessons from putting an agent with persistent memory and tool access into a physical robot:\n\n1. **Reflexes must bypass the agent completely.** Anything routed through a model call feels dead/laggy in a physical, real-time context. Example: waving back at a person is implemented as a ~300ms reflex handled entirely by on-device vision, never going through the LLM.\n\n2. **Memory accumulates contradictions.** After weeks of continuous operation, memory files built up redundant and conflicting facts. Mitigation: a periodic consolidation job hands the accumulated memory to a stronger model for reconciliation. Memory entries are recommended to carry an audit trail — source, last-confirmed timestamp, and an invalidation method — rather than being flat unattributed facts.\n\n3. **Tool restraint, not tool capability, is the constraint.** An agent given 38 tools reached for the wrong one constantly. The lesson stated directly: capability isn't the limiting factor on agent quality — restraint is. Tool access should be explicitly restricted to what's needed for the task at hand rather than exposing everything by default.\n\n4. **Timing beats intelligence for perceived quality.** Body/gesture actions are fired from tags placed inline within the model's output sentence, so a gesture lands on the exact word it relates to rather than firing only after the full sentence completes. This fine-grained timing is reported to have done more for the robot's perceived intelligence than any underlying model upgrade.",
+      "tags": [
+        "embodied-agent",
+        "robotics",
+        "reflexes",
+        "memory-consolidation",
+        "tool-restraint",
+        "latency",
+        "agent-pattern"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/embodied-agent-design-patterns.md"
+    },
+    {
+      "name": "end-of-session-review-questions",
+      "title": "End-of-Session Review Questions",
+      "url": "https://example.com",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Two standing end-of-session prompts ('what are you least confident about' and 'what am I probably missing') used to surface glossed-over assumptions and context gaps, with community variants and known failure modes",
+      "body_summary": "Describes a practice of asking two fixed questions at the end of every Claude session:\n\n1. **\"What are you least confident about in what you just did?\"** — forces enumeration of assumptions and issues the agent glossed over during the session. Reported to catch a real problem roughly 25% of the time.\n2. **\"What's the biggest thing I'm probably missing that I haven't thought to ask?\"** — aimed at the user's blind spots rather than the agent's; surfaces \"you told me X but Y will bite you later\" class issues that a narrowly-scoped session wouldn't otherwise reveal.\n\nCommunity-contributed additions collected alongside the core pair: \"What did you just tell me works that you didn't actually verify?\" (targets unverified success claims specifically), requesting explicit numeric confidence scores per claim, and using a dedicated `/reflection` command to run this check consistently.",
+      "tags": [
+        "prompting",
+        "meta-prompting",
+        "confidence",
+        "verification",
+        "session-review",
+        "agent-pattern"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/end-of-session-review-questions.md"
     },
     {
       "name": "engram-learning-engine",
@@ -3640,6 +4018,30 @@
       "path": "catalog/entries/iai-personal-memory-engine.md"
     },
     {
+      "name": "img2threejs",
+      "title": "img2threejs",
+      "url": "https://github.com/img2threejs/img2threejs",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Image-to-3D reconstruction skill for Claude Code/Codex/OpenCode that turns a single reference image into a quality-gated, animation-ready TypeScript THREE.Group factory via a staged sculpting pipeline, using stdlib-only Python scripts for validation/gating so model tokens are spent only on visual judgment",
+      "body_summary": "img2threejs takes one reference image of an object and produces a `THREE.Group` factory (TypeScript) that reconstructs it from primitives, procedural shaders, and generated geometry, including a runtime hierarchy of pivots, sockets, and colliders so the result is animation-ready rather than a static mesh. It runs as a skill under Claude Code, Codex, or OpenCode and is described as agent-agnostic for vision/browser capabilities, using whatever the host agent provides (native image reading, a browser MCP, a project preview, or a user-supplied screenshot).\n\nA staged sculpting pipeline generates and vision-reviews one build pass at a time — blockout → structural → form → material → surface → lighting → interaction → optimization — self-correcting against reference-image comparison at each stage before advancing. Before code generation, a \"detail inventory\" step enumerates identity-defining small details (bevels, screws/rivets, engraved/painted linework, wear); every listed detail must map to a real modeled component, and a strict-quality gate blocks generation until the inventory is complete. Subjects are classified as object, character, or hybrid; characters route through a separate anatomy-aware track (proportions, facial landmarks, pose). Optional capabilities include multi-view silhouette carving (intersecting orthographic silhouettes into a voxel mesh), a projection-first likeness path for a specific person/character, and CS2-weapon-specific review gates with family-specific component contracts (documented for the Glock-18 and knife families).",
+      "tags": [
+        "image-to-3d",
+        "threejs",
+        "procedural-generation",
+        "claude-code-skill",
+        "token-efficient",
+        "typescript",
+        "python",
+        "3d-modeling"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/img2threejs.md"
+    },
+    {
       "name": "immich",
       "title": "Immich",
       "url": "https://github.com/immich-app/immich",
@@ -4463,6 +4865,32 @@
       "path": "catalog/entries/mex.md"
     },
     {
+      "name": "microsoft-agentic-unified-data-foundation-fabric",
+      "title": "Agentic Applications for Unified Data Foundation Solution Accelerator",
+      "url": "https://github.com/microsoft/agentic-applications-for-unified-data-foundation-solution-accelerator",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Microsoft solution accelerator that layers Microsoft Foundry agents + Agent Framework orchestration over a Microsoft Fabric unified data foundation (SQL Database in Fabric), enabling natural-language querying across governed enterprise datasets via a web front-end; ships configurable scenario packs (retail sales analysis, financial-services client-meeting prep) with synthetic sample data; MIT",
+      "body_summary": "Builds an agentic natural-language query layer on top of a Microsoft Fabric-based \"Unified Data Foundation\" (a companion accelerator, `unified-data-foundation-with-fabric-solution-accelerator`, providing the underlying governed lakehouse via Fabric, Purview, and Databricks). Structured data in SQL Database in Fabric is queried through Microsoft Foundry agents orchestrated by the Microsoft Agent Framework, exposed through a web front-end for exploring semantic models/data assets in plain language, aimed at making governed data self-serve for non-technical business users rather than data specialists only.",
+      "tags": [
+        "azure",
+        "microsoft-fabric",
+        "agent-framework",
+        "azure-ai-foundry",
+        "natural-language-query",
+        "solution-accelerator",
+        "data-foundation",
+        "scenario-packs"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "synthetic-sample-data-only"
+      ],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/microsoft-agentic-unified-data-foundation-fabric.md"
+    },
+    {
       "name": "microsoft-eval-guide",
       "title": "Microsoft Eval Guide",
       "url": "https://github.com/microsoft/eval-guide",
@@ -4484,6 +4912,88 @@
       "security_flags": [],
       "reviewed": "2026-07-21",
       "path": "catalog/entries/microsoft-eval-guide.md"
+    },
+    {
+      "name": "microsoft-mai-models",
+      "title": "Microsoft MAI Models: Building a Hill-Climbing Machine",
+      "url": "https://microsoft.ai/news/building-a-hillclimbing-machine-launching-seven-new-mai-models/",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Microsoft AI blog announcement (Build 2026) of seven in-house MAI models across image, voice, transcription, reasoning, and coding, distributed via Microsoft Foundry plus OpenRouter/Fireworks/Baseten; introduces 'Frontier Tuning', letting enterprise customers fine-tune model weights on their own workflow-trace data via reinforcement-learning environments, alongside a Mayo Clinic co-developed healthcare model.",
+      "body_summary": "A Microsoft AI blog post, framed by CEO Mustafa Suleyman around the idea of a \"hill-climbing machine\" — a repeatable pipeline from accelerator co-design through reinforcement learning, intended to reduce Microsoft's dependence on any single external model lab. It announces seven in-house MAI models…",
+      "tags": [
+        "microsoft",
+        "mai",
+        "foundry",
+        "model-family",
+        "reasoning-model",
+        "fine-tuning",
+        "enterprise-ai",
+        "healthcare-ai",
+        "reinforcement-learning"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-copyright-author",
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/microsoft-mai-models.md"
+    },
+    {
+      "name": "microsoft-multi-agent-custom-automation-engine",
+      "title": "Multi-Agent Custom Automation Engine Solution Accelerator",
+      "url": "https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Microsoft solution accelerator where specialized AI agents plan, execute, and validate multi-step business tasks from natural-language input, built on Microsoft Agent Framework + Azure AI Foundry + Cosmos DB + Container Apps; ships reference scenario packs (product marketing, employee onboarding, retail remediation, RFP/contract review, content generation); MIT, explicitly marked proof-of-concept",
+      "body_summary": "An agentic task-automation pipeline: a user states a task in natural language, and a coordinated group of specialized agents plans it, executes sub-steps, and validates results before returning output. Built on Azure OpenAI/Foundry, Azure Container Apps (frontend host), Azure Cosmos DB (metadata/results), and Azure Container Registry. Ships with six documented example scenarios, each with its own persona/challenge/approach writeup: product marketing release planning, employee onboarding, retail customer-success remediation, RFP review, contract compliance review, and marketing content generation.",
+      "tags": [
+        "azure",
+        "multi-agent",
+        "agent-framework",
+        "azure-ai-foundry",
+        "cosmos-db",
+        "azure-container-apps",
+        "solution-accelerator",
+        "task-automation",
+        "semantic-kernel"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "vendor-marked-poc-not-production",
+        "requires-openai-quota"
+      ],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/microsoft-multi-agent-custom-automation-engine.md"
+    },
+    {
+      "name": "microsoft-release-manager-assistant",
+      "title": "Release Manager Assistant (RMA)",
+      "url": "https://github.com/microsoft/release-manager-assistant",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Microsoft solution accelerator that augments release managers with a multi-agent system (Planner, JIRA Agent, Azure DevOps Agent via MCP, Visualization Agent, Fallback Agent) for cross-system release planning, scheduling, and readiness reporting; built on Azure AI Foundry + Microsoft Agent Framework + Redis; ships mock/synthetic-data MCP servers for JIRA and Azure DevOps so it can be evaluated without live system access; MIT",
+      "body_summary": "A multi-agent assistant for the software release-management lifecycle: a Planner agent routes natural-language queries to specialized agents — a JIRA Agent (JQL-optimized issue queries with custom-field support), an Azure DevOps Agent (via a dedicated MCP server: work items, builds/releases, repos/PRs, teams/iterations), a Visualization Agent (interactive charts via Azure AI Foundry's code interpreter), and a Fallback Agent for graceful degradation when an upstream service is unavailable. Aims to replace manually compiled cross-system release-readiness reports and dependency mapping with a single conversational interface.",
+      "tags": [
+        "azure",
+        "multi-agent",
+        "mcp",
+        "azure-devops",
+        "jira",
+        "agent-framework",
+        "azure-ai-foundry",
+        "redis",
+        "release-management",
+        "solution-accelerator"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "jira-http-basic-auth-not-for-production",
+        "byoai-only-no-shared-quota"
+      ],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/microsoft-release-manager-assistant.md"
     },
     {
       "name": "minimal-agent-integration",
@@ -5461,6 +5971,28 @@
       "path": "catalog/entries/opus-fable-mode.md"
     },
     {
+      "name": "ossu-computer-science",
+      "title": "OSSU Computer Science",
+      "url": "https://github.com/ossu/computer-science",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Open Source Society University's free, self-taught CS curriculum modeled on undergraduate degree requirements (ACM/IEEE CS 2013 guidelines), assembled from free online courses (MIT, Harvard, Princeton, etc.); organized into Intro CS, Core CS (programming, math, tools, systems, theory, security, applications, ethics), Advanced CS electives, and a peer-evaluated final project; ~2 years at 20 hrs/week",
+      "body_summary": "A community-maintained, free curriculum that reproduces the CS-specific portion of an undergraduate computer science degree using open online courses. Course selection follows fixed criteria (open enrollment, regular/self-paced offering, high pedagogical quality, alignment with the CS 2013 curricular guidelines); where no suitable course exists, a book is substituted. It targets learners already educated outside CS, so it omits general-education requirements.",
+      "tags": [
+        "computer-science",
+        "learning",
+        "curriculum",
+        "self-taught",
+        "mooc",
+        "open-education"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/ossu-computer-science.md"
+    },
+    {
       "name": "outcomes-managed-agents",
       "title": "Outcomes / Outcome Grader (Managed Agents)",
       "url": "https://platform.claude.com/cookbook/managed-agents-cma-verify-with-outcome-grader",
@@ -5787,6 +6319,58 @@
       "path": "catalog/entries/piyaz.md"
     },
     {
+      "name": "playwright-cli",
+      "title": "Playwright CLI",
+      "url": "https://github.com/microsoft/playwright-cli",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Microsoft-maintained CLI interface to Playwright browser automation (npm package @playwright/cli), pitched as more token-efficient than Playwright MCP for coding agents since it avoids loading MCP tool schemas and full accessibility trees into model context; installs as a Claude Code / GitHub Copilot skill",
+      "body_summary": "Playwright CLI provides command-line access to Playwright browser automation, positioned by its README as the better fit for coding agents compared with Playwright MCP: CLI invocations avoid loading large MCP tool schemas and verbose accessibility trees into the model's context, so an agent issues concise, purpose-built commands instead. The README frames Playwright MCP as still preferable for agentic loops that need persistent state and iterative reasoning over page structure (self-healing tests, exploratory automation), positioning the two as complementary rather than strictly one replacing the other.\n\nCommands cover navigation (`open`, `goto`, `close`, `go-back`, `reload`), interaction (`click`, `type`, `fill`, `drag`, `hover`, `select`, `upload`, `check`), snapshot-based element targeting (`snapshot` returns refs; elements can also be targeted by CSS selector or Playwright locator string), keyboard/mouse control, screenshots/PDF/video capture, tracing, console/network/request inspection, request mocking (`route`), and storage management (cookies, localStorage, sessionStorage, full storage-state save/load). A `playwright-cli show` command opens a visual dashboard with a live-screencast session grid and a per-session detail view supporting full remote takeover of mouse/keyboard — useful for observing or steering agent-driven browser sessions running in the background.",
+      "tags": [
+        "playwright",
+        "browser-automation",
+        "cli",
+        "testing",
+        "coding-agent",
+        "skill",
+        "screenshots",
+        "network-mocking",
+        "tracing"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/playwright-cli.md"
+    },
+    {
+      "name": "podman",
+      "title": "Podman",
+      "url": "https://github.com/podman-container-tools/podman",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Daemonless, rootless-capable container engine with a Docker-compatible CLI for managing OCI containers, pods, images, and volumes; uses Buildah for builds, Netavark/Aardvark for networking, and crun/runc as the OCI runtime; ships Podman Desktop as a GUI frontend",
+      "body_summary": "Podman (\"POD MANager\") manages OCI/Docker-format containers, images, volumes, and pods via a Docker-compatible CLI, without a background daemon. Built on the `libpod` library (also in this repo), it supports rootless operation (containers run as the invoking user via user namespaces, with no more privilege than that user has), pods (grouped containers sharing resources), checkpoint/restore via CRIU, and both local and remote (REST API) operation. On Mac/Windows it runs via a Podman-managed VM (`podman machine`). Podman Desktop is a separate GUI project for full container/pod/Kubernetes-YAML lifecycle management.",
+      "tags": [
+        "containers",
+        "oci",
+        "rootless",
+        "daemonless",
+        "docker-alternative",
+        "podman-desktop",
+        "cli",
+        "buildah",
+        "netavark"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "org-migration-unclear-provenance"
+      ],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/podman.md"
+    },
+    {
       "name": "polars",
       "title": "Polars",
       "url": "https://github.com/pola-rs/polars",
@@ -5967,6 +6551,33 @@
       "security_flags": [],
       "reviewed": "2026-06-19",
       "path": "catalog/entries/rag-retrieval-recipe.md"
+    },
+    {
+      "name": "reddit-pain-research-skill",
+      "title": "Reddit Pain Research Skill",
+      "url": "https://github.com/haseebeqx/reddit-pain-research-skill",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Codex skill for evidence-based Reddit customer-discovery research — plans a study, collects and clusters pain-point evidence, and produces falsifiable monetization hypotheses via deterministic Python helpers, gated by a human approval checkpoint before evidence collection begins.",
+      "body_summary": "A manually-invoked Codex skill for structured customer-discovery research on Reddit. Given a topic (e.g. \"recurring invoicing pain among freelance designers\"), it plans a study, verifies relevant subreddit communities, collects and deduplicates evidence via traceable canonical URLs, clusters recurring pain points, scores commercial signal separately from pain intensity, and writes ranked, falsifiable monetization hypotheses with contrary evidence and falsification tests. The skill requires Codex with skill and web-research support, Python 3.9+, and internet access; it is manual-only and never triggers implicitly.\n\nThe workflow has an explicit human checkpoint: after producing `research_config.json` (the reviewed research plan) Codex presents it for inspection/editing and requires explicit approval before evidence collection starts. Supports resuming from an existing `research_config.json` or `analysis.json`.",
+      "tags": [
+        "reddit",
+        "customer-research",
+        "market-research",
+        "codex-skill",
+        "pain-points",
+        "monetization",
+        "evidence-based",
+        "deterministic-helpers"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-unknown",
+      "security_flags": [
+        "no-license-stated",
+        "single-author"
+      ],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/reddit-pain-research-skill.md"
     },
     {
       "name": "redpanda",
@@ -6171,6 +6782,28 @@
       "path": "catalog/entries/scheduled-multi-agent-coordinator.md"
     },
     {
+      "name": "scrub-context-engineering",
+      "title": "SCRUB: A Framework for Context Engineering in Claude Code",
+      "url": "https://example.com",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Five-action framework (Subagents, Cut/rewind, Reduce/compact, Upload/handoff, Burn/clear) for proactively managing an agent's context window, from a practitioner report of ~3000 hours in Claude Code",
+      "body_summary": "Names five distinct actions for managing an agent's context window, framed as the mnemonic SCRUB, drawn from roughly 3000 hours of hands-on Claude Code use:\n\n- **S — Subagents**: dispatch disposable workers that carry their own separate context window, keeping bulk exploration/research out of the main conversation\n- **C — Cut/rewind**: use conversation time-travel to jump back to an earlier point, restoring code state while trimming the accumulated conversation history\n- **R — Reduce/compact**: summarize the conversation in place rather than letting it grow unbounded\n- **U — Upload/handoff**: write context out to files, clear the conversation, then re-inject only what's needed from those files\n- **B — Burn/clear**: a full reset of the conversation when the above aren't sufficient",
+      "tags": [
+        "context-engineering",
+        "subagents",
+        "compaction",
+        "context-management",
+        "claude-code",
+        "attention"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/scrub-context-engineering.md"
+    },
+    {
       "name": "second-brain-skills",
       "title": "Second Brain Skills",
       "url": "https://github.com/coleam00/second-brain-skills",
@@ -6296,6 +6929,27 @@
       "path": "catalog/entries/sira.md"
     },
     {
+      "name": "skill-orchestrator-shell",
+      "title": "Skill Orchestrator Shell (Instruction-Shell Pattern)",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Composition pattern: group thematically related agent skills and add a thin orchestrator skill that only routes and sequences between them and enforces explicit sign-off checkpoints, keeping the actual task instructions inside the individual skills rather than the orchestrator.",
+      "body_summary": "A discussion post describes a technique for reducing ambiguity when many independent skills are installed at once: instead of leaving the model to decide unsupervised which skill to use and when, group related skills by theme and add an orchestrator skill on top with explicit instructions on how…",
+      "tags": [
+        "agent-pattern",
+        "skill-composition",
+        "orchestration",
+        "sign-off-guardrail",
+        "sequencing",
+        "thin-orchestrator"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-copyright-author",
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/skill-orchestrator-shell.md"
+    },
+    {
       "name": "skill-router",
       "title": "Skill Router",
       "url": "https://github.com/pcx-wave/skill-router",
@@ -6405,6 +7059,32 @@
       "security_flags": [],
       "reviewed": "2026-07-03",
       "path": "catalog/entries/skills-cli.md"
+    },
+    {
+      "name": "skylos",
+      "title": "Skylos",
+      "url": "https://github.com/duriantaco/skylos",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Local-first static analysis CLI (Python, TS/JS, Java, Go, Kotlin, PHP, Rust, Dart, C#, Shell) that scans for dead code, security flaws, secrets, CI/CD misconfig, quality regressions, and AI-generated code defects; ships as CLI, GitHub Action, VS Code extension, and MCP server",
+      "body_summary": "Skylos is an open-source static analysis CLI covering Python, TypeScript/JavaScript, Java, Go, Kotlin, PHP, Rust, Dart, C#, Shell, and deployment config (GitHub Actions, GitLab CI, Dockerfile, Compose, systemd, Kubernetes manifests). The default scan (`skylos .`) finds dead code; `-a` adds security-flaw detection (SQLi, XSS, SSRF, path traversal, command injection, unsafe deserialization), secrets/credential scanning, dependency CVE checks, and quality-regression checks (complexity, duplicate branches, deep nesting). An `--ai-defects` mode targets AI-generated-code failure patterns: phantom security calls, missing guards/decorators, invented package APIs, impossible dependency versions, unfinished stubs.\n\nIt also ships an agent-verification layer: `skylos verify` checks a changed file/range for hallucinated code before a coding agent hands it to review (versioned JSON output, pass/fail/incomplete exit codes); `skylos discover` inventories LLM integrations in a codebase (provider SDKs, agent frameworks, MCP servers/tools); `skylos defend` scores guardrails against OWASP LLM Top 10 / Agentic ASI Top 10 and emits SARIF/markdown evidence reports with a reproducible SHA-256 attestation digest; `skylos agent test` checks a running agent's behavior against a versioned contract (tool calls, refusals, source IDs).",
+      "tags": [
+        "static-analysis",
+        "dead-code",
+        "sast",
+        "secrets-scanning",
+        "ci-cd",
+        "pr-gate",
+        "mcp-server",
+        "ai-code-verification",
+        "python",
+        "cli"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/skylos.md"
     },
     {
       "name": "slack-mcp-server-korotovsky",
@@ -6703,6 +7383,37 @@
       "path": "catalog/entries/superpowers-verification-before-completion.md"
     },
     {
+      "name": "synapse-memory-layer",
+      "title": "Synapse (memory-layer)",
+      "url": "https://github.com/rickymm3/memory-layer/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Early-stage, self-hosted persistent memory backend for LLMs (Claude Desktop, Claude Code/VS Code via MCP) that stores structured 'memory atoms' plus immutable evidence 'signals' in Postgres+pgvector behind a write-quality/critic/risk-gate commit pipeline; roadmap includes routing low-confidence questions to specific human experts and folding their answers back into memory.",
+      "body_summary": "Synapse (repo name `memory-layer`) is a persistent, LLM-agnostic memory layer that plugs into Claude Desktop (MCP stdio), Claude Code/VS Code (MCP), and a hosted Flask site. Every conversation across these surfaces writes structured \"memory atoms\" — canonical beliefs with `content`, `memory_type` (fact/decision/instruction/observation/preference/correction), `scope` (project/model/user), `confidence`, `importance`, `visibility`, `lifecycle_status`, and a 4096-dim embedding (local `qwen3-embedding` via Ollama) — into a shared Postgres+pgvector store. Every write also creates an immutable \"memory signal\" (the evidence event that produced or modified the atom); signals aggregate into support/opposition weights that drive automatic confidence recomputation and a disagreement score. No atom is silently overwritten — history is preserved, and contested beliefs queue for signal-based resolution.\n\nAll writes, from any surface, pass through the same pipeline: write-quality scoring → reconciliation against existing atoms → an LLM critic review → a risk gate → the Postgres write (dual-write of a `memory_atom` and a `memory_signal`). A chat pipeline retrieves top-K atoms by cosine similarity and routes each turn as direct (no memory), context (inject and answer), or recursive (contested atom → draft → evaluate → web search → revise), followed by background post-turn reflection that extracts new memory candidates.",
+      "tags": [
+        "memory",
+        "mcp-server",
+        "postgres",
+        "pgvector",
+        "rag-alternative",
+        "knowledge-graph",
+        "self-hosted",
+        "prototype",
+        "human-in-the-loop"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-unknown",
+      "security_flags": [
+        "no-license-stated",
+        "early-prototype",
+        "single-author",
+        "requires-anthropic-api-key",
+        "no-tests-evident"
+      ],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/synapse-memory-layer.md"
+    },
+    {
       "name": "syncthing",
       "title": "Syncthing",
       "url": "https://github.com/syncthing/syncthing",
@@ -6777,6 +7488,33 @@
       "path": "catalog/entries/tailscale-mobile-approval.md"
     },
     {
+      "name": "taste-skill",
+      "title": "Taste Skill",
+      "url": "https://github.com/leonxlnx/taste-skill",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Collection of portable SKILL.md files (design-taste-frontend and variants) that give AI coding agents layout/typography/motion/spacing guidance intended to reduce generic-looking generated UI, plus separate image-generation skills for design reference boards",
+      "body_summary": "Taste Skill is a repository of `SKILL.md` instruction files positioned as an \"anti-slop frontend framework\" — portable guidance meant to shift AI-generated interfaces away from generic/templated-looking layout, typography, motion, and spacing. The primary skill, `design-taste-frontend` (v2, described as an \"experimental\" rewrite of v1), infers a design language from the user's brief, maps it against a design-system reference, and applies three numeric 1-10 dials: `DESIGN_VARIANCE` (layout experimentation), `MOTION_INTENSITY` (animation depth), and `VISUAL_DENSITY` (information per viewport). The prior version is preserved separately as `design-taste-frontend-v1` for projects depending on its exact behavior.\n\nAdditional variants in the same repo: `gpt-taste` (stricter rules tuned for GPT/Codex), `image-to-code` (generate reference images, then implement from them), `redesign-existing-projects` (audit-then-fix for existing UIs), `high-end-visual-design`/`minimalist-ui`/`industrial-brutalist-ui` (fixed visual-direction variants), `full-output-enforcement` (targets agents that truncate or leave placeholder code), and `stitch-design-taste` (compatible with Google Stitch's `DESIGN.md` export format). Three further skills (`imagegen-frontend-web`, `imagegen-frontend-mobile`, `brandkit`) produce reference images only (no code), intended for use with image-generation tools before handing results to a coding agent.",
+      "tags": [
+        "frontend",
+        "design",
+        "anti-slop",
+        "ui-generation",
+        "claude-code-skill",
+        "codex",
+        "motion-design",
+        "typography",
+        "skill-bundle"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "sponsored-content"
+      ],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/taste-skill.md"
+    },
+    {
       "name": "teampcp-miasma-npm-supply-chain-attack-2026",
       "title": "TeamPCP/Miasma npm Supply Chain Attack (June 2026)",
       "category": "reference",
@@ -6797,6 +7535,31 @@
       "security_flags": [],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/teampcp-miasma-npm-supply-chain-attack-2026.md"
+    },
+    {
+      "name": "tencentdb-agent-memory",
+      "title": "TencentDB Agent Memory",
+      "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Tencent-built team-level memory hub for AI agents providing four asset types — layered Chat Memory (L0-L3), versioned Skills, linked Wiki pages, and a CodeGraph — managed through a human-reviewable Memory Hub panel with ACL-based sharing",
+      "body_summary": "TencentDB Agent Memory is a self-hosted \"team memory hub\" for AI coding/ops agents, built by Tencent Cloud. It defines four reusable memory asset types:\n\n- **Chat Memory** — layered distillation of conversations: L0 (raw conversation), L1 (extracted atoms: facts/preferences/constraints), L2 (scenario-organized knowledge blocks), L3 (long-term persona/profile). Retrieval combines BM25 + vector search + RRF, capped by item count/character budget/timeout.\n- **Skills** — versioned, executable experience extracted from conversations and tool calls, with resource files, trigger boundaries, execution steps, and validation rules; private by default, shareable to a team after review.\n- **Wiki** — product docs, design specs, and runbooks converted into structured, link-graphed pages (the README credits Andrej Karpathy's \"LLM Wiki\" concept as the direct inspiration for this layer).\n- **CodeGraph** — indexes code symbols, files, call relationships, and impact paths so agents can inspect callers/callees and blast radius before modifying code (built on code from the separate open-source CodeGraph project).\n\nA \"Memory Hub\" web panel (localhost:8125 by default) lets a human create teams and per-role agents, bind specific memory assets to specific agents (\"loadouts\"), and manage ownership/version/status/visibility per asset. Visibility levels are `private` (owner only), `team`, `restricted` (User/Role/Agent ACL), and `agent` (bound to one agent). New Chat Memory and Skills are private by default — sharing is an explicit action. A \"cold-start\" import path lets a new team ingest existing codebases (auto-indexed into CodeGraph), documents (auto-converted to Wiki), and past agent conversation sessions (auto-extracted into Skills/Chat Memory).",
+      "tags": [
+        "agent-memory",
+        "memory-hub",
+        "knowledge-graph",
+        "wiki",
+        "skills",
+        "codegraph",
+        "acl",
+        "tencent",
+        "docker"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-08-09",
+      "path": "catalog/entries/tencentdb-agent-memory.md"
     },
     {
       "name": "textual",

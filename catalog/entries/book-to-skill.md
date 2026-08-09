@@ -31,6 +31,8 @@ Source is a Reddit r/claudeskills post. No public repo URL confirmed at review t
 - A separate, optional standalone extractor exists via `pip install book-to-skill`; it installs only the text-extraction engine (CLI), **not** the agent skill.
 - README reports 24×–51× fewer tokens than context-dumping a book to answer one question, measured via `tools/discovery_tax.py` on three real books. Processing is local; the tool ships no book content.
 
+- **Update (2026-08-09):** Author's 3-months-later Reddit follow-up reports the project reached #1 on Trendshift for Python, #3 on GitHub Trending, and 15,000+ GitHub stars, and expanded from PDF-only to EPUB/folders/multi-source/non-technical-book support directly in response to r/claudeskills community feedback. Independent web search corroborates strong popularity (third-party write-ups citing 12,000+ stars at an earlier snapshot) but did not independently re-verify the author's 15,000+ figure.
+
 ## Security
 
 License is unknown — the skill originates from a Reddit community post with no associated repository or explicit license grant. Treat it as use-at-will with no redistribution guarantees; re-verify if a canonical repo surfaces. No `security_flags` apply: this skill is pure prompt text with no code execution, no external network calls, no file-system writes, and no dependency installation. The only data-handling consideration is that the source PDF is read into Claude's context window — ensure PDFs containing sensitive or proprietary content are not processed through shared or logged endpoints.
