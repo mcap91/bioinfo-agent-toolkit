@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09T19:05:45.532Z",
+  "generated_at": "2026-08-11T02:17:44.841Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -327,6 +327,16 @@
       "url": "https://github.com/tailscale/aperture-cli",
       "summary": "Tailscale's CLI launcher for coding agents (Claude Code, Gemini CLI, Codex, Copilot CLI, OpenCode) preconfigured for Aperture — manages installation, config, env vars, and model/provider routing; Go, alpha",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "apito-ai",
+      "kind": "entry",
+      "title": "apito.ai (ClaudeAPI) — third-party Claude API gateway",
+      "url": "https://apito.ai/en/blog/tools/mcp-stateless-architecture-apito/",
+      "summary": "Vendor explainer of the MCP 2026-07-28 stateless spec, used as content marketing for apito.ai — a third-party 'model-access layer' that resells/proxies Claude and Claude-compatible API traffic (migrate by swapping the request domain from claudeapi.com to an apito.ai endpoint). Proposes a 3-layer agent architecture (model access / tool connection = MCP / business workflow). Security caution: routing keys, prompts, and completions through a non-Anthropic proxy is a trust-boundary/data-exposure risk; spec claims are secondary vendor-sourced.",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -5249,6 +5259,11 @@
       "exists": true
     },
     {
+      "id": "tag:enterprise-architecture",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:entity-extraction",
       "kind": "tag",
       "exists": true
@@ -7814,6 +7829,11 @@
       "exists": true
     },
     {
+      "id": "tag:reseller",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:resource-management",
       "kind": "tag",
       "exists": true
@@ -8050,6 +8070,11 @@
     },
     {
       "id": "tag:security-awareness",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:security-caution",
       "kind": "tag",
       "exists": true
     },
@@ -8935,6 +8960,11 @@
     },
     {
       "id": "tag:vector-store",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:vendor-blog",
       "kind": "tag",
       "exists": true
     },
@@ -10880,6 +10910,66 @@
     {
       "source": "aperture-cli",
       "target": "tag:tailscale",
+      "relation": "tagged"
+    },
+    {
+      "source": "apito-ai",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "apito-ai",
+      "target": "mcp-2026-07-28-spec",
+      "relation": "overlaps"
+    },
+    {
+      "source": "apito-ai",
+      "target": "tag:api-gateway",
+      "relation": "tagged"
+    },
+    {
+      "source": "apito-ai",
+      "target": "tag:claude-api",
+      "relation": "tagged"
+    },
+    {
+      "source": "apito-ai",
+      "target": "tag:enterprise-architecture",
+      "relation": "tagged"
+    },
+    {
+      "source": "apito-ai",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "apito-ai",
+      "target": "tag:model-access",
+      "relation": "tagged"
+    },
+    {
+      "source": "apito-ai",
+      "target": "tag:proxy",
+      "relation": "tagged"
+    },
+    {
+      "source": "apito-ai",
+      "target": "tag:reseller",
+      "relation": "tagged"
+    },
+    {
+      "source": "apito-ai",
+      "target": "tag:security-caution",
+      "relation": "tagged"
+    },
+    {
+      "source": "apito-ai",
+      "target": "tag:stateless",
+      "relation": "tagged"
+    },
+    {
+      "source": "apito-ai",
+      "target": "tag:vendor-blog",
       "relation": "tagged"
     },
     {
