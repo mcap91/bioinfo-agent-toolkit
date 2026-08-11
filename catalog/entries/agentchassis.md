@@ -23,7 +23,7 @@ overlaps: []
 
 AgentChassis installs into your repository and enforces a separation-of-concerns rule: the agent that plans the work cannot implement it, and the agent that implements it cannot review it. Three non-overlapping roles — orchestrator (plans, never writes product code), worker (implements one scoped task, confined to declared files), and reviewer (checks the change against the task contract, read-only) — coordinate through durable **work-record contracts** committed to Git.
 
-Every task is a work record stating scope, acceptance criteria, and validation commands before any code runs. A task missing these fields is rejected by a deterministic shape check — no model call needed. The work-record graph drives parallel dispatch: tasks declare which files they may touch, so non-overlapping workers run concurrently without collision.
+Every task is a work record stating scope, acceptance criteria, and validation commands before any code runs. A task missing these fields is rejected by a deterministic shape check — no model call needed. Non-overlapping write scopes drive parallel dispatch: tasks declare which files they may touch, so workers run concurrently without collision. Dependencies are declarative admission gates, not a traversed graph; the orchestrator is an LLM session, not a scheduler.
 
 The system publishes to npm as `@agent-chassis/core` (pulls the full `@agent-chassis/*` set). Requires Node.js 22+. Install with `npm install --save-dev @agent-chassis/core`, run `npx agent-chassis setup`, build the code index, and launch an orchestrator with `npx agent-launch orchestrator IN-0001 --model opus`.
 
@@ -64,8 +64,6 @@ The system publishes to npm as `@agent-chassis/core` (pulls the full `@agent-cha
 **Known limits:** Worker network egress (`shareNet: true`) — required for hosted model APIs, no worse than baseline. No managed-worker command classifier — `Bash`/`exec_command` are available, bwrap is the boundary. Orchestrator sessions are operator-trusted and outside the enforcement envelope.
 
 **License caution:** Elastic License 2.0 is source-available, not open-source. If implementing similar patterns, mirror designs; do not copy code. The hosted CCE tier is a paid control plane (private beta) — local/free use never requires it.
-
-**decision_status: open** — Candidate the operator may implement a similar system for. kb compared itself to this upstream in kb WK-0045 (adopt backlog) and decided in kb DEC-0002 not to rebuild its own dispatch into this model for the solo-operator case. The operator is separately interested in a standalone multi-agent orchestration system.
 
 **security_flags:** Linux-only bwrap sandbox (no macOS Seatbelt yet — on roadmap); hosted CCE is a paid control plane (private beta, requires form signup); worker network egress is shared (shareNet: true); ELv2 license prohibits providing it as a managed service.
 
