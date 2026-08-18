@@ -1,70 +1,76 @@
 ---
 name: agentchassis
-title: "AgentChassis — multi-agent code-orchestration system with durable work-record contracts"
-url: https://github.com/node-bio/portfolio-wiki-tools
+title: "AgentChassis — contract-first orchestration for long-running coding agents"
+url: https://github.com/agent-chassis/agent-chassis
 category: framework
-summary: "Splits agentic coding into orchestrator/worker/reviewer roles governed by durable work-record contracts. The agent that defines the work cannot implement it — every task carries scope, acceptance criteria, and validation before any code is written. Workers are kernel-confined to declared file scope via Linux bubblewrap. Git-committed dispatch state enables crash-resumable coordination, exact-slice review at frozen SHAs, deterministic squash candidates independent of main, and automatic forge handoff (PR creation). Supports Claude and Codex families; Agy fails closed. Source-available under Elastic License 2.0; optional hosted Chassis Control Engine (CCE) adds org-level admission and signed attestation."
+summary: "Contract-first orchestration that splits agentic coding into non-overlapping orchestrator/worker/reviewer roles under one rule: the agent that defines the work cannot implement it. Every task is a durable work record stating scope, acceptance criteria, and validation before any code is written; a task missing those is rejected before any model runs (deterministic check, no model call). Workers are confined to their declared file scope (Linux bwrap sandbox where available); reviewers check each change against its contract; every run records honest enforcement provenance (enforced true/false plus isolation backend). Parallel agents run on non-overlapping scopes without collision, interrupted tasks resume from their record, and the repo accumulates an engineering record of what was planned, why, and whether it passed. Drives multiple agent CLIs (Codex, Claude, and more) through a typed MCP interface. Source-available under Elastic License 2.0 as public @agent-chassis/* npm packages; an optional hosted Chassis Control Engine (CCE, private beta) adds org-level admission and signed attestation."
 tags:
   - multi-agent
   - orchestration
   - code-agent
   - work-records
   - sandbox
-  - a2a
   - mcp
   - git-native
+  - provenance
+  - runtime-governance
   - elv2
-reviewed: 2026-07-29
+reviewed: 2026-08-14
 acquired: 2026-07-29
 supersedes: []
 overlaps: []
 ---
 ## What it does
 
-AgentChassis installs into your repository and enforces a separation-of-concerns rule: the agent that plans the work cannot implement it, and the agent that implements it cannot review it. Three non-overlapping roles — orchestrator (plans, never writes product code), worker (implements one scoped task, confined to declared files), and reviewer (checks the change against the task contract, read-only) — coordinate through durable **work-record contracts** committed to Git.
+AgentChassis installs into your repository and enforces a separation-of-concerns rule: the agent that defines the work cannot implement it. Three non-overlapping roles coordinate through durable work-record contracts — an **orchestrator** plans and breaks the work into small scoped tasks but never writes product code; **workers** each implement one task, confined to the files that task is allowed to change; **reviewers** check each change against what its task said it should do.
 
-Every task is a work record stating scope, acceptance criteria, and validation commands before any code runs. A task missing these fields is rejected by a deterministic shape check — no model call needed. Non-overlapping write scopes drive parallel dispatch: tasks declare which files they may touch, so workers run concurrently without collision. Dependencies are declarative admission gates, not a traversed graph; the orchestrator is an LLM session, not a scheduler.
+Every task is a written work record stating its scope, acceptance criteria, and validation before any code runs. A task missing those fields is rejected before any model runs — a fast, deterministic check, not a judgment call. Because all implementation passes through this loop, the repository accumulates an engineering record — what was planned, why, who did it, and whether it passed — as an ordinary byproduct of getting work done.
 
-The system publishes to npm as `@agent-chassis/core` (pulls the full `@agent-chassis/*` set). Requires Node.js 22+. Install with `npm install --save-dev @agent-chassis/core`, run `npx agent-chassis setup`, build the code index, and launch an orchestrator with `npx agent-launch orchestrator IN-0001 --model opus`.
+Install one public npm package, run setup, build the code index, and point an orchestrator at your repo. Requires Node.js 22+.
+
+## Why it exists
+
+Long-running coding agents drift from declared scope on multi-file work, degrade as context grows, and still resolve fewer than half of long-horizon software-engineering tasks. Better prompts do not close that gap: agent execution is non-deterministic and path-dependent, so runtime behavior cannot be fully governed at design time by prompts or static access controls. AgentChassis applies runtime-governance principles to coding work — a canonical contract per task, execution contained to the declared scope, and a result reviewed against the contract — on the premise that unsupervised execution needs a boundary regardless of model capability.
 
 ## Differentiators
 
-**Kernel-level file confinement.** Workers run inside Linux bubblewrap (`bwrap`) sandboxes. The repo is mounted read-only except the task's declared `write_scope`. Claude gets native tool-use permission gates (Edit only within scope); Codex gets exact-file kernel binds. `wiki/decisions/` is reimposed read-only as the final mount overlay — no worker can self-authorize a decision regardless of scope.
+**Contract-gated work.** Every task carries scope + acceptance + validation before code runs; malformed tasks are refused early by a deterministic shape check with no model call.
 
-**Exact-slice review lifecycle.** Commit → freeze at exact SHA → reviewer bound to that SHA → auto-integrate into WK branch → terminal whole-WK findings review. The terminal candidate is a deterministic squash (`tree(C) === tree(W)`, sole parent is the fork-point `B`), independent of current `main`. Review never blocks on landing-branch movement.
+**Scope-confined parallelism.** Because each task declares which files it may touch, multiple agents work concurrently on non-overlapping parts of the codebase without collision. Coordination is by declared scope, not a hand-authored routing graph.
 
-**Crash-resumable dispatch.** All coordination state is Git-committed work records + launcher-private durable identity records. A stalled task carries its full definition; another agent or the operator picks it up without reconstructing context. Managed worker identity uses `(pid, starttime, boot_id)` tuples — no bare-pid liveness checks.
+**Grounded review.** A reviewer checks a change against the task's written acceptance criteria instead of inferring intent; review records are tied to the exact change they reviewed.
 
-**Honest enforcement provenance.** Every run records `enforced=true/false` and `isolation_backend=bwrap|none` from the launcher (observer), never from the dispatched agent (subject). The system never claims containment it does not have. Unenforced runs are loud, not silent.
+**Crash-resumable work.** A stalled or failed task carries its full definition in its record, so another agent — or the operator — picks it up later without rebuilding lost context from a chat log.
 
-**Multi-family support.** Claude and Codex are supported implementation families with family-specific sandbox adapters. Agy is explicitly unsupported and fails closed before any model call.
+**Honest enforcement provenance.** Every run records whether it was `enforced` and which `isolation_backend` was used. Free/local mode never claims containment it does not have, and a CCE-key run never silently degrades to unenforced.
 
-**Forge handoff.** `workspace_wk_forge_handoff` publishes the exact terminal candidate and opens/recovers a PR via host-side `gh`. Credentials stay on the host; merge readiness stays with git/forge and human actors.
+**Vendor-neutral, MCP-first.** The same setup drives multiple agent tools (Codex, Claude, and more) through typed tools — an MCP server with built-in discovery. The command line is an operator fallback, not the primary path.
+
+**Code graph for impact analysis.** The local tier builds a graph of your code used for impact analysis and review tooling — distinct from the work-record coordination model, which is not a traversed execution graph.
 
 ## Mechanical details
 
-**Packages:** `@agent-chassis/wiki-core` (contract implementation), `@agent-chassis/wiki-mcp` (MCP server for agent tools), `@agent-chassis/wiki-cli` (human/CI CLI), `@agent-chassis/agent-launch-core` (launcher), `@agent-chassis/agent-launch-cli` (operator entrypoints), `@agent-chassis/core` (meta-package). Current version: 0.5.4.
+**Packages:** `@agent-chassis/core` is the public install package — it provides the wiki binary (bootstrap, validation, lint, generated views, code index), the `wiki-mcp` stdio MCP server agents call, and the `agent-launch` operator entrypoint. It transitively installs the public, independently versioned `@agent-chassis/controlled-contract`. Published to the public npm registry under the `@agent-chassis` scope; plain `npm install`, no `.npmrc` or auth.
 
-**Agent interface:** MCP over stdio — spawned per-session, no hosted endpoint. Workers get closed-input commit delivery and scoped shell (`Bash`/`exec_command`); reviewers get full-repo read-only visibility. The launcher verifies exact role-derived tool lists after MCP `initialize` + `tools/list`.
+**Setup:** `npm install --save-dev @agent-chassis/core`, then `npx agent-chassis setup` — runs bootstrap, detects or asks the local agent family, copies the launcher template when `agent-launch.toml` is absent, and runs `agent-launch init-config`. Bootstrap seeds the wiki contract surfaces, an owned `IN-0001` adoption initiative and `WK-0001` adoption tracker, cache directories, `.gitignore` entries, `wiki/.wiki-mcp.json`, and the initial lexical search index; it is idempotent. The code index is required for normal operation (readiness, dispatch review, graph-impact, review tooling).
 
-**Operator commands:**
-- `npx agent-launch orchestrator IN-0001 --model opus` — interactive, stays attached
-- `npx agent-launch worker --app claude WK-1234#SLICE-001` — dispatch a confined worker
-- `npx agent-launch review --app codex WK-1234` — findings-only reviewer
-- `npx agent-launch redteam --app codex IN-0001` — initiative-scoped red team
+**Operator commands** (human/operator entrypoints — agents do not launch orchestrators; orchestrator sessions are interactive and stay attached, often running on their own for hours):
+- `npx agent-launch orchestrator IN-0001 --model opus` (or `--model gpt-5.5`) — start an initiative orchestrator
+- `npx agent-launch resume IN-0001 --model opus` — resume an existing orchestrator session
+- `npx agent-launch orchestrator list --json` — list orchestrator runtime records
 
-**Wiki surfaces:** `wiki/work-records/` (canonical JSON), `wiki/issues/` (Markdown projections), `wiki/initiatives/`, `wiki/decisions/`, `wiki/sources/`, `wiki/areas/`. Generated views: `catalog.md`, `now.md`, `inbox.md`, `backlog.md`, `archive.md`.
+**Wiki surfaces:** local `wiki/` work records, initiatives, decisions, sources, and areas, plus generated views. The consuming repo keeps its product source, repo-specific docs, local wiki records, schema extensions, and MCP client configuration.
+
+**Agent interface:** MCP over stdio — the `wiki-mcp` server, spawned per session, with built-in tool discovery.
 
 ## Security
 
-**Threat model:** "Better than full privileges, not perfect." The system is correctness/provenance/honest-agent workflow machinery — not same-user security infrastructure. A malicious same-user actor or compromised host process can defeat every local mechanism; the baseline comparison is "agent with full host privileges and no tooling at all."
+**Enforcement posture (two axes).** "Enforced" means AgentChassis actively contained a run to its declared file scope rather than merely asking the agent to stay inside it.
+- *Can it enforce?* Backend availability. When a supported isolation backend (Linux **bwrap** today) is active, worker, reviewer, and redteam runs are contained to their declared write scope and recorded `enforced=true`.
+- *Must it enforce?* A configured **Chassis Control Engine (CCE)** key selects the governed posture — it does not add sandboxing capability. With no CCE key and no backend, dispatch may run unenforced, recorded loudly as `enforced=false, isolation_backend=none`. With a CCE key and no backend, dispatch refuses unless the operator sets an explicit unsandboxed opt-out. Local/free use never requires a CCE key.
 
-**What the sandbox buys:** writes confined to canonical `write_scope`; launcher secrets masked (`.env` → `/dev/null`, `.agent-launch/` → empty tmpfs); repo read-only except write scope; `wiki/decisions/` kernel-enforced read-only overlay.
+**Threat model:** structured admissibility and honest provenance — not a guarantee that a hostile or compromised same-user agent is harmless. See `docs/enforcement-model.md` for threat-model limits.
 
-**Known limits:** Worker network egress (`shareNet: true`) — required for hosted model APIs, no worse than baseline. No managed-worker command classifier — `Bash`/`exec_command` are available, bwrap is the boundary. Orchestrator sessions are operator-trusted and outside the enforcement envelope.
+**security_flags:** Local sandbox enforcement is Linux-only (via `bwrap`); macOS filesystem-layer parity is on the roadmap, so non-Linux hosts run unenforced unless a backend is available. Hosted CCE is a paid control plane (private beta, requires form signup). ELv2 is source-available, not OSI open-source.
 
-**License caution:** Elastic License 2.0 is source-available, not open-source. If implementing similar patterns, mirror designs; do not copy code. The hosted CCE tier is a paid control plane (private beta) — local/free use never requires it.
-
-**security_flags:** Linux-only bwrap sandbox (no macOS Seatbelt yet — on roadmap); hosted CCE is a paid control plane (private beta, requires form signup); worker network egress is shared (shareNet: true); ELv2 license prohibits providing it as a managed service.
-
-**license_note:** Elastic License 2.0 — source-available, not OSI-approved open-source. Permits use, modification, and redistribution but prohibits providing the software as a managed service or circumventing license key functionality. If adopting patterns, design independently; do not copy implementation code.
+**license_note:** Elastic License 2.0 — source-available, not OSI-approved open-source. Permits use, modification, and redistribution but prohibits providing the software as a managed service or circumventing license-key functionality. If adopting patterns, design independently; do not copy implementation code.
