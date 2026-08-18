@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11T05:16:21.555Z",
+  "generated_at": "2026-08-18T03:45:22.784Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -101,6 +101,16 @@
       "exists": true
     },
     {
+      "id": "agent-link",
+      "kind": "entry",
+      "title": "agent-link",
+      "url": "https://github.com/Riccardo8888/agent-link",
+      "summary": "End-to-end encrypted channel between coding agents on different machines: the agents split work, hand off tasks, and report progress to each other. Transport is a shared private git repo (an orphan 'agent-link' branch) — no server, account, or open ports — with an optional relay for sub-second delivery. Installs an MCP server (link_* tools) plus a notification hook for Claude Code and/or Codex, and a human CLI. Frames are AES-256-GCM sealed and device-signed. Python 3.10+, one dependency, Windows/Linux/macOS.",
+      "category": "mcp-server",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "agent-plugins-vscode",
       "kind": "entry",
       "title": "Agent Plugins in VS Code (Agent Plugins 1.0)",
@@ -168,9 +178,9 @@
     {
       "id": "agentchassis",
       "kind": "entry",
-      "title": "AgentChassis — multi-agent code-orchestration system with durable work-record contracts",
-      "url": "https://github.com/node-bio/portfolio-wiki-tools",
-      "summary": "Splits agentic coding into orchestrator/worker/reviewer roles governed by durable work-record contracts. The agent that defines the work cannot implement it — every task carries scope, acceptance criteria, and validation before any code is written. Workers are kernel-confined to declared file scope via Linux bubblewrap. Git-committed dispatch state enables crash-resumable coordination, exact-slice review at frozen SHAs, deterministic squash candidates independent of main, and automatic forge handoff (PR creation). Supports Claude and Codex families; Agy fails closed. Source-available under Elastic License 2.0; optional hosted Chassis Control Engine (CCE) adds org-level admission and signed attestation.",
+      "title": "AgentChassis — contract-first orchestration for long-running coding agents",
+      "url": "https://github.com/agent-chassis/agent-chassis",
+      "summary": "Contract-first orchestration that splits agentic coding into non-overlapping orchestrator/worker/reviewer roles under one rule: the agent that defines the work cannot implement it. Every task is a durable work record stating scope, acceptance criteria, and validation before any code is written; a task missing those is rejected before any model runs (deterministic check, no model call). Workers are confined to their declared file scope (Linux bwrap sandbox where available); reviewers check each change against its contract; every run records honest enforcement provenance (enforced true/false plus isolation backend). Parallel agents run on non-overlapping scopes without collision, interrupted tasks resume from their record, and the repo accumulates an engineering record of what was planned, why, and whether it passed. Drives multiple agent CLIs (Codex, Claude, and more) through a typed MCP interface. Source-available under Elastic License 2.0 as public @agent-chassis/* npm packages; an optional hosted Chassis Control Engine (CCE, private beta) adds org-level admission and signed attestation.",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -202,6 +212,16 @@
       "url": "https://mixpeek.com/agentic-rag",
       "summary": "Research pattern where LLM agents with terminal tool access (grep, find, head, cat) outperform embedding-based retrieval across 13+ benchmarks — Direct Corpus Interaction (DCI) removes embedding model, vector index, and top-k retrieval entirely; adopted by Anthropic (Claude Code), Windsurf, Cline, Devin, Sourcegraph Amp",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "agentic-resource-discovery",
+      "kind": "entry",
+      "title": "Agentic Resource Discovery (ARD)",
+      "url": "https://huggingface.co/blog/agentic-resource-discovery-launch",
+      "summary": "Draft open specification (contributors from Microsoft, Google, GoDaddy, Hugging Face, and others) for a discovery layer in front of MCP/Skills/A2A: agents search federated registries in natural language to find tools, skills, and other agents at runtime instead of pre-installing them. Defines a static ai-catalog.json manifest at a well-known URL and a dynamic POST /search registry API. Hugging Face's 'Discover' tool (hf discover CLI + REST + MCP endpoint) is a reference implementation over Hub Spaces, Agent Skills, and MCP servers.",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -377,6 +397,16 @@
       "url": "https://github.com/kayba-ai/autoharness",
       "summary": "needs eval benchmarks first; pilot when we have eval criteria for our skills/agents",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "automate-the-boring-stuff",
+      "kind": "entry",
+      "title": "Automate the Boring Stuff with Python",
+      "url": "https://automatetheboringstuff.com/",
+      "summary": "Al Sweigart's beginner Python book (fully revised 3rd edition), free to read online under a Creative Commons license: teaches Python fundamentals then practical automation — file/folder operations, regex, web scraping, Excel/Google Sheets, PDF/Word, SQLite, CSV/JSON/XML, scheduling, email/text notifications, image manipulation, OCR, keyboard/mouse control, and TTS/speech recognition. A companion workbook and a video course accompany it.",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -942,6 +972,16 @@
       "exists": true
     },
     {
+      "id": "claude-video",
+      "kind": "entry",
+      "title": "Claude Video (/watch)",
+      "url": "https://github.com/bradautomates/claude-video",
+      "summary": "Agent Skill that lets Claude (and 50+ other skill hosts) 'watch' a video from a URL or local path: yt-dlp fetches captions/video, ffmpeg extracts scene-aware or keyframe images (with a dedup pass and duration-aware frame budget), a timestamped transcript comes from native captions or a Whisper fallback (Groq/OpenAI), and the frames + transcript are handed to the model to answer grounded in what's on screen and in audio.",
+      "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "claw-code",
       "kind": "entry",
       "title": "Claw Code",
@@ -1154,6 +1194,16 @@
       "title": "CrewAI",
       "url": "https://github.com/crewAIInc/crewAI",
       "summary": "Lean Python multi-agent orchestration framework — role-based Crews for autonomous collaboration + event-driven Flows for precise control; MIT, 100K+ certified devs, Claude Code skills plugin, independent of LangChain",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "crossplane",
+      "kind": "entry",
+      "title": "Crossplane",
+      "url": "https://github.com/crossplane/crossplane",
+      "summary": "CNCF framework for building cloud-native control planes without writing code: an extensible Kubernetes-based backend that orchestrates applications and infrastructure wherever they run, plus a configurable frontend that lets you define the schema of the declarative API it offers. v2.x is current (v2.3, May 2026); v1.20 is the final v1 minor release on extended critical-fix-only support.",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -1476,8 +1526,8 @@
       "id": "firecrawl",
       "kind": "entry",
       "title": "Firecrawl",
-      "url": "https://github.com/mendableai/firecrawl",
-      "summary": "Production-grade web scraping/search/interaction API for AI agents — clean markdown output, JS rendering, anti-bot handling, MCP server mode; AGPL-3.0, YC-backed, 40K+ stars, but copyleft license limits embedding",
+      "url": "https://github.com/firecrawl/firecrawl",
+      "summary": "Production-grade web scraping/search/interaction API for AI agents — clean markdown output, JS rendering, anti-bot handling, Agent endpoint with Spark models, Map/Interact/Batch Scrape, MCP server mode; 9 SDKs, AGPL-3.0, YC-backed",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -1489,6 +1539,16 @@
       "url": "https://github.com/reshadat/first-principles-destructor",
       "summary": "6-stage assumption-destruction skill — inventories hidden assumptions, strips to physics/math/logic floor, calculates 'convention tax', removes non-load-bearing conventions, rebuilds from reality; multi-platform (Claude Code, Codex, Gemini, Cursor, Kiro); MIT",
       "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "five-levels-of-chunking",
+      "kind": "entry",
+      "title": "Five Levels of Chunking Strategies in RAG (Greg Kamradt's taxonomy)",
+      "url": "https://medium.com/@anuragmishra_27746/five-levels-of-chunking-strategies-in-rag-notes-from-gregs-video-7b735895694d",
+      "summary": "Taxonomy of RAG text-splitting strategies, from Greg Kamradt's '5 Levels of Text Splitting' (these are notes on that video): Level 1 fixed-size (character/sentence splitters), Level 2 recursive (hierarchical separators), Level 3 document/structure-based (respect headings, tables, code), Level 4 semantic (split at embedding-similarity breakpoints), Level 5 agentic (an LLM decides chunk boundaries from propositions). Higher levels trade cost/complexity for chunks that better match meaning; match the strategy to the data.",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -2030,6 +2090,16 @@
       "exists": true
     },
     {
+      "id": "lora-peft-guide",
+      "kind": "entry",
+      "title": "LoRA (Hugging Face PEFT conceptual guide)",
+      "url": "https://huggingface.co/docs/peft/main/en/conceptual_guides/lora",
+      "summary": "Hugging Face PEFT conceptual guide to LoRA (Low-Rank Adaptation): fine-tune large models by training two small low-rank update matrices while the original weights stay frozen — drastically fewer trainable parameters, portable per-task adapters, and no added inference latency once merged. Covers LoraConfig parameters, merge/unmerge/unload utilities, and initialization options (Gaussian, LoftQ for QLoRA, rank-stabilized rsLoRA).",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "markitdown",
       "kind": "entry",
       "title": "MarkItDown",
@@ -2210,12 +2280,31 @@
       "exists": true
     },
     {
+      "id": "mistakes-md-log",
+      "kind": "entry",
+      "title": "MISTAKES.md — a self-accumulating agent error log",
+      "summary": "Lightweight Claude Code technique: keep a MISTAKES.md in the repo plus one CLAUDE.md line ('Log mistakes in MISTAKES.md (what happened, root cause, prevention).'). Whenever the agent breaks something or is corrected, it appends an entry (what happened / root cause / consequence / the rule that prevents a repeat), newest first — no tooling, plugin, or vector store. Two reported effects: the agent starts citing and avoiding past mistakes, and a failure that recurs 4–5 times graduates from a logged mistake into a hard rule in CLAUDE.md. MISTAKES.md accumulates evidence; CLAUDE.md enforces it.",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "mit-opencourseware",
       "kind": "entry",
       "title": "MIT OpenCourseWare (OCW)",
       "url": "https://ocw.mit.edu/search/",
       "summary": "MIT's free online course catalog — 2,500+ courses across all disciplines including linear algebra, statistics, biology, computer science; useful as source material for learning-vault ingestion and structured self-study",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "mixpeek",
+      "kind": "entry",
+      "title": "Mixpeek",
+      "url": "https://mixpeek.com/education/videos/multimodal-warehouse-vs-vector-database",
+      "summary": "Multimodal search/retrieval infrastructure ('multimodal data warehouse') running on object storage: typed feature-extraction pipelines turn video/files into queryable timestamped features (scenes, transcripts, faces, OCR, fingerprints), embeddings are generated/stored from 50+ models, and multi-stage retrievers compose filter/join/rerank (advertised <100ms). Integrations include S3, GCS, R2, Mux, LangChain, and MCP. Catalog source is a Mixpeek education video contrasting an 'extract once, upstream of every app' model against a plain vector database.",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -2480,8 +2569,8 @@
       "id": "open-knowledge-format",
       "kind": "entry",
       "title": "Open Knowledge Format (OKF)",
-      "url": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md",
-      "summary": "Google's draft spec for agent-friendly knowledge representation using Markdown + YAML frontmatter; closely aligned with our wiki pattern but v0.1 draft status",
+      "url": "https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf",
+      "summary": "Google's spec (v0.2) for agent-friendly knowledge representation using Markdown + YAML frontmatter; adds provenance/freshness/trust signals, reference agent with web-crawling enrichment, interactive graph visualizer; closely aligned with our wiki pattern",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -2912,6 +3001,16 @@
       "exists": true
     },
     {
+      "id": "repowise",
+      "kind": "entry",
+      "title": "repowise",
+      "url": "https://github.com/repowise-dev/repowise",
+      "summary": "Local-first codebase-intelligence engine: index a repo once and keep it current per-commit, then serve it to coding agents via ~11 task-shaped MCP tools plus a CLI, local dashboard, VS Code extension, and a zero-LLM PR bot. Builds a five-layer index (dependency graph across 19 languages, git behavioral signals, generated wiki, mined architectural decisions, deterministic 1–10 code-health scores with concrete refactoring plans), plus change-risk scoring, dead-code detection, and reversible command-output 'distill'. Structural index needs no API key and runs offline; AGPL-3.0 with a commercial license option.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "robyn",
       "kind": "entry",
       "title": "Robyn",
@@ -2952,6 +3051,16 @@
       "title": "RuView WiFi Sensing Platform",
       "url": "https://github.com/ruvnet/RuView",
       "summary": "Interesting hardware+agent integration with a Claude Code plugin and MCP server, but beta software requiring physical ESP32 hardware for core capabilities",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "sam3",
+      "kind": "entry",
+      "title": "SAM 3 (Segment Anything Model 3)",
+      "url": "https://github.com/facebookresearch/sam3",
+      "summary": "Meta's 848M-param unified foundation model for promptable segmentation in images and video; adds open-vocabulary detection/segmentation of all instances of a concept from a short text phrase or visual exemplars, on top of SAM 2's point/box/mask tracking. Checkpoints are gated (access request + HF auth).",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -3085,6 +3194,16 @@
       "exists": true
     },
     {
+      "id": "skills-visibility",
+      "kind": "entry",
+      "title": "skills-visibility (Evil Martians)",
+      "url": "https://github.com/evilmartians/agent-skills/blob/main/skills/skills-visibility/SKILL.md",
+      "summary": "Agent skill (by Evil Martians) that walks through publishing a discoverable, installable catalog of agent skills: lay each skill out as skills/<name>/SKILL.md in a git repo, classify its shape (single-file / multi-file / bundle), re-host and hash the served bytes from a domain you control, build flat reproducible tar.gz archives, and publish a .well-known/agent-skills/index.json discovery index (agentskills.io schema / Cloudflare's RFC 8615 extension) so npx skills, gh skill, and Claude's plugin marketplace resolve them. Emphasizes sha256 integrity digests and offering multiple install commands.",
+      "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "skylos",
       "kind": "entry",
       "title": "Skylos",
@@ -3160,6 +3279,16 @@
       "url": "https://github.com/SaroirCommunity/Spiderbrain-V3",
       "summary": "BSL license; master/column concept is the key takeaway for kb graph",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "state-of-open-coding-models-2026",
+      "kind": "entry",
+      "title": "The State of Open Coding AI Models (August 2026)",
+      "url": "https://pub.towardsai.net/the-state-of-open-coding-ai-models-in-august-2026-b0858d798bda",
+      "summary": "Opinion snapshot (Aug 2026) arguing the best open coding models no longer fit regular consumer hardware, so 'open' no longer implies 'local.' Cites Kimi K3 (~2.8T params, ~1.56 TB on HF), GLM 5.2 (the one people called safe to leave running unattended; complaints about verbosity, not wrong answers), and DeepSeek V4 (vendor claims open-source SOTA on agentic coding, but the preview checkpoint felt rough and headline numbers came from the vendor's own agent harness). Thesis: the interesting engineering has shifted from training these models to serving them faster/cheaper. Author discloses a bias (works for a GPU cloud provider).",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -3389,6 +3518,11 @@
       "exists": true
     },
     {
+      "id": "tag:adapters",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:adhd",
       "kind": "tag",
       "exists": true
@@ -3435,6 +3569,11 @@
     },
     {
       "id": "tag:agent-discipline",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:agent-discovery",
       "kind": "tag",
       "exists": true
     },
@@ -3535,6 +3674,11 @@
     },
     {
       "id": "tag:agent-sdk",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:agent-skill",
       "kind": "tag",
       "exists": true
     },
@@ -4079,6 +4223,11 @@
       "exists": true
     },
     {
+      "id": "tag:book",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:bookmarks",
       "kind": "tag",
       "exists": true
@@ -4199,6 +4348,11 @@
       "exists": true
     },
     {
+      "id": "tag:chunking",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ci",
       "kind": "tag",
       "exists": true
@@ -4314,6 +4468,11 @@
       "exists": true
     },
     {
+      "id": "tag:cloud-native",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:cloud-sessions",
       "kind": "tag",
       "exists": true
@@ -4330,6 +4489,11 @@
     },
     {
       "id": "tag:clustering",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:cncf",
       "kind": "tag",
       "exists": true
     },
@@ -4354,6 +4518,11 @@
       "exists": true
     },
     {
+      "id": "tag:code-health",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:code-intelligence",
       "kind": "tag",
       "exists": true
@@ -4370,6 +4539,11 @@
     },
     {
       "id": "tag:codebase-analysis",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:codebase-intelligence",
       "kind": "tag",
       "exists": true
     },
@@ -4409,12 +4583,27 @@
       "exists": true
     },
     {
+      "id": "tag:coding-agents",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:coding-handoffs",
       "kind": "tag",
       "exists": true
     },
     {
+      "id": "tag:coding-models",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:cognitive-frames",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:collaboration",
       "kind": "tag",
       "exists": true
     },
@@ -4474,6 +4663,11 @@
       "exists": true
     },
     {
+      "id": "tag:composition",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:compression",
       "kind": "tag",
       "exists": true
@@ -4524,6 +4718,11 @@
       "exists": true
     },
     {
+      "id": "tag:consulting",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:containers",
       "kind": "tag",
       "exists": true
@@ -4560,6 +4759,11 @@
     },
     {
       "id": "tag:context-network",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:control-plane",
       "kind": "tag",
       "exists": true
     },
@@ -4655,6 +4859,11 @@
     },
     {
       "id": "tag:crawling",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:creative-commons",
       "kind": "tag",
       "exists": true
     },
@@ -4914,6 +5123,11 @@
       "exists": true
     },
     {
+      "id": "tag:declarative-api",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:decomposition",
       "kind": "tag",
       "exists": true
@@ -5049,12 +5263,22 @@
       "exists": true
     },
     {
+      "id": "tag:discovery-index",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:dispatch",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:distributed-training",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:distribution",
       "kind": "tag",
       "exists": true
     },
@@ -5204,6 +5428,11 @@
       "exists": true
     },
     {
+      "id": "tag:elicitation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:elv2",
       "kind": "tag",
       "exists": true
@@ -5225,6 +5454,11 @@
     },
     {
       "id": "tag:embodied-agent",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:end-to-end-encryption",
       "kind": "tag",
       "exists": true
     },
@@ -5299,6 +5533,11 @@
       "exists": true
     },
     {
+      "id": "tag:error-log",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:esp32",
       "kind": "tag",
       "exists": true
@@ -5340,6 +5579,11 @@
     },
     {
       "id": "tag:evidence-gates",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:evil-martians",
       "kind": "tag",
       "exists": true
     },
@@ -5429,12 +5673,27 @@
       "exists": true
     },
     {
+      "id": "tag:feature-extraction",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:federation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:feedback",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:feedforward",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ffmpeg",
       "kind": "tag",
       "exists": true
     },
@@ -5480,6 +5739,11 @@
     },
     {
       "id": "tag:formatter",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:foundation-model",
       "kind": "tag",
       "exists": true
     },
@@ -5635,6 +5899,11 @@
     },
     {
       "id": "tag:git",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:git-analytics",
       "kind": "tag",
       "exists": true
     },
@@ -5979,6 +6248,11 @@
       "exists": true
     },
     {
+      "id": "tag:image",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:image-analysis",
       "kind": "tag",
       "exists": true
@@ -6029,6 +6303,11 @@
       "exists": true
     },
     {
+      "id": "tag:infrastructure-as-code",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ingest",
       "kind": "tag",
       "exists": true
@@ -6045,6 +6324,11 @@
     },
     {
       "id": "tag:integrations",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:integrity",
       "kind": "tag",
       "exists": true
     },
@@ -6184,6 +6468,11 @@
       "exists": true
     },
     {
+      "id": "tag:kimi",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:knowledge",
       "kind": "tag",
       "exists": true
@@ -6235,6 +6524,11 @@
     },
     {
       "id": "tag:knowledge-work",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:kubernetes",
       "kind": "tag",
       "exists": true
     },
@@ -6325,6 +6619,11 @@
     },
     {
       "id": "tag:llama-cpp-alternative",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:llamaindex",
       "kind": "tag",
       "exists": true
     },
@@ -6989,6 +7288,11 @@
       "exists": true
     },
     {
+      "id": "tag:object-storage",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:observability",
       "kind": "tag",
       "exists": true
@@ -7085,6 +7389,11 @@
     },
     {
       "id": "tag:open-standard",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:open-vocabulary",
       "kind": "tag",
       "exists": true
     },
@@ -7204,6 +7513,11 @@
       "exists": true
     },
     {
+      "id": "tag:packaging",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:pain-points",
       "kind": "tag",
       "exists": true
@@ -7234,6 +7548,11 @@
       "exists": true
     },
     {
+      "id": "tag:parameter-efficient",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:parquet",
       "kind": "tag",
       "exists": true
@@ -7260,6 +7579,11 @@
     },
     {
       "id": "tag:pdf-import",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:peft",
       "kind": "tag",
       "exists": true
     },
@@ -7365,6 +7689,11 @@
     },
     {
       "id": "tag:planning",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:platform-engineering",
       "kind": "tag",
       "exists": true
     },
@@ -7490,6 +7819,11 @@
     },
     {
       "id": "tag:procedural-memory",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:process-discovery",
       "kind": "tag",
       "exists": true
     },
@@ -7934,6 +8268,11 @@
       "exists": true
     },
     {
+      "id": "tag:runtime-governance",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:rust",
       "kind": "tag",
       "exists": true
@@ -8034,6 +8373,11 @@
       "exists": true
     },
     {
+      "id": "tag:scripting",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:scrolltrigger",
       "kind": "tag",
       "exists": true
@@ -8079,12 +8423,22 @@
       "exists": true
     },
     {
+      "id": "tag:segmentation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:self-correction",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:self-hosted",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:self-improvement",
       "kind": "tag",
       "exists": true
     },
@@ -8105,6 +8459,11 @@
     },
     {
       "id": "tag:self-taught",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:semantic-chunking",
       "kind": "tag",
       "exists": true
     },
@@ -8145,6 +8504,11 @@
     },
     {
       "id": "tag:serverless",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:serving",
       "kind": "tag",
       "exists": true
     },
@@ -8629,6 +8993,11 @@
       "exists": true
     },
     {
+      "id": "tag:text-splitting",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:textualize",
       "kind": "tag",
       "exists": true
@@ -8735,6 +9104,11 @@
     },
     {
       "id": "tag:tool-directory",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:tool-discovery",
       "kind": "tag",
       "exists": true
     },
@@ -9149,6 +9523,11 @@
       "exists": true
     },
     {
+      "id": "tag:well-known",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:whisper",
       "kind": "tag",
       "exists": true
@@ -9245,6 +9624,11 @@
     },
     {
       "id": "tag:youtube",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:yt-dlp",
       "kind": "tag",
       "exists": true
     },
@@ -9547,6 +9931,15 @@
       "url": "https://www.tomshardware.com/how-to/enable-god-mode-windows-11",
       "summary": "Windows 10/11 trick — create a folder named GodMode.{ED7BA470-8E54-465E-825C-99712043E01C} to get a flat list of 200+ Control Panel shortcuts; useful for quick access to buried settings like environment variables, audio devices, power options",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "you-cannot-automate-habit",
+      "kind": "entry",
+      "title": "You cannot automate a habit (discovery before automation)",
+      "summary": "Practitioner reflection on building business automations/agents: the hard part is rarely the model or framework — it's that the target process only exists as an undocumented habit. Ask three people how it works and you get three answers (owner's original design, manager's exception-laden version, the operator's notebook-based reality); even 'the menu' has no single answer (per-outlet prices, time-of-day availability, duplicate names). The reusable practice: before automating, sit with people, force the business to write its own rules down for the first time, and get someone with authority to sign off on the version that will be encoded.",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -9963,6 +10356,51 @@
       "relation": "tagged"
     },
     {
+      "source": "agent-link",
+      "target": "cat:mcp-server",
+      "relation": "categorized"
+    },
+    {
+      "source": "agent-link",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-link",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-link",
+      "target": "tag:coding-agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-link",
+      "target": "tag:collaboration",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-link",
+      "target": "tag:end-to-end-encryption",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-link",
+      "target": "tag:git",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-link",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-link",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
       "source": "agent-plugins-vscode",
       "target": "agent-skills-spec",
       "relation": "overlaps"
@@ -10229,11 +10667,6 @@
     },
     {
       "source": "agentchassis",
-      "target": "tag:a2a",
-      "relation": "tagged"
-    },
-    {
-      "source": "agentchassis",
       "target": "tag:code-agent",
       "relation": "tagged"
     },
@@ -10260,6 +10693,16 @@
     {
       "source": "agentchassis",
       "target": "tag:orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentchassis",
+      "target": "tag:provenance",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentchassis",
+      "target": "tag:runtime-governance",
       "relation": "tagged"
     },
     {
@@ -10400,6 +10843,56 @@
     {
       "source": "agentic-rag",
       "target": "tag:vector-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-resource-discovery",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "agentic-resource-discovery",
+      "target": "tag:a2a",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-resource-discovery",
+      "target": "tag:agent-discovery",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-resource-discovery",
+      "target": "tag:federation",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-resource-discovery",
+      "target": "tag:huggingface",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-resource-discovery",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-resource-discovery",
+      "target": "tag:registry",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-resource-discovery",
+      "target": "tag:skills",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-resource-discovery",
+      "target": "tag:specification",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-resource-discovery",
+      "target": "tag:tool-discovery",
       "relation": "tagged"
     },
     {
@@ -11145,6 +11638,51 @@
     {
       "source": "autoharness",
       "target": "tag:optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "automate-the-boring-stuff",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "automate-the-boring-stuff",
+      "target": "tag:automation",
+      "relation": "tagged"
+    },
+    {
+      "source": "automate-the-boring-stuff",
+      "target": "tag:beginner",
+      "relation": "tagged"
+    },
+    {
+      "source": "automate-the-boring-stuff",
+      "target": "tag:book",
+      "relation": "tagged"
+    },
+    {
+      "source": "automate-the-boring-stuff",
+      "target": "tag:creative-commons",
+      "relation": "tagged"
+    },
+    {
+      "source": "automate-the-boring-stuff",
+      "target": "tag:learning",
+      "relation": "tagged"
+    },
+    {
+      "source": "automate-the-boring-stuff",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "automate-the-boring-stuff",
+      "target": "tag:scripting",
+      "relation": "tagged"
+    },
+    {
+      "source": "automate-the-boring-stuff",
+      "target": "tag:web-scraping",
       "relation": "tagged"
     },
     {
@@ -13238,6 +13776,56 @@
       "relation": "tagged"
     },
     {
+      "source": "claude-video",
+      "target": "cat:skill",
+      "relation": "categorized"
+    },
+    {
+      "source": "claude-video",
+      "target": "tag:agent-skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-video",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-video",
+      "target": "tag:ffmpeg",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-video",
+      "target": "tag:multimodal",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-video",
+      "target": "tag:plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-video",
+      "target": "tag:transcription",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-video",
+      "target": "tag:video",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-video",
+      "target": "tag:whisper",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-video",
+      "target": "tag:yt-dlp",
+      "relation": "tagged"
+    },
+    {
       "source": "claw-code",
       "target": "cat:framework",
       "relation": "categorized"
@@ -14086,6 +14674,51 @@
       "source": "crewai",
       "target": "weft",
       "relation": "overlaps"
+    },
+    {
+      "source": "crossplane",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "crossplane",
+      "target": "tag:cloud-native",
+      "relation": "tagged"
+    },
+    {
+      "source": "crossplane",
+      "target": "tag:cncf",
+      "relation": "tagged"
+    },
+    {
+      "source": "crossplane",
+      "target": "tag:composition",
+      "relation": "tagged"
+    },
+    {
+      "source": "crossplane",
+      "target": "tag:control-plane",
+      "relation": "tagged"
+    },
+    {
+      "source": "crossplane",
+      "target": "tag:declarative-api",
+      "relation": "tagged"
+    },
+    {
+      "source": "crossplane",
+      "target": "tag:infrastructure-as-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "crossplane",
+      "target": "tag:kubernetes",
+      "relation": "tagged"
+    },
+    {
+      "source": "crossplane",
+      "target": "tag:platform-engineering",
+      "relation": "tagged"
     },
     {
       "source": "crowdsec",
@@ -15460,6 +16093,51 @@
     {
       "source": "first-principles-destructor",
       "target": "tag:skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "five-levels-of-chunking",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "five-levels-of-chunking",
+      "target": "tag:chunking",
+      "relation": "tagged"
+    },
+    {
+      "source": "five-levels-of-chunking",
+      "target": "tag:embeddings",
+      "relation": "tagged"
+    },
+    {
+      "source": "five-levels-of-chunking",
+      "target": "tag:langchain",
+      "relation": "tagged"
+    },
+    {
+      "source": "five-levels-of-chunking",
+      "target": "tag:llamaindex",
+      "relation": "tagged"
+    },
+    {
+      "source": "five-levels-of-chunking",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "five-levels-of-chunking",
+      "target": "tag:retrieval",
+      "relation": "tagged"
+    },
+    {
+      "source": "five-levels-of-chunking",
+      "target": "tag:semantic-chunking",
+      "relation": "tagged"
+    },
+    {
+      "source": "five-levels-of-chunking",
+      "target": "tag:text-splitting",
       "relation": "tagged"
     },
     {
@@ -17733,6 +18411,51 @@
       "relation": "tagged"
     },
     {
+      "source": "lora-peft-guide",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "lora-peft-guide",
+      "target": "tag:adapters",
+      "relation": "tagged"
+    },
+    {
+      "source": "lora-peft-guide",
+      "target": "tag:fine-tuning",
+      "relation": "tagged"
+    },
+    {
+      "source": "lora-peft-guide",
+      "target": "tag:huggingface",
+      "relation": "tagged"
+    },
+    {
+      "source": "lora-peft-guide",
+      "target": "tag:lora",
+      "relation": "tagged"
+    },
+    {
+      "source": "lora-peft-guide",
+      "target": "tag:parameter-efficient",
+      "relation": "tagged"
+    },
+    {
+      "source": "lora-peft-guide",
+      "target": "tag:peft",
+      "relation": "tagged"
+    },
+    {
+      "source": "lora-peft-guide",
+      "target": "tag:qlora",
+      "relation": "tagged"
+    },
+    {
+      "source": "lora-peft-guide",
+      "target": "tag:transformers",
+      "relation": "tagged"
+    },
+    {
       "source": "markitdown",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -18613,6 +19336,51 @@
       "relation": "tagged"
     },
     {
+      "source": "mistakes-md-log",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "mistakes-md-log",
+      "target": "creating-claude-md",
+      "relation": "overlaps"
+    },
+    {
+      "source": "mistakes-md-log",
+      "target": "tag:agent-pattern",
+      "relation": "tagged"
+    },
+    {
+      "source": "mistakes-md-log",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "mistakes-md-log",
+      "target": "tag:claude-md",
+      "relation": "tagged"
+    },
+    {
+      "source": "mistakes-md-log",
+      "target": "tag:error-log",
+      "relation": "tagged"
+    },
+    {
+      "source": "mistakes-md-log",
+      "target": "tag:memory",
+      "relation": "tagged"
+    },
+    {
+      "source": "mistakes-md-log",
+      "target": "tag:self-improvement",
+      "relation": "tagged"
+    },
+    {
+      "source": "mistakes-md-log",
+      "target": "tag:workflow",
+      "relation": "tagged"
+    },
+    {
       "source": "mit-opencourseware",
       "target": "cat:reference",
       "relation": "categorized"
@@ -18656,6 +19424,56 @@
       "source": "mit-opencourseware",
       "target": "zero-to-mastery-ml",
       "relation": "overlaps"
+    },
+    {
+      "source": "mixpeek",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "mixpeek",
+      "target": "tag:embeddings",
+      "relation": "tagged"
+    },
+    {
+      "source": "mixpeek",
+      "target": "tag:feature-extraction",
+      "relation": "tagged"
+    },
+    {
+      "source": "mixpeek",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "mixpeek",
+      "target": "tag:multimodal",
+      "relation": "tagged"
+    },
+    {
+      "source": "mixpeek",
+      "target": "tag:object-storage",
+      "relation": "tagged"
+    },
+    {
+      "source": "mixpeek",
+      "target": "tag:retrieval",
+      "relation": "tagged"
+    },
+    {
+      "source": "mixpeek",
+      "target": "tag:search",
+      "relation": "tagged"
+    },
+    {
+      "source": "mixpeek",
+      "target": "tag:vector-database",
+      "relation": "tagged"
+    },
+    {
+      "source": "mixpeek",
+      "target": "tag:video",
+      "relation": "tagged"
     },
     {
       "source": "mlx-vlm-turboquant",
@@ -21473,6 +22291,61 @@
       "relation": "tagged"
     },
     {
+      "source": "repowise",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "repowise",
+      "target": "graphify",
+      "relation": "overlaps"
+    },
+    {
+      "source": "repowise",
+      "target": "tag:agent-context",
+      "relation": "tagged"
+    },
+    {
+      "source": "repowise",
+      "target": "tag:agpl",
+      "relation": "tagged"
+    },
+    {
+      "source": "repowise",
+      "target": "tag:code-health",
+      "relation": "tagged"
+    },
+    {
+      "source": "repowise",
+      "target": "tag:codebase-intelligence",
+      "relation": "tagged"
+    },
+    {
+      "source": "repowise",
+      "target": "tag:dependency-graph",
+      "relation": "tagged"
+    },
+    {
+      "source": "repowise",
+      "target": "tag:documentation",
+      "relation": "tagged"
+    },
+    {
+      "source": "repowise",
+      "target": "tag:git-analytics",
+      "relation": "tagged"
+    },
+    {
+      "source": "repowise",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "repowise",
+      "target": "tag:self-hosted",
+      "relation": "tagged"
+    },
+    {
       "source": "robyn",
       "target": "cat:framework",
       "relation": "categorized"
@@ -21650,6 +22523,51 @@
     {
       "source": "ruview-wifi-sensing",
       "target": "tag:wifi-sensing",
+      "relation": "tagged"
+    },
+    {
+      "source": "sam3",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "sam3",
+      "target": "tag:computer-vision",
+      "relation": "tagged"
+    },
+    {
+      "source": "sam3",
+      "target": "tag:foundation-model",
+      "relation": "tagged"
+    },
+    {
+      "source": "sam3",
+      "target": "tag:image",
+      "relation": "tagged"
+    },
+    {
+      "source": "sam3",
+      "target": "tag:meta",
+      "relation": "tagged"
+    },
+    {
+      "source": "sam3",
+      "target": "tag:open-vocabulary",
+      "relation": "tagged"
+    },
+    {
+      "source": "sam3",
+      "target": "tag:pytorch",
+      "relation": "tagged"
+    },
+    {
+      "source": "sam3",
+      "target": "tag:segmentation",
+      "relation": "tagged"
+    },
+    {
+      "source": "sam3",
+      "target": "tag:video",
       "relation": "tagged"
     },
     {
@@ -22228,6 +23146,56 @@
       "relation": "tagged"
     },
     {
+      "source": "skills-visibility",
+      "target": "cat:skill",
+      "relation": "categorized"
+    },
+    {
+      "source": "skills-visibility",
+      "target": "tag:agent-skills",
+      "relation": "tagged"
+    },
+    {
+      "source": "skills-visibility",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "skills-visibility",
+      "target": "tag:discovery-index",
+      "relation": "tagged"
+    },
+    {
+      "source": "skills-visibility",
+      "target": "tag:distribution",
+      "relation": "tagged"
+    },
+    {
+      "source": "skills-visibility",
+      "target": "tag:evil-martians",
+      "relation": "tagged"
+    },
+    {
+      "source": "skills-visibility",
+      "target": "tag:integrity",
+      "relation": "tagged"
+    },
+    {
+      "source": "skills-visibility",
+      "target": "tag:packaging",
+      "relation": "tagged"
+    },
+    {
+      "source": "skills-visibility",
+      "target": "tag:skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "skills-visibility",
+      "target": "tag:well-known",
+      "relation": "tagged"
+    },
+    {
       "source": "skylos",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -22530,6 +23498,56 @@
     {
       "source": "spiderbrain-v3",
       "target": "tag:token-reduction",
+      "relation": "tagged"
+    },
+    {
+      "source": "state-of-open-coding-models-2026",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "state-of-open-coding-models-2026",
+      "target": "tag:coding-models",
+      "relation": "tagged"
+    },
+    {
+      "source": "state-of-open-coding-models-2026",
+      "target": "tag:deepseek",
+      "relation": "tagged"
+    },
+    {
+      "source": "state-of-open-coding-models-2026",
+      "target": "tag:glm",
+      "relation": "tagged"
+    },
+    {
+      "source": "state-of-open-coding-models-2026",
+      "target": "tag:hardware",
+      "relation": "tagged"
+    },
+    {
+      "source": "state-of-open-coding-models-2026",
+      "target": "tag:kimi",
+      "relation": "tagged"
+    },
+    {
+      "source": "state-of-open-coding-models-2026",
+      "target": "tag:llm",
+      "relation": "tagged"
+    },
+    {
+      "source": "state-of-open-coding-models-2026",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "state-of-open-coding-models-2026",
+      "target": "tag:open-models",
+      "relation": "tagged"
+    },
+    {
+      "source": "state-of-open-coding-models-2026",
+      "target": "tag:serving",
       "relation": "tagged"
     },
     {
@@ -24255,6 +25273,46 @@
     {
       "source": "windows-god-mode",
       "target": "tag:windows",
+      "relation": "tagged"
+    },
+    {
+      "source": "you-cannot-automate-habit",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "you-cannot-automate-habit",
+      "target": "tag:agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "you-cannot-automate-habit",
+      "target": "tag:automation",
+      "relation": "tagged"
+    },
+    {
+      "source": "you-cannot-automate-habit",
+      "target": "tag:consulting",
+      "relation": "tagged"
+    },
+    {
+      "source": "you-cannot-automate-habit",
+      "target": "tag:elicitation",
+      "relation": "tagged"
+    },
+    {
+      "source": "you-cannot-automate-habit",
+      "target": "tag:process-discovery",
+      "relation": "tagged"
+    },
+    {
+      "source": "you-cannot-automate-habit",
+      "target": "tag:requirements",
+      "relation": "tagged"
+    },
+    {
+      "source": "you-cannot-automate-habit",
+      "target": "tag:workflow",
       "relation": "tagged"
     },
     {

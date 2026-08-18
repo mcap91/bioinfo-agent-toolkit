@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-08-11",
-  "count": 344,
+  "generated": "2026-08-18",
+  "count": 358,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -239,6 +239,35 @@
       "path": "catalog/entries/agent-first-architecture.md"
     },
     {
+      "name": "agent-link",
+      "title": "agent-link",
+      "url": "https://github.com/Riccardo8888/agent-link",
+      "category": "mcp-server",
+      "decision_status": "open",
+      "summary": "End-to-end encrypted channel between coding agents on different machines: the agents split work, hand off tasks, and report progress to each other. Transport is a shared private git repo (an orphan 'agent-link' branch) — no server, account, or open ports — with an optional relay for sub-second delivery. Installs an MCP server (link_* tools) plus a notification hook for Claude Code and/or Codex, and a human CLI. Frames are AES-256-GCM sealed and device-signed. Python 3.10+, one dependency, Windows/Linux/macOS.",
+      "body_summary": "agent-link connects two (or more) coding agents running on different machines so they coordinate directly — splitting work, handing off tasks, and reporting progress in an end-to-end encrypted \"room\" — instead of a human copying messages back and forth. The message carrier is an ordinary shared private git repo (it can be the project repo you already collaborate on); a local daemon on each machine moves sealed frames through an orphan branch (`agent-link`) scoped to `claude-link/`, and your code is never fetched or touched.",
+      "tags": [
+        "multi-agent",
+        "coding-agents",
+        "mcp",
+        "end-to-end-encryption",
+        "git",
+        "claude-code",
+        "codex",
+        "collaboration"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [
+        "private-repo-required",
+        "no-forward-secrecy",
+        "carrier-sees-social-graph",
+        "untrusted-peer-input"
+      ],
+      "reviewed": "2026-08-17",
+      "path": "catalog/entries/agent-link.md"
+    },
+    {
       "name": "agent-plugins-vscode",
       "title": "Agent Plugins in VS Code (Agent Plugins 1.0)",
       "url": "https://code.visualstudio.com/docs/agent-customization/agent-plugins",
@@ -385,26 +414,27 @@
     },
     {
       "name": "agentchassis",
-      "title": "AgentChassis — multi-agent code-orchestration system with durable work-record contracts",
-      "url": "https://github.com/node-bio/portfolio-wiki-tools",
+      "title": "AgentChassis — contract-first orchestration for long-running coding agents",
+      "url": "https://github.com/agent-chassis/agent-chassis",
       "category": "framework",
       "decision_status": "open",
-      "summary": "Splits agentic coding into orchestrator/worker/reviewer roles governed by durable work-record contracts. The agent that defines the work cannot implement it — every task carries scope, acceptance criteria, and validation before any code is written. Workers are kernel-confined to declared file scope via Linux bubblewrap. Git-committed dispatch state enables crash-resumable coordination, exact-slice review at frozen SHAs, deterministic squash candidates independent of main, and automatic forge handoff (PR creation). Supports Claude and Codex families; Agy fails closed. Source-available under Elastic License 2.0; optional hosted Chassis Control Engine (CCE) adds org-level admission and signed attestation.",
-      "body_summary": "AgentChassis installs into your repository and enforces a separation-of-concerns rule: the agent that plans the work cannot implement it, and the agent that implements it cannot review it. Three non-overlapping roles — orchestrator (plans, never writes product code), worker (implements one scoped task, confined to declared files), and reviewer (checks the change against the task contract, read-only) — coordinate through durable **work-record contracts** committed to Git.\n\nEvery task is a work record stating scope, acceptance criteria, and validation commands before any code runs. A task missing these fields is rejected by a deterministic shape check — no model call needed. Non-overlapping write scopes drive parallel dispatch: tasks declare which files they may touch, so workers run concurrently without collision. Dependencies are declarative admission gates, not a traversed graph; the orchestrator is an LLM session, not a scheduler.\n\nThe system publishes to npm as `@agent-chassis/core` (pulls the full `@agent-chassis/*` set). Requires Node.js 22+. Install with `npm install --save-dev @agent-chassis/core`, run `npx agent-chassis setup`, build the code index, and launch an orchestrator with `npx agent-launch orchestrator IN-0001 --model opus`.",
+      "summary": "Contract-first orchestration that splits agentic coding into non-overlapping orchestrator/worker/reviewer roles under one rule: the agent that defines the work cannot implement it. Every task is a durable work record stating scope, acceptance criteria, and validation before any code is written; a task missing those is rejected before any model runs (deterministic check, no model call). Workers are confined to their declared file scope (Linux bwrap sandbox where available); reviewers check each change against its contract; every run records honest enforcement provenance (enforced true/false plus isolation backend). Parallel agents run on non-overlapping scopes without collision, interrupted tasks resume from their record, and the repo accumulates an engineering record of what was planned, why, and whether it passed. Drives multiple agent CLIs (Codex, Claude, and more) through a typed MCP interface. Source-available under Elastic License 2.0 as public @agent-chassis/* npm packages; an optional hosted Chassis Control Engine (CCE, private beta) adds org-level admission and signed attestation.",
+      "body_summary": "AgentChassis installs into your repository and enforces a separation-of-concerns rule: the agent that defines the work cannot implement it. Three non-overlapping roles coordinate through durable work-record contracts — an **orchestrator** plans and breaks the work into small scoped tasks but never writes product code; **workers** each implement one task, confined to the files that task is allowed to change; **reviewers** check each change against what its task said it should do.\n\nEvery task is a written work record stating its scope, acceptance criteria, and validation before any code runs. A task missing those fields is rejected before any model runs — a fast, deterministic check, not a judgment call. Because all implementation passes through this loop, the repository accumulates an engineering record — what was planned, why, who did it, and whether it passed — as an ordinary byproduct of getting work done.\n\nInstall one public npm package, run setup, build the code index, and point an orchestrator at your repo. Requires Node.js 22+.",
       "tags": [
         "multi-agent",
         "orchestration",
         "code-agent",
         "work-records",
         "sandbox",
-        "a2a",
         "mcp",
         "git-native",
+        "provenance",
+        "runtime-governance",
         "elv2"
       ],
       "workflows": [],
       "security_flags": [],
-      "reviewed": "2026-07-29",
+      "reviewed": "2026-08-14",
       "path": "catalog/entries/agentchassis.md"
     },
     {
@@ -474,6 +504,31 @@
       "security_flags": [],
       "reviewed": "2026-07-03",
       "path": "catalog/entries/agentic-rag.md"
+    },
+    {
+      "name": "agentic-resource-discovery",
+      "title": "Agentic Resource Discovery (ARD)",
+      "url": "https://huggingface.co/blog/agentic-resource-discovery-launch",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Draft open specification (contributors from Microsoft, Google, GoDaddy, Hugging Face, and others) for a discovery layer in front of MCP/Skills/A2A: agents search federated registries in natural language to find tools, skills, and other agents at runtime instead of pre-installing them. Defines a static ai-catalog.json manifest at a well-known URL and a dynamic POST /search registry API. Hugging Face's 'Discover' tool (hf discover CLI + REST + MCP endpoint) is a reference implementation over Hub Spaces, Agent Skills, and MCP servers.",
+      "body_summary": "Agentic Resource Discovery (ARD) is a draft, open specification for the discovery layer that sits in front of MCP (tool calls), Skills (instructions), and A2A (agent-to-agent). Those three protocols all assume the user already knows which capability they need; ARD defines how agents/tools are…",
+      "tags": [
+        "agent-discovery",
+        "specification",
+        "mcp",
+        "skills",
+        "a2a",
+        "registry",
+        "huggingface",
+        "federation",
+        "tool-discovery"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-08-17",
+      "path": "catalog/entries/agentic-resource-discovery.md"
     },
     {
       "name": "ai-for-beginners",
@@ -886,6 +941,30 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/autoharness.md"
+    },
+    {
+      "name": "automate-the-boring-stuff",
+      "title": "Automate the Boring Stuff with Python",
+      "url": "https://automatetheboringstuff.com/",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Al Sweigart's beginner Python book (fully revised 3rd edition), free to read online under a Creative Commons license: teaches Python fundamentals then practical automation — file/folder operations, regex, web scraping, Excel/Google Sheets, PDF/Word, SQLite, CSV/JSON/XML, scheduling, email/text notifications, image manipulation, OCR, keyboard/mouse control, and TTS/speech recognition. A companion workbook and a video course accompany it.",
+      "body_summary": "A beginner-oriented Python book by Al Sweigart (Fellow of the Python Software Foundation; maintainer of PyAutoGUI and pyperclip), now in its 3rd edition, free to read online under a Creative Commons license (also sold in print/ebook). Early chapters teach fundamentals — Python basics, flow control,…",
+      "tags": [
+        "python",
+        "automation",
+        "beginner",
+        "learning",
+        "book",
+        "web-scraping",
+        "scripting",
+        "creative-commons"
+      ],
+      "workflows": [],
+      "license": "CC-BY-NC-SA-3.0",
+      "security_flags": [],
+      "reviewed": "2026-08-17",
+      "path": "catalog/entries/automate-the-boring-stuff.md"
     },
     {
       "name": "automation-credit-dependency",
@@ -2050,6 +2129,35 @@
       "path": "catalog/entries/claude-spellbook.md"
     },
     {
+      "name": "claude-video",
+      "title": "Claude Video (/watch)",
+      "url": "https://github.com/bradautomates/claude-video",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Agent Skill that lets Claude (and 50+ other skill hosts) 'watch' a video from a URL or local path: yt-dlp fetches captions/video, ffmpeg extracts scene-aware or keyframe images (with a dedup pass and duration-aware frame budget), a timestamped transcript comes from native captions or a Whisper fallback (Groq/OpenAI), and the frames + transcript are handed to the model to answer grounded in what's on screen and in audio.",
+      "body_summary": "`/watch` gives an agent the ability to analyze a video it otherwise could only guess at from title/description. Given a URL (anything yt-dlp supports — YouTube, Loom, TikTok, X, Instagram, Vimeo, hundreds more) or a local file (`.mp4/.mov/.mkv/.webm`) plus a question, it fetches captions first, downloads only what it needs, extracts frames, pulls a timestamped transcript, and hands the frames (read as images) plus transcript to the model. Common uses cited: breaking down someone else's content/hook, diagnosing a bug from a screen recording, summarizing long videos, and turning playlists into per-video notes.",
+      "tags": [
+        "claude-code",
+        "agent-skill",
+        "video",
+        "multimodal",
+        "yt-dlp",
+        "ffmpeg",
+        "whisper",
+        "transcription",
+        "plugin"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "runs-external-binaries",
+        "downloads-arbitrary-urls",
+        "third-party-transcription-api"
+      ],
+      "reviewed": "2026-08-17",
+      "path": "catalog/entries/claude-video.md"
+    },
+    {
       "name": "claw-code",
       "title": "Claw Code",
       "url": "https://github.com/ultraworkers/claw-code",
@@ -2556,6 +2664,30 @@
       ],
       "reviewed": "2026-06-19",
       "path": "catalog/entries/crewai.md"
+    },
+    {
+      "name": "crossplane",
+      "title": "Crossplane",
+      "url": "https://github.com/crossplane/crossplane",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "CNCF framework for building cloud-native control planes without writing code: an extensible Kubernetes-based backend that orchestrates applications and infrastructure wherever they run, plus a configurable frontend that lets you define the schema of the declarative API it offers. v2.x is current (v2.3, May 2026); v1.20 is the final v1 minor release on extended critical-fix-only support.",
+      "body_summary": "Crossplane is a framework for building cloud-native control planes without writing code. It provides a highly extensible backend that lets you build a control plane to orchestrate applications and infrastructure regardless of where they run, and a highly configurable frontend that puts you in control of the schema of the declarative API it exposes. It is a Cloud Native Computing Foundation (CNCF) project, built on Kubernetes-style declarative APIs and controllers, commonly used for platform engineering and infrastructure composition.",
+      "tags": [
+        "kubernetes",
+        "control-plane",
+        "infrastructure-as-code",
+        "cncf",
+        "cloud-native",
+        "composition",
+        "declarative-api",
+        "platform-engineering"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-08-17",
+      "path": "catalog/entries/crossplane.md"
     },
     {
       "name": "crowdsec",
@@ -3295,11 +3427,11 @@
     {
       "name": "firecrawl",
       "title": "Firecrawl",
-      "url": "https://github.com/mendableai/firecrawl",
+      "url": "https://github.com/firecrawl/firecrawl",
       "category": "framework",
       "decision_status": "open",
-      "summary": "Production-grade web scraping/search/interaction API for AI agents — clean markdown output, JS rendering, anti-bot handling, MCP server mode; AGPL-3.0, YC-backed, 40K+ stars, but copyleft license limits embedding",
-      "body_summary": "Firecrawl is a web data API that turns websites into LLM-ready content. Three core capabilities:\n\n- **Scrape**: Extract any URL as clean markdown, HTML, screenshots, or structured JSON. Handles JavaScript rendering, proxies, and anti-bot measures.\n- **Search**: Web search with full page content from results in one call.\n- **Interact**: Scrape a page then continue working with it — click buttons, fill forms, extract dynamic content via natural language or code.\n\nBuilt by Mendable (now Firecrawl), YC-backed. SDKs in JavaScript, Python, Java, and Elixir. Ships an MCP server for direct integration with Claude Code, Cursor, Windsurf, and VS Code. Also available as a CLI (`npx firecrawl-cli`).\n\nCloud-hosted service with free and paid tiers. Self-hosting is free under AGPL-3.0 but excludes managed-only features like the `/agent` endpoint.",
+      "summary": "Production-grade web scraping/search/interaction API for AI agents — clean markdown output, JS rendering, anti-bot handling, Agent endpoint with Spark models, Map/Interact/Batch Scrape, MCP server mode; 9 SDKs, AGPL-3.0, YC-backed",
+      "body_summary": "Firecrawl is a web data API that turns websites into LLM-ready content. Core endpoints:\n\n- **Scrape**: Extract any URL as clean markdown, HTML, screenshots, or structured JSON. Handles JavaScript rendering, proxies, and anti-bot measures. P95 latency 3.4s.\n- **Search**: Web search with full page content from results in one call.\n- **Interact**: Scrape a page then continue working with it — click buttons, fill forms, extract dynamic content via natural language or code.\n- **Agent**: Autonomous data gathering with Spark models (spark-1-mini for most tasks, spark-1-pro for complex research). Describe what you need; no URLs required. Supports structured output via Pydantic schemas.\n- **Crawl**: Scrape all URLs of a website with a single request.\n- **Map**: Discover all URLs on a website instantly, with optional search-based relevance ranking.\n- **Batch Scrape**: Scrape thousands of URLs asynchronously.\n\nGitHub org migrated from `mendableai` to `firecrawl`. SDKs in Python, Node.js, Go, Java, Elixir, Rust, Ruby, .NET, and PHP. Ships an MCP server for direct integration with Claude Code, Cursor, Windsurf, and other MCP clients. Also available as a CLI skill (`npx firecrawl-cli@latest init --all --browser`).\n\nCloud-hosted service with free and paid tiers. Self-hosting is free under AGPL-3.0 but excludes managed-only features.",
       "tags": [
         "web-scraping",
         "mcp-server",
@@ -3310,7 +3442,7 @@
       "workflows": [],
       "license": "AGPL-3.0-only",
       "security_flags": [],
-      "reviewed": "2026-06-19",
+      "reviewed": "2026-08-17",
       "path": "catalog/entries/firecrawl.md"
     },
     {
@@ -3332,6 +3464,30 @@
       "security_flags": [],
       "reviewed": "2026-06-22",
       "path": "catalog/entries/first-principles-destructor.md"
+    },
+    {
+      "name": "five-levels-of-chunking",
+      "title": "Five Levels of Chunking Strategies in RAG (Greg Kamradt's taxonomy)",
+      "url": "https://medium.com/@anuragmishra_27746/five-levels-of-chunking-strategies-in-rag-notes-from-gregs-video-7b735895694d",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Taxonomy of RAG text-splitting strategies, from Greg Kamradt's '5 Levels of Text Splitting' (these are notes on that video): Level 1 fixed-size (character/sentence splitters), Level 2 recursive (hierarchical separators), Level 3 document/structure-based (respect headings, tables, code), Level 4 semantic (split at embedding-similarity breakpoints), Level 5 agentic (an LLM decides chunk boundaries from propositions). Higher levels trade cost/complexity for chunks that better match meaning; match the strategy to the data.",
+      "body_summary": "A widely-cited taxonomy of how to split documents into chunks for retrieval-augmented generation, popularized by Greg Kamradt's \"5 Levels of Text Splitting\" tutorial (the catalog source is a Medium write-up of notes on that video; the page itself returned HTTP 403 at review time, so this entry is…",
+      "tags": [
+        "rag",
+        "chunking",
+        "text-splitting",
+        "embeddings",
+        "retrieval",
+        "semantic-chunking",
+        "langchain",
+        "llamaindex"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-08-17",
+      "path": "catalog/entries/five-levels-of-chunking.md"
     },
     {
       "name": "fluiddocs-deck-builder",
@@ -4589,6 +4745,30 @@
       "path": "catalog/entries/locate-anything.md"
     },
     {
+      "name": "lora-peft-guide",
+      "title": "LoRA (Hugging Face PEFT conceptual guide)",
+      "url": "https://huggingface.co/docs/peft/main/en/conceptual_guides/lora",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Hugging Face PEFT conceptual guide to LoRA (Low-Rank Adaptation): fine-tune large models by training two small low-rank update matrices while the original weights stay frozen — drastically fewer trainable parameters, portable per-task adapters, and no added inference latency once merged. Covers LoraConfig parameters, merge/unmerge/unload utilities, and initialization options (Gaussian, LoftQ for QLoRA, rank-stabilized rsLoRA).",
+      "body_summary": "A conceptual overview of LoRA (Low-Rank Adaptation) as implemented in Hugging Face's PEFT library. LoRA represents weight updates as the product of two smaller low-rank matrices (A and B) via low-rank decomposition; the original pre-trained weight matrix stays frozen and only the update matrices…",
+      "tags": [
+        "lora",
+        "peft",
+        "fine-tuning",
+        "parameter-efficient",
+        "qlora",
+        "transformers",
+        "huggingface",
+        "adapters"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-08-17",
+      "path": "catalog/entries/lora-peft-guide.md"
+    },
+    {
       "name": "markitdown",
       "title": "MarkItDown",
       "url": "https://github.com/microsoft/markitdown",
@@ -5051,6 +5231,28 @@
       "path": "catalog/entries/minimal-agent-integration.md"
     },
     {
+      "name": "mistakes-md-log",
+      "title": "MISTAKES.md — a self-accumulating agent error log",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Lightweight Claude Code technique: keep a MISTAKES.md in the repo plus one CLAUDE.md line ('Log mistakes in MISTAKES.md (what happened, root cause, prevention).'). Whenever the agent breaks something or is corrected, it appends an entry (what happened / root cause / consequence / the rule that prevents a repeat), newest first — no tooling, plugin, or vector store. Two reported effects: the agent starts citing and avoiding past mistakes, and a failure that recurs 4–5 times graduates from a logged mistake into a hard rule in CLAUDE.md. MISTAKES.md accumulates evidence; CLAUDE.md enforces it.",
+      "body_summary": "A simple, tooling-free practice for making a coding agent learn from its own errors. Setup: a `MISTAKES.md` file in the repo and one line in `CLAUDE.md` — \"Log mistakes in MISTAKES.md (what happened, root cause, prevention).\" Every time the agent breaks something or the user corrects it, it appends…",
+      "tags": [
+        "claude-code",
+        "claude-md",
+        "memory",
+        "self-improvement",
+        "error-log",
+        "workflow",
+        "agent-pattern"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-08-17",
+      "path": "catalog/entries/mistakes-md-log.md"
+    },
+    {
       "name": "mit-opencourseware",
       "title": "MIT OpenCourseWare (OCW)",
       "url": "https://ocw.mit.edu/search/",
@@ -5070,6 +5272,33 @@
       "security_flags": [],
       "reviewed": "2026-06-22",
       "path": "catalog/entries/mit-opencourseware.md"
+    },
+    {
+      "name": "mixpeek",
+      "title": "Mixpeek",
+      "url": "https://mixpeek.com/education/videos/multimodal-warehouse-vs-vector-database",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Multimodal search/retrieval infrastructure ('multimodal data warehouse') running on object storage: typed feature-extraction pipelines turn video/files into queryable timestamped features (scenes, transcripts, faces, OCR, fingerprints), embeddings are generated/stored from 50+ models, and multi-stage retrievers compose filter/join/rerank (advertised <100ms). Integrations include S3, GCS, R2, Mux, LangChain, and MCP. Catalog source is a Mixpeek education video contrasting an 'extract once, upstream of every app' model against a plain vector database.",
+      "body_summary": "Mixpeek is multimodal search/retrieval infrastructure that its materials position as a \"multimodal data warehouse\" — the layer that extracts features from raw media once, upstream of every downstream app, rather than each app rebuilding its own chunk→extract→embed→index pipeline. Feature extractors produce typed, timestamped features (scenes, transcripts, faces, OCR, fingerprints); indexes build from those features; and retrievers compose search, filtering, and reranking on top. Embeddings can be generated and stored from 50+ models. The stated contrast with a plain vector database: a vector DB stores vectors, whereas Mixpeek also owns the expensive extraction step and keeps features queryable, so \"a new app is a query, not a pipeline.\"",
+      "tags": [
+        "multimodal",
+        "search",
+        "retrieval",
+        "embeddings",
+        "vector-database",
+        "video",
+        "object-storage",
+        "feature-extraction",
+        "mcp"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [
+        "hosted-service-data-flow"
+      ],
+      "reviewed": "2026-08-17",
+      "path": "catalog/entries/mixpeek.md"
     },
     {
       "name": "mlx-vlm-turboquant",
@@ -5660,11 +5889,11 @@
     {
       "name": "open-knowledge-format",
       "title": "Open Knowledge Format (OKF)",
-      "url": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md",
+      "url": "https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf",
       "category": "reference",
       "decision_status": "open",
-      "summary": "Google's draft spec for agent-friendly knowledge representation using Markdown + YAML frontmatter; closely aligned with our wiki pattern but v0.1 draft status",
-      "body_summary": "A specification (v0.1 draft) from Google Cloud Platform for representing knowledge as a directory of Markdown files with YAML frontmatter — designed to be authored by people, generated by agents, exchanged across organizations, and consumed by both. A \"Knowledge Bundle\" is a directory tree of `.md` files where each file is a \"Concept\" with a required `type` field in frontmatter. The spec defines: concept documents (frontmatter + body), cross-linking via standard Markdown links, index files for progressive disclosure, log files for change history, and citations for external sources.\n\nKey design principles: readable without tooling, parseable without SDKs, diffable in git, portable across tools. Deliberately minimal — only standardizes `type` as a required field; everything else is optional. Consumers must tolerate unknown types, unknown frontmatter keys, and broken links.",
+      "summary": "Google's spec (v0.2) for agent-friendly knowledge representation using Markdown + YAML frontmatter; adds provenance/freshness/trust signals, reference agent with web-crawling enrichment, interactive graph visualizer; closely aligned with our wiki pattern",
+      "body_summary": "A specification (v0.2) from Google Cloud Platform for representing knowledge as a directory of Markdown files with YAML frontmatter — designed to be authored by people, generated by agents, exchanged across organizations, and consumed by both. A \"Knowledge Bundle\" is a directory tree of `.md` files where each file is a \"Concept\" with a required `type` field in frontmatter. The spec defines: concept documents (frontmatter + body), cross-linking via standard Markdown links, index files for progressive disclosure, log files for change history, and citations for external sources.\n\nKey v0.2 additions over v0.1:\n- **Provenance**: `sources` with per-source credibility signals, `generated` and `verified` metadata\n- **Freshness**: `status` and `stale_after` frontmatter fields for currency tracking\n- **Trust tiers**: Consumers can derive trust from provenance signals without bespoke runtime\n\nThe repo ships a reference agent (BigQuery metadata + LLM-driven web crawler) that produces OKF bundles, and a self-contained interactive HTML visualizer (Cytoscape.js graph + markdown rendering) that consumes them. Four sample bundles: GA4 e-commerce, Stack Overflow, Bitcoin, Acme Retail.\n\nDesign principles: readable without tooling, parseable without SDKs, diffable in git, portable across tools. Deliberately minimal — only standardizes `type` as required; everything else is optional. Consumers must tolerate unknown types, unknown frontmatter keys, and broken links.",
       "tags": [
         "knowledge-management",
         "specification",
@@ -5677,7 +5906,7 @@
       "workflows": [],
       "license": "Apache-2.0",
       "security_flags": [],
-      "reviewed": "2026-06-16",
+      "reviewed": "2026-08-17",
       "path": "catalog/entries/open-knowledge-format.md"
     },
     {
@@ -6683,6 +6912,33 @@
       "path": "catalog/entries/repowire.md"
     },
     {
+      "name": "repowise",
+      "title": "repowise",
+      "url": "https://github.com/repowise-dev/repowise",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Local-first codebase-intelligence engine: index a repo once and keep it current per-commit, then serve it to coding agents via ~11 task-shaped MCP tools plus a CLI, local dashboard, VS Code extension, and a zero-LLM PR bot. Builds a five-layer index (dependency graph across 19 languages, git behavioral signals, generated wiki, mined architectural decisions, deterministic 1–10 code-health scores with concrete refactoring plans), plus change-risk scoring, dead-code detection, and reversible command-output 'distill'. Structural index needs no API key and runs offline; AGPL-3.0 with a commercial license option.",
+      "body_summary": "repowise precomputes the answers a coding agent normally rediscovers on every task (who calls this function, what breaks if I change it, why it's written this way, which files are risky) and keeps them current on each commit, so the agent reads an answer instead of re-exploring the codebase. The same index also gives a team a defect-validated health score, change-risk scoring on PRs, and a local dashboard. It runs on your machine; the first (structural) index needs no API key and the code never leaves the box. It reports large token savings in its own benchmarks (e.g. loading one commit's context at 393 vs 13,984 raw tokens; −31.6% agent output tokens on a 43-question loop) — vendor-measured against an open-source agent-context field, with losing rows published.",
+      "tags": [
+        "codebase-intelligence",
+        "mcp",
+        "code-health",
+        "dependency-graph",
+        "agent-context",
+        "git-analytics",
+        "documentation",
+        "self-hosted",
+        "agpl"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0",
+      "security_flags": [
+        "agpl-3.0-copyleft"
+      ],
+      "reviewed": "2026-08-17",
+      "path": "catalog/entries/repowise.md"
+    },
+    {
       "name": "robyn",
       "title": "Robyn",
       "url": "https://github.com/sparckles/Robyn",
@@ -6786,6 +7042,30 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/ruview-wifi-sensing.md"
+    },
+    {
+      "name": "sam3",
+      "title": "SAM 3 (Segment Anything Model 3)",
+      "url": "https://github.com/facebookresearch/sam3",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Meta's 848M-param unified foundation model for promptable segmentation in images and video; adds open-vocabulary detection/segmentation of all instances of a concept from a short text phrase or visual exemplars, on top of SAM 2's point/box/mask tracking. Checkpoints are gated (access request + HF auth).",
+      "body_summary": "SAM 3 is a unified foundation model for promptable segmentation across images and videos. It detects, segments, and tracks objects from either text prompts (a short noun phrase) or visual prompts (points, boxes, masks, image exemplars). Its distinguishing capability over SAM 2 is exhaustive open-vocabulary segmentation: given a text phrase, it finds and masks *every* instance of that concept in the scene. It reports 75–80% of human performance on the new SA-Co benchmark (270K unique concepts, ~50× larger than prior open-vocabulary segmentation benchmarks).",
+      "tags": [
+        "segmentation",
+        "computer-vision",
+        "foundation-model",
+        "open-vocabulary",
+        "video",
+        "image",
+        "pytorch",
+        "meta"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-08-17",
+      "path": "catalog/entries/sam3.md"
     },
     {
       "name": "scheduled-multi-agent-coordinator",
@@ -7092,6 +7372,31 @@
       "path": "catalog/entries/skills-cli.md"
     },
     {
+      "name": "skills-visibility",
+      "title": "skills-visibility (Evil Martians)",
+      "url": "https://github.com/evilmartians/agent-skills/blob/main/skills/skills-visibility/SKILL.md",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Agent skill (by Evil Martians) that walks through publishing a discoverable, installable catalog of agent skills: lay each skill out as skills/<name>/SKILL.md in a git repo, classify its shape (single-file / multi-file / bundle), re-host and hash the served bytes from a domain you control, build flat reproducible tar.gz archives, and publish a .well-known/agent-skills/index.json discovery index (agentskills.io schema / Cloudflare's RFC 8615 extension) so npx skills, gh skill, and Claude's plugin marketplace resolve them. Emphasizes sha256 integrity digests and offering multiple install commands.",
+      "body_summary": "A skill that tells an agent how to publish *many* agent skills so installers and coding agents can discover and install them without being handed a URL each time — \"what llms.txt does for pages, done for skills.\" The mechanism is a discovery index at a well-known path; get it right and `npx skills`, `gh skill`, and Claude's plugin marketplace all resolve your skills. It is scoped to distribution/discovery, explicitly *not* authoring a single skill's content or making web pages LLM-readable.",
+      "tags": [
+        "agent-skills",
+        "skill",
+        "distribution",
+        "discovery-index",
+        "well-known",
+        "packaging",
+        "claude-code",
+        "integrity",
+        "evil-martians"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-08-17",
+      "path": "catalog/entries/skills-visibility.md"
+    },
+    {
       "name": "skylos",
       "title": "Skylos",
       "url": "https://github.com/duriantaco/skylos",
@@ -7269,6 +7574,31 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/spiderbrain-v3.md"
+    },
+    {
+      "name": "state-of-open-coding-models-2026",
+      "title": "The State of Open Coding AI Models (August 2026)",
+      "url": "https://pub.towardsai.net/the-state-of-open-coding-ai-models-in-august-2026-b0858d798bda",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Opinion snapshot (Aug 2026) arguing the best open coding models no longer fit regular consumer hardware, so 'open' no longer implies 'local.' Cites Kimi K3 (~2.8T params, ~1.56 TB on HF), GLM 5.2 (the one people called safe to leave running unattended; complaints about verbosity, not wrong answers), and DeepSeek V4 (vendor claims open-source SOTA on agentic coding, but the preview checkpoint felt rough and headline numbers came from the vendor's own agent harness). Thesis: the interesting engineering has shifted from training these models to serving them faster/cheaper. Author discloses a bias (works for a GPU cloud provider).",
+      "body_summary": "A discussion/article revisiting a year-old take that non-engineers should just run open-source AI locally for free. The author's updated claim: open coding models are now genuinely good for real work (including \"vibecoding\") but have grown so large that they no longer fit on regular consumer…",
+      "tags": [
+        "open-models",
+        "coding-models",
+        "llm",
+        "local-inference",
+        "kimi",
+        "glm",
+        "deepseek",
+        "hardware",
+        "serving"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-08-17",
+      "path": "catalog/entries/state-of-open-coding-models-2026.md"
     },
     {
       "name": "stirling-pdf",
@@ -8202,6 +8532,28 @@
       "security_flags": [],
       "reviewed": "2026-06-22",
       "path": "catalog/entries/windows-god-mode.md"
+    },
+    {
+      "name": "you-cannot-automate-habit",
+      "title": "You cannot automate a habit (discovery before automation)",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Practitioner reflection on building business automations/agents: the hard part is rarely the model or framework — it's that the target process only exists as an undocumented habit. Ask three people how it works and you get three answers (owner's original design, manager's exception-laden version, the operator's notebook-based reality); even 'the menu' has no single answer (per-outlet prices, time-of-day availability, duplicate names). The reusable practice: before automating, sit with people, force the business to write its own rules down for the first time, and get someone with authority to sign off on the version that will be encoded.",
+      "body_summary": "An automation builder's observation, distilled as \"you cannot automate a habit.\" A brief for an automation (\"take the order and send it to the kitchen, same as our staff do\") assumes a process that is actually undocumented and inconsistent. Ask three people and you get three descriptions: the…",
+      "tags": [
+        "automation",
+        "agents",
+        "requirements",
+        "process-discovery",
+        "elicitation",
+        "consulting",
+        "workflow"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-08-17",
+      "path": "catalog/entries/you-cannot-automate-habit.md"
     },
     {
       "name": "zero-to-mastery-ml",
