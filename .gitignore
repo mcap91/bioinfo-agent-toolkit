@@ -9,6 +9,9 @@
 # Private wiki (tracked in separate private repo)
 wiki/
 
+# Private benchmark workbench (tracked in separate private repo: bioinfo-agent-toolkit-workbench)
+/workbench/
+
 # Internal docs (not public)
 docs/superpowers/
 docs/roadmap.md
