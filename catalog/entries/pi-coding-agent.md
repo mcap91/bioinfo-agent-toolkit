@@ -40,3 +40,9 @@ Sessions are tree-structured JSONL files supporting in-place branching (`/tree`)
 ## Security
 
 MIT licensed. Extensions execute arbitrary code with full system access. Skills can instruct the model to perform any action including running executables. The README advises reviewing source code before installing third-party packages. Telemetry is opt-out (install/update pings to pi.dev; provider attribution headers for OpenRouter/Cloudflare/NVIDIA). No security flags observed in the core tool.
+
+## Usage notes
+
+- Community harness comparison: Pi is lightweight and purpose-built for local LLMs — optimizes for minimal context and runs ~2-3x faster than heavier harnesses; can self-generate extensions/skills on the fly via the Pi marketplace.
+- Trade-off: no built-in guardrails — one user reported it ran `rm -rf` without confirmation — requiring more DIY setup than feature-rich harnesses like OpenCode.
+- Comparison point from the same discussion: OpenCode is feature-rich/out-of-the-box with built-in guardrails, but reported as bloated and slower with local models due to heavy system-prompt overhead.

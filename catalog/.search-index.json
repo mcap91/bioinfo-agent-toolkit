@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-08-18",
-  "count": 358,
+  "generated": "2026-08-26",
+  "count": 372,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -529,6 +529,28 @@
       "security_flags": [],
       "reviewed": "2026-08-17",
       "path": "catalog/entries/agentic-resource-discovery.md"
+    },
+    {
+      "name": "ai-engineering-skills-map",
+      "title": "The AI Engineering Skills Map",
+      "url": "https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "DeepLearning.AI/Andrew Ng taxonomy of four core AI-engineering skills — building & deploying AI applications, software-engineering fundamentals, using coding agents, and shaping the build — synthesized from 10,000+ job postings, expert interviews, and surveys; skill 1 later expanded into six sub-components.",
+      "body_summary": "A skills taxonomy published by Andrew Ng and DeepLearning.AI in *The Batch* (Aug 14, 2026). It names the AI-engineering skills the authors identified as most valuable, derived from an analysis of 10,000+ job postings, dozens of structured interviews with AI experts, hiring managers, and recruiters,…",
+      "tags": [
+        "ai-engineering",
+        "skills-taxonomy",
+        "coding-agents",
+        "evals",
+        "careers",
+        "deeplearning-ai"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-08-25",
+      "path": "catalog/entries/ai-engineering-skills-map.md"
     },
     {
       "name": "ai-for-beginners",
@@ -2831,6 +2853,35 @@
       "path": "catalog/entries/deepseek-and-destroy.md"
     },
     {
+      "name": "deepseek-harness",
+      "title": "DeepSeek Harness (dsh)",
+      "url": "https://github.com/deepseek-ai/deepseek-harness",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source agent harness from DeepSeek AI built on Cordis, a reversible plugin meta-framework — models, tools, skills, sessions, sandboxes, storage, loops, scheduling, and the UI are all swappable plugins composed via configuration. MIT-licensed developer preview, open-sourced August 13, 2026 alongside DeepSeek-V4-Pro; quick start is `npx @deepseek-ai/dsh web`.",
+      "body_summary": "DeepSeek Harness (dsh) is an open-source agent harness developed by DeepSeek AI, open-sourced August 13, 2026 alongside the DeepSeek-V4-Pro model release. It is currently in developer preview (\"iterating rapidly... THERE WILL BE COMPATIBILITY-BREAKING CHANGES\" per the README) and is licensed MIT.\n\nIts architectural premise is \"everything is a plugin,\" built on **Cordis**, a meta-framework whose design is described in the paper *A Programming Paradigm for Spatiotemporal Composability*. Cordis manages plugin mounting, unmounting, and dependencies, splitting dynamic composition into temporal composability (fully reverting a component's effects on unload) and spatial composability (declaring and reactively managing inter-component dependencies). Cordis predates dsh — it has been the plugin kernel of the open-source Koishi chatbot framework for roughly four years — and is itself a standalone MIT project that dsh builds on.\n\nEvery agent capability — models, tools, skills, sessions, sandboxes, storage, loops, scheduling, and the UI — is a Cordis plugin, so any of them can be selected, swapped, or extended via configuration without touching dsh's source. A running dsh instance is a plugin tree composed at boot from ordered layers (profile → bundles → patch files), with `dsh --profile web --dump-config` printing the tree a given machine boots.",
+      "tags": [
+        "agent-harness",
+        "plugin-architecture",
+        "cordis",
+        "deepseek",
+        "coding-agent",
+        "model-agnostic",
+        "sandboxing",
+        "session-replay",
+        "open-source",
+        "developer-preview"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "developer-preview-breaking-changes",
+        "partial-sandbox-enforcement-reported"
+      ],
+      "reviewed": "2026-08-25",
+      "path": "catalog/entries/deepseek-harness.md"
+    },
+    {
       "name": "deny-env-reads",
       "title": "Deny .env Reads via Permissions",
       "url": "https://code.claude.com/docs/en/settings",
@@ -3693,6 +3744,40 @@
       "path": "catalog/entries/glama.md"
     },
     {
+      "name": "godogen",
+      "title": "godogen",
+      "url": "https://github.com/htdt/godogen",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Generator + agent-driven workflow for autonomous game development targeting Godot 4, Bevy, or Babylon.js — a publish.sh script renders a thin runtime layout (manifest, engine guide, asset-generation skill) into a fresh target repo for either Claude Code (CLAUDE.md + .claude/skills/) or Codex (AGENTS.md + .agents/skills/), then the chosen host agent builds the actual game by reading the engine guide and calling external asset-generation APIs (Gemini, xAI Grok, Tripo3D)",
+      "body_summary": "godogen is not itself a game — it is the source for a generator that produces game-development repos: `godogen -> game repo -> game`. Running `./publish.sh --engine <godot|bevy|babylon> --agent <claude|codex> --out <dir>` renders a deliberately thin runtime layout into a fresh target directory: a runtime manifest (`prompts/runtime.md`), a one-page per-engine guide (`engines/{babylon,godot,bevy}.md`), and a cross-engine asset-generation skill (`asset-gen/`), formatted for either Claude Code (`CLAUDE.md` + `.claude/skills/`) or Codex (`AGENTS.md` + `.agents/skills/`) depending on the `--agent` flag. The chosen host coding agent then runs inside that freshly published repo and reconstructs everything else (project scaffold, capture tooling) from the short engine guide, building an actual playable game: it describes a game from a prompt, and the agent scaffolds the project, generates art/asset assets via external generation APIs, runs the target engine, and produces proof of the result — either a live, steerable session (a Babylon.js URL to watch in-browser, or a Godot/Bevy project run locally) or a recorded 15–20 second video clip when run unattended.\n\nPer-engine targets: Godot 4 (C#/.NET projects, build-time scene generation, runtime scripts, Jolt physics), Bevy (Rust/ECS, code-first scenes, offscreen capture), Babylon.js (TypeScript/Vite, served as a live browser URL). Asset generation is delegated to three external services: Google Gemini for precise image references/characters, xAI Grok for textures/simple objects plus Grok video for animated sprites (with loop detection and background removal), and Tripo3D for image-to-3D conversion and rigged biped animation.",
+      "tags": [
+        "game-development",
+        "godot",
+        "bevy",
+        "babylonjs",
+        "claude-code",
+        "claude-code-skill",
+        "codex",
+        "agent-workflow",
+        "asset-generation",
+        "generator",
+        "python"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "\\\"Requires third-party API keys with outbound network calls to external paid services during agent runs: GOOGLE_API_KEY (Gemini image generation)",
+        "XAI_API_KEY (Grok image/video generation)",
+        "TRIPO3D_API_KEY (image-to-3D and rigged animation) — these keys and generated content leave the local machine\"",
+        "\\\"Designed to run an AI coding agent (Claude Code or Codex) autonomously/unattended for extended periods ('a full generation run can take hours'); the README suggests running under tmux/screen on a remote server with the agent's remote-control interface",
+        "i.e. long unattended agent execution with real API credentials and code-execution ability\"",
+        "No LICENSE file found at the repository's raw content path checked (githubusercontent.com/htdt/godogen/main/LICENSE returned 404); license is asserted via the GitHub repository metadata API (license.spdx_id: MIT) rather than confirmed from an in-repo LICENSE file"
+      ],
+      "reviewed": "2026-08-25",
+      "path": "catalog/entries/godogen.md"
+    },
+    {
       "name": "google-knowledge-catalog",
       "title": "Google Cloud Knowledge Catalog",
       "url": "https://github.com/GoogleCloudPlatform/knowledge-catalog",
@@ -4025,6 +4110,35 @@
       "path": "catalog/entries/harness-engineering.md"
     },
     {
+      "name": "harnessx",
+      "title": "HarnessX",
+      "url": "https://github.com/Darwin-Agent/HarnessX",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Python agent-harness foundry from the Darwin Agent Team separating model (ModelConfig) from behavior (HarnessConfig): a 9-dimension processor pipeline (context, control, evaluation, memory, multi-model, observability, tools, plus providers/plugins) composed with a `|` operator, plus two self-reported evolution loops — a meta-harness that auto-searches processor/config combinations, and RL fine-tuning (via VERL) on reward-annotated run trajectories. MIT-licensed, v0.1.0/Beta. Companion papers: HarnessX (arXiv:2606.14249) and a follow-on, DarwinX (arXiv:2608.07545).",
+      "body_summary": "HarnessX is a \"harness foundry\" — a framework for constructing, composing, and evolving agent harnesses independently of the model, from the Darwin Agent Team. Its core separation is `agent = model.agentic(harness)`: a `ModelConfig` (provider routing, fallback, per-role model assignment) is kept distinct from a `HarnessConfig` (the full behavior pipeline — tools, memory, processors, trace, sandbox). The stated goal is to make *behavior* swapping (e.g. from a coding agent to a research agent, adding memory or guardrails) as cheap as model swapping already is in most frameworks, without rewriting the agent.\n\nBehavior is expressed as a 9-dimension processor pipeline: any unit of behavior is a `Processor`, composed across categories with the `|` operator — context (system prompt, history, user wrapper), control (13 safety/reliability processors), evaluation (LLM judge, PRM, self-verify), memory (extraction/retrieval, 5 strategies), multi_model (routing), observability (OpenTelemetry, checkpoints, metrics), and tools (skill loader, schema adapter, filters), on top of 6 model-provider backends and a plugin/dimensions layer.\n\nTwo evolution loops are described, both self-reported by the project: **Harness Evolution**, where a meta-harness observes trajectories and auto-searches processor/config combinations (Bayesian Optimization over a claimed ~10^6-configuration space) without changing the model; and **Model Evolution**, where reward-annotated trajectories from harness runs feed RL fine-tuning via VERL (a \"slime\" recipe: SGLang rollout adapter + token annotation + GRPO). The two are described as composable — evolve the harness, then the model on top of it.\n\nA companion arXiv paper, *HarnessX: A Composable, Adaptive, and Evolvable Agent Harness Foundry* (arXiv:2606.14249), describes the design (typed harness primitives, a substitution algebra, and \"AEGIS,\" a trace-driven multi-agent evolution engine) and reports GAIA/ALFWorld/WebShop/tau³-Bench/SWE-bench-Verified results. A follow-on paper from the same team, *DarwinX: Evolving Agent Harnesses Through Natural Selection* (arXiv:2608.07545), reframes self-evolution as selection over an archived population of harness variants with the model frozen, and was applied to Salesforce's proprietary Monet agent in that paper's evaluation.",
+      "tags": [
+        "agent-harness",
+        "harness-foundry",
+        "composable",
+        "processors",
+        "self-evolution",
+        "reinforcement-learning",
+        "python",
+        "benchmarks",
+        "mit"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "install-script-curl-pipe",
+        "self-reported-benchmarks",
+        "early-stage-v0.1-beta"
+      ],
+      "reviewed": "2026-08-25",
+      "path": "catalog/entries/harnessx.md"
+    },
+    {
       "name": "headroom-desktop",
       "title": "Headroom Desktop",
       "url": "https://github.com/gglucass/headroom-desktop",
@@ -4110,6 +4224,33 @@
       ],
       "reviewed": "2026-07-09",
       "path": "catalog/entries/herdr.md"
+    },
+    {
+      "name": "hotdog",
+      "title": "hotdog",
+      "url": "https://github.com/devoidfury/hotdog",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Zero-dependency TypeScript/Bun AI agent harness with tool calling — connects to any OpenAI-compatible chat-completions endpoint (local llama-swap/llama.cpp/vllm or cloud), with hook-driven extensions, profiles, skills, MCP client, subagent tasks, and an optional --sandbox mode restricting tools to non-destructive ones; MIT, single-maintainer hobby project",
+      "body_summary": "hotdog is an AI agent harness with tool calling support, built to run on the Bun runtime with zero npm dependencies. It connects to any OpenAI-compatible chat-completions API (the author's stated primary use case is local backends — llama-swap, llama.cpp, vllm — though any compatible cloud endpoint…",
+      "tags": [
+        "agent-harness",
+        "cli-tool",
+        "bun",
+        "typescript",
+        "mcp-client",
+        "local-llm",
+        "tool-calling"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "single-maintainer",
+        "no-external-adoption-signal",
+        "minimal-guardrails-by-default"
+      ],
+      "reviewed": "2026-08-25",
+      "path": "catalog/entries/hotdog.md"
     },
     {
       "name": "huggingface-agents-course",
@@ -6156,6 +6297,29 @@
       "path": "catalog/entries/openrouter.md"
     },
     {
+      "name": "opensandbox",
+      "title": "OpenSandbox",
+      "url": "https://github.com/opensandbox-group/OpenSandbox",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "General-purpose sandbox runtime platform for AI applications (Alibaba-originated) — multi-language SDKs (Python, Java/Kotlin, JS/TS, C#/.NET, Go), unified sandbox lifecycle/execution APIs, Docker and Kubernetes runtimes, and an osb CLI plus MCP server for coding agents, GUI agents, agent evaluation, code execution, and RL training; Apache-2.0",
+      "body_summary": "OpenSandbox is a general-purpose sandbox platform for AI applications, providing multi-language SDKs, unified sandbox lifecycle/execution APIs, and Docker/Kubernetes runtimes for use cases such as coding agents, GUI agents, agent evaluation, AI code execution, and RL training. It defines a \"Sandbox…",
+      "tags": [
+        "sandbox",
+        "code-execution",
+        "agent-infrastructure",
+        "kubernetes",
+        "docker",
+        "mcp-server",
+        "isolation"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-08-25",
+      "path": "catalog/entries/opensandbox.md"
+    },
+    {
       "name": "openspace",
       "title": "OpenSpace",
       "url": "https://github.com/HKUDS/OpenSpace",
@@ -6298,6 +6462,39 @@
       ],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/overcut.md"
+    },
+    {
+      "name": "ovisocr2",
+      "title": "OvisOCR2",
+      "url": "https://huggingface.co/ATH-MaaS/OvisOCR2",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Compact 0.8B-parameter vision-language model for end-to-end page-level document parsing — given a document page image, generates a single structured Markdown document (plain text, LaTeX formulas, HTML tables, and visual regions in natural reading order) without a multi-stage OCR pipeline; scores 96.58 overall on OmniDocBench v1.6 and 75.06 Avg3 on PureDocBench per the publisher's technical report",
+      "body_summary": "OvisOCR2 is an end-to-end vision-language model that converts a document page image directly into a single Markdown document, in natural human reading order, in one forward pass — no separate layout-detection / OCR / table-recognition / formula-recognition pipeline stages. Output covers plain text, HTML-formatted tables (`<table>...</table>`), LaTeX-formatted formulas, and visual (chart/image) regions represented as `<img>` tags with bounding-box coordinates scaled to [0, 1000). It is built by post-training Qwen3.5-0.8B using a data engine that combines real-world documents with synthetic HTML-rendered documents, and a multi-stage training recipe: supervised fine-tuning (SFT), reinforcement learning (RL), and On-Policy Distillation (OPD).\n\nReported results: 96.58 overall on OmniDocBench v1.6 (publisher states this is the first end-to-end model to top that leaderboard, which was previously dominated by multi-stage pipeline methods) and an Avg3 score of 75.06 on PureDocBench (publisher-reported highest score). An earlier model, ATH-MaaS/OvisOCR, exists in the same HF org.",
+      "tags": [
+        "ocr",
+        "vision-language-model",
+        "document-parsing",
+        "markdown",
+        "huggingface",
+        "qwen",
+        "vllm",
+        "table-extraction",
+        "formula-recognition"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "Published by Hugging Face org 'ATH-MaaS'; third-party analysis (note.com/ai_driven) identifies ATH-MaaS as a rebranding of the former Alibaba AIDC-AI team (publisher of the earlier 'Ovis' VLM series) following an internal reorg — not independently confirmed by Alibaba itself",
+        "\"Model card provides only publisher-reported benchmark numbers (OmniDocBench v1.6",
+        "PureDocBench); no independent third-party benchmark reproduction found\"",
+        "\\\"Publisher's own disclaimer: due to real-world document diversity/complexity",
+        "the model may still produce incorrect or incomplete outputs (repeated text",
+        "invalid table/formula structures",
+        "reading-order errors); manual verification recommended for critical applications\""
+      ],
+      "reviewed": "2026-08-25",
+      "path": "catalog/entries/ovisocr2.md"
     },
     {
       "name": "pandera",
@@ -6678,6 +6875,29 @@
       "path": "catalog/entries/ponytail.md"
     },
     {
+      "name": "production-rag-system-taxonomy",
+      "title": "Production RAG as a System (8-Part Taxonomy)",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Practitioner taxonomy framing production RAG as an 8-part system (not a vector-database feature): 01 offline build time (parse/chunk/embed/index), 02 online query time (rewrite/retrieve/rerank/assemble/generate), 03 knowledge store (vectors+metadata+raw docs+freshness), 04 retrieval quality (hybrid search/filters/top-k/reranking), 05 answer quality (grounding/citations/structured output/fallback), 06 state/data layer (Postgres+Redis+object storage+vector index), 07 observability/evals (latency/recall/answer quality/hallucinations/cost), 08 safety operations (ACLs/PII protection/prompt-injection defense/caching/feedback); presented as a directory-tree mental model contrasting with the four-step chunk-embed-retrieve-prompt demo pipeline.",
+      "body_summary": "A short practitioner post arguing that production RAG is a system, not a vector-database feature. Most demos stop at Chunk → Embed → Retrieve → Prompt; the post frames everything past that point as \"where production RAG starts,\" organized as eight additional concern areas.\n\nPresented as a…",
+      "tags": [
+        "rag",
+        "production-rag",
+        "retrieval",
+        "taxonomy",
+        "system-design",
+        "observability",
+        "safety",
+        "agent-pattern"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-08-25",
+      "path": "catalog/entries/production-rag-system-taxonomy.md"
+    },
+    {
       "name": "prompt-caching-mcp",
       "title": "Prompt Caching MCP",
       "url": "https://github.com/flightlesstux/prompt-caching",
@@ -6792,6 +7012,45 @@
       "path": "catalog/entries/qwen3-6-27b.md"
     },
     {
+      "name": "qwen3-8-27b-uncensored-hauhaucs-aggressive-gguf",
+      "title": "Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF",
+      "url": "https://huggingface.co/HauhauCS/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Community-produced GGUF quantization of Qwen3.8-27B with safety-refusal behavior deliberately stripped ('uncensored'/abliterated 'Aggressive' profile, publisher-claimed 0/465 refusals), published by pseudonymous Hugging Face contributor HauhauCS; ships multiple quant levels plus a vision projector and a custom 'FastMTP' speculative-decoding sidecar requiring a llama.cpp patch",
+      "body_summary": "This is a GGUF-format redistribution of Qwen/Qwen3.8-27B (dense 27B causal LM with vision encoder, 64 layers, 262,144-token native context) produced by Hugging Face contributor \"HauhauCS,\" modified with an \"uncensoring\" post-processing profile the publisher calls \"Aggressive.\" The publisher states the release makes \"no changes to datasets or intended capabilities\" beyond applying this uncensoring profile, and preserves Qwen3.8's native NextN/MTP (multi-token-prediction) head. The publisher also markets a \"HauhauCS FastMTP\" acceleration sidecar — a compact draft model plus a required llama.cpp source patch — claimed to speed up token generation (TG) versus both no-MTP and Qwen's standard embedded MTP, at \"identical output\" to the un-accelerated target model (verified via output-hash matching in the publisher's own reported tests).\n\nMultiple GGUF quantization levels are provided (Q2_K_P through Q8_K_P, plus IQ2/IQ3/IQ4 variants), including publisher-defined \"K_P\" (\"Perfect\") quants said to use per-model analysis to selectively preserve quality. A separate BF16 vision projector file (`mmproj-...-BF16.gguf`) is required for image/video input. A \"Balanced\" (less aggressive) uncensoring variant is referenced as existing \"if one is available\" for reliability-sensitive agentic use, but is not the artifact at this URL.",
+      "tags": [
+        "gguf",
+        "quantization",
+        "uncensored",
+        "abliteration",
+        "qwen",
+        "llama-cpp",
+        "local-inference",
+        "vision-language-model",
+        "speculative-decoding",
+        "mtp"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "\\\"UNCENSORED/ABLITERATED MODEL: publisher explicitly markets this as safety-guardrail-removed — 'Qwen3.8-27B uncensored by HauhauCS",
+        "0/465 Refusals'",
+        "'Aggressive variant: direct answers",
+        "no refusal behavior",
+        "and minimal preamble on hard prompts'; refusal behavior for harmful/hard prompts is intentionally disabled relative to the base Qwen3.8-27B release\\\"",
+        "\"Unverified community artifact from a pseudonymous",
+        "non-affiliated publisher (HauhauCS): not the original Qwen/Alibaba release; publisher self-signs its own release manifest with an Ed25519 key it also generated",
+        "which authenticates file integrity against HauhauCS's own claims but does not constitute third-party verification\\\"",
+        "\"Independent third-party benchmarking (Nathan Sapwell",
+        "'Uncensored LLM Abliteration Benchmarked') of other HauhauCS releases found the '0/N refusals' marketing claim only partially accurate — some soft/truncated refusals remained under adversarial testing — so the 0/465 figure for this specific release should be treated as an unverified publisher claim\\\"",
+        "\\\"Running the bundled 'HauhauCS FastMTP' acceleration sidecar requires downloading and applying a third-party patch file to a llama.cpp source checkout and compiling it (git apply of HauhauCS-FastMTP-llama.cpp.patch) — review the patch before applying",
+        "as with any third-party build patch\""
+      ],
+      "reviewed": "2026-08-25",
+      "path": "catalog/entries/qwen3-8-27b-uncensored-hauhaucs-aggressive-gguf.md"
+    },
+    {
       "name": "rag-retrieval-recipe",
       "title": "RAG Retrieval Recipe",
       "url": "https://en.wikipedia.org/wiki/Retrieval-augmented_generation",
@@ -6838,6 +7097,33 @@
       ],
       "reviewed": "2026-08-09",
       "path": "catalog/entries/reddit-pain-research-skill.md"
+    },
+    {
+      "name": "redis-iris",
+      "title": "Redis Iris",
+      "url": "https://redis.io/iris/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Redis's context-and-memory platform for AI agents (announced May 18, 2026) — bundles real-time structured/unstructured data retrieval (Context Retriever), short- and long-term agent memory (Agent Memory: interaction history, user preferences, persistent attributes), and continuous data sync from source-of-record systems (Redis Data Integration) into one product, layered on existing Redis Search and LangCache semantic caching",
+      "body_summary": "Redis announced Iris on May 18, 2026 as a context-and-memory platform purpose-built for AI agents, addressing the stateless nature of LLMs (every interaction starts from scratch unless something external provides continuity) and the observation that agentic workloads generate orders-of-magnitude…",
+      "tags": [
+        "redis",
+        "agent-memory",
+        "rag",
+        "context-engineering",
+        "semantic-cache",
+        "data-integration",
+        "ai-agents",
+        "context-retrieval"
+      ],
+      "workflows": [],
+      "license": "proprietary",
+      "security_flags": [
+        "Commercial Redis product; the fetched redis.io/iris/ marketing page itself renders mostly as navigation chrome with minimal on-page prose — most factual detail in this entry comes from third-party reporting and Redis's own docs.redis.io context-engine page rather than the linked landing page directly",
+        "No independent security/privacy audit of the Agent Memory data-retention or multi-tenant isolation model found during this review"
+      ],
+      "reviewed": "2026-08-25",
+      "path": "catalog/entries/redis-iris.md"
     },
     {
       "name": "redpanda",
@@ -7093,6 +7379,30 @@
       "path": "catalog/entries/scheduled-multi-agent-coordinator.md"
     },
     {
+      "name": "scrapegraph-ai",
+      "title": "ScrapeGraphAI",
+      "url": "https://github.com/ScrapeGraphAI/Scrapegraph-ai",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Python web-scraping library that uses LLMs plus graph-based pipelines (SmartScraperGraph, SearchGraph, SpeechGraph, ScriptCreatorGraph, and multi-page variants) to extract structured data from websites and local documents (HTML, XML, JSON, Markdown); MIT-licensed open-source core with a separate paid managed cloud API/SDKs",
+      "body_summary": "ScrapeGraphAI is a Python library that combines LLMs with graph-based scraping pipelines to extract information from web pages and local documents (XML, HTML, JSON, Markdown, etc.) given a natural-language prompt and a source. It ships several pipeline classes: `SmartScraperGraph` (single page),…",
+      "tags": [
+        "web-scraping",
+        "llm",
+        "python",
+        "data-extraction",
+        "mcp-server",
+        "agent-tooling"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "telemetry-enabled-by-default"
+      ],
+      "reviewed": "2026-08-25",
+      "path": "catalog/entries/scrapegraph-ai.md"
+    },
+    {
       "name": "scrub-context-engineering",
       "title": "SCRUB: A Framework for Context Engineering in Claude Code",
       "url": "https://example.com",
@@ -7165,6 +7475,33 @@
       ],
       "reviewed": "2026-06-17",
       "path": "catalog/entries/shannon.md"
+    },
+    {
+      "name": "simon-says-mother-goose",
+      "title": "Simon Says / Mother Goose (Agent Skills collections)",
+      "url": "https://github.com/jawsublime-byte/simon-says",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Two companion MIT-licensed, explicit-invocation Agent Skills collections (SKILL.md-compatible) by a solo hobbyist author, targeting recurring AI-coding-agent failure modes — Simon Says covers scope/execution/investigation/testing/alignment drift (e.g. Patty Cake: diffs instructions vs plan vs completed work and stops on material drift); Mother Goose covers repair loops, verification, evidence, automation scope, and provenance (e.g. Pinocchio: requires evidence for completion claims; The Emperor's New Clothes: protected dissent against groupthink)",
+      "body_summary": "Simon Says and Mother Goose are two companion collections of Agent Skills (installable into Claude Code, Codex, ChatGPT, and other Agent-Skills-compatible hosts) written by a solo author (\"Joe,\" a self-described online English teacher and hobbyist builder, not a company). Each skill maps a mnemonic…",
+      "tags": [
+        "agent-skills",
+        "skill-collection",
+        "guardrails",
+        "verification",
+        "alignment",
+        "claude-code",
+        "codex"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "single-maintainer",
+        "no-external-adoption-signal",
+        "unverified-by-web-search"
+      ],
+      "reviewed": "2026-08-25",
+      "path": "catalog/entries/simon-says-mother-goose.md"
     },
     {
       "name": "single-agent-synchronous-workflow",
@@ -7574,6 +7911,31 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/spiderbrain-v3.md"
+    },
+    {
+      "name": "state-of-context-engineering-2026",
+      "title": "The State of Context Engineering 2026 (Redis)",
+      "url": "https://redis.io/resources/state-of-context-engineering-2026/",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Redis-published survey report on context-engineering maturity among IT/AI infrastructure leaders: defines context engineering as deciding what an agent sees at each step (navigable, fresh, fast, compounding); reports 79% call context 'very important' yet 81% sit at the two earliest maturity stages (ad hoc/exploratory) and only 4% report reaching the 'compounding' stage; cites Gartner ('context engineering is in, prompt engineering is out', July 2025) and Cognizant's plan to train/deploy 1,000 context engineers (Aug 2025); promotes Redis's own Iris product and a gated 'Context Engineering Maturity Model' self-assessment/full report.",
+      "body_summary": "A Redis-published report on \"context engineering\" — the practice of deciding what an AI agent should see at each step of a task (which facts/records/past interactions, from which systems) and delivering it in a navigable, fresh, fast, and compounding form. Based on a survey of IT and AI…",
+      "tags": [
+        "context-engineering",
+        "ai-agents",
+        "survey",
+        "maturity-model",
+        "redis",
+        "vendor-report",
+        "production-ai",
+        "semantic-data-model",
+        "context-graph"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-08-25",
+      "path": "catalog/entries/state-of-context-engineering-2026.md"
     },
     {
       "name": "state-of-open-coding-models-2026",
@@ -8394,6 +8756,29 @@
       "security_flags": [],
       "reviewed": "2026-06-17",
       "path": "catalog/entries/vcf-parquet-discussion.md"
+    },
+    {
+      "name": "vector-database-basics-hnsw",
+      "title": "Vector Database Basics: HNSW (Tiger Data / Timescale)",
+      "url": "https://www.tigerdata.com/blog/vector-database-basics-hnsw",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Tiger Data (Timescale) blog explainer on HNSW (Hierarchical Navigable Small World) vector indexing: describes HNSW's skip-list-inspired multi-layer graph (sparse long-edge upper layers for coarse navigation, dense lower layers for fine-grained search), and its use with pgvector/Timescale Vector on Postgres via the m (max connections per layer) and ef_construction (build-time candidate list size) parameters that trade index size/build time for search accuracy.",
+      "body_summary": "A Tiger Data (the company behind TimescaleDB) blog post explaining HNSW (Hierarchical Navigable Small World), an approximate-nearest-neighbor (ANN) graph index used for vector similarity search, framed as an entry in a \"Vector Database Basics\" series. Stated goal: explain why HNSW indexes are…",
+      "tags": [
+        "hnsw",
+        "vector-database",
+        "pgvector",
+        "timescale",
+        "ann-search",
+        "postgres",
+        "indexing"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-08-25",
+      "path": "catalog/entries/vector-database-basics-hnsw.md"
     },
     {
       "name": "verify-before-claim",

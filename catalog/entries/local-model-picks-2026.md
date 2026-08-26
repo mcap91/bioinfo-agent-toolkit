@@ -36,3 +36,13 @@ The list spans from 8GB (Phi-4) to API-only (Kimi K2.6 at 1T params), covering t
 ## Security
 
 N/A — model selection notes, no code or dependencies.
+
+## Notes
+
+### Qwen 3.8 27B setup combos (practitioner reports, Aug 2026)
+
+- **Q4 + Q8 KV cache** is the recommended quantization combo — dynamic/mixed-precision Q4 GGUFs (e.g. Unsloth q4_K_XL) retain near-Q8 accuracy while reclaiming VRAM for context and concurrency.
+- **RTX 5090**: runs Qwen 3.8 27B comfortably; also runs Meta Muse 30B with Dflash at ~15 tok/s with 131K context. Meta Muse 30B trades blows with Qwen 3.8 27B — better at agentic work and instruct mode (no thinking), reasoning is brief but good, significantly faster.
+- **64GB Mac Mini M4 Pro**: Qwen 3.6 35B (a3b quant) replaced Gemma 4 and was a step-change improvement for coding via Ollama + OpenClaw.
+
+Source: r/LocalLLaMA, r/LocalLLM practitioner threads (unverified).
