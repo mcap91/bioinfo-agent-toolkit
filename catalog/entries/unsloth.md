@@ -63,3 +63,10 @@ Framework for fine-tuning and running LLMs with custom Triton and mathematical k
 ## Security
 
 Apache 2.0 (core library), AGPL-3.0 (Studio UI). Studio binds to localhost by default. `--secure` mode uses free Cloudflare tunnel (fails closed if tunnel can't start). Server-side tools (web search, Python/terminal execution) run as the current user — anyone with the API key can execute code. `--disable-tools` flag available when exposing Studio. Installer uses `curl | sh` (standard pipe-to-shell risk).
+
+## Usage notes
+
+- Community discussion: naive Q4 quantization has historically caused loops/inaccuracy in agentic use, but Unsloth's "dynamic" GGUF Q4 quants (e.g. q4_K_XL) keep select layers at higher/full precision (mixed precision); one user reported this eliminated MCP tool-call hangups and gave agentic results comparable to Q6 — framed as "the era of naive quantization is over, mixed precision is where it's at."
+- Community llama-perplexity benchmark (wikitext-2, n_ctx=512, fp16 KV) on Unsloth Qwen3.8-27B GGUFs, 16GB card, Q8_0 as ~100% reference: Q4_K_M ≈ 99.97% (17.1GB, reported as effectively indistinguishable from Q8 within error bars); IQ4_XS ≈ 99.2% (14.6GB); UD-Q3_K_XL ≈ 97.8%.
+- Same benchmark: NVFP4 variants scored worse (~94.9-96.6%) despite similar size to IQ4_XS/Q4_K_M — underperformed the same-size IQ4_XS quant.
+- Caveat: these are community-reported "feel, not gospel" figures, not a formal/rigorous benchmark.

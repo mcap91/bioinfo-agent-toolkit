@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T03:45:22.784Z",
+  "generated_at": "2026-08-26T02:34:57.027Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -221,6 +221,16 @@
       "title": "Agentic Resource Discovery (ARD)",
       "url": "https://huggingface.co/blog/agentic-resource-discovery-launch",
       "summary": "Draft open specification (contributors from Microsoft, Google, GoDaddy, Hugging Face, and others) for a discovery layer in front of MCP/Skills/A2A: agents search federated registries in natural language to find tools, skills, and other agents at runtime instead of pre-installing them. Defines a static ai-catalog.json manifest at a well-known URL and a dynamic POST /search registry API. Hugging Face's 'Discover' tool (hf discover CLI + REST + MCP endpoint) is a reference implementation over Hub Spaces, Agent Skills, and MCP servers.",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "ai-engineering-skills-map",
+      "kind": "entry",
+      "title": "The AI Engineering Skills Map",
+      "url": "https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map",
+      "summary": "DeepLearning.AI/Andrew Ng taxonomy of four core AI-engineering skills — building & deploying AI applications, software-engineering fundamentals, using coding agents, and shaping the build — synthesized from 10,000+ job postings, expert interviews, and surveys; skill 1 later expanded into six sub-components.",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -1269,6 +1279,16 @@
       "exists": true
     },
     {
+      "id": "deepseek-harness",
+      "kind": "entry",
+      "title": "DeepSeek Harness (dsh)",
+      "url": "https://github.com/deepseek-ai/deepseek-harness",
+      "summary": "Open-source agent harness from DeepSeek AI built on Cordis, a reversible plugin meta-framework — models, tools, skills, sessions, sandboxes, storage, loops, scheduling, and the UI are all swappable plugins composed via configuration. MIT-licensed developer preview, open-sourced August 13, 2026 alongside DeepSeek-V4-Pro; quick start is `npx @deepseek-ai/dsh web`.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "deny-env-reads",
       "kind": "entry",
       "title": "Deny .env Reads via Permissions",
@@ -1643,6 +1663,16 @@
       "exists": true
     },
     {
+      "id": "godogen",
+      "kind": "entry",
+      "title": "godogen",
+      "url": "https://github.com/htdt/godogen",
+      "summary": "Generator + agent-driven workflow for autonomous game development targeting Godot 4, Bevy, or Babylon.js — a publish.sh script renders a thin runtime layout (manifest, engine guide, asset-generation skill) into a fresh target repo for either Claude Code (CLAUDE.md + .claude/skills/) or Codex (AGENTS.md + .agents/skills/), then the chosen host agent builds the actual game by reading the engine guide and calling external asset-generation APIs (Gemini, xAI Grok, Tripo3D)",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "google-knowledge-catalog",
       "kind": "entry",
       "title": "Google Cloud Knowledge Catalog",
@@ -1787,6 +1817,16 @@
       "exists": true
     },
     {
+      "id": "harnessx",
+      "kind": "entry",
+      "title": "HarnessX",
+      "url": "https://github.com/Darwin-Agent/HarnessX",
+      "summary": "Python agent-harness foundry from the Darwin Agent Team separating model (ModelConfig) from behavior (HarnessConfig): a 9-dimension processor pipeline (context, control, evaluation, memory, multi-model, observability, tools, plus providers/plugins) composed with a `|` operator, plus two self-reported evolution loops — a meta-harness that auto-searches processor/config combinations, and RL fine-tuning (via VERL) on reward-annotated run trajectories. MIT-licensed, v0.1.0/Beta. Companion papers: HarnessX (arXiv:2606.14249) and a follow-on, DarwinX (arXiv:2608.07545).",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "headroom",
       "kind": "entry",
       "title": "Headroom",
@@ -1812,6 +1852,16 @@
       "title": "Herdr",
       "url": "https://github.com/ogulcancelik/herdr",
       "summary": "Terminal-based agent multiplexer (single Rust binary) — real terminal panes for many coding agents at a glance, detach/reattach across terminals or SSH with sessions surviving restarts, tmux-style keyboard + mouse, a plugin marketplace, and a pure socket API that lets agents themselves spawn panes and wait on each other; dual-licensed AGPL-3.0 / commercial",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "hotdog",
+      "kind": "entry",
+      "title": "hotdog",
+      "url": "https://github.com/devoidfury/hotdog",
+      "summary": "Zero-dependency TypeScript/Bun AI agent harness with tool calling — connects to any OpenAI-compatible chat-completions endpoint (local llama-swap/llama.cpp/vllm or cloud), with hook-driven extensions, profiles, skills, MCP client, subagent tasks, and an optional --sandbox mode restricting tools to non-destructive ones; MIT, single-maintainer hobby project",
       "category": "cli-tool",
       "decision_status": "open",
       "exists": true
@@ -2676,6 +2726,16 @@
       "exists": true
     },
     {
+      "id": "opensandbox",
+      "kind": "entry",
+      "title": "OpenSandbox",
+      "url": "https://github.com/opensandbox-group/OpenSandbox",
+      "summary": "General-purpose sandbox runtime platform for AI applications (Alibaba-originated) — multi-language SDKs (Python, Java/Kotlin, JS/TS, C#/.NET, Go), unified sandbox lifecycle/execution APIs, Docker and Kubernetes runtimes, and an osb CLI plus MCP server for coding agents, GUI agents, agent evaluation, code execution, and RL training; Apache-2.0",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "openspace",
       "kind": "entry",
       "title": "OpenSpace",
@@ -2731,6 +2791,16 @@
       "title": "Overcut — Agentic SDLC Orchestration",
       "url": "https://overcut.ai",
       "summary": "Commercial orchestration layer for multi-agent SDLC; addresses real coordination gap but closed-source, early-stage, and not yet individually usable",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "ovisocr2",
+      "kind": "entry",
+      "title": "OvisOCR2",
+      "url": "https://huggingface.co/ATH-MaaS/OvisOCR2",
+      "summary": "Compact 0.8B-parameter vision-language model for end-to-end page-level document parsing — given a document page image, generates a single structured Markdown document (plain text, LaTeX formulas, HTML tables, and visual regions in natural reading order) without a multi-stage OCR pipeline; scores 96.58 overall on OmniDocBench v1.6 and 75.06 Avg3 on PureDocBench per the publisher's technical report",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -2886,6 +2956,15 @@
       "exists": true
     },
     {
+      "id": "production-rag-system-taxonomy",
+      "kind": "entry",
+      "title": "Production RAG as a System (8-Part Taxonomy)",
+      "summary": "Practitioner taxonomy framing production RAG as an 8-part system (not a vector-database feature): 01 offline build time (parse/chunk/embed/index), 02 online query time (rewrite/retrieve/rerank/assemble/generate), 03 knowledge store (vectors+metadata+raw docs+freshness), 04 retrieval quality (hybrid search/filters/top-k/reranking), 05 answer quality (grounding/citations/structured output/fallback), 06 state/data layer (Postgres+Redis+object storage+vector index), 07 observability/evals (latency/recall/answer quality/hallucinations/cost), 08 safety operations (ACLs/PII protection/prompt-injection defense/caching/feedback); presented as a directory-tree mental model contrasting with the four-step chunk-embed-retrieve-prompt demo pipeline.",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "prompt-caching-mcp",
       "kind": "entry",
       "title": "Prompt Caching MCP",
@@ -2941,6 +3020,16 @@
       "exists": true
     },
     {
+      "id": "qwen3-8-27b-uncensored-hauhaucs-aggressive-gguf",
+      "kind": "entry",
+      "title": "Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF",
+      "url": "https://huggingface.co/HauhauCS/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF",
+      "summary": "Community-produced GGUF quantization of Qwen3.8-27B with safety-refusal behavior deliberately stripped ('uncensored'/abliterated 'Aggressive' profile, publisher-claimed 0/465 refusals), published by pseudonymous Hugging Face contributor HauhauCS; ships multiple quant levels plus a vision projector and a custom 'FastMTP' speculative-decoding sidecar requiring a llama.cpp patch",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "qwen36-27b",
       "kind": "entry",
       "exists": false
@@ -2962,6 +3051,16 @@
       "url": "https://github.com/haseebeqx/reddit-pain-research-skill",
       "summary": "Codex skill for evidence-based Reddit customer-discovery research — plans a study, collects and clusters pain-point evidence, and produces falsifiable monetization hypotheses via deterministic Python helpers, gated by a human approval checkpoint before evidence collection begins.",
       "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "redis-iris",
+      "kind": "entry",
+      "title": "Redis Iris",
+      "url": "https://redis.io/iris/",
+      "summary": "Redis's context-and-memory platform for AI agents (announced May 18, 2026) — bundles real-time structured/unstructured data retrieval (Context Retriever), short- and long-term agent memory (Agent Memory: interaction history, user preferences, persistent attributes), and continuous data sync from source-of-record systems (Redis Data Integration) into one product, layered on existing Redis Search and LangCache semantic caching",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -3076,6 +3175,16 @@
       "exists": true
     },
     {
+      "id": "scrapegraph-ai",
+      "kind": "entry",
+      "title": "ScrapeGraphAI",
+      "url": "https://github.com/ScrapeGraphAI/Scrapegraph-ai",
+      "summary": "Python web-scraping library that uses LLMs plus graph-based pipelines (SmartScraperGraph, SearchGraph, SpeechGraph, ScriptCreatorGraph, and multi-page variants) to extract structured data from websites and local documents (HTML, XML, JSON, Markdown); MIT-licensed open-source core with a separate paid managed cloud API/SDKs",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "scrub-context-engineering",
       "kind": "entry",
       "title": "SCRUB: A Framework for Context Engineering in Claude Code",
@@ -3102,6 +3211,16 @@
       "url": "https://github.com/KeygraphHQ/shannon",
       "summary": "Autonomous white-box AI pentester that analyzes source code and executes real exploits against web apps/APIs; AGPL-3.0, proof-by-exploitation reports, but actively mutates target state and requires authorization context",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "simon-says-mother-goose",
+      "kind": "entry",
+      "title": "Simon Says / Mother Goose (Agent Skills collections)",
+      "url": "https://github.com/jawsublime-byte/simon-says",
+      "summary": "Two companion MIT-licensed, explicit-invocation Agent Skills collections (SKILL.md-compatible) by a solo hobbyist author, targeting recurring AI-coding-agent failure modes — Simon Says covers scope/execution/investigation/testing/alignment drift (e.g. Patty Cake: diffs instructions vs plan vs completed work and stops on material drift); Mother Goose covers repair loops, verification, evidence, automation scope, and provenance (e.g. Pinocchio: requires evidence for completion claims; The Emperor's New Clothes: protected dissent against groupthink)",
+      "category": "skill",
       "decision_status": "open",
       "exists": true
     },
@@ -3279,6 +3398,16 @@
       "url": "https://github.com/SaroirCommunity/Spiderbrain-V3",
       "summary": "BSL license; master/column concept is the key takeaway for kb graph",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "state-of-context-engineering-2026",
+      "kind": "entry",
+      "title": "The State of Context Engineering 2026 (Redis)",
+      "url": "https://redis.io/resources/state-of-context-engineering-2026/",
+      "summary": "Redis-published survey report on context-engineering maturity among IT/AI infrastructure leaders: defines context engineering as deciding what an agent sees at each step (navigable, fresh, fast, compounding); reports 79% call context 'very important' yet 81% sit at the two earliest maturity stages (ad hoc/exploratory) and only 4% report reaching the 'compounding' stage; cites Gartner ('context engineering is in, prompt engineering is out', July 2025) and Cognizant's plan to train/deploy 1,000 context engineers (Aug 2025); promotes Redis's own Iris product and a gated 'Context Engineering Maturity Model' self-assessment/full report.",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -3693,7 +3822,17 @@
       "exists": true
     },
     {
+      "id": "tag:agent-tooling",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:agent-tools",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:agent-workflow",
       "kind": "tag",
       "exists": true
     },
@@ -3779,6 +3918,11 @@
     },
     {
       "id": "tag:ai-detection",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ai-engineering",
       "kind": "tag",
       "exists": true
     },
@@ -3869,6 +4013,11 @@
     },
     {
       "id": "tag:animation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ann-search",
       "kind": "tag",
       "exists": true
     },
@@ -3984,6 +4133,11 @@
     },
     {
       "id": "tag:asr",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:asset-generation",
       "kind": "tag",
       "exists": true
     },
@@ -4113,6 +4267,11 @@
       "exists": true
     },
     {
+      "id": "tag:babylonjs",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:backup",
       "kind": "tag",
       "exists": true
@@ -4184,6 +4343,11 @@
     },
     {
       "id": "tag:best-practices",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:bevy",
       "kind": "tag",
       "exists": true
     },
@@ -4304,6 +4468,11 @@
     },
     {
       "id": "tag:career",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:careers",
       "kind": "tag",
       "exists": true
     },
@@ -4663,6 +4832,11 @@
       "exists": true
     },
     {
+      "id": "tag:composable",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:composition",
       "kind": "tag",
       "exists": true
@@ -4743,6 +4917,11 @@
       "exists": true
     },
     {
+      "id": "tag:context-graph",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:context-graphs",
       "kind": "tag",
       "exists": true
@@ -4759,6 +4938,11 @@
     },
     {
       "id": "tag:context-network",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:context-retrieval",
       "kind": "tag",
       "exists": true
     },
@@ -4794,6 +4978,11 @@
     },
     {
       "id": "tag:copilot-studio",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:cordis",
       "kind": "tag",
       "exists": true
     },
@@ -5028,6 +5217,11 @@
       "exists": true
     },
     {
+      "id": "tag:data-integration",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:data-integrity",
       "kind": "tag",
       "exists": true
@@ -5148,6 +5342,11 @@
       "exists": true
     },
     {
+      "id": "tag:deeplearning-ai",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:deepseek",
       "kind": "tag",
       "exists": true
@@ -5219,6 +5418,11 @@
     },
     {
       "id": "tag:developer-education",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:developer-preview",
       "kind": "tag",
       "exists": true
     },
@@ -5309,6 +5513,11 @@
     },
     {
       "id": "tag:document-management",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:document-parsing",
       "kind": "tag",
       "exists": true
     },
@@ -5743,6 +5952,11 @@
       "exists": true
     },
     {
+      "id": "tag:formula-recognition",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:foundation-model",
       "kind": "tag",
       "exists": true
@@ -5823,6 +6037,11 @@
       "exists": true
     },
     {
+      "id": "tag:game-development",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:gantt",
       "kind": "tag",
       "exists": true
@@ -5864,6 +6083,11 @@
     },
     {
       "id": "tag:general-agent",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:generator",
       "kind": "tag",
       "exists": true
     },
@@ -5974,6 +6198,11 @@
     },
     {
       "id": "tag:go-cli",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:godot",
       "kind": "tag",
       "exists": true
     },
@@ -6143,6 +6372,11 @@
       "exists": true
     },
     {
+      "id": "tag:harness-foundry",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:headless",
       "kind": "tag",
       "exists": true
@@ -6179,6 +6413,11 @@
     },
     {
       "id": "tag:histology",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:hnsw",
       "kind": "tag",
       "exists": true
     },
@@ -6279,6 +6518,11 @@
     },
     {
       "id": "tag:incident-report",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:indexing",
       "kind": "tag",
       "exists": true
     },
@@ -6823,6 +7067,11 @@
       "exists": true
     },
     {
+      "id": "tag:maturity-model",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:mcp",
       "kind": "tag",
       "exists": true
@@ -7018,6 +7267,11 @@
       "exists": true
     },
     {
+      "id": "tag:model-agnostic",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:model-api",
       "kind": "tag",
       "exists": true
@@ -7094,6 +7348,11 @@
     },
     {
       "id": "tag:motion-design",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:mtp",
       "kind": "tag",
       "exists": true
     },
@@ -7708,6 +7967,11 @@
       "exists": true
     },
     {
+      "id": "tag:plugin-architecture",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:plugin-marketplace",
       "kind": "tag",
       "exists": true
@@ -7828,7 +8092,22 @@
       "exists": true
     },
     {
+      "id": "tag:processors",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:production-ai",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:production-patterns",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:production-rag",
       "kind": "tag",
       "exists": true
     },
@@ -8278,6 +8557,11 @@
       "exists": true
     },
     {
+      "id": "tag:safety",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:safety-bypass",
       "kind": "tag",
       "exists": true
@@ -8433,6 +8717,11 @@
       "exists": true
     },
     {
+      "id": "tag:self-evolution",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:self-hosted",
       "kind": "tag",
       "exists": true
@@ -8463,7 +8752,17 @@
       "exists": true
     },
     {
+      "id": "tag:semantic-cache",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:semantic-chunking",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:semantic-data-model",
       "kind": "tag",
       "exists": true
     },
@@ -8514,6 +8813,11 @@
     },
     {
       "id": "tag:session-persistence",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:session-replay",
       "kind": "tag",
       "exists": true
     },
@@ -8603,6 +8907,11 @@
       "exists": true
     },
     {
+      "id": "tag:skill-collection",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:skill-composition",
       "kind": "tag",
       "exists": true
@@ -8659,6 +8968,11 @@
     },
     {
       "id": "tag:skills-library",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:skills-taxonomy",
       "kind": "tag",
       "exists": true
     },
@@ -8883,6 +9197,11 @@
       "exists": true
     },
     {
+      "id": "tag:system-design",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:system-prompt",
       "kind": "tag",
       "exists": true
@@ -8894,6 +9213,11 @@
     },
     {
       "id": "tag:systems",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:table-extraction",
       "kind": "tag",
       "exists": true
     },
@@ -8924,6 +9248,11 @@
     },
     {
       "id": "tag:tauri",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:taxonomy",
       "kind": "tag",
       "exists": true
     },
@@ -9039,6 +9368,11 @@
     },
     {
       "id": "tag:time-tracking",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:timescale",
       "kind": "tag",
       "exists": true
     },
@@ -9278,6 +9612,11 @@
       "exists": true
     },
     {
+      "id": "tag:uncensored",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:union-ai",
       "kind": "tag",
       "exists": true
@@ -9348,6 +9687,11 @@
       "exists": true
     },
     {
+      "id": "tag:vendor-report",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:verbosity",
       "kind": "tag",
       "exists": true
@@ -9384,6 +9728,11 @@
     },
     {
       "id": "tag:vision-language",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:vision-language-model",
       "kind": "tag",
       "exists": true
     },
@@ -9865,6 +10214,16 @@
       "title": "VCF vs Parquet for Genomic Variants (Reddit Discussion)",
       "url": "https://reddit.com",
       "summary": "Former VCF spec maintainer explains why VCF persists: the real problem is representing complex variation (SVs, translocations, ploidy changes), not the container format — Parquet wouldn't solve schema complexity; VRS is the ongoing effort",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "vector-database-basics-hnsw",
+      "kind": "entry",
+      "title": "Vector Database Basics: HNSW (Tiger Data / Timescale)",
+      "url": "https://www.tigerdata.com/blog/vector-database-basics-hnsw",
+      "summary": "Tiger Data (Timescale) blog explainer on HNSW (Hierarchical Navigable Small World) vector indexing: describes HNSW's skip-list-inspired multi-layer graph (sparse long-edge upper layers for coarse navigation, dense lower layers for fine-grained search), and its use with pgvector/Timescale Vector on Postgres via the m (max connections per layer) and ef_construction (build-time candidate list size) parameters that trade index size/build time for search accuracy.",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -10893,6 +11252,41 @@
     {
       "source": "agentic-resource-discovery",
       "target": "tag:tool-discovery",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-engineering-skills-map",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "ai-engineering-skills-map",
+      "target": "tag:ai-engineering",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-engineering-skills-map",
+      "target": "tag:careers",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-engineering-skills-map",
+      "target": "tag:coding-agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-engineering-skills-map",
+      "target": "tag:deeplearning-ai",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-engineering-skills-map",
+      "target": "tag:evals",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-engineering-skills-map",
+      "target": "tag:skills-taxonomy",
       "relation": "tagged"
     },
     {
@@ -14976,6 +15370,71 @@
       "relation": "tagged"
     },
     {
+      "source": "deepseek-harness",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "deepseek-harness",
+      "target": "claw-code",
+      "relation": "overlaps"
+    },
+    {
+      "source": "deepseek-harness",
+      "target": "harness-engineering",
+      "relation": "overlaps"
+    },
+    {
+      "source": "deepseek-harness",
+      "target": "tag:agent-harness",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-harness",
+      "target": "tag:coding-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-harness",
+      "target": "tag:cordis",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-harness",
+      "target": "tag:deepseek",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-harness",
+      "target": "tag:developer-preview",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-harness",
+      "target": "tag:model-agnostic",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-harness",
+      "target": "tag:open-source",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-harness",
+      "target": "tag:plugin-architecture",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-harness",
+      "target": "tag:sandboxing",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-harness",
+      "target": "tag:session-replay",
+      "relation": "tagged"
+    },
+    {
       "source": "deny-env-reads",
       "target": "cat:reference",
       "relation": "categorized"
@@ -16516,6 +16975,66 @@
       "relation": "tagged"
     },
     {
+      "source": "godogen",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "godogen",
+      "target": "tag:agent-workflow",
+      "relation": "tagged"
+    },
+    {
+      "source": "godogen",
+      "target": "tag:asset-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "godogen",
+      "target": "tag:babylonjs",
+      "relation": "tagged"
+    },
+    {
+      "source": "godogen",
+      "target": "tag:bevy",
+      "relation": "tagged"
+    },
+    {
+      "source": "godogen",
+      "target": "tag:claude-code-skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "godogen",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "godogen",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "godogen",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "godogen",
+      "target": "tag:generator",
+      "relation": "tagged"
+    },
+    {
+      "source": "godogen",
+      "target": "tag:godot",
+      "relation": "tagged"
+    },
+    {
+      "source": "godogen",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
       "source": "google-knowledge-catalog",
       "target": "cat:framework",
       "relation": "categorized"
@@ -17076,6 +17595,66 @@
       "relation": "tagged"
     },
     {
+      "source": "harnessx",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "harnessx",
+      "target": "deepseek-harness",
+      "relation": "overlaps"
+    },
+    {
+      "source": "harnessx",
+      "target": "harness-engineering",
+      "relation": "overlaps"
+    },
+    {
+      "source": "harnessx",
+      "target": "tag:agent-harness",
+      "relation": "tagged"
+    },
+    {
+      "source": "harnessx",
+      "target": "tag:benchmarks",
+      "relation": "tagged"
+    },
+    {
+      "source": "harnessx",
+      "target": "tag:composable",
+      "relation": "tagged"
+    },
+    {
+      "source": "harnessx",
+      "target": "tag:harness-foundry",
+      "relation": "tagged"
+    },
+    {
+      "source": "harnessx",
+      "target": "tag:mit",
+      "relation": "tagged"
+    },
+    {
+      "source": "harnessx",
+      "target": "tag:processors",
+      "relation": "tagged"
+    },
+    {
+      "source": "harnessx",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "harnessx",
+      "target": "tag:reinforcement-learning",
+      "relation": "tagged"
+    },
+    {
+      "source": "harnessx",
+      "target": "tag:self-evolution",
+      "relation": "tagged"
+    },
+    {
       "source": "headroom-desktop",
       "target": "cat:plugin",
       "relation": "categorized"
@@ -17213,6 +17792,46 @@
     {
       "source": "herdr",
       "target": "tag:tui",
+      "relation": "tagged"
+    },
+    {
+      "source": "hotdog",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "hotdog",
+      "target": "tag:agent-harness",
+      "relation": "tagged"
+    },
+    {
+      "source": "hotdog",
+      "target": "tag:bun",
+      "relation": "tagged"
+    },
+    {
+      "source": "hotdog",
+      "target": "tag:cli-tool",
+      "relation": "tagged"
+    },
+    {
+      "source": "hotdog",
+      "target": "tag:local-llm",
+      "relation": "tagged"
+    },
+    {
+      "source": "hotdog",
+      "target": "tag:mcp-client",
+      "relation": "tagged"
+    },
+    {
+      "source": "hotdog",
+      "target": "tag:tool-calling",
+      "relation": "tagged"
+    },
+    {
+      "source": "hotdog",
+      "target": "tag:typescript",
       "relation": "tagged"
     },
     {
@@ -20981,6 +21600,46 @@
       "relation": "tagged"
     },
     {
+      "source": "opensandbox",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "opensandbox",
+      "target": "tag:agent-infrastructure",
+      "relation": "tagged"
+    },
+    {
+      "source": "opensandbox",
+      "target": "tag:code-execution",
+      "relation": "tagged"
+    },
+    {
+      "source": "opensandbox",
+      "target": "tag:docker",
+      "relation": "tagged"
+    },
+    {
+      "source": "opensandbox",
+      "target": "tag:isolation",
+      "relation": "tagged"
+    },
+    {
+      "source": "opensandbox",
+      "target": "tag:kubernetes",
+      "relation": "tagged"
+    },
+    {
+      "source": "opensandbox",
+      "target": "tag:mcp-server",
+      "relation": "tagged"
+    },
+    {
+      "source": "opensandbox",
+      "target": "tag:sandbox",
+      "relation": "tagged"
+    },
+    {
       "source": "openspace",
       "target": "cat:meta-skill",
       "relation": "categorized"
@@ -21218,6 +21877,71 @@
     {
       "source": "overcut",
       "target": "tag:workflow-automation",
+      "relation": "tagged"
+    },
+    {
+      "source": "ovisocr2",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "ovisocr2",
+      "target": "locate-anything",
+      "relation": "overlaps"
+    },
+    {
+      "source": "ovisocr2",
+      "target": "olmocr",
+      "relation": "overlaps"
+    },
+    {
+      "source": "ovisocr2",
+      "target": "opendataloader-pdf",
+      "relation": "overlaps"
+    },
+    {
+      "source": "ovisocr2",
+      "target": "tag:document-parsing",
+      "relation": "tagged"
+    },
+    {
+      "source": "ovisocr2",
+      "target": "tag:formula-recognition",
+      "relation": "tagged"
+    },
+    {
+      "source": "ovisocr2",
+      "target": "tag:huggingface",
+      "relation": "tagged"
+    },
+    {
+      "source": "ovisocr2",
+      "target": "tag:markdown",
+      "relation": "tagged"
+    },
+    {
+      "source": "ovisocr2",
+      "target": "tag:ocr",
+      "relation": "tagged"
+    },
+    {
+      "source": "ovisocr2",
+      "target": "tag:qwen",
+      "relation": "tagged"
+    },
+    {
+      "source": "ovisocr2",
+      "target": "tag:table-extraction",
+      "relation": "tagged"
+    },
+    {
+      "source": "ovisocr2",
+      "target": "tag:vision-language-model",
+      "relation": "tagged"
+    },
+    {
+      "source": "ovisocr2",
+      "target": "tag:vllm",
       "relation": "tagged"
     },
     {
@@ -21886,6 +22610,66 @@
       "relation": "tagged"
     },
     {
+      "source": "production-rag-system-taxonomy",
+      "target": "agentic-rag",
+      "relation": "overlaps"
+    },
+    {
+      "source": "production-rag-system-taxonomy",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "production-rag-system-taxonomy",
+      "target": "five-levels-of-chunking",
+      "relation": "overlaps"
+    },
+    {
+      "source": "production-rag-system-taxonomy",
+      "target": "rag-retrieval-recipe",
+      "relation": "overlaps"
+    },
+    {
+      "source": "production-rag-system-taxonomy",
+      "target": "tag:agent-pattern",
+      "relation": "tagged"
+    },
+    {
+      "source": "production-rag-system-taxonomy",
+      "target": "tag:observability",
+      "relation": "tagged"
+    },
+    {
+      "source": "production-rag-system-taxonomy",
+      "target": "tag:production-rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "production-rag-system-taxonomy",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "production-rag-system-taxonomy",
+      "target": "tag:retrieval",
+      "relation": "tagged"
+    },
+    {
+      "source": "production-rag-system-taxonomy",
+      "target": "tag:safety",
+      "relation": "tagged"
+    },
+    {
+      "source": "production-rag-system-taxonomy",
+      "target": "tag:system-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "production-rag-system-taxonomy",
+      "target": "tag:taxonomy",
+      "relation": "tagged"
+    },
+    {
       "source": "prompt-caching-mcp",
       "target": "cat:mcp-server",
       "relation": "categorized"
@@ -22096,6 +22880,61 @@
       "relation": "tagged"
     },
     {
+      "source": "qwen3-8-27b-uncensored-hauhaucs-aggressive-gguf",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "qwen3-8-27b-uncensored-hauhaucs-aggressive-gguf",
+      "target": "tag:abliteration",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwen3-8-27b-uncensored-hauhaucs-aggressive-gguf",
+      "target": "tag:gguf",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwen3-8-27b-uncensored-hauhaucs-aggressive-gguf",
+      "target": "tag:llama-cpp",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwen3-8-27b-uncensored-hauhaucs-aggressive-gguf",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwen3-8-27b-uncensored-hauhaucs-aggressive-gguf",
+      "target": "tag:mtp",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwen3-8-27b-uncensored-hauhaucs-aggressive-gguf",
+      "target": "tag:quantization",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwen3-8-27b-uncensored-hauhaucs-aggressive-gguf",
+      "target": "tag:qwen",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwen3-8-27b-uncensored-hauhaucs-aggressive-gguf",
+      "target": "tag:speculative-decoding",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwen3-8-27b-uncensored-hauhaucs-aggressive-gguf",
+      "target": "tag:uncensored",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwen3-8-27b-uncensored-hauhaucs-aggressive-gguf",
+      "target": "tag:vision-language-model",
+      "relation": "tagged"
+    },
+    {
       "source": "rag-retrieval-recipe",
       "target": "cat:agent-pattern",
       "relation": "categorized"
@@ -22173,6 +23012,51 @@
     {
       "source": "reddit-pain-research-skill",
       "target": "tag:reddit",
+      "relation": "tagged"
+    },
+    {
+      "source": "redis-iris",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "redis-iris",
+      "target": "tag:agent-memory",
+      "relation": "tagged"
+    },
+    {
+      "source": "redis-iris",
+      "target": "tag:ai-agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "redis-iris",
+      "target": "tag:context-engineering",
+      "relation": "tagged"
+    },
+    {
+      "source": "redis-iris",
+      "target": "tag:context-retrieval",
+      "relation": "tagged"
+    },
+    {
+      "source": "redis-iris",
+      "target": "tag:data-integration",
+      "relation": "tagged"
+    },
+    {
+      "source": "redis-iris",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "redis-iris",
+      "target": "tag:redis",
+      "relation": "tagged"
+    },
+    {
+      "source": "redis-iris",
+      "target": "tag:semantic-cache",
       "relation": "tagged"
     },
     {
@@ -22631,6 +23515,41 @@
       "relation": "tagged"
     },
     {
+      "source": "scrapegraph-ai",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "scrapegraph-ai",
+      "target": "tag:agent-tooling",
+      "relation": "tagged"
+    },
+    {
+      "source": "scrapegraph-ai",
+      "target": "tag:data-extraction",
+      "relation": "tagged"
+    },
+    {
+      "source": "scrapegraph-ai",
+      "target": "tag:llm",
+      "relation": "tagged"
+    },
+    {
+      "source": "scrapegraph-ai",
+      "target": "tag:mcp-server",
+      "relation": "tagged"
+    },
+    {
+      "source": "scrapegraph-ai",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "scrapegraph-ai",
+      "target": "tag:web-scraping",
+      "relation": "tagged"
+    },
+    {
       "source": "scrub-context-engineering",
       "target": "cat:agent-pattern",
       "relation": "categorized"
@@ -22748,6 +23667,46 @@
     {
       "source": "shannon",
       "target": "tag:web-security",
+      "relation": "tagged"
+    },
+    {
+      "source": "simon-says-mother-goose",
+      "target": "cat:skill",
+      "relation": "categorized"
+    },
+    {
+      "source": "simon-says-mother-goose",
+      "target": "tag:agent-skills",
+      "relation": "tagged"
+    },
+    {
+      "source": "simon-says-mother-goose",
+      "target": "tag:alignment",
+      "relation": "tagged"
+    },
+    {
+      "source": "simon-says-mother-goose",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "simon-says-mother-goose",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "simon-says-mother-goose",
+      "target": "tag:guardrails",
+      "relation": "tagged"
+    },
+    {
+      "source": "simon-says-mother-goose",
+      "target": "tag:skill-collection",
+      "relation": "tagged"
+    },
+    {
+      "source": "simon-says-mother-goose",
+      "target": "tag:verification",
       "relation": "tagged"
     },
     {
@@ -23498,6 +24457,56 @@
     {
       "source": "spiderbrain-v3",
       "target": "tag:token-reduction",
+      "relation": "tagged"
+    },
+    {
+      "source": "state-of-context-engineering-2026",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "state-of-context-engineering-2026",
+      "target": "tag:ai-agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "state-of-context-engineering-2026",
+      "target": "tag:context-engineering",
+      "relation": "tagged"
+    },
+    {
+      "source": "state-of-context-engineering-2026",
+      "target": "tag:context-graph",
+      "relation": "tagged"
+    },
+    {
+      "source": "state-of-context-engineering-2026",
+      "target": "tag:maturity-model",
+      "relation": "tagged"
+    },
+    {
+      "source": "state-of-context-engineering-2026",
+      "target": "tag:production-ai",
+      "relation": "tagged"
+    },
+    {
+      "source": "state-of-context-engineering-2026",
+      "target": "tag:redis",
+      "relation": "tagged"
+    },
+    {
+      "source": "state-of-context-engineering-2026",
+      "target": "tag:semantic-data-model",
+      "relation": "tagged"
+    },
+    {
+      "source": "state-of-context-engineering-2026",
+      "target": "tag:survey",
+      "relation": "tagged"
+    },
+    {
+      "source": "state-of-context-engineering-2026",
+      "target": "tag:vendor-report",
       "relation": "tagged"
     },
     {
@@ -25078,6 +26087,46 @@
     {
       "source": "vcf-parquet-discussion",
       "target": "tag:vrs",
+      "relation": "tagged"
+    },
+    {
+      "source": "vector-database-basics-hnsw",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "vector-database-basics-hnsw",
+      "target": "tag:ann-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "vector-database-basics-hnsw",
+      "target": "tag:hnsw",
+      "relation": "tagged"
+    },
+    {
+      "source": "vector-database-basics-hnsw",
+      "target": "tag:indexing",
+      "relation": "tagged"
+    },
+    {
+      "source": "vector-database-basics-hnsw",
+      "target": "tag:pgvector",
+      "relation": "tagged"
+    },
+    {
+      "source": "vector-database-basics-hnsw",
+      "target": "tag:postgres",
+      "relation": "tagged"
+    },
+    {
+      "source": "vector-database-basics-hnsw",
+      "target": "tag:timescale",
+      "relation": "tagged"
+    },
+    {
+      "source": "vector-database-basics-hnsw",
+      "target": "tag:vector-database",
       "relation": "tagged"
     },
     {
