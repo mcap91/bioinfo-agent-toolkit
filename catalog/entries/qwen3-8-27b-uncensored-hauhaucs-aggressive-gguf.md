@@ -43,3 +43,7 @@ Multiple GGUF quantization levels are provided (Q2_K_P through Q8_K_P, plus IQ2/
 - **Supply chain**: Published by a pseudonymous individual contributor (HauhauCS, associated with Reddit account u/hauhau901 per third-party reporting), not an organization or the original model vendor; authenticity is self-attested via a publisher-controlled Ed25519 key, not a third-party CA or the base model publisher.
 - **Benchmark provenance**: "0/465 Refusals" and FastMTP speed-up figures (e.g., "3.02x document TG") are publisher-reported; independent third-party testing of other releases in this same publisher's lineup found partial refusal leakage under adversarial testing despite zero-refusal marketing claims.
 - **Build risk**: FastMTP requires cloning llama.cpp, checking out a pinned commit, and applying a third-party `.patch` file before compiling — this executes third-party source-code changes into a locally built binary; review the patch contents before applying.
+
+## Usage notes
+
+- **Community data point — Qwen3.8-Flash-Next-Uncensored (orcarouter)**: IQ4_XS quant running at 22 tok/s on desktop hardware (128GB RAM, 32GB VRAM), fully in memory. Reported as "uncensored to the point that it's a bit concerning" — suggesting aggressive abliteration in this variant.

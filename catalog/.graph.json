@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-26T02:34:57.027Z",
+  "generated_at": "2026-08-31T23:53:45.782Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -1119,6 +1119,15 @@
       "exists": true
     },
     {
+      "id": "community-skills-stack-2026",
+      "kind": "entry",
+      "title": "Community Agent Skills Stack (2026 Curated List)",
+      "summary": "Practitioner-curated list of ~15 installable agent skills across engineering (code review, evals, MCP builder, prompt engineering, superpowers, webapp testing), design (canvas design, frontend design), comms (AtomicMail agent email, internal comms), memory (Obsidian skills, planning-with-files), automation (Vercel agent-browser), growth (SEO audit), and discovery (skill-creator); all installable via npx skills add or plugin marketplace",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "confidence-probing-prompts",
       "kind": "entry",
       "title": "Confidence-Probing Prompts",
@@ -1414,6 +1423,16 @@
       "exists": true
     },
     {
+      "id": "emdly",
+      "kind": "entry",
+      "title": "emdly",
+      "url": "https://emdly.com/",
+      "summary": "Platform for discovering, comparing, and sharing SKILL.md files for AI agents — curated marketplace with human review and sandboxed safety screening; CLI installer (npx @emdly/cli add), synced to public GitHub repo (emdly-stack); ~24+ skills across engineering (PR review, debugging, commit messages, dependency upgrades), analytics (GA4 funnels, SQL explainer, dashboard metrics), content (SEO briefs, brand voice, landing pages), ops (incident postmortem, K8s triage, standup synthesis), commerce (product feeds, cart sequences), and gaming (balance review, playtest triage)",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "end-of-session-review-questions",
       "kind": "entry",
       "title": "End-of-Session Review Questions",
@@ -1598,6 +1617,16 @@
       "title": "Free Claude Code",
       "url": "https://github.com/Alishahryar1/free-claude-code",
       "summary": "Drop-in proxy routing Claude Code (Anthropic Messages API) and Codex (OpenAI Responses API) traffic to 24 provider backends — per-model-tier routing, Admin UI, Discord/Telegram bot wrapper, voice-note transcription via local Whisper or NVIDIA NIM; Python/FastAPI, MIT",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "freetoken",
+      "kind": "entry",
+      "title": "FreeToken",
+      "url": "https://github.com/FlashML-org/FreeToken",
+      "summary": "Edge-native MoE inference engine from UC Berkeley/UT Austin — runs 290B+ frontier MoE models on consumer hardware by keeping experts in system RAM and LRU-caching active experts to GPU; bandwidth-adaptive Q* scheduling, double-buffered prefill streaming, semantic anchor checkpoints for agentic context reuse, elastic VRAM reallocation; 3-4x faster decode and 6-30x faster prefill vs Ollama/llama.cpp on VRAM-oversubscribed MoE workloads; OpenAI/Anthropic-compatible API; desktop app + CLI; supports RTX 30/40/50 series; Apache-2.0",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -1827,6 +1856,16 @@
       "exists": true
     },
     {
+      "id": "headcount",
+      "kind": "entry",
+      "title": "Headcount",
+      "url": "https://github.com/cbrock84/headcount",
+      "summary": "Claude Code plugin structured as a 16-department company org chart — 146 skills across CEO, Technology, Security (reviewer-class), IT Ops, Product, Marketing, Demand Gen, Revenue, Finance, Operations, PMO, Customer Experience, Data & Analytics, Corporate Strategy, People/HR, and Legal & Risk (reviewer-class); each department independently installable via marketplace, skills addressed as department:skill, agent charters for subagent delegation, exclusive write-surface enforcement; MIT",
+      "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "headroom",
       "kind": "entry",
       "title": "Headroom",
@@ -1908,6 +1947,16 @@
       "url": "https://github.com/CodeAbra/iai-personal-memory-engine",
       "summary": "Fully local MCP-based personal memory engine for AI assistants — ambient capture, three-tier memory (episodic/semantic/procedural), custom storage engine (Hippo), clustering (MOSAIC), HD substrate (LilliHD), Rust embedder; macOS-only, English-only, MIT",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "icca-harness",
+      "kind": "entry",
+      "title": "ICCA Harness",
+      "url": "https://github.com/BernhardJackiewicz/icca-harness",
+      "summary": "Evidence-gated maker-checker-auditor workflow for Claude Code — separates Implementer, Checker, Control, and Auditor roles so the agent that writes code never decides whether it's accepted; mechanical enforcement via Git hooks (frozen acceptance tests, content-fingerprinted commit gates, bounded repair loops); measured 28% reduction in expensive-model tokens on implementation-heavy tasks at identical success rate (total tokens increase 37%); optional stage gates for static analysis, coverage, mutation testing, property tests, dependency structure, e2e scenarios; MIT",
+      "category": "plugin",
       "decision_status": "open",
       "exists": true
     },
@@ -2041,12 +2090,30 @@
       "exists": true
     },
     {
+      "id": "kv-cache-vram-sizing",
+      "kind": "entry",
+      "title": "KV Cache VRAM Sizing Formula for Local LLM Inference",
+      "summary": "Practitioner reference for calculating KV cache memory: formula (2 × layers × kv_heads × head_dim × context_tokens × bytes_per_value), worked example showing Llama 3.1 8B at 128K context uses 16GB for cache alone (3× the 4.9GB Q4 weights); explains why GQA models (fewer KV heads) are dramatically cheaper at long context than MHA models, and why Ollama's default small num_ctx hides the cost until you raise it",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "langflow",
       "kind": "entry",
       "title": "Langflow",
       "url": "https://github.com/langflow-ai/langflow",
       "summary": "Heavy visual-builder platform with native MCP-server export; too large for direct adoption but worth monitoring for MCP workflow integration patterns.",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "large-moe-consumer-hardware",
+      "kind": "entry",
+      "title": "Running Large MoE Models on Consumer Hardware (llama.cpp CPU-MoE Offload)",
+      "summary": "Practitioner guide to running 176B MoE models (Qwen3.8-Flash-Next, 6B active) on a single 16GB GPU + 192GB RAM via llama.cpp --cpu-moe flag — attention on GPU, experts on CPU; ~16 tok/s; includes llama.cpp n-gram speculative decoding reference (--spec-type ngram-simple/ngram-cache, --lookup-cache-dynamic for SSD offload, tuning flags --spec-ngram-simple-size-n/m), q8_0 KV cache sizing at 262K context (~14GB), and memory budgeting guidance",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -2097,6 +2164,16 @@
       "url": "https://github.com/AlexsJones/llmfit",
       "summary": "Terminal tool that detects local hardware (RAM/CPU/GPU/VRAM) and scores LLM models across fit, speed, quality, and context to report which will run well locally; ships an interactive TUI and a JSON-emitting CLI for agent/script use.",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "lm-studio",
+      "kind": "entry",
+      "title": "LM Studio",
+      "url": "https://lmstudio.ai/",
+      "summary": "Desktop application for downloading, managing, and running local LLMs with GUI chat, OpenAI/Anthropic-compatible API server (localhost:1234), MLX and llama.cpp engines, built-in model search with VRAM fit estimation, GPU offload controls, voice transcription, and Bionic agentic assistant; JS/Python SDKs, MCP client support, headless daemon (llmster), LM Link encrypted remote inference; free for personal and commercial use; macOS/Windows/Linux",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -2492,6 +2569,16 @@
       "exists": true
     },
     {
+      "id": "obsidian-claude-second-brain-workflow",
+      "kind": "entry",
+      "title": "Obsidian + Claude Code Second Brain Workflow",
+      "url": "https://medium.com/@evgeni.n.rusev/how-i-built-my-second-brain-with-obsidian-claude-code-9fb54b7665ca",
+      "summary": "Practitioner workflow for building an AI-native personal knowledge base using Obsidian as the storage layer and Claude Code as the structuring agent — vault organized as books/, articles/, posts/, wiki/ with frontmatter tags and wikilinks; CLAUDE.md defines the schema and operating manual; Claude reads raw text and structures it into tagged pages, wiki entries, comparison tables, and cross-referenced summaries without plugins or API wrappers",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "obsidian-skills",
       "kind": "entry",
       "title": "Obsidian Skills (Kepano)",
@@ -2786,6 +2873,16 @@
       "exists": true
     },
     {
+      "id": "outlines",
+      "kind": "entry",
+      "title": "Outlines",
+      "url": "https://github.com/dottxt-ai/outlines",
+      "summary": "Structured generation library by .txt — guarantees LLM outputs conform to JSON Schema, Pydantic models, regex, grammars, or Python types via constrained decoding (FSM-based token masking); works with transformers, llama.cpp, vLLM, Ollama, OpenAI, Gemini; Jinja prompt templates, function calling inference, batch generation; Rust core (outlines-core) for performance; 65M+ downloads; trusted by NVIDIA, Cohere, HuggingFace, vLLM; Apache-2.0",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "overcut",
       "kind": "entry",
       "title": "Overcut — Agentic SDLC Orchestration",
@@ -2952,6 +3049,15 @@
       "url": "https://github.com/DietrichGebert/ponytail",
       "summary": "YAGNI enforcement plugin with strong benchmarks (80-94% less code, 47-77% cheaper); multi-platform support and clean design make it worth trialing",
       "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "production-agentic-platforms-2026",
+      "kind": "entry",
+      "title": "Production-Grade Agentic AI Platforms (2026 Evaluation)",
+      "summary": "Practitioner evaluation of 5 agentic AI platforms for production use, ranked by orchestration, stateful workflows, human-in-the-loop, RAG, evals, observability, governance, and deployment flexibility: LangGraph (max engineering control), Microsoft Agent Framework (Azure enterprises), SimplAI (enterprise agent ops + governance), CrewAI (fast multi-agent dev), n8n (workflow automation + integrations); key lesson: 'can build an agent' ≠ 'can run agents in production' — observability, evaluation, governance, failure handling, deployment, and human-in-the-loop are the differentiators",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -3402,6 +3508,16 @@
       "exists": true
     },
     {
+      "id": "staff-engineer-systems-thinking",
+      "kind": "entry",
+      "title": "Staff Engineers: Shift from Solving Problems to Shaping Systems",
+      "url": "https://leaddev.com/career-development/staff-engineers-shift-from-solving-problems-to-shaping-systems",
+      "summary": "LeadDev article (Monzo staff engineer) on the four moves that distinguish staff-level impact: find the research gap (the real problem behind the visible one), have conviction about the right solution (redesign at source vs. patching heuristics), design for belief not just correctness (alignment as a design problem), and make yourself unnecessary (spread the thinking pattern, not just the implementation)",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "state-of-context-engineering-2026",
       "kind": "entry",
       "title": "The State of Context Engineering 2026 (Redis)",
@@ -3732,6 +3848,11 @@
       "exists": true
     },
     {
+      "id": "tag:agent-hierarchy",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:agent-infrastructure",
       "kind": "tag",
       "exists": true
@@ -3867,6 +3988,11 @@
       "exists": true
     },
     {
+      "id": "tag:agentic-platforms",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:agentic-rag",
       "kind": "tag",
       "exists": true
@@ -3918,6 +4044,11 @@
     },
     {
       "id": "tag:ai-detection",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ai-development",
       "kind": "tag",
       "exists": true
     },
@@ -4062,6 +4193,11 @@
       "exists": true
     },
     {
+      "id": "tag:apache-2",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:apache-2.0",
       "kind": "tag",
       "exists": true
@@ -4088,6 +4224,11 @@
     },
     {
       "id": "tag:api-proxy",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:api-server",
       "kind": "tag",
       "exists": true
     },
@@ -4393,6 +4534,11 @@
     },
     {
       "id": "tag:bookmarks",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:bpe",
       "kind": "tag",
       "exists": true
     },
@@ -4887,12 +5033,22 @@
       "exists": true
     },
     {
+      "id": "tag:constrained-decoding",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:consultation",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:consulting",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:consumer-hardware",
       "kind": "tag",
       "exists": true
     },
@@ -4947,6 +5103,11 @@
       "exists": true
     },
     {
+      "id": "tag:context-window",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:control-plane",
       "kind": "tag",
       "exists": true
@@ -4988,6 +5149,11 @@
     },
     {
       "id": "tag:corpus-enrichment",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:cosine-similarity",
       "kind": "tag",
       "exists": true
     },
@@ -5043,6 +5209,11 @@
     },
     {
       "id": "tag:cpu-inference",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:cpu-offload",
       "kind": "tag",
       "exists": true
     },
@@ -5372,6 +5543,11 @@
       "exists": true
     },
     {
+      "id": "tag:departments",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:dependency-graph",
       "kind": "tag",
       "exists": true
@@ -5398,6 +5574,11 @@
     },
     {
       "id": "tag:design-system",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:desktop",
       "kind": "tag",
       "exists": true
     },
@@ -5473,6 +5654,11 @@
     },
     {
       "id": "tag:dispatch",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:distance-metrics",
       "kind": "tag",
       "exists": true
     },
@@ -5622,6 +5808,11 @@
       "exists": true
     },
     {
+      "id": "tag:edge-inference",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:education",
       "kind": "tag",
       "exists": true
@@ -5663,6 +5854,11 @@
     },
     {
       "id": "tag:embodied-agent",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:encoding",
       "kind": "tag",
       "exists": true
     },
@@ -5787,6 +5983,11 @@
       "exists": true
     },
     {
+      "id": "tag:evidence-gated",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:evidence-gates",
       "kind": "tag",
       "exists": true
@@ -5818,6 +6019,11 @@
     },
     {
       "id": "tag:experimentation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:expert-caching",
       "kind": "tag",
       "exists": true
     },
@@ -5943,6 +6149,11 @@
     },
     {
       "id": "tag:first-principles",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:flow-graph",
       "kind": "tag",
       "exists": true
     },
@@ -6132,6 +6343,11 @@
       "exists": true
     },
     {
+      "id": "tag:git-hooks",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:git-metrics",
       "kind": "tag",
       "exists": true
@@ -6257,12 +6473,22 @@
       "exists": true
     },
     {
+      "id": "tag:gqa",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:grading",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:gradio",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:grammar",
       "kind": "tag",
       "exists": true
     },
@@ -6318,6 +6544,11 @@
     },
     {
       "id": "tag:guardrails",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:gui",
       "kind": "tag",
       "exists": true
     },
@@ -6682,6 +6913,11 @@
       "exists": true
     },
     {
+      "id": "tag:json-schema",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:jupyter",
       "kind": "tag",
       "exists": true
@@ -6808,6 +7044,11 @@
     },
     {
       "id": "tag:latex",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:leadership",
       "kind": "tag",
       "exists": true
     },
@@ -7022,6 +7263,11 @@
       "exists": true
     },
     {
+      "id": "tag:maker-checker",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:mamba",
       "kind": "tag",
       "exists": true
@@ -7063,6 +7309,16 @@
     },
     {
       "id": "tag:marketing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:marketplace",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:matryoshka",
       "kind": "tag",
       "exists": true
     },
@@ -7148,6 +7404,11 @@
     },
     {
       "id": "tag:memory-optimization",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:memory-sizing",
       "kind": "tag",
       "exists": true
     },
@@ -7302,6 +7563,11 @@
       "exists": true
     },
     {
+      "id": "tag:model-management",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:model-merging",
       "kind": "tag",
       "exists": true
@@ -7403,6 +7669,11 @@
     },
     {
       "id": "tag:multimodal",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:n-gram",
       "kind": "tag",
       "exists": true
     },
@@ -7727,6 +7998,11 @@
       "exists": true
     },
     {
+      "id": "tag:organizational",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:osint",
       "kind": "tag",
       "exists": true
@@ -7878,6 +8154,11 @@
     },
     {
       "id": "tag:persistent-state",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:personal-knowledge-base",
       "kind": "tag",
       "exists": true
     },
@@ -8077,6 +8358,11 @@
       "exists": true
     },
     {
+      "id": "tag:problem-framing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:procedural-generation",
       "kind": "tag",
       "exists": true
@@ -8093,6 +8379,11 @@
     },
     {
       "id": "tag:processors",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:production",
       "kind": "tag",
       "exists": true
     },
@@ -8237,6 +8528,11 @@
       "exists": true
     },
     {
+      "id": "tag:pydantic",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:pyodide",
       "kind": "tag",
       "exists": true
@@ -8317,6 +8613,11 @@
       "exists": true
     },
     {
+      "id": "tag:ratatui",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:react",
       "kind": "tag",
       "exists": true
@@ -8373,6 +8674,11 @@
     },
     {
       "id": "tag:reflexes",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:regex",
       "kind": "tag",
       "exists": true
     },
@@ -8483,6 +8789,11 @@
     },
     {
       "id": "tag:reversibility",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:reviewer-class",
       "kind": "tag",
       "exists": true
     },
@@ -8678,6 +8989,11 @@
     },
     {
       "id": "tag:search",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:second-brain",
       "kind": "tag",
       "exists": true
     },
@@ -8947,6 +9263,11 @@
       "exists": true
     },
     {
+      "id": "tag:skill-md",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:skill-optimization",
       "kind": "tag",
       "exists": true
@@ -8968,6 +9289,11 @@
     },
     {
       "id": "tag:skills-library",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:skills-stack",
       "kind": "tag",
       "exists": true
     },
@@ -9107,6 +9433,11 @@
       "exists": true
     },
     {
+      "id": "tag:staff-engineering",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:stanford",
       "kind": "tag",
       "exists": true
@@ -9148,6 +9479,11 @@
     },
     {
       "id": "tag:structure-prediction",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:structured-generation",
       "kind": "tag",
       "exists": true
     },
@@ -9213,6 +9549,11 @@
     },
     {
       "id": "tag:systems",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:systems-thinking",
       "kind": "tag",
       "exists": true
     },
@@ -9412,6 +9753,11 @@
       "exists": true
     },
     {
+      "id": "tag:token-counting",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:token-efficiency",
       "kind": "tag",
       "exists": true
@@ -9428,6 +9774,11 @@
     },
     {
       "id": "tag:token-reduction",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:tokenizer",
       "kind": "tag",
       "exists": true
     },
@@ -9717,6 +10068,11 @@
       "exists": true
     },
     {
+      "id": "tag:vibe-coding",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:video",
       "kind": "tag",
       "exists": true
@@ -9767,12 +10123,27 @@
       "exists": true
     },
     {
+      "id": "tag:voice",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:vps",
       "kind": "tag",
       "exists": true
     },
     {
+      "id": "tag:vram",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:vram-optimization",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:vram-oversubscription",
       "kind": "tag",
       "exists": true
     },
@@ -9947,6 +10318,11 @@
       "exists": true
     },
     {
+      "id": "tag:write-surface",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:writing",
       "kind": "tag",
       "exists": true
@@ -10056,6 +10432,16 @@
       "title": "Thunderjar",
       "url": "https://github.com/dwjohnston/thunderjar",
       "summary": "Comparative testing framework for coding agents — holds three of four variables (codebase state, prompt configuration, model, harness) constant and varies the fourth, then applies objective measurements (compilation, test pass, file assertions, token consumption, lint compliance, correctness). For evaluating whether prompt/model/harness changes actually improve agent output. Early-stage project by dwjohnston.",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "tiktoken",
+      "kind": "entry",
+      "title": "tiktoken",
+      "url": "https://github.com/openai/tiktoken",
+      "summary": "OpenAI's fast BPE tokenizer library — 3-6x faster than HuggingFace tokenizers; supports all OpenAI model encodings (o200k_base, cl100k_base, etc.); Python API for encode/decode, model-to-encoding lookup, custom encoding extension via plugin mechanism; educational submodule for visualizing BPE procedure; MIT",
       "category": "cli-tool",
       "decision_status": "open",
       "exists": true
@@ -10229,11 +10615,29 @@
       "exists": true
     },
     {
+      "id": "vector-distance-metrics-cheatsheet",
+      "kind": "entry",
+      "title": "Vector Embeddings Distance Metrics Cheat Sheet",
+      "summary": "Practitioner cheat sheet on choosing vector distance metrics for RAG: cosine similarity (unnormalized text), dot product (fastest for normalized unit vectors), L2 Euclidean (clustering); plus Matryoshka trick — truncate embedding dimensions from 1536→512 to cut vector RAM by 80% with minimal accuracy loss",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "verify-before-claim",
       "kind": "entry",
       "title": "Verify Before Claim (Third Brain V5)",
       "url": "https://github.com/Mark393295827/third-brain-v5-skills",
       "summary": "superpowers verification-before-completion covers this; confidence model is the novel addition",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "vibe-coding-practitioner-habits",
+      "kind": "entry",
+      "title": "Vibe Coding Practitioner Habits (Pre-AI Developer Perspective)",
+      "summary": "Experienced developer's framework for effective AI-assisted development: plan before prompting, break work into small pieces, read and understand generated code, ask 'why' before accepting fixes, maintain your own architectural mental model, challenge the AI on edge cases and alternatives, and learn fundamentals alongside it; core thesis is that AI becomes a force multiplier only when the developer can explain the system without AI — otherwise the AI starts leading instead of assisting",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -10309,6 +10713,16 @@
       "url": "https://github.com/mrdbourke/zero-to-mastery-ml",
       "summary": "Comprehensive ML/DS course materials (NumPy, pandas, sklearn, TensorFlow); useful learning reference but not a tool or workflow component",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "zoetrope",
+      "kind": "entry",
+      "title": "Zoetrope",
+      "url": "https://github.com/furkankly/zoetrope",
+      "summary": "Rust TUI that visualizes Claude Code sessions as live flow graphs — reads JSONL transcripts from ~/.claude/projects/, shows agents/subagents/workflows as nodes with tool calls, status, and token counts; time-travel scrubbing, live following, gap compression, agent detail panels with prompts and tool timings; also runs in-browser via WASM; zero network, read-only; MIT",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     }
@@ -14720,6 +15134,61 @@
       "relation": "tagged"
     },
     {
+      "source": "community-skills-stack-2026",
+      "target": "agent-browser",
+      "relation": "overlaps"
+    },
+    {
+      "source": "community-skills-stack-2026",
+      "target": "agent-skills-osmani",
+      "relation": "overlaps"
+    },
+    {
+      "source": "community-skills-stack-2026",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "community-skills-stack-2026",
+      "target": "obsidian-skills",
+      "relation": "overlaps"
+    },
+    {
+      "source": "community-skills-stack-2026",
+      "target": "skills-cli",
+      "relation": "overlaps"
+    },
+    {
+      "source": "community-skills-stack-2026",
+      "target": "tag:agent-skills",
+      "relation": "tagged"
+    },
+    {
+      "source": "community-skills-stack-2026",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "community-skills-stack-2026",
+      "target": "tag:community",
+      "relation": "tagged"
+    },
+    {
+      "source": "community-skills-stack-2026",
+      "target": "tag:curated-list",
+      "relation": "tagged"
+    },
+    {
+      "source": "community-skills-stack-2026",
+      "target": "tag:discovery",
+      "relation": "tagged"
+    },
+    {
+      "source": "community-skills-stack-2026",
+      "target": "tag:skills-stack",
+      "relation": "tagged"
+    },
+    {
       "source": "confidence-probing-prompts",
       "target": "cat:agent-pattern",
       "relation": "categorized"
@@ -15905,6 +16374,66 @@
       "relation": "tagged"
     },
     {
+      "source": "emdly",
+      "target": "agent-skills-spec",
+      "relation": "overlaps"
+    },
+    {
+      "source": "emdly",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "emdly",
+      "target": "community-skills-stack-2026",
+      "relation": "overlaps"
+    },
+    {
+      "source": "emdly",
+      "target": "skills-cli",
+      "relation": "overlaps"
+    },
+    {
+      "source": "emdly",
+      "target": "tag:agent-skills",
+      "relation": "tagged"
+    },
+    {
+      "source": "emdly",
+      "target": "tag:cli",
+      "relation": "tagged"
+    },
+    {
+      "source": "emdly",
+      "target": "tag:community",
+      "relation": "tagged"
+    },
+    {
+      "source": "emdly",
+      "target": "tag:cross-platform",
+      "relation": "tagged"
+    },
+    {
+      "source": "emdly",
+      "target": "tag:curated",
+      "relation": "tagged"
+    },
+    {
+      "source": "emdly",
+      "target": "tag:discovery",
+      "relation": "tagged"
+    },
+    {
+      "source": "emdly",
+      "target": "tag:marketplace",
+      "relation": "tagged"
+    },
+    {
+      "source": "emdly",
+      "target": "tag:skill-md",
+      "relation": "tagged"
+    },
+    {
       "source": "end-of-session-review-questions",
       "target": "cat:agent-pattern",
       "relation": "categorized"
@@ -16732,6 +17261,76 @@
     {
       "source": "free-claude-code",
       "target": "tag:proxy",
+      "relation": "tagged"
+    },
+    {
+      "source": "freetoken",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "freetoken",
+      "target": "cpubrrr",
+      "relation": "overlaps"
+    },
+    {
+      "source": "freetoken",
+      "target": "large-moe-consumer-hardware",
+      "relation": "overlaps"
+    },
+    {
+      "source": "freetoken",
+      "target": "on-prem-llm-deployment-architecture",
+      "relation": "overlaps"
+    },
+    {
+      "source": "freetoken",
+      "target": "tag:apache-2",
+      "relation": "tagged"
+    },
+    {
+      "source": "freetoken",
+      "target": "tag:consumer-hardware",
+      "relation": "tagged"
+    },
+    {
+      "source": "freetoken",
+      "target": "tag:edge-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "freetoken",
+      "target": "tag:expert-caching",
+      "relation": "tagged"
+    },
+    {
+      "source": "freetoken",
+      "target": "tag:gpu",
+      "relation": "tagged"
+    },
+    {
+      "source": "freetoken",
+      "target": "tag:llm-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "freetoken",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "freetoken",
+      "target": "tag:moe",
+      "relation": "tagged"
+    },
+    {
+      "source": "freetoken",
+      "target": "tag:openai-compatible",
+      "relation": "tagged"
+    },
+    {
+      "source": "freetoken",
+      "target": "tag:vram-oversubscription",
       "relation": "tagged"
     },
     {
@@ -17655,6 +18254,66 @@
       "relation": "tagged"
     },
     {
+      "source": "headcount",
+      "target": "agent-skills-osmani",
+      "relation": "overlaps"
+    },
+    {
+      "source": "headcount",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "headcount",
+      "target": "claude-skills-rezvani",
+      "relation": "overlaps"
+    },
+    {
+      "source": "headcount",
+      "target": "tag:agent-hierarchy",
+      "relation": "tagged"
+    },
+    {
+      "source": "headcount",
+      "target": "tag:claude-code-plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "headcount",
+      "target": "tag:departments",
+      "relation": "tagged"
+    },
+    {
+      "source": "headcount",
+      "target": "tag:enterprise",
+      "relation": "tagged"
+    },
+    {
+      "source": "headcount",
+      "target": "tag:organizational",
+      "relation": "tagged"
+    },
+    {
+      "source": "headcount",
+      "target": "tag:reviewer-class",
+      "relation": "tagged"
+    },
+    {
+      "source": "headcount",
+      "target": "tag:skills-library",
+      "relation": "tagged"
+    },
+    {
+      "source": "headcount",
+      "target": "tag:subagents",
+      "relation": "tagged"
+    },
+    {
+      "source": "headcount",
+      "target": "tag:write-surface",
+      "relation": "tagged"
+    },
+    {
       "source": "headroom-desktop",
       "target": "cat:plugin",
       "relation": "categorized"
@@ -18022,6 +18681,71 @@
     {
       "source": "iai-personal-memory-engine",
       "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "icca-harness",
+      "target": "agent-skills-osmani",
+      "relation": "overlaps"
+    },
+    {
+      "source": "icca-harness",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "icca-harness",
+      "target": "fable-agent-orchestration",
+      "relation": "overlaps"
+    },
+    {
+      "source": "icca-harness",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "icca-harness",
+      "target": "tag:code-review",
+      "relation": "tagged"
+    },
+    {
+      "source": "icca-harness",
+      "target": "tag:delegation",
+      "relation": "tagged"
+    },
+    {
+      "source": "icca-harness",
+      "target": "tag:evidence-gated",
+      "relation": "tagged"
+    },
+    {
+      "source": "icca-harness",
+      "target": "tag:git-hooks",
+      "relation": "tagged"
+    },
+    {
+      "source": "icca-harness",
+      "target": "tag:maker-checker",
+      "relation": "tagged"
+    },
+    {
+      "source": "icca-harness",
+      "target": "tag:skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "icca-harness",
+      "target": "tag:testing",
+      "relation": "tagged"
+    },
+    {
+      "source": "icca-harness",
+      "target": "tag:token-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "icca-harness",
+      "target": "tag:verification",
       "relation": "tagged"
     },
     {
@@ -18530,6 +19254,66 @@
       "relation": "tagged"
     },
     {
+      "source": "kv-cache-vram-sizing",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "kv-cache-vram-sizing",
+      "target": "llmfit",
+      "relation": "overlaps"
+    },
+    {
+      "source": "kv-cache-vram-sizing",
+      "target": "on-prem-llm-deployment-architecture",
+      "relation": "overlaps"
+    },
+    {
+      "source": "kv-cache-vram-sizing",
+      "target": "tag:context-window",
+      "relation": "tagged"
+    },
+    {
+      "source": "kv-cache-vram-sizing",
+      "target": "tag:gqa",
+      "relation": "tagged"
+    },
+    {
+      "source": "kv-cache-vram-sizing",
+      "target": "tag:kv-cache",
+      "relation": "tagged"
+    },
+    {
+      "source": "kv-cache-vram-sizing",
+      "target": "tag:llama-cpp",
+      "relation": "tagged"
+    },
+    {
+      "source": "kv-cache-vram-sizing",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "kv-cache-vram-sizing",
+      "target": "tag:memory-sizing",
+      "relation": "tagged"
+    },
+    {
+      "source": "kv-cache-vram-sizing",
+      "target": "tag:ollama",
+      "relation": "tagged"
+    },
+    {
+      "source": "kv-cache-vram-sizing",
+      "target": "tag:vram",
+      "relation": "tagged"
+    },
+    {
+      "source": "kv-cache-vram-sizing",
+      "target": "turboquant",
+      "relation": "overlaps"
+    },
+    {
       "source": "langflow",
       "target": "cat:framework",
       "relation": "categorized"
@@ -18572,6 +19356,66 @@
     {
       "source": "langflow",
       "target": "tag:visual-builder",
+      "relation": "tagged"
+    },
+    {
+      "source": "large-moe-consumer-hardware",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "large-moe-consumer-hardware",
+      "target": "kv-cache-vram-sizing",
+      "relation": "overlaps"
+    },
+    {
+      "source": "large-moe-consumer-hardware",
+      "target": "on-prem-llm-deployment-architecture",
+      "relation": "overlaps"
+    },
+    {
+      "source": "large-moe-consumer-hardware",
+      "target": "tag:consumer-hardware",
+      "relation": "tagged"
+    },
+    {
+      "source": "large-moe-consumer-hardware",
+      "target": "tag:cpu-offload",
+      "relation": "tagged"
+    },
+    {
+      "source": "large-moe-consumer-hardware",
+      "target": "tag:gguf",
+      "relation": "tagged"
+    },
+    {
+      "source": "large-moe-consumer-hardware",
+      "target": "tag:llama-cpp",
+      "relation": "tagged"
+    },
+    {
+      "source": "large-moe-consumer-hardware",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "large-moe-consumer-hardware",
+      "target": "tag:moe",
+      "relation": "tagged"
+    },
+    {
+      "source": "large-moe-consumer-hardware",
+      "target": "tag:n-gram",
+      "relation": "tagged"
+    },
+    {
+      "source": "large-moe-consumer-hardware",
+      "target": "tag:speculative-decoding",
+      "relation": "tagged"
+    },
+    {
+      "source": "large-moe-consumer-hardware",
+      "target": "tag:vram",
       "relation": "tagged"
     },
     {
@@ -18827,6 +19671,81 @@
     {
       "source": "llmfit",
       "target": "tag:tui",
+      "relation": "tagged"
+    },
+    {
+      "source": "lm-studio",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "lm-studio",
+      "target": "on-prem-llm-deployment-architecture",
+      "relation": "overlaps"
+    },
+    {
+      "source": "lm-studio",
+      "target": "tag:agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "lm-studio",
+      "target": "tag:api-server",
+      "relation": "tagged"
+    },
+    {
+      "source": "lm-studio",
+      "target": "tag:desktop",
+      "relation": "tagged"
+    },
+    {
+      "source": "lm-studio",
+      "target": "tag:gui",
+      "relation": "tagged"
+    },
+    {
+      "source": "lm-studio",
+      "target": "tag:llama-cpp",
+      "relation": "tagged"
+    },
+    {
+      "source": "lm-studio",
+      "target": "tag:llm",
+      "relation": "tagged"
+    },
+    {
+      "source": "lm-studio",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "lm-studio",
+      "target": "tag:mcp-client",
+      "relation": "tagged"
+    },
+    {
+      "source": "lm-studio",
+      "target": "tag:mlx",
+      "relation": "tagged"
+    },
+    {
+      "source": "lm-studio",
+      "target": "tag:model-management",
+      "relation": "tagged"
+    },
+    {
+      "source": "lm-studio",
+      "target": "tag:openai-compatible",
+      "relation": "tagged"
+    },
+    {
+      "source": "lm-studio",
+      "target": "tag:privacy",
+      "relation": "tagged"
+    },
+    {
+      "source": "lm-studio",
+      "target": "tag:voice",
       "relation": "tagged"
     },
     {
@@ -20595,6 +21514,61 @@
       "relation": "tagged"
     },
     {
+      "source": "obsidian-claude-second-brain-workflow",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "obsidian-claude-second-brain-workflow",
+      "target": "obsidian-skills",
+      "relation": "overlaps"
+    },
+    {
+      "source": "obsidian-claude-second-brain-workflow",
+      "target": "second-brain-skills",
+      "relation": "overlaps"
+    },
+    {
+      "source": "obsidian-claude-second-brain-workflow",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "obsidian-claude-second-brain-workflow",
+      "target": "tag:knowledge-management",
+      "relation": "tagged"
+    },
+    {
+      "source": "obsidian-claude-second-brain-workflow",
+      "target": "tag:markdown",
+      "relation": "tagged"
+    },
+    {
+      "source": "obsidian-claude-second-brain-workflow",
+      "target": "tag:obsidian",
+      "relation": "tagged"
+    },
+    {
+      "source": "obsidian-claude-second-brain-workflow",
+      "target": "tag:personal-knowledge-base",
+      "relation": "tagged"
+    },
+    {
+      "source": "obsidian-claude-second-brain-workflow",
+      "target": "tag:second-brain",
+      "relation": "tagged"
+    },
+    {
+      "source": "obsidian-claude-second-brain-workflow",
+      "target": "tag:workflow",
+      "relation": "tagged"
+    },
+    {
+      "source": "obsidian-claude-second-brain-workflow",
+      "target": "third-brain-v5-wiki",
+      "relation": "overlaps"
+    },
+    {
       "source": "obsidian-skills",
       "target": "cat:skill",
       "relation": "categorized"
@@ -21840,6 +22814,71 @@
       "relation": "tagged"
     },
     {
+      "source": "outlines",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "outlines",
+      "target": "dspy",
+      "relation": "overlaps"
+    },
+    {
+      "source": "outlines",
+      "target": "tag:constrained-decoding",
+      "relation": "tagged"
+    },
+    {
+      "source": "outlines",
+      "target": "tag:grammar",
+      "relation": "tagged"
+    },
+    {
+      "source": "outlines",
+      "target": "tag:json-schema",
+      "relation": "tagged"
+    },
+    {
+      "source": "outlines",
+      "target": "tag:llm",
+      "relation": "tagged"
+    },
+    {
+      "source": "outlines",
+      "target": "tag:ollama",
+      "relation": "tagged"
+    },
+    {
+      "source": "outlines",
+      "target": "tag:pydantic",
+      "relation": "tagged"
+    },
+    {
+      "source": "outlines",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "outlines",
+      "target": "tag:regex",
+      "relation": "tagged"
+    },
+    {
+      "source": "outlines",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "outlines",
+      "target": "tag:structured-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "outlines",
+      "target": "tag:vllm",
+      "relation": "tagged"
+    },
+    {
       "source": "overcut",
       "target": "cat:framework",
       "relation": "categorized"
@@ -22607,6 +23646,76 @@
     {
       "source": "ponytail",
       "target": "tag:yagni",
+      "relation": "tagged"
+    },
+    {
+      "source": "production-agentic-platforms-2026",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "production-agentic-platforms-2026",
+      "target": "crewai",
+      "relation": "overlaps"
+    },
+    {
+      "source": "production-agentic-platforms-2026",
+      "target": "graph-engineering",
+      "relation": "overlaps"
+    },
+    {
+      "source": "production-agentic-platforms-2026",
+      "target": "n8n-mcp",
+      "relation": "overlaps"
+    },
+    {
+      "source": "production-agentic-platforms-2026",
+      "target": "tag:agentic-platforms",
+      "relation": "tagged"
+    },
+    {
+      "source": "production-agentic-platforms-2026",
+      "target": "tag:crewai",
+      "relation": "tagged"
+    },
+    {
+      "source": "production-agentic-platforms-2026",
+      "target": "tag:enterprise",
+      "relation": "tagged"
+    },
+    {
+      "source": "production-agentic-platforms-2026",
+      "target": "tag:evaluation",
+      "relation": "tagged"
+    },
+    {
+      "source": "production-agentic-platforms-2026",
+      "target": "tag:governance",
+      "relation": "tagged"
+    },
+    {
+      "source": "production-agentic-platforms-2026",
+      "target": "tag:langgraph",
+      "relation": "tagged"
+    },
+    {
+      "source": "production-agentic-platforms-2026",
+      "target": "tag:n8n",
+      "relation": "tagged"
+    },
+    {
+      "source": "production-agentic-platforms-2026",
+      "target": "tag:observability",
+      "relation": "tagged"
+    },
+    {
+      "source": "production-agentic-platforms-2026",
+      "target": "tag:orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "production-agentic-platforms-2026",
+      "target": "tag:production",
       "relation": "tagged"
     },
     {
@@ -24460,6 +25569,41 @@
       "relation": "tagged"
     },
     {
+      "source": "staff-engineer-systems-thinking",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "staff-engineer-systems-thinking",
+      "target": "tag:alignment",
+      "relation": "tagged"
+    },
+    {
+      "source": "staff-engineer-systems-thinking",
+      "target": "tag:architecture",
+      "relation": "tagged"
+    },
+    {
+      "source": "staff-engineer-systems-thinking",
+      "target": "tag:leadership",
+      "relation": "tagged"
+    },
+    {
+      "source": "staff-engineer-systems-thinking",
+      "target": "tag:problem-framing",
+      "relation": "tagged"
+    },
+    {
+      "source": "staff-engineer-systems-thinking",
+      "target": "tag:staff-engineering",
+      "relation": "tagged"
+    },
+    {
+      "source": "staff-engineer-systems-thinking",
+      "target": "tag:systems-thinking",
+      "relation": "tagged"
+    },
+    {
       "source": "state-of-context-engineering-2026",
       "target": "cat:reference",
       "relation": "categorized"
@@ -25365,6 +26509,46 @@
       "relation": "overlaps"
     },
     {
+      "source": "tiktoken",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "tiktoken",
+      "target": "tag:bpe",
+      "relation": "tagged"
+    },
+    {
+      "source": "tiktoken",
+      "target": "tag:encoding",
+      "relation": "tagged"
+    },
+    {
+      "source": "tiktoken",
+      "target": "tag:nlp",
+      "relation": "tagged"
+    },
+    {
+      "source": "tiktoken",
+      "target": "tag:openai",
+      "relation": "tagged"
+    },
+    {
+      "source": "tiktoken",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "tiktoken",
+      "target": "tag:token-counting",
+      "relation": "tagged"
+    },
+    {
+      "source": "tiktoken",
+      "target": "tag:tokenizer",
+      "relation": "tagged"
+    },
+    {
       "source": "tolvi",
       "target": "cat:framework",
       "relation": "categorized"
@@ -26130,6 +27314,61 @@
       "relation": "tagged"
     },
     {
+      "source": "vector-distance-metrics-cheatsheet",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "vector-distance-metrics-cheatsheet",
+      "target": "faiss",
+      "relation": "overlaps"
+    },
+    {
+      "source": "vector-distance-metrics-cheatsheet",
+      "target": "rag-retrieval-recipe",
+      "relation": "overlaps"
+    },
+    {
+      "source": "vector-distance-metrics-cheatsheet",
+      "target": "tag:cosine-similarity",
+      "relation": "tagged"
+    },
+    {
+      "source": "vector-distance-metrics-cheatsheet",
+      "target": "tag:distance-metrics",
+      "relation": "tagged"
+    },
+    {
+      "source": "vector-distance-metrics-cheatsheet",
+      "target": "tag:embeddings",
+      "relation": "tagged"
+    },
+    {
+      "source": "vector-distance-metrics-cheatsheet",
+      "target": "tag:matryoshka",
+      "relation": "tagged"
+    },
+    {
+      "source": "vector-distance-metrics-cheatsheet",
+      "target": "tag:optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "vector-distance-metrics-cheatsheet",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "vector-distance-metrics-cheatsheet",
+      "target": "tag:vector-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "vector-distance-metrics-cheatsheet",
+      "target": "vector-database-basics-hnsw",
+      "relation": "overlaps"
+    },
+    {
       "source": "verify-before-claim",
       "target": "cat:reference",
       "relation": "categorized"
@@ -26147,6 +27386,51 @@
     {
       "source": "verify-before-claim",
       "target": "tag:verification",
+      "relation": "tagged"
+    },
+    {
+      "source": "vibe-coding-practitioner-habits",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "vibe-coding-practitioner-habits",
+      "target": "harness-engineering",
+      "relation": "overlaps"
+    },
+    {
+      "source": "vibe-coding-practitioner-habits",
+      "target": "staff-engineer-systems-thinking",
+      "relation": "overlaps"
+    },
+    {
+      "source": "vibe-coding-practitioner-habits",
+      "target": "tag:ai-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "vibe-coding-practitioner-habits",
+      "target": "tag:architecture",
+      "relation": "tagged"
+    },
+    {
+      "source": "vibe-coding-practitioner-habits",
+      "target": "tag:best-practices",
+      "relation": "tagged"
+    },
+    {
+      "source": "vibe-coding-practitioner-habits",
+      "target": "tag:code-review",
+      "relation": "tagged"
+    },
+    {
+      "source": "vibe-coding-practitioner-habits",
+      "target": "tag:vibe-coding",
+      "relation": "tagged"
+    },
+    {
+      "source": "vibe-coding-practitioner-habits",
+      "target": "tag:workflow",
       "relation": "tagged"
     },
     {
@@ -26407,6 +27691,56 @@
     {
       "source": "zero-to-mastery-ml",
       "target": "tag:tensorflow",
+      "relation": "tagged"
+    },
+    {
+      "source": "zoetrope",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "zoetrope",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "zoetrope",
+      "target": "tag:flow-graph",
+      "relation": "tagged"
+    },
+    {
+      "source": "zoetrope",
+      "target": "tag:observability",
+      "relation": "tagged"
+    },
+    {
+      "source": "zoetrope",
+      "target": "tag:ratatui",
+      "relation": "tagged"
+    },
+    {
+      "source": "zoetrope",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "zoetrope",
+      "target": "tag:session-replay",
+      "relation": "tagged"
+    },
+    {
+      "source": "zoetrope",
+      "target": "tag:tui",
+      "relation": "tagged"
+    },
+    {
+      "source": "zoetrope",
+      "target": "tag:visualization",
+      "relation": "tagged"
+    },
+    {
+      "source": "zoetrope",
+      "target": "tag:wasm",
       "relation": "tagged"
     }
   ],

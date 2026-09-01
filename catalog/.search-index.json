@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-08-26",
-  "count": 372,
+  "generated": "2026-08-31",
+  "count": 388,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -2474,6 +2474,27 @@
       "path": "catalog/entries/codex-ssd-write-bug.md"
     },
     {
+      "name": "community-skills-stack-2026",
+      "title": "Community Agent Skills Stack (2026 Curated List)",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Practitioner-curated list of ~15 installable agent skills across engineering (code review, evals, MCP builder, prompt engineering, superpowers, webapp testing), design (canvas design, frontend design), comms (AtomicMail agent email, internal comms), memory (Obsidian skills, planning-with-files), automation (Vercel agent-browser), growth (SEO audit), and discovery (skill-creator); all installable via npx skills add or plugin marketplace",
+      "body_summary": "Community-curated Reddit post listing a practitioner's actual daily-use agent skills stack in 2026, with verified install commands. Organized by domain:\n\n**Engineering:**\n- `addyosmani/agent-skills --skill code-review-and-quality` — structured review across correctness, readability, architecture, security, performance\n- `ai-evals-course/evals-skills` — audits eval pipelines, discovers failure modes from traces, workflows for product-specific evals\n- `anthropics/skills --skill mcp-builder` — guides building MCP servers\n- `CodeAlive-AI/ai-driven-development --skill prompt-engineering` — diagnoses prompting problems, chooses techniques, avoids hallucinations/structure/security mistakes\n- `obra/superpowers-marketplace` (plugin) — disciplined dev workflow with planning, TDD, debugging, task-execution patterns\n- `anthropics/skills --skill webapp-testing` — Playwright-based browser testing with screenshots and log inspection\n\n**Design:**\n- `anthropics/skills --skill canvas-design` — design briefs to original PNG/PDF artwork\n- `anthropics/skills --skill frontend-design` — production-quality frontend design over generic layouts\n\n**Communications:**\n- `@atomicmail/agent-skill-github` — gives agent its own email inbox for autonomous read/send/react\n- `anthropics/skills --skill internal-comms` — status reports, leadership updates, incident reports, newsletters\n\n**Memory:**\n- `kepano/obsidian-skills` — Obsidian-specific knowledge for Markdown, Bases, JSON Canvas, CLI workflows\n- `OthmanAdi/planning-with-files --skill planning-with-files` — stores plan/findings/progress in files for recovery after context loss\n\n**Automation:**\n- `vercel-labs/agent-browser` — real browser automation for navigation, forms, screenshots, data extraction, testing\n\n**Growth:**\n- `kostja94/marketing-skills --skill seo-audit` — technical SEO, indexing, on-page, content, off-page audit\n\n**Discovery:**\n- `anthropics/skills --skill skill-creator` — create new skills, run evaluations, benchmark, optimize trigger descriptions\n- `skills.sh/pwguler/skills` — custom task observer (community-recommended)",
+      "tags": [
+        "agent-skills",
+        "curated-list",
+        "claude-code",
+        "community",
+        "skills-stack",
+        "discovery"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-08-31",
+      "path": "catalog/entries/community-skills-stack-2026.md"
+    },
+    {
       "name": "confidence-probing-prompts",
       "title": "Confidence-Probing Prompts",
       "url": "https://reddit.com",
@@ -3167,6 +3188,32 @@
       "path": "catalog/entries/embodied-agent-design-patterns.md"
     },
     {
+      "name": "emdly",
+      "title": "emdly",
+      "url": "https://emdly.com/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Platform for discovering, comparing, and sharing SKILL.md files for AI agents — curated marketplace with human review and sandboxed safety screening; CLI installer (npx @emdly/cli add), synced to public GitHub repo (emdly-stack); ~24+ skills across engineering (PR review, debugging, commit messages, dependency upgrades), analytics (GA4 funnels, SQL explainer, dashboard metrics), content (SEO briefs, brand voice, landing pages), ops (incident postmortem, K8s triage, standup synthesis), commerce (product feeds, cart sequences), and gaming (balance review, playtest triage)",
+      "body_summary": "emdly is a curated marketplace for SKILL.md files — structured instruction files for AI coding agents. It provides discovery, comparison, and one-command installation of skills across domains.\n\nKey capabilities:\n\n- **Curated marketplace**: Skills are human-reviewed and pre-screened in a sandboxed AI environment for safety before publishing.\n- **CLI installer**: `npx @emdly/cli add <publisher>/<skill>` installs any skill. Compatible with Claude Code, Codex, OpenClaw, and other agents that support the SKILL.md format.\n- **Public GitHub sync**: The full collection is synced to a public `emdly-stack` GitHub repo, so skills aren't locked inside the platform.\n- **Publisher namespacing**: Skills are addressed as `publisher/skill-name` (e.g., `kernelpanic/pr-review-ritual`, `sevzero/incident-postmortem`).\n\n**Notable skills in the catalog:**\n- `querydeck/sql-query-explainer` — explains SQL queries in plain language, flags missing indexes\n- `shopmetric/ga4-funnel-analyst` — finds checkout funnel drop-offs by step, device, source\n- `pixelforge/playtest-feedback-triage` — sorts playtest notes into balance, UX, bugs, feel\n- `sevzero/incident-postmortem` — drafts blameless postmortems from timeline + channel export\n- `kernelpanic/pr-review-ritual` — structured code review discipline for agents\n- `sevzero/k8s-incident-triage` — ranks probable causes from kubectl output, read-only commands only\n- `shiplog/changelog-composer` — turns merged PRs into human-readable changelogs\n- `promptsmith/skill-author-guide` — how to write skills that pass emdly review",
+      "tags": [
+        "agent-skills",
+        "marketplace",
+        "skill-md",
+        "discovery",
+        "cli",
+        "curated",
+        "community",
+        "cross-platform"
+      ],
+      "workflows": [],
+      "license": "Unknown",
+      "security_flags": [
+        "license-unclear"
+      ],
+      "reviewed": "2026-08-31",
+      "path": "catalog/entries/emdly.md"
+    },
+    {
       "name": "end-of-session-review-questions",
       "title": "End-of-Session Review Questions",
       "url": "https://example.com",
@@ -3608,6 +3655,32 @@
       "security_flags": [],
       "reviewed": "2026-07-06",
       "path": "catalog/entries/free-claude-code.md"
+    },
+    {
+      "name": "freetoken",
+      "title": "FreeToken",
+      "url": "https://github.com/FlashML-org/FreeToken",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Edge-native MoE inference engine from UC Berkeley/UT Austin — runs 290B+ frontier MoE models on consumer hardware by keeping experts in system RAM and LRU-caching active experts to GPU; bandwidth-adaptive Q* scheduling, double-buffered prefill streaming, semantic anchor checkpoints for agentic context reuse, elastic VRAM reallocation; 3-4x faster decode and 6-30x faster prefill vs Ollama/llama.cpp on VRAM-oversubscribed MoE workloads; OpenAI/Anthropic-compatible API; desktop app + CLI; supports RTX 30/40/50 series; Apache-2.0",
+      "body_summary": "FreeToken is an inference engine purpose-built for running Mixture-of-Experts (MoE) models that exceed available GPU VRAM. Instead of loading the entire model onto the GPU, it keeps most expert weights in system RAM and dynamically loads only the experts needed for each token via LRU caching.\n\nKey capabilities:\n\n- **Bandwidth-adaptive Q* scheduling**: Dynamically decides CPU-GPU co-execution policy based on available bandwidth, optimizing expert loading vs. compute overlap.\n- **Double-buffered prefill streaming**: Full-layer streaming for prefill phase, hiding memory transfer latency.\n- **Global LRU expert caching**: Frequently-used experts stay GPU-resident; rarely-used experts evict to system RAM. When VRAM can't spare capacity, falls back to on-demand loading rather than oversubscribing.\n- **Semantic anchor checkpoints**: Caches recurrent state and KV caches at semantic breakpoints, allowing agentic context edits (tool calls, thinking blocks) to skip redundant recomputation.\n- **Elastic memory management**: Runtime VRAM reallocation between expert caches and KV memory without engine restarts.\n- **FTW fast weight format**: Custom weight format optimized for edge serving.\n\n**Benchmarks (August 2026):**\n- Qwen3.6-35B at ~39 tok/s on 8GB RTX 4060 laptop\n- DeepSeek-V4-Flash (284B) on RTX 5090 desktop\n- GLM-5.2 (753B) on a single workstation GPU\n- 3-4x faster decode, 6-30x faster prefill vs Ollama/llama.cpp on equivalent MoE models\n\n**When to use vs alternatives:** FreeToken wins when the MoE model exceeds VRAM — its purpose-built scenario. If the model fits in VRAM, llama.cpp is faster for single requests and vLLM is faster for parallel serving.\n\nSupported models: DeepSeek-V4, GLM-5.2/4.7, Qwen3.6/3.5 MoE, gpt-oss, Gemma-4, MiniMax-M2.5, Muse-Glimmer. Quantization formats: MXFP4, NVFP4, FP8, BF16.",
+      "tags": [
+        "moe",
+        "local-inference",
+        "edge-inference",
+        "vram-oversubscription",
+        "expert-caching",
+        "consumer-hardware",
+        "gpu",
+        "llm-inference",
+        "openai-compatible",
+        "apache-2"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-08-31",
+      "path": "catalog/entries/freetoken.md"
     },
     {
       "name": "frontier",
@@ -4139,6 +4212,31 @@
       "path": "catalog/entries/harnessx.md"
     },
     {
+      "name": "headcount",
+      "title": "Headcount",
+      "url": "https://github.com/cbrock84/headcount",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Claude Code plugin structured as a 16-department company org chart — 146 skills across CEO, Technology, Security (reviewer-class), IT Ops, Product, Marketing, Demand Gen, Revenue, Finance, Operations, PMO, Customer Experience, Data & Analytics, Corporate Strategy, People/HR, and Legal & Risk (reviewer-class); each department independently installable via marketplace, skills addressed as department:skill, agent charters for subagent delegation, exclusive write-surface enforcement; MIT",
+      "body_summary": "Headcount is a Claude Code plugin that organizes 146 agent skills as a simulated company with 16 departments, each independently installable. Skills load automatically when a request matches their territory, or can be invoked directly by name (e.g., `/finance:financial-modeling`).\n\n**Architecture:**\n- Each department is an independently installable plugin (`/plugin install security@headcount`)\n- Skills addressed as `department:skill` — names never collide across departments\n- Each department ships an agent charter in `.claude/agents/` for subagent delegation\n- Exclusive write-surface enforcement via `docs/AGENT-SURFACES.md` — every path has exactly one owner\n- Two reviewer-class departments (Security/CISO, Legal & Risk/CLO) whose blocking findings cannot be overridden by the department under review\n\n**Departments (16):**\n- Office of the CEO (6 skills) — agent hierarchy design, business growth, CEO advisory\n- Technology/CTO (18 skills) — code review, debugging, TDD, architecture, release, observability\n- Security/CISO (6 skills, reviewer-class) — threat modeling, incident response, security architecture\n- IT Operations/CIO (11 skills) — endpoint, network, identity lifecycle, backup\n- Product/CPO (9 skills) — design system, interface craft, UX audit, visual reference\n- Marketing/CMO (18 skills) — brand voice, content strategy, social, video, newsletters\n- Demand Generation (11 skills) — SEO, AI search optimization, CRO, paid ads, experiments\n- Revenue/CRO (8 skills) — pricing, retention, referral, sales enablement\n- Finance/CFO (10 skills) — modeling, unit economics, budgeting, revenue recognition\n- Operations/COO (10 skills) — process design, vendor management, supply chain\n- PMO (7 skills) — program management, portfolio governance, dependency/risk\n- Customer Experience/CCO (5 skills) — support ops, escalation, knowledge base\n- Data & Analytics/CDO (6 skills) — data engineering, BI, governance, ML governance\n- Corporate Strategy/CSO (5 skills) — M&A, portfolio strategy, scenario planning\n- People/CHRO (10 skills) — hiring, comp, org design, performance management\n- Legal & Risk/CLO (6 skills, reviewer-class) — contracts, compliance, privacy, enterprise risk\n\nSeven cross-department use cases documented in `docs/USE-CASES.md` (SOC 2 demand, security incident, stalled funnel, etc.).",
+      "tags": [
+        "claude-code-plugin",
+        "skills-library",
+        "organizational",
+        "departments",
+        "agent-hierarchy",
+        "subagents",
+        "write-surface",
+        "reviewer-class",
+        "enterprise"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-08-31",
+      "path": "catalog/entries/headcount.md"
+    },
+    {
       "name": "headroom-desktop",
       "title": "Headroom Desktop",
       "url": "https://github.com/gglucass/headroom-desktop",
@@ -4344,6 +4442,32 @@
       ],
       "reviewed": "2026-06-19",
       "path": "catalog/entries/iai-personal-memory-engine.md"
+    },
+    {
+      "name": "icca-harness",
+      "title": "ICCA Harness",
+      "url": "https://github.com/BernhardJackiewicz/icca-harness",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Evidence-gated maker-checker-auditor workflow for Claude Code — separates Implementer, Checker, Control, and Auditor roles so the agent that writes code never decides whether it's accepted; mechanical enforcement via Git hooks (frozen acceptance tests, content-fingerprinted commit gates, bounded repair loops); measured 28% reduction in expensive-model tokens on implementation-heavy tasks at identical success rate (total tokens increase 37%); optional stage gates for static analysis, coverage, mutation testing, property tests, dependency structure, e2e scenarios; MIT",
+      "body_summary": "ICCA is a Claude Code skill that enforces a maker-checker-auditor separation for agentic development. The central rule: the agent that implements never decides whether its own implementation is accepted.\n\n**Four roles:**\n- **Implementer**: Writes production code in a fresh delegated context. Cannot stage, commit, touch frozen tests, or accept its own work.\n- **Checker**: Independent fresh-context agents that execute declared stage gates (tests, static analysis, coverage, mutation). Never see Implementer transcripts. Never repair.\n- **Control**: Optional. Reviews a completed cycle against its contract on larger plans.\n- **Auditor**: Fresh context, interprets original requirements independently. Never receives \"all done\" summaries. Runs tests and builds its own probes.\n\n**Mechanical enforcement (Git hooks):**\n- Production code edits blocked before an active cycle or logged exemption exists\n- Acceptance tests frozen by patch fingerprint before implementation — modifications detected mechanically\n- Commits blocked without a passed commit gate\n- Commits blocked after verified code state changes (content fingerprinting)\n- Single-use gates: one passed gate authorizes exactly one commit\n- Bounded repair: 2 attempts per defect, then re-planning\n\n**Self-triage (Part 0):** The workflow classifies tasks as solo (no harness), light (core cycle), or full (cycle + declared stage gates). Small well-scoped work runs directly; delegation is for implementation-heavy work.\n\n**Measured results (16 paired runs, 100% success rate):**\n- Large task: -28% expensive-model tokens, +37% total tokens across both models\n- Small task: +7% expensive-model tokens, +119% total tokens (delegation loses)\n- Conclusion: delegate implementation-heavy work when the strongest model is scarce; do small work directly\n\n**Optional stage gates:** static analysis, quality ceilings, coverage floors, mutation testing, seed-pinned property tests, dependency-structure checks, end-to-end scenarios. Each runs in an independent Checker context.",
+      "tags": [
+        "claude-code",
+        "maker-checker",
+        "evidence-gated",
+        "code-review",
+        "verification",
+        "delegation",
+        "token-optimization",
+        "git-hooks",
+        "testing",
+        "skill"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-08-31",
+      "path": "catalog/entries/icca-harness.md"
     },
     {
       "name": "img2threejs",
@@ -4631,6 +4755,29 @@
       "path": "catalog/entries/knowledge-work-plugins.md"
     },
     {
+      "name": "kv-cache-vram-sizing",
+      "title": "KV Cache VRAM Sizing Formula for Local LLM Inference",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Practitioner reference for calculating KV cache memory: formula (2 × layers × kv_heads × head_dim × context_tokens × bytes_per_value), worked example showing Llama 3.1 8B at 128K context uses 16GB for cache alone (3× the 4.9GB Q4 weights); explains why GQA models (fewer KV heads) are dramatically cheaper at long context than MHA models, and why Ollama's default small num_ctx hides the cost until you raise it",
+      "body_summary": "Practical formula and worked example for calculating KV cache memory consumption during local LLM inference — the hidden cost that causes OOM errors even when model weights fit comfortably in VRAM.\n\n**The formula:**\n\n```\nKV bytes = 2 × layers × kv_heads × head_dim × context_tokens × bytes_per_value\n```\n\nThe `2` accounts for both K and V tensors. `bytes_per_value` is 2 at fp16, 1 at fp8/q8_0.\n\n**Worked example — Llama 3.1 8B (GQA, 8 KV heads):**\n\n- Per token: 2 × 32 layers × 8 kv_heads × 128 head_dim = 65,536 values × 2 bytes = 128 KB/token\n- 2K context: 256 MB | 8K: 1 GB | 32K: 4 GB | 128K: 16 GB\n- Model weights at Q4_K_M: 4.9 GB — at 128K context the cache is 3× the model\n\n**Key insights:**\n\n- **Budget VRAM as weights + cache, never weights alone.** The cache is linear in tokens and can exceed model size at long contexts.\n- **GQA vs MHA matters more than parameter count.** Two models with the same parameter count can have wildly different cache costs because `kv_heads` differs. A GQA model with 8 KV heads costs 1/4 the cache of an MHA model with 32 heads. This is not visible in parameter count or quant name — requires reading `num_key_value_heads` and `num_hidden_layers` from the model's `config.json`.\n- **Ollama hides the cost by default.** Ollama runs a small default `num_ctx`. Raising it to use the model's full advertised context (e.g., 128K) triggers the full cache allocation immediately, because it's linear in tokens.\n- **Rule of thumb**: On consumer hardware, a smaller GQA model at a large context window usually beats a larger model forced to run at 4K context.",
+      "tags": [
+        "kv-cache",
+        "vram",
+        "local-inference",
+        "memory-sizing",
+        "gqa",
+        "llama-cpp",
+        "ollama",
+        "context-window"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-08-31",
+      "path": "catalog/entries/kv-cache-vram-sizing.md"
+    },
+    {
       "name": "langflow",
       "title": "Langflow",
       "url": "https://github.com/langflow-ai/langflow",
@@ -4656,6 +4803,30 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/langflow.md"
+    },
+    {
+      "name": "large-moe-consumer-hardware",
+      "title": "Running Large MoE Models on Consumer Hardware (llama.cpp CPU-MoE Offload)",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Practitioner guide to running 176B MoE models (Qwen3.8-Flash-Next, 6B active) on a single 16GB GPU + 192GB RAM via llama.cpp --cpu-moe flag — attention on GPU, experts on CPU; ~16 tok/s; includes llama.cpp n-gram speculative decoding reference (--spec-type ngram-simple/ngram-cache, --lookup-cache-dynamic for SSD offload, tuning flags --spec-ngram-simple-size-n/m), q8_0 KV cache sizing at 262K context (~14GB), and memory budgeting guidance",
+      "body_summary": "Practitioner report on running Qwen3.8-Flash-Next (176B total, 6B active MoE) on consumer hardware: RTX 5070 Ti (16GB VRAM), 192GB DDR5 RAM, Linux. The key insight is that large MoE models don't need large GPUs — they need large system RAM.\n\n**Configuration that works:**\n\n- llama.cpp built from PR #27742 branch (experimental at time of writing)\n- Q8_0 GGUF, ~175GB across 12 shards (llama.cpp handles split transparently — point at shard 1)\n- `--cpu-moe` flag: experts run on CPU (in system RAM), attention stays on GPU\n- 262K context, q8_0 KV cache\n- Result: ~16 tok/s generation, usable for interactive chat\n\n**Memory budget:**\n\n- q8_0 KV cache at full 262K context = ~14GB — fits 16GB GPU with room to spare\n- 175GB model weights sit in system RAM — tight on 192GB, 128GB would struggle, 256GB comfortable\n- GGUF quants (Unsloth, DevQuasar) available pre-built — no need to convert from safetensors\n\n**llama.cpp n-gram speculative decoding reference:**\n\nAvailable spec types (stackable via comma-separation):\n- `ngram-simple` — basic n-gram lookup\n- `ngram-map-k` — n-gram map (K cache only)\n- `ngram-map-k4v` — n-gram map (K+V cache)\n- `ngram-mod` — modular n-gram with configurable N range\n- `ngram-cache` — n-gram with persistent cache\n\nSSD offload for n-gram lookup table:\n- `--lookup-cache-static /path/cache.bin` — load static cache, not updated during generation\n- `--lookup-cache-dynamic /path/ngram_cache.bin` — load AND update cache during generation, persists and improves across runs (the SSD offload option)\n\nTuning parameters:\n- `--spec-ngram-simple-size-n 12` — lookup n-gram length (tokens to match on)\n- `--spec-ngram-simple-size-m 48` — draft m-gram length (tokens to generate as draft)\n- `--spec-ngram-simple-min-hits 1` — minimum hits before accepting draft\n- For ngram-mod: `--spec-ngram-mod-n-min 48`, `--spec-ngram-mod-n-max 64`, `--spec-ngram-mod-n-match 24`\n\nFull SSD-offload example:\n```\nllama-server --model model.gguf --spec-type ngram-cache --lookup-cache-dynamic /mnt/ssd/ngram_cache.bin --spec-ngram-simple-size-n 12 --spec-ngram-simple-size-m 48\n```\n\nUse a fast NVMe SSD — SATA SSDs will likely be too slow for benefit.",
+      "tags": [
+        "moe",
+        "llama-cpp",
+        "local-inference",
+        "cpu-offload",
+        "speculative-decoding",
+        "n-gram",
+        "consumer-hardware",
+        "vram",
+        "gguf"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-08-31",
+      "path": "catalog/entries/large-moe-consumer-hardware.md"
     },
     {
       "name": "leantime",
@@ -4787,6 +4958,37 @@
       ],
       "reviewed": "2026-07-22",
       "path": "catalog/entries/llmfit.md"
+    },
+    {
+      "name": "lm-studio",
+      "title": "LM Studio",
+      "url": "https://lmstudio.ai/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Desktop application for downloading, managing, and running local LLMs with GUI chat, OpenAI/Anthropic-compatible API server (localhost:1234), MLX and llama.cpp engines, built-in model search with VRAM fit estimation, GPU offload controls, voice transcription, and Bionic agentic assistant; JS/Python SDKs, MCP client support, headless daemon (llmster), LM Link encrypted remote inference; free for personal and commercial use; macOS/Windows/Linux",
+      "body_summary": "LM Studio is a desktop application (v0.4.23, August 2026) that lets users download GGUF-quantized LLMs from Hugging Face, manage them locally, and run inference entirely on their own hardware. It ships two inference backends — llama.cpp (CPU/NVIDIA/AMD) and MLX (Apple Silicon) — switchable per model.\n\nKey capabilities:\n\n- **Model discovery and management**: Built-in search across Hugging Face GGUF repositories with up-front VRAM/RAM fit estimation before download. Per-model parameter tuning (temperature, top-p, context length) and GPU layer offload controls via GUI.\n- **Chat interface**: Conversation history, file/image attachments, vision model support, and real-time local voice transcription (audio never leaves device).\n- **Bionic agent**: Built-in agentic assistant for document creation/editing, coding tasks, automations, and computer control. Works with local or frontier open models (GLM 5.2, Kimi K3, DeepSeek V4 Pro via ZDR cloud).\n- **Local API server**: Serves OpenAI-compatible endpoints (`/v1/chat/completions`, `/v1/completions`, `/v1/embeddings`, `/v1/models`) and Anthropic-compatible endpoints at `localhost:1234`. Tool calling supported. Any OpenAI SDK-based tool (LangChain, LlamaIndex, Continue.dev, Claude Code) works by pointing its base URL.\n- **Developer tooling**: JavaScript and Python SDKs, CLI tool (`lms`), headless daemon (`llmster`) for server deployments, MCP client support.\n- **LM Link**: Encrypted remote inference — run models on a GPU server while the API appears at localhost on a laptop.",
+      "tags": [
+        "local-inference",
+        "llm",
+        "api-server",
+        "openai-compatible",
+        "mlx",
+        "llama-cpp",
+        "gui",
+        "model-management",
+        "voice",
+        "agent",
+        "mcp-client",
+        "privacy",
+        "desktop"
+      ],
+      "workflows": [],
+      "license": "Proprietary (free for personal and commercial use)",
+      "security_flags": [
+        "closed-source"
+      ],
+      "reviewed": "2026-08-31",
+      "path": "catalog/entries/lm-studio.md"
     },
     {
       "name": "local-model-adversarial-workflow",
@@ -5746,6 +5948,29 @@
       "path": "catalog/entries/obliteratus.md"
     },
     {
+      "name": "obsidian-claude-second-brain-workflow",
+      "title": "Obsidian + Claude Code Second Brain Workflow",
+      "url": "https://medium.com/@evgeni.n.rusev/how-i-built-my-second-brain-with-obsidian-claude-code-9fb54b7665ca",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Practitioner workflow for building an AI-native personal knowledge base using Obsidian as the storage layer and Claude Code as the structuring agent — vault organized as books/, articles/, posts/, wiki/ with frontmatter tags and wikilinks; CLAUDE.md defines the schema and operating manual; Claude reads raw text and structures it into tagged pages, wiki entries, comparison tables, and cross-referenced summaries without plugins or API wrappers",
+      "body_summary": "Practical guide (by Evgeni Rusev, published April 2026) to building an AI-native personal knowledge base where Obsidian is the storage layer and Claude Code is the structuring agent.\n\nKey design decisions:\n\n- **Obsidian as LLM-native storage**: Obsidian vaults are plain Markdown with tags, frontmatter, and wikilinks — Claude reads and writes `.md` files natively with no API wrappers, plugins, or export steps.\n- **Vault structure**: `books/`, `articles/`, `posts/`, `wiki/` (with subfolders for domains like mental-models, economics, psychology, history, ai), plus `index.md` as master catalog, `log.md` for chronological records, and `CLAUDE.md` as Claude's operating manual/schema definition.\n- **Claude as structuring agent**: Raw highlights, notes, or source text go into the vault; Claude structures them into tagged pages, extracts key insights, represents knowledge as summaries, wiki entries, or comparison tables, and creates cross-references via wikilinks.\n- **CLAUDE.md as schema contract**: Defines the vault's conventions, naming patterns, frontmatter fields, and tagging taxonomy so Claude produces consistent output across sessions.\n\nThe approach treats the vault as a knowledge graph that Claude can both read from (for context) and write to (for structured capture), making the knowledge base grow with each interaction.",
+      "tags": [
+        "obsidian",
+        "knowledge-management",
+        "second-brain",
+        "claude-code",
+        "workflow",
+        "markdown",
+        "personal-knowledge-base"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-08-31",
+      "path": "catalog/entries/obsidian-claude-second-brain-workflow.md"
+    },
+    {
       "name": "obsidian-skills",
       "title": "Obsidian Skills (Kepano)",
       "url": "https://github.com/kepano/obsidian-skills",
@@ -6440,6 +6665,33 @@
       "path": "catalog/entries/outcomes-managed-agents.md"
     },
     {
+      "name": "outlines",
+      "title": "Outlines",
+      "url": "https://github.com/dottxt-ai/outlines",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Structured generation library by .txt — guarantees LLM outputs conform to JSON Schema, Pydantic models, regex, grammars, or Python types via constrained decoding (FSM-based token masking); works with transformers, llama.cpp, vLLM, Ollama, OpenAI, Gemini; Jinja prompt templates, function calling inference, batch generation; Rust core (outlines-core) for performance; 65M+ downloads; trusted by NVIDIA, Cohere, HuggingFace, vLLM; Apache-2.0",
+      "body_summary": "Outlines is a Python library that guarantees LLM outputs match a specified structure during generation — not after. It uses finite-state machine (FSM) based constrained decoding to mask invalid tokens at each generation step, making it impossible for the model to produce invalid output.\n\nKey capabilities:\n\n- **Type-driven interface**: Specify the desired output type and Outlines enforces it. `model(prompt, int)` returns an integer. `model(prompt, MyPydanticModel)` returns valid JSON matching the schema. `model(prompt, Literal[\"Yes\", \"No\"])` returns exactly one of those strings.\n- **Multiple constraint types**: JSON Schema / Pydantic models, Python `Literal` types, `int`/`float`/`bool`, regular expressions, context-free grammars, and function signatures (infers structure from typed function parameters).\n- **Provider-agnostic**: Same code runs across local models (transformers, llama.cpp), inference servers (vLLM, Ollama), and APIs (OpenAI, Gemini, Dottxt). Switch models without changing generation code.\n- **Prompt templates**: Jinja-based `outlines.Template` for separating prompt logic from code, supporting few-shot examples and dynamic content.\n- **Batch generation**: Pass a list of prompts for batch inference.\n- **Union types**: `Union[EventInfo, Literal[\"I don't know\"]]` lets the model return structured data or a fallback, handling incomplete information gracefully.\n\n**How it works:** Outlines compiles the output specification (JSON Schema, regex, grammar) into a finite-state automaton, then at each decoding step masks tokens that would lead to an invalid state. The result is always valid — no parsing, retrying, or defensive code needed.",
+      "tags": [
+        "structured-generation",
+        "constrained-decoding",
+        "json-schema",
+        "pydantic",
+        "regex",
+        "grammar",
+        "llm",
+        "python",
+        "rust",
+        "vllm",
+        "ollama"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-08-31",
+      "path": "catalog/entries/outlines.md"
+    },
+    {
       "name": "overcut",
       "title": "Overcut — Agentic SDLC Orchestration",
       "url": "https://overcut.ai",
@@ -6873,6 +7125,31 @@
       "security_flags": [],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/ponytail.md"
+    },
+    {
+      "name": "production-agentic-platforms-2026",
+      "title": "Production-Grade Agentic AI Platforms (2026 Evaluation)",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Practitioner evaluation of 5 agentic AI platforms for production use, ranked by orchestration, stateful workflows, human-in-the-loop, RAG, evals, observability, governance, and deployment flexibility: LangGraph (max engineering control), Microsoft Agent Framework (Azure enterprises), SimplAI (enterprise agent ops + governance), CrewAI (fast multi-agent dev), n8n (workflow automation + integrations); key lesson: 'can build an agent' ≠ 'can run agents in production' — observability, evaluation, governance, failure handling, deployment, and human-in-the-loop are the differentiators",
+      "body_summary": "Practitioner evaluation of the agentic AI platform landscape for production deployment in 2026. Evaluates platforms across 11 dimensions: multi-agent orchestration, stateful/long-running workflows, human-in-the-loop approvals, RAG and enterprise data integration, evaluation and testing, tracing/observability, governance and access controls, deployment flexibility, integrations, production scalability, and PoC-to-production ease.\n\n**Shortlist:**\n\n1. **LangGraph**: Graph/state-based approach with maximum developer control over workflows, branching, persistence, and human-in-the-loop. Best for engineering-heavy teams building highly customized systems. Downside: you own the surrounding production infrastructure.\n\n2. **Microsoft Agent Framework**: Compelling for Microsoft/Azure-invested organizations — ecosystem integration, enterprise identity, governance. Downside: less attractive if vendor-agnostic is a goal.\n\n3. **SimplAI**: Covers the gap between \"I built an agent\" and \"my organization can operate hundreds of agents\" — visual agent/workflow building, 300+ data connectors, built-in evals, tracing, human approval workflows, governance, multi-model support, cloud/on-prem/air-gapped deployment. Interesting for regulated industries.\n\n4. **CrewAI**: Easiest multi-agent prototyping via role/crew abstraction. Best for development speed and experimentation. Downside: granular control becomes limited at high workflow complexity.\n\n5. **n8n**: Not a traditional agent framework but practical for integration/workflow-driven agentic use cases. Downside: not the choice for deeply stateful, complex agent architectures.\n\n**Key evaluation criteria for production (the things that separate demo from production):**\n1. Observability — can you understand why an agent made a decision?\n2. Evaluation — can you continuously test after changing prompts, models, or workflows?\n3. Governance — who can create, modify, and execute agents?\n4. Failure handling — what happens on tool failure, API timeout, wrong decision?\n5. Deployment — can you deploy where enterprise data is allowed to live?\n6. Human-in-the-loop — can high-risk actions require approval?",
+      "tags": [
+        "agentic-platforms",
+        "evaluation",
+        "production",
+        "orchestration",
+        "langgraph",
+        "crewai",
+        "n8n",
+        "enterprise",
+        "governance",
+        "observability"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-08-31",
+      "path": "catalog/entries/production-agentic-platforms-2026.md"
     },
     {
       "name": "production-rag-system-taxonomy",
@@ -7913,6 +8190,28 @@
       "path": "catalog/entries/spiderbrain-v3.md"
     },
     {
+      "name": "staff-engineer-systems-thinking",
+      "title": "Staff Engineers: Shift from Solving Problems to Shaping Systems",
+      "url": "https://leaddev.com/career-development/staff-engineers-shift-from-solving-problems-to-shaping-systems",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "LeadDev article (Monzo staff engineer) on the four moves that distinguish staff-level impact: find the research gap (the real problem behind the visible one), have conviction about the right solution (redesign at source vs. patching heuristics), design for belief not just correctness (alignment as a design problem), and make yourself unnecessary (spread the thinking pattern, not just the implementation)",
+      "body_summary": "Article by a Monzo staff engineer describing the transition from solving technical problems to shaping systems. Presents four repeatable moves for staff-level engineering impact:\n\n1. **Find the research gap**: Distinguish the problem everyone is discussing from the problem actually worth solving. Simple questions — \"What are we really measuring?\", \"Why does the system work like this?\", \"What assumption have we stopped questioning?\" — often reveal the gap.\n\n2. **Have conviction about the right solution**: Resist incremental fixes when the root cause is structural. If a system repeatedly reconstructs reality after the fact, consider whether the thing you care about should be generated at source. The right solution is rarely the smallest change.\n\n3. **Design for belief, not just correctness**: Alignment is a design problem. Invite challenge, connect perspectives across stakeholders, create shared understanding so people advocate for the direction without you in the room.\n\n4. **Make yourself unnecessary**: The highest-leverage work creates systems and people that continue improving without you. Success is when other teams start asking the same questions on unrelated projects.\n\nCore thesis: the transition from senior to staff isn't from technical to non-technical work — it's from solving problems to shaping systems.",
+      "tags": [
+        "staff-engineering",
+        "systems-thinking",
+        "leadership",
+        "architecture",
+        "alignment",
+        "problem-framing"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-08-31",
+      "path": "catalog/entries/staff-engineer-systems-thinking.md"
+    },
+    {
       "name": "state-of-context-engineering-2026",
       "title": "The State of Context Engineering 2026 (Redis)",
       "url": "https://redis.io/resources/state-of-context-engineering-2026/",
@@ -8378,6 +8677,29 @@
       "path": "catalog/entries/thunderjar.md"
     },
     {
+      "name": "tiktoken",
+      "title": "tiktoken",
+      "url": "https://github.com/openai/tiktoken",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "OpenAI's fast BPE tokenizer library — 3-6x faster than HuggingFace tokenizers; supports all OpenAI model encodings (o200k_base, cl100k_base, etc.); Python API for encode/decode, model-to-encoding lookup, custom encoding extension via plugin mechanism; educational submodule for visualizing BPE procedure; MIT",
+      "body_summary": "tiktoken is a fast Byte Pair Encoding (BPE) tokenizer library by OpenAI, used for tokenizing text into the token sequences that OpenAI's language models consume.\n\nKey capabilities:\n\n- **Model-specific encoding**: `tiktoken.encoding_for_model(\"gpt-4o\")` returns the correct tokenizer for any OpenAI model. Built-in encodings include `o200k_base` (GPT-4o and later), `cl100k_base` (GPT-4/GPT-3.5-turbo), and older encodings.\n- **Performance**: 3-6x faster than comparable open-source tokenizers (benchmarked against HuggingFace `tokenizers` on 1GB text).\n- **Reversible and lossless**: `decode(encode(text)) == text` for all inputs.\n- **Custom encodings**: Extend with custom special tokens or entirely new BPE vocabularies via direct `Encoding` construction or the `tiktoken_ext` plugin mechanism.\n- **Educational module**: `tiktoken._educational` provides `SimpleBytePairEncoding` for visualizing BPE tokenization and `train_simple_encoding()` for training toy tokenizers.\n\nUseful for token counting before API calls, understanding tokenization behavior, building token-aware text chunking for RAG pipelines, and debugging token-level model behavior.",
+      "tags": [
+        "tokenizer",
+        "bpe",
+        "openai",
+        "python",
+        "nlp",
+        "token-counting",
+        "encoding"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-08-31",
+      "path": "catalog/entries/tiktoken.md"
+    },
+    {
       "name": "tolvi",
       "title": "Tolvi — Engineering Decision Vault",
       "url": "https://github.com/tolvi-labs/tolvi",
@@ -8781,6 +9103,28 @@
       "path": "catalog/entries/vector-database-basics-hnsw.md"
     },
     {
+      "name": "vector-distance-metrics-cheatsheet",
+      "title": "Vector Embeddings Distance Metrics Cheat Sheet",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Practitioner cheat sheet on choosing vector distance metrics for RAG: cosine similarity (unnormalized text), dot product (fastest for normalized unit vectors), L2 Euclidean (clustering); plus Matryoshka trick — truncate embedding dimensions from 1536→512 to cut vector RAM by 80% with minimal accuracy loss",
+      "body_summary": "Concise engineering reference for choosing the right distance metric in vector databases, framed as a common source of silent retrieval failures in production RAG systems.\n\nThree metrics compared:\n\n1. **Cosine Similarity**: Measures the angle between vectors. Best for unnormalized text embeddings where magnitude varies. Most common default in vector DBs.\n2. **Dot Product**: Measures angle plus magnitude. Fastest when vectors are pre-normalized to unit length (cosine and dot product become equivalent on unit vectors).\n3. **L2 Euclidean Distance**: Measures geometric distance in embedding space. Best suited for clustering tasks where absolute position matters.\n\n**Matryoshka Representation Learning trick**: Many modern embedding models (OpenAI text-embedding-3, nomic-embed) support Matryoshka embeddings — the first N dimensions of the full vector preserve most of the semantic information. Truncating from 1536 to 512 dimensions cuts vector storage RAM by ~80% with reported zero or near-zero accuracy loss on standard benchmarks. This is a property of how the model was trained, not a general compression technique.\n\nChoosing the wrong metric (e.g., L2 on unnormalized embeddings with high magnitude variance) causes retrieval to silently return semantically wrong results without any error signal.",
+      "tags": [
+        "vector-search",
+        "embeddings",
+        "rag",
+        "cosine-similarity",
+        "distance-metrics",
+        "matryoshka",
+        "optimization"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-08-31",
+      "path": "catalog/entries/vector-distance-metrics-cheatsheet.md"
+    },
+    {
       "name": "verify-before-claim",
       "title": "Verify Before Claim (Third Brain V5)",
       "url": "https://github.com/Mark393295827/third-brain-v5-skills",
@@ -8798,6 +9142,27 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/verify-before-claim.md"
+    },
+    {
+      "name": "vibe-coding-practitioner-habits",
+      "title": "Vibe Coding Practitioner Habits (Pre-AI Developer Perspective)",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Experienced developer's framework for effective AI-assisted development: plan before prompting, break work into small pieces, read and understand generated code, ask 'why' before accepting fixes, maintain your own architectural mental model, challenge the AI on edge cases and alternatives, and learn fundamentals alongside it; core thesis is that AI becomes a force multiplier only when the developer can explain the system without AI — otherwise the AI starts leading instead of assisting",
+      "body_summary": "Practitioner reflection from a pre-AI developer on why \"vibe coding\" fails for many people and the habits that make it work. Core argument: AI doesn't replace thinking — it requires understanding the full blueprint (architecture, schema, auth, state, security, feature connections) to steer effectively. When developers let AI make architectural decisions, each fix stacks on the last until the codebase becomes inconsistent and unrecoverable.\n\n**Seven habits:**\n1. Plan before you prompt — know what the feature does, what data it needs, how it fits\n2. Break work into small pieces — one feature at a time, test, understand, move on\n3. Read the code it gives you — understand why it works and what else it affects\n4. Ask \"why?\" not just \"fix it\" — understand the cause before accepting a patch\n5. Keep track of your architecture — know where database logic, auth, state, APIs, and permissions live\n6. Challenge the AI — ask about downsides, edge cases, security issues, simpler approaches\n7. Learn fundamentals alongside it — the more you understand programming, the easier it is to spot when AI is guessing\n\nCore test: if you can explain your application without AI, AI becomes a massive accelerator. If you can't, it starts leading you.",
+      "tags": [
+        "vibe-coding",
+        "ai-development",
+        "best-practices",
+        "workflow",
+        "architecture",
+        "code-review"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-08-31",
+      "path": "catalog/entries/vibe-coding-practitioner-habits.md"
     },
     {
       "name": "vidnote",
@@ -8963,6 +9328,31 @@
       "security_flags": [],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/zero-to-mastery-ml.md"
+    },
+    {
+      "name": "zoetrope",
+      "title": "Zoetrope",
+      "url": "https://github.com/furkankly/zoetrope",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Rust TUI that visualizes Claude Code sessions as live flow graphs — reads JSONL transcripts from ~/.claude/projects/, shows agents/subagents/workflows as nodes with tool calls, status, and token counts; time-travel scrubbing, live following, gap compression, agent detail panels with prompts and tool timings; also runs in-browser via WASM; zero network, read-only; MIT",
+      "body_summary": "Zoetrope reads Claude Code's JSONL session transcripts and renders them as a live, interactive flow graph in the terminal or browser. Each agent (main session, subagents, workflow children) appears as a node with status, current tool, tool count, and output tokens. Edges animate while agents work.\n\nKey capabilities:\n\n- **Live following**: Point at a running session and it updates in real-time as new events append. Point at a finished transcript and it replays paced by the session's own timestamps.\n- **Time travel**: Scrubbable timeline indexed by event (not wall-clock). Seek backwards to see the session exactly as it stood at that moment — agents un-finish, tool counts fall, the graph shrinks back.\n- **Agent inspection**: Click any agent for its spawn prompt, reasoning, model, and every tool call with timings. Session info overlay shows mode, permissions, queued ops, file edits, last prompt.\n- **Headless mode**: `zoe inspect <file.jsonl>` prints the session tree without a TUI — works in CI or pipelines.\n- **Browser version**: Same engine compiled to WASM via ratzilla. Drop a transcript on the hosted page for the same graph, fully local.\n- **Zero network**: No HTTP client in the dependency tree. `tokio` pulled without `net` feature. Verifiable via `cargo tree`.\n\n**Usage:**\n```\nzoe                          # follow current project's live session\nzoe <file.jsonl>             # replay a recording\nzoe <file.jsonl> --follow    # open at live edge\nzoe <file.jsonl> --speed N   # playback speed (default 8.0)\n```",
+      "tags": [
+        "claude-code",
+        "visualization",
+        "tui",
+        "rust",
+        "observability",
+        "session-replay",
+        "flow-graph",
+        "wasm",
+        "ratatui"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-08-31",
+      "path": "catalog/entries/zoetrope.md"
     }
   ]
 }
