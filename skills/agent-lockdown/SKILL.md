@@ -125,6 +125,36 @@ user/global settings and belong in `~/.claude/settings.json`. Add alongside the 
 The flat form `"attribution.commit": false` does **not** work — `attribution` must be a nested
 object, and `commit`/`pr` are strings, not booleans.
 
+**Artifact control (optional):**
+
+Three ways to disable the Artifact tool (standalone HTML/React previews). Pick by scope:
+
+| Method | Scope | Where |
+|--------|-------|-------|
+| `"enableArtifact": false` | Every session | `~/.claude/settings.json` (top-level key) |
+| `--disallowed-tools Artifact` | One session | CLI launch flag |
+| `CLAUDE_CODE_DISABLE_ARTIFACT=1` | Every session (env) | `~/.claude/settings.json` `env` block |
+
+To apply globally via settings, merge into the Step 2 block:
+
+```json
+{
+  "enableArtifact": false
+}
+```
+
+Or via the env block (equivalent):
+
+```json
+{
+  "env": {
+    "CLAUDE_CODE_DISABLE_ARTIFACT": "1"
+  }
+}
+```
+
+Use the CLI flag when you want artifacts off for a single session without changing settings.
+
 ### Traps to avoid
 
 - The `ANTHROPIC_CUSTOM_MODEL_OPTION` trio is critical: without it, switching to

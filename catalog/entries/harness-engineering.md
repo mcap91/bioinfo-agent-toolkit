@@ -46,3 +46,7 @@ Both are needed: feedback-only means the agent keeps repeating the same mistakes
 ## Security
 
 Article/reference — no code to audit.
+
+## Usage notes
+
+- **Two practical consequences of model-as-cartridge design**: (1) When evaluating models, ensure you're comparing models, not harnesses — a "worse" model in a better harness often beats a stronger model in a naive one; most public agent benchmarks quietly measure both at once. (2) Design your agent so the model is one config line — if tool schemas, prompts, and loop logic are tangled around one vendor's API quirks, you've built a machine you cannot upgrade; a thin adapter layer between loop and model pays for itself the first time a better model ships.

@@ -39,3 +39,7 @@ The five SCRUB actions map roughly to session lifecycle stages: subagents for pa
 ## Security
 
 Reference/pattern content — no code shipped, no security concerns.
+
+## Usage notes
+
+- **Disable Artifact tool to save ~10K tokens per session**: The Artifact tool definition consumes ~10K of the ~20K system tool definition tokens loaded at session start — roughly half the tool-definition overhead and ~5% of the effective 200K "smart zone." Three ways to disable: (1) `"enableArtifact": false` in `~/.claude/settings.json` (permanent), (2) `claude --disallowed-tools Artifact` (per-session), (3) env var `CLAUDE_CODE_DISABLE_ARTIFACT=1`.
