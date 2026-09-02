@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-08-31",
-  "count": 388,
+  "generated": "2026-09-02",
+  "count": 409,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -673,6 +673,29 @@
       "path": "catalog/entries/airllm.md"
     },
     {
+      "name": "aizynthfinder",
+      "title": "AiZynthFinder",
+      "url": "https://github.com/MolecularAI/aizynthfinder",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "AiZynthFinder performs retrosynthetic planning — given a target molecule, it finds multi-step\nsynthetic routes back to commercially available starting materials. The default algorithm uses\nMonte Carlo tree search (MCTS) that recursively breaks down molecules by applying reaction\ntemplates suggested by a trained neural network policy.\n\nThe tool is fully customizable:\n\n- **Search algorithms:** MCTS (default), plus pluggable alternatives\n- **Expansion policies:** Neural network trained on known reaction templates; supports custom\n  policies\n- **Filter policies:** Optional trained network to filter infeasible reactions\n- **Stock files:** Define which precursors are considered purchasable/available",
+      "tags": [
+        "retrosynthesis",
+        "synthesis-planning",
+        "monte-carlo-tree-search",
+        "reaction-templates",
+        "drug-discovery",
+        "astrazeneca",
+        "cheminformatics"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/aizynthfinder.md"
+    },
+    {
       "name": "alcoa-plus-for-ai",
       "title": "AI Needs What ALCOA+ Gave Records",
       "url": "https://bryandownie.substack.com/p/ai-needs-what-alcoa-gave-records",
@@ -718,6 +741,32 @@
       "security_flags": [],
       "reviewed": "2026-07-15",
       "path": "catalog/entries/amazon-bedrock.md"
+    },
+    {
+      "name": "amazon-textract-textractor",
+      "title": "Amazon Textract Textractor",
+      "url": "https://github.com/aws-samples/amazon-textract-textractor",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "Textractor is a Python wrapper around Amazon Textract that simplifies document intelligence\nworkflows. It handles API calls, response parsing, and output formatting in one package.\n\nCapabilities:\n\n- **Text recognition:** `detect_document_text()` — extract lines and words from images/PDFs\n- **Table extraction:** `analyze_document(features=[TABLES])` — extract tables, export to\n  Excel/CSV/DataFrame\n- **Form extraction:** `analyze_document(features=[FORMS])` — extract key-value pairs with\n  fuzzy matching via `document.get(\"email\")`\n- **ID analysis:** `analyze_id()` — extract structured fields from identity documents\n- **Expense processing:** `analyze_expense()` — extract receipt/invoice fields (totals,\n  line items, vendors)\n\nSupports image files, PDFs, bytes, and S3 paths. Both synchronous and asynchronous APIs.",
+      "tags": [
+        "ocr",
+        "document-extraction",
+        "aws",
+        "textract",
+        "table-extraction",
+        "form-extraction",
+        "pdf",
+        "cloud-service"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "requires-cloud-credentials"
+      ],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/amazon-textract-textractor.md"
     },
     {
       "name": "andrej-karpathy-skills",
@@ -921,6 +970,31 @@
       "path": "catalog/entries/asi-evolve.md"
     },
     {
+      "name": "askcos",
+      "title": "ASKCOS",
+      "url": "https://github.com/ASKCOS/ASKCOS",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "ASKCOS (Automated Synthesis Knowledge for Chemical Operations and Synthesis) is an\nintegrated platform for computer-aided synthesis planning. It combines multiple ML models\nfor different aspects of synthetic route design:\n\n- **Retrosynthetic analysis:** Template-based transformer that suggests single-step\n  precursors with chirality consideration\n- **Forward prediction:** Template-free model for predicting reaction outcomes\n- **Reaction conditions:** Neural network model recommending reagents, solvents, temperature\n- **Synthetic complexity (SCScore):** Learned metric for prioritizing precursors\n- **Fast filter:** Binary classifier for quick reaction plausibility screening\n- **Integrated CASP:** Tree search combining all modules for multi-step route planning",
+      "tags": [
+        "synthesis-planning",
+        "retrosynthesis",
+        "forward-prediction",
+        "reaction-conditions",
+        "scscore",
+        "drug-discovery",
+        "cheminformatics",
+        "casp",
+        "docker"
+      ],
+      "workflows": [],
+      "license": "MPL-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/askcos.md"
+    },
+    {
       "name": "attention-control",
       "title": "Attention Control",
       "url": "https://github.com/aaddrick/attention-control",
@@ -943,6 +1017,29 @@
       "security_flags": [],
       "reviewed": "2026-08-09",
       "path": "catalog/entries/attention-control.md"
+    },
+    {
+      "name": "autodock-vina",
+      "title": "AutoDock Vina",
+      "url": "https://github.com/ccsb-scripps/AutoDock-Vina",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "AutoDock Vina predicts how small molecules (ligands) bind to protein targets by searching\nfor the lowest-energy binding pose within a defined search space. It uses a simple empirical\nscoring function combined with rapid gradient-based optimization and iterated local search\nfor conformational sampling.\n\nKey capabilities:\n\n- **Docking:** Predict binding poses and affinities for protein-ligand complexes\n- **Virtual screening:** Batch mode processes compound libraries against a target\n- **Multi-ligand docking:** Simultaneously dock multiple ligands\n- **Macrocycle support:** Handle ring systems larger than typical drug-like molecules\n- **Hydrated docking:** Protocol accounting for explicit water molecules\n- **External maps:** Read and write AutoDock grid maps for custom scoring\n- **Dual scoring:** Both AutoDock4.2 and Vina scoring functions available",
+      "tags": [
+        "molecular-docking",
+        "virtual-screening",
+        "protein-ligand",
+        "drug-discovery",
+        "scoring-function",
+        "autodock",
+        "structural-biology"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/autodock-vina.md"
     },
     {
       "name": "autoharness",
@@ -1597,6 +1694,31 @@
       "path": "catalog/entries/castem-first-principles-model-mediated-work.md"
     },
     {
+      "name": "chandra-ocr",
+      "title": "Chandra OCR",
+      "url": "https://github.com/datalab-to/chandra",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "Chandra OCR 2 is a vision-language model for document parsing that converts images and PDFs\ninto structured output while preserving layout information.\n\nStrengths:\n\n- **Math:** Equations, handwritten math, non-Latin math notation\n- **Tables:** Statistical, financial, and complex multi-column tables\n- **Forms:** Checkboxes, registration forms, leases\n- **Handwriting:** Cursive writing, handwritten notes\n- **Multilingual:** 90+ languages; 77.8% average accuracy across 43 common languages\n  (vs 67.6% Gemini 2.5 Flash, 60.5% GPT-5 Mini)\n- **Images:** Extracts diagrams/images and adds captions with structured data",
+      "tags": [
+        "ocr",
+        "document-parsing",
+        "vlm",
+        "multilingual",
+        "pdf-extraction",
+        "table-recognition",
+        "handwriting",
+        "math-recognition",
+        "vllm"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/chandra-ocr.md"
+    },
+    {
       "name": "chatbotkit",
       "title": "ChatBotKit",
       "url": "https://chatbotkit.com/",
@@ -1618,6 +1740,31 @@
       "security_flags": [],
       "reviewed": "2026-07-01",
       "path": "catalog/entries/chatbotkit.md"
+    },
+    {
+      "name": "chemberta3",
+      "title": "ChemBERTa-3",
+      "url": "https://github.com/deepforestsci/chemberta3",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "ChemBERTa-3 is a training and benchmarking framework for chemical foundation models. It\nprovides a unified pipeline to pretrain, fine-tune, and evaluate multiple model architectures\non molecular property prediction tasks.\n\nSupported model architectures:\n\n- **Transformer models:** ChemBERTa (masked language modeling on SMILES), MoLFormer\n- **Graph pretraining models:** GROVER, InfoGraph, Infomax3D\n- **Baseline supervised models:** GCN, D-MPNN, Random Forest\n\nPretraining datasets scale from 250K SMILES (graph models) up to 1.4B compounds from ZINC20\nand PubChem. The largest pretrained MoLFormer variant (c3-MoLFormer-1.1B) trains on 100%\nZINC20 + 100% PubChem.",
+      "tags": [
+        "chemical-foundation-model",
+        "smiles",
+        "molecular-property-prediction",
+        "pretraining",
+        "cheminformatics",
+        "deepchem",
+        "transformer",
+        "moleculenet",
+        "benchmarking"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/chemberta3.md"
     },
     {
       "name": "chromadb",
@@ -2180,6 +2327,29 @@
       "path": "catalog/entries/claude-video.md"
     },
     {
+      "name": "claudex-loop",
+      "title": "Claudex-Loop",
+      "url": "https://github.com/chaseai-yt/claudex-loop",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "Claudex-loop enforces a cross-model invariant: whoever made the artifact never checks it.\nThe workflow has four phases:\n\n1. **RECON (Phase 0):** Claude scouts the codebase or researches greenfield prior art, then\n   presents an Assumptions Ledger for batch confirmation — the interview never asks questions\n   the code already answered.\n\n2. **INTERROGATE (Phase 1):** A decision map splits open questions into load-bearing (asked\n   individually) and cosmetic (batched with veto-by-exception). Each question includes a\n   committed recommendation and stakes explanation.\n\n3. **REVIEW (Phase 2):** Codex reviews the locked PLAN.md in a read-only sandbox, issuing\n   APPROVED or REVISE verdicts with concrete flaws. Claude arbitrates (can reject bad\n   critiques with logged reasons), revises, and resumes the same Codex session. Bounded by\n   MAX_ROUNDS (default 5).\n\n4. **BUILD (Phase 3, optional):** User picks the builder. If Codex builds, Claude reads the\n   entire diff and runs proof tests. If Claude builds, a fresh Codex session cross-inspects.\n   Skipping inspection requires an explicit logged opt-out.\n\nTwo artifacts per run: PLAN.md (the spec) and PLAN-REVIEW-LOG.md (the full round-by-round\nargument transcript).",
+      "tags": [
+        "cross-model-review",
+        "adversarial-review",
+        "plan-hardening",
+        "codex",
+        "claude-code-plugin",
+        "multi-model",
+        "planning"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/claudex-loop.md"
+    },
+    {
       "name": "claw-code",
       "title": "Claw Code",
       "url": "https://github.com/ultraworkers/claw-code",
@@ -2686,6 +2856,29 @@
       "path": "catalog/entries/creating-claude-md.md"
     },
     {
+      "name": "crem",
+      "title": "CReM",
+      "url": "https://github.com/DrrDom/crem",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "CReM generates chemically valid molecular structures by swapping, adding, or linking\nfragments that share the same chemical context — similar to matched molecular pairs. A\nfragment database stores context–fragment relationships extracted from molecular datasets.\n\nFour generation modes:\n\n- **`mutate_mol`** — Replace an existing fragment with an interchangeable one\n- **`grow_mol`** — Decorate a molecule by replacing hydrogens with fragments\n- **`link_mols`** — Connect two molecules with a linker fragment\n- **`make_cycle`** — Form new rings or macrocycles via ring-closure fragments\n\nAll generators share options for context radius, fragment-size windows, frequency thresholds,\natom protection, custom filter/sample functions, deterministic seeding, and multiprocessing.",
+      "tags": [
+        "molecular-generation",
+        "fragment-based",
+        "matched-molecular-pairs",
+        "cheminformatics",
+        "drug-design",
+        "guacamol",
+        "rdkit"
+      ],
+      "workflows": [],
+      "license": "BSD-3-Clause",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/crem.md"
+    },
+    {
       "name": "crewai",
       "title": "CrewAI",
       "url": "https://github.com/crewAIInc/crewAI",
@@ -2949,6 +3142,29 @@
       "path": "catalog/entries/developer-roadmap.md"
     },
     {
+      "name": "diffdock",
+      "title": "DiffDock",
+      "url": "https://github.com/gcorso/DiffDock",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "DiffDock predicts protein-ligand binding poses using a generative diffusion model that\noperates over the SE(3) product space of ligand translations, rotations, and torsion angles.\nInstead of scoring pre-sampled poses, it generates poses by running a learned reverse\ndiffusion process, producing a distribution of candidate binding conformations ranked by a\nlearned confidence score.\n\nDiffDock-L (February 2024) extends the original with improved generalization to unseen\nbinding pockets.",
+      "tags": [
+        "molecular-docking",
+        "diffusion-model",
+        "protein-ligand",
+        "drug-discovery",
+        "deep-learning",
+        "structural-biology",
+        "esmfold"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/diffdock.md"
+    },
+    {
       "name": "dify",
       "title": "Dify",
       "url": "https://github.com/langgenius/dify",
@@ -3038,6 +3254,31 @@
       "security_flags": [],
       "reviewed": "2026-06-22",
       "path": "catalog/entries/drevalpy.md"
+    },
+    {
+      "name": "drugex",
+      "title": "DrugEx",
+      "url": "https://github.com/CDDLeiden/DrugEx",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "DrugEx generates novel drug-like small molecules using deep learning generative models\nwithin a multi-objective reinforcement learning framework. It supports three generator\narchitectures spanning four versions of development:\n\n- **RNN (GRU/LSTM):** Sequential SMILES generation with exploitation-exploration strategy\n- **SMILES-based Transformer:** Attention-based generation with BRICS/RECAP fragmentation\n- **Graph-based Transformer:** Enables scaffold-constrained generation — sample molecules\n  containing specific substructures\n\nMulti-objective optimization uses Pareto-based RL to simultaneously optimize multiple\nproperties (activity, selectivity, ADMET, novelty) without collapsing them into a single\nscalar reward.",
+      "tags": [
+        "de-novo-design",
+        "reinforcement-learning",
+        "multi-objective-optimization",
+        "drug-design",
+        "transformer",
+        "graph-transformer",
+        "scaffold-constrained",
+        "cheminformatics",
+        "generative-chemistry"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/drugex.md"
     },
     {
       "name": "dspy",
@@ -3727,6 +3968,30 @@
       "path": "catalog/entries/gbrain.md"
     },
     {
+      "name": "gentrl",
+      "title": "GENTRL",
+      "url": "https://github.com/insilicomedicine/GENTRL",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "GENTRL generates novel small molecules optimized for synthetic feasibility, biological\nactivity, and novelty. The architecture is a variational autoencoder (VAE) with a learned\nprior distribution parameterized by tensor decompositions, which encode relationships between\nmolecular structures and properties while handling missing data.\n\nTraining is two-stage:\n\n1. **Pretrain:** Learn a latent manifold mapping of chemical space by maximizing the evidence\n   lower bound (ELBO) on a molecular dataset (e.g., MOSES)\n2. **RL optimization:** Freeze all parameters except the learnable prior; explore the latent\n   space to maximize a reward function (e.g., predicted activity against a target)",
+      "tags": [
+        "generative-chemistry",
+        "variational-autoencoder",
+        "reinforcement-learning",
+        "de-novo-design",
+        "drug-discovery",
+        "tensor-decomposition",
+        "ddr1",
+        "insilico-medicine"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/gentrl.md"
+    },
+    {
       "name": "geolibre",
       "title": "GeoLibre",
       "url": "https://github.com/opengeos/GeoLibre",
@@ -3912,6 +4177,28 @@
       "path": "catalog/entries/googleworkspace-cli.md"
     },
     {
+      "name": "gpu-rental-cost-benchmarks",
+      "title": "GPU Rental Cost-Per-Token Benchmarks",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "A detailed cost and performance breakdown from renting cloud GPUs (4x RTX 4080 Super 32GB,\n128GB total VRAM) to run a 120B MoE model (gpt-oss-120b, native MXFP4) via vLLM with TP=4.\n\n| Concurrency | Aggregate tok/s | Per-request tok/s | TTFT p50 | $/1M output tokens |\n|---|---|---|---|---|\n| 1 |…",
+      "tags": [
+        "gpu-rental",
+        "cost-optimization",
+        "local-inference",
+        "vllm",
+        "benchmarking",
+        "vram",
+        "concurrency"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/gpu-rental-cost-benchmarks.md"
+    },
+    {
       "name": "gradio",
       "title": "Gradio",
       "url": "https://gradio.app/",
@@ -4087,6 +4374,31 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/grill-with-docs.md"
+    },
+    {
+      "name": "gromacs",
+      "title": "GROMACS",
+      "url": "https://github.com/gromacs/gromacs",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "GROMACS is one of the most widely used molecular dynamics simulation packages, primarily\ndesigned for simulations of proteins, lipids, and nucleic acids. It is extremely optimized\nfor computational performance through multi-level parallelism:\n\n- **Intra-node:** SIMD vectorization, multi-threading\n- **GPU offloading:** CUDA (NVIDIA), OpenCL, SYCL for compute-intensive kernels\n- **Inter-node:** MPI for distributed computing on HPC clusters\n- **Hybrid:** Combined MPI + threads + GPU for maximum throughput\n\nKey simulation capabilities:\n\n- **Force fields:** AMBER, CHARMM, GROMOS, OPLS families\n- **Free energy calculations:** Thermodynamic integration, free energy perturbation\n- **Enhanced sampling:** Replica exchange MD, metadynamics (via PLUMED plugin)\n- **Coarse-grained:** Martini force field support\n- **Analysis:** Extensive built-in trajectory analysis tools (gmx commands)",
+      "tags": [
+        "molecular-dynamics",
+        "simulation",
+        "gpu-computing",
+        "hpc",
+        "force-field",
+        "protein-simulation",
+        "free-energy",
+        "structural-biology",
+        "parallel-computing"
+      ],
+      "workflows": [],
+      "license": "LGPL-2.1",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/gromacs.md"
     },
     {
       "name": "gsap-animation-expert",
@@ -5737,6 +6049,27 @@
       "path": "catalog/entries/motion-design-skill.md"
     },
     {
+      "name": "multi-session-management-strategies",
+      "title": "Multi-Session Agent Management Strategies",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "A 128-comment Reddit discussion distilling practitioner strategies for managing 3+ concurrent\nAI coding agent sessions. The central problem: tab/pane proliferation leads to lost context,\nwrong-session mistakes, and cognitive overload.\n\n- **Herdr / Orca:** Most frequently recommended — orchestrator…",
+      "tags": [
+        "multi-session",
+        "agent-management",
+        "workflow",
+        "terminal-multiplexer",
+        "session-organization",
+        "best-practices"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/multi-session-management-strategies.md"
+    },
+    {
       "name": "mycelium",
       "title": "Mycelium",
       "url": "https://github.com/SoftBacon-Software/mycelium",
@@ -6497,6 +6830,30 @@
       "path": "catalog/entries/openhands.md"
     },
     {
+      "name": "openmm",
+      "title": "OpenMM",
+      "url": "https://github.com/openmm/openmm",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "OpenMM runs molecular dynamics simulations with a focus on extensibility and GPU performance.\nIt can function as a standalone simulation engine or as a library called from custom code.\n\nKey capabilities:\n\n- **Custom forces:** Define novel interaction functional forms with minimal code — single\n  implementation runs on all hardware (CPU, CUDA, OpenCL). Includes CustomBondForce,\n  CustomNonbondedForce, CustomAngleForce, CustomHbondForce, CustomManyParticleForce, etc.\n- **Custom integrators:** Define new integration algorithms via CustomIntegrator. Built-in\n  LF-Middle Langevin (allows doubling step size), Nosé-Hoover, multiple time step Langevin\n- **GPU acceleration:** CUDA (NVIDIA) and OpenCL (AMD/Intel) with single or mixed precision\n- **Force fields:** AMBER, CHARMM, OpenFF, GAFF, GLYCAM; extensible to custom force fields\n- **ML potentials (OpenMM 8):** Arbitrary PyTorch models as force terms — enables ML/MM\n  hybrid simulations and differentiable simulation",
+      "tags": [
+        "molecular-dynamics",
+        "gpu-computing",
+        "simulation",
+        "force-field",
+        "protein-simulation",
+        "custom-forces",
+        "machine-learning-potentials",
+        "structural-biology"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/openmm.md"
+    },
+    {
       "name": "openrouter",
       "title": "OpenRouter",
       "url": "https://openrouter.ai/",
@@ -6747,6 +7104,31 @@
       ],
       "reviewed": "2026-08-25",
       "path": "catalog/entries/ovisocr2.md"
+    },
+    {
+      "name": "paddleocr",
+      "title": "PaddleOCR",
+      "url": "https://github.com/PaddlePaddle/PaddleOCR",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "PaddleOCR provides three product lines for document understanding:\n\n### PP-OCRv6 (Scene OCR)\nUniversal text recognition for natural scenes — IDs, street views, books, industrial\ncomponents. Three model tiers: tiny (1.5M params), small (7.7M), medium (34.5M). Single\nunified model covers Chinese, English, Japanese, and 46 Latin-script languages. 5.2x CPU\ninference speedup over v5.\n\n### PP-StructureV3 (Document Structure)\nConverts complex PDFs and images into Markdown or JSON with fine-grained coordinate\ninformation including table cell coordinates, text coordinates, and layout regions.\n\n### PaddleOCR-VL (Vision-Language Model)\n0.9B parameter VLM for document parsing — 96.3% accuracy on OmniDocBench v1.6. Handles\ntext, formulas, tables, charts, ancient documents, rare characters, and seals. Supports\n109 languages. Structured output in Markdown and JSON.",
+      "tags": [
+        "ocr",
+        "document-parsing",
+        "vision-language-model",
+        "multilingual",
+        "pdf-extraction",
+        "text-recognition",
+        "table-recognition",
+        "rag",
+        "paddlepaddle"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/paddleocr.md"
     },
     {
       "name": "pandera",
@@ -7424,6 +7806,31 @@
       "path": "catalog/entries/redpanda.md"
     },
     {
+      "name": "reinvent4",
+      "title": "REINVENT 4",
+      "url": "https://github.com/MolecularAI/REINVENT4",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "REINVENT 4 generates optimized small molecules compliant with a user-defined multi-component\nproperty profile. The core loop uses reinforcement learning to steer generative models (RNN\nand transformer architectures operating on SMILES strings) toward desired molecular properties.\n\nSupported design modes:\n\n- **De novo design:** Generate novel molecules from scratch matching a property profile\n- **Scaffold hopping:** Replace a molecular scaffold while preserving activity-relevant features\n- **R-group replacement:** Explore substitutions at defined positions on a scaffold\n- **Linker design:** Generate molecular linkers connecting two fragments (e.g., for PROTACs)\n- **Molecule optimization:** Iteratively improve an existing molecule's properties\n- **Library design:** Generate focused compound libraries\n\nTransfer learning pre-trains or fine-tunes models toward a target chemical space. Curriculum\nlearning stages objectives progressively during RL.",
+      "tags": [
+        "molecular-design",
+        "de-novo-design",
+        "reinforcement-learning",
+        "generative-chemistry",
+        "smiles",
+        "drug-design",
+        "scaffold-hopping",
+        "astrazeneca",
+        "cheminformatics"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/reinvent4.md"
+    },
+    {
       "name": "remote-control",
       "title": "Remote Control",
       "url": "https://code.claude.com/docs/en/remote-control",
@@ -7654,6 +8061,31 @@
       "security_flags": [],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/scheduled-multi-agent-coordinator.md"
+    },
+    {
+      "name": "scientific-agent-skills",
+      "title": "Scientific Agent Skills (K-Dense)",
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "Scientific Agent Skills is a comprehensive Agent Skills library that transforms AI coding\nagents into scientific research assistants. It provides 163 curated skills across multiple\nscientific domains, each with documentation, code examples, and best practices.\n\nKey domains covered:\n\n- **Bioinformatics & Genomics (27 skills):** Scanpy, BioPython, pysam, scvi-tools, scVelo,\n  PyDESeq2, gget, population genomics (OneKGPd), pathogen surveillance\n- **Cheminformatics & Drug Discovery (10 skills):** RDKit, Datamol, DeepChem, DiffDock,\n  OpenMM/MDAnalysis, MedChem, PyTDC\n- **Clinical Research (8 skills):** PK/PD modeling, DepMap, clinical reports, decision support\n- **ML & AI (14 skills):** PyTorch Lightning, scikit-learn, SHAP, PyMC, TimesFM\n- **Scientific Databases (11 skills, 100+ databases):** Unified database-lookup for PubChem,\n  ChEMBL, UniProt, ClinVar, COSMIC, ClinicalTrials.gov, KEGG, Reactome, and 70+ more\n- **Lab Automation (6 skills):** Opentrons, PyLabRobot, Benchling, Ginkgo Cloud Lab\n- **Scientific Communication (27 skills):** Literature review, Paperclip, scientific writing",
+      "tags": [
+        "agent-skills",
+        "scientific-computing",
+        "bioinformatics",
+        "cheminformatics",
+        "drug-discovery",
+        "clinical-research",
+        "lab-automation",
+        "multi-domain",
+        "claude-code-plugin"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/scientific-agent-skills.md"
     },
     {
       "name": "scrapegraph-ai",
@@ -8405,6 +8837,28 @@
       "path": "catalog/entries/superpowers-verification-before-completion.md"
     },
     {
+      "name": "syba",
+      "title": "SYBA",
+      "url": "https://github.com/lich-uct/syba",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "SYBA classifies organic compounds as easy-to-synthesize (ES) or hard-to-synthesize (HS)\nusing a Bayesian fragment scoring approach. Each molecule is decomposed into ECFP4-like\nfragments, and each fragment receives a pre-computed score based on its relative frequency\nin ES compounds (random ZINC15 selection) versus HS compounds (generated by the Nonpher\napproach). Fragment scores are summed to produce the final SYBA score.\n\n- **Positive score:** easy to synthesize\n- **Negative score:** hard to synthesize\n- Score magnitude reflects classifier confidence, not a direct measure of synthetic difficulty",
+      "tags": [
+        "synthetic-accessibility",
+        "bayesian-classifier",
+        "fragment-based",
+        "cheminformatics",
+        "drug-discovery",
+        "rdkit"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/syba.md"
+    },
+    {
       "name": "synapse-memory-layer",
       "title": "Synapse (memory-layer)",
       "url": "https://github.com/rickymm3/memory-layer/",
@@ -8458,6 +8912,29 @@
       "security_flags": [],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/syncthing.md"
+    },
+    {
+      "name": "synfrag",
+      "title": "SynFrag",
+      "url": "https://github.com/simmzx/SynFrag",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "SynFrag predicts whether a molecule is easy or hard to synthesize, mimicking how chemists\nassess synthetic feasibility. The approach uses a two-stage training pipeline:\n\n1. **Pretrain (Stage 1):** An AttentiveFP graph neural network learns fragment assembly\n   patterns via autoregressive generation on 9.18M unlabeled molecules, using a BRICS+2\n   fragmentation vocabulary\n2. **Fine-tune (Stage 2):** The pretrained encoder transfers to binary SA classification\n   on 800K labeled molecules\n\nOutput is a score between 0 and 1 (≥0.5 = easy to synthesize). The model provides\ninterpretability via attention heatmaps that highlight reactive sites and fragment assembly\npatterns corresponding to synthetic difficulty.",
+      "tags": [
+        "synthetic-accessibility",
+        "fragment-assembly",
+        "drug-discovery",
+        "cheminformatics",
+        "pretraining",
+        "attentivefp",
+        "interpretability"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/synfrag.md"
     },
     {
       "name": "synthesize-bio",
@@ -8627,6 +9104,28 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/third-brain-v5-wiki.md"
+    },
+    {
+      "name": "three-store-hybrid-memory-architecture",
+      "title": "3-Store Hybrid Memory Architecture for AI Agents",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": ">",
+      "body_summary": "A concise architecture pattern arguing that vector embeddings alone fail for AI agent memory\nbecause they handle only one of three distinct retrieval needs.\n\n1. **Vector Store** — Fuzzy semantic similarity for broad concept and intent matching.\n   Handles questions like \"what tools are similar to…",
+      "tags": [
+        "agent-memory",
+        "vector-search",
+        "knowledge-graph",
+        "key-value-store",
+        "rag",
+        "hybrid-retrieval",
+        "architecture-pattern"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/three-store-hybrid-memory-architecture.md"
     },
     {
       "name": "threejs-skills",

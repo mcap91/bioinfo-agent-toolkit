@@ -32,3 +32,7 @@ Install via `curl -fsSL https://herdr.dev/install.sh | sh`, Homebrew (`brew inst
 ## Security
 
 Dual-licensed: AGPL-3.0-or-later (open source) or a commercial license for organizations that cannot comply with AGPL. The primary install path is a `curl | sh` script from herdr.dev (review before running). Windows support is beta. The socket API is designed so that local agents can programmatically spawn and control terminal panes — the intended capability rather than a defect, but it does mean local processes can drive panes.
+
+## Usage notes
+
+- Community consensus (128-comment Reddit thread): Herdr is among the most frequently recommended tools for managing multiple Claude Code sessions. Users report using a "Design/Triage" + "Orchestrator" tab pattern. Other mentioned tools: Orca, cmux, Supacode. Common advice: cap at 2-3 parallel sessions, use strict naming conventions (repo-task), put branch/model info in statusline. The "which pane needs me" problem persists even with good tooling.

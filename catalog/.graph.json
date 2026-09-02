@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T23:53:45.782Z",
+  "generated_at": "2026-09-02T02:35:54.811Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -291,6 +291,16 @@
       "exists": true
     },
     {
+      "id": "aizynthfinder",
+      "kind": "entry",
+      "title": "AiZynthFinder",
+      "url": "https://github.com/MolecularAI/aizynthfinder",
+      "summary": ">",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "alcoa-plus-for-ai",
       "kind": "entry",
       "title": "AI Needs What ALCOA+ Gave Records",
@@ -307,6 +317,16 @@
       "url": "https://aws.amazon.com/bedrock/",
       "summary": "AWS managed platform for building generative AI applications — 100+ foundation models (Amazon Nova, Anthropic Claude, OpenAI GPT-5.x, Meta Llama, DeepSeek, Mistral, etc.) through one API; AgentCore for production agent deployment with any framework (LangChain, OpenAI Agents SDK, Claude Agent SDK, Strands); Knowledge Bases for RAG; Guardrails; model distillation, prompt caching, intelligent routing; enterprise security (SOC, ISO, FedRAMP High, HIPAA eligible)",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "amazon-textract-textractor",
+      "kind": "entry",
+      "title": "Amazon Textract Textractor",
+      "url": "https://github.com/aws-samples/amazon-textract-textractor",
+      "summary": ">",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -391,12 +411,32 @@
       "exists": true
     },
     {
+      "id": "askcos",
+      "kind": "entry",
+      "title": "ASKCOS",
+      "url": "https://github.com/ASKCOS/ASKCOS",
+      "summary": ">",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "attention-control",
       "kind": "entry",
       "title": "Attention Control",
       "url": "https://github.com/aaddrick/attention-control",
       "summary": "Output style / skill for coding agents applying air-traffic-control communication discipline (fixed message shape + controlled vocabulary) to agent prose, combining the shape rules from 'i-have-adhd' with the language rules from 'asd-ste100'; ships as a native Claude Code output style and as a skill/rules-file for Codex, Cursor, Gemini CLI, GitHub Copilot, and Zed.",
       "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "autodock-vina",
+      "kind": "entry",
+      "title": "AutoDock Vina",
+      "url": "https://github.com/ccsb-scripps/AutoDock-Vina",
+      "summary": ">",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -735,11 +775,31 @@
       "exists": true
     },
     {
+      "id": "chandra-ocr",
+      "kind": "entry",
+      "title": "Chandra OCR",
+      "url": "https://github.com/datalab-to/chandra",
+      "summary": ">",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "chatbotkit",
       "kind": "entry",
       "title": "ChatBotKit",
       "url": "https://chatbotkit.com/",
       "summary": "Commercial AI agent platform with enterprise security (GDPR/CCPA), MCP integration, OAuth flows, observability dashboards, policy management, and modular architecture for composable datasets/skillsets/integrations; Forward Deployment platform for rapid AI product prototyping",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "chemberta3",
+      "kind": "entry",
+      "title": "ChemBERTa-3",
+      "url": "https://github.com/deepforestsci/chemberta3",
+      "summary": ">",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -992,6 +1052,16 @@
       "exists": true
     },
     {
+      "id": "claudex-loop",
+      "kind": "entry",
+      "title": "Claudex-Loop",
+      "url": "https://github.com/chaseai-yt/claudex-loop",
+      "summary": ">",
+      "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "claw-code",
       "kind": "entry",
       "title": "Claw Code",
@@ -1208,6 +1278,16 @@
       "exists": true
     },
     {
+      "id": "crem",
+      "kind": "entry",
+      "title": "CReM",
+      "url": "https://github.com/DrrDom/crem",
+      "summary": ">",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "crewai",
       "kind": "entry",
       "title": "CrewAI",
@@ -1318,6 +1398,16 @@
       "exists": true
     },
     {
+      "id": "diffdock",
+      "kind": "entry",
+      "title": "DiffDock",
+      "url": "https://github.com/gcorso/DiffDock",
+      "summary": ">",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "dify",
       "kind": "entry",
       "title": "Dify",
@@ -1353,6 +1443,16 @@
       "title": "DrEvalPy",
       "url": "https://github.com/daisybio/drevalpy",
       "summary": "Python cancer cell line drug response prediction benchmark suite — maintained baseline model catalog, gold standard datasets (CTRPv2, GDSC1/2, CCLE, BeatAML2), application-driven evaluation splits (LPO/LCO/LDO/LTO), ablation studies, cross-study generalization, nf-core Nextflow pipeline; Nature Comms published, TUM/FU Berlin",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "drugex",
+      "kind": "entry",
+      "title": "DrugEx",
+      "url": "https://github.com/CDDLeiden/DrugEx",
+      "summary": ">",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -1652,6 +1752,16 @@
       "exists": true
     },
     {
+      "id": "gentrl",
+      "kind": "entry",
+      "title": "GENTRL",
+      "url": "https://github.com/insilicomedicine/GENTRL",
+      "summary": ">",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "geolibre",
       "kind": "entry",
       "title": "GeoLibre",
@@ -1718,6 +1828,15 @@
       "url": "https://github.com/googleworkspace/cli",
       "summary": "Rust CLI with agent-first JSON output and 100+ bundled SKILL.md files covering all Workspace APIs; pre-v1.0 with breaking changes expected",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "gpu-rental-cost-benchmarks",
+      "kind": "entry",
+      "title": "GPU Rental Cost-Per-Token Benchmarks",
+      "summary": ">",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -1797,6 +1916,16 @@
       "url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/grill-with-docs/SKILL.md",
       "summary": "Well-structured DDD design-review skill that enforces domain language, but relies on companion format files (CONTEXT-FORMAT.md, ADR-FORMAT.md) not bundled with the skill.",
       "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "gromacs",
+      "kind": "entry",
+      "title": "GROMACS",
+      "url": "https://github.com/gromacs/gromacs",
+      "summary": ">",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -2475,6 +2604,15 @@
       "exists": true
     },
     {
+      "id": "multi-session-management-strategies",
+      "kind": "entry",
+      "title": "Multi-Session Agent Management Strategies",
+      "summary": ">",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "mycelium",
       "kind": "entry",
       "title": "Mycelium",
@@ -2803,6 +2941,16 @@
       "exists": true
     },
     {
+      "id": "openmm",
+      "kind": "entry",
+      "title": "OpenMM",
+      "url": "https://github.com/openmm/openmm",
+      "summary": ">",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "openrouter",
       "kind": "entry",
       "title": "OpenRouter",
@@ -2898,6 +3046,16 @@
       "title": "OvisOCR2",
       "url": "https://huggingface.co/ATH-MaaS/OvisOCR2",
       "summary": "Compact 0.8B-parameter vision-language model for end-to-end page-level document parsing — given a document page image, generates a single structured Markdown document (plain text, LaTeX formulas, HTML tables, and visual regions in natural reading order) without a multi-stage OCR pipeline; scores 96.58 overall on OmniDocBench v1.6 and 75.06 Avg3 on PureDocBench per the publisher's technical report",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "paddleocr",
+      "kind": "entry",
+      "title": "PaddleOCR",
+      "url": "https://github.com/PaddlePaddle/PaddleOCR",
+      "summary": ">",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -3181,6 +3339,16 @@
       "exists": true
     },
     {
+      "id": "reinvent4",
+      "kind": "entry",
+      "title": "REINVENT 4",
+      "url": "https://github.com/MolecularAI/REINVENT4",
+      "summary": ">",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "remote-control",
       "kind": "entry",
       "title": "Remote Control",
@@ -3277,6 +3445,16 @@
       "url": "https://github.com/nanocoai/nanoclaw",
       "summary": "Useful architecture pattern for persistent scheduled agents with coordinator + messaging; NanoClaw and Hermes are mature implementations",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "scientific-agent-skills",
+      "kind": "entry",
+      "title": "Scientific Agent Skills (K-Dense)",
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "summary": ">",
+      "category": "plugin",
       "decision_status": "open",
       "exists": true
     },
@@ -3608,6 +3786,16 @@
       "exists": false
     },
     {
+      "id": "syba",
+      "kind": "entry",
+      "title": "SYBA",
+      "url": "https://github.com/lich-uct/syba",
+      "summary": ">",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "synapse-memory-layer",
       "kind": "entry",
       "title": "Synapse (memory-layer)",
@@ -3623,6 +3811,16 @@
       "title": "Syncthing",
       "url": "https://github.com/syncthing/syncthing",
       "summary": "Mature, audited, decentralized file sync daemon — production-grade for agent artifact persistence and cross-machine data sharing.",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "synfrag",
+      "kind": "entry",
+      "title": "SynFrag",
+      "url": "https://github.com/simmzx/SynFrag",
+      "summary": ">",
       "category": "cli-tool",
       "decision_status": "open",
       "exists": true
@@ -3879,6 +4077,11 @@
     },
     {
       "id": "tag:agent-loop",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:agent-management",
       "kind": "tag",
       "exists": true
     },
@@ -4258,6 +4461,11 @@
       "exists": true
     },
     {
+      "id": "tag:architecture-pattern",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:archive",
       "kind": "tag",
       "exists": true
@@ -4298,12 +4506,22 @@
       "exists": true
     },
     {
+      "id": "tag:astrazeneca",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:async",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:attention",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:attentivefp",
       "kind": "tag",
       "exists": true
     },
@@ -4339,6 +4557,11 @@
     },
     {
       "id": "tag:autodiff",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:autodock",
       "kind": "tag",
       "exists": true
     },
@@ -4439,6 +4662,11 @@
     },
     {
       "id": "tag:batch-processing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:bayesian-classifier",
       "kind": "tag",
       "exists": true
     },
@@ -4623,6 +4851,11 @@
       "exists": true
     },
     {
+      "id": "tag:casp",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ccpa",
       "kind": "tag",
       "exists": true
@@ -4644,6 +4877,11 @@
     },
     {
       "id": "tag:checklist",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:chemical-foundation-model",
       "kind": "tag",
       "exists": true
     },
@@ -4773,6 +5011,11 @@
       "exists": true
     },
     {
+      "id": "tag:clinical-research",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:cliproxyapi",
       "kind": "tag",
       "exists": true
@@ -4784,6 +5027,11 @@
     },
     {
       "id": "tag:cloud-native",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:cloud-service",
       "kind": "tag",
       "exists": true
     },
@@ -4999,6 +5247,11 @@
     },
     {
       "id": "tag:computer-vision",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:concurrency",
       "kind": "tag",
       "exists": true
     },
@@ -5263,6 +5516,11 @@
       "exists": true
     },
     {
+      "id": "tag:cross-model-review",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:cross-platform",
       "kind": "tag",
       "exists": true
@@ -5319,6 +5577,11 @@
     },
     {
       "id": "tag:cursor-rules",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:custom-forces",
       "kind": "tag",
       "exists": true
     },
@@ -5448,6 +5711,16 @@
       "exists": true
     },
     {
+      "id": "tag:ddr1",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:de-novo-design",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:dead-code",
       "kind": "tag",
       "exists": true
@@ -5504,6 +5777,11 @@
     },
     {
       "id": "tag:deep-learning",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:deepchem",
       "kind": "tag",
       "exists": true
     },
@@ -5638,6 +5916,11 @@
       "exists": true
     },
     {
+      "id": "tag:diffusion-model",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:direct-corpus-interaction",
       "kind": "tag",
       "exists": true
@@ -5698,6 +5981,11 @@
       "exists": true
     },
     {
+      "id": "tag:document-extraction",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:document-management",
       "kind": "tag",
       "exists": true
@@ -5754,6 +6042,11 @@
     },
     {
       "id": "tag:drive",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:drug-design",
       "kind": "tag",
       "exists": true
     },
@@ -5939,6 +6232,11 @@
     },
     {
       "id": "tag:error-log",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:esmfold",
       "kind": "tag",
       "exists": true
     },
@@ -6158,6 +6456,16 @@
       "exists": true
     },
     {
+      "id": "tag:force-field",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:form-extraction",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:formatter",
       "kind": "tag",
       "exists": true
@@ -6168,12 +6476,27 @@
       "exists": true
     },
     {
+      "id": "tag:forward-prediction",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:foundation-model",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:foundry",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:fragment-assembly",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:fragment-based",
       "kind": "tag",
       "exists": true
     },
@@ -6189,6 +6512,11 @@
     },
     {
       "id": "tag:frecency",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:free-energy",
       "kind": "tag",
       "exists": true
     },
@@ -6294,6 +6622,11 @@
     },
     {
       "id": "tag:general-agent",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:generative-chemistry",
       "kind": "tag",
       "exists": true
     },
@@ -6473,6 +6806,16 @@
       "exists": true
     },
     {
+      "id": "tag:gpu-computing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:gpu-rental",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:gqa",
       "kind": "tag",
       "exists": true
@@ -6499,6 +6842,11 @@
     },
     {
       "id": "tag:graph",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:graph-transformer",
       "kind": "tag",
       "exists": true
     },
@@ -6543,6 +6891,11 @@
       "exists": true
     },
     {
+      "id": "tag:guacamol",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:guardrails",
       "kind": "tag",
       "exists": true
@@ -6569,6 +6922,11 @@
     },
     {
       "id": "tag:handoff",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:handwriting",
       "kind": "tag",
       "exists": true
     },
@@ -6708,6 +7066,11 @@
       "exists": true
     },
     {
+      "id": "tag:hybrid-retrieval",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ideation",
       "kind": "tag",
       "exists": true
@@ -6789,6 +7152,11 @@
     },
     {
       "id": "tag:insights",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:insilico-medicine",
       "kind": "tag",
       "exists": true
     },
@@ -6943,6 +7311,11 @@
       "exists": true
     },
     {
+      "id": "tag:key-value-store",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:kilocode",
       "kind": "tag",
       "exists": true
@@ -7014,6 +7387,11 @@
     },
     {
       "id": "tag:kv-cache",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:lab-automation",
       "kind": "tag",
       "exists": true
     },
@@ -7253,6 +7631,11 @@
       "exists": true
     },
     {
+      "id": "tag:machine-learning-potentials",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:mai",
       "kind": "tag",
       "exists": true
@@ -7314,6 +7697,16 @@
     },
     {
       "id": "tag:marketplace",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:matched-molecular-pairs",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:math-recognition",
       "kind": "tag",
       "exists": true
     },
@@ -7603,7 +7996,42 @@
       "exists": true
     },
     {
+      "id": "tag:molecular-design",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:molecular-docking",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:molecular-dynamics",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:molecular-generation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:molecular-property-prediction",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:moleculenet",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:monetization",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:monte-carlo-tree-search",
       "kind": "tag",
       "exists": true
     },
@@ -7653,6 +8081,11 @@
       "exists": true
     },
     {
+      "id": "tag:multi-objective-optimization",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:multi-platform",
       "kind": "tag",
       "exists": true
@@ -7664,6 +8097,16 @@
     },
     {
       "id": "tag:multi-repo",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:multi-session",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:multilingual",
       "kind": "tag",
       "exists": true
     },
@@ -8053,6 +8496,11 @@
       "exists": true
     },
     {
+      "id": "tag:paddlepaddle",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:pain-points",
       "kind": "tag",
       "exists": true
@@ -8083,6 +8531,11 @@
       "exists": true
     },
     {
+      "id": "tag:parallel-computing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:parameter-efficient",
       "kind": "tag",
       "exists": true
@@ -8109,6 +8562,11 @@
     },
     {
       "id": "tag:pdf",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:pdf-extraction",
       "kind": "tag",
       "exists": true
     },
@@ -8219,6 +8677,11 @@
     },
     {
       "id": "tag:plan-execution",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:plan-hardening",
       "kind": "tag",
       "exists": true
     },
@@ -8334,6 +8797,11 @@
     },
     {
       "id": "tag:presentations",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:pretraining",
       "kind": "tag",
       "exists": true
     },
@@ -8483,6 +8951,16 @@
       "exists": true
     },
     {
+      "id": "tag:protein-ligand",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:protein-simulation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:proteomics",
       "kind": "tag",
       "exists": true
@@ -8618,7 +9096,22 @@
       "exists": true
     },
     {
+      "id": "tag:rdkit",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:react",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:reaction-conditions",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:reaction-templates",
       "kind": "tag",
       "exists": true
     },
@@ -8778,6 +9271,11 @@
       "exists": true
     },
     {
+      "id": "tag:retrosynthesis",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:reverse-engineering",
       "kind": "tag",
       "exists": true
@@ -8913,6 +9411,16 @@
       "exists": true
     },
     {
+      "id": "tag:scaffold-constrained",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:scaffold-hopping",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:scalability",
       "kind": "tag",
       "exists": true
@@ -8963,6 +9471,11 @@
       "exists": true
     },
     {
+      "id": "tag:scoring-function",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:screenshots",
       "kind": "tag",
       "exists": true
@@ -8974,6 +9487,11 @@
     },
     {
       "id": "tag:scrolltrigger",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:scscore",
       "kind": "tag",
       "exists": true
     },
@@ -9128,6 +9646,11 @@
       "exists": true
     },
     {
+      "id": "tag:session-organization",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:session-persistence",
       "kind": "tag",
       "exists": true
@@ -9194,6 +9717,11 @@
     },
     {
       "id": "tag:simplified-technical-english",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:simulation",
       "kind": "tag",
       "exists": true
     },
@@ -9324,6 +9852,11 @@
     },
     {
       "id": "tag:small-molecule",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:smiles",
       "kind": "tag",
       "exists": true
     },
@@ -9528,6 +10061,16 @@
       "exists": true
     },
     {
+      "id": "tag:synthesis-planning",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:synthetic-accessibility",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:synthetic-data",
       "kind": "tag",
       "exists": true
@@ -9559,6 +10102,11 @@
     },
     {
       "id": "tag:table-extraction",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:table-recognition",
       "kind": "tag",
       "exists": true
     },
@@ -9633,6 +10181,11 @@
       "exists": true
     },
     {
+      "id": "tag:tensor-decomposition",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:tensorflow",
       "kind": "tag",
       "exists": true
@@ -9663,7 +10216,17 @@
       "exists": true
     },
     {
+      "id": "tag:text-recognition",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:text-splitting",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:textract",
       "kind": "tag",
       "exists": true
     },
@@ -9993,6 +10556,11 @@
       "exists": true
     },
     {
+      "id": "tag:variational-autoencoder",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:vault",
       "kind": "tag",
       "exists": true
@@ -10074,6 +10642,11 @@
     },
     {
       "id": "tag:video",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:virtual-screening",
       "kind": "tag",
       "exists": true
     },
@@ -10413,6 +10986,15 @@
       "url": "https://github.com/Mark393295827/third-brain-v5-skills",
       "summary": "Obsidian-specific schema, heavy; staleness and contradiction detection concepts worth noting for kb",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "three-store-hybrid-memory-architecture",
+      "kind": "entry",
+      "title": "3-Store Hybrid Memory Architecture for AI Agents",
+      "summary": ">",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -11929,6 +12511,46 @@
       "relation": "tagged"
     },
     {
+      "source": "aizynthfinder",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "aizynthfinder",
+      "target": "tag:astrazeneca",
+      "relation": "tagged"
+    },
+    {
+      "source": "aizynthfinder",
+      "target": "tag:cheminformatics",
+      "relation": "tagged"
+    },
+    {
+      "source": "aizynthfinder",
+      "target": "tag:drug-discovery",
+      "relation": "tagged"
+    },
+    {
+      "source": "aizynthfinder",
+      "target": "tag:monte-carlo-tree-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "aizynthfinder",
+      "target": "tag:reaction-templates",
+      "relation": "tagged"
+    },
+    {
+      "source": "aizynthfinder",
+      "target": "tag:retrosynthesis",
+      "relation": "tagged"
+    },
+    {
+      "source": "aizynthfinder",
+      "target": "tag:synthesis-planning",
+      "relation": "tagged"
+    },
+    {
       "source": "alcoa-plus-for-ai",
       "target": "cat:reference",
       "relation": "categorized"
@@ -12021,6 +12643,56 @@
     {
       "source": "amazon-bedrock",
       "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "amazon-textract-textractor",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "amazon-textract-textractor",
+      "target": "paddleocr",
+      "relation": "overlaps"
+    },
+    {
+      "source": "amazon-textract-textractor",
+      "target": "tag:aws",
+      "relation": "tagged"
+    },
+    {
+      "source": "amazon-textract-textractor",
+      "target": "tag:cloud-service",
+      "relation": "tagged"
+    },
+    {
+      "source": "amazon-textract-textractor",
+      "target": "tag:document-extraction",
+      "relation": "tagged"
+    },
+    {
+      "source": "amazon-textract-textractor",
+      "target": "tag:form-extraction",
+      "relation": "tagged"
+    },
+    {
+      "source": "amazon-textract-textractor",
+      "target": "tag:ocr",
+      "relation": "tagged"
+    },
+    {
+      "source": "amazon-textract-textractor",
+      "target": "tag:pdf",
+      "relation": "tagged"
+    },
+    {
+      "source": "amazon-textract-textractor",
+      "target": "tag:table-extraction",
+      "relation": "tagged"
+    },
+    {
+      "source": "amazon-textract-textractor",
+      "target": "tag:textract",
       "relation": "tagged"
     },
     {
@@ -12379,6 +13051,61 @@
       "relation": "tagged"
     },
     {
+      "source": "askcos",
+      "target": "aizynthfinder",
+      "relation": "overlaps"
+    },
+    {
+      "source": "askcos",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "askcos",
+      "target": "tag:casp",
+      "relation": "tagged"
+    },
+    {
+      "source": "askcos",
+      "target": "tag:cheminformatics",
+      "relation": "tagged"
+    },
+    {
+      "source": "askcos",
+      "target": "tag:docker",
+      "relation": "tagged"
+    },
+    {
+      "source": "askcos",
+      "target": "tag:drug-discovery",
+      "relation": "tagged"
+    },
+    {
+      "source": "askcos",
+      "target": "tag:forward-prediction",
+      "relation": "tagged"
+    },
+    {
+      "source": "askcos",
+      "target": "tag:reaction-conditions",
+      "relation": "tagged"
+    },
+    {
+      "source": "askcos",
+      "target": "tag:retrosynthesis",
+      "relation": "tagged"
+    },
+    {
+      "source": "askcos",
+      "target": "tag:scscore",
+      "relation": "tagged"
+    },
+    {
+      "source": "askcos",
+      "target": "tag:synthesis-planning",
+      "relation": "tagged"
+    },
+    {
       "source": "attention-control",
       "target": "cat:skill",
       "relation": "categorized"
@@ -12421,6 +13148,46 @@
     {
       "source": "attention-control",
       "target": "tag:simplified-technical-english",
+      "relation": "tagged"
+    },
+    {
+      "source": "autodock-vina",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "autodock-vina",
+      "target": "tag:autodock",
+      "relation": "tagged"
+    },
+    {
+      "source": "autodock-vina",
+      "target": "tag:drug-discovery",
+      "relation": "tagged"
+    },
+    {
+      "source": "autodock-vina",
+      "target": "tag:molecular-docking",
+      "relation": "tagged"
+    },
+    {
+      "source": "autodock-vina",
+      "target": "tag:protein-ligand",
+      "relation": "tagged"
+    },
+    {
+      "source": "autodock-vina",
+      "target": "tag:scoring-function",
+      "relation": "tagged"
+    },
+    {
+      "source": "autodock-vina",
+      "target": "tag:structural-biology",
+      "relation": "tagged"
+    },
+    {
+      "source": "autodock-vina",
+      "target": "tag:virtual-screening",
       "relation": "tagged"
     },
     {
@@ -13539,6 +14306,61 @@
       "relation": "tagged"
     },
     {
+      "source": "chandra-ocr",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "chandra-ocr",
+      "target": "paddleocr",
+      "relation": "overlaps"
+    },
+    {
+      "source": "chandra-ocr",
+      "target": "tag:document-parsing",
+      "relation": "tagged"
+    },
+    {
+      "source": "chandra-ocr",
+      "target": "tag:handwriting",
+      "relation": "tagged"
+    },
+    {
+      "source": "chandra-ocr",
+      "target": "tag:math-recognition",
+      "relation": "tagged"
+    },
+    {
+      "source": "chandra-ocr",
+      "target": "tag:multilingual",
+      "relation": "tagged"
+    },
+    {
+      "source": "chandra-ocr",
+      "target": "tag:ocr",
+      "relation": "tagged"
+    },
+    {
+      "source": "chandra-ocr",
+      "target": "tag:pdf-extraction",
+      "relation": "tagged"
+    },
+    {
+      "source": "chandra-ocr",
+      "target": "tag:table-recognition",
+      "relation": "tagged"
+    },
+    {
+      "source": "chandra-ocr",
+      "target": "tag:vllm",
+      "relation": "tagged"
+    },
+    {
+      "source": "chandra-ocr",
+      "target": "tag:vlm",
+      "relation": "tagged"
+    },
+    {
       "source": "chatbotkit",
       "target": "cat:framework",
       "relation": "categorized"
@@ -13576,6 +14398,56 @@
     {
       "source": "chatbotkit",
       "target": "tag:observability",
+      "relation": "tagged"
+    },
+    {
+      "source": "chemberta3",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "chemberta3",
+      "target": "tag:benchmarking",
+      "relation": "tagged"
+    },
+    {
+      "source": "chemberta3",
+      "target": "tag:chemical-foundation-model",
+      "relation": "tagged"
+    },
+    {
+      "source": "chemberta3",
+      "target": "tag:cheminformatics",
+      "relation": "tagged"
+    },
+    {
+      "source": "chemberta3",
+      "target": "tag:deepchem",
+      "relation": "tagged"
+    },
+    {
+      "source": "chemberta3",
+      "target": "tag:molecular-property-prediction",
+      "relation": "tagged"
+    },
+    {
+      "source": "chemberta3",
+      "target": "tag:moleculenet",
+      "relation": "tagged"
+    },
+    {
+      "source": "chemberta3",
+      "target": "tag:pretraining",
+      "relation": "tagged"
+    },
+    {
+      "source": "chemberta3",
+      "target": "tag:smiles",
+      "relation": "tagged"
+    },
+    {
+      "source": "chemberta3",
+      "target": "tag:transformer",
       "relation": "tagged"
     },
     {
@@ -14634,6 +15506,51 @@
       "relation": "tagged"
     },
     {
+      "source": "claudex-loop",
+      "target": "cat:skill",
+      "relation": "categorized"
+    },
+    {
+      "source": "claudex-loop",
+      "target": "local-model-adversarial-workflow",
+      "relation": "overlaps"
+    },
+    {
+      "source": "claudex-loop",
+      "target": "tag:adversarial-review",
+      "relation": "tagged"
+    },
+    {
+      "source": "claudex-loop",
+      "target": "tag:claude-code-plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "claudex-loop",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "claudex-loop",
+      "target": "tag:cross-model-review",
+      "relation": "tagged"
+    },
+    {
+      "source": "claudex-loop",
+      "target": "tag:multi-model",
+      "relation": "tagged"
+    },
+    {
+      "source": "claudex-loop",
+      "target": "tag:plan-hardening",
+      "relation": "tagged"
+    },
+    {
+      "source": "claudex-loop",
+      "target": "tag:planning",
+      "relation": "tagged"
+    },
+    {
       "source": "claw-code",
       "target": "cat:framework",
       "relation": "categorized"
@@ -15499,6 +16416,51 @@
       "relation": "tagged"
     },
     {
+      "source": "crem",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "crem",
+      "target": "reinvent4",
+      "relation": "overlaps"
+    },
+    {
+      "source": "crem",
+      "target": "tag:cheminformatics",
+      "relation": "tagged"
+    },
+    {
+      "source": "crem",
+      "target": "tag:drug-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "crem",
+      "target": "tag:fragment-based",
+      "relation": "tagged"
+    },
+    {
+      "source": "crem",
+      "target": "tag:guacamol",
+      "relation": "tagged"
+    },
+    {
+      "source": "crem",
+      "target": "tag:matched-molecular-pairs",
+      "relation": "tagged"
+    },
+    {
+      "source": "crem",
+      "target": "tag:molecular-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "crem",
+      "target": "tag:rdkit",
+      "relation": "tagged"
+    },
+    {
       "source": "crewai",
       "target": "architect-loop",
       "relation": "overlaps"
@@ -15984,6 +16946,51 @@
       "relation": "tagged"
     },
     {
+      "source": "diffdock",
+      "target": "autodock-vina",
+      "relation": "overlaps"
+    },
+    {
+      "source": "diffdock",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "diffdock",
+      "target": "tag:deep-learning",
+      "relation": "tagged"
+    },
+    {
+      "source": "diffdock",
+      "target": "tag:diffusion-model",
+      "relation": "tagged"
+    },
+    {
+      "source": "diffdock",
+      "target": "tag:drug-discovery",
+      "relation": "tagged"
+    },
+    {
+      "source": "diffdock",
+      "target": "tag:esmfold",
+      "relation": "tagged"
+    },
+    {
+      "source": "diffdock",
+      "target": "tag:molecular-docking",
+      "relation": "tagged"
+    },
+    {
+      "source": "diffdock",
+      "target": "tag:protein-ligand",
+      "relation": "tagged"
+    },
+    {
+      "source": "diffdock",
+      "target": "tag:structural-biology",
+      "relation": "tagged"
+    },
+    {
       "source": "dify",
       "target": "cat:framework",
       "relation": "categorized"
@@ -16131,6 +17138,66 @@
     {
       "source": "drevalpy",
       "target": "tag:nextflow",
+      "relation": "tagged"
+    },
+    {
+      "source": "drugex",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "drugex",
+      "target": "gentrl",
+      "relation": "overlaps"
+    },
+    {
+      "source": "drugex",
+      "target": "reinvent4",
+      "relation": "overlaps"
+    },
+    {
+      "source": "drugex",
+      "target": "tag:cheminformatics",
+      "relation": "tagged"
+    },
+    {
+      "source": "drugex",
+      "target": "tag:de-novo-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "drugex",
+      "target": "tag:drug-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "drugex",
+      "target": "tag:generative-chemistry",
+      "relation": "tagged"
+    },
+    {
+      "source": "drugex",
+      "target": "tag:graph-transformer",
+      "relation": "tagged"
+    },
+    {
+      "source": "drugex",
+      "target": "tag:multi-objective-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "drugex",
+      "target": "tag:reinforcement-learning",
+      "relation": "tagged"
+    },
+    {
+      "source": "drugex",
+      "target": "tag:scaffold-constrained",
+      "relation": "tagged"
+    },
+    {
+      "source": "drugex",
+      "target": "tag:transformer",
       "relation": "tagged"
     },
     {
@@ -17414,6 +18481,56 @@
       "relation": "tagged"
     },
     {
+      "source": "gentrl",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "gentrl",
+      "target": "reinvent4",
+      "relation": "overlaps"
+    },
+    {
+      "source": "gentrl",
+      "target": "tag:ddr1",
+      "relation": "tagged"
+    },
+    {
+      "source": "gentrl",
+      "target": "tag:de-novo-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "gentrl",
+      "target": "tag:drug-discovery",
+      "relation": "tagged"
+    },
+    {
+      "source": "gentrl",
+      "target": "tag:generative-chemistry",
+      "relation": "tagged"
+    },
+    {
+      "source": "gentrl",
+      "target": "tag:insilico-medicine",
+      "relation": "tagged"
+    },
+    {
+      "source": "gentrl",
+      "target": "tag:reinforcement-learning",
+      "relation": "tagged"
+    },
+    {
+      "source": "gentrl",
+      "target": "tag:tensor-decomposition",
+      "relation": "tagged"
+    },
+    {
+      "source": "gentrl",
+      "target": "tag:variational-autoencoder",
+      "relation": "tagged"
+    },
+    {
       "source": "geolibre",
       "target": "cat:framework",
       "relation": "categorized"
@@ -17734,6 +18851,46 @@
       "relation": "tagged"
     },
     {
+      "source": "gpu-rental-cost-benchmarks",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "gpu-rental-cost-benchmarks",
+      "target": "tag:benchmarking",
+      "relation": "tagged"
+    },
+    {
+      "source": "gpu-rental-cost-benchmarks",
+      "target": "tag:concurrency",
+      "relation": "tagged"
+    },
+    {
+      "source": "gpu-rental-cost-benchmarks",
+      "target": "tag:cost-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "gpu-rental-cost-benchmarks",
+      "target": "tag:gpu-rental",
+      "relation": "tagged"
+    },
+    {
+      "source": "gpu-rental-cost-benchmarks",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "gpu-rental-cost-benchmarks",
+      "target": "tag:vllm",
+      "relation": "tagged"
+    },
+    {
+      "source": "gpu-rental-cost-benchmarks",
+      "target": "tag:vram",
+      "relation": "tagged"
+    },
+    {
       "source": "gradio",
       "target": "cat:framework",
       "relation": "categorized"
@@ -18031,6 +19188,61 @@
     {
       "source": "grill-with-docs",
       "target": "tag:planning",
+      "relation": "tagged"
+    },
+    {
+      "source": "gromacs",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "gromacs",
+      "target": "openmm",
+      "relation": "overlaps"
+    },
+    {
+      "source": "gromacs",
+      "target": "tag:force-field",
+      "relation": "tagged"
+    },
+    {
+      "source": "gromacs",
+      "target": "tag:free-energy",
+      "relation": "tagged"
+    },
+    {
+      "source": "gromacs",
+      "target": "tag:gpu-computing",
+      "relation": "tagged"
+    },
+    {
+      "source": "gromacs",
+      "target": "tag:hpc",
+      "relation": "tagged"
+    },
+    {
+      "source": "gromacs",
+      "target": "tag:molecular-dynamics",
+      "relation": "tagged"
+    },
+    {
+      "source": "gromacs",
+      "target": "tag:parallel-computing",
+      "relation": "tagged"
+    },
+    {
+      "source": "gromacs",
+      "target": "tag:protein-simulation",
+      "relation": "tagged"
+    },
+    {
+      "source": "gromacs",
+      "target": "tag:simulation",
+      "relation": "tagged"
+    },
+    {
+      "source": "gromacs",
+      "target": "tag:structural-biology",
       "relation": "tagged"
     },
     {
@@ -21184,6 +22396,46 @@
       "relation": "tagged"
     },
     {
+      "source": "multi-session-management-strategies",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "multi-session-management-strategies",
+      "target": "herdr",
+      "relation": "overlaps"
+    },
+    {
+      "source": "multi-session-management-strategies",
+      "target": "tag:agent-management",
+      "relation": "tagged"
+    },
+    {
+      "source": "multi-session-management-strategies",
+      "target": "tag:best-practices",
+      "relation": "tagged"
+    },
+    {
+      "source": "multi-session-management-strategies",
+      "target": "tag:multi-session",
+      "relation": "tagged"
+    },
+    {
+      "source": "multi-session-management-strategies",
+      "target": "tag:session-organization",
+      "relation": "tagged"
+    },
+    {
+      "source": "multi-session-management-strategies",
+      "target": "tag:terminal-multiplexer",
+      "relation": "tagged"
+    },
+    {
+      "source": "multi-session-management-strategies",
+      "target": "tag:workflow",
+      "relation": "tagged"
+    },
+    {
       "source": "mycelium",
       "target": "cat:framework",
       "relation": "categorized"
@@ -22544,6 +23796,51 @@
       "relation": "tagged"
     },
     {
+      "source": "openmm",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "openmm",
+      "target": "tag:custom-forces",
+      "relation": "tagged"
+    },
+    {
+      "source": "openmm",
+      "target": "tag:force-field",
+      "relation": "tagged"
+    },
+    {
+      "source": "openmm",
+      "target": "tag:gpu-computing",
+      "relation": "tagged"
+    },
+    {
+      "source": "openmm",
+      "target": "tag:machine-learning-potentials",
+      "relation": "tagged"
+    },
+    {
+      "source": "openmm",
+      "target": "tag:molecular-dynamics",
+      "relation": "tagged"
+    },
+    {
+      "source": "openmm",
+      "target": "tag:protein-simulation",
+      "relation": "tagged"
+    },
+    {
+      "source": "openmm",
+      "target": "tag:simulation",
+      "relation": "tagged"
+    },
+    {
+      "source": "openmm",
+      "target": "tag:structural-biology",
+      "relation": "tagged"
+    },
+    {
       "source": "openrouter",
       "target": "cat:framework",
       "relation": "categorized"
@@ -22981,6 +24278,56 @@
     {
       "source": "ovisocr2",
       "target": "tag:vllm",
+      "relation": "tagged"
+    },
+    {
+      "source": "paddleocr",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "paddleocr",
+      "target": "tag:document-parsing",
+      "relation": "tagged"
+    },
+    {
+      "source": "paddleocr",
+      "target": "tag:multilingual",
+      "relation": "tagged"
+    },
+    {
+      "source": "paddleocr",
+      "target": "tag:ocr",
+      "relation": "tagged"
+    },
+    {
+      "source": "paddleocr",
+      "target": "tag:paddlepaddle",
+      "relation": "tagged"
+    },
+    {
+      "source": "paddleocr",
+      "target": "tag:pdf-extraction",
+      "relation": "tagged"
+    },
+    {
+      "source": "paddleocr",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "paddleocr",
+      "target": "tag:table-recognition",
+      "relation": "tagged"
+    },
+    {
+      "source": "paddleocr",
+      "target": "tag:text-recognition",
+      "relation": "tagged"
+    },
+    {
+      "source": "paddleocr",
+      "target": "tag:vision-language-model",
       "relation": "tagged"
     },
     {
@@ -24199,6 +25546,56 @@
       "relation": "tagged"
     },
     {
+      "source": "reinvent4",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "reinvent4",
+      "target": "tag:astrazeneca",
+      "relation": "tagged"
+    },
+    {
+      "source": "reinvent4",
+      "target": "tag:cheminformatics",
+      "relation": "tagged"
+    },
+    {
+      "source": "reinvent4",
+      "target": "tag:de-novo-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "reinvent4",
+      "target": "tag:drug-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "reinvent4",
+      "target": "tag:generative-chemistry",
+      "relation": "tagged"
+    },
+    {
+      "source": "reinvent4",
+      "target": "tag:molecular-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "reinvent4",
+      "target": "tag:reinforcement-learning",
+      "relation": "tagged"
+    },
+    {
+      "source": "reinvent4",
+      "target": "tag:scaffold-hopping",
+      "relation": "tagged"
+    },
+    {
+      "source": "reinvent4",
+      "target": "tag:smiles",
+      "relation": "tagged"
+    },
+    {
       "source": "remote-control",
       "target": "cat:reference",
       "relation": "categorized"
@@ -24621,6 +26018,56 @@
     {
       "source": "scheduled-multi-agent-coordinator",
       "target": "tag:scheduling",
+      "relation": "tagged"
+    },
+    {
+      "source": "scientific-agent-skills",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "scientific-agent-skills",
+      "target": "tag:agent-skills",
+      "relation": "tagged"
+    },
+    {
+      "source": "scientific-agent-skills",
+      "target": "tag:bioinformatics",
+      "relation": "tagged"
+    },
+    {
+      "source": "scientific-agent-skills",
+      "target": "tag:cheminformatics",
+      "relation": "tagged"
+    },
+    {
+      "source": "scientific-agent-skills",
+      "target": "tag:claude-code-plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "scientific-agent-skills",
+      "target": "tag:clinical-research",
+      "relation": "tagged"
+    },
+    {
+      "source": "scientific-agent-skills",
+      "target": "tag:drug-discovery",
+      "relation": "tagged"
+    },
+    {
+      "source": "scientific-agent-skills",
+      "target": "tag:lab-automation",
+      "relation": "tagged"
+    },
+    {
+      "source": "scientific-agent-skills",
+      "target": "tag:multi-domain",
+      "relation": "tagged"
+    },
+    {
+      "source": "scientific-agent-skills",
+      "target": "tag:scientific-computing",
       "relation": "tagged"
     },
     {
@@ -25969,6 +27416,46 @@
       "relation": "overlaps"
     },
     {
+      "source": "syba",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "syba",
+      "target": "synfrag",
+      "relation": "overlaps"
+    },
+    {
+      "source": "syba",
+      "target": "tag:bayesian-classifier",
+      "relation": "tagged"
+    },
+    {
+      "source": "syba",
+      "target": "tag:cheminformatics",
+      "relation": "tagged"
+    },
+    {
+      "source": "syba",
+      "target": "tag:drug-discovery",
+      "relation": "tagged"
+    },
+    {
+      "source": "syba",
+      "target": "tag:fragment-based",
+      "relation": "tagged"
+    },
+    {
+      "source": "syba",
+      "target": "tag:rdkit",
+      "relation": "tagged"
+    },
+    {
+      "source": "syba",
+      "target": "tag:synthetic-accessibility",
+      "relation": "tagged"
+    },
+    {
       "source": "synapse-memory-layer",
       "target": "ai-memory-comparison",
       "relation": "overlaps"
@@ -26086,6 +27573,46 @@
     {
       "source": "syncthing",
       "target": "tag:tls",
+      "relation": "tagged"
+    },
+    {
+      "source": "synfrag",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "synfrag",
+      "target": "tag:attentivefp",
+      "relation": "tagged"
+    },
+    {
+      "source": "synfrag",
+      "target": "tag:cheminformatics",
+      "relation": "tagged"
+    },
+    {
+      "source": "synfrag",
+      "target": "tag:drug-discovery",
+      "relation": "tagged"
+    },
+    {
+      "source": "synfrag",
+      "target": "tag:fragment-assembly",
+      "relation": "tagged"
+    },
+    {
+      "source": "synfrag",
+      "target": "tag:interpretability",
+      "relation": "tagged"
+    },
+    {
+      "source": "synfrag",
+      "target": "tag:pretraining",
+      "relation": "tagged"
+    },
+    {
+      "source": "synfrag",
+      "target": "tag:synthetic-accessibility",
       "relation": "tagged"
     },
     {
@@ -26411,6 +27938,46 @@
     {
       "source": "third-brain-v5-wiki",
       "target": "tag:wiki",
+      "relation": "tagged"
+    },
+    {
+      "source": "three-store-hybrid-memory-architecture",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "three-store-hybrid-memory-architecture",
+      "target": "tag:agent-memory",
+      "relation": "tagged"
+    },
+    {
+      "source": "three-store-hybrid-memory-architecture",
+      "target": "tag:architecture-pattern",
+      "relation": "tagged"
+    },
+    {
+      "source": "three-store-hybrid-memory-architecture",
+      "target": "tag:hybrid-retrieval",
+      "relation": "tagged"
+    },
+    {
+      "source": "three-store-hybrid-memory-architecture",
+      "target": "tag:key-value-store",
+      "relation": "tagged"
+    },
+    {
+      "source": "three-store-hybrid-memory-architecture",
+      "target": "tag:knowledge-graph",
+      "relation": "tagged"
+    },
+    {
+      "source": "three-store-hybrid-memory-architecture",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "three-store-hybrid-memory-architecture",
+      "target": "tag:vector-search",
       "relation": "tagged"
     },
     {
