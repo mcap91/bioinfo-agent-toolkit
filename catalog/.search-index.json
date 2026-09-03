@@ -2,7 +2,7 @@
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
   "generated": "2026-09-03",
-  "count": 410,
+  "count": 413,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -30,6 +30,33 @@
       "security_flags": [],
       "reviewed": "2026-06-18",
       "path": "catalog/entries/a2a-protocol.md"
+    },
+    {
+      "name": "aaa-quality-gate-orchestration",
+      "title": "AAA Quality-Gate Multi-Agent Orchestration",
+      "url": "https://example.com",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "A prompt architecture for orchestrating multi-agent development of complex software with built-in quality verification. The pattern was demonstrated building a Cities: Skylines II–class city builder in Three.js, but the structural principles generalize to any multi-subsystem project requiring visual or functional quality gates.\n\n**Architecture-first:** Before any code, agents produce an architecture document defining folder structure, module APIs, events, units, determinism constraints (seeded RNG only), a performance budget, and an asset policy. Module failures are isolated so one broken subsystem never takes the whole project down.\n\n**Verification loop before features:** A headless-Chrome screenshot tool captures the app state with camera presets and time-of-day settings, outputting PNGs plus a JSON log (console errors, fps, draw calls). Every module ships a \"showcase\" mode for isolated testing. No agent may claim completion without screenshot evidence.\n\n**Fan-out by dependency:** Builder agents each own a single module folder. They run in waves ordered by dependency: (1) terrain, sky, roads, simulation, UI, audio, effects; (2) zoning, buildings, props, traffic, tools; (3) demo integration. Between waves, an integrator agent — the only one allowed to touch shared core code — applies builders' change requests and fixes seams.\n\n**Critic gauntlet:** After each builder round, a separate critic agent (writes no code) takes screenshots at several times of day and zoom levels, checks API contracts and performance, and scores 0–10 against reference screenshots. Pass threshold is 8.5/10 with zero errors. Below that, the builder receives a ranked issue list and iterates, up to 4 rounds.\n\n**Persistent scoring:** Scores and open issues persist to a STATUS.json so each iteration resumes from the weakest module rather than restarting from scratch.",
+      "tags": [
+        "multi-agent",
+        "orchestration",
+        "quality-gates",
+        "critic-loop",
+        "game-development",
+        "3d-modeling",
+        "modular-architecture",
+        "verification"
+      ],
+      "workflows": [
+        "agent-orchestration",
+        "code-generation"
+      ],
+      "license": "unknown",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/aaa-quality-gate-orchestration.md"
     },
     {
       "name": "adeptly",
@@ -3598,6 +3625,33 @@
       "path": "catalog/entries/ergon-wrong-turn-logger.md"
     },
     {
+      "name": "extractbench",
+      "title": "ExtractBench",
+      "url": "https://github.com/run-llama/ExtractBench",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "ExtractBench evaluates document extraction systems on enterprise-grade inputs. Given a document and a user-defined JSON Schema, a system must return schema-valid JSON with correct values and complete record lists. The benchmark covers 370 enterprise documents spanning insurance filings, financial reports, regulatory submissions, contracts, invoices, and more across 67 document types in 8 business domains.\n\nEvaluation uses five axes: task challenge (form-filling, record-list extraction, needle-in-haystack), perception quality (scans, handwriting, rotated inputs), table structure (merged cells, page breaks), document length (short/medium/long), and domain coverage. The headline metric is unified value F1, computed as an unweighted mean over documents. Scoring is deterministic and rule-based with no LLM-as-judge.\n\nSystems evaluated include frontier VLMs (GPT-5.5, Claude Opus 4.8, Gemini 3.5 Flash), coding agents (Codex, Claude Code), open-source models (Qwen3.6 35B, Lift Datalab 9B), and specialized extraction APIs (Reducto, LlamaIndex Extract). Commercial VLMs perform well on short documents but truncate record lists on long ones (Gemini 3.5 Flash drops from 87.9% to 27.9%). Coding agents retain accuracy but cost 3–8x more per page than specialized APIs.",
+      "tags": [
+        "benchmark",
+        "document-extraction",
+        "ocr",
+        "enterprise",
+        "llamaindex",
+        "kaggle",
+        "evaluation",
+        "structured-output"
+      ],
+      "workflows": [
+        "document-processing",
+        "evaluation"
+      ],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/extractbench.md"
+    },
+    {
       "name": "fable-agent-orchestration",
       "title": "Fable Agent Orchestration",
       "url": "https://git.wearein.space/elias/fable-agent-orchestration",
@@ -4175,6 +4229,32 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/googleworkspace-cli.md"
+    },
+    {
+      "name": "governance-first-multi-agent-architecture",
+      "title": "Governance-First Multi-Agent Architecture",
+      "url": "https://example.com",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": ">-",
+      "body_summary": "An architecture pattern for solo-use multi-agent systems built governance-first: the oversight rules, delegation boundaries, and approval gates are defined before any agent capabilities. The design uses a four-tier hierarchy rather than a peer-to-peer agent mesh.\n\n**Tier 0 — Lead Agent (Master Control):** Intakes every request, classifies by objective/priority/risk, delegates to the appropriate specialist, and is the only agent that reports back to the user. Enforces approval gates.\n\n**Tier 1 — Specialist Sub-Agents (least-privilege):** Research/analysis operates read-only with no side effects. Ops/comms handles scheduling and message drafting but cannot send. Build/technical stays sandboxed to its own environment with no access to other agents' tools or data.\n\n**Tier 2 — Audit/Watcher (independent):** Cross-checks agent actions against policy and flags problems directly to the user. Cannot be edited, delayed, or silenced by the lead agent. Has no task-execution role — oversight only.\n\n**Tier 3 — Owner (human):** Final sign-off on anything irreversible. The only tier that can approve remediation after the watcher flags an issue.",
+      "tags": [
+        "multi-agent",
+        "governance",
+        "oversight",
+        "approval-gates",
+        "delegation",
+        "audit",
+        "least-privilege",
+        "agent-architecture"
+      ],
+      "workflows": [
+        "agent-orchestration"
+      ],
+      "license": "unknown",
+      "security_flags": [],
+      "reviewed": "2026-09-02",
+      "path": "catalog/entries/governance-first-multi-agent-architecture.md"
     },
     {
       "name": "gpu-rental-cost-benchmarks",

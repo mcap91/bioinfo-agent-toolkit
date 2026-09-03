@@ -39,3 +39,7 @@ Posts are unfetchable (LinkedIn post URLs); summary is derived from titles and s
 ## Security
 
 No installation surface — this is a reading/reference item. No security concerns.
+
+## Usage notes
+
+- **When to use GraphRAG over plain RAG:** Standard RAG retrieves relevant passages for specific queries but fails on corpus-level sensemaking questions ("what are these documents about?"). GraphRAG stores text units with provenance, extracts entities/relationships into a knowledge graph, groups them into a nested hierarchy via the Leiden algorithm, and generates community summary reports upfront. Those pre-computed summaries answer broad questions without re-reading the corpus. Rule of thumb: quick single-fact lookup → plain RAG; sensemaking across the whole corpus → GraphRAG.
