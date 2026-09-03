@@ -51,3 +51,14 @@ The catalog tracks external tools, skills, and frameworks. The full operator flo
 3. **After processing:** check `catalog/queue.json` for parked/errored items, commit new entries.
 
 The MCP server provides 14 tools — see `CLAUDE.md` for the full list.
+
+## Web-to-source compilation
+
+To capture a collection of web articles as reference material for catalog entries, fetch each
+page with `fetch-url` (`clean: true`) and concatenate the raw content into a single file in
+`catalog/sources/<slug>.md` with `---` dividers between articles. Do not summarize — preserve
+the full fetched text verbatim. If an index/series page returns empty content (JS-rendered SPA),
+try discovering individual article URLs via the site's API (`/api/posts`, `/sitemap.xml`,
+`__NEXT_DATA__` in raw HTML) — the individual pages usually render server-side and fetch fine.
+To create a catalog entry from a compiled source, have an agent read the source file and use
+`validate-entry` → `write-entry` → `index`.

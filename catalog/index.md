@@ -1,6 +1,6 @@
 # Catalog Index
 
-Generated from 409 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
+Generated from 410 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
 
 ## By Decision Status
 
@@ -213,6 +213,7 @@ Generated from 409 entries in `catalog/entries/`. Regenerate with the catalog `i
 | [Immich](entries/immich.md) | framework | open | Production-ready self-hosted Google Photos alternative with AI search; not agent tooling but solid self-hosted media infrastructure. | self-hosted, photo-management, video, mobile, ai-search, facial-recognition, oauth, docker |
 | [Impeccable](entries/impeccable.md) | skill | open | >- | design, frontend, UI, anti-patterns, linting, multi-CLI, skills |
 | [Inbox Zero](entries/inbox-zero.md) | framework | open | AI-powered self-hostable email management app — strong open-source email assistant, not a developer/agent toolkit. | email, ai-assistant, gmail, productivity, self-hosted, open-source |
+| [Isaac Flath — Documents in AI Products (OCR Pipeline Guides)](entries/isaacflath-ocr-guides.md) | reference | open | 14-post blog series covering OCR model selection, VLM OCR, speculative decoding, PDF retrieval, chunking, quantization, and document QA — practical guidelines for designing OCR pipelines | ocr, vlm, retrieval, chunking, quantization, colbert, rag, document-processing, pdf |
 | [JAX](entries/jax.md) | framework | open | Python library for accelerator-oriented array computing and composable function transformations: jax.grad (autodiff to any order, forward/reverse), jax.jit (XLA compilation to CPU/GPU/TPU), and jax.vmap (auto-vectorization), plus sharding APIs to scale across thousands of devices. Apache-2.0; a research project, not an official Google product. | machine-learning, autodiff, jit, xla, gpu, tpu, numpy, numerical-computing |
 | [jcode](entries/jcode.md) | framework | open | Feature-rich Rust coding agent harness with exceptional performance (14ms boot, 28MB RAM), swarm collaboration, and 30+ provider integrations; compelling alternative harness to watch | cli-agent, rust, multi-provider, swarm, memory, browser-automation, performance |
 | [Karakeep](entries/karakeep.md) | framework | open | Self-hostable AI bookmark manager with REST API, official agent skills, and Ollama support — agent-friendly but self-described as under heavy development. | bookmarks, knowledge-management, self-hosted, llm, tagging, search, rest-api, agent-friendly |
@@ -462,6 +463,10 @@ Generated from 409 entries in `catalog/entries/`. Regenerate with the catalog `i
 ### model-monitoring
 
 - [A Global Workspace in Language Models](entries/anthropic-global-workspace.md) — open — Anthropic interpretability research identifying the \"J-space\" — a small set of internal neural patterns in Claude that function as a global workspace for deliberate reasoning, reportable thoughts, and internal monitoring; includes J-lens technique for reading model thoughts not expressed in output
+
+### ocr-bench
+
+- [Isaac Flath — Documents in AI Products (OCR Pipeline Guides)](entries/isaacflath-ocr-guides.md) — open — 14-post blog series covering OCR model selection, VLM OCR, speculative decoding, PDF retrieval, chunking, quantization, and document QA — practical guidelines for designing OCR pipelines
 
 ### project-planning
 
@@ -1257,6 +1262,7 @@ Generated from 409 entries in `catalog/entries/`. Regenerate with the catalog `i
 - [Harness Engineering (Fowler / Böckeler)](entries/harness-engineering.md) — open — Martin Fowler article defining Agent = Model + Harness — taxonomy of agent controls: guides (feedforward) vs sensors (feedback), computational (deterministic) vs inferential (LLM-based), across three regulation levels (maintainability, architecture fitness, behavior); behavior verification identified as largely unsolved
 - [HuggingFace Agents Course](entries/huggingface-agents-course.md) — open — Free framework-agnostic course on AI agent fundamentals — covers tool-calling loop mechanics (Thought/Action/Observation), stop-token control to prevent hallucinated observations, system prompt construction, and hands-on progression from dummy agents to smolagents/LangGraph/LlamaIndex
 - [HuggingFace LLM Course](entries/huggingface-llm-course.md) — open — Free 12-chapter course covering transformers, fine-tuning, datasets, tokenizers, and reasoning models using the HuggingFace ecosystem; useful learning path but not a tool or workflow component
+- [Isaac Flath — Documents in AI Products (OCR Pipeline Guides)](entries/isaacflath-ocr-guides.md) — open — 14-post blog series covering OCR model selection, VLM OCR, speculative decoding, PDF retrieval, chunking, quantization, and document QA — practical guidelines for designing OCR pipelines
 - [Karpathy's 12 Rules for CLAUDE.md](entries/karpathy-12-rules.md) — open — All 12 rules adopted via setup-behavioral-baseline.sh — installs to ~/.claude/CLAUDE.md (Claude) and ~/.codex/AGENTS.md (Codex)
 - [Karpathy's LLM Wiki Pattern](entries/karpathy-llm-wiki.md) — open — Foundational pattern doc for LLM-maintained personal knowledge bases — directly describes the architecture kb-wiki implements
 - [KV Cache VRAM Sizing Formula for Local LLM Inference](entries/kv-cache-vram-sizing.md) — open — Practitioner reference for calculating KV cache memory: formula (2 × layers × kv_heads × head_dim × context_tokens × bytes_per_value), worked example showing Llama 3.1 8B at 128K context uses 16GB for cache alone (3× the 4.9GB Q4 weights); explains why GQA models (fewer KV heads) are dramatically cheaper at long context than MHA models, and why Ollama's default small num_ctx hides the cost until you raise it

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-02T02:35:54.811Z",
+  "generated_at": "2026-09-03T03:32:44.454Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -2126,6 +2126,15 @@
       "url": "https://github.com/elie222/inbox-zero",
       "summary": "AI-powered self-hostable email management app — strong open-source email assistant, not a developer/agent toolkit.",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "isaacflath-ocr-guides",
+      "kind": "entry",
+      "title": "Isaac Flath — Documents in AI Products (OCR Pipeline Guides)",
+      "summary": "14-post blog series covering OCR model selection, VLM OCR, speculative decoding, PDF retrieval, chunking, quantization, and document QA — practical guidelines for designing OCR pipelines",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -5162,6 +5171,11 @@
     },
     {
       "id": "tag:cognitive-frames",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:colbert",
       "kind": "tag",
       "exists": true
     },
@@ -20128,6 +20142,66 @@
     {
       "source": "inbox-zero",
       "target": "tag:self-hosted",
+      "relation": "tagged"
+    },
+    {
+      "source": "isaacflath-ocr-guides",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "isaacflath-ocr-guides",
+      "target": "opendataloader-pdf",
+      "relation": "overlaps"
+    },
+    {
+      "source": "isaacflath-ocr-guides",
+      "target": "ovisocr2",
+      "relation": "overlaps"
+    },
+    {
+      "source": "isaacflath-ocr-guides",
+      "target": "tag:chunking",
+      "relation": "tagged"
+    },
+    {
+      "source": "isaacflath-ocr-guides",
+      "target": "tag:colbert",
+      "relation": "tagged"
+    },
+    {
+      "source": "isaacflath-ocr-guides",
+      "target": "tag:document-processing",
+      "relation": "tagged"
+    },
+    {
+      "source": "isaacflath-ocr-guides",
+      "target": "tag:ocr",
+      "relation": "tagged"
+    },
+    {
+      "source": "isaacflath-ocr-guides",
+      "target": "tag:pdf",
+      "relation": "tagged"
+    },
+    {
+      "source": "isaacflath-ocr-guides",
+      "target": "tag:quantization",
+      "relation": "tagged"
+    },
+    {
+      "source": "isaacflath-ocr-guides",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "isaacflath-ocr-guides",
+      "target": "tag:retrieval",
+      "relation": "tagged"
+    },
+    {
+      "source": "isaacflath-ocr-guides",
+      "target": "tag:vlm",
       "relation": "tagged"
     },
     {
