@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-03T03:32:44.454Z",
+  "generated_at": "2026-09-03T03:41:22.389Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -8,6 +8,16 @@
       "url": "https://github.com/a2aproject/A2A",
       "summary": "Google/Linux Foundation open protocol for inter-agent communication — JSON-RPC 2.0 over HTTP, Agent Cards for discovery, async-first with streaming; SDKs in 6 languages; complements MCP (tool access) with agent-to-agent collaboration",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "aaa-quality-gate-orchestration",
+      "kind": "entry",
+      "title": "AAA Quality-Gate Multi-Agent Orchestration",
+      "url": "https://example.com",
+      "summary": ">-",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -1593,6 +1603,16 @@
       "exists": true
     },
     {
+      "id": "extractbench",
+      "kind": "entry",
+      "title": "ExtractBench",
+      "url": "https://github.com/run-llama/ExtractBench",
+      "summary": ">-",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "fable-agent-orchestration",
       "kind": "entry",
       "title": "Fable Agent Orchestration",
@@ -1828,6 +1848,16 @@
       "url": "https://github.com/googleworkspace/cli",
       "summary": "Rust CLI with agent-first JSON output and 100+ bundled SKILL.md files covering all Workspace APIs; pre-v1.0 with breaking changes expected",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "governance-first-multi-agent-architecture",
+      "kind": "entry",
+      "title": "Governance-First Multi-Agent Architecture",
+      "url": "https://example.com",
+      "summary": ">-",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -5510,6 +5540,11 @@
       "exists": true
     },
     {
+      "id": "tag:critic-loop",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:cross-agent",
       "kind": "tag",
       "exists": true
@@ -7310,6 +7345,11 @@
       "exists": true
     },
     {
+      "id": "tag:kaggle",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:kanban",
       "kind": "tag",
       "exists": true
@@ -7451,6 +7491,11 @@
     },
     {
       "id": "tag:learning-path",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:least-privilege",
       "kind": "tag",
       "exists": true
     },
@@ -7996,6 +8041,11 @@
     },
     {
       "id": "tag:model-switching",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:modular-architecture",
       "kind": "tag",
       "exists": true
     },
@@ -9051,6 +9101,11 @@
     },
     {
       "id": "tag:quality",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:quality-gates",
       "kind": "tag",
       "exists": true
     },
@@ -11362,6 +11417,51 @@
     {
       "source": "a2a-protocol",
       "target": "tag:protocol",
+      "relation": "tagged"
+    },
+    {
+      "source": "aaa-quality-gate-orchestration",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "aaa-quality-gate-orchestration",
+      "target": "tag:3d-modeling",
+      "relation": "tagged"
+    },
+    {
+      "source": "aaa-quality-gate-orchestration",
+      "target": "tag:critic-loop",
+      "relation": "tagged"
+    },
+    {
+      "source": "aaa-quality-gate-orchestration",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "aaa-quality-gate-orchestration",
+      "target": "tag:modular-architecture",
+      "relation": "tagged"
+    },
+    {
+      "source": "aaa-quality-gate-orchestration",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "aaa-quality-gate-orchestration",
+      "target": "tag:orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "aaa-quality-gate-orchestration",
+      "target": "tag:quality-gates",
+      "relation": "tagged"
+    },
+    {
+      "source": "aaa-quality-gate-orchestration",
+      "target": "tag:verification",
       "relation": "tagged"
     },
     {
@@ -17760,6 +17860,51 @@
       "relation": "tagged"
     },
     {
+      "source": "extractbench",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "extractbench",
+      "target": "tag:benchmark",
+      "relation": "tagged"
+    },
+    {
+      "source": "extractbench",
+      "target": "tag:document-extraction",
+      "relation": "tagged"
+    },
+    {
+      "source": "extractbench",
+      "target": "tag:enterprise",
+      "relation": "tagged"
+    },
+    {
+      "source": "extractbench",
+      "target": "tag:evaluation",
+      "relation": "tagged"
+    },
+    {
+      "source": "extractbench",
+      "target": "tag:kaggle",
+      "relation": "tagged"
+    },
+    {
+      "source": "extractbench",
+      "target": "tag:llamaindex",
+      "relation": "tagged"
+    },
+    {
+      "source": "extractbench",
+      "target": "tag:ocr",
+      "relation": "tagged"
+    },
+    {
+      "source": "extractbench",
+      "target": "tag:structured-output",
+      "relation": "tagged"
+    },
+    {
       "source": "fable-agent-orchestration",
       "target": "agent-skills-addy-osmani",
       "relation": "overlaps"
@@ -18862,6 +19007,61 @@
     {
       "source": "googleworkspace-cli",
       "target": "tag:sheets",
+      "relation": "tagged"
+    },
+    {
+      "source": "governance-first-multi-agent-architecture",
+      "target": "agent-teams",
+      "relation": "overlaps"
+    },
+    {
+      "source": "governance-first-multi-agent-architecture",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "governance-first-multi-agent-architecture",
+      "target": "openclaw",
+      "relation": "overlaps"
+    },
+    {
+      "source": "governance-first-multi-agent-architecture",
+      "target": "tag:agent-architecture",
+      "relation": "tagged"
+    },
+    {
+      "source": "governance-first-multi-agent-architecture",
+      "target": "tag:approval-gates",
+      "relation": "tagged"
+    },
+    {
+      "source": "governance-first-multi-agent-architecture",
+      "target": "tag:audit",
+      "relation": "tagged"
+    },
+    {
+      "source": "governance-first-multi-agent-architecture",
+      "target": "tag:delegation",
+      "relation": "tagged"
+    },
+    {
+      "source": "governance-first-multi-agent-architecture",
+      "target": "tag:governance",
+      "relation": "tagged"
+    },
+    {
+      "source": "governance-first-multi-agent-architecture",
+      "target": "tag:least-privilege",
+      "relation": "tagged"
+    },
+    {
+      "source": "governance-first-multi-agent-architecture",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "governance-first-multi-agent-architecture",
+      "target": "tag:oversight",
       "relation": "tagged"
     },
     {

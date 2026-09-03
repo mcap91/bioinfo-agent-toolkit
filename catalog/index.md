@@ -1,6 +1,6 @@
 # Catalog Index
 
-Generated from 410 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
+Generated from 413 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
 
 ## By Decision Status
 
@@ -9,6 +9,7 @@ Generated from 410 entries in `catalog/entries/`. Regenerate with the catalog `i
 | [3-Store Hybrid Memory Architecture for AI Agents](entries/three-store-hybrid-memory-architecture.md) | agent-pattern | open | > | agent-memory, vector-search, knowledge-graph, key-value-store, rag, hybrid-retrieval, architecture-pattern |
 | [A Field Guide to Fable: Finding Your Unknowns](entries/field-guide-to-fable-finding-unknowns.md) | agent-pattern | open | Anthropic engineer Thariq Shihipar's framework for working with capable AI models — the bottleneck shifts from model ability to specification quality; five techniques (blind-spot pass, interviews, references, rough mockups, brainstorms) for surfacing assumptions before they compound into costly rework; 2M views in 3 days | prompting, workflow, fable, claude-code, specification, unknowns, anthropic, agent-pattern |
 | [A Global Workspace in Language Models](entries/anthropic-global-workspace.md) | reference | open | Anthropic interpretability research identifying the \"J-space\" — a small set of internal neural patterns in Claude that function as a global workspace for deliberate reasoning, reportable thoughts, and internal monitoring; includes J-lens technique for reading model thoughts not expressed in output | interpretability, anthropic, consciousness, j-space, j-lens, global-workspace-theory, model-internals, safety-monitoring |
+| [AAA Quality-Gate Multi-Agent Orchestration](entries/aaa-quality-gate-orchestration.md) | agent-pattern | open | >- | multi-agent, orchestration, quality-gates, critic-loop, game-development, 3d-modeling, modular-architecture, verification |
 | [Adeptly](entries/adeptly.md) | cli-tool | open | Plan-first companion GUI for Claude Code — drafts structured plans with inline Claude Code feature recommendations (subagents, skills, hooks, MCP, plan mode), scores feature coverage and token hygiene, then optionally executes plans as a role pipeline (Architect→Builder→Medic→Reviewer→Security→Pilot) via headless claude CLI; local-first Next.js app, MIT | claude-code, planning, orchestration, crew, subagents, skills, hooks, feature-discovery, local-first, next-js |
 | [AdGuard Home](entries/adguard-home.md) | framework | open | Production-ready network-wide DNS ad/tracker blocker — infrastructure tool, not an agent/dev workflow component | dns, privacy, ad-blocking, network, self-hosted, docker |
 | [ADHD](entries/adhd.md) | skill | open | parallel divergent ideation via isolated cognitive frames; overlaps with superpowers:brainstorming but the frame isolation and scoring mechanics are worth studying | ideation, brainstorming, parallel, divergent-thinking, cognitive-frames, subagents |
@@ -160,6 +161,7 @@ Generated from 410 entries in `catalog/entries/`. Regenerate with the catalog `i
 | [ERA — Empirical Research Assistant](entries/era-empirical-research-assistant.md) | framework | open | Interesting LLM+tree-search loop for scientific code generation, but Gemini-locked, research-grade, and not directly applicable to Claude Code workflows today | scientific-computing, code-generation, tree-search, llm-loop, bioinformatics, single-cell, python, google-research, research-paper |
 | [ergon-wrong-turn-logger](entries/ergon-wrong-turn-logger.md) | cli-tool | open | CLI that logs development 'wrong turns' (bad assumptions, missed edge cases, broken designs) to a searchable local SQLite database, with list/stats/search commands; framed for solo, team, and AI-assisted workflows. | decision-log, knowledge-capture, sqlite, retrospective, lessons-learned, bash, cli |
 | [Everything Claude Code (ECC)](entries/ecc-plugin.md) | plugin | open | rate-limited (429 errors); trial when accessible | plugin, hub, all-in-one |
+| [ExtractBench](entries/extractbench.md) | reference | open | >- | benchmark, document-extraction, ocr, enterprise, llamaindex, kaggle, evaluation, structured-output |
 | [Fable Agent Orchestration](entries/fable-agent-orchestration.md) | plugin | open | Apache-2.0 skill database for multi-agent orchestration — 24 reusable skills covering worktree-isolated parallel PR workflows, two-critic review loops, agent PR validation against real diffs/CI, fake-green test detection, orphaned WIP recovery, instruction-drift control, behavior-contract harnesses, and phase-aware engineering ladders | agent-orchestration, skills, multi-agent, code-review, worktree-isolation, pr-validation |
 | [Fable Orchestrator Pattern (Multi-Model Delegation)](entries/fable-orchestrator-pattern.md) | agent-pattern | open | Workflow pattern using Claude Fable as principal orchestrator with cheaper models (Sonnet, Opus, Codex/GPT-5.6) as execution workers — Fable plans and judges, workers implement and review in loops; achieves ~92–96% of Fable-solo quality at 40–63% of the cost; implemented via Claude Code agents, Codex CLI persistent threads, or the advisor tool | claude-code, fable, orchestration, multi-model, cost-optimization, codex, sonnet, opus, delegation |
 | [FAISS](entries/faiss.md) | framework | open | Meta's C++/Python library for efficient similarity search and clustering of dense vectors — billion-scale datasets, GPU acceleration (CUDA/ROCm), multiple index types (HNSW, NSG, IVF, PQ), L2/dot-product/cosine similarity; 40K+ stars, MIT | similarity-search, vector-search, clustering, gpu, embeddings, nearest-neighbor |
@@ -184,6 +186,7 @@ Generated from 410 entries in `catalog/entries/`. Regenerate with the catalog `i
 | [godogen](entries/godogen.md) | cli-tool | open | Generator + agent-driven workflow for autonomous game development targeting Godot 4, Bevy, or Babylon.js — a publish.sh script renders a thin runtime layout (manifest, engine guide, asset-generation skill) into a fresh target repo for either Claude Code (CLAUDE.md + .claude/skills/) or Codex (AGENTS.md + .agents/skills/), then the chosen host agent builds the actual game by reading the engine guide and calling external asset-generation APIs (Gemini, xAI Grok, Tripo3D) | game-development, godot, bevy, babylonjs, claude-code, claude-code-skill, codex, agent-workflow, asset-generation, generator, python |
 | [Google Cloud Knowledge Catalog](entries/google-knowledge-catalog.md) | framework | open | Google Cloud's Gemini-powered data catalog and metadata management platform (formerly Dataplex); builds a dynamic context graph of structured/unstructured data assets for AI agent grounding, with MCP server integration for context retrieval | data-catalog, metadata, google-cloud, gemini, mcp, knowledge-graph, data-governance, ai-agents |
 | [Google Workspace CLI (gws)](entries/googleworkspace-cli.md) | cli-tool | open | Rust CLI with agent-first JSON output and 100+ bundled SKILL.md files covering all Workspace APIs; pre-v1.0 with breaking changes expected | google-workspace, gmail, drive, calendar, sheets, agent-skills, oauth, json-output, rust, meta-skill |
+| [Governance-First Multi-Agent Architecture](entries/governance-first-multi-agent-architecture.md) | agent-pattern | open | >- | multi-agent, governance, oversight, approval-gates, delegation, audit, least-privilege, agent-architecture |
 | [GPU Rental Cost-Per-Token Benchmarks](entries/gpu-rental-cost-benchmarks.md) | reference | open | > | gpu-rental, cost-optimization, local-inference, vllm, benchmarking, vram, concurrency |
 | [Gradio](entries/gradio.md) | framework | open | >- | python, machine-learning, UI, demo, web-app, huggingface |
 | [Granola CLI](entries/granola-cli.md) | cli-tool | open | >- | meeting-notes, export, backup, markdown, transcripts, granola, data-portability |
@@ -433,11 +436,14 @@ Generated from 410 entries in `catalog/entries/`. Regenerate with the catalog `i
 
 ### agent-orchestration
 
+- [AAA Quality-Gate Multi-Agent Orchestration](entries/aaa-quality-gate-orchestration.md) — open — >-
+- [Governance-First Multi-Agent Architecture](entries/governance-first-multi-agent-architecture.md) — open — >-
 - [Medley](entries/medley.md) — open — Y Combinator-backed Claude Code/Codex plugin providing /mission command for multi-agent orchestration — decomposes goals into coordinated plans across multiple models (Claude, GPT, Gemini, Grok, Qwen, DeepSeek, Ollama), with browser-based mission board for visibility
 - [Pilotfish](entries/pilotfish.md) — open — Multi-model orchestration layer for Claude Code — six agent roles (haiku scouts, sonnet executor, opus judgment, adversarial verifier, security) that delegate from a frontier orchestrator; one-prompt install to ~/.claude/, benchmarked at 96% of all-Fable performance for 46% cost
 
 ### code-generation
 
+- [AAA Quality-Gate Multi-Agent Orchestration](entries/aaa-quality-gate-orchestration.md) — open — >-
 - [Pilotfish](entries/pilotfish.md) — open — Multi-model orchestration layer for Claude Code — six agent roles (haiku scouts, sonnet executor, opus judgment, adversarial verifier, security) that delegate from a frontier orchestrator; one-prompt install to ~/.claude/, benchmarked at 96% of all-Fable performance for 46% cost
 
 ### code-review
@@ -447,6 +453,14 @@ Generated from 410 entries in `catalog/entries/`. Regenerate with the catalog `i
 ### data-discovery
 
 - [Google Cloud Knowledge Catalog](entries/google-knowledge-catalog.md) — open — Google Cloud's Gemini-powered data catalog and metadata management platform (formerly Dataplex); builds a dynamic context graph of structured/unstructured data assets for AI agent grounding, with MCP server integration for context retrieval
+
+### document-processing
+
+- [ExtractBench](entries/extractbench.md) — open — >-
+
+### evaluation
+
+- [ExtractBench](entries/extractbench.md) — open — >-
 
 ### gtm
 
@@ -908,6 +922,7 @@ Generated from 410 entries in `catalog/entries/`. Regenerate with the catalog `i
 
 - [3-Store Hybrid Memory Architecture for AI Agents](entries/three-store-hybrid-memory-architecture.md) — open — >
 - [A Field Guide to Fable: Finding Your Unknowns](entries/field-guide-to-fable-finding-unknowns.md) — open — Anthropic engineer Thariq Shihipar's framework for working with capable AI models — the bottleneck shifts from model ability to specification quality; five techniques (blind-spot pass, interviews, references, rough mockups, brainstorms) for surfacing assumptions before they compound into costly rework; 2M views in 3 days
+- [AAA Quality-Gate Multi-Agent Orchestration](entries/aaa-quality-gate-orchestration.md) — open — >-
 - [Advisor Strategy](entries/advisor-strategy.md) — open — architectural concept for cost-effective agent orchestration; executor/advisor split
 - [Agent-First Architecture (The LLM Calls the Code)](entries/agent-first-architecture.md) — open — Architecture pattern where a general coding agent (Claude Code, Codex, OpenCode) running on a VPS is the orchestrator, calling deterministic scripts and connectors from a repo, inverting the usual app-calls-LLM relationship
 - [Agentic RAG](entries/agentic-rag.md) — open — >-
@@ -930,6 +945,7 @@ Generated from 410 entries in `catalog/entries/`. Regenerate with the catalog `i
 - [End-of-Session Review Questions](entries/end-of-session-review-questions.md) — open — Two standing end-of-session prompts ('what are you least confident about' and 'what am I probably missing') used to surface glossed-over assumptions and context gaps, with community variants and known failure modes
 - [Fable Orchestrator Pattern (Multi-Model Delegation)](entries/fable-orchestrator-pattern.md) — open — Workflow pattern using Claude Fable as principal orchestrator with cheaper models (Sonnet, Opus, Codex/GPT-5.6) as execution workers — Fable plans and judges, workers implement and review in loops; achieves ~92–96% of Fable-solo quality at 40–63% of the cost; implemented via Claude Code agents, Codex CLI persistent threads, or the advisor tool
 - [Five Levels of Chunking Strategies in RAG (Greg Kamradt's taxonomy)](entries/five-levels-of-chunking.md) — open — Taxonomy of RAG text-splitting strategies, from Greg Kamradt's '5 Levels of Text Splitting' (these are notes on that video): Level 1 fixed-size (character/sentence splitters), Level 2 recursive (hierarchical separators), Level 3 document/structure-based (respect headings, tables, code), Level 4 semantic (split at embedding-similarity breakpoints), Level 5 agentic (an LLM decides chunk boundaries from propositions). Higher levels trade cost/complexity for chunks that better match meaning; match the strategy to the data.
+- [Governance-First Multi-Agent Architecture](entries/governance-first-multi-agent-architecture.md) — open — >-
 - [Graph Engineering (Agentic Pattern)](entries/graph-engineering.md) — open — Emerging paradigm for designing multi-agent AI systems as explicit directed graphs — deterministic backbone orchestrating LLM-powered nodes, typed edges for control flow/data passing, declarative topology as a versionable artifact; supersedes single-agent loop patterns at scale
 - [Knowledge Graph Construction (Anthropic Cookbook)](entries/knowledge-graph-construction-anthropic.md) — open — >-
 - [Local Model + Cloud Adversarial Workflow](entries/local-model-adversarial-workflow.md) — open — Multi-model orchestration pattern — local 27B model (Qwen) handles drafting, planning, and implementation; cloud models (Opus, GPT) do adversarial code reviews; repeated review loops until green; domain-specific MCP tools for database/web verification reduce hallucinations and token costs
@@ -1253,6 +1269,7 @@ Generated from 410 entries in `catalog/entries/`. Regenerate with the catalog `i
 - [Developer Roadmap (roadmap.sh)](entries/developer-roadmap.md) — open — Content repository behind roadmap.sh — interactive, node-based learning roadmaps and topic guides for developer career paths (frontend, backend, DevOps, AI, etc.); each roadmap topic is a Markdown file (roadmaps/<slug>/content/<topic>@<node-id>.md) linked to an interactive graph on the website. This URL is a read-only fork of the canonical kamranahmedse/developer-roadmap; content is copyright-restricted (personal use only)
 - [Enterprise Context Management — CIO Notes](entries/enterprise-context-management-cio-notes.md) — open — Field notes from large-enterprise CIO conversations on context management for agentic systems — five observations: static ontologies are dead on arrival, the bottleneck is context selection not data access, enterprise semantics sits between metadata and abstract ontology, vendor semantics is not organizational semantics, and representing judgment (not just knowledge) is the hard problem
 - [EpiBench](entries/epibench.md) — open — Verifiable 106-task benchmark for AI agents on short-horizon epigenomics analysis (ATAC/ChIP/CUT&Tag/methylation); no model-harness pair passed a majority (best 45%), with failures concentrated in assay-specific scientific judgment.
+- [ExtractBench](entries/extractbench.md) — open — >-
 - [Fast Bioinformatics Tool Replacements](entries/fast-bioinformatics-tool-replacements.md) — open — Practitioner-compiled list of faster (mostly Rust-based) drop-in replacements for common bioinformatics and Unix CLI tools — Falco for FastQC, grit for bedtools/deeptools, sambamba for samtools, rust-bio-tools/alignoth for GATK-Picard/IGV, crabz for pigz, plus general Unix speedups (sd, ripgrep, dust, dysk, aria2c)
 - [FluxMem: Continuously Evolving Memory Connectivity](entries/fluxmem.md) — open — >-
 - [Glama](entries/glama.md) — open — >-
