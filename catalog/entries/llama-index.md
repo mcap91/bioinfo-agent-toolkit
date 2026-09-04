@@ -30,3 +30,10 @@ The library is namespaced: `llama-index` is a starter package bundling core plus
 ## Security
 
 MIT licensed. LlamaIndex orchestrates calls to third-party LLM/embedding/vector-store providers using credentials the caller supplies (e.g. `OPENAI_API_KEY`); those integrations make outbound API calls. The 300+ optional integration packages are a broad dependency surface — install only what an application needs. Build assets in `llama-index-core/_static` can be verified against the repo via GitHub build-provenance attestations. No security flags recorded from the observed material.
+
+## Usage notes
+
+- As of 2026, the core orchestration primitive is **Workflows** (event-driven, async-first, step-based execution) — Query Pipelines are deprecated. Agent classes include `FunctionAgent` and `ReActAgent`.
+- **LlamaAgents** (`run-llama/llama-agents`) is a separate repo for building and deploying document-centric agents; uses the Workflows primitive under the hood.
+- The `run-llama` org also ships a standalone Rust document parser (12k+ stars) and `llamactl` CLI for one-command agent deployment.
+- ACP (Agent Client Protocol) integration landed in 2026, enabling interop with other agent frameworks.
