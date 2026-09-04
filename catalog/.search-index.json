@@ -2,7 +2,7 @@
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
   "generated": "2026-09-04",
-  "count": 421,
+  "count": 424,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -2736,6 +2736,30 @@
       "security_flags": [],
       "reviewed": "2026-08-31",
       "path": "catalog/entries/community-skills-stack-2026.md"
+    },
+    {
+      "name": "conductor-orchestration",
+      "title": "Conductor: RL-Trained LLM Orchestrator",
+      "url": "https://arxiv.org/abs/2512.04388",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Sakana AI paper (ICLR 2026) introducing a 7B 'Conductor' model trained with RL to orchestrate pools of worker LLMs — learns communication topologies, per-agent prompt engineering, and recursive self-delegation; achieves SOTA on LiveCodeBench and GPQA by coordinating frontier models.",
+      "body_summary": "The Conductor is a 7B-parameter language model trained with reinforcement learning to orchestrate pools of worker LLMs on complex tasks. Given a problem, the Conductor outputs a collaborative workflow in natural language: a sequence of steps where each step specifies a natural-language instruction focusing on a subtask, the worker agent assigned to that instruction, and each agent's visibility into other agents' outputs. The Conductor learns three things end-to-end via reward maximization: (1) how to decompose problems into targeted subtasks, (2) which worker LLM to assign each subtask to based on that model's strengths, and (3) what communication topology to use (which agents see which other agents' outputs).\n\nTraining uses randomized agent pools, so the Conductor generalizes to arbitrary mixes of open- and closed-source models at inference time. Allowing the Conductor to select itself as a worker produces recursive topologies — a form of dynamic test-time compute scaling through iterative self-delegation.",
+      "tags": [
+        "multi-agent",
+        "orchestration",
+        "reinforcement-learning",
+        "llm-coordination",
+        "agent-topology",
+        "prompt-engineering",
+        "reasoning",
+        "sakana-ai"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-04",
+      "path": "catalog/entries/conductor-orchestration.md"
     },
     {
       "name": "confidence-probing-prompts",
@@ -7439,6 +7463,35 @@
       "path": "catalog/entries/parallel-local-inference.md"
     },
     {
+      "name": "pdf-mcp",
+      "title": "pdf-mcp",
+      "url": "https://github.com/jztan/pdf-mcp",
+      "category": "mcp-server",
+      "decision_status": "open",
+      "summary": "MCP server for surgical PDF access by AI agents — 13 tools for hybrid search (BM25 + semantic), selective page reading, table/image/chart extraction, OCR via Tesseract, corpus-wide multi-document search, and multi-column/CJK layout support; SQLite cache persists across restarts. MIT.",
+      "body_summary": "pdf-mcp is an MCP server that gives AI agents structured, token-efficient access to PDF documents. Instead of loading entire PDFs into context, the agent calls specialized tools: `pdf_info` for page count and TOC, `pdf_search` for hybrid keyword+semantic search with paragraph-level excerpts, `pdf_read_pages` for selective page reading, and `pdf_extract_chart` for (x, y) data from vector charts. A corpus mode (`pdf_corpus_warm`, `pdf_corpus_overview`, `pdf_corpus_search`) enables triage and search across entire folders of PDFs. OCR for scanned pages uses Tesseract, parallelized across pages. Multi-column and vertical Japanese (tategaki) layouts are handled by geometric reading-order reconstruction from glyph positions. All parsed content is cached in SQLite so repeated access avoids re-parsing.\n\n13 tools total: `pdf_info`, `pdf_search`, `pdf_read_pages`, `pdf_read_all`, `pdf_get_toc`, `pdf_render_pages`, `pdf_extract_chart`, `pdf_corpus_warm`, `pdf_corpus_overview`, `pdf_corpus_search`, `pdf_cache_stats`, `pdf_cache_clear`, `server_info`.",
+      "tags": [
+        "pdf",
+        "mcp-server",
+        "search",
+        "ocr",
+        "rag",
+        "tables",
+        "charts",
+        "corpus",
+        "hybrid-search",
+        "cjk",
+        "tesseract"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "exposes-local-filesystem-paths"
+      ],
+      "reviewed": "2026-09-04",
+      "path": "catalog/entries/pdf-mcp.md"
+    },
+    {
       "name": "penecho",
       "title": "PenEcho",
       "url": "https://github.com/penecho/penecho",
@@ -9558,6 +9611,30 @@
       "security_flags": [],
       "reviewed": "2026-07-28",
       "path": "catalog/entries/trigger-tree.md"
+    },
+    {
+      "name": "trinity-coordinator",
+      "title": "Trinity: Evolved LLM Coordinator",
+      "url": "https://arxiv.org/abs/2512.04695",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Sakana AI paper (ICLR 2026) on a 0.6B coordinator trained via evolutionary strategy (sep-CMA-ES) to orchestrate pools of LLMs through multi-turn role assignment (Thinker/Worker/Verifier); 86.2% on LiveCodeBench, zero-shot transfer to unseen tasks. Companion to Conductor (RL approach).",
+      "body_summary": "Trinity is a lightweight coordinator (0.6B-parameter language model + ~10K-parameter head) that orchestrates collaboration among pools of LLMs on complex tasks. Optimized with sep-CMA-ES (separable Covariance Matrix Adaptation Evolution Strategy), the coordinator processes queries over multiple turns, assigning one of three roles at each turn — Thinker (reason about the problem), Worker (produce a solution), or Verifier (check the output) — to a selected worker LLM from the pool. This offloads complex skill acquisition to the large worker models while keeping the coordinator extremely compact.\n\nThe coordinator's hidden-state representations contextualize inputs to select both the right model and the right role at each turn. Training uses evolutionary optimization rather than RL because, under high dimensionality and strict parameter budgets, sep-CMA-ES exploits potential block-epsilon-separability more efficiently than reinforcement learning, imitation learning, or random search.",
+      "tags": [
+        "multi-agent",
+        "orchestration",
+        "evolutionary-strategy",
+        "llm-coordination",
+        "role-assignment",
+        "cma-es",
+        "reasoning",
+        "sakana-ai"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-04",
+      "path": "catalog/entries/trinity-coordinator.md"
     },
     {
       "name": "trl",

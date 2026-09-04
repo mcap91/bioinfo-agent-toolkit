@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T01:51:33.844Z",
+  "generated_at": "2026-09-04T15:42:24.096Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -1223,6 +1223,16 @@
       "title": "Community Agent Skills Stack (2026 Curated List)",
       "summary": "Practitioner-curated list of ~15 installable agent skills across engineering (code review, evals, MCP builder, prompt engineering, superpowers, webapp testing), design (canvas design, frontend design), comms (AtomicMail agent email, internal comms), memory (Obsidian skills, planning-with-files), automation (Vercel agent-browser), growth (SEO audit), and discovery (skill-creator); all installable via npx skills add or plugin marketplace",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "conductor-orchestration",
+      "kind": "entry",
+      "title": "Conductor: RL-Trained LLM Orchestrator",
+      "url": "https://arxiv.org/abs/2512.04388",
+      "summary": "Sakana AI paper (ICLR 2026) introducing a 7B 'Conductor' model trained with RL to orchestrate pools of worker LLMs — learns communication topologies, per-agent prompt engineering, and recursive self-delegation; achieves SOTA on LiveCodeBench and GPQA by coordinating frontier models.",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -3179,6 +3189,16 @@
       "exists": true
     },
     {
+      "id": "pdf-mcp",
+      "kind": "entry",
+      "title": "pdf-mcp",
+      "url": "https://github.com/jztan/pdf-mcp",
+      "summary": "MCP server for surgical PDF access by AI agents — 13 tools for hybrid search (BM25 + semantic), selective page reading, table/image/chart extraction, OCR via Tesseract, corpus-wide multi-document search, and multi-column/CJK layout support; SQLite cache persists across restarts. MIT.",
+      "category": "mcp-server",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "penecho",
       "kind": "entry",
       "title": "PenEcho",
@@ -4274,6 +4294,11 @@
       "exists": true
     },
     {
+      "id": "tag:agent-topology",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:agent-workflow",
       "kind": "tag",
       "exists": true
@@ -4994,6 +5019,11 @@
       "exists": true
     },
     {
+      "id": "tag:charts",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:chat",
       "kind": "tag",
       "exists": true
@@ -5040,6 +5070,11 @@
     },
     {
       "id": "tag:ci-cd",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:cjk",
       "kind": "tag",
       "exists": true
     },
@@ -5180,6 +5215,11 @@
     },
     {
       "id": "tag:clustering",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:cma-es",
       "kind": "tag",
       "exists": true
     },
@@ -5530,6 +5570,11 @@
     },
     {
       "id": "tag:cordis",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:corpus",
       "kind": "tag",
       "exists": true
     },
@@ -6464,6 +6509,11 @@
       "exists": true
     },
     {
+      "id": "tag:evolutionary-strategy",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:excel",
       "kind": "tag",
       "exists": true
@@ -7249,6 +7299,11 @@
       "exists": true
     },
     {
+      "id": "tag:hybrid-search",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ibm",
       "kind": "tag",
       "exists": true
@@ -7695,6 +7750,11 @@
     },
     {
       "id": "tag:llm",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:llm-coordination",
       "kind": "tag",
       "exists": true
     },
@@ -9554,6 +9614,11 @@
       "exists": true
     },
     {
+      "id": "tag:role-assignment",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:rollback",
       "kind": "tag",
       "exists": true
@@ -9605,6 +9670,11 @@
     },
     {
       "id": "tag:safety-monitoring",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:sakana-ai",
       "kind": "tag",
       "exists": true
     },
@@ -10354,6 +10424,11 @@
       "exists": true
     },
     {
+      "id": "tag:tables",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:tagging",
       "kind": "tag",
       "exists": true
@@ -10445,6 +10520,11 @@
     },
     {
       "id": "tag:terminal-tools",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:tesseract",
       "kind": "tag",
       "exists": true
     },
@@ -11303,6 +11383,16 @@
       "url": "https://github.com/Hedde/trigger_tree",
       "summary": "Documentation-discovery telemetry for Claude Code / Codex. Measures whether CLAUDE.md directives change agent behavior via deterministic local probes — per-directive adherence rates, file/folder heat maps, A-F docs-health grade, CI discoverability gate. All local, stdlib-only Python, zero tokens for measurement. Claude Code plugin (/tt) and standalone CLI (pipx install trigger-tree). MIT.",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "trinity-coordinator",
+      "kind": "entry",
+      "title": "Trinity: Evolved LLM Coordinator",
+      "url": "https://arxiv.org/abs/2512.04695",
+      "summary": "Sakana AI paper (ICLR 2026) on a 0.6B coordinator trained via evolutionary strategy (sep-CMA-ES) to orchestrate pools of LLMs through multi-turn role assignment (Thinker/Worker/Verifier); 86.2% on LiveCodeBench, zero-shot transfer to unseen tasks. Companion to Conductor (RL approach).",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -16496,6 +16586,61 @@
     {
       "source": "community-skills-stack-2026",
       "target": "tag:skills-stack",
+      "relation": "tagged"
+    },
+    {
+      "source": "conductor-orchestration",
+      "target": "agent-teams",
+      "relation": "overlaps"
+    },
+    {
+      "source": "conductor-orchestration",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "conductor-orchestration",
+      "target": "scheduled-multi-agent-coordinator",
+      "relation": "overlaps"
+    },
+    {
+      "source": "conductor-orchestration",
+      "target": "tag:agent-topology",
+      "relation": "tagged"
+    },
+    {
+      "source": "conductor-orchestration",
+      "target": "tag:llm-coordination",
+      "relation": "tagged"
+    },
+    {
+      "source": "conductor-orchestration",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "conductor-orchestration",
+      "target": "tag:orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "conductor-orchestration",
+      "target": "tag:prompt-engineering",
+      "relation": "tagged"
+    },
+    {
+      "source": "conductor-orchestration",
+      "target": "tag:reasoning",
+      "relation": "tagged"
+    },
+    {
+      "source": "conductor-orchestration",
+      "target": "tag:reinforcement-learning",
+      "relation": "tagged"
+    },
+    {
+      "source": "conductor-orchestration",
+      "target": "tag:sakana-ai",
       "relation": "tagged"
     },
     {
@@ -25199,6 +25344,71 @@
       "relation": "tagged"
     },
     {
+      "source": "pdf-mcp",
+      "target": "cat:mcp-server",
+      "relation": "categorized"
+    },
+    {
+      "source": "pdf-mcp",
+      "target": "opendataloader-pdf",
+      "relation": "overlaps"
+    },
+    {
+      "source": "pdf-mcp",
+      "target": "tag:charts",
+      "relation": "tagged"
+    },
+    {
+      "source": "pdf-mcp",
+      "target": "tag:cjk",
+      "relation": "tagged"
+    },
+    {
+      "source": "pdf-mcp",
+      "target": "tag:corpus",
+      "relation": "tagged"
+    },
+    {
+      "source": "pdf-mcp",
+      "target": "tag:hybrid-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "pdf-mcp",
+      "target": "tag:mcp-server",
+      "relation": "tagged"
+    },
+    {
+      "source": "pdf-mcp",
+      "target": "tag:ocr",
+      "relation": "tagged"
+    },
+    {
+      "source": "pdf-mcp",
+      "target": "tag:pdf",
+      "relation": "tagged"
+    },
+    {
+      "source": "pdf-mcp",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "pdf-mcp",
+      "target": "tag:search",
+      "relation": "tagged"
+    },
+    {
+      "source": "pdf-mcp",
+      "target": "tag:tables",
+      "relation": "tagged"
+    },
+    {
+      "source": "pdf-mcp",
+      "target": "tag:tesseract",
+      "relation": "tagged"
+    },
+    {
       "source": "penecho",
       "target": "cat:framework",
       "relation": "categorized"
@@ -29121,6 +29331,61 @@
     {
       "source": "trigger-tree",
       "target": "tag:telemetry",
+      "relation": "tagged"
+    },
+    {
+      "source": "trinity-coordinator",
+      "target": "agent-teams",
+      "relation": "overlaps"
+    },
+    {
+      "source": "trinity-coordinator",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "trinity-coordinator",
+      "target": "conductor-orchestration",
+      "relation": "overlaps"
+    },
+    {
+      "source": "trinity-coordinator",
+      "target": "tag:cma-es",
+      "relation": "tagged"
+    },
+    {
+      "source": "trinity-coordinator",
+      "target": "tag:evolutionary-strategy",
+      "relation": "tagged"
+    },
+    {
+      "source": "trinity-coordinator",
+      "target": "tag:llm-coordination",
+      "relation": "tagged"
+    },
+    {
+      "source": "trinity-coordinator",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "trinity-coordinator",
+      "target": "tag:orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "trinity-coordinator",
+      "target": "tag:reasoning",
+      "relation": "tagged"
+    },
+    {
+      "source": "trinity-coordinator",
+      "target": "tag:role-assignment",
+      "relation": "tagged"
+    },
+    {
+      "source": "trinity-coordinator",
+      "target": "tag:sakana-ai",
       "relation": "tagged"
     },
     {
