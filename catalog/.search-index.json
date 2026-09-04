@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-09-03",
-  "count": 413,
+  "generated": "2026-09-04",
+  "count": 421,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -966,6 +966,31 @@
       "security_flags": [],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/architect-loop.md"
+    },
+    {
+      "name": "armorocr",
+      "title": "ArmorOCR",
+      "url": "https://github.com/ant-research/ArmorOCR",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Two-stage adversarial OCR framework built on Qwen3-VL-8B — trains robust grounded text perception via on-policy self-distillation from transformed observations, then refines with GRPO and task-conditioned rewards for localization, recognition, spotting, and VQA; includes AdvSpot benchmark (390 images, 13 adversarial OCR types)",
+      "body_summary": "ArmorOCR addresses the vulnerability of large multimodal models to adversarial visual text — text that humans can read but models fail to localize and recognize. It is a two-stage post-training framework built on Qwen3-VL-8B-Instruct that produces a single model capable of single-pass inference on the original image without inference-time visual transformations or tool assistance.\n\nStage 1 — On-Policy Self-Distillation (OPSD): the model learns adversarial OCR perception from privileged transformed observations (augmented views of the same image that make the text easier to read). Knowledge is transferred from these \"easy\" observations to the model's perception of the original image via on-policy distillation.\n\nStage 2 — GRPO with task-conditioned rewards: Group Relative Policy Optimization refines grounded OCR perception using separate reward signals for localization (bounding box IoU), recognition (text accuracy), full spotting (combined), and visual question answering.\n\nThe framework includes AdvSpot, the first benchmark for grounded adversarial OCR evaluation: 390 images with region-level annotations (bounding boxes, transcriptions, perception-type labels, region-grounded VQA pairs), spanning 5 primary categories and 13 fine-grained adversarial OCR types organized by failure mechanism — Spatial Manipulation, Glyph Variation, Visual Encoding, Contextual Blending, and Imaging Degradation.",
+      "tags": [
+        "ocr",
+        "adversarial-robustness",
+        "vision-language-model",
+        "qwen",
+        "grpo",
+        "self-distillation",
+        "benchmark",
+        "grounded-ocr",
+        "document-parsing"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-03",
+      "path": "catalog/entries/armorocr.md"
     },
     {
       "name": "asi-evolve",
@@ -2517,6 +2542,27 @@
       "path": "catalog/entries/code-act.md"
     },
     {
+      "name": "code-mode-over-mcp",
+      "title": "Code Mode over MCP (execute_code pattern)",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Architecture pattern where an agent exposes a single execute_code tool instead of N MCP tools — the agent writes code against an SDK/API to perform actions, keeping token cost constant per turn instead of scaling linearly with tool count; 78–99% token savings at scale (benchmarked at 500+ tools); Cloudflare, Anthropic, and Bifrost implementations",
+      "body_summary": "The pattern replaces a large MCP tool surface with a single `execute_code` (or `executeToolCode`) tool. Instead of injecting all tool definitions into every prompt turn — where cost scales linearly with the number of registered tools — the agent receives one tool that lets it write and execute code…",
+      "tags": [
+        "mcp",
+        "token-optimization",
+        "code-execution",
+        "agent-architecture",
+        "cost-reduction",
+        "tool-scaling"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-03",
+      "path": "catalog/entries/code-mode-over-mcp.md"
+    },
+    {
       "name": "codebase-reasoning-topology",
       "title": "Codebase Reasoning Topology",
       "category": "reference",
@@ -3238,6 +3284,32 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/distill.md"
+    },
+    {
+      "name": "docling-mcp",
+      "title": "Docling MCP",
+      "url": "https://github.com/docling-project/docling-mcp",
+      "category": "mcp-server",
+      "decision_status": "open",
+      "summary": "MCP server for document conversion, processing, and generation via the Docling library — converts PDFs and other documents into structured DoclingDocument JSON with OCR, table structure detection, and image handling; supports local, remote (Docling Serve), and hybrid modes; RAG integrations with Milvus, LlamaIndex, and LlamaStack; LF AI & Data project from IBM Research Zurich, MIT, 730+ stars",
+      "body_summary": "Docling MCP is an MCP server that wraps the Docling document processing library, exposing document conversion, processing, and generation as MCP tools callable by AI agents. It converts PDF documents into structured DoclingDocument format (JSON) with layout-aware parsing including OCR, table structure detection, and optional image retention.\n\nThe server operates in three modes:\n\n- **Remote**: lightweight client that calls a Docling Serve instance (API-based, ~50MB install)\n- **Local**: full Docling pipeline runs locally with all ML models (`pip install docling-mcp[local]`)\n- **Hybrid**: remote-first with automatic fallback to local if the service is unreachable\n\nTools include document conversion (PDF → structured JSON), document generation (programmatic creation of new documents with titles, sections, paragraphs, lists), Markdown/format export, and RAG workflows (Milvus vector upload/retrieval, LlamaIndex RAG, LlamaStack extraction).",
+      "tags": [
+        "document-parsing",
+        "mcp-server",
+        "ocr",
+        "pdf",
+        "table-extraction",
+        "docling",
+        "ibm",
+        "rag",
+        "document-generation",
+        "python"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-03",
+      "path": "catalog/entries/docling-mcp.md"
     },
     {
       "name": "dotclaude",
@@ -5813,6 +5885,35 @@
       "path": "catalog/entries/mergekit.md"
     },
     {
+      "name": "meridian",
+      "title": "Meridian",
+      "url": "https://github.com/Rajsuthan/meridian",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "GPU-accelerated document processing pipeline — Docling (8 load-balanced instances) for PDF layout detection, Qwen3-VL via vLLM for table/figure/formula reading, Ollama for embeddings, Qdrant for vector storage; stateless Celery workers on CPU calling long-lived GPU services over HTTP; measured at 118 pages/min on a single H200; includes text-only path (pypdfium2, 1000 docs/min on CPU); Apache-2.0",
+      "body_summary": "Meridian is a GPU-accelerated pipeline for converting PDFs (including scanned documents with tables, figures, and formulas) into searchable vector embeddings. It orchestrates multiple services through stateless Celery workers that call long-lived GPU services over HTTP.\n\nThe six-step pipeline per document:\n\n1. **Docling**: parse PDF, detect layout, extract table/figure/formula regions (8 load-balanced instances with round-robin via Redis atomic counter, failover, and watchdog auto-restart)\n2. **Annotate**: draw numbered boxes on formula pages so the VLM can identify which formula is being asked about\n3. **VLM**: send all tables, figures, and annotated formula pages concurrently to vLLM (Qwen3-VL-8B default) or AWS Bedrock\n4. **Chunk**: build ordered document chunks with injected VLM descriptions in the correct reading-order positions\n5. **Embed**: generate vector embeddings via Ollama\n6. **Store**: persist embeddings and metadata in Qdrant\n\nArchitecture: stateless CPU workers → long-lived GPU services (Docling, vLLM, Ollama) + infrastructure (Redis as Celery broker + batch state, Qdrant for vectors). Models load once and are shared across workers rather than each worker loading its own copy.",
+      "tags": [
+        "document-parsing",
+        "ocr",
+        "vlm",
+        "vllm",
+        "docling",
+        "qdrant",
+        "celery",
+        "gpu",
+        "pdf",
+        "table-extraction",
+        "embeddings",
+        "qwen",
+        "batch-processing"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-03",
+      "path": "catalog/entries/meridian.md"
+    },
+    {
       "name": "mex",
       "title": "mex",
       "url": "https://github.com/theDakshJaitly/mex",
@@ -7261,6 +7362,33 @@
       "path": "catalog/entries/pandera.md"
     },
     {
+      "name": "paperbanana",
+      "title": "PaperBanana",
+      "url": "https://github.com/dwzhu-pku/PaperBanana",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Reference-driven multi-agent framework for automated academic illustration — five specialized agents (Retriever, Planner, Stylist, Visualizer, Critic) transform method descriptions and figure captions into publication-quality diagrams and plots via in-context learning, style guidelines, and iterative critic refinement; Gradio/Streamlit UIs, CLI, ClawHub skill; Google Research origin, Apache-2.0 (Google patents on core workflows restrict commercial use)",
+      "body_summary": "PaperBanana automates the generation of academic illustrations (conceptual diagrams and data plots) from scientific text. Given a method section and figure caption, it produces publication-quality diagrams through a five-agent pipeline:\n\n1. **Retriever Agent**: finds the most relevant reference diagrams from a curated collection to guide downstream agents via in-context learning\n2. **Planner Agent**: translates method content and communicative intent into comprehensive textual descriptions using retrieved examples\n3. **Stylist Agent**: refines descriptions to adhere to academic aesthetic standards using automatically synthesized style guidelines\n4. **Visualizer Agent**: transforms textual descriptions into visual outputs using image generation models (Gemini, OpenRouter, OpenAI)\n5. **Critic Agent**: forms a closed-loop refinement mechanism with the Visualizer through multi-round iterative improvements\n\nMultiple experiment modes available: vanilla (direct generation), dev_planner, dev_planner_stylist, dev_planner_critic, dev_full (all agents). Supports parallel candidate generation (up to 20 simultaneously) with batch export.",
+      "tags": [
+        "academic-illustration",
+        "multi-agent",
+        "image-generation",
+        "vlm",
+        "scientific-figures",
+        "in-context-learning",
+        "gradio",
+        "streamlit",
+        "research-tools"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "patent-restricted-commercial"
+      ],
+      "reviewed": "2026-09-03",
+      "path": "catalog/entries/paperbanana.md"
+    },
+    {
       "name": "paperless-ngx",
       "title": "Paperless-ngx",
       "url": "https://github.com/paperless-ngx/paperless-ngx",
@@ -8240,6 +8368,31 @@
       "path": "catalog/entries/scrub-context-engineering.md"
     },
     {
+      "name": "seb-ocr",
+      "title": "seb-ocr",
+      "url": "https://github.com/ALucek/seb-ocr",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Vision-language pipeline for turning scanned historical pages into structured datasets — Gemini-based OCR with adaptive rate limiting, sliding-window entity extraction via Pydantic-constrained JSON, incremental caching, and semantic deduplication via embedding cosine similarity; single-script Python, MIT",
+      "body_summary": "seb-ocr is a single-script Python pipeline that converts scanned historical document pages into structured entity datasets. Built for political science research, it uses Google's Gemini models for both vision-OCR and text entity extraction.\n\nThe pipeline has four stages:\n\n1. **OCR pass**: each input image is sent to a multimodal Gemini model with a handcrafted transcription prompt. Calls run in parallel threads (configurable `MAX_WORKERS`) with an adaptive rate limiter to stay within API quotas.\n2. **Sliding-window parsing**: transcriptions are processed in overlapping windows (`WINDOW_SIZE` pages, `WINDOW_STEP` stride) so the LLM captures cross-page context. The model returns JSON conforming to a strict Pydantic schema.\n3. **Incremental caching**: window results are cached on disk so subsequent runs resume instantly without reprocessing.\n4. **Semantic deduplication**: candidate entities are embedded (Gemini `text-embedding-004`) and clustered by cosine similarity to merge duplicates appearing across multiple pages.\n\nOutput: deduplicated `entities.json` and `entities.csv`.",
+      "tags": [
+        "ocr",
+        "gemini",
+        "entity-extraction",
+        "historical-documents",
+        "vlm",
+        "pydantic",
+        "deduplication",
+        "embeddings",
+        "political-science"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-03",
+      "path": "catalog/entries/seb-ocr.md"
+    },
+    {
       "name": "second-brain-skills",
       "title": "Second Brain Skills",
       "url": "https://github.com/coleam00/second-brain-skills",
@@ -8261,6 +8414,30 @@
       "security_flags": [],
       "reviewed": "2026-07-06",
       "path": "catalog/entries/second-brain-skills.md"
+    },
+    {
+      "name": "seo-god",
+      "title": "seo-god",
+      "url": "https://github.com/AKCodez/seo-god",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Claude Code skill that turns the agent into an SEO operator for a site you own — five-phase pipeline (setup → audit → measure → ai_visibility → schedule) using a local OpenSEO Docker container for crawling, Google Search Console for metrics, and a daily act loop that fixes regressions and improves near-ranking pages; no SERP scraping, no paid API keys required on the free path; MIT",
+      "body_summary": "seo-god is a Claude Code skill that operates as an autonomous SEO pipeline for a website you own. It installs into `~/.claude/skills/seo-god` and activates via `/seo-god`. The skill orchestrates five numbered phases plus a daily loop:\n\n1. **Setup**: boots an OpenSEO container in Docker, registers the site, writes `seo-god.json` for state tracking\n2. **Audit**: crawls the site via the local OpenSEO container, triages issues by impact, fixes what lives in the repo (titles, metas, broken links, thin content) — gated by the project's own build and typecheck\n3. **Measure**: connects Google Search Console, writes dated snapshots, diffs against the last run; review order: regressions → quick wins at positions 4–15 → new queries\n4. **AI Visibility**: locks ten prompts for the site's niche on the first run (never edits them), measures whether the domain appears in search results for those prompts — a search-visibility proxy, not a citation-rate claim\n5. **Schedule**: installs the daily loop as a real OS job (Task Scheduler / launchd / cron) or cloud routine, with a 48-hour self-check for missed runs\n\nThe daily **act** loop (unnumbered): fix regressions, improve 2–3 near-ranking pages, add at most one new page only if data supports it, leave a dated readout.",
+      "tags": [
+        "seo",
+        "claude-code-skill",
+        "docker",
+        "google-search-console",
+        "site-audit",
+        "scheduling",
+        "ai-visibility",
+        "automation"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-03",
+      "path": "catalog/entries/seo-god.md"
     },
     {
       "name": "shannon",
@@ -9608,6 +9785,34 @@
       "security_flags": [],
       "reviewed": "2026-07-06",
       "path": "catalog/entries/unsloth.md"
+    },
+    {
+      "name": "unstructured",
+      "title": "Unstructured",
+      "url": "https://github.com/Unstructured-IO/unstructured",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source document ETL library — partitions 60+ file types (PDFs, Word, HTML, images, emails) into structured elements (Title, NarrativeText, Table, etc.) with layout ML enrichment, OCR, chunking, and embedding; connectors for 40+ sources/destinations; MCP server (Unstructured Transform) for agent-driven document processing; Apache-2.0, 15k+ stars",
+      "body_summary": "Unstructured converts unstructured documents into structured data for LLM pipelines. The library partitions files into typed elements (Title, NarrativeText, Table, ListItem, Image, PageBreak, etc.) with metadata including coordinates, page numbers, languages, and content hashes. It supports 60+ file types: PDFs (native and scanned), Word, PowerPoint, Excel, HTML, XML, JSON, email (EML/MSG), images, and more.\n\nThe processing pipeline: load from 40+ connectors (filesystem, S3, Gmail, Jira, Google Drive, etc.) → partition into elements using file-type-specific parsers → enrich with layout ML (table detection, header hierarchy, image OCR via Tesseract) → chunk for retrieval → embed → output as JSON, Markdown, HTML, or Arrow to destination connectors (vector databases, cloud storage, etc.).\n\nUnstructured Transform is an MCP server that exposes document processing to AI agents — parse, enrich, chunk, and embed files directly within an agent session. Works with Claude Code, Cursor, Codex CLI, and other MCP-compatible hosts.",
+      "tags": [
+        "document-parsing",
+        "etl",
+        "ocr",
+        "pdf",
+        "chunking",
+        "embedding",
+        "rag",
+        "mcp-server",
+        "llm-preprocessing",
+        "python"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "telemetry-default-on"
+      ],
+      "reviewed": "2026-09-03",
+      "path": "catalog/entries/unstructured.md"
     },
     {
       "name": "unusual-whales-mcp",

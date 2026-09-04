@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-03T03:41:22.389Z",
+  "generated_at": "2026-09-04T01:51:33.844Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -407,6 +407,16 @@
       "url": "https://github.com/DanMcInerney/architect-loop",
       "summary": "Research-backed cross-vendor agent loop with strong separation of concerns; excellent design patterns for gated, worktree-isolated multi-agent builds",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "armorocr",
+      "kind": "entry",
+      "title": "ArmorOCR",
+      "url": "https://github.com/ant-research/ArmorOCR",
+      "summary": "Two-stage adversarial OCR framework built on Qwen3-VL-8B — trains robust grounded text perception via on-policy self-distillation from transformed observations, then refines with GRPO and task-conditioned rewards for localization, recognition, spotting, and VQA; includes AdvSpot benchmark (390 images, 13 adversarial OCR types)",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -1131,6 +1141,15 @@
       "exists": true
     },
     {
+      "id": "code-mode-over-mcp",
+      "kind": "entry",
+      "title": "Code Mode over MCP (execute_code pattern)",
+      "summary": "Architecture pattern where an agent exposes a single execute_code tool instead of N MCP tools — the agent writes code against an SDK/API to perform actions, keeping token cost constant per turn instead of scaling linearly with tool count; 78–99% token savings at scale (benchmarked at 500+ tools); Cloudflare, Anthropic, and Bifrost implementations",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "codebase-reasoning-topology",
       "kind": "entry",
       "title": "Codebase Reasoning Topology",
@@ -1434,6 +1453,16 @@
       "url": "https://github.com/samuelfaj/distill",
       "summary": "Local 1.7B model pipe-filter for CLI output compression is a real problem but requires 8–16 GB RAM and relies on an unaudited HuggingFace model; overlaps with rtk.",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "docling-mcp",
+      "kind": "entry",
+      "title": "Docling MCP",
+      "url": "https://github.com/docling-project/docling-mcp",
+      "summary": "MCP server for document conversion, processing, and generation via the Docling library — converts PDFs and other documents into structured DoclingDocument JSON with OCR, table structure detection, and image handling; supports local, remote (Docling Serve), and hybrid modes; RAG integrations with Milvus, LlamaIndex, and LlamaStack; LF AI & Data project from IBM Research Zurich, MIT, 730+ stars",
+      "category": "mcp-server",
       "decision_status": "open",
       "exists": true
     },
@@ -2505,6 +2534,16 @@
       "exists": true
     },
     {
+      "id": "meridian",
+      "kind": "entry",
+      "title": "Meridian",
+      "url": "https://github.com/Rajsuthan/meridian",
+      "summary": "GPU-accelerated document processing pipeline — Docling (8 load-balanced instances) for PDF layout detection, Qwen3-VL via vLLM for table/figure/formula reading, Ollama for embeddings, Qdrant for vector storage; stateless Celery workers on CPU calling long-lived GPU services over HTTP; measured at 118 pages/min on a single H200; includes text-only path (pypdfium2, 1000 docs/min on CPU); Apache-2.0",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "mex",
       "kind": "entry",
       "title": "mex",
@@ -3110,6 +3149,16 @@
       "exists": true
     },
     {
+      "id": "paperbanana",
+      "kind": "entry",
+      "title": "PaperBanana",
+      "url": "https://github.com/dwzhu-pku/PaperBanana",
+      "summary": "Reference-driven multi-agent framework for automated academic illustration — five specialized agents (Retriever, Planner, Stylist, Visualizer, Critic) transform method descriptions and figure captions into publication-quality diagrams and plots via in-context learning, style guidelines, and iterative critic refinement; Gradio/Streamlit UIs, CLI, ClawHub skill; Google Research origin, Apache-2.0 (Google patents on core workflows restrict commercial use)",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "paperless-ngx",
       "kind": "entry",
       "title": "Paperless-ngx",
@@ -3518,12 +3567,32 @@
       "exists": true
     },
     {
+      "id": "seb-ocr",
+      "kind": "entry",
+      "title": "seb-ocr",
+      "url": "https://github.com/ALucek/seb-ocr",
+      "summary": "Vision-language pipeline for turning scanned historical pages into structured datasets — Gemini-based OCR with adaptive rate limiting, sliding-window entity extraction via Pydantic-constrained JSON, incremental caching, and semantic deduplication via embedding cosine similarity; single-script Python, MIT",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "second-brain-skills",
       "kind": "entry",
       "title": "Second Brain Skills",
       "url": "https://github.com/coleam00/second-brain-skills",
       "summary": "Claude Code skill collection for knowledge work — MCP client with progressive disclosure, PPTX/carousel generator with brand system, SOP/runbook creator, Remotion video creator, skill creator guide, and brand & voice generator; by Cole Medin",
       "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "seo-god",
+      "kind": "entry",
+      "title": "seo-god",
+      "url": "https://github.com/AKCodez/seo-god",
+      "summary": "Claude Code skill that turns the agent into an SEO operator for a site you own — five-phase pipeline (setup → audit → measure → ai_visibility → schedule) using a local OpenSEO Docker container for crawling, Google Search Console for metrics, and a daily act loop that fixes regressions and improves near-ranking pages; no SERP scraping, no paid API keys required on the free path; MIT",
+      "category": "skill",
       "decision_status": "open",
       "exists": true
     },
@@ -3980,6 +4049,11 @@
       "exists": true
     },
     {
+      "id": "tag:academic-illustration",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:accessibility",
       "kind": "tag",
       "exists": true
@@ -4016,6 +4090,11 @@
     },
     {
       "id": "tag:adversarial-review",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:adversarial-robustness",
       "kind": "tag",
       "exists": true
     },
@@ -4336,6 +4415,11 @@
     },
     {
       "id": "tag:ai-transparency",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ai-visibility",
       "kind": "tag",
       "exists": true
     },
@@ -4901,6 +4985,11 @@
     },
     {
       "id": "tag:cdp",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:celery",
       "kind": "tag",
       "exists": true
     },
@@ -5825,6 +5914,11 @@
       "exists": true
     },
     {
+      "id": "tag:deduplication",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:deep-learning",
       "kind": "tag",
       "exists": true
@@ -6025,12 +6119,22 @@
       "exists": true
     },
     {
+      "id": "tag:docling",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:document-agents",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:document-extraction",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:document-generation",
       "kind": "tag",
       "exists": true
     },
@@ -6190,6 +6294,11 @@
       "exists": true
     },
     {
+      "id": "tag:embedding",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:embeddings",
       "kind": "tag",
       "exists": true
@@ -6291,6 +6400,11 @@
     },
     {
       "id": "tag:esp32",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:etl",
       "kind": "tag",
       "exists": true
     },
@@ -6825,6 +6939,11 @@
       "exists": true
     },
     {
+      "id": "tag:google-search-console",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:google-stitch",
       "kind": "tag",
       "exists": true
@@ -6921,6 +7040,11 @@
     },
     {
       "id": "tag:groq",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:grounded-ocr",
       "kind": "tag",
       "exists": true
     },
@@ -7055,6 +7179,11 @@
       "exists": true
     },
     {
+      "id": "tag:historical-documents",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:hnsw",
       "kind": "tag",
       "exists": true
@@ -7120,6 +7249,11 @@
       "exists": true
     },
     {
+      "id": "tag:ibm",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ideation",
       "kind": "tag",
       "exists": true
@@ -7151,6 +7285,11 @@
     },
     {
       "id": "tag:impact-analysis",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:in-context-learning",
       "kind": "tag",
       "exists": true
     },
@@ -8805,6 +8944,11 @@
       "exists": true
     },
     {
+      "id": "tag:political-science",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:post-training",
       "kind": "tag",
       "exists": true
@@ -9095,6 +9239,11 @@
       "exists": true
     },
     {
+      "id": "tag:qdrant",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:qlora",
       "kind": "tag",
       "exists": true
@@ -9306,6 +9455,11 @@
     },
     {
       "id": "tag:research-paper",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:research-tools",
       "kind": "tag",
       "exists": true
     },
@@ -9525,6 +9679,11 @@
       "exists": true
     },
     {
+      "id": "tag:scientific-figures",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:scikit-learn",
       "kind": "tag",
       "exists": true
@@ -9616,6 +9775,11 @@
     },
     {
       "id": "tag:self-correction",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:self-distillation",
       "kind": "tag",
       "exists": true
     },
@@ -9806,6 +9970,11 @@
     },
     {
       "id": "tag:sinkhole",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:site-audit",
       "kind": "tag",
       "exists": true
     },
@@ -10071,6 +10240,11 @@
     },
     {
       "id": "tag:storage",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:streamlit",
       "kind": "tag",
       "exists": true
     },
@@ -10431,6 +10605,11 @@
     },
     {
       "id": "tag:tool-restraint",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:tool-scaling",
       "kind": "tag",
       "exists": true
     },
@@ -11221,6 +11400,16 @@
       "title": "Unsloth",
       "url": "https://github.com/unslothai/unsloth",
       "summary": "LLM fine-tuning and inference framework — trains 500+ models up to 2x faster with 70% less VRAM via custom Triton kernels; Unsloth Studio web UI for running/training text, audio, vision, embedding models; supports LoRA, full fine-tune, RL (GRPO), FP8, pretraining; GGUF/safetensors export; NVIDIA/AMD/Intel/Apple Silicon; API endpoint for Claude Code/Codex integration; Apache 2.0 (core) + AGPL-3.0 (Studio UI)",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "unstructured",
+      "kind": "entry",
+      "title": "Unstructured",
+      "url": "https://github.com/Unstructured-IO/unstructured",
+      "summary": "Open-source document ETL library — partitions 60+ file types (PDFs, Word, HTML, images, emails) into structured elements (Title, NarrativeText, Table, etc.) with layout ML enrichment, OCR, chunking, and embedding; connectors for 40+ sources/destinations; MCP server (Unstructured Transform) for agent-driven document processing; Apache-2.0, 15k+ stars",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -13112,6 +13301,61 @@
     {
       "source": "architect-loop",
       "target": "tag:worktree-isolation",
+      "relation": "tagged"
+    },
+    {
+      "source": "armorocr",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "armorocr",
+      "target": "ovisocr2",
+      "relation": "overlaps"
+    },
+    {
+      "source": "armorocr",
+      "target": "tag:adversarial-robustness",
+      "relation": "tagged"
+    },
+    {
+      "source": "armorocr",
+      "target": "tag:benchmark",
+      "relation": "tagged"
+    },
+    {
+      "source": "armorocr",
+      "target": "tag:document-parsing",
+      "relation": "tagged"
+    },
+    {
+      "source": "armorocr",
+      "target": "tag:grounded-ocr",
+      "relation": "tagged"
+    },
+    {
+      "source": "armorocr",
+      "target": "tag:grpo",
+      "relation": "tagged"
+    },
+    {
+      "source": "armorocr",
+      "target": "tag:ocr",
+      "relation": "tagged"
+    },
+    {
+      "source": "armorocr",
+      "target": "tag:qwen",
+      "relation": "tagged"
+    },
+    {
+      "source": "armorocr",
+      "target": "tag:self-distillation",
+      "relation": "tagged"
+    },
+    {
+      "source": "armorocr",
+      "target": "tag:vision-language-model",
       "relation": "tagged"
     },
     {
@@ -15900,6 +16144,41 @@
       "relation": "tagged"
     },
     {
+      "source": "code-mode-over-mcp",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "code-mode-over-mcp",
+      "target": "tag:agent-architecture",
+      "relation": "tagged"
+    },
+    {
+      "source": "code-mode-over-mcp",
+      "target": "tag:code-execution",
+      "relation": "tagged"
+    },
+    {
+      "source": "code-mode-over-mcp",
+      "target": "tag:cost-reduction",
+      "relation": "tagged"
+    },
+    {
+      "source": "code-mode-over-mcp",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "code-mode-over-mcp",
+      "target": "tag:token-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "code-mode-over-mcp",
+      "target": "tag:tool-scaling",
+      "relation": "tagged"
+    },
+    {
       "source": "codebase-reasoning-topology",
       "target": "cat:reference",
       "relation": "categorized"
@@ -17178,6 +17457,66 @@
       "source": "distill",
       "target": "tag:token-reduction",
       "relation": "tagged"
+    },
+    {
+      "source": "docling-mcp",
+      "target": "cat:mcp-server",
+      "relation": "categorized"
+    },
+    {
+      "source": "docling-mcp",
+      "target": "tag:docling",
+      "relation": "tagged"
+    },
+    {
+      "source": "docling-mcp",
+      "target": "tag:document-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "docling-mcp",
+      "target": "tag:document-parsing",
+      "relation": "tagged"
+    },
+    {
+      "source": "docling-mcp",
+      "target": "tag:ibm",
+      "relation": "tagged"
+    },
+    {
+      "source": "docling-mcp",
+      "target": "tag:mcp-server",
+      "relation": "tagged"
+    },
+    {
+      "source": "docling-mcp",
+      "target": "tag:ocr",
+      "relation": "tagged"
+    },
+    {
+      "source": "docling-mcp",
+      "target": "tag:pdf",
+      "relation": "tagged"
+    },
+    {
+      "source": "docling-mcp",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "docling-mcp",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "docling-mcp",
+      "target": "tag:table-extraction",
+      "relation": "tagged"
+    },
+    {
+      "source": "docling-mcp",
+      "target": "unstructured",
+      "relation": "overlaps"
     },
     {
       "source": "dotclaude",
@@ -22025,6 +22364,86 @@
       "relation": "tagged"
     },
     {
+      "source": "meridian",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "meridian",
+      "target": "docling-mcp",
+      "relation": "overlaps"
+    },
+    {
+      "source": "meridian",
+      "target": "tag:batch-processing",
+      "relation": "tagged"
+    },
+    {
+      "source": "meridian",
+      "target": "tag:celery",
+      "relation": "tagged"
+    },
+    {
+      "source": "meridian",
+      "target": "tag:docling",
+      "relation": "tagged"
+    },
+    {
+      "source": "meridian",
+      "target": "tag:document-parsing",
+      "relation": "tagged"
+    },
+    {
+      "source": "meridian",
+      "target": "tag:embeddings",
+      "relation": "tagged"
+    },
+    {
+      "source": "meridian",
+      "target": "tag:gpu",
+      "relation": "tagged"
+    },
+    {
+      "source": "meridian",
+      "target": "tag:ocr",
+      "relation": "tagged"
+    },
+    {
+      "source": "meridian",
+      "target": "tag:pdf",
+      "relation": "tagged"
+    },
+    {
+      "source": "meridian",
+      "target": "tag:qdrant",
+      "relation": "tagged"
+    },
+    {
+      "source": "meridian",
+      "target": "tag:qwen",
+      "relation": "tagged"
+    },
+    {
+      "source": "meridian",
+      "target": "tag:table-extraction",
+      "relation": "tagged"
+    },
+    {
+      "source": "meridian",
+      "target": "tag:vllm",
+      "relation": "tagged"
+    },
+    {
+      "source": "meridian",
+      "target": "tag:vlm",
+      "relation": "tagged"
+    },
+    {
+      "source": "meridian",
+      "target": "unstructured",
+      "relation": "overlaps"
+    },
+    {
       "source": "mex",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -24650,6 +25069,56 @@
       "relation": "tagged"
     },
     {
+      "source": "paperbanana",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "paperbanana",
+      "target": "tag:academic-illustration",
+      "relation": "tagged"
+    },
+    {
+      "source": "paperbanana",
+      "target": "tag:gradio",
+      "relation": "tagged"
+    },
+    {
+      "source": "paperbanana",
+      "target": "tag:image-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "paperbanana",
+      "target": "tag:in-context-learning",
+      "relation": "tagged"
+    },
+    {
+      "source": "paperbanana",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "paperbanana",
+      "target": "tag:research-tools",
+      "relation": "tagged"
+    },
+    {
+      "source": "paperbanana",
+      "target": "tag:scientific-figures",
+      "relation": "tagged"
+    },
+    {
+      "source": "paperbanana",
+      "target": "tag:streamlit",
+      "relation": "tagged"
+    },
+    {
+      "source": "paperbanana",
+      "target": "tag:vlm",
+      "relation": "tagged"
+    },
+    {
       "source": "paperless-ngx",
       "target": "cat:framework",
       "relation": "categorized"
@@ -26415,6 +26884,56 @@
       "relation": "tagged"
     },
     {
+      "source": "seb-ocr",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "seb-ocr",
+      "target": "tag:deduplication",
+      "relation": "tagged"
+    },
+    {
+      "source": "seb-ocr",
+      "target": "tag:embeddings",
+      "relation": "tagged"
+    },
+    {
+      "source": "seb-ocr",
+      "target": "tag:entity-extraction",
+      "relation": "tagged"
+    },
+    {
+      "source": "seb-ocr",
+      "target": "tag:gemini",
+      "relation": "tagged"
+    },
+    {
+      "source": "seb-ocr",
+      "target": "tag:historical-documents",
+      "relation": "tagged"
+    },
+    {
+      "source": "seb-ocr",
+      "target": "tag:ocr",
+      "relation": "tagged"
+    },
+    {
+      "source": "seb-ocr",
+      "target": "tag:political-science",
+      "relation": "tagged"
+    },
+    {
+      "source": "seb-ocr",
+      "target": "tag:pydantic",
+      "relation": "tagged"
+    },
+    {
+      "source": "seb-ocr",
+      "target": "tag:vlm",
+      "relation": "tagged"
+    },
+    {
       "source": "second-brain-skills",
       "target": "cat:plugin",
       "relation": "categorized"
@@ -26452,6 +26971,51 @@
     {
       "source": "second-brain-skills",
       "target": "tag:video",
+      "relation": "tagged"
+    },
+    {
+      "source": "seo-god",
+      "target": "cat:skill",
+      "relation": "categorized"
+    },
+    {
+      "source": "seo-god",
+      "target": "tag:ai-visibility",
+      "relation": "tagged"
+    },
+    {
+      "source": "seo-god",
+      "target": "tag:automation",
+      "relation": "tagged"
+    },
+    {
+      "source": "seo-god",
+      "target": "tag:claude-code-skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "seo-god",
+      "target": "tag:docker",
+      "relation": "tagged"
+    },
+    {
+      "source": "seo-god",
+      "target": "tag:google-search-console",
+      "relation": "tagged"
+    },
+    {
+      "source": "seo-god",
+      "target": "tag:scheduling",
+      "relation": "tagged"
+    },
+    {
+      "source": "seo-god",
+      "target": "tag:seo",
+      "relation": "tagged"
+    },
+    {
+      "source": "seo-god",
+      "target": "tag:site-audit",
       "relation": "tagged"
     },
     {
@@ -28998,6 +29562,66 @@
       "source": "unsloth",
       "target": "trl",
       "relation": "overlaps"
+    },
+    {
+      "source": "unstructured",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "unstructured",
+      "target": "docling-mcp",
+      "relation": "overlaps"
+    },
+    {
+      "source": "unstructured",
+      "target": "tag:chunking",
+      "relation": "tagged"
+    },
+    {
+      "source": "unstructured",
+      "target": "tag:document-parsing",
+      "relation": "tagged"
+    },
+    {
+      "source": "unstructured",
+      "target": "tag:embedding",
+      "relation": "tagged"
+    },
+    {
+      "source": "unstructured",
+      "target": "tag:etl",
+      "relation": "tagged"
+    },
+    {
+      "source": "unstructured",
+      "target": "tag:llm-preprocessing",
+      "relation": "tagged"
+    },
+    {
+      "source": "unstructured",
+      "target": "tag:mcp-server",
+      "relation": "tagged"
+    },
+    {
+      "source": "unstructured",
+      "target": "tag:ocr",
+      "relation": "tagged"
+    },
+    {
+      "source": "unstructured",
+      "target": "tag:pdf",
+      "relation": "tagged"
+    },
+    {
+      "source": "unstructured",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "unstructured",
+      "target": "tag:rag",
+      "relation": "tagged"
     },
     {
       "source": "unusual-whales-mcp",
