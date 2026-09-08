@@ -20,6 +20,8 @@ cp -r skills/<name> <your-project>/.claude/skills/<name>
 | [/catalog-intake](skills/catalog-intake/) | Pull links from Gmail, curate, drain to queue, run headless processing |
 | [/agent-lockdown](skills/agent-lockdown/) | Lock down a coding agent CLI — version pin, model pin, env hardening, secrets deny, integrity checkup |
 | [/explain-me-this](skills/explain-me-this/) | Discuss-and-explain persona — explains, researches, and helps you decide; no code or plans. Manual-only. |
+| [/verticalizing-plans](skills/verticalizing-plans/) | Convert phase-shaped plans into thin vertical slices that prove the whole flow early |
+| [/spec-check](skills/spec-check/) | Surface open design decisions in a doc before handing work off for autonomous execution |
 
 ## Output style
 
