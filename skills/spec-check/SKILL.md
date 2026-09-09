@@ -46,17 +46,33 @@ references the doc itself names.
 For every design point, technical choice, or behavioral specification in
 scope, classify it:
 
-- **Closed**: the doc states a clear decision, rationale, or concrete
-  implementation detail. No ambiguity an execution agent would need to
-  resolve.
-- **Open**: the doc presents alternatives without choosing, marks something
-  TBD/TODO, leaves behavior unspecified that an execution agent would need
-  to decide, or describes a goal without enough detail to implement it
-  mechanically.
+- **Closed**: the doc states a clear decision, or references resolve it, or
+  the choice is mechanical (one reasonable answer exists). No stop-and-ask
+  moment for a cold agent.
+- **Open**: a cold agent handed this spec would have to STOP and ASK the
+  operator before proceeding. The spec does not tell the agent what to do,
+  and no reasonable default exists.
+
+A decision is open ONLY when all three conditions hold:
+
+1. **No answer in the text or references.** The doc and anything it
+   references (rulings, prior decisions, code, linked issues) do not state
+   a decision. If a ruling, prior-slice decision, or code convention
+   already answers the question, it is closed — even if the target doc
+   does not repeat the answer.
+2. **Not mechanical.** A competent agent would not all converge on the same
+   answer. File naming, error message wording, import ordering, obvious
+   data-structure choices — these have one reasonable path. An agent that
+   picks the obvious path and moves on is not "making a design decision."
+3. **Operator judgment required.** The choice involves a tradeoff the
+   operator cares about: scope, cost, risk, user-facing behavior,
+   compatibility, security posture. If the wrong pick wastes a build
+   cycle or creates rework, it is open. If the wrong pick is a five-minute
+   fix, it is closed.
 
 Trust the text. If the doc reads as decided, it is decided. If it reads as
-ambiguous, it is open. Do not infer closure from naming conventions, file
-structure, or the existence of other files.
+ambiguous, apply the three conditions above — most ambiguities are
+mechanical and do not block a cold agent.
 
 ### 4. Return the verdict
 
@@ -65,16 +81,20 @@ structure, or the existence of other files.
 ```markdown
 # BLOCKED — N open decisions
 
-1. **Decision name** — One sentence: what is unspecified or ambiguous. [source:line]
+1. **Decision name** — One sentence: what the agent cannot do without an answer. [source:line]
 2. **Decision name** — One sentence. [source:line]
 ```
 
 Rules:
+- Each item must be something a cold agent would stop and ask about. If
+  you cannot imagine the agent getting stuck, do not list it.
 - One sentence per decision. No sub-questions, no "also" clauses, no
   embedded options lists. If a decision has sub-parts, each sub-part is
   its own numbered item.
 - Include a `[file:line]` reference.
 - No paragraphs. No elaboration. The operator will ask if they need more.
+- Do not list decisions that are already ruled in referenced docs, prior
+  slices, or code — even if the target doc still shows them as pending.
 
 **If no open decisions exist:**
 
