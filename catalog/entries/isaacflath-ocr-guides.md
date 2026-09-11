@@ -35,3 +35,10 @@ Key models/tools discussed: Chandra 2, Surya, LightOnOCR-2, PaddleOCR, MonkeyOCR
 ## Security
 
 Blog content, no code execution. Source files are local archival copies for personal reference.
+
+## Usage notes
+
+- Signature OCR (Isaac Flath, Sep 2026): on a page with two clear and two faint signatures, Gemini marked all four signed; AWS Textract found 3 of 4 regions at 32–41% confidence. Faint/erased marks force a policy decision (route to human? re-sign? where's the signed/unsigned line?) — include non-perfect and faded signatures in the eval set and decide handling up front.
+- Table layout (same source): basic OCR lost number↔column-heading relationships in a financial table; Docling and Chandra restored the complete table including the total row, while Qwen and Gemini returned JSON records instead — use Docling/Chandra when output must mirror the source layout, Qwen/Gemini when re-rendering or cross-checking.
+- LandingAI DPT-3 structured extraction on a loan estimate + closing disclosure loaded into SQLite: all six dollar amounts matched; fields absent from the source correctly stayed empty.
+- EVIE (document page-image search incl. charts/diagrams): intended page ranked first in three realistic queries — small sample, failure modes not yet mapped.

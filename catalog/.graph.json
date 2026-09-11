@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T15:42:24.096Z",
+  "generated_at": "2026-09-11T00:52:53.185Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -107,6 +107,26 @@
       "url": "https://example.com",
       "summary": "Architecture pattern where a general coding agent (Claude Code, Codex, OpenCode) running on a VPS is the orchestrator, calling deterministic scripts and connectors from a repo, inverting the usual app-calls-LLM relationship",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "agent-harness-meta-harness-terminology",
+      "kind": "entry",
+      "title": "Agent vs Harness vs Meta-Harness (terminology)",
+      "url": "https://example.com",
+      "summary": "Explainer resolving why Claude Code and Codex are called both 'agents' and 'harnesses' — model is the reasoning engine, agent is the emergent goal-directed behavior, harness is the operational machinery (context assembly, tools, execution, sessions, approvals, sandboxing); introduces 'meta-harness' as Omnigent's term for a layer wrapping multiple harnesses behind one interface with shared orchestration, policy, state, and cost controls",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "agent-identity-borrowed-credentials",
+      "kind": "entry",
+      "title": "Agents on Borrowed Credentials (NIST-attributed note)",
+      "url": "https://example.com",
+      "summary": "Short social-media note attributing to NIST the claim that most agents run on borrowed (human) credentials, prescribing per-agent identity, short-lived keys, approval gates before production, and separate logs per session; also claims Anthropic froze an RL run for a month after sandbox escapes; closes with 'direct your agents or they direct themselves' — claims unsourced in the post itself",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -236,6 +256,26 @@
       "exists": true
     },
     {
+      "id": "agentic-workflow-youtubers",
+      "kind": "entry",
+      "title": "YouTubers for Agentic Workflow Building (community picks)",
+      "url": "https://reddit.com",
+      "summary": "Community-recommended YouTube creators for practical agentic-workflow content — Cody Schneider (outreach automation breakdowns), David Ondrej (n8n/make.com step-by-step with error handling), Matthew Berman (self-hosting agent frameworks incl. Docker setup and failure points), Nick Saraev (obscure automation triggers turned into business processes); requester also names Bilawal Sidhu, Greg Isenberg, Ras Mic as the desired non-salesy style",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "ai-agent-sandbox-ranking",
+      "kind": "entry",
+      "title": "AI Agent Sandbox Ranking (SmolVM, Microsandbox, OpenSandbox, E2B)",
+      "url": "https://github.com/CelestoAI/SmolVM",
+      "summary": "Practitioner ranking of open-source sandboxes for AI agents by a SmolVM maintainer (disclosed bias) — criteria are ease of setup, snapshotting, fork/clone, pause/resume, Linux+macOS support, and computer-use/desktop workflows; ranks SmolVM > Microsandbox > OpenSandbox > E2B and argues 'best sandbox' depends on whether agents need persistent state, browsers, or desktops rather than just code execution",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "ai-engineering-skills-map",
       "kind": "entry",
       "title": "The AI Engineering Skills Map",
@@ -287,6 +327,16 @@
       "url": "https://instagram.com/agenticengineering",
       "summary": "Concept for an agent skill that generates structured AI work receipts — two arms: time-saved estimates (human baseline vs AI-assisted time) and artifact metrics (lines of code, functions/modules shipped, bugs logged/closed); aimed at giving managers and stakeholders visibility into AI productivity gains",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "aider",
+      "kind": "entry",
+      "title": "Aider",
+      "url": "https://github.com/Aider-AI/aider",
+      "summary": "Terminal AI pair-programming tool (Python) — edits code in a local git repo via chat with cloud or local LLMs, builds a repo map for large codebases, auto-commits each change with sensible messages, runs linters/tests after edits; 100+ languages, voice-to-code, image/web-page context; Apache-2.0, ~49k stars, last pushed May 2026",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -711,6 +761,16 @@
       "url": "https://github.com/codecrafters-io/build-your-own-x",
       "summary": "Curated compilation of step-by-step tutorials for recreating technologies from scratch — covers 30+ categories (databases, compilers, OS, neural networks, game engines, Git, Docker, regex, web servers, etc.) across 20+ languages; 350K+ stars; CC0 licensed",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "builderio-skills",
+      "kind": "entry",
+      "title": "Builder Skills (BuilderIO/skills)",
+      "url": "https://github.com/BuilderIO/skills",
+      "summary": "Builder.io's pack of 15 composable agent skills (visual-plan, visual-recap, webmcp, agent-watchdog, plan-arbiter, efficient-fable, rewind, quick-recap, etc.) installable via npx @agent-native/skills across Claude Code, Codex, Cursor, Pi, OpenCode, and Copilot; doubles as a Claude Code / Cowork plugin marketplace; MIT, ~4.2k stars",
+      "category": "plugin",
       "decision_status": "open",
       "exists": true
     },
@@ -1218,6 +1278,16 @@
       "exists": true
     },
     {
+      "id": "comfyui",
+      "kind": "entry",
+      "title": "ComfyUI",
+      "url": "https://github.com/comfy-org/comfyui",
+      "summary": "Node-graph GUI, API, and backend for diffusion/generative-media models (Python/PyTorch) — build image/video/audio/3D pipelines visually from modular nodes (samplers, ControlNet, LoRA, upscalers), with smart partial re-execution, low-VRAM offloading, workflows saved as reproducible JSON (embedded in generated PNGs), a headless API mode, custom-node ecosystem via ComfyUI-Manager, and a cross-platform desktop app; GPL-3.0, ~132k stars, Comfy-Org backed",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "community-skills-stack-2026",
       "kind": "entry",
       "title": "Community Agent Skills Stack (2026 Curated List)",
@@ -1417,6 +1487,16 @@
       "exists": true
     },
     {
+      "id": "deepseek-harness-code-vs-config",
+      "kind": "entry",
+      "title": "DeepSeek Harness — Code vs Config (Stephen G. Pope's framing)",
+      "url": "https://example.com",
+      "summary": "Explainer of the DeepSeek Harness design shift as described by Stephen G. Pope — instead of defining an agent's tools, prompts, model, and loop in application code (requiring rebuild/redeploy to change), the harness moves that behavior into configuration the running system can hot-reload, letting a coding agent modify its own behavior and create/adjust tools without a release process; characterized as early but notable for agent builders",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "deny-env-reads",
       "kind": "entry",
       "title": "Deny .env Reads via Permissions",
@@ -1463,6 +1543,16 @@
       "url": "https://github.com/samuelfaj/distill",
       "summary": "Local 1.7B model pipe-filter for CLI output compression is a real problem but requires 8–16 GB RAM and relies on an unaudited HuggingFace model; overlaps with rtk.",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "docker-alternatives-for-ai-agents",
+      "kind": "entry",
+      "title": "Docker Alternatives for AI Agents: Podman, bwrap, Firejail",
+      "url": "https://grigio.org/docker-alternatives-for-ai-agents-podman-bwrap-and-firejail/",
+      "summary": "Blog comparison (grigio.org, Jul 2026) of Podman, Bubblewrap, and Firejail as agent-sandboxing alternatives to Docker — decision matrix over startup time, isolation strength, attack surface, profiles, and portability; recommends Podman for production agent services, bwrap for per-command local sandboxes, Firejail for desktop agents",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -1662,6 +1752,16 @@
       "exists": true
     },
     {
+      "id": "fable-orchestrator-model-split",
+      "kind": "entry",
+      "title": "Fable as Orchestrator — Role-per-Model Split with Ticketed Review Loop",
+      "url": "https://reddit.com",
+      "summary": "Practitioner workflow for stretching Claude Fable usage limits by making Fable the orchestrator, not the worker — Haiku scouts locations, Sonnet researches and builds from specs, Opus refutes/reviews and debugs; extended with a ticket loop where an ephemeral Opus hand implements in a worktree, a cold Fable reviewer issues ACCEPT/REWORK verdicts, green-suite merges auto-revert on red, and the lead cuts releases",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "fable-orchestrator-pattern",
       "kind": "entry",
       "title": "Fable Orchestrator Pattern (Multi-Model Delegation)",
@@ -1687,6 +1787,16 @@
       "url": "https://www.reddit.com",
       "summary": "Practitioner-compiled list of faster (mostly Rust-based) drop-in replacements for common bioinformatics and Unix CLI tools — Falco for FastQC, grit for bedtools/deeptools, sambamba for samtools, rust-bio-tools/alignoth for GATK-Picard/IGV, crabz for pigz, plus general Unix speedups (sd, ripgrep, dust, dysk, aria2c)",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "fastapi",
+      "kind": "entry",
+      "title": "FastAPI",
+      "url": "https://github.com/fastapi/fastapi",
+      "summary": "High-performance async Python web framework built on Starlette + Pydantic — declares request/response contracts via standard Python type hints, generating validation, serialization, and OpenAPI/JSON Schema docs (Swagger UI, ReDoc) automatically; dependency-injection system, WebSockets, background tasks; MIT, ~102k stars, created 2018 by Sebastián Ramírez, actively maintained",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -1727,6 +1837,16 @@
       "url": "https://github.com/firecrawl/firecrawl",
       "summary": "Production-grade web scraping/search/interaction API for AI agents — clean markdown output, JS rendering, anti-bot handling, Agent endpoint with Spark models, Map/Interact/Batch Scrape, MCP server mode; 9 SDKs, AGPL-3.0, YC-backed",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "firejail",
+      "kind": "entry",
+      "title": "Firejail",
+      "url": "https://github.com/netblue30/firejail",
+      "summary": "SUID Linux sandbox in C — restricts untrusted applications via namespaces, seccomp-bpf, capabilities, and optional Landlock/AppArmor/SELinux; 1,300+ bundled per-application profiles, desktop integration via firecfg, no daemon; GPL-2.0, ~7.6k stars, actively maintained since 2015",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -1867,6 +1987,16 @@
       "url": "https://github.com/htdt/godogen",
       "summary": "Generator + agent-driven workflow for autonomous game development targeting Godot 4, Bevy, or Babylon.js — a publish.sh script renders a thin runtime layout (manifest, engine guide, asset-generation skill) into a fresh target repo for either Claude Code (CLAUDE.md + .claude/skills/) or Codex (AGENTS.md + .agents/skills/), then the chosen host agent builds the actual game by reading the engine guide and calling external asset-generation APIs (Gemini, xAI Grok, Tripo3D)",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "gods-eye-view",
+      "kind": "entry",
+      "title": "God's Eye View",
+      "url": "https://github.com/bilawalsidhu/gods-eye-view",
+      "summary": "Browser-based open-source spatial-intelligence globe (vanilla JS + CesiumJS + Vite) fusing live public feeds — 11k+ aircraft, ships, satellites, earthquakes, fires, ~800 public CCTV cameras, radio, launches — onto a photorealistic 3D Earth, with an OpenAI Realtime voice agent (28 tools) for hands-free control; keyless baseline, MIT per README; ~24k stars, #1 GitHub Trending Aug 2026",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -2199,6 +2329,16 @@
       "exists": true
     },
     {
+      "id": "internal-agent-permission-sprawl",
+      "kind": "entry",
+      "title": "Internal Bot Leaked the Unannounced Reorg Plan (permission sprawl)",
+      "url": "https://reddit.com",
+      "summary": "Incident writeup — an internal Q&A assistant scoped 'to read the wiki' answered with a confidential reorg spreadsheet including salary bands, because a broad Drive grant at setup indexed the HR folder; a follow-up audit found another wiki-summarizer bot holding inherited delete access and send-as-mail rights from its creator's account; thesis: over-broad access is itself the incident — 'an agent that can read everything will eventually read the thing it shouldn't'",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "isaacflath-ocr-guides",
       "kind": "entry",
       "title": "Isaac Flath — Documents in AI Products (OCR Pipeline Guides)",
@@ -2223,6 +2363,16 @@
       "title": "jcode",
       "url": "https://github.com/1jehuang/jcode",
       "summary": "Feature-rich Rust coding agent harness with exceptional performance (14ms boot, 28MB RAM), swarm collaboration, and 30+ provider integrations; compelling alternative harness to watch",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "jit-agent",
+      "kind": "entry",
+      "title": "JIT-Agent (Just-in-Time Harness Evolution)",
+      "url": "https://github.com/bingreeky/JIT",
+      "summary": "Research meta-agent (arXiv 2608.25593) that generates a task-specific agent harness on the fly — given a task spec, protocol, and tool registry it emits executable harness code factored into memory/planning/action/capability modules against shared HarnessFactory interfaces, revises it from execution traces, and selects among N candidates by judge or logprob; ships a JIT-27B meta-model checkpoint and 7 benchmark adapters; Python, ~440 stars",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -2301,6 +2451,16 @@
       "kind": "entry",
       "title": "KV Cache VRAM Sizing Formula for Local LLM Inference",
       "summary": "Practitioner reference for calculating KV cache memory: formula (2 × layers × kv_heads × head_dim × context_tokens × bytes_per_value), worked example showing Llama 3.1 8B at 128K context uses 16GB for cache alone (3× the 4.9GB Q4 weights); explains why GQA models (fewer KV heads) are dramatically cheaper at long context than MHA models, and why Ollama's default small num_ctx hides the cost until you raise it",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "landlock-lsm",
+      "kind": "entry",
+      "title": "Landlock LSM (org and ecosystem)",
+      "url": "https://github.com/landlock-lsm",
+      "summary": "GitHub org for Landlock, the Linux security module (kernel 5.13+) letting unprivileged processes irreversibly restrict their own filesystem/network access — hosts rust-landlock and go-landlock libraries, the island CLI sandboxing tool (Rust, Apache-2.0), landlockconfig, kernel dev tree, test tools, and the landlock.io site",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -2430,6 +2590,16 @@
       "url": "https://huggingface.co/docs/peft/main/en/conceptual_guides/lora",
       "summary": "Hugging Face PEFT conceptual guide to LoRA (Low-Rank Adaptation): fine-tune large models by training two small low-rank update matrices while the original weights stay frozen — drastically fewer trainable parameters, portable per-task adapters, and no added inference latency once merged. Covers LoraConfig parameters, merge/unmerge/unload utilities, and initialization options (Gaussian, LoftQ for QLoRA, rank-stabilized rsLoRA).",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "manim",
+      "kind": "entry",
+      "title": "Manim (3b1b)",
+      "url": "https://github.com/3b1b/manim",
+      "summary": "Grant Sanderson's (3Blue1Brown) Python animation engine for explanatory math videos — scenes are Python classes composing Mobjects (LaTeX, shapes, graphs, 3D surfaces) with animations rendered via OpenGL, including an interactive live-preview mode; this is the original personal version, distinct from the community-maintained fork ManimCE; MIT, ~94k stars",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -2706,6 +2876,16 @@
       "title": "Mycelium",
       "url": "https://github.com/SoftBacon-Software/mycelium",
       "summary": "Self-hosted Node.js/SQLite coordination server for multi-agent teams — persistent agent identity, work queues, messaging, approval gates, context store, spend tracking, GPU drone queue, 79-tool MCP server, plugin system; runtime/LLM-agnostic (HTTP API + SDK + MCP); Apache-2.0",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "n8n",
+      "kind": "entry",
+      "title": "n8n",
+      "url": "https://github.com/n8n-io/n8n",
+      "summary": "Fair-code workflow automation platform (TypeScript) — visual node-based editor plus custom JS/Python code, 400+ integrations, native AI/agent capabilities (LangChain-based AI nodes, MCP client and server support), triggers/webhooks/schedules; self-hostable via Docker or paid n8n Cloud; Sustainable Use License + n8n Enterprise License (fair-code, not OSI open source); ~204k stars",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -3407,6 +3587,16 @@
       "exists": false
     },
     {
+      "id": "qwen38-27b-200k-on-16gb",
+      "kind": "entry",
+      "title": "Qwen 3.8 27B at 200K Context on 16GB VRAM (tutorial)",
+      "url": "https://huggingface.co/unsloth/Qwen3.8-27B-GGUF",
+      "summary": "Practitioner recipe for running Qwen 3.8 27B UD-IQ4_XS at ~196K context and 50 t/s on a single RTX 5070 Ti (16GB) — prune non-ASCII rows from the embedding table and LM head (~700MB, ASCII-condensed variant published), offload the embedding table to CPU, disable MTP, use adaptive-KV streaming (llama.cpp fork) to page KV cache from host RAM, and quantize cache Q8 K / Q4 V",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "rag-retrieval-recipe",
       "kind": "entry",
       "title": "RAG Retrieval Recipe",
@@ -3523,6 +3713,16 @@
       "url": "https://github.com/astral-sh/ruff",
       "summary": "Rust-written Python linter and formatter from Astral; re-implements 900+ rules (Flake8 + dozens of plugins, isort, pydocstyle, pyupgrade) and a Black-compatible formatter behind one interface, with built-in caching, autofix, pyproject.toml config, and editor/pre-commit/GitHub Action integrations. MIT.",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "rustdesk",
+      "kind": "entry",
+      "title": "RustDesk",
+      "url": "https://github.com/rustdesk/rustdesk",
+      "summary": "Open-source remote desktop application (Rust core, Flutter UI) designed for self-hosting as a TeamViewer/AnyDesk alternative — end-to-end encrypted P2P with relay fallback, cross-platform (Windows/macOS/Linux incl. Wayland, iOS, Android, web), self-hostable rendezvous/relay server (hbbs/hbbr) so no traffic touches vendor infrastructure; AGPL-3.0, ~123k stars",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -3666,6 +3866,16 @@
       "exists": true
     },
     {
+      "id": "six-ai-engineer-projects",
+      "kind": "entry",
+      "title": "Six AI Engineer Skills as Six Named Company Problems",
+      "url": "https://example.com",
+      "summary": "Curriculum-as-project-list framing six AI engineering skills as named, production-shaped builds: RAG (Fieldnote — answers from the chart on page 112, not its caption), Agents (Casefile — claims triage with typed handoffs, cost ceiling, human before payout), LLMOps (Warmstart — 3-layer cache over 400k questions/month with measured false-hit rate), Evals (Groundtruth — legal-research harness failing the PR when recall drops), Fine-tuning (Slotfill — LoRA on 40k freight invoices benchmarked against the prompt it replaces), Guardrails (Doorman — recruiting agent surviving resume-embedded injection)",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "skill-orchestrator-shell",
       "kind": "entry",
       "title": "Skill Orchestrator Shell (Instruction-Shell Pattern)",
@@ -3800,6 +4010,16 @@
       "url": "https://github.com/MerlijnW70/sota-scan",
       "summary": "Useful comparative benchmarking skill for Claude Code, but single-contributor, no tests, and high token cost for exhaustive mode",
       "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "spacetimedb",
+      "kind": "entry",
+      "title": "SpacetimeDB",
+      "url": "https://github.com/clockworklabs/spacetimedb",
+      "summary": "Relational database that is also the application server (Clockwork Labs, Rust) — schema + business logic compile into a WASM module running inside the database, clients connect directly and subscribe to tables with automatic real-time state sync; ACID with in-memory state plus commit log; modules in Rust/C#/TypeScript/C++, client SDKs for web/Unity/Unreal; powers the BitCraft Online MMORPG backend; BUSL-1.1 (→AGPL-3.0 with linking exception), ~25k stars",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -3969,7 +4189,17 @@
       "exists": true
     },
     {
+      "id": "tag:3blue1brown",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:3d",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:3d-globe",
       "kind": "tag",
       "exists": true
     },
@@ -4070,6 +4300,11 @@
     },
     {
       "id": "tag:academic-illustration",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:access-audit",
       "kind": "tag",
       "exists": true
     },
@@ -4264,7 +4499,17 @@
       "exists": true
     },
     {
+      "id": "tag:agent-research",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:agent-sdk",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:agent-security",
       "kind": "tag",
       "exists": true
     },
@@ -4584,6 +4829,11 @@
       "exists": true
     },
     {
+      "id": "tag:apparmor",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:apple-silicon",
       "kind": "tag",
       "exists": true
@@ -4625,6 +4875,11 @@
     },
     {
       "id": "tag:array-computing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:arxiv",
       "kind": "tag",
       "exists": true
     },
@@ -4680,6 +4935,11 @@
     },
     {
       "id": "tag:audit",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:audit-logs",
       "kind": "tag",
       "exists": true
     },
@@ -4944,12 +5204,22 @@
       "exists": true
     },
     {
+      "id": "tag:bubblewrap",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:budget",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:buildah",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:builder-io",
       "kind": "tag",
       "exists": true
     },
@@ -5015,6 +5285,11 @@
     },
     {
       "id": "tag:celery",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:cesiumjs",
       "kind": "tag",
       "exists": true
     },
@@ -5135,6 +5410,11 @@
     },
     {
       "id": "tag:claude-cowork",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:claude-fable",
       "kind": "tag",
       "exists": true
     },
@@ -5364,6 +5644,11 @@
       "exists": true
     },
     {
+      "id": "tag:community-picks",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:compaction",
       "kind": "tag",
       "exists": true
@@ -5419,6 +5704,11 @@
       "exists": true
     },
     {
+      "id": "tag:computer-use",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:computer-vision",
       "kind": "tag",
       "exists": true
@@ -5440,6 +5730,11 @@
     },
     {
       "id": "tag:confidence-model",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:configuration",
       "kind": "tag",
       "exists": true
     },
@@ -5659,7 +5954,17 @@
       "exists": true
     },
     {
+      "id": "tag:creators",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:credential-theft",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:credentials",
       "kind": "tag",
       "exists": true
     },
@@ -5844,6 +6149,11 @@
       "exists": true
     },
     {
+      "id": "tag:data-leak",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:data-portability",
       "kind": "tag",
       "exists": true
@@ -6019,6 +6329,11 @@
       "exists": true
     },
     {
+      "id": "tag:dependency-injection",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:deployment",
       "kind": "tag",
       "exists": true
@@ -6084,6 +6399,11 @@
       "exists": true
     },
     {
+      "id": "tag:devsecops",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:dgx-spark",
       "kind": "tag",
       "exists": true
@@ -6100,6 +6420,11 @@
     },
     {
       "id": "tag:diarization",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:diffusion",
       "kind": "tag",
       "exists": true
     },
@@ -6279,6 +6604,11 @@
       "exists": true
     },
     {
+      "id": "tag:e2b",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ebi",
       "kind": "tag",
       "exists": true
@@ -6344,6 +6674,11 @@
       "exists": true
     },
     {
+      "id": "tag:embedding-pruning",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:embeddings",
       "kind": "tag",
       "exists": true
@@ -6355,6 +6690,11 @@
     },
     {
       "id": "tag:encoding",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:encryption",
       "kind": "tag",
       "exists": true
     },
@@ -6579,6 +6919,11 @@
       "exists": true
     },
     {
+      "id": "tag:fair-code",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:false-positive",
       "kind": "tag",
       "exists": true
@@ -6610,6 +6955,11 @@
     },
     {
       "id": "tag:feedback",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:feedback-loops",
       "kind": "tag",
       "exists": true
     },
@@ -6654,6 +7004,11 @@
       "exists": true
     },
     {
+      "id": "tag:firejail",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:firewall",
       "kind": "tag",
       "exists": true
@@ -6664,7 +7019,17 @@
       "exists": true
     },
     {
+      "id": "tag:flight-tracking",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:flow-graph",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:flutter",
       "kind": "tag",
       "exists": true
     },
@@ -7139,6 +7504,11 @@
       "exists": true
     },
     {
+      "id": "tag:haiku",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:hallucination-reduction",
       "kind": "tag",
       "exists": true
@@ -7185,6 +7555,11 @@
     },
     {
       "id": "tag:harness-foundry",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:harness-generation",
       "kind": "tag",
       "exists": true
     },
@@ -7254,6 +7629,11 @@
       "exists": true
     },
     {
+      "id": "tag:hot-reload",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:hpc",
       "kind": "tag",
       "exists": true
@@ -7304,12 +7684,22 @@
       "exists": true
     },
     {
+      "id": "tag:iac",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ibm",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:ideation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:identity",
       "kind": "tag",
       "exists": true
     },
@@ -7394,6 +7784,11 @@
       "exists": true
     },
     {
+      "id": "tag:inherited-permissions",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:insights",
       "kind": "tag",
       "exists": true
@@ -7420,6 +7815,11 @@
     },
     {
       "id": "tag:inter-session",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:internal-tools",
       "kind": "tag",
       "exists": true
     },
@@ -7460,6 +7860,11 @@
     },
     {
       "id": "tag:ip-blocklist",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ipaas",
       "kind": "tag",
       "exists": true
     },
@@ -7559,6 +7964,11 @@
       "exists": true
     },
     {
+      "id": "tag:kernel",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:key-value-store",
       "kind": "tag",
       "exists": true
@@ -7649,6 +8059,11 @@
       "exists": true
     },
     {
+      "id": "tag:landlock",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:langchain",
       "kind": "tag",
       "exists": true
@@ -7685,6 +8100,16 @@
     },
     {
       "id": "tag:learning-path",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:learning-projects",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:learning-resources",
       "kind": "tag",
       "exists": true
     },
@@ -7824,6 +8249,11 @@
       "exists": true
     },
     {
+      "id": "tag:llmops",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:lm-studio",
       "kind": "tag",
       "exists": true
@@ -7874,12 +8304,27 @@
       "exists": true
     },
     {
+      "id": "tag:long-context",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:lora",
       "kind": "tag",
       "exists": true
     },
     {
+      "id": "tag:low-code",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:low-vram",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:lsm",
       "kind": "tag",
       "exists": true
     },
@@ -7969,7 +8414,17 @@
       "exists": true
     },
     {
+      "id": "tag:mathematics",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:matryoshka",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:matt-pocock",
       "kind": "tag",
       "exists": true
     },
@@ -8084,6 +8539,11 @@
       "exists": true
     },
     {
+      "id": "tag:meta-agent",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:meta-ai",
       "kind": "tag",
       "exists": true
@@ -8120,6 +8580,11 @@
     },
     {
       "id": "tag:micropython",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:microsandbox",
       "kind": "tag",
       "exists": true
     },
@@ -8185,6 +8650,11 @@
     },
     {
       "id": "tag:model-api",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:model-as-a-harness",
       "kind": "tag",
       "exists": true
     },
@@ -8379,6 +8849,11 @@
       "exists": true
     },
     {
+      "id": "tag:multiplayer",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:n-gram",
       "kind": "tag",
       "exists": true
@@ -8479,12 +8954,22 @@
       "exists": true
     },
     {
+      "id": "tag:nist",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:nlp",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:no-code",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:node-graph",
       "kind": "tag",
       "exists": true
     },
@@ -8515,6 +9000,11 @@
     },
     {
       "id": "tag:oauth",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:oauth-scopes",
       "kind": "tag",
       "exists": true
     },
@@ -8580,6 +9070,11 @@
     },
     {
       "id": "tag:omlx",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:omnigent",
       "kind": "tag",
       "exists": true
     },
@@ -8654,6 +9149,11 @@
       "exists": true
     },
     {
+      "id": "tag:openai-realtime",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:openapi",
       "kind": "tag",
       "exists": true
@@ -8664,7 +9164,17 @@
       "exists": true
     },
     {
+      "id": "tag:opengl",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:openrouter",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:opensandbox",
       "kind": "tag",
       "exists": true
     },
@@ -8765,6 +9275,11 @@
     },
     {
       "id": "tag:pain-points",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:pair-programming",
       "kind": "tag",
       "exists": true
     },
@@ -8870,6 +9385,11 @@
     },
     {
       "id": "tag:persistent-agent",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:persistent-memory",
       "kind": "tag",
       "exists": true
     },
@@ -8989,6 +9509,11 @@
       "exists": true
     },
     {
+      "id": "tag:podman",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:podman-desktop",
       "kind": "tag",
       "exists": true
@@ -9005,6 +9530,11 @@
     },
     {
       "id": "tag:political-science",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:portfolio",
       "kind": "tag",
       "exists": true
     },
@@ -9210,6 +9740,11 @@
     },
     {
       "id": "tag:prompts",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:proprietary",
       "kind": "tag",
       "exists": true
     },
@@ -9474,6 +10009,11 @@
       "exists": true
     },
     {
+      "id": "tag:relational",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:release-management",
       "kind": "tag",
       "exists": true
@@ -9485,6 +10025,16 @@
     },
     {
       "id": "tag:remote-access",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:remote-desktop",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:repo-map",
       "kind": "tag",
       "exists": true
     },
@@ -9699,6 +10249,16 @@
       "exists": true
     },
     {
+      "id": "tag:satellite-tracking",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:sbom",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:scaffold",
       "kind": "tag",
       "exists": true
@@ -9809,12 +10369,22 @@
       "exists": true
     },
     {
+      "id": "tag:seccomp",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:second-brain",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:secrets",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:secrets-detection",
       "kind": "tag",
       "exists": true
     },
@@ -9835,6 +10405,11 @@
     },
     {
       "id": "tag:security-caution",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:security-scanner",
       "kind": "tag",
       "exists": true
     },
@@ -9864,12 +10439,22 @@
       "exists": true
     },
     {
+      "id": "tag:self-hosting",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:self-improvement",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:self-interrogation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:self-modification",
       "kind": "tag",
       "exists": true
     },
@@ -9940,6 +10525,11 @@
     },
     {
       "id": "tag:serverless",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:serverless-architecture",
       "kind": "tag",
       "exists": true
     },
@@ -10174,6 +10764,16 @@
       "exists": true
     },
     {
+      "id": "tag:smolvm",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:snapshotting",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:socket-api",
       "kind": "tag",
       "exists": true
@@ -10224,6 +10824,11 @@
       "exists": true
     },
     {
+      "id": "tag:spatial-intelligence",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:speaker-id",
       "kind": "tag",
       "exists": true
@@ -10269,6 +10874,11 @@
       "exists": true
     },
     {
+      "id": "tag:stable-diffusion",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:stack-selection",
       "kind": "tag",
       "exists": true
@@ -10280,6 +10890,11 @@
     },
     {
       "id": "tag:stanford",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:starlette",
       "kind": "tag",
       "exists": true
     },
@@ -10350,6 +10965,16 @@
     },
     {
       "id": "tag:subscription",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:subscriptions",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:suid",
       "kind": "tag",
       "exists": true
     },
@@ -10444,6 +11069,11 @@
       "exists": true
     },
     {
+      "id": "tag:task-decomposition",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:task-graph",
       "kind": "tag",
       "exists": true
@@ -10470,6 +11100,11 @@
     },
     {
       "id": "tag:teams",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:teamviewer-alternative",
       "kind": "tag",
       "exists": true
     },
@@ -10520,6 +11155,11 @@
     },
     {
       "id": "tag:terminal-tools",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:terminology",
       "kind": "tag",
       "exists": true
     },
@@ -10580,6 +11220,11 @@
     },
     {
       "id": "tag:throughput",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ticket-loop",
       "kind": "tag",
       "exists": true
     },
@@ -10704,6 +11349,11 @@
       "exists": true
     },
     {
+      "id": "tag:tracer-bullets",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:tracing",
       "kind": "tag",
       "exists": true
@@ -10809,6 +11459,11 @@
       "exists": true
     },
     {
+      "id": "tag:type-hints",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:typescript",
       "kind": "tag",
       "exists": true
@@ -10864,12 +11519,32 @@
       "exists": true
     },
     {
+      "id": "tag:unity",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:unix-philosophy",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:unknowns",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:unprivileged",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:unreal",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:unsloth",
       "kind": "tag",
       "exists": true
     },
@@ -10964,12 +11639,22 @@
       "exists": true
     },
     {
+      "id": "tag:vertical-slices",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:vibe-coding",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:video",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:video-generation",
       "kind": "tag",
       "exists": true
     },
@@ -10995,6 +11680,11 @@
     },
     {
       "id": "tag:visual-builder",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:visual-plans",
       "kind": "tag",
       "exists": true
     },
@@ -11029,6 +11719,11 @@
       "exists": true
     },
     {
+      "id": "tag:voice-agent",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:vps",
       "kind": "tag",
       "exists": true
@@ -11059,12 +11754,22 @@
       "exists": true
     },
     {
+      "id": "tag:vulnerabilities",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:waf",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:wasm",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:wayland",
       "kind": "tag",
       "exists": true
     },
@@ -11209,7 +11914,17 @@
       "exists": true
     },
     {
+      "id": "tag:workflow-engine",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:workspace",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:worktree",
       "kind": "tag",
       "exists": true
     },
@@ -11357,6 +12072,16 @@
       "exists": true
     },
     {
+      "id": "titans-atlas-cronus",
+      "kind": "entry",
+      "title": "Titans (Atlas + Cronus)",
+      "url": "https://github.com/titans-tools",
+      "summary": "Local-first, agent-first infrastructure pair from a solo AI-assisted builder — Atlas is persistent project memory (knowledge packages, typed graph, evidence/provenance, SQL, blobs, audit history; retrieval blends lexical + vector + graph + evidence, scoped per project/tenant), Cronus is durable execution (DAG workflows, scheduling, checkpoints, at-least-once retries with lease fencing, dead-letter, approval gates); shared MCP server over stdio plus REST/gRPC; free binaries, proprietary source, signed releases (SHA-256 + Ed25519); Windows/Linux",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "tolvi",
       "kind": "entry",
       "title": "Tolvi — Engineering Decision Vault",
@@ -11377,6 +12102,16 @@
       "exists": true
     },
     {
+      "id": "tracer-bullets-vertical-slices",
+      "kind": "entry",
+      "title": "Tracer Bullets / Vertical Slices for Agent Plans",
+      "url": "https://thedailyai.news/",
+      "summary": "Matt Pocock's argument (via thedailyai.news clip) that AI coding agents fail on horizontal layer-by-layer plans (database → API → frontend) for lack of an integrated feedback loop; the fix is the Pragmatic Programmer 'tracer bullet' idea — thin vertical tasks that cross database, service, and frontend to prove the whole flow, reframing work from 'complete phase 1' to 'ship one visible, testable slice'",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "trigger-tree",
       "kind": "entry",
       "title": "trigger-tree",
@@ -11393,6 +12128,16 @@
       "url": "https://arxiv.org/abs/2512.04695",
       "summary": "Sakana AI paper (ICLR 2026) on a 0.6B coordinator trained via evolutionary strategy (sep-CMA-ES) to orchestrate pools of LLMs through multi-turn role assignment (Thinker/Worker/Verifier); 86.2% on LiveCodeBench, zero-shot transfer to unseen tasks. Companion to Conductor (RL approach).",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "trivy",
+      "kind": "entry",
+      "title": "Trivy",
+      "url": "https://github.com/aquasecurity/trivy",
+      "summary": "Aqua Security's all-in-one security scanner (Go) — finds vulnerabilities (OS packages + language dependencies), IaC misconfigurations, secrets, and licenses across container images, filesystems, git repos, VM images, Kubernetes clusters, and AWS accounts; generates and scans SBOMs (SPDX/CycloneDX); single static binary, offline-capable DB, CI-native; Apache-2.0, ~38k stars",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -12104,6 +12849,106 @@
       "relation": "tagged"
     },
     {
+      "source": "agent-harness-meta-harness-terminology",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "agent-harness-meta-harness-terminology",
+      "target": "tag:agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-harness-meta-harness-terminology",
+      "target": "tag:architecture",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-harness-meta-harness-terminology",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-harness-meta-harness-terminology",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-harness-meta-harness-terminology",
+      "target": "tag:harness",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-harness-meta-harness-terminology",
+      "target": "tag:meta-harness",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-harness-meta-harness-terminology",
+      "target": "tag:omnigent",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-harness-meta-harness-terminology",
+      "target": "tag:subagents",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-harness-meta-harness-terminology",
+      "target": "tag:terminology",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-identity-borrowed-credentials",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "agent-identity-borrowed-credentials",
+      "target": "internal-agent-permission-sprawl",
+      "relation": "overlaps"
+    },
+    {
+      "source": "agent-identity-borrowed-credentials",
+      "target": "tag:agent-security",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-identity-borrowed-credentials",
+      "target": "tag:approval-gates",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-identity-borrowed-credentials",
+      "target": "tag:audit-logs",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-identity-borrowed-credentials",
+      "target": "tag:credentials",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-identity-borrowed-credentials",
+      "target": "tag:governance",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-identity-borrowed-credentials",
+      "target": "tag:identity",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-identity-borrowed-credentials",
+      "target": "tag:least-privilege",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-identity-borrowed-credentials",
+      "target": "tag:nist",
+      "relation": "tagged"
+    },
+    {
       "source": "agent-link",
       "target": "cat:mcp-server",
       "relation": "categorized"
@@ -12644,6 +13489,116 @@
       "relation": "tagged"
     },
     {
+      "source": "agentic-workflow-youtubers",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "agentic-workflow-youtubers",
+      "target": "tag:agentic-workflows",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-workflow-youtubers",
+      "target": "tag:automation",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-workflow-youtubers",
+      "target": "tag:community-picks",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-workflow-youtubers",
+      "target": "tag:creators",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-workflow-youtubers",
+      "target": "tag:learning-resources",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-workflow-youtubers",
+      "target": "tag:n8n",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-workflow-youtubers",
+      "target": "tag:self-hosting",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentic-workflow-youtubers",
+      "target": "tag:youtube",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-agent-sandbox-ranking",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "ai-agent-sandbox-ranking",
+      "target": "docker-alternatives-for-ai-agents",
+      "relation": "overlaps"
+    },
+    {
+      "source": "ai-agent-sandbox-ranking",
+      "target": "e2b",
+      "relation": "overlaps"
+    },
+    {
+      "source": "ai-agent-sandbox-ranking",
+      "target": "opensandbox",
+      "relation": "overlaps"
+    },
+    {
+      "source": "ai-agent-sandbox-ranking",
+      "target": "tag:agent-infrastructure",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-agent-sandbox-ranking",
+      "target": "tag:comparison",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-agent-sandbox-ranking",
+      "target": "tag:computer-use",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-agent-sandbox-ranking",
+      "target": "tag:e2b",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-agent-sandbox-ranking",
+      "target": "tag:microsandbox",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-agent-sandbox-ranking",
+      "target": "tag:opensandbox",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-agent-sandbox-ranking",
+      "target": "tag:sandbox",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-agent-sandbox-ranking",
+      "target": "tag:smolvm",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-agent-sandbox-ranking",
+      "target": "tag:snapshotting",
+      "relation": "tagged"
+    },
+    {
       "source": "ai-engineering-skills-map",
       "target": "cat:reference",
       "relation": "categorized"
@@ -12866,6 +13821,61 @@
     {
       "source": "ai-work-receipt",
       "target": "tag:time-tracking",
+      "relation": "tagged"
+    },
+    {
+      "source": "aider",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "aider",
+      "target": "pi-coding-agent",
+      "relation": "overlaps"
+    },
+    {
+      "source": "aider",
+      "target": "tag:cli-tool",
+      "relation": "tagged"
+    },
+    {
+      "source": "aider",
+      "target": "tag:coding-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "aider",
+      "target": "tag:git",
+      "relation": "tagged"
+    },
+    {
+      "source": "aider",
+      "target": "tag:local-llm",
+      "relation": "tagged"
+    },
+    {
+      "source": "aider",
+      "target": "tag:multi-provider",
+      "relation": "tagged"
+    },
+    {
+      "source": "aider",
+      "target": "tag:pair-programming",
+      "relation": "tagged"
+    },
+    {
+      "source": "aider",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "aider",
+      "target": "tag:repo-map",
+      "relation": "tagged"
+    },
+    {
+      "source": "aider",
+      "target": "tag:terminal",
       "relation": "tagged"
     },
     {
@@ -14641,6 +15651,71 @@
     {
       "source": "build-your-own-x",
       "target": "tag:tutorials",
+      "relation": "tagged"
+    },
+    {
+      "source": "builderio-skills",
+      "target": "agent-skills-osmani",
+      "relation": "overlaps"
+    },
+    {
+      "source": "builderio-skills",
+      "target": "awesome-claude-code",
+      "relation": "overlaps"
+    },
+    {
+      "source": "builderio-skills",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "builderio-skills",
+      "target": "tag:agent-native",
+      "relation": "tagged"
+    },
+    {
+      "source": "builderio-skills",
+      "target": "tag:builder-io",
+      "relation": "tagged"
+    },
+    {
+      "source": "builderio-skills",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "builderio-skills",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "builderio-skills",
+      "target": "tag:cursor",
+      "relation": "tagged"
+    },
+    {
+      "source": "builderio-skills",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "builderio-skills",
+      "target": "tag:orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "builderio-skills",
+      "target": "tag:plugin-marketplace",
+      "relation": "tagged"
+    },
+    {
+      "source": "builderio-skills",
+      "target": "tag:skills",
+      "relation": "tagged"
+    },
+    {
+      "source": "builderio-skills",
+      "target": "tag:visual-plans",
       "relation": "tagged"
     },
     {
@@ -16534,6 +17609,61 @@
       "relation": "tagged"
     },
     {
+      "source": "comfyui",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "comfyui",
+      "target": "tag:api",
+      "relation": "tagged"
+    },
+    {
+      "source": "comfyui",
+      "target": "tag:diffusion",
+      "relation": "tagged"
+    },
+    {
+      "source": "comfyui",
+      "target": "tag:image-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "comfyui",
+      "target": "tag:low-vram",
+      "relation": "tagged"
+    },
+    {
+      "source": "comfyui",
+      "target": "tag:node-graph",
+      "relation": "tagged"
+    },
+    {
+      "source": "comfyui",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "comfyui",
+      "target": "tag:pytorch",
+      "relation": "tagged"
+    },
+    {
+      "source": "comfyui",
+      "target": "tag:stable-diffusion",
+      "relation": "tagged"
+    },
+    {
+      "source": "comfyui",
+      "target": "tag:video-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "comfyui",
+      "target": "tag:workflow",
+      "relation": "tagged"
+    },
+    {
       "source": "community-skills-stack-2026",
       "target": "agent-browser",
       "relation": "overlaps"
@@ -17339,6 +18469,51 @@
       "relation": "tagged"
     },
     {
+      "source": "deepseek-harness-code-vs-config",
+      "target": "agent-harness-meta-harness-terminology",
+      "relation": "overlaps"
+    },
+    {
+      "source": "deepseek-harness-code-vs-config",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "deepseek-harness-code-vs-config",
+      "target": "tag:agent-architecture",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-harness-code-vs-config",
+      "target": "tag:coding-agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-harness-code-vs-config",
+      "target": "tag:configuration",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-harness-code-vs-config",
+      "target": "tag:deepseek",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-harness-code-vs-config",
+      "target": "tag:harness",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-harness-code-vs-config",
+      "target": "tag:hot-reload",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-harness-code-vs-config",
+      "target": "tag:self-modification",
+      "relation": "tagged"
+    },
+    {
       "source": "deepseek-harness",
       "target": "cat:framework",
       "relation": "categorized"
@@ -17601,6 +18776,66 @@
     {
       "source": "distill",
       "target": "tag:token-reduction",
+      "relation": "tagged"
+    },
+    {
+      "source": "docker-alternatives-for-ai-agents",
+      "target": "bubblewrap-containers",
+      "relation": "overlaps"
+    },
+    {
+      "source": "docker-alternatives-for-ai-agents",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "docker-alternatives-for-ai-agents",
+      "target": "firejail",
+      "relation": "overlaps"
+    },
+    {
+      "source": "docker-alternatives-for-ai-agents",
+      "target": "tag:agent-security",
+      "relation": "tagged"
+    },
+    {
+      "source": "docker-alternatives-for-ai-agents",
+      "target": "tag:bubblewrap",
+      "relation": "tagged"
+    },
+    {
+      "source": "docker-alternatives-for-ai-agents",
+      "target": "tag:comparison",
+      "relation": "tagged"
+    },
+    {
+      "source": "docker-alternatives-for-ai-agents",
+      "target": "tag:docker-alternative",
+      "relation": "tagged"
+    },
+    {
+      "source": "docker-alternatives-for-ai-agents",
+      "target": "tag:firejail",
+      "relation": "tagged"
+    },
+    {
+      "source": "docker-alternatives-for-ai-agents",
+      "target": "tag:isolation",
+      "relation": "tagged"
+    },
+    {
+      "source": "docker-alternatives-for-ai-agents",
+      "target": "tag:linux",
+      "relation": "tagged"
+    },
+    {
+      "source": "docker-alternatives-for-ai-agents",
+      "target": "tag:podman",
+      "relation": "tagged"
+    },
+    {
+      "source": "docker-alternatives-for-ai-agents",
+      "target": "tag:sandbox",
       "relation": "tagged"
     },
     {
@@ -18439,6 +19674,81 @@
       "relation": "tagged"
     },
     {
+      "source": "fable-orchestrator-model-split",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "fable-orchestrator-model-split",
+      "target": "deepseek-and-destroy",
+      "relation": "overlaps"
+    },
+    {
+      "source": "fable-orchestrator-model-split",
+      "target": "local-model-adversarial-workflow",
+      "relation": "overlaps"
+    },
+    {
+      "source": "fable-orchestrator-model-split",
+      "target": "single-agent-synchronous-workflow",
+      "relation": "overlaps"
+    },
+    {
+      "source": "fable-orchestrator-model-split",
+      "target": "tag:claude-fable",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-orchestrator-model-split",
+      "target": "tag:code-review",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-orchestrator-model-split",
+      "target": "tag:cost-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-orchestrator-model-split",
+      "target": "tag:haiku",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-orchestrator-model-split",
+      "target": "tag:model-routing",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-orchestrator-model-split",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-orchestrator-model-split",
+      "target": "tag:opus",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-orchestrator-model-split",
+      "target": "tag:orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-orchestrator-model-split",
+      "target": "tag:sonnet",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-orchestrator-model-split",
+      "target": "tag:ticket-loop",
+      "relation": "tagged"
+    },
+    {
+      "source": "fable-orchestrator-model-split",
+      "target": "tag:worktree",
+      "relation": "tagged"
+    },
+    {
       "source": "fable-orchestrator-pattern",
       "target": "advisor-strategy",
       "relation": "overlaps"
@@ -18586,6 +19896,56 @@
     {
       "source": "fast-bioinformatics-tool-replacements",
       "target": "tag:samtools",
+      "relation": "tagged"
+    },
+    {
+      "source": "fastapi",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "fastapi",
+      "target": "tag:async",
+      "relation": "tagged"
+    },
+    {
+      "source": "fastapi",
+      "target": "tag:dependency-injection",
+      "relation": "tagged"
+    },
+    {
+      "source": "fastapi",
+      "target": "tag:openapi",
+      "relation": "tagged"
+    },
+    {
+      "source": "fastapi",
+      "target": "tag:pydantic",
+      "relation": "tagged"
+    },
+    {
+      "source": "fastapi",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "fastapi",
+      "target": "tag:rest-api",
+      "relation": "tagged"
+    },
+    {
+      "source": "fastapi",
+      "target": "tag:starlette",
+      "relation": "tagged"
+    },
+    {
+      "source": "fastapi",
+      "target": "tag:type-hints",
+      "relation": "tagged"
+    },
+    {
+      "source": "fastapi",
+      "target": "tag:web-framework",
       "relation": "tagged"
     },
     {
@@ -18766,6 +20126,61 @@
     {
       "source": "firecrawl",
       "target": "tag:web-scraping",
+      "relation": "tagged"
+    },
+    {
+      "source": "firejail",
+      "target": "bubblewrap-containers",
+      "relation": "overlaps"
+    },
+    {
+      "source": "firejail",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "firejail",
+      "target": "tag:apparmor",
+      "relation": "tagged"
+    },
+    {
+      "source": "firejail",
+      "target": "tag:isolation",
+      "relation": "tagged"
+    },
+    {
+      "source": "firejail",
+      "target": "tag:landlock",
+      "relation": "tagged"
+    },
+    {
+      "source": "firejail",
+      "target": "tag:linux",
+      "relation": "tagged"
+    },
+    {
+      "source": "firejail",
+      "target": "tag:namespaces",
+      "relation": "tagged"
+    },
+    {
+      "source": "firejail",
+      "target": "tag:sandbox",
+      "relation": "tagged"
+    },
+    {
+      "source": "firejail",
+      "target": "tag:seccomp",
+      "relation": "tagged"
+    },
+    {
+      "source": "firejail",
+      "target": "tag:security",
+      "relation": "tagged"
+    },
+    {
+      "source": "firejail",
+      "target": "tag:suid",
       "relation": "tagged"
     },
     {
@@ -19391,6 +20806,66 @@
     {
       "source": "godogen",
       "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "gods-eye-view",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "gods-eye-view",
+      "target": "tag:3d-globe",
+      "relation": "tagged"
+    },
+    {
+      "source": "gods-eye-view",
+      "target": "tag:cesiumjs",
+      "relation": "tagged"
+    },
+    {
+      "source": "gods-eye-view",
+      "target": "tag:flight-tracking",
+      "relation": "tagged"
+    },
+    {
+      "source": "gods-eye-view",
+      "target": "tag:geospatial",
+      "relation": "tagged"
+    },
+    {
+      "source": "gods-eye-view",
+      "target": "tag:javascript",
+      "relation": "tagged"
+    },
+    {
+      "source": "gods-eye-view",
+      "target": "tag:local-first",
+      "relation": "tagged"
+    },
+    {
+      "source": "gods-eye-view",
+      "target": "tag:openai-realtime",
+      "relation": "tagged"
+    },
+    {
+      "source": "gods-eye-view",
+      "target": "tag:osint",
+      "relation": "tagged"
+    },
+    {
+      "source": "gods-eye-view",
+      "target": "tag:satellite-tracking",
+      "relation": "tagged"
+    },
+    {
+      "source": "gods-eye-view",
+      "target": "tag:spatial-intelligence",
+      "relation": "tagged"
+    },
+    {
+      "source": "gods-eye-view",
+      "target": "tag:voice-agent",
       "relation": "tagged"
     },
     {
@@ -20829,6 +22304,51 @@
       "relation": "tagged"
     },
     {
+      "source": "internal-agent-permission-sprawl",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "internal-agent-permission-sprawl",
+      "target": "tag:access-audit",
+      "relation": "tagged"
+    },
+    {
+      "source": "internal-agent-permission-sprawl",
+      "target": "tag:agent-security",
+      "relation": "tagged"
+    },
+    {
+      "source": "internal-agent-permission-sprawl",
+      "target": "tag:data-leak",
+      "relation": "tagged"
+    },
+    {
+      "source": "internal-agent-permission-sprawl",
+      "target": "tag:inherited-permissions",
+      "relation": "tagged"
+    },
+    {
+      "source": "internal-agent-permission-sprawl",
+      "target": "tag:internal-tools",
+      "relation": "tagged"
+    },
+    {
+      "source": "internal-agent-permission-sprawl",
+      "target": "tag:least-privilege",
+      "relation": "tagged"
+    },
+    {
+      "source": "internal-agent-permission-sprawl",
+      "target": "tag:oauth-scopes",
+      "relation": "tagged"
+    },
+    {
+      "source": "internal-agent-permission-sprawl",
+      "target": "tag:permissions",
+      "relation": "tagged"
+    },
+    {
       "source": "isaacflath-ocr-guides",
       "target": "cat:reference",
       "relation": "categorized"
@@ -20981,6 +22501,56 @@
     {
       "source": "jcode",
       "target": "tag:swarm",
+      "relation": "tagged"
+    },
+    {
+      "source": "jit-agent",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "jit-agent",
+      "target": "tag:agent-research",
+      "relation": "tagged"
+    },
+    {
+      "source": "jit-agent",
+      "target": "tag:arxiv",
+      "relation": "tagged"
+    },
+    {
+      "source": "jit-agent",
+      "target": "tag:benchmark",
+      "relation": "tagged"
+    },
+    {
+      "source": "jit-agent",
+      "target": "tag:code-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "jit-agent",
+      "target": "tag:harness-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "jit-agent",
+      "target": "tag:harness",
+      "relation": "tagged"
+    },
+    {
+      "source": "jit-agent",
+      "target": "tag:meta-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "jit-agent",
+      "target": "tag:model-as-a-harness",
+      "relation": "tagged"
+    },
+    {
+      "source": "jit-agent",
+      "target": "tag:vllm",
       "relation": "tagged"
     },
     {
@@ -21282,6 +22852,71 @@
       "source": "kv-cache-vram-sizing",
       "target": "turboquant",
       "relation": "overlaps"
+    },
+    {
+      "source": "landlock-lsm",
+      "target": "bubblewrap-containers",
+      "relation": "overlaps"
+    },
+    {
+      "source": "landlock-lsm",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "landlock-lsm",
+      "target": "firejail",
+      "relation": "overlaps"
+    },
+    {
+      "source": "landlock-lsm",
+      "target": "tag:go",
+      "relation": "tagged"
+    },
+    {
+      "source": "landlock-lsm",
+      "target": "tag:isolation",
+      "relation": "tagged"
+    },
+    {
+      "source": "landlock-lsm",
+      "target": "tag:kernel",
+      "relation": "tagged"
+    },
+    {
+      "source": "landlock-lsm",
+      "target": "tag:landlock",
+      "relation": "tagged"
+    },
+    {
+      "source": "landlock-lsm",
+      "target": "tag:linux",
+      "relation": "tagged"
+    },
+    {
+      "source": "landlock-lsm",
+      "target": "tag:lsm",
+      "relation": "tagged"
+    },
+    {
+      "source": "landlock-lsm",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "landlock-lsm",
+      "target": "tag:sandbox",
+      "relation": "tagged"
+    },
+    {
+      "source": "landlock-lsm",
+      "target": "tag:security",
+      "relation": "tagged"
+    },
+    {
+      "source": "landlock-lsm",
+      "target": "tag:unprivileged",
+      "relation": "tagged"
     },
     {
       "source": "langflow",
@@ -21961,6 +23596,56 @@
     {
       "source": "lora-peft-guide",
       "target": "tag:transformers",
+      "relation": "tagged"
+    },
+    {
+      "source": "manim",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "manim",
+      "target": "tag:3blue1brown",
+      "relation": "tagged"
+    },
+    {
+      "source": "manim",
+      "target": "tag:animation",
+      "relation": "tagged"
+    },
+    {
+      "source": "manim",
+      "target": "tag:education",
+      "relation": "tagged"
+    },
+    {
+      "source": "manim",
+      "target": "tag:latex",
+      "relation": "tagged"
+    },
+    {
+      "source": "manim",
+      "target": "tag:mathematics",
+      "relation": "tagged"
+    },
+    {
+      "source": "manim",
+      "target": "tag:opengl",
+      "relation": "tagged"
+    },
+    {
+      "source": "manim",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "manim",
+      "target": "tag:video-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "manim",
+      "target": "tag:visualization",
       "relation": "tagged"
     },
     {
@@ -23355,6 +25040,66 @@
     },
     {
       "source": "n8n-mcp",
+      "target": "tag:workflow-automation",
+      "relation": "tagged"
+    },
+    {
+      "source": "n8n",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "n8n",
+      "target": "langflow",
+      "relation": "overlaps"
+    },
+    {
+      "source": "n8n",
+      "target": "n8n-mcp",
+      "relation": "overlaps"
+    },
+    {
+      "source": "n8n",
+      "target": "tag:ai-agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "n8n",
+      "target": "tag:fair-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "n8n",
+      "target": "tag:integrations",
+      "relation": "tagged"
+    },
+    {
+      "source": "n8n",
+      "target": "tag:ipaas",
+      "relation": "tagged"
+    },
+    {
+      "source": "n8n",
+      "target": "tag:low-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "n8n",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "n8n",
+      "target": "tag:self-hosted",
+      "relation": "tagged"
+    },
+    {
+      "source": "n8n",
+      "target": "tag:typescript",
+      "relation": "tagged"
+    },
+    {
+      "source": "n8n",
       "target": "tag:workflow-automation",
       "relation": "tagged"
     },
@@ -26344,6 +28089,71 @@
       "relation": "tagged"
     },
     {
+      "source": "qwen38-27b-200k-on-16gb",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "qwen38-27b-200k-on-16gb",
+      "target": "kv-cache-vram-sizing",
+      "relation": "overlaps"
+    },
+    {
+      "source": "qwen38-27b-200k-on-16gb",
+      "target": "qwen3-8-27b-uncensored-hauhaucs-aggressive-gguf",
+      "relation": "overlaps"
+    },
+    {
+      "source": "qwen38-27b-200k-on-16gb",
+      "target": "tag:embedding-pruning",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwen38-27b-200k-on-16gb",
+      "target": "tag:gguf",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwen38-27b-200k-on-16gb",
+      "target": "tag:kv-cache",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwen38-27b-200k-on-16gb",
+      "target": "tag:llama-cpp",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwen38-27b-200k-on-16gb",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwen38-27b-200k-on-16gb",
+      "target": "tag:long-context",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwen38-27b-200k-on-16gb",
+      "target": "tag:quantization",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwen38-27b-200k-on-16gb",
+      "target": "tag:qwen",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwen38-27b-200k-on-16gb",
+      "target": "tag:unsloth",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwen38-27b-200k-on-16gb",
+      "target": "tag:vram-optimization",
+      "relation": "tagged"
+    },
+    {
       "source": "rag-retrieval-recipe",
       "target": "cat:agent-pattern",
       "relation": "categorized"
@@ -26816,6 +28626,61 @@
     {
       "source": "ruff",
       "target": "tag:static-analysis",
+      "relation": "tagged"
+    },
+    {
+      "source": "rustdesk",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "rustdesk",
+      "target": "remote-control",
+      "relation": "overlaps"
+    },
+    {
+      "source": "rustdesk",
+      "target": "tag:cross-platform",
+      "relation": "tagged"
+    },
+    {
+      "source": "rustdesk",
+      "target": "tag:encryption",
+      "relation": "tagged"
+    },
+    {
+      "source": "rustdesk",
+      "target": "tag:flutter",
+      "relation": "tagged"
+    },
+    {
+      "source": "rustdesk",
+      "target": "tag:p2p",
+      "relation": "tagged"
+    },
+    {
+      "source": "rustdesk",
+      "target": "tag:remote-desktop",
+      "relation": "tagged"
+    },
+    {
+      "source": "rustdesk",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "rustdesk",
+      "target": "tag:self-hosted",
+      "relation": "tagged"
+    },
+    {
+      "source": "rustdesk",
+      "target": "tag:teamviewer-alternative",
+      "relation": "tagged"
+    },
+    {
+      "source": "rustdesk",
+      "target": "tag:wayland",
       "relation": "tagged"
     },
     {
@@ -27469,6 +29334,56 @@
       "relation": "tagged"
     },
     {
+      "source": "six-ai-engineer-projects",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "six-ai-engineer-projects",
+      "target": "tag:agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "six-ai-engineer-projects",
+      "target": "tag:curriculum",
+      "relation": "tagged"
+    },
+    {
+      "source": "six-ai-engineer-projects",
+      "target": "tag:evals",
+      "relation": "tagged"
+    },
+    {
+      "source": "six-ai-engineer-projects",
+      "target": "tag:fine-tuning",
+      "relation": "tagged"
+    },
+    {
+      "source": "six-ai-engineer-projects",
+      "target": "tag:guardrails",
+      "relation": "tagged"
+    },
+    {
+      "source": "six-ai-engineer-projects",
+      "target": "tag:learning-projects",
+      "relation": "tagged"
+    },
+    {
+      "source": "six-ai-engineer-projects",
+      "target": "tag:llmops",
+      "relation": "tagged"
+    },
+    {
+      "source": "six-ai-engineer-projects",
+      "target": "tag:portfolio",
+      "relation": "tagged"
+    },
+    {
+      "source": "six-ai-engineer-projects",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
       "source": "skill-orchestrator-shell",
       "target": "cat:agent-pattern",
       "relation": "categorized"
@@ -28036,6 +29951,66 @@
     {
       "source": "sota-scan",
       "target": "tag:skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "spacetimedb",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "spacetimedb",
+      "target": "tag:database",
+      "relation": "tagged"
+    },
+    {
+      "source": "spacetimedb",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "spacetimedb",
+      "target": "tag:multiplayer",
+      "relation": "tagged"
+    },
+    {
+      "source": "spacetimedb",
+      "target": "tag:realtime",
+      "relation": "tagged"
+    },
+    {
+      "source": "spacetimedb",
+      "target": "tag:relational",
+      "relation": "tagged"
+    },
+    {
+      "source": "spacetimedb",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "spacetimedb",
+      "target": "tag:serverless-architecture",
+      "relation": "tagged"
+    },
+    {
+      "source": "spacetimedb",
+      "target": "tag:subscriptions",
+      "relation": "tagged"
+    },
+    {
+      "source": "spacetimedb",
+      "target": "tag:unity",
+      "relation": "tagged"
+    },
+    {
+      "source": "spacetimedb",
+      "target": "tag:unreal",
+      "relation": "tagged"
+    },
+    {
+      "source": "spacetimedb",
+      "target": "tag:wasm",
       "relation": "tagged"
     },
     {
@@ -29164,6 +31139,71 @@
       "relation": "tagged"
     },
     {
+      "source": "titans-atlas-cronus",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "titans-atlas-cronus",
+      "target": "claude-mem",
+      "relation": "overlaps"
+    },
+    {
+      "source": "titans-atlas-cronus",
+      "target": "mempalace",
+      "relation": "overlaps"
+    },
+    {
+      "source": "titans-atlas-cronus",
+      "target": "memstack",
+      "relation": "overlaps"
+    },
+    {
+      "source": "titans-atlas-cronus",
+      "target": "tag:agent-infrastructure",
+      "relation": "tagged"
+    },
+    {
+      "source": "titans-atlas-cronus",
+      "target": "tag:durable-execution",
+      "relation": "tagged"
+    },
+    {
+      "source": "titans-atlas-cronus",
+      "target": "tag:local-first",
+      "relation": "tagged"
+    },
+    {
+      "source": "titans-atlas-cronus",
+      "target": "tag:mcp-server",
+      "relation": "tagged"
+    },
+    {
+      "source": "titans-atlas-cronus",
+      "target": "tag:persistent-memory",
+      "relation": "tagged"
+    },
+    {
+      "source": "titans-atlas-cronus",
+      "target": "tag:proprietary",
+      "relation": "tagged"
+    },
+    {
+      "source": "titans-atlas-cronus",
+      "target": "tag:provenance",
+      "relation": "tagged"
+    },
+    {
+      "source": "titans-atlas-cronus",
+      "target": "tag:scheduling",
+      "relation": "tagged"
+    },
+    {
+      "source": "titans-atlas-cronus",
+      "target": "tag:workflow-engine",
+      "relation": "tagged"
+    },
+    {
       "source": "tolvi",
       "target": "cat:framework",
       "relation": "categorized"
@@ -29284,6 +31324,51 @@
       "relation": "overlaps"
     },
     {
+      "source": "tracer-bullets-vertical-slices",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "tracer-bullets-vertical-slices",
+      "target": "tag:agent-workflow",
+      "relation": "tagged"
+    },
+    {
+      "source": "tracer-bullets-vertical-slices",
+      "target": "tag:feedback-loops",
+      "relation": "tagged"
+    },
+    {
+      "source": "tracer-bullets-vertical-slices",
+      "target": "tag:kanban",
+      "relation": "tagged"
+    },
+    {
+      "source": "tracer-bullets-vertical-slices",
+      "target": "tag:matt-pocock",
+      "relation": "tagged"
+    },
+    {
+      "source": "tracer-bullets-vertical-slices",
+      "target": "tag:planning",
+      "relation": "tagged"
+    },
+    {
+      "source": "tracer-bullets-vertical-slices",
+      "target": "tag:task-decomposition",
+      "relation": "tagged"
+    },
+    {
+      "source": "tracer-bullets-vertical-slices",
+      "target": "tag:tracer-bullets",
+      "relation": "tagged"
+    },
+    {
+      "source": "tracer-bullets-vertical-slices",
+      "target": "tag:vertical-slices",
+      "relation": "tagged"
+    },
+    {
       "source": "trigger-tree",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -29386,6 +31471,66 @@
     {
       "source": "trinity-coordinator",
       "target": "tag:sakana-ai",
+      "relation": "tagged"
+    },
+    {
+      "source": "trivy",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "trivy",
+      "target": "crowdsec",
+      "relation": "overlaps"
+    },
+    {
+      "source": "trivy",
+      "target": "tag:containers",
+      "relation": "tagged"
+    },
+    {
+      "source": "trivy",
+      "target": "tag:devsecops",
+      "relation": "tagged"
+    },
+    {
+      "source": "trivy",
+      "target": "tag:go",
+      "relation": "tagged"
+    },
+    {
+      "source": "trivy",
+      "target": "tag:iac",
+      "relation": "tagged"
+    },
+    {
+      "source": "trivy",
+      "target": "tag:kubernetes",
+      "relation": "tagged"
+    },
+    {
+      "source": "trivy",
+      "target": "tag:sbom",
+      "relation": "tagged"
+    },
+    {
+      "source": "trivy",
+      "target": "tag:secrets-detection",
+      "relation": "tagged"
+    },
+    {
+      "source": "trivy",
+      "target": "tag:security-scanner",
+      "relation": "tagged"
+    },
+    {
+      "source": "trivy",
+      "target": "tag:supply-chain",
+      "relation": "tagged"
+    },
+    {
+      "source": "trivy",
+      "target": "tag:vulnerabilities",
       "relation": "tagged"
     },
     {

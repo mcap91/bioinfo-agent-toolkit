@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-09-04",
-  "count": 424,
+  "generated": "2026-09-11",
+  "count": 449,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -264,6 +264,57 @@
       "security_flags": [],
       "reviewed": "2026-08-09",
       "path": "catalog/entries/agent-first-architecture.md"
+    },
+    {
+      "name": "agent-harness-meta-harness-terminology",
+      "title": "Agent vs Harness vs Meta-Harness (terminology)",
+      "url": "https://example.com",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Explainer resolving why Claude Code and Codex are called both 'agents' and 'harnesses' — model is the reasoning engine, agent is the emergent goal-directed behavior, harness is the operational machinery (context assembly, tools, execution, sessions, approvals, sandboxing); introduces 'meta-harness' as Omnigent's term for a layer wrapping multiple harnesses behind one interface with shared orchestration, policy, state, and cost controls",
+      "body_summary": "A short explainer on why \"agent\" and \"harness\" both correctly describe Claude Code and Codex — they name different views of one running system:\n\n- **Model** — the reasoning engine (Claude/GPT predicting tokens).\n- **Agent** — the goal-directed behavior that emerges when a model can choose steps,…",
+      "tags": [
+        "terminology",
+        "harness",
+        "agents",
+        "meta-harness",
+        "claude-code",
+        "codex",
+        "subagents",
+        "omnigent",
+        "architecture"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-forum-content",
+      "security_flags": [],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/agent-harness-meta-harness-terminology.md"
+    },
+    {
+      "name": "agent-identity-borrowed-credentials",
+      "title": "Agents on Borrowed Credentials (NIST-attributed note)",
+      "url": "https://example.com",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Short social-media note attributing to NIST the claim that most agents run on borrowed (human) credentials, prescribing per-agent identity, short-lived keys, approval gates before production, and separate logs per session; also claims Anthropic froze an RL run for a month after sandbox escapes; closes with 'direct your agents or they direct themselves' — claims unsourced in the post itself",
+      "body_summary": "A compressed social-media post making four prescriptive points about agent identity, attributed to NIST guidance:\n\n1. Most agents today run on **borrowed credentials** — a human's or a service account's inherited access.\n2. Every agent needs its **own identity**, with **short-lived keys**.\n3.…",
+      "tags": [
+        "agent-security",
+        "identity",
+        "credentials",
+        "nist",
+        "least-privilege",
+        "audit-logs",
+        "approval-gates",
+        "governance"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-forum-content",
+      "security_flags": [
+        "unsourced-claims"
+      ],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/agent-identity-borrowed-credentials.md"
     },
     {
       "name": "agent-link",
@@ -558,6 +609,57 @@
       "path": "catalog/entries/agentic-resource-discovery.md"
     },
     {
+      "name": "agentic-workflow-youtubers",
+      "title": "YouTubers for Agentic Workflow Building (community picks)",
+      "url": "https://reddit.com",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Community-recommended YouTube creators for practical agentic-workflow content — Cody Schneider (outreach automation breakdowns), David Ondrej (n8n/make.com step-by-step with error handling), Matthew Berman (self-hosting agent frameworks incl. Docker setup and failure points), Nick Saraev (obscure automation triggers turned into business processes); requester also names Bilawal Sidhu, Greg Isenberg, Ras Mic as the desired non-salesy style",
+      "body_summary": "A resource-request thread asking for non-salesy, real-use-case YouTube creators covering agentic workflow building (the asker's existing reference points: Cody Schneider, Bilawal Sidhu, Greg Isenberg, Ras Mic). The recommendations, with stated reasons:\n\n- **Cody Schneider** — confirmed pick; skips…",
+      "tags": [
+        "youtube",
+        "creators",
+        "agentic-workflows",
+        "n8n",
+        "automation",
+        "self-hosting",
+        "learning-resources",
+        "community-picks"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-forum-content",
+      "security_flags": [],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/agentic-workflow-youtubers.md"
+    },
+    {
+      "name": "ai-agent-sandbox-ranking",
+      "title": "AI Agent Sandbox Ranking (SmolVM, Microsandbox, OpenSandbox, E2B)",
+      "url": "https://github.com/CelestoAI/SmolVM",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Practitioner ranking of open-source sandboxes for AI agents by a SmolVM maintainer (disclosed bias) — criteria are ease of setup, snapshotting, fork/clone, pause/resume, Linux+macOS support, and computer-use/desktop workflows; ranks SmolVM > Microsandbox > OpenSandbox > E2B and argues 'best sandbox' depends on whether agents need persistent state, browsers, or desktops rather than just code execution",
+      "body_summary": "A forum post comparing open-source sandbox options for AI agents, written by someone who works on CelestoAI/SmolVM (disclosed up front). Evaluation criteria: easy startup, snapshotting, fork/clone from saved state, pause/resume, cross-OS support (Linux + macOS), and support for computer-use agents…",
+      "tags": [
+        "sandbox",
+        "agent-infrastructure",
+        "smolvm",
+        "microsandbox",
+        "opensandbox",
+        "e2b",
+        "snapshotting",
+        "computer-use",
+        "comparison"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-forum-content",
+      "security_flags": [
+        "author-affiliation-bias"
+      ],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/ai-agent-sandbox-ranking.md"
+    },
+    {
       "name": "ai-engineering-skills-map",
       "title": "The AI Engineering Skills Map",
       "url": "https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map",
@@ -672,6 +774,34 @@
       "security_flags": [],
       "reviewed": "2026-07-06",
       "path": "catalog/entries/ai-work-receipt.md"
+    },
+    {
+      "name": "aider",
+      "title": "Aider",
+      "url": "https://github.com/Aider-AI/aider",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Terminal AI pair-programming tool (Python) — edits code in a local git repo via chat with cloud or local LLMs, builds a repo map for large codebases, auto-commits each change with sensible messages, runs linters/tests after edits; 100+ languages, voice-to-code, image/web-page context; Apache-2.0, ~49k stars, last pushed May 2026",
+      "body_summary": "Aider is one of the earliest and most widely used terminal AI pair-programming tools (created May 2023 by Paul Gauthier). It runs as a chat REPL inside a git repository: the user asks for changes, aider sends relevant files plus a repository map to an LLM, applies the returned edits directly to the working tree, and automatically commits each change with a generated commit message so every AI edit is diffable and revertible with normal git tooling.\n\nCore capabilities:\n\n- **Model connectivity:** works with most cloud LLMs (Claude, GPT/o-series, DeepSeek, Gemini) and local models; provider selected via `--model` and `--api-key` flags (litellm under the hood)\n- **Repo map:** builds a ranked map of the entire codebase (tree-sitter based) so the model has cross-file context in large projects without sending every file\n- **Git integration:** auto-commit per change, easy undo/diff via familiar git commands\n- **Lint/test loop:** optionally runs linters and test suites after each edit and feeds failures back for fixing\n- **Input modalities:** voice-to-code, images and web pages as chat context, IDE integration via \"AI comments\" in code\n- **Copy/paste mode:** structured workflow for using web-chat-only LLMs without API access",
+      "tags": [
+        "coding-agent",
+        "terminal",
+        "pair-programming",
+        "git",
+        "repo-map",
+        "python",
+        "multi-provider",
+        "local-llm",
+        "cli-tool"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "stale-4-months",
+        "high-open-issue-count"
+      ],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/aider.md"
     },
     {
       "name": "airllm",
@@ -1680,6 +1810,35 @@
       "security_flags": [],
       "reviewed": "2026-08-02",
       "path": "catalog/entries/build-your-own-x.md"
+    },
+    {
+      "name": "builderio-skills",
+      "title": "Builder Skills (BuilderIO/skills)",
+      "url": "https://github.com/BuilderIO/skills",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Builder.io's pack of 15 composable agent skills (visual-plan, visual-recap, webmcp, agent-watchdog, plan-arbiter, efficient-fable, rewind, quick-recap, etc.) installable via npx @agent-native/skills across Claude Code, Codex, Cursor, Pi, OpenCode, and Copilot; doubles as a Claude Code / Cowork plugin marketplace; MIT, ~4.2k stars",
+      "body_summary": "A collection of 15 small, composable skills for coding agents from Builder.io, published under the \"Agent-Native\" brand (agent-native.com). Installs via `npx @agent-native/skills@latest add` (interactive picker) into the shared `.agents` path used by Codex, Pi, Cursor, OpenCode, GitHub Copilot/VS Code, plus Claude Code's native skills path. The repo is also a Claude Code and Cowork plugin marketplace (`/plugin marketplace add BuilderIO/skills`).\n\nThe skills:\n\n- `/an` — open and operate Agent-Native apps (e.g. Slides) beside the conversation via a Dispatch MCP server (`https://dispatch.agent-native.com/mcp`)\n- `/webmcp` — open web apps in the host's built-in browser and prefer the page's MCP/WebMCP tools (`window.__agentNativeWebMcp`) over UI automation; one screen read, one smallest mutation, one readback\n- `/visual-plan` — turn text plans into interactive MDX visual plans (diagrams, file maps, annotated code, open questions) viewed with the Agent-Native plans app; hosted links or local-files mode via a localhost bridge\n- `/visual-recap` — turn a branch/commit/PR diff into an interactive visual recap (annotated diffs, diagrams, API/schema summaries, file maps); optional GitHub Action generates one per PR\n- `/visual-edit` — open a running local app as URL-backed iframe screens for visual inspection and source-backed editing\n- `/rewind` — recover recent local screen context (transcripts, OCR, frames) through the Clips Desktop app's `clips-screen-memory` MCP connection; macOS only, capture opt-in\n- `/agent-watchdog` — audit another agent's work from a session transcript, PR, branch, or run summary\n- `/plan-arbiter` — compare competing agent plans and output a decision memo (winning/hybrid plan, rejected alternatives, verification gates)\n- `/plow-ahead` — proceed through ordinary ambiguity with conservative assumptions and a decision recap\n- `/efficient-fable` / `/efficient-frontier` — reserve the expensive model (Claude Fable or any frontier model) for orchestration and judgment; delegate token-heavy research, coding, testing, and log reduction to cheaper agents\n- `/stay-within-limits` — track 5-hour/weekly usage limits and pause at 95%\n- `/quick-recap` — end every response with a green/yellow/red status block\n- `/read-the-damn-docs` — web-search authoritative docs before guessing from stale model memory\n- `/turn-into-app` — convert the current thread or a skill into a runnable Agent-Native app",
+      "tags": [
+        "skills",
+        "claude-code",
+        "codex",
+        "cursor",
+        "plugin-marketplace",
+        "visual-plans",
+        "orchestration",
+        "mcp",
+        "agent-native",
+        "builder-io"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "hosted-service-default",
+        "screen-capture-integration"
+      ],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/builderio-skills.md"
     },
     {
       "name": "building-evals-anthropic",
@@ -2717,6 +2876,35 @@
       "path": "catalog/entries/codex-ssd-write-bug.md"
     },
     {
+      "name": "comfyui",
+      "title": "ComfyUI",
+      "url": "https://github.com/comfy-org/comfyui",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Node-graph GUI, API, and backend for diffusion/generative-media models (Python/PyTorch) — build image/video/audio/3D pipelines visually from modular nodes (samplers, ControlNet, LoRA, upscalers), with smart partial re-execution, low-VRAM offloading, workflows saved as reproducible JSON (embedded in generated PNGs), a headless API mode, custom-node ecosystem via ComfyUI-Manager, and a cross-platform desktop app; GPL-3.0, ~132k stars, Comfy-Org backed",
+      "body_summary": "ComfyUI is the de-facto standard open-source interface for running diffusion and generative-media models as **node graphs**: checkpoints, samplers, conditioning, ControlNets, LoRAs, VAEs, upscalers, and post-processing are nodes wired into executable pipelines. It supports the full modern model zoo — Stable Diffusion 1.x/SDXL/SD3, Flux, video models (Hunyuan, Wan, LTX, Mochi), audio and 3D generation — on NVIDIA/AMD/Intel/Apple Silicon, with aggressive VRAM management (model offloading and smart caching let large models run on small GPUs; `--lowvram`/`--cpu` fallbacks).\n\nOnly changed subgraphs re-execute between runs. Every generated PNG embeds its full workflow JSON, making outputs self-documenting and drag-to-reproduce. A queue-based HTTP/WebSocket API runs workflows headless, which is how agent pipelines and hosted services drive it programmatically.",
+      "tags": [
+        "diffusion",
+        "stable-diffusion",
+        "image-generation",
+        "video-generation",
+        "node-graph",
+        "pytorch",
+        "python",
+        "workflow",
+        "low-vram",
+        "api"
+      ],
+      "workflows": [],
+      "license": "GPL-3.0",
+      "security_flags": [
+        "custom-node-supply-chain",
+        "workflow-json-code-execution-history"
+      ],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/comfyui.md"
+    },
+    {
       "name": "community-skills-stack-2026",
       "title": "Community Agent Skills Stack (2026 Curated List)",
       "category": "reference",
@@ -3164,6 +3352,29 @@
       "path": "catalog/entries/deepseek-and-destroy.md"
     },
     {
+      "name": "deepseek-harness-code-vs-config",
+      "title": "DeepSeek Harness — Code vs Config (Stephen G. Pope's framing)",
+      "url": "https://example.com",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Explainer of the DeepSeek Harness design shift as described by Stephen G. Pope — instead of defining an agent's tools, prompts, model, and loop in application code (requiring rebuild/redeploy to change), the harness moves that behavior into configuration the running system can hot-reload, letting a coding agent modify its own behavior and create/adjust tools without a release process; characterized as early but notable for agent builders",
+      "body_summary": "Most coding agents share one loop: send the model a message with a system prompt and tool registry, then keep passing conversation history and tool results back through the LLM. The **DeepSeek Harness** shift, per Stephen G. Pope's explanation, is \"code versus config\": rather than defining the…",
+      "tags": [
+        "harness",
+        "deepseek",
+        "configuration",
+        "hot-reload",
+        "agent-architecture",
+        "self-modification",
+        "coding-agents"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-forum-content",
+      "security_flags": [],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/deepseek-harness-code-vs-config.md"
+    },
+    {
       "name": "deepseek-harness",
       "title": "DeepSeek Harness (dsh)",
       "url": "https://github.com/deepseek-ai/deepseek-harness",
@@ -3308,6 +3519,31 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/distill.md"
+    },
+    {
+      "name": "docker-alternatives-for-ai-agents",
+      "title": "Docker Alternatives for AI Agents: Podman, bwrap, Firejail",
+      "url": "https://grigio.org/docker-alternatives-for-ai-agents-podman-bwrap-and-firejail/",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Blog comparison (grigio.org, Jul 2026) of Podman, Bubblewrap, and Firejail as agent-sandboxing alternatives to Docker — decision matrix over startup time, isolation strength, attack surface, profiles, and portability; recommends Podman for production agent services, bwrap for per-command local sandboxes, Firejail for desktop agents",
+      "body_summary": "Blog post (Luigi, grigio.org, 27 Jul 2026) arguing Docker is a poor default for AI coding agents: agents run short-lived commands rather than long-lived servers, need isolation from SSH keys rather than port mapping, and need fast startup (a 3-second Docker spin-up is slow when an agent launches 20…",
+      "tags": [
+        "sandbox",
+        "podman",
+        "bubblewrap",
+        "firejail",
+        "agent-security",
+        "linux",
+        "isolation",
+        "comparison",
+        "docker-alternative"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-blog-content",
+      "security_flags": [],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/docker-alternatives-for-ai-agents.md"
     },
     {
       "name": "docling-mcp",
@@ -3770,6 +4006,33 @@
       "path": "catalog/entries/fable-agent-orchestration.md"
     },
     {
+      "name": "fable-orchestrator-model-split",
+      "title": "Fable as Orchestrator — Role-per-Model Split with Ticketed Review Loop",
+      "url": "https://reddit.com",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Practitioner workflow for stretching Claude Fable usage limits by making Fable the orchestrator, not the worker — Haiku scouts locations, Sonnet researches and builds from specs, Opus refutes/reviews and debugs; extended with a ticket loop where an ephemeral Opus hand implements in a worktree, a cold Fable reviewer issues ACCEPT/REWORK verdicts, green-suite merges auto-revert on red, and the lead cuts releases",
+      "body_summary": "A practitioner's account of running Claude Fable \"on High basically all the time\" (90% Fable usage) without burning through limits, by making Fable the orchestrator rather than the worker. The role split:\n\n- **Fable — orchestrator:** plans, writes specs, spins up agents, reads their reports, makes…",
+      "tags": [
+        "orchestration",
+        "model-routing",
+        "claude-fable",
+        "opus",
+        "sonnet",
+        "haiku",
+        "cost-optimization",
+        "worktree",
+        "code-review",
+        "ticket-loop",
+        "multi-agent"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-forum-content",
+      "security_flags": [],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/fable-orchestrator-model-split.md"
+    },
+    {
       "name": "fable-orchestrator-pattern",
       "title": "Fable Orchestrator Pattern (Multi-Model Delegation)",
       "category": "agent-pattern",
@@ -3838,6 +4101,31 @@
       "security_flags": [],
       "reviewed": "2026-06-26",
       "path": "catalog/entries/fast-bioinformatics-tool-replacements.md"
+    },
+    {
+      "name": "fastapi",
+      "title": "FastAPI",
+      "url": "https://github.com/fastapi/fastapi",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "High-performance async Python web framework built on Starlette + Pydantic — declares request/response contracts via standard Python type hints, generating validation, serialization, and OpenAPI/JSON Schema docs (Swagger UI, ReDoc) automatically; dependency-injection system, WebSockets, background tasks; MIT, ~102k stars, created 2018 by Sebastián Ramírez, actively maintained",
+      "body_summary": "FastAPI is a Python web framework for building HTTP APIs where the request/response contract is declared with standard Python type hints. Pydantic models drive validation, serialization, and automatic interactive documentation (OpenAPI/JSON Schema, served via Swagger UI and ReDoc); Starlette provides the async ASGI core (routing, WebSockets, middleware, background tasks). Endpoints are plain (async) functions with typed parameters; a hierarchical dependency-injection system handles auth, DB sessions, and shared resources.",
+      "tags": [
+        "web-framework",
+        "python",
+        "async",
+        "rest-api",
+        "openapi",
+        "pydantic",
+        "starlette",
+        "type-hints",
+        "dependency-injection"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/fastapi.md"
     },
     {
       "name": "faster-whisper",
@@ -3933,6 +4221,34 @@
       "security_flags": [],
       "reviewed": "2026-08-17",
       "path": "catalog/entries/firecrawl.md"
+    },
+    {
+      "name": "firejail",
+      "title": "Firejail",
+      "url": "https://github.com/netblue30/firejail",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "SUID Linux sandbox in C — restricts untrusted applications via namespaces, seccomp-bpf, capabilities, and optional Landlock/AppArmor/SELinux; 1,300+ bundled per-application profiles, desktop integration via firecfg, no daemon; GPL-2.0, ~7.6k stars, actively maintained since 2015",
+      "body_summary": "Firejail is a lightweight Linux sandbox for running potentially untrusted applications in a restricted environment. It is an SUID program that gives a process and its descendants a private view of shared kernel resources (network stack, process table, mount table) using Linux namespaces, seccomp-bpf syscall filtering, and capability dropping. It integrates with AppArmor, SELinux, and cgroups, and has experimental Landlock LSM support (`--landlock` flags) for unprivileged filesystem restriction.\n\nUsage is prefix-style: `firejail /usr/bin/firefox`. It sandboxes servers, GUI applications, and even login sessions. `sudo firecfg` integrates it into the desktop by symlinking supported applications so launchers transparently run sandboxed — over 900 applications are covered by default, with 1,342 bundled security profiles in `/etc/firejail/`.",
+      "tags": [
+        "sandbox",
+        "linux",
+        "security",
+        "namespaces",
+        "seccomp",
+        "landlock",
+        "apparmor",
+        "isolation",
+        "suid"
+      ],
+      "workflows": [],
+      "license": "GPL-2.0",
+      "security_flags": [
+        "suid-root-binary",
+        "cve-history"
+      ],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/firejail.md"
     },
     {
       "name": "first-principles-destructor",
@@ -4264,6 +4580,37 @@
       ],
       "reviewed": "2026-08-25",
       "path": "catalog/entries/godogen.md"
+    },
+    {
+      "name": "gods-eye-view",
+      "title": "God's Eye View",
+      "url": "https://github.com/bilawalsidhu/gods-eye-view",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Browser-based open-source spatial-intelligence globe (vanilla JS + CesiumJS + Vite) fusing live public feeds — 11k+ aircraft, ships, satellites, earthquakes, fires, ~800 public CCTV cameras, radio, launches — onto a photorealistic 3D Earth, with an OpenAI Realtime voice agent (28 tools) for hands-free control; keyless baseline, MIT per README; ~24k stars, #1 GitHub Trending Aug 2026",
+      "body_summary": "God's Eye View (Bilawal Sidhu and Sameh Khamis, Halfpixel; formerly WorldView) is a \"spy-satellite simulator\" that runs locally in the browser and fuses live public data onto a photorealistic 3D globe: 11,000+ live aircraft (OpenSky/adsb.lol), military ADS-B traffic, global ships (AISStream), an 838-object satellite catalog (CelesTrak, SGP4-propagated), USGS earthquakes, NASA FIRMS fires, ~800 public CCTV cameras projected into 3D space (Austin/Caltrans/TfL), geolocated world radio, bikeshare, rocket launches, and bundled static datasets (4,351 datacenters, 704 dams, 712 submarine cables). Thirteen layers; eleven work with no API key.\n\nA realtime voice agent (OpenAI Realtime API, 28 tools) flies the camera, annotates real boundaries, answers analyst queries against live layers (\"Which ships are headed to Oakland?\"), and operates the console hands-free. Features include click-to-track with trails and telemetry, cockpit mode riding live flights over real terrain, GLSL sensor styles (NVG, FLIR, CRT), detection overlays, a military HUD, scene director, and shareable state URLs.",
+      "tags": [
+        "osint",
+        "geospatial",
+        "spatial-intelligence",
+        "cesiumjs",
+        "3d-globe",
+        "flight-tracking",
+        "voice-agent",
+        "openai-realtime",
+        "satellite-tracking",
+        "javascript",
+        "local-first"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "lan-sharing-key-exposure",
+        "metered-api-spend",
+        "data-source-terms-vary"
+      ],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/gods-eye-view.md"
     },
     {
       "name": "google-knowledge-catalog",
@@ -5054,6 +5401,30 @@
       "path": "catalog/entries/inbox-zero.md"
     },
     {
+      "name": "internal-agent-permission-sprawl",
+      "title": "Internal Bot Leaked the Unannounced Reorg Plan (permission sprawl)",
+      "url": "https://reddit.com",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Incident writeup — an internal Q&A assistant scoped 'to read the wiki' answered with a confidential reorg spreadsheet including salary bands, because a broad Drive grant at setup indexed the HR folder; a follow-up audit found another wiki-summarizer bot holding inherited delete access and send-as-mail rights from its creator's account; thesis: over-broad access is itself the incident — 'an agent that can read everything will eventually read the thing it shouldn't'",
+      "body_summary": "A discussion post recounting two related findings at one company:\n\n1. **The leak.** An internal assistant meant to answer from an approved knowledge base responded to a team-structure question with details from an unannounced reorg spreadsheet, including salary bands. Root cause: at setup, the bot…",
+      "tags": [
+        "agent-security",
+        "least-privilege",
+        "permissions",
+        "oauth-scopes",
+        "data-leak",
+        "internal-tools",
+        "access-audit",
+        "inherited-permissions"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-forum-content",
+      "security_flags": [],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/internal-agent-permission-sprawl.md"
+    },
+    {
       "name": "isaacflath-ocr-guides",
       "title": "Isaac Flath — Documents in AI Products (OCR Pipeline Guides)",
       "category": "reference",
@@ -5128,6 +5499,34 @@
       ],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/jcode.md"
+    },
+    {
+      "name": "jit-agent",
+      "title": "JIT-Agent (Just-in-Time Harness Evolution)",
+      "url": "https://github.com/bingreeky/JIT",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Research meta-agent (arXiv 2608.25593) that generates a task-specific agent harness on the fly — given a task spec, protocol, and tool registry it emits executable harness code factored into memory/planning/action/capability modules against shared HarnessFactory interfaces, revises it from execution traces, and selects among N candidates by judge or logprob; ships a JIT-27B meta-model checkpoint and 7 benchmark adapters; Python, ~440 stars",
+      "body_summary": "JIT-Agent (\"Scaling Harness Intelligence via Just-in-Time Harness Evolution,\" arXiv 2608.25593, Zhang et al. 2026) is a research meta-agent that writes the agent harness itself, per task, instead of using one precompiled general-purpose scaffold. Given a task spec, a protocol, a tool/skill registry, and a few retrieved prior harnesses, it emits an executable task-specific harness that wraps any off-the-shelf agentic LLM — the authors call this \"Model-as-a-Harness.\"\n\nEvery generated harness is factored into four modules — memory, planning, action, and capability orchestration — implemented against shared interfaces in `HarnessFactory`, so generation means emitting structured code rather than free-form agent programs. As traces and feedback return, JIT-Agent revises the harness and updates an archive: harnesses improve at test time while the generator stays frozen. The published JIT-Agent-27B checkpoint reportedly lifts a range of backbone agents across deep research, daily work, planning, and workspace tasks.",
+      "tags": [
+        "meta-agent",
+        "harness-generation",
+        "agent-research",
+        "harness",
+        "benchmark",
+        "vllm",
+        "code-generation",
+        "arxiv",
+        "model-as-a-harness"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [
+        "generated-code-execution",
+        "unclear-license"
+      ],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/jit-agent.md"
     },
     {
       "name": "karakeep",
@@ -5290,6 +5689,32 @@
       "security_flags": [],
       "reviewed": "2026-08-31",
       "path": "catalog/entries/kv-cache-vram-sizing.md"
+    },
+    {
+      "name": "landlock-lsm",
+      "title": "Landlock LSM (org and ecosystem)",
+      "url": "https://github.com/landlock-lsm",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "GitHub org for Landlock, the Linux security module (kernel 5.13+) letting unprivileged processes irreversibly restrict their own filesystem/network access — hosts rust-landlock and go-landlock libraries, the island CLI sandboxing tool (Rust, Apache-2.0), landlockconfig, kernel dev tree, test tools, and the landlock.io site",
+      "body_summary": "Landlock is a Linux Security Module (mainlined in kernel 5.13, 2021) that lets **unprivileged** processes create sandboxes restricting their own access to the filesystem (and, in newer kernel versions, network and IPC scopes). Restrictions are stackable, inherited by all children, and can never be removed once applied — a process opts itself in, requiring either `CAP_SYS_ADMIN` or the No New Privileges flag. It is the kernel-native building block that tools like Firejail (`--landlock`) and various agent sandboxes wrap.\n\nThe `landlock-lsm` GitHub org hosts the ecosystem:\n\n- **rust-landlock** — Rust library for the Landlock API (used by other sandboxing tools); actively updated\n- **go-landlock** — Go library (MIT, ~360 stars)\n- **island** — a standalone CLI sandboxing tool powered by Landlock (Rust, Apache-2.0, ~324 stars): run a command under a filesystem-restricted policy without containers or root\n- **landlockconfig** — declarative Landlock policy configuration format (in development)\n- **linux** — kernel development tree for the LSM itself\n- **landlock-test-tools**, **workshop-imagemagick** — testing and tutorial material\n- **landlock-lsm.github.io** — the landlock.io documentation site",
+      "tags": [
+        "landlock",
+        "linux",
+        "sandbox",
+        "lsm",
+        "kernel",
+        "security",
+        "rust",
+        "go",
+        "unprivileged",
+        "isolation"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/landlock-lsm.md"
     },
     {
       "name": "langflow",
@@ -5624,6 +6049,33 @@
       "security_flags": [],
       "reviewed": "2026-08-17",
       "path": "catalog/entries/lora-peft-guide.md"
+    },
+    {
+      "name": "manim",
+      "title": "Manim (3b1b)",
+      "url": "https://github.com/3b1b/manim",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Grant Sanderson's (3Blue1Brown) Python animation engine for explanatory math videos — scenes are Python classes composing Mobjects (LaTeX, shapes, graphs, 3D surfaces) with animations rendered via OpenGL, including an interactive live-preview mode; this is the original personal version, distinct from the community-maintained fork ManimCE; MIT, ~94k stars",
+      "body_summary": "Manim (\"mathematical animation\") is the animation engine Grant Sanderson wrote and uses to produce 3Blue1Brown videos. A scene is a Python class whose `construct` method builds and animates **Mobjects** — LaTeX/Tex text, geometric shapes, function graphs, vector fields, 3D surfaces — with a rich transformation vocabulary (Transform, FadeIn, Write, morphing between formulas). This repo (ManimGL) renders via OpenGL with an interactive mode: a live window, `self.embed()` IPython breakpoints inside scenes, and camera control during preview.",
+      "tags": [
+        "animation",
+        "mathematics",
+        "visualization",
+        "python",
+        "latex",
+        "opengl",
+        "education",
+        "video-generation",
+        "3blue1brown"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "personal-project-api-instability"
+      ],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/manim.md"
     },
     {
       "name": "markitdown",
@@ -6349,6 +6801,34 @@
       ],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/n8n-mcp.md"
+    },
+    {
+      "name": "n8n",
+      "title": "n8n",
+      "url": "https://github.com/n8n-io/n8n",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Fair-code workflow automation platform (TypeScript) — visual node-based editor plus custom JS/Python code, 400+ integrations, native AI/agent capabilities (LangChain-based AI nodes, MCP client and server support), triggers/webhooks/schedules; self-hostable via Docker or paid n8n Cloud; Sustainable Use License + n8n Enterprise License (fair-code, not OSI open source); ~204k stars",
+      "body_summary": "n8n is a workflow automation platform combining a visual node-graph editor with custom code (JavaScript/Python nodes). Workflows connect 400+ built-in integrations (SaaS APIs, databases, files, messaging) through triggers (webhooks, schedules, app events) and data-transforming nodes. Native AI capabilities are first-class: LangChain-based AI Agent nodes, model nodes for all major providers, vector-store nodes, and MCP support in both directions (n8n as MCP client calling external tools; n8n exposing workflows as an MCP server) — reflected in its `mcp`, `mcp-client`, `mcp-server` repo topics.\n\nDeployment is self-hosted (Docker, npm) or the paid n8n Cloud. The visual editor, execution history, credential vault, and error-workflow mechanics are the operational core.",
+      "tags": [
+        "workflow-automation",
+        "low-code",
+        "integrations",
+        "self-hosted",
+        "ai-agents",
+        "mcp",
+        "typescript",
+        "ipaas",
+        "fair-code"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-SUL-fair-code",
+      "security_flags": [
+        "fair-code-license-restrictions",
+        "workflow-credential-store"
+      ],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/n8n.md"
     },
     {
       "name": "nanogpt",
@@ -7997,6 +8477,34 @@
       "path": "catalog/entries/qwen3-8-27b-uncensored-hauhaucs-aggressive-gguf.md"
     },
     {
+      "name": "qwen38-27b-200k-on-16gb",
+      "title": "Qwen 3.8 27B at 200K Context on 16GB VRAM (tutorial)",
+      "url": "https://huggingface.co/unsloth/Qwen3.8-27B-GGUF",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Practitioner recipe for running Qwen 3.8 27B UD-IQ4_XS at ~196K context and 50 t/s on a single RTX 5070 Ti (16GB) — prune non-ASCII rows from the embedding table and LM head (~700MB, ASCII-condensed variant published), offload the embedding table to CPU, disable MTP, use adaptive-KV streaming (llama.cpp fork) to page KV cache from host RAM, and quantize cache Q8 K / Q4 V",
+      "body_summary": "A tutorial post for fitting Qwen 3.8 27B with ~196K tokens of context on a 16GB consumer GPU (RTX 5070 Ti, Ryzen 7 9700X, Windows 11) at ~50 t/s, stacking five techniques:\n\n1. **Base quant:** Unsloth's UD-IQ4_XS GGUF of Qwen3.8-27B.\n2. **Embedding/LM-head pruning:** since Qwen3.8 reasons…",
+      "tags": [
+        "qwen",
+        "local-inference",
+        "llama-cpp",
+        "quantization",
+        "kv-cache",
+        "long-context",
+        "vram-optimization",
+        "gguf",
+        "unsloth",
+        "embedding-pruning"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-forum-content",
+      "security_flags": [
+        "community-modified-weights"
+      ],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/qwen38-27b-200k-on-16gb.md"
+    },
+    {
       "name": "rag-retrieval-recipe",
       "title": "RAG Retrieval Recipe",
       "url": "https://en.wikipedia.org/wiki/Retrieval-augmented_generation",
@@ -8270,6 +8778,33 @@
       ],
       "reviewed": "2026-07-27",
       "path": "catalog/entries/ruff.md"
+    },
+    {
+      "name": "rustdesk",
+      "title": "RustDesk",
+      "url": "https://github.com/rustdesk/rustdesk",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source remote desktop application (Rust core, Flutter UI) designed for self-hosting as a TeamViewer/AnyDesk alternative — end-to-end encrypted P2P with relay fallback, cross-platform (Windows/macOS/Linux incl. Wayland, iOS, Android, web), self-hostable rendezvous/relay server (hbbs/hbbr) so no traffic touches vendor infrastructure; AGPL-3.0, ~123k stars",
+      "body_summary": "RustDesk is a full remote-desktop application — screen sharing, keyboard/mouse control, file transfer, clipboard sync, audio — positioned as a self-hostable alternative to TeamViewer/AnyDesk. The client is a Rust core with a Flutter UI running on Windows, macOS, Linux (X11 and Wayland), iOS, Android, plus a web client. Connections are end-to-end encrypted (NaCl-based) and go peer-to-peer when NAT allows, falling back to a relay.\n\nThe defining feature is the self-hosted server pair: **hbbs** (ID/rendezvous server) and **hbbr** (relay), both open source and runnable via Docker on a small VPS — giving full control of the signaling and relay path with no dependency on vendor infrastructure. Public rendezvous servers operated by the RustDesk company are the zero-config default.",
+      "tags": [
+        "remote-desktop",
+        "self-hosted",
+        "rust",
+        "flutter",
+        "p2p",
+        "encryption",
+        "teamviewer-alternative",
+        "cross-platform",
+        "wayland"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0",
+      "security_flags": [
+        "remote-access-tool-abuse-surface"
+      ],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/rustdesk.md"
     },
     {
       "name": "ruview-wifi-sensing",
@@ -8622,6 +9157,31 @@
       "path": "catalog/entries/sira.md"
     },
     {
+      "name": "six-ai-engineer-projects",
+      "title": "Six AI Engineer Skills as Six Named Company Problems",
+      "url": "https://example.com",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Curriculum-as-project-list framing six AI engineering skills as named, production-shaped builds: RAG (Fieldnote — answers from the chart on page 112, not its caption), Agents (Casefile — claims triage with typed handoffs, cost ceiling, human before payout), LLMOps (Warmstart — 3-layer cache over 400k questions/month with measured false-hit rate), Evals (Groundtruth — legal-research harness failing the PR when recall drops), Fine-tuning (Slotfill — LoRA on 40k freight invoices benchmarked against the prompt it replaces), Guardrails (Doorman — recruiting agent surviving resume-embedded injection)",
+      "body_summary": "A list pairing each of six AI-engineer skills with a project defined as \"a company problem with a name, not a tutorial\":\n\n1. **RAG → Fieldnote** — field-service assistant that answers from the chart on page 112 instead of a caption of it (layout-aware retrieval, not text-only).\n2. **Agents →…",
+      "tags": [
+        "learning-projects",
+        "rag",
+        "agents",
+        "llmops",
+        "evals",
+        "fine-tuning",
+        "guardrails",
+        "curriculum",
+        "portfolio"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-forum-content",
+      "security_flags": [],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/six-ai-engineer-projects.md"
+    },
+    {
       "name": "skill-orchestrator-shell",
       "title": "Skill Orchestrator Shell (Instruction-Shell Pattern)",
       "category": "agent-pattern",
@@ -8936,6 +9496,35 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/sota-scan.md"
+    },
+    {
+      "name": "spacetimedb",
+      "title": "SpacetimeDB",
+      "url": "https://github.com/clockworklabs/spacetimedb",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Relational database that is also the application server (Clockwork Labs, Rust) — schema + business logic compile into a WASM module running inside the database, clients connect directly and subscribe to tables with automatic real-time state sync; ACID with in-memory state plus commit log; modules in Rust/C#/TypeScript/C++, client SDKs for web/Unity/Unreal; powers the BitCraft Online MMORPG backend; BUSL-1.1 (→AGPL-3.0 with linking exception), ~25k stars",
+      "body_summary": "SpacetimeDB (Clockwork Labs) collapses the database and application server into one system: you upload application logic directly into the database and clients connect to it with no server in between. A module — written in Rust, C#, TypeScript, or C++ — defines **tables** (data) and **reducers** (logic/API endpoints); SpacetimeDB compiles it, runs it inside the database, and pushes state changes to subscribed clients automatically (no polling or refetching). Permission/authorization logic lives in the module.\n\nIt provides full ACID guarantees with all application state in memory for speed and a disk commit log for durability and crash recovery. The stated proof point: the entire backend of the MMORPG BitCraft Online — chat, items, terrain, player positions — runs as one SpacetimeDB module synchronized to thousands of players in real time.",
+      "tags": [
+        "database",
+        "realtime",
+        "relational",
+        "rust",
+        "wasm",
+        "game-development",
+        "multiplayer",
+        "subscriptions",
+        "serverless-architecture",
+        "unity",
+        "unreal"
+      ],
+      "workflows": [],
+      "license": "BUSL-1.1",
+      "security_flags": [
+        "busl-license-restrictions"
+      ],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/spacetimedb.md"
     },
     {
       "name": "spiderbrain-v3",
@@ -9535,6 +10124,35 @@
       "path": "catalog/entries/tiktoken.md"
     },
     {
+      "name": "titans-atlas-cronus",
+      "title": "Titans (Atlas + Cronus)",
+      "url": "https://github.com/titans-tools",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Local-first, agent-first infrastructure pair from a solo AI-assisted builder — Atlas is persistent project memory (knowledge packages, typed graph, evidence/provenance, SQL, blobs, audit history; retrieval blends lexical + vector + graph + evidence, scoped per project/tenant), Cronus is durable execution (DAG workflows, scheduling, checkpoints, at-least-once retries with lease fencing, dead-letter, approval gates); shared MCP server over stdio plus REST/gRPC; free binaries, proprietary source, signed releases (SHA-256 + Ed25519); Windows/Linux",
+      "body_summary": "A builder's writeup of Titans, a local-first infrastructure project extracting the plumbing every agent system rebuilds — persistent memory, retrieval, provenance, background execution, retries, scheduling, workflow state, coordination — into reusable services agents consume. Development was…",
+      "tags": [
+        "agent-infrastructure",
+        "persistent-memory",
+        "durable-execution",
+        "mcp-server",
+        "scheduling",
+        "provenance",
+        "local-first",
+        "workflow-engine",
+        "proprietary"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-proprietary",
+      "security_flags": [
+        "closed-source",
+        "single-maintainer",
+        "curl-pipe-sh-installer"
+      ],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/titans-atlas-cronus.md"
+    },
+    {
       "name": "tolvi",
       "title": "Tolvi — Engineering Decision Vault",
       "url": "https://github.com/tolvi-labs/tolvi",
@@ -9588,6 +10206,30 @@
       "path": "catalog/entries/torchtune.md"
     },
     {
+      "name": "tracer-bullets-vertical-slices",
+      "title": "Tracer Bullets / Vertical Slices for Agent Plans",
+      "url": "https://thedailyai.news/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Matt Pocock's argument (via thedailyai.news clip) that AI coding agents fail on horizontal layer-by-layer plans (database → API → frontend) for lack of an integrated feedback loop; the fix is the Pragmatic Programmer 'tracer bullet' idea — thin vertical tasks that cross database, service, and frontend to prove the whole flow, reframing work from 'complete phase 1' to 'ship one visible, testable slice'",
+      "body_summary": "A thedailyai.news clip summary of Matt Pocock's point about why AI coding agents fail: usually not because the task is \"too hard,\" but because they are handed **horizontal plans** — database first, API next, frontend last — and code layer by layer with no integrated feedback loop until the end.…",
+      "tags": [
+        "planning",
+        "vertical-slices",
+        "tracer-bullets",
+        "agent-workflow",
+        "task-decomposition",
+        "feedback-loops",
+        "kanban",
+        "matt-pocock"
+      ],
+      "workflows": [],
+      "license": "LicenseRef-news-content",
+      "security_flags": [],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/tracer-bullets-vertical-slices.md"
+    },
+    {
       "name": "trigger-tree",
       "title": "trigger-tree",
       "url": "https://github.com/Hedde/trigger_tree",
@@ -9635,6 +10277,32 @@
       "security_flags": [],
       "reviewed": "2026-09-04",
       "path": "catalog/entries/trinity-coordinator.md"
+    },
+    {
+      "name": "trivy",
+      "title": "Trivy",
+      "url": "https://github.com/aquasecurity/trivy",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Aqua Security's all-in-one security scanner (Go) — finds vulnerabilities (OS packages + language dependencies), IaC misconfigurations, secrets, and licenses across container images, filesystems, git repos, VM images, Kubernetes clusters, and AWS accounts; generates and scans SBOMs (SPDX/CycloneDX); single static binary, offline-capable DB, CI-native; Apache-2.0, ~38k stars",
+      "body_summary": "Trivy is the most widely used open-source security scanner, covering multiple **targets** — container images, local filesystems/rootfs, git repositories, VM images, Kubernetes clusters, AWS accounts — and multiple **scanners** per target:\n\n- **Vulnerabilities:** OS packages (Alpine, Debian/Ubuntu, RHEL, etc.) and language dependencies (npm, PyPI, Go modules, Cargo, Maven, and more) against aggregated advisory databases\n- **Misconfigurations:** IaC scanning for Terraform, CloudFormation, Kubernetes manifests, Helm charts, Dockerfiles (absorbed the former tfsec engine)\n- **Secrets:** hardcoded credentials, API keys, tokens\n- **Licenses:** dependency license detection\n- **SBOM:** generates and consumes SPDX and CycloneDX",
+      "tags": [
+        "security-scanner",
+        "vulnerabilities",
+        "containers",
+        "sbom",
+        "secrets-detection",
+        "iac",
+        "kubernetes",
+        "devsecops",
+        "supply-chain",
+        "go"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-10",
+      "path": "catalog/entries/trivy.md"
     },
     {
       "name": "trl",
