@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11T00:52:53.185Z",
+  "generated_at": "2026-09-14T04:15:38.651Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -18,6 +18,16 @@
       "url": "https://example.com",
       "summary": ">-",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "actual-budget",
+      "kind": "entry",
+      "title": "Actual Budget",
+      "url": "https://github.com/actualbudget/actual",
+      "summary": "Local-first open-source personal finance app with envelope budgeting — NodeJS, sync across devices, self-hosted (Docker/Fly.io/PikaPods) or local desktop apps (Windows/Mac/Linux); community-driven with i18n via Weblate; MIT",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -211,6 +221,16 @@
       "title": "AgentChassis — contract-first orchestration for long-running coding agents",
       "url": "https://github.com/agent-chassis/agent-chassis",
       "summary": "Contract-first orchestration that splits agentic coding into non-overlapping orchestrator/worker/reviewer roles under one rule: the agent that defines the work cannot implement it. Every task is a durable work record stating scope, acceptance criteria, and validation before any code is written; a task missing those is rejected before any model runs (deterministic check, no model call). Workers are confined to their declared file scope (Linux bwrap sandbox where available); reviewers check each change against its contract; every run records honest enforcement provenance (enforced true/false plus isolation backend). Parallel agents run on non-overlapping scopes without collision, interrupted tasks resume from their record, and the repo accumulates an engineering record of what was planned, why, and whether it passed. Drives multiple agent CLIs (Codex, Claude, and more) through a typed MCP interface. Source-available under Elastic License 2.0 as public @agent-chassis/* npm packages; an optional hosted Chassis Control Engine (CCE, private beta) adds org-level admission and signed attestation.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "agentconnect",
+      "kind": "entry",
+      "title": "AgentConnect",
+      "url": "https://github.com/agentconnect-md/agentconnect",
+      "summary": "Open-source multi-agent platform where teams and AI agents collaborate across Slack, Telegram, Discord, Lark, GitHub, GitLab, Gitea, and Linear — agents can call one another, carry memory/skills, and work from messages, issues, PRs, webhooks, or schedules; supports Claude Code, Codex, Grok Build, DeepSeek, Pi, and any ACP-compatible runtime; self-hosted Docker/K8s; Apache-2.0",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -431,6 +451,16 @@
       "exists": true
     },
     {
+      "id": "anything2explainer",
+      "kind": "entry",
+      "title": "anything2explainer",
+      "url": "https://github.com/Vincentwei1021/anything2explainer",
+      "summary": "Claude Code / Codex skill that turns any topic into a narrated motion-graphics explainer video (1280×720 H.264) — 9-stage pipeline: research → narration → TTS voiceover → storyboard → parallel build agents writing Remotion (React/TS) components per shot → QC; black-canvas white-line-art style, word-boundary-aligned subtitles, chapter progress bar; Chinese and English; 1–3 hours wall clock; PolyForm Noncommercial",
+      "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "aperture-cli",
       "kind": "entry",
       "title": "Aperture CLI",
@@ -447,6 +477,16 @@
       "url": "https://apito.ai/en/blog/tools/mcp-stateless-architecture-apito/",
       "summary": "Vendor explainer of the MCP 2026-07-28 stateless spec, used as content marketing for apito.ai — a third-party 'model-access layer' that resells/proxies Claude and Claude-compatible API traffic (migrate by swapping the request domain from claudeapi.com to an apito.ai endpoint). Proposes a 3-layer agent architecture (model access / tool connection = MCP / business workflow). Security caution: routing keys, prompts, and completions through a non-Anthropic proxy is a trust-boundary/data-exposure risk; spec claims are secondary vendor-sourced.",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "archify",
+      "kind": "entry",
+      "title": "Archify",
+      "url": "https://github.com/tt-a1i/archify",
+      "summary": "Agent skill that turns codebase descriptions or system architectures into polished, interactive HTML/SVG diagrams — five diagram types (architecture, workflow, sequence, data-flow, lifecycle), typed JSON IR, deterministic validation, delta comparison for PR review, share-card export; installs into Claude Code / Codex / Cursor / OpenCode; MIT",
+      "category": "skill",
       "decision_status": "open",
       "exists": true
     },
@@ -1278,6 +1318,16 @@
       "exists": true
     },
     {
+      "id": "codex-workflow",
+      "kind": "entry",
+      "title": "Codex Workflow (viettran-edgeAI)",
+      "url": "https://github.com/viettran-edgeAI/codex_workflow",
+      "summary": "Multi-agent orchestration architecture for Codex/Claude Code optimizing token usage within plan limits — 7 specialized roles (Main Agent, Companion/Luna, Investigator, Default Executor/Luna max, Senior Executor/Sol, Tester, Archivist) with fine-tuned batching, knowledge distribution via task-completion guides, and built-in per-agent token reporting; Sol xhigh ran 4h22m at 90% of 5h limit vs Astra at 260%; MIT",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "comfyui",
       "kind": "entry",
       "title": "ComfyUI",
@@ -1497,6 +1547,16 @@
       "exists": true
     },
     {
+      "id": "deepseek-v4-flash-kv-cache-architecture",
+      "kind": "entry",
+      "title": "DeepSeek V4.1 Flash KV Cache Architecture",
+      "url": "https://arxiv.org/abs/2505.09343",
+      "summary": "DeepSeek V4.1 Flash transformer architecture redesign targeting KV cache reduction — Cross-layer Encoder-Decoder (CED) splits 20 encoder + 20 decoder layers so prompt tokens skip decoder entirely; cross-layer attention sharing (Full/Reindex/Reuse modes) shares KV across layers; global cache compressed to FP4 with 128-token bounded replay for local states; 4x smaller global cache, 8x smaller persistent cache vs V4 Flash",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "deny-env-reads",
       "kind": "entry",
       "title": "Deny .env Reads via Permissions",
@@ -1563,6 +1623,16 @@
       "url": "https://github.com/docling-project/docling-mcp",
       "summary": "MCP server for document conversion, processing, and generation via the Docling library — converts PDFs and other documents into structured DoclingDocument JSON with OCR, table structure detection, and image handling; supports local, remote (Docling Serve), and hybrid modes; RAG integrations with Milvus, LlamaIndex, and LlamaStack; LF AI & Data project from IBM Research Zurich, MIT, 730+ stars",
       "category": "mcp-server",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "documenso",
+      "kind": "entry",
+      "title": "Documenso",
+      "url": "https://github.com/documenso/documenso",
+      "summary": "Open-source DocuSign alternative for digital document signing — self-hostable TypeScript/React Router v7/Hono/Prisma stack with PDF signature support (@libpdf/core), i18n, Stripe billing, E2E tests (Playwright); Docker/K8s/Railway deployment; AGPL-3.0",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -2145,6 +2215,16 @@
       "url": "https://github.com/garrytan/gstack",
       "summary": "kb dispatch covers the relevant orchestration patterns; browser/deployment out of scope",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "gvs5h-ledger-orchestration",
+      "kind": "entry",
+      "title": "GVS5H — Ledger-Based Zero-Shot Self-Orchestration",
+      "url": "https://github.com/slee-persis/GVS5H",
+      "summary": "Training-free multi-agent coding method where fresh instances of one model decompose problems and coordinate through a shared filesystem (plan, notes, current solution); Qwen3.8-27B rises from 69.2% to 92.4% pass@1 on LiveCodeBench Hard (exceeding Fable 5's 90.4%); GPT-5.6-Terra reaches 88.0% at 19% of Fable 5's cost; gains attributed to decomposition and persistent context; MIT/CC-BY-4.0",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -2829,6 +2909,16 @@
       "url": "https://github.com/Blaizzy/mlx-vlm/pull/858",
       "summary": "Production-quality Metal kernels implementing TurboQuant on Apple Silicon; benchmarked and ready for review but PR not yet merged",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "mmeb-benchmark",
+      "kind": "entry",
+      "title": "MMEB — Massive Multimodal Embedding Benchmark",
+      "url": "https://github.com/TIGER-AI-Lab/VLM2Vec",
+      "summary": "Comprehensive benchmark for evaluating omni-modality embedding models — V1 covers 36 image-text datasets across classification/VQA/retrieval/grounding; V2 adds video and visual document tasks (78 total); V3 extends to audio, text retrieval, and agent-centric tasks (190 total); introduced alongside VLM2Vec; TIGER-AI-Lab, ICLR 2025 → TMLR/COLM 2026",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -3597,6 +3687,16 @@
       "exists": true
     },
     {
+      "id": "rag-architecture-decision-tree",
+      "kind": "entry",
+      "title": "RAG Architecture Decision Tree",
+      "url": "https://en.wikipedia.org/wiki/Retrieval-augmented_generation",
+      "summary": "Diagnostic framework for choosing among 8 RAG architectures (Naive, Hybrid, Reranked, Multi-Query, Hierarchical, Corrective, Graph, Agentic) based on observed failure modes — treat RAG like debugging: let Naive fail first, watch how it fails, then pick the architecture that fixes that specific symptom; measure retrieval separately from generation",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "rag-retrieval-recipe",
       "kind": "entry",
       "title": "RAG Retrieval Recipe",
@@ -3817,12 +3917,32 @@
       "exists": true
     },
     {
+      "id": "sglang",
+      "kind": "entry",
+      "title": "SGLang",
+      "url": "https://github.com/sgl-project/sglang",
+      "summary": "High-performance LLM/VLM serving framework from UC Berkeley/LMSYS — RadixAttention automatically reuses KV cache across requests with shared prefixes via radix tree, achieving 75–95% cache hit rates on multi-turn agent workloads; structured generation language for constrained decoding; powers 400K+ GPUs in production (xAI, NVIDIA, AMD, LinkedIn); part of PyTorch ecosystem; Apache-2.0",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "shannon",
       "kind": "entry",
       "title": "Shannon (AI Pentester)",
       "url": "https://github.com/KeygraphHQ/shannon",
       "summary": "Autonomous white-box AI pentester that analyzes source code and executes real exploits against web apps/APIs; AGPL-3.0, proof-by-exploitation reports, but actively mutates target state and requires authorization context",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "shrimply",
+      "kind": "entry",
+      "title": "Shrimply",
+      "url": "https://github.com/soirihiroka/shrimply",
+      "summary": "Cross-platform GPU-accelerated video editor in Rust — GTK 4 / libadwaita UI, Skia + wgpu + Slang + CUDA rendering, FFmpeg media, PipeWire audio, Python compute server; requires NVIDIA or Apple Silicon GPU; pre-alpha; GPL-3.0+",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -4324,6 +4444,11 @@
       "exists": true
     },
     {
+      "id": "tag:acp",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ad-blocking",
       "kind": "tag",
       "exists": true
@@ -4500,6 +4625,11 @@
     },
     {
       "id": "tag:agent-research",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:agent-retrieval",
       "kind": "tag",
       "exists": true
     },
@@ -4904,6 +5034,11 @@
       "exists": true
     },
     {
+      "id": "tag:astra",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:astral",
       "kind": "tag",
       "exists": true
@@ -4920,6 +5055,11 @@
     },
     {
       "id": "tag:attention",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:attention-sharing",
       "kind": "tag",
       "exists": true
     },
@@ -5214,6 +5354,11 @@
       "exists": true
     },
     {
+      "id": "tag:budgeting",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:buildah",
       "kind": "tag",
       "exists": true
@@ -5320,6 +5465,11 @@
     },
     {
       "id": "tag:cheminformatics",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:chinese",
       "kind": "tag",
       "exists": true
     },
@@ -5595,6 +5745,11 @@
     },
     {
       "id": "tag:coding-agents",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:coding-benchmark",
       "kind": "tag",
       "exists": true
     },
@@ -6219,6 +6374,11 @@
       "exists": true
     },
     {
+      "id": "tag:debugging",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:decentralized",
       "kind": "tag",
       "exists": true
@@ -6240,6 +6400,11 @@
     },
     {
       "id": "tag:decision-traces",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:decision-tree",
       "kind": "tag",
       "exists": true
     },
@@ -6310,6 +6475,11 @@
     },
     {
       "id": "tag:delegation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:delta-comparison",
       "kind": "tag",
       "exists": true
     },
@@ -6439,6 +6609,11 @@
       "exists": true
     },
     {
+      "id": "tag:discord",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:discovery",
       "kind": "tag",
       "exists": true
@@ -6524,12 +6699,22 @@
       "exists": true
     },
     {
+      "id": "tag:document-signing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:documentation",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:documents",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:docusign-alternative",
       "kind": "tag",
       "exists": true
     },
@@ -6649,6 +6834,11 @@
       "exists": true
     },
     {
+      "id": "tag:electron",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:elicitation",
       "kind": "tag",
       "exists": true
@@ -6720,6 +6910,11 @@
     },
     {
       "id": "tag:engineering-review",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:english",
       "kind": "tag",
       "exists": true
     },
@@ -6875,6 +7070,11 @@
     },
     {
       "id": "tag:expert-caching",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:explainer",
       "kind": "tag",
       "exists": true
     },
@@ -7065,6 +7265,11 @@
     },
     {
       "id": "tag:foundry",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:fp4",
       "kind": "tag",
       "exists": true
     },
@@ -7479,6 +7684,11 @@
       "exists": true
     },
     {
+      "id": "tag:gtk4",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:guacamol",
       "kind": "tag",
       "exists": true
@@ -7760,6 +7970,11 @@
     },
     {
       "id": "tag:inference-gateway",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:inference-optimization",
       "kind": "tag",
       "exists": true
     },
@@ -8154,6 +8369,11 @@
       "exists": true
     },
     {
+      "id": "tag:livecode-bench",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:llama-cpp",
       "kind": "tag",
       "exists": true
@@ -8235,6 +8455,11 @@
     },
     {
       "id": "tag:llm-server",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:llm-serving",
       "kind": "tag",
       "exists": true
     },
@@ -8779,6 +9004,11 @@
       "exists": true
     },
     {
+      "id": "tag:motion-graphics",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:mtp",
       "kind": "tag",
       "exists": true
@@ -8970,6 +9200,11 @@
     },
     {
       "id": "tag:node-graph",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:nodejs",
       "kind": "tag",
       "exists": true
     },
@@ -9399,6 +9634,11 @@
       "exists": true
     },
     {
+      "id": "tag:personal-finance",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:personal-knowledge-base",
       "kind": "tag",
       "exists": true
@@ -9475,6 +9715,11 @@
     },
     {
       "id": "tag:planning",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:platform",
       "kind": "tag",
       "exists": true
     },
@@ -9894,6 +10139,11 @@
       "exists": true
     },
     {
+      "id": "tag:radix-attention",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:rag",
       "kind": "tag",
       "exists": true
@@ -10034,6 +10284,11 @@
       "exists": true
     },
     {
+      "id": "tag:remotion",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:repo-map",
       "kind": "tag",
       "exists": true
@@ -10165,6 +10420,11 @@
     },
     {
       "id": "tag:role-assignment",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:roles",
       "kind": "tag",
       "exists": true
     },
@@ -10455,6 +10715,11 @@
     },
     {
       "id": "tag:self-modification",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:self-orchestration",
       "kind": "tag",
       "exists": true
     },
@@ -10789,6 +11054,11 @@
       "exists": true
     },
     {
+      "id": "tag:sol",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:solo-founder",
       "kind": "tag",
       "exists": true
@@ -10985,6 +11255,11 @@
     },
     {
       "id": "tag:survey",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:svg",
       "kind": "tag",
       "exists": true
     },
@@ -11389,6 +11664,11 @@
       "exists": true
     },
     {
+      "id": "tag:transformer-architecture",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:transformers",
       "kind": "tag",
       "exists": true
@@ -11654,6 +11934,11 @@
       "exists": true
     },
     {
+      "id": "tag:video-editor",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:video-generation",
       "kind": "tag",
       "exists": true
@@ -11709,7 +11994,17 @@
       "exists": true
     },
     {
+      "id": "tag:vllm-alternative",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:vlm",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:vlm2vec",
       "kind": "tag",
       "exists": true
     },
@@ -11970,6 +12265,11 @@
     },
     {
       "id": "tag:yt-dlp",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:zero-shot",
       "kind": "tag",
       "exists": true
     },
@@ -12486,6 +12786,41 @@
     {
       "source": "aaa-quality-gate-orchestration",
       "target": "tag:verification",
+      "relation": "tagged"
+    },
+    {
+      "source": "actual-budget",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "actual-budget",
+      "target": "tag:budgeting",
+      "relation": "tagged"
+    },
+    {
+      "source": "actual-budget",
+      "target": "tag:electron",
+      "relation": "tagged"
+    },
+    {
+      "source": "actual-budget",
+      "target": "tag:local-first",
+      "relation": "tagged"
+    },
+    {
+      "source": "actual-budget",
+      "target": "tag:nodejs",
+      "relation": "tagged"
+    },
+    {
+      "source": "actual-budget",
+      "target": "tag:personal-finance",
+      "relation": "tagged"
+    },
+    {
+      "source": "actual-budget",
+      "target": "tag:self-hosted",
       "relation": "tagged"
     },
     {
@@ -13306,6 +13641,66 @@
     {
       "source": "agentchassis",
       "target": "tag:work-records",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentconnect",
+      "target": "a2a-protocol",
+      "relation": "overlaps"
+    },
+    {
+      "source": "agentconnect",
+      "target": "agent-link",
+      "relation": "overlaps"
+    },
+    {
+      "source": "agentconnect",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "agentconnect",
+      "target": "tag:acp",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentconnect",
+      "target": "tag:collaboration",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentconnect",
+      "target": "tag:discord",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentconnect",
+      "target": "tag:github",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentconnect",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentconnect",
+      "target": "tag:orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentconnect",
+      "target": "tag:platform",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentconnect",
+      "target": "tag:self-hosted",
+      "relation": "tagged"
+    },
+    {
+      "source": "agentconnect",
+      "target": "tag:slack",
       "relation": "tagged"
     },
     {
@@ -14259,6 +14654,56 @@
       "relation": "tagged"
     },
     {
+      "source": "anything2explainer",
+      "target": "cat:skill",
+      "relation": "categorized"
+    },
+    {
+      "source": "anything2explainer",
+      "target": "tag:chinese",
+      "relation": "tagged"
+    },
+    {
+      "source": "anything2explainer",
+      "target": "tag:english",
+      "relation": "tagged"
+    },
+    {
+      "source": "anything2explainer",
+      "target": "tag:explainer",
+      "relation": "tagged"
+    },
+    {
+      "source": "anything2explainer",
+      "target": "tag:motion-graphics",
+      "relation": "tagged"
+    },
+    {
+      "source": "anything2explainer",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "anything2explainer",
+      "target": "tag:remotion",
+      "relation": "tagged"
+    },
+    {
+      "source": "anything2explainer",
+      "target": "tag:skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "anything2explainer",
+      "target": "tag:tts",
+      "relation": "tagged"
+    },
+    {
+      "source": "anything2explainer",
+      "target": "tag:video",
+      "relation": "tagged"
+    },
+    {
       "source": "aperture-cli",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -14346,6 +14791,51 @@
     {
       "source": "apito-ai",
       "target": "tag:vendor-blog",
+      "relation": "tagged"
+    },
+    {
+      "source": "archify",
+      "target": "cat:skill",
+      "relation": "categorized"
+    },
+    {
+      "source": "archify",
+      "target": "tag:architecture",
+      "relation": "tagged"
+    },
+    {
+      "source": "archify",
+      "target": "tag:code-review",
+      "relation": "tagged"
+    },
+    {
+      "source": "archify",
+      "target": "tag:delta-comparison",
+      "relation": "tagged"
+    },
+    {
+      "source": "archify",
+      "target": "tag:diagrams",
+      "relation": "tagged"
+    },
+    {
+      "source": "archify",
+      "target": "tag:html",
+      "relation": "tagged"
+    },
+    {
+      "source": "archify",
+      "target": "tag:skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "archify",
+      "target": "tag:svg",
+      "relation": "tagged"
+    },
+    {
+      "source": "archify",
+      "target": "tag:visualization",
       "relation": "tagged"
     },
     {
@@ -17609,6 +18099,51 @@
       "relation": "tagged"
     },
     {
+      "source": "codex-workflow",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "codex-workflow",
+      "target": "tag:astra",
+      "relation": "tagged"
+    },
+    {
+      "source": "codex-workflow",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "codex-workflow",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "codex-workflow",
+      "target": "tag:orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "codex-workflow",
+      "target": "tag:roles",
+      "relation": "tagged"
+    },
+    {
+      "source": "codex-workflow",
+      "target": "tag:sol",
+      "relation": "tagged"
+    },
+    {
+      "source": "codex-workflow",
+      "target": "tag:subagents",
+      "relation": "tagged"
+    },
+    {
+      "source": "codex-workflow",
+      "target": "tag:token-optimization",
+      "relation": "tagged"
+    },
+    {
       "source": "comfyui",
       "target": "cat:framework",
       "relation": "categorized"
@@ -18579,6 +19114,41 @@
       "relation": "tagged"
     },
     {
+      "source": "deepseek-v4-flash-kv-cache-architecture",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "deepseek-v4-flash-kv-cache-architecture",
+      "target": "tag:attention-sharing",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-v4-flash-kv-cache-architecture",
+      "target": "tag:deepseek",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-v4-flash-kv-cache-architecture",
+      "target": "tag:fp4",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-v4-flash-kv-cache-architecture",
+      "target": "tag:inference-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-v4-flash-kv-cache-architecture",
+      "target": "tag:kv-cache",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-v4-flash-kv-cache-architecture",
+      "target": "tag:transformer-architecture",
+      "relation": "tagged"
+    },
+    {
       "source": "deny-env-reads",
       "target": "cat:reference",
       "relation": "categorized"
@@ -18897,6 +19467,46 @@
       "source": "docling-mcp",
       "target": "unstructured",
       "relation": "overlaps"
+    },
+    {
+      "source": "documenso",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "documenso",
+      "target": "tag:document-signing",
+      "relation": "tagged"
+    },
+    {
+      "source": "documenso",
+      "target": "tag:docusign-alternative",
+      "relation": "tagged"
+    },
+    {
+      "source": "documenso",
+      "target": "tag:open-source",
+      "relation": "tagged"
+    },
+    {
+      "source": "documenso",
+      "target": "tag:pdf",
+      "relation": "tagged"
+    },
+    {
+      "source": "documenso",
+      "target": "tag:react",
+      "relation": "tagged"
+    },
+    {
+      "source": "documenso",
+      "target": "tag:self-hosted",
+      "relation": "tagged"
+    },
+    {
+      "source": "documenso",
+      "target": "tag:typescript",
+      "relation": "tagged"
     },
     {
       "source": "dotclaude",
@@ -21496,6 +22106,46 @@
     {
       "source": "gstack",
       "target": "tag:workflow",
+      "relation": "tagged"
+    },
+    {
+      "source": "gvs5h-ledger-orchestration",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "gvs5h-ledger-orchestration",
+      "target": "tag:coding-benchmark",
+      "relation": "tagged"
+    },
+    {
+      "source": "gvs5h-ledger-orchestration",
+      "target": "tag:cost-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "gvs5h-ledger-orchestration",
+      "target": "tag:livecode-bench",
+      "relation": "tagged"
+    },
+    {
+      "source": "gvs5h-ledger-orchestration",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "gvs5h-ledger-orchestration",
+      "target": "tag:qwen",
+      "relation": "tagged"
+    },
+    {
+      "source": "gvs5h-ledger-orchestration",
+      "target": "tag:self-orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "gvs5h-ledger-orchestration",
+      "target": "tag:zero-shot",
       "relation": "tagged"
     },
     {
@@ -24792,6 +25442,56 @@
       "source": "mlx-vlm-turboquant",
       "target": "turboquant",
       "relation": "overlaps"
+    },
+    {
+      "source": "mmeb-benchmark",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "mmeb-benchmark",
+      "target": "tag:agent-retrieval",
+      "relation": "tagged"
+    },
+    {
+      "source": "mmeb-benchmark",
+      "target": "tag:audio",
+      "relation": "tagged"
+    },
+    {
+      "source": "mmeb-benchmark",
+      "target": "tag:benchmark",
+      "relation": "tagged"
+    },
+    {
+      "source": "mmeb-benchmark",
+      "target": "tag:embeddings",
+      "relation": "tagged"
+    },
+    {
+      "source": "mmeb-benchmark",
+      "target": "tag:evaluation",
+      "relation": "tagged"
+    },
+    {
+      "source": "mmeb-benchmark",
+      "target": "tag:multimodal",
+      "relation": "tagged"
+    },
+    {
+      "source": "mmeb-benchmark",
+      "target": "tag:retrieval",
+      "relation": "tagged"
+    },
+    {
+      "source": "mmeb-benchmark",
+      "target": "tag:video",
+      "relation": "tagged"
+    },
+    {
+      "source": "mmeb-benchmark",
+      "target": "tag:vlm2vec",
+      "relation": "tagged"
     },
     {
       "source": "model-sovereignty-data-flywheel",
@@ -28154,6 +28854,41 @@
       "relation": "tagged"
     },
     {
+      "source": "rag-architecture-decision-tree",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "rag-architecture-decision-tree",
+      "target": "tag:agent-pattern",
+      "relation": "tagged"
+    },
+    {
+      "source": "rag-architecture-decision-tree",
+      "target": "tag:architecture",
+      "relation": "tagged"
+    },
+    {
+      "source": "rag-architecture-decision-tree",
+      "target": "tag:debugging",
+      "relation": "tagged"
+    },
+    {
+      "source": "rag-architecture-decision-tree",
+      "target": "tag:decision-tree",
+      "relation": "tagged"
+    },
+    {
+      "source": "rag-architecture-decision-tree",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "rag-architecture-decision-tree",
+      "target": "tag:retrieval",
+      "relation": "tagged"
+    },
+    {
       "source": "rag-retrieval-recipe",
       "target": "cat:agent-pattern",
       "relation": "categorized"
@@ -29094,6 +29829,51 @@
       "relation": "tagged"
     },
     {
+      "source": "sglang",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "sglang",
+      "target": "tag:gpu",
+      "relation": "tagged"
+    },
+    {
+      "source": "sglang",
+      "target": "tag:inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "sglang",
+      "target": "tag:kv-cache",
+      "relation": "tagged"
+    },
+    {
+      "source": "sglang",
+      "target": "tag:llm-serving",
+      "relation": "tagged"
+    },
+    {
+      "source": "sglang",
+      "target": "tag:radix-attention",
+      "relation": "tagged"
+    },
+    {
+      "source": "sglang",
+      "target": "tag:serving",
+      "relation": "tagged"
+    },
+    {
+      "source": "sglang",
+      "target": "tag:structured-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "sglang",
+      "target": "tag:vllm-alternative",
+      "relation": "tagged"
+    },
+    {
       "source": "shannon",
       "target": "cat:framework",
       "relation": "categorized"
@@ -29136,6 +29916,46 @@
     {
       "source": "shannon",
       "target": "tag:web-security",
+      "relation": "tagged"
+    },
+    {
+      "source": "shrimply",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "shrimply",
+      "target": "tag:cross-platform",
+      "relation": "tagged"
+    },
+    {
+      "source": "shrimply",
+      "target": "tag:cuda",
+      "relation": "tagged"
+    },
+    {
+      "source": "shrimply",
+      "target": "tag:ffmpeg",
+      "relation": "tagged"
+    },
+    {
+      "source": "shrimply",
+      "target": "tag:gpu",
+      "relation": "tagged"
+    },
+    {
+      "source": "shrimply",
+      "target": "tag:gtk4",
+      "relation": "tagged"
+    },
+    {
+      "source": "shrimply",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "shrimply",
+      "target": "tag:video-editor",
       "relation": "tagged"
     },
     {

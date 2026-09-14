@@ -41,3 +41,7 @@ Full args: `-ngl 99 -fa on -ctk q8_0 -ctv q4_0 -np 1 -ub 128 -b 512 -ot "token_e
 
 - `community-modified-weights` — both the pruned model and the adaptive-KV llama.cpp fork are individual community artifacts without upstream review; weights modified by a third party warrant verification against the base model before trust-sensitive use.
 - Forum tutorial; performance numbers are the author's single-machine reports.
+
+## Usage notes
+
+- **Agentic coding benchmark (Strix Halo 128GB)**: Qwen 3.8 27B Q6_K (~31 GiB) on ASUS ROG Flow Z13 (Ryzen AI Max+ 395) using llama.cpp + LlamaStash + Pi harness. 27B at xhigh scores 34 on Artificial Analysis index vs Opus 4.6's 32; one-shotted a whole feature on a large Rust codebase. Flash Next (UD-Q4_K_XL, ~86 GiB) scores 40 vs Opus 4.8's 42. MTP gives 7.3→22.4 tok/s on empty window but payoff shrinks at full context (1.15x at 256K). Key insight: thinking tokens are 90–95% of output, so Flash Next's 45% fewer tokens (76.5s vs 289.8s) matters more than tok/s. Prefill is the bottleneck — cold 31K token transcript takes 3 min, 128K ~18 min; warm follow-ups ~45s.
