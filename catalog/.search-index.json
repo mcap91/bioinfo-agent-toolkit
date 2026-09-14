@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-09-11",
-  "count": 449,
+  "generated": "2026-09-14",
+  "count": 461,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -57,6 +57,28 @@
       "security_flags": [],
       "reviewed": "2026-09-02",
       "path": "catalog/entries/aaa-quality-gate-orchestration.md"
+    },
+    {
+      "name": "actual-budget",
+      "title": "Actual Budget",
+      "url": "https://github.com/actualbudget/actual",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Local-first open-source personal finance app with envelope budgeting — NodeJS, sync across devices, self-hosted (Docker/Fly.io/PikaPods) or local desktop apps (Windows/Mac/Linux); community-driven with i18n via Weblate; MIT",
+      "body_summary": "Actual Budget is a local-first personal finance tool using envelope budgeting. Data stays on your devices with optional sync between them. Written in NodeJS with a React desktop client and Electron wrapper.\n\nDeployment options:\n- **PikaPods**: one-click hosted (~$2/month)\n- **Fly.io**: managed hosting (~$1.50/month)\n- **Docker**: self-hosted\n- **Local apps**: standalone Windows, Mac, and Linux desktop apps\n\nKey packages: `loot-core` (cross-platform core), `desktop-client` (React UI), `desktop-electron` (Electron wrapper).\n\nCommunity-driven with migration guides from other budgeting apps, extensive documentation, internationalization via Weblate, and active feature request voting.",
+      "tags": [
+        "personal-finance",
+        "budgeting",
+        "self-hosted",
+        "local-first",
+        "nodejs",
+        "electron"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-14",
+      "path": "catalog/entries/actual-budget.md"
     },
     {
       "name": "adeptly",
@@ -514,6 +536,31 @@
       "security_flags": [],
       "reviewed": "2026-08-14",
       "path": "catalog/entries/agentchassis.md"
+    },
+    {
+      "name": "agentconnect",
+      "title": "AgentConnect",
+      "url": "https://github.com/agentconnect-md/agentconnect",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source multi-agent platform where teams and AI agents collaborate across Slack, Telegram, Discord, Lark, GitHub, GitLab, Gitea, and Linear — agents can call one another, carry memory/skills, and work from messages, issues, PRs, webhooks, or schedules; supports Claude Code, Codex, Grok Build, DeepSeek, Pi, and any ACP-compatible runtime; self-hosted Docker/K8s; Apache-2.0",
+      "body_summary": "AgentConnect is an open-source platform for multi-agent and human-agent collaboration across communication and development platforms. Teams create agents with different roles, link them to bots in Slack/Telegram/Discord/Lark or repositories on GitHub/GitLab/Gitea/Linear, and let them work alongside humans in shared conversations.\n\nCore capabilities:\n- **Multi-runtime**: Claude Code, Codex, Grok Build, DeepSeek, Pi, and any ACP-compatible agent runtime run side by side\n- **Cross-platform**: agents connect to Slack, Telegram, Discord, Lark, GitHub, GitLab, Gitea, Linear\n- **Agent-to-agent**: agents can call one another within workflows\n- **Memory and knowledge**: each agent gets its own memory and skills; reviewed Knowledge is published for all agents to find on demand\n- **Triggers**: work starts from messages, issues, PRs, webhooks, or schedules\n- **Access control**: per-agent visibility, repository/tool permissions, and agent-to-agent call policies\n\nUse cases: issue triage with multi-agent investigation, cross-workspace support, recurring operations with human-in-the-loop, upstream fork monitoring, customized multi-reviewer code review.\n\nArchitecture:\n- **Daemon**: runs agents over ACP, owns workspaces/session state, maintains platform connections and schedules, sends model traffic directly\n- **Relay** (optional): accepts callback ingress and webchat, proxies MCP and OpenConnector access\n- **Control Plane + Web UI**: manages auth, config, placement, permissions, metadata, observability; stores approved organization knowledge",
+      "tags": [
+        "multi-agent",
+        "platform",
+        "slack",
+        "discord",
+        "github",
+        "orchestration",
+        "acp",
+        "collaboration",
+        "self-hosted"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-14",
+      "path": "catalog/entries/agentconnect.md"
     },
     {
       "name": "agentic-memory-benchmark",
@@ -1019,6 +1066,31 @@
       "path": "catalog/entries/anthropic-prompt-caching-guide.md"
     },
     {
+      "name": "anything2explainer",
+      "title": "anything2explainer",
+      "url": "https://github.com/Vincentwei1021/anything2explainer",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Claude Code / Codex skill that turns any topic into a narrated motion-graphics explainer video (1280×720 H.264) — 9-stage pipeline: research → narration → TTS voiceover → storyboard → parallel build agents writing Remotion (React/TS) components per shot → QC; black-canvas white-line-art style, word-boundary-aligned subtitles, chapter progress bar; Chinese and English; 1–3 hours wall clock; PolyForm Noncommercial",
+      "body_summary": "A Claude Code / Codex skill that takes a topic (or article/document) and produces a narrated motion-graphics explainer video. Every frame is drawn in code with Remotion (React + TypeScript) — no stock footage, no generative video models.\n\n**Output**: 1280×720 @ 30fps H.264 MP4 with synchronized voiceover, word-boundary-aligned subtitles, chapter cards, top HUD, bottom chapter progress bar, and full paper trail (research doc with source URLs, narration, storyboard, per-shot source code, QC reports).\n\n**Pipeline** (9 stages, 4 human checkpoints):\n1. Scaffold Remotion project from template\n2. Research agent produces sourced research doc\n3. Narration & TTS voiceover with frame-accurate timeline\n4. Storyboard: one line per shot with frame range, beat, visuals, motion\n5. Overlays & primitives (title, chapter cards, HUD, icons)\n6. Pilot: first shot group → 30-second preview cut for approval\n7. Parallel build: remaining groups, 5–7 shots per agent, pure-function Remotion components\n8. Full render + quantitative frame metrics\n9. QC agents per chapter, fix agents per group, re-verification\n\n**Scale by length**:\n\n| Length | Lines/shots | Build agents | Wall clock |\n|---|---|---|---|\n| 2–3 min | 24–32 | 4–6 | ~1 h |\n| 3–5 min | 40–50 | 8 | ~2 h |\n| 5–8 min | 60–80 | 10–14 | ~2–3 h |\n\n**Languages**: Chinese (edge-tts Yunxi) and English (kokoro-82m Liam), with alternative TTS engines supported (kokoro-onnx, piper, edge, or bring-your-own audio).\n\n**Visual style**: black canvas, white line art with purple accents, ultra-bold headline type. Two backdrop options (star-field + fog gradient, or dot-field wave). Deterministic rendering — pure functions of frame number with seeded randomness.",
+      "tags": [
+        "video",
+        "explainer",
+        "remotion",
+        "tts",
+        "motion-graphics",
+        "skill",
+        "multi-agent",
+        "chinese",
+        "english"
+      ],
+      "workflows": [],
+      "license": "PolyForm-Noncommercial-1.0.0",
+      "security_flags": [],
+      "reviewed": "2026-09-14",
+      "path": "catalog/entries/anything2explainer.md"
+    },
+    {
       "name": "aperture-cli",
       "title": "Aperture CLI",
       "url": "https://github.com/tailscale/aperture-cli",
@@ -1072,6 +1144,30 @@
       ],
       "reviewed": "2026-08-10",
       "path": "catalog/entries/apito-ai.md"
+    },
+    {
+      "name": "archify",
+      "title": "Archify",
+      "url": "https://github.com/tt-a1i/archify",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Agent skill that turns codebase descriptions or system architectures into polished, interactive HTML/SVG diagrams — five diagram types (architecture, workflow, sequence, data-flow, lifecycle), typed JSON IR, deterministic validation, delta comparison for PR review, share-card export; installs into Claude Code / Codex / Cursor / OpenCode; MIT",
+      "body_summary": "Archify is a Node.js rendering and validation system that agents use to produce interactive architecture diagrams. The agent generates typed JSON IR from a description or codebase; Archify deterministically compiles it into self-contained HTML with SVG visuals, motion, and export capabilities.\n\nFive diagram types:\n- **Architecture**: components, services, storage, trust boundaries\n- **Workflow**: CI/CD, approvals, tool calls, runbooks (lane-based)\n- **Sequence**: API calls, cache fallback, auth, async traces\n- **Data Flow**: pipelines, lineage, PII boundaries, consumers\n- **Lifecycle**: states, retries, waits, terminal outcomes\n\nKey capabilities:\n- **Delta comparison**: compare two validated architecture snapshots as Before / Delta / After with machine receipts of added/removed/changed/moved/rerouted facts\n- **Validation pipeline**: schema, layout, HTML/SVG, route, and label-to-route clearance checks must all pass before output replaces the last known good artifact\n- **Interactive viewer**: search nodes, trace upstream/downstream reach, probe directed routes, compare semantic roles, play guided stories\n- **Export**: PNG, SVG, WebM, 1200×630 share cards; dark/light themes; four visual presets (signal-flow, blueprint, classic, grid)\n- **Source evidence mode**: nodes can link to Git-verified files and line ranges pinned to a specific commit\n- **Live preview**: loopback-only desktop watcher that refreshes only verified revisions\n\nInstallation: `npx skills add tt-a1i/archify -g`. Works with Claude Code, Codex CLI, Cursor, OpenCode, Raven, and DeepSeek Harness.\n\nCLI: `node archify/bin/archify.mjs` with subcommands `doctor`, `demo`, `guide`, `validate`, `preview`, `deliver`, `compare`.",
+      "tags": [
+        "diagrams",
+        "architecture",
+        "visualization",
+        "skill",
+        "svg",
+        "html",
+        "code-review",
+        "delta-comparison"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-14",
+      "path": "catalog/entries/archify.md"
     },
     {
       "name": "architect-loop",
@@ -2876,6 +2972,30 @@
       "path": "catalog/entries/codex-ssd-write-bug.md"
     },
     {
+      "name": "codex-workflow",
+      "title": "Codex Workflow (viettran-edgeAI)",
+      "url": "https://github.com/viettran-edgeAI/codex_workflow",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Multi-agent orchestration architecture for Codex/Claude Code optimizing token usage within plan limits — 7 specialized roles (Main Agent, Companion/Luna, Investigator, Default Executor/Luna max, Senior Executor/Sol, Tester, Archivist) with fine-tuned batching, knowledge distribution via task-completion guides, and built-in per-agent token reporting; Sol xhigh ran 4h22m at 90% of 5h limit vs Astra at 260%; MIT",
+      "body_summary": "A multi-agent orchestration architecture for Codex (and adaptable to Claude Code) that optimizes token usage to run complex tasks within plan time/token limits. Developed through hundreds of trials over months of iteration.\n\n**7 specialized roles**:\n\n| Role | Model | Responsibility | Qty |\n|---|---|---|---|\n| Main Agent | session-selected | Primary orchestrator, high-level decisions, knowledge distribution | 1 |\n| Companion | Luna xhigh | Persistent secretary — reduces context pressure by handling supporting context, organizing info, consolidating reports | 1 |\n| Investigator | Luna xhigh | Research specialist — searches for evidence, documentation, prior art, including web | As needed |\n| Default Executor | Luna max | Implementation worker — coding, modifications, integration | As needed |\n| Senior Executor | Sol medium | High-capability specialist for complex/high-impact work (algorithms, architecture) | 1 max |\n| Tester | Luna max | Independent verification — designs/runs tests, validates requirements | As needed |\n| Archivist | Luna xhigh | Documentation, Git handoff, end-of-deployment token report | 1 per deployment |\n\n**Key design principles**:\n- Flexibility: provides resources and guidance without forcing rigid process\n- Knowledge distribution: each task package includes a task-completion guide\n- Batching guidelines prevent excessive main agent rollout\n- Addresses the problem of main agent waking workers too often\n- Built-in end-of-session token statistics per agent\n\n**Benchmark** (comprehensive OCR + AI chatbot upgrade on Jetson Orin Nano):\n- Sol xhigh: 4h22m runtime, 90% of 5h limit, 15% weekly limit, 6.2% uncached tokens, 60% cost share\n- Astra: 2h30m runtime, 260% of 5h limit, 43% weekly limit, 14.2% uncached tokens, 88% cost share\n- Conclusion: Sol is more comprehensive with better verification; Astra finds core problems better but costs 4–7x more",
+      "tags": [
+        "orchestration",
+        "multi-agent",
+        "codex",
+        "token-optimization",
+        "roles",
+        "subagents",
+        "sol",
+        "astra"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-14",
+      "path": "catalog/entries/codex-workflow.md"
+    },
+    {
       "name": "comfyui",
       "title": "ComfyUI",
       "url": "https://github.com/comfy-org/comfyui",
@@ -3404,6 +3524,28 @@
       "path": "catalog/entries/deepseek-harness.md"
     },
     {
+      "name": "deepseek-v4-flash-kv-cache-architecture",
+      "title": "DeepSeek V4.1 Flash KV Cache Architecture",
+      "url": "https://arxiv.org/abs/2505.09343",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "DeepSeek V4.1 Flash transformer architecture redesign targeting KV cache reduction — Cross-layer Encoder-Decoder (CED) splits 20 encoder + 20 decoder layers so prompt tokens skip decoder entirely; cross-layer attention sharing (Full/Reindex/Reuse modes) shares KV across layers; global cache compressed to FP4 with 128-token bounded replay for local states; 4x smaller global cache, 8x smaller persistent cache vs V4 Flash",
+      "body_summary": "Documents DeepSeek V4.1 Flash's transformer architecture redesign focused on reducing KV cache memory for long-context and persistent agent memory workloads. Three key innovations:\n\n**1. Cross-layer Encoder-Decoder (CED)**: Splits the model into 20 encoder layers and 20 decoder layers. Encoder layers read the prompt and build the global cache. Prompt tokens skip the decoder layers entirely, nearly halving prompt-processing compute.\n\n**2. Cross-Layer Attention Sharing**: Three attention modes share memory across decoder layers:\n- **Full**: builds and selects cache\n- **Reindex**: shares cache with a fresh selection\n- **Reuse**: shares both cache and selection\n- Local attention still handles nearby tokens separately\n\n**3. 4-Bit Global Cache & Bounded Replay**: The global cache is compressed to FP4 (4-bit floating point). Missing local attention states are approximately reconstructed by replaying just 128 tokens.\n\nResults: 4x smaller global cache and 8x smaller persistent cache compared to V4 Flash. Enables massive context windows and persistent agent memory without exhausting GPU VRAM.",
+      "tags": [
+        "deepseek",
+        "kv-cache",
+        "transformer-architecture",
+        "inference-optimization",
+        "fp4",
+        "attention-sharing"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-14",
+      "path": "catalog/entries/deepseek-v4-flash-kv-cache-architecture.md"
+    },
+    {
       "name": "deny-env-reads",
       "title": "Deny .env Reads via Permissions",
       "url": "https://code.claude.com/docs/en/settings",
@@ -3570,6 +3712,29 @@
       "security_flags": [],
       "reviewed": "2026-09-03",
       "path": "catalog/entries/docling-mcp.md"
+    },
+    {
+      "name": "documenso",
+      "title": "Documenso",
+      "url": "https://github.com/documenso/documenso",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source DocuSign alternative for digital document signing — self-hostable TypeScript/React Router v7/Hono/Prisma stack with PDF signature support (@libpdf/core), i18n, Stripe billing, E2E tests (Playwright); Docker/K8s/Railway deployment; AGPL-3.0",
+      "body_summary": "Documenso is an open-source digital document signing platform, positioned as a self-hostable alternative to DocuSign. Built on a TypeScript stack with React Router v7, Hono server, Prisma ORM, and PostgreSQL.\n\nCore capabilities:\n- **PDF signing**: digital signatures via @libpdf/core, viewing via pdf.js, manipulation via @cantoo/pdf-lib\n- **Self-hostable**: Docker, Docker Compose, Railway, Kubernetes, or manual deployment\n- **Internationalization**: Lingui-based i18n\n- **Payments**: Stripe integration\n- **Email**: react-email templates, Inbucket for local dev\n- **UI**: shadcn/ui + Radix UI + Tailwind CSS\n\nTech stack: TypeScript, React Router v7, Hono, Prisma, tRPC, Tailwind, Playwright (E2E), Biome (linting). Requires Node.js v24+, PostgreSQL.",
+      "tags": [
+        "document-signing",
+        "self-hosted",
+        "typescript",
+        "react",
+        "pdf",
+        "open-source",
+        "docusign-alternative"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0",
+      "security_flags": [],
+      "reviewed": "2026-09-14",
+      "path": "catalog/entries/documenso.md"
     },
     {
       "name": "dotclaude",
@@ -4967,6 +5132,29 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/gstack.md"
+    },
+    {
+      "name": "gvs5h-ledger-orchestration",
+      "title": "GVS5H — Ledger-Based Zero-Shot Self-Orchestration",
+      "url": "https://github.com/slee-persis/GVS5H",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Training-free multi-agent coding method where fresh instances of one model decompose problems and coordinate through a shared filesystem (plan, notes, current solution); Qwen3.8-27B rises from 69.2% to 92.4% pass@1 on LiveCodeBench Hard (exceeding Fable 5's 90.4%); GPT-5.6-Terra reaches 88.0% at 19% of Fable 5's cost; gains attributed to decomposition and persistent context; MIT/CC-BY-4.0",
+      "body_summary": "GVS5H introduces ledger-based zero-shot self-orchestration — a training-free method where fresh instances of a single model decompose coding problems and coordinate through a shared filesystem holding a plan, notes, and current solution.\n\nResults on the 100 latest hard LiveCodeBench problems:\n- **Qwen3.8-27B** (locally served, open-weight): 69.2% → 92.4% pass@1, slightly exceeding Fable 5's 90.4%\n- **GPT-5.6-Terra**: 88.0% pass@1 at 19% of Fable 5's cost\n- Gains up to 23.2 percentage points on pinned backends\n- Gains are not universal — some models are unchanged or worse\n\nTranscript analysis attributes the gain to decomposition and persistent context. The method requires no fine-tuning or special training — it's purely an inference-time organization technique.\n\nUsage: `--engine multiagent` runs the manager orchestration; `--engine single` is the one-call baseline. Supports OpenAI, Anthropic, DashScope, and OpenRouter backends.",
+      "tags": [
+        "multi-agent",
+        "self-orchestration",
+        "coding-benchmark",
+        "livecode-bench",
+        "zero-shot",
+        "qwen",
+        "cost-optimization"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-14",
+      "path": "catalog/entries/gvs5h-ledger-orchestration.md"
     },
     {
       "name": "hackingtool-plugin",
@@ -6662,6 +6850,31 @@
       ],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/mlx-vlm-turboquant.md"
+    },
+    {
+      "name": "mmeb-benchmark",
+      "title": "MMEB — Massive Multimodal Embedding Benchmark",
+      "url": "https://github.com/TIGER-AI-Lab/VLM2Vec",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Comprehensive benchmark for evaluating omni-modality embedding models — V1 covers 36 image-text datasets across classification/VQA/retrieval/grounding; V2 adds video and visual document tasks (78 total); V3 extends to audio, text retrieval, and agent-centric tasks (190 total); introduced alongside VLM2Vec; TIGER-AI-Lab, ICLR 2025 → TMLR/COLM 2026",
+      "body_summary": "MMEB (Massive Multimodal Embedding Benchmark) is an evaluation benchmark for omni-modality embedding models. Each task is reformulated as a ranking problem: given an instruction and a query (text, image, or both), the model selects the correct answer from a candidate set. Evaluation uses Precision@1 with 1,000 candidates per task.\n\n**MMEB-V1** (ICLR 2025): 36 datasets, four meta-task categories — classification, visual question answering, retrieval, visual grounding. 20 training / 16 evaluation datasets.\n\n**MMEB-V2** (TMLR 2026): Expands to 78 tasks. Adds five new task types — visual document retrieval, video retrieval, moment retrieval, video classification, video question answering.\n\n**MMEB-V3** (COLM 2026): 190 tasks across text, image, video, audio, visual documents, and agent-centric scenarios. New categories:\n- Audio: classification, cross-modal retrieval, temporal grounding\n- Text retrieval: instruction-following, reasoning, long-context, multi-condition, general\n- Agent tasks: tool retrieval, GUI control, agent memory retrieval\n\nThe companion model VLM2Vec converts vision-language models (Phi-3.5-V, LLaVA-1.6, Qwen2-VL) into embedding models via LoRA tuning, achieving 10–20% improvement over prior multimodal embedding models.",
+      "tags": [
+        "benchmark",
+        "embeddings",
+        "multimodal",
+        "retrieval",
+        "vlm2vec",
+        "evaluation",
+        "video",
+        "audio",
+        "agent-retrieval"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-14",
+      "path": "catalog/entries/mmeb-benchmark.md"
     },
     {
       "name": "model-sovereignty-data-flywheel",
@@ -8505,6 +8718,28 @@
       "path": "catalog/entries/qwen38-27b-200k-on-16gb.md"
     },
     {
+      "name": "rag-architecture-decision-tree",
+      "title": "RAG Architecture Decision Tree",
+      "url": "https://en.wikipedia.org/wiki/Retrieval-augmented_generation",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Diagnostic framework for choosing among 8 RAG architectures (Naive, Hybrid, Reranked, Multi-Query, Hierarchical, Corrective, Graph, Agentic) based on observed failure modes — treat RAG like debugging: let Naive fail first, watch how it fails, then pick the architecture that fixes that specific symptom; measure retrieval separately from generation",
+      "body_summary": "A practitioner framework for selecting the right RAG architecture by diagnosing the failure mode of a simpler one, rather than stacking tools blindly.\n\nThe core method: start with Naive RAG, observe how it fails, then choose the architecture that addresses that specific failure:\n\n| Failure symptom | Architecture fix |\n|---|---|\n| Keyword/ID matches vanish (semantic-only misses exact terms) | **Hybrid** (combine semantic + keyword search) |\n| Correct document exists but ranks too low | **Reranked** (add a reranker after initial retrieval) |\n| Different phrasings of the same question give different answers | **Multi-Query** (generate multiple query variants) |\n| Long documents lose structural context | **Hierarchical** (preserve document structure in chunks) |\n| System is confidently wrong (retrieves plausible but incorrect docs) | **Corrective** (add a verification/correction step) |\n| Answer requires synthesizing across multiple documents | **Graph** (knowledge graph connecting cross-document facts) |\n| Some questions need zero retrieval, others need multiple rounds | **Agentic** (agent decides when and how often to retrieve) |\n\nKey principle: always measure retrieval quality separately from generation quality. Prompt-tuning a generation problem when the real bug is in retrieval wastes effort.",
+      "tags": [
+        "rag",
+        "retrieval",
+        "architecture",
+        "debugging",
+        "decision-tree",
+        "agent-pattern"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-14",
+      "path": "catalog/entries/rag-architecture-decision-tree.md"
+    },
+    {
       "name": "rag-retrieval-recipe",
       "title": "RAG Retrieval Recipe",
       "url": "https://en.wikipedia.org/wiki/Retrieval-augmented_generation",
@@ -9028,6 +9263,30 @@
       "path": "catalog/entries/seo-god.md"
     },
     {
+      "name": "sglang",
+      "title": "SGLang",
+      "url": "https://github.com/sgl-project/sglang",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "High-performance LLM/VLM serving framework from UC Berkeley/LMSYS — RadixAttention automatically reuses KV cache across requests with shared prefixes via radix tree, achieving 75–95% cache hit rates on multi-turn agent workloads; structured generation language for constrained decoding; powers 400K+ GPUs in production (xAI, NVIDIA, AMD, LinkedIn); part of PyTorch ecosystem; Apache-2.0",
+      "body_summary": "SGLang (Structured Generation Language) is an open-source serving framework for LLMs and multimodal models. Its core innovation is RadixAttention — an algorithm that automatically caches and reuses KV cache for common prefixes across requests using a radix tree data structure.\n\n**RadixAttention**: In multi-turn chats and agent workflows, 80–90% of every prompt is repeated text (system prompt, tool definitions, prior turns). Standard inference engines recompute all these tokens from scratch. SGLang organizes KV cache into a radix tree in GPU VRAM: when a new request arrives, the engine walks the tree to find the longest matching cached prefix and begins computation from that point. An LRU eviction policy manages cache lifetime.\n\nKey performance characteristics:\n- **75–95% cache hit rates** on multi-turn agent conversations with shared system prompts\n- **Shared prefix deduplication**: 100 agent sessions with the same instructions compute the system prompt KV cache once\n- **10–20% throughput improvement** over vLLM on multi-turn workloads; larger gains on high-prefix-overlap scenarios\n- **Reduced TTFT**: skipping prefill for cached tokens directly reduces time-to-first-token\n\nSGLang is also a programming language for structured LLM interactions — constrained decoding, tool calls, schema-following output.\n\nProduction scale: powers 400K+ GPUs at xAI, NVIDIA, AMD, LinkedIn. Integrated into PyTorch ecosystem (March 2025).",
+      "tags": [
+        "inference",
+        "serving",
+        "kv-cache",
+        "radix-attention",
+        "structured-generation",
+        "llm-serving",
+        "vllm-alternative",
+        "gpu"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-14",
+      "path": "catalog/entries/sglang.md"
+    },
+    {
       "name": "shannon",
       "title": "Shannon (AI Pentester)",
       "url": "https://github.com/KeygraphHQ/shannon",
@@ -9055,6 +9314,29 @@
       ],
       "reviewed": "2026-06-17",
       "path": "catalog/entries/shannon.md"
+    },
+    {
+      "name": "shrimply",
+      "title": "Shrimply",
+      "url": "https://github.com/soirihiroka/shrimply",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Cross-platform GPU-accelerated video editor in Rust — GTK 4 / libadwaita UI, Skia + wgpu + Slang + CUDA rendering, FFmpeg media, PipeWire audio, Python compute server; requires NVIDIA or Apple Silicon GPU; pre-alpha; GPL-3.0+",
+      "body_summary": "Shrimply is a cross-platform video editor written in Rust. Currently pre-alpha.\n\nTech stack:\n- **Interface**: GTK 4 + libadwaita\n- **Rendering**: Skia, wgpu, Slang, CUDA\n- **Media**: FFmpeg, PipeWire\n- **Compute**: Python server\n\nRequirements: NVIDIA or Apple Silicon GPU, Wayland or macOS 15+.\n\nPre-alpha status means expected issues: build difficulties, undocumented footguns, performance regressions, project file breakage, crashes and resource leaks.",
+      "tags": [
+        "video-editor",
+        "rust",
+        "gtk4",
+        "gpu",
+        "cuda",
+        "ffmpeg",
+        "cross-platform"
+      ],
+      "workflows": [],
+      "license": "GPL-3.0-or-later",
+      "security_flags": [],
+      "reviewed": "2026-09-14",
+      "path": "catalog/entries/shrimply.md"
     },
     {
       "name": "simon-says-mother-goose",
