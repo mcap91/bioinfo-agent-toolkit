@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-09-14",
-  "count": 461,
+  "generated": "2026-09-17",
+  "count": 479,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -243,6 +243,26 @@
       "security_flags": [],
       "reviewed": "2026-06-19",
       "path": "catalog/entries/agent-browser.md"
+    },
+    {
+      "name": "agent-cost-governors",
+      "title": "Agent Cost Governors & Circuit Breakers",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Three-layer cost governance pattern for autonomous agents — hard token leases per step, circuit breakers on retry-without-progress, and step cost degradation (frontier → local model fallback) to prevent denial-of-wallet from recursive error loops",
+      "body_summary": "Autonomous agents that run in loops (plan, act, observe, retry) can incur unbounded costs when they get stuck — e.g., repeatedly retrying a failing step, or escalating to expensive frontier models without making progress. This is described as a \"Denial of Wallet\" risk: an availability-style failure…",
+      "tags": [
+        "cost-control",
+        "circuit-breaker",
+        "agent-safety",
+        "token-budget",
+        "denial-of-wallet"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-16",
+      "path": "catalog/entries/agent-cost-governors.md"
     },
     {
       "name": "agent-execution-governance",
@@ -1978,6 +1998,34 @@
       "path": "catalog/entries/career-ops.md"
     },
     {
+      "name": "cartographer",
+      "title": "Cartographer",
+      "url": "https://github.com/kingbootoshi/cartographer",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Claude Code plugin plus companion Bun CLI for codebase mapping/documentation: the plugin's legacy skill orchestrates parallel Sonnet subagents into docs/CODEBASE_MAP.md and a CLAUDE.md summary, while the v2 CLI indexes a repo into a local SQLite graph for bounded agent briefs, removal/completeness audits, and evidence-backed notes",
+      "body_summary": "Cartographer ships two related deliverables in one repo:\n\n1. **Legacy Claude Code plugin** (`/cartographer` command or natural-language \"map this codebase\"): runs a scanner script that builds a file tree with per-file token counts (respecting `.gitignore`), plans how to split the codebase across subagents by token budget, spawns Sonnet subagents in parallel — each reads and analyzes an assigned portion of the codebase and returns a structured summary — then synthesizes all subagent reports into `docs/CODEBASE_MAP.md` (architecture map with file purposes, dependencies, data flows, navigation guides) and updates `CLAUDE.md` with a pointer summary. Re-running `/cartographer` checks git history since the last mapping and only re-analyzes changed modules, merging updates into the existing map.\n2. **v2 graph CLI** (standalone, Bun-based): indexes a repository into a local SQLite graph (`graph.sqlite`) plus a JSON manifest and `CODEBASE_MAP.md`, then serves that graph to coding agents through bounded \"briefs\" (context scoped to a path, package, symbol, env var, DB/IaC object, audit ledger, or changed-file set), removal/completeness audit ledgers, an evidence-backed notes system, graph diffing, and an \"adoption\" command that scores whether an agent used graph context before editing. A thin newline-delimited MCP stdio wrapper (`cartographer:mcp`) exposes the same operations as MCP tools.\n\nThe README frames the plugin workflow as legacy, superseded for new agent/orchestrator workflows by the v2 brief/audit/notes commands, though both remain in the repo and are documented.",
+      "tags": [
+        "claude-code-plugin",
+        "codebase-mapping",
+        "documentation",
+        "subagents",
+        "code-graph",
+        "sqlite",
+        "cli",
+        "mcp"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "no-license-file",
+        "single-contributor",
+        "stale-4-months"
+      ],
+      "reviewed": "2026-09-16",
+      "path": "catalog/entries/cartographer.md"
+    },
+    {
       "name": "castem-first-principles-model-mediated-work",
       "title": "CASTEM: First Principles for Model-Mediated Work",
       "url": "https://www.linkedin.com/pulse/castem-first-principles-model-mediated-work-bryan-downie-ph-d--58mnc/",
@@ -2211,6 +2259,27 @@
       "security_flags": [],
       "reviewed": "2026-08-09",
       "path": "catalog/entries/claude-code-commands-reference.md"
+    },
+    {
+      "name": "claude-code-dynamic-workflows",
+      "title": "Claude Code Dynamic Workflows",
+      "url": "https://code.claude.com/docs/en/workflows",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Anthropic docs page describing Claude Code's dynamic workflows feature, a JavaScript orchestration script that fans work out to many subagents in the background",
+      "body_summary": "A dynamic workflow is a JavaScript script that orchestrates many subagents at once. Claude writes the script for a described task, and a runtime executes it in the background while the interactive session stays responsive. The doc contrasts four primitives by \"who holds the plan\": subagents and…",
+      "tags": [
+        "claude-code",
+        "workflows",
+        "orchestration",
+        "subagents",
+        "documentation"
+      ],
+      "workflows": [],
+      "license": "proprietary",
+      "security_flags": [],
+      "reviewed": "2026-09-16",
+      "path": "catalog/entries/claude-code-dynamic-workflows.md"
     },
     {
       "name": "claude-code-fable-cost-playbook",
@@ -4693,6 +4762,29 @@
       "path": "catalog/entries/ggwas.md"
     },
     {
+      "name": "ghidra",
+      "title": "Ghidra",
+      "url": "https://github.com/nationalsecurityagency/ghidra",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source software reverse engineering (SRE) framework from NSA's Research Directorate — disassembly, decompilation, graphing, and scripting for compiled code on Windows, macOS, and Linux",
+      "body_summary": "Ghidra is a software reverse engineering (SRE) framework created and maintained by the NSA Research Directorate. It analyzes compiled code across Windows, macOS, and Linux, providing disassembly, assembly, decompilation, graphing, and scripting. It supports a wide variety of processor instruction sets and executable formats, and can run in both interactive (GUI) and automated (headless) modes. Users can write custom extensions and scripts in Java or Python.",
+      "tags": [
+        "reverse-engineering",
+        "security",
+        "disassembler",
+        "decompiler",
+        "malware-analysis"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "known-vulnerabilities-in-some-versions"
+      ],
+      "reviewed": "2026-09-16",
+      "path": "catalog/entries/ghidra.md"
+    },
+    {
       "name": "glama",
       "title": "Glama",
       "url": "https://glama.ai/mcp/servers",
@@ -5786,6 +5878,28 @@
       "path": "catalog/entries/karpathy-llm-wiki.md"
     },
     {
+      "name": "kasetto",
+      "title": "Kasetto",
+      "url": "https://github.com/pivoshenko/kasetto",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Declarative environment manager for AI coding agents — one YAML config syncs skills, MCPs, commands, and instructions across 23 agents (Claude Code, Cursor, Codex, etc.) with lockfile pinning, secret injection, and per-agent format translation; Rust binary",
+      "body_summary": "Kasetto is a declarative environment manager for AI coding agents, written in Rust. A single YAML config (`kasetto.yaml`) describes the desired state of an agent environment — skills, MCP servers, commands, and instructions — and `kst sync` brings the local machine to that declared state. A lockfile (comparable to `Cargo.lock`) pins the exact resolved state (content hashes) for reproducibility across machines and CI; subsequent syncs diff against the lockfile and only touch what changed.\n\nFour asset kinds are managed:\n- **Skills**: reusable capabilities pulled from source repositories\n- **MCPs**: Model Context Protocol server configs, merged into each agent's native settings file\n- **Commands**: named directives (e.g., git operations)\n- **Instructions**: prompt guidelines / agent rules (markdown or MDC format)\n\nKasetto auto-transforms each asset into the native format expected by the target agent, so one source config can populate Claude Code, Cursor, Codex, Windsurf, Copilot, Gemini CLI, and other supported tools without manual per-tool translation. Configs can be scoped globally or per-project, and can compose via `extends` so org/team/project configs layer on top of each other.",
+      "tags": [
+        "environment-manager",
+        "skills",
+        "mcp",
+        "configuration",
+        "multi-agent",
+        "rust"
+      ],
+      "workflows": [],
+      "license": "MIT OR Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-16",
+      "path": "catalog/entries/kasetto.md"
+    },
+    {
       "name": "kb",
       "title": "kb (Repo-Local Wiki + Agent Dispatch + Graph)",
       "url": "https://github.com/mcap91/kb",
@@ -6139,6 +6253,26 @@
       "security_flags": [],
       "reviewed": "2026-08-02",
       "path": "catalog/entries/local-model-adversarial-workflow.md"
+    },
+    {
+      "name": "local-model-harness-patterns",
+      "title": "Local Model Harness Patterns",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Harness design patterns for running local LLMs as coding agents — subagent delegation, reasoning-level routing, loop detection with context cleanup, and speculative decoding",
+      "body_summary": "Community-reported patterns from a 30-day experience running Qwen 3.8-27B locally as a coding agent (hardware: 5070 Ti + 4070 Super, Unsloth Q4_K_XL quant, 73-95 t/s generation). The source describes harness design choices found necessary to make a local reasoning model usable as an agentic coding…",
+      "tags": [
+        "local-llm",
+        "harness",
+        "subagents",
+        "loop-detection",
+        "llama-cpp"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-16",
+      "path": "catalog/entries/local-model-harness-patterns.md"
     },
     {
       "name": "local-model-picks-2026",
@@ -7088,6 +7222,33 @@
       "path": "catalog/entries/native-subagents.md"
     },
     {
+      "name": "nemo-switchyard",
+      "title": "NVIDIA NeMo Switchyard",
+      "url": "https://github.com/NVIDIA-NeMo/Switchyard",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Model-routing layer that selects which LLM serves each request (efficient vs. capable) per call, embeddable as a library, run through a standalone OpenAI/Anthropic-compatible proxy, or loaded as a NeMo Relay / LiteLLM plugin",
+      "body_summary": "Switchyard is NVIDIA's open-source model-routing layer for LLM applications and agent harnesses. It decides which model (an \"efficient\" or \"capable\" target, or more categories in custom setups) should serve each individual LLM call, then hands the actual request off to the caller's own HTTP client, credentials, and retry logic — it does not make model calls itself in library mode. It preserves native OpenAI Chat Completions, Anthropic Messages, and OpenAI Responses API compatibility, so existing clients (Claude Code, Codex CLI, or any OpenAI/Anthropic SDK client) can point at it without code changes.\n\nThree integration paths, per the README:\n- **Path 1 — NeMo Relay plugin**: loads into an existing NeMo Relay (>=0.8.0, <1.0.0) deployment via a `routes.toml` file.\n- **Path 2 — Embed the library** (`switchyard-libsy` for Rust, `nemo-switchyard`/`switchyard.libsy` for Python via `pip install`): the caller constructs a routing algorithm, drives its async step stream (`Step.CallModel`, `Step.Done`), and supplies the model call itself.\n- **Path 3 — Standalone proxy** (`switchyard-server`, `cargo install --locked switchyard-server`): a Rust server on `localhost:4000` answering `/v1/chat/completions`, `/v1/messages`, and `/v1/responses`, configured entirely via `routes.toml` (LLM client backends, targets/model IDs, and one or more named routes).",
+      "tags": [
+        "model-routing",
+        "llm-gateway",
+        "cost-optimization",
+        "proxy",
+        "nvidia",
+        "nemo",
+        "litellm",
+        "openai-api",
+        "anthropic-api",
+        "rust",
+        "python"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-16",
+      "path": "catalog/entries/nemo-switchyard.md"
+    },
+    {
       "name": "nemotron-3-ultra",
       "title": "NVIDIA Nemotron 3 Ultra",
       "url": "https://research.nvidia.com/labs/nemotron/Nemotron-3-Ultra/",
@@ -7302,6 +7463,30 @@
       ],
       "reviewed": "2026-08-02",
       "path": "catalog/entries/oh-my-hermes.md"
+    },
+    {
+      "name": "okf-agent-memory",
+      "title": "OKF Agent Memory",
+      "url": "https://github.com/okf-memory/okf-agent-memory",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Git-native persistent memory framework for AI coding agents — a compact push-layer behavioral codex (AGENTS.md, ~100-150 tokens) enforced through Agent Action Grammar (AAG), plus a pull-layer knowledge bundle (OKF v0.2 Markdown+YAML) searched via a pure-Go embedded MCP server with sub-300us in-memory BM25; ships a linter enforcing AAG's token budget, ASCII-only syntax, and tool-signature parity rules",
+      "body_summary": "OKF Agent Memory (\"Dual-Memory Agent Architecture\", DMAA) splits agent context into two layers. The **push layer** is a compact behavioral codex committed to `AGENTS.md` (documented at roughly 100-150 tokens) that is loaded into every session and written in Agent Action Grammar (AAG) rather than prose. The **pull layer** is a git-versioned `knowledge/` bundle of Markdown+YAML concept files that the project describes as conforming to \"OKF v0.2\" (the project's own term, \"Open Knowledge Format\"; the repo's tagline additionally labels it \"Google OKF v0.2\" without independent corroboration that Google owns or publishes this spec). Pull-layer content is retrieved on demand — the project states it costs \"0 tokens at baseline\" — via an embedded MCP server that performs in-memory BM25 lexical search (documented at <300 microseconds, <15MB resident, ~4ms to validate a 50+ concept corpus).\n\nCore behavioral rules include \"search-before-write\" (query existing memory before authoring new concepts, to avoid duplication/divergence) and \"code-to-knowledge binding\" (architecture-decision entries carry `code_refs` linking them to source files, queryable with `--for-path`). The CLI (`bin/okf`, built with `make build`) provides `bootstrap` (scaffold `knowledge/`, `AGENTS.md`, and agent skills into a target project), `validate --strict --drift`, `search`, `show`, `create`, and `mcp` (start the MCP server over stdio). The project supplies pre-built domain codices (software/Clean Code/TDD/security, editorial/literature analysis, ICF coaching competencies) for v0.3.0.",
+      "tags": [
+        "context-engineering",
+        "memory",
+        "mcp",
+        "prompt-optimization",
+        "agent-architecture"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "new-project",
+        "unverified-vendor-claims"
+      ],
+      "reviewed": "2026-09-16",
+      "path": "catalog/entries/okf-agent-memory.md"
     },
     {
       "name": "olmocr",
@@ -7855,6 +8040,26 @@
       "path": "catalog/entries/openspace.md"
     },
     {
+      "name": "openspec-plus",
+      "title": "OpenSpec Plus",
+      "url": "https://github.com/sudokar/openspec-plus",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Spec-driven engineering workflow with strict TDD, adversarial review agents, and self-fixing on failures; similar approach to SpecShip",
+      "body_summary": "OpenSpec Plus is a set of agentic skills that layer onto OpenSpec's Spec-Driven Development workflow, adding structured discovery, testable requirements, design-decision capture, vertical-slice task planning, and gated execution. It works with Claude Code, OpenCode, GitHub Copilot, Cursor, and other AI coding agents that support the Skills format. It requires an existing OpenSpec project (`openspec init` must already have created an `openspec/` directory) and installs by detecting the agent environment (`.opencode/`, `.claude/`, `.cursor/`, `.antigravity/`) and copying `openspec-plus-*` skill directories into the detected skills location.\n\nSkills cover each phase: **proposal** (brainstorming-style discovery producing a lean Why/What-Changes/Capabilities/Impact proposal, deliberately stopping short of design or implementation), **spec** (testable acceptance criteria), **design** (trade-off exploration with user-driven decisions), **tasks** (vertical-slice organization with subagent review, mandatory when OpenSpec's apply phase begins), **apply** (spec-verified, quality-gated execution per slice that escalates failures rather than bypassing them), and **tdd** (a strict red/green/refactor state machine).",
+      "tags": [
+        "spec-driven",
+        "tdd",
+        "adversarial-review",
+        "autonomous-engineering"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-16",
+      "path": "catalog/entries/openspec-plus.md"
+    },
+    {
       "name": "openwiki",
       "title": "OpenWiki",
       "url": "https://github.com/langchain-ai/openwiki",
@@ -8055,6 +8260,28 @@
       "path": "catalog/entries/paddleocr.md"
     },
     {
+      "name": "pandas-tutor",
+      "title": "Pandas Tutor",
+      "url": "https://pandastutor.com/",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Browser-based tool that visualizes step-by-step how Python pandas code transforms DataFrames across chained operations like filtering, sorting, grouping, and joining.",
+      "body_summary": "Pandas Tutor is a free, browser-based tool that runs user-submitted Python pandas code and produces a step-by-step visual trace of how each operation (filtering, sorting, grouping, pivoting, joining, aggregating) transforms a DataFrame, rather than showing only the final output. Users type or paste pandas code into an in-browser editor; the tool renders input and output tables side by side, connecting rows across each step of a chained expression with arrows/coloring. It was created by Sam Lau and Philip Guo (UC San Diego) for teaching data science. Sibling tools from the same project cover R's tidyverse (Tidy Data Tutor) and SQL (SQL Tutor); a related tool, Python Tutor, visualizes general-purpose code in Python, Java, C, C++, and JavaScript.",
+      "tags": [
+        "pandas",
+        "data-visualization",
+        "python",
+        "education",
+        "debugging",
+        "dataframes"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-09-16",
+      "path": "catalog/entries/pandas-tutor.md"
+    },
+    {
       "name": "pandera",
       "title": "Pandera",
       "url": "https://github.com/unionai-oss/pandera",
@@ -8154,6 +8381,26 @@
       "security_flags": [],
       "reviewed": "2026-07-01",
       "path": "catalog/entries/parallel-local-inference.md"
+    },
+    {
+      "name": "parsebench",
+      "title": "ParseBench",
+      "url": "https://github.com/run-llama/ParseBench",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "LlamaIndex document parser benchmark — tests parsers across text, formatting, tables, charts, and page-location attribution; v1.0 with visual checks and scoring fixes (breaking change from v0.2)",
+      "body_summary": "ParseBench evaluates how well document parsers convert PDFs and other documents into structured output that AI agents can reliably act on. It scores parsers across five capability dimensions: text/content faithfulness, semantic formatting, tables, charts, and visual grounding (page-location attribution).\n\nThe visual grounding dimension tests whether a parser can point back to the source location (page/region) of a given result, so extracted content can be verified against the original document rather than trusted blindly.\n\nEvaluation is rule-based and deterministic by default — ParseBench does not require LLM-as-a-judge for scoring; API keys are used only to call the parsing tool under test, not to grade its output.\n\nThe evaluation set spans human-verified pages drawn from publicly available documents across domains (insurance, finance, government, and others), with dense per-dimension test-rule coverage for diagnosing where a given parser breaks down.\n\nDistributed as an installable Python package (`parse-bench` on PyPI) with a pluggable provider system supporting 30+ parsing backends (OpenAI, Anthropic, Gemini, local models, and specialized document-parsing services, including LlamaParse).",
+      "tags": [
+        "benchmark",
+        "document-parsing",
+        "evaluation",
+        "llamaindex"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-16",
+      "path": "catalog/entries/parsebench.md"
     },
     {
       "name": "pdf-mcp",
@@ -8579,6 +8826,48 @@
       ],
       "reviewed": "2026-06-25",
       "path": "catalog/entries/prompt-versioning-managed-agents.md"
+    },
+    {
+      "name": "pulsarforge",
+      "title": "PulsarForge",
+      "url": "https://github.com/siris9476/pulsarforge",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "CPU-only MoE inference engine in C11 — streams 744B-parameter models off SSD via expert-level LRU caching, cross-layer predictive prefetch (80.8% recall), and dynamic-k expert truncation; 21x speedup over naive on i7-8550U/32GB",
+      "body_summary": "PulsarForge is a CPU-only inference engine, written in C11, for running large Mixture-of-Experts (MoE) models without loading them fully into RAM. It streams a 744B-parameter model (GLM-5.2, distributed as a 202GB GGUF file) directly off a USB SSD, fetching experts per-token through a custom unbuffered reader rather than relying on OS page cache or mmap.\n\nExperts are quantized to int4 with group size 64; router weights and correction biases are kept at f32 precision.",
+      "tags": [
+        "inference",
+        "cpu",
+        "moe",
+        "streaming",
+        "c",
+        "local-llm"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-16",
+      "path": "catalog/entries/pulsarforge.md"
+    },
+    {
+      "name": "pylint",
+      "title": "Pylint",
+      "url": "https://github.com/pylint-dev/pylint",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Static code analyzer for Python that checks for errors, enforces coding standards, and flags code smells and refactoring opportunities without executing the code.",
+      "body_summary": "Pylint is a static code analyser for Python 2 or 3 (current releases require Python 3.10.0+). It parses source code without executing it and reports errors, coding-standard violations (PEP 8 and beyond), suspicious constructs, and design-level issues such as overly complex functions and duplicate code blocks. It also produces a numeric code-quality score. It is installed via `pip install pylint` and integrates with most editors and IDEs. It ships two additional bundled tools: `pyreverse` (package/class diagram generator) and `symilar` (duplicate-code finder, also integrated into the main linter).",
+      "tags": [
+        "python",
+        "linter",
+        "static-analysis",
+        "code-quality"
+      ],
+      "workflows": [],
+      "license": "GPL-2.0-or-later",
+      "security_flags": [],
+      "reviewed": "2026-09-16",
+      "path": "catalog/entries/pylint.md"
     },
     {
       "name": "pyscript",
@@ -9316,6 +9605,35 @@
       "path": "catalog/entries/shannon.md"
     },
     {
+      "name": "shepherd-agents",
+      "title": "Shepherd (shepherd-agents/shepherd)",
+      "url": "https://github.com/shepherd-agents/shepherd",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Python runtime substrate that records agent runs as durable, inspectable, reversible execution traces — agent-written outputs land as retained proposals (changesets) that a human selects, applies, releases, or discards, with OS-level (Seatbelt/Landlock) enforcement of per-task read/write permission grants declared in function signatures",
+      "body_summary": "Shepherd is a runtime substrate for agent work that needs inspection, reversibility, and supervision. A task is written as a plain Python function with no body — its signature and docstring are the contract an agent fulfils at runtime, including declared permissions (e.g. `repo: sp.GitRepo` for a writable workspace handle, or `May[GitRepo, ReadOnly]` for read-only inspection). Running a task launches an agent (e.g. Claude Code via the `claude` CLI, using a subscription token or `ANTHROPIC_API_KEY`) inside a sandbox; its file writes are captured as a \"changeset\" — a retained output held to one side rather than written directly into the workspace. The user (or a calling meta-agent) then inspects the changeset and settles it via `select`, `apply` (three-way merge onto a workspace that moved on), `release`, or `discard`. A keyless \"offline quickstart\" runs the same retained-output machinery through a deterministic provider with no agent/API key. An example package, `shepherd-check-citations`, audits a PDF's bibliography using pdfplumber and Claude Code (headless Opus).",
+      "tags": [
+        "agent-framework",
+        "sandbox",
+        "reversible-execution",
+        "git",
+        "meta-agents",
+        "claude-code",
+        "permissions",
+        "python",
+        "landlock",
+        "seatbelt",
+        "research-paper"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "early-alpha-api-instability"
+      ],
+      "reviewed": "2026-09-16",
+      "path": "catalog/entries/shepherd-agents.md"
+    },
+    {
       "name": "shrimply",
       "title": "Shrimply",
       "url": "https://github.com/soirihiroka/shrimply",
@@ -9621,6 +9939,28 @@
       "path": "catalog/entries/skills-visibility.md"
     },
     {
+      "name": "skillspector",
+      "title": "SkillSpector (NVIDIA)",
+      "url": "https://github.com/nvidia/skillspector",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "NVIDIA open-source security scanner for AI agent skills — scans SKILL.md files, folders, repos, and libraries for prompt injection, credential theft, data exfiltration, remote scripts, hidden persistence, and MCP tool poisoning; returns 0–100 risk score; installable as MCP server",
+      "body_summary": "Reads an AI agent skill (Claude Code, Codex, or MCP skill) and returns a 0–100 risk score plus a list of exact findings, so a skill can be vetted before installation rather than after.\n\n- Accepts SKILL.md files, local folders, ZIP archives, GitHub repo URLs, or entire skill libraries as input\n- Checks for prompt injection, credential theft, data exfiltration, remote script execution, dangerous code execution, hidden persistence, risky dependencies, and MCP tool poisoning\n- Detects dangerous instructions hidden in comments, invisible text, encoded scripts, or clean-looking dependency manifests\n- Combines fast static analysis with an optional LLM-powered semantic pass\n- Runs as a standalone CLI or as an MCP server that Claude Code can call for pre-install scanning",
+      "tags": [
+        "security",
+        "skills",
+        "scanning",
+        "mcp",
+        "nvidia",
+        "supply-chain"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-16",
+      "path": "catalog/entries/skillspector.md"
+    },
+    {
       "name": "skylos",
       "title": "Skylos",
       "url": "https://github.com/duriantaco/skylos",
@@ -9809,6 +10149,28 @@
       "path": "catalog/entries/spacetimedb.md"
     },
     {
+      "name": "specship",
+      "title": "SpecShip",
+      "url": "https://github.com/aws-samples/sample-specship",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "AWS spec-driven autonomous engineering framework (Kiro Power) — brownfield recon, contract-first markdown specs, strict TDD gates, adversarial parallel validation with up to 7 subagents, and self-healing fix agents",
+      "body_summary": "SpecShip is an AWS sample project packaged as a Kiro Power that orchestrates AI coding agents through a five-stage pipeline: recon → plan → build → validate → ship. For brownfield work, the recon stage reverse-engineers the existing repository — architecture, technology stack, APIs, data models, business flows, local conventions, baseline tests, and change impact — before any change is planned. The plan stage produces a sprint contract (acceptance criteria, failure modes, design spec, API contract) plus pre-written failing tests. The build stage runs iterative milestone loops under Test-Driven Development (red → green → refactor); a hard gate blocks each milestone until typecheck, tests, and build all pass. The validate stage runs up to 7 independent adversarial validator subagents in parallel — the agent that built the code does not judge it. The ship stage generates pull requests, changelogs, and archives the contract.\n\nMission artifacts (recon docs, sprint contract, tests, validator verdicts, changelog) live under `.specship/specs/<id>/` in the target repo.",
+      "tags": [
+        "spec-driven",
+        "tdd",
+        "adversarial-review",
+        "kiro",
+        "autonomous-engineering",
+        "aws"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-16",
+      "path": "catalog/entries/specship.md"
+    },
+    {
       "name": "spiderbrain-v3",
       "title": "Spiderbrain V3",
       "url": "https://github.com/SaroirCommunity/Spiderbrain-V3",
@@ -9944,6 +10306,33 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/storybloq.md"
+    },
+    {
+      "name": "strands-agents",
+      "title": "Strands Agents SDK",
+      "url": "https://github.com/strands-agents/harness-sdk",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source Python/TypeScript SDK for building and running AI agents in-process — agent loop with lifecycle controls, tools, MCP, multi-agent patterns, memory/sessions, guardrails, tracing, and evals; defaults to Amazon Bedrock with Anthropic, OpenAI, Gemini, and Ollama provider support",
+      "body_summary": "Strands Agents is an open-source SDK for building and running AI agents in Python and TypeScript. It runs in-process (no hosted control plane) and positions itself as a replacement for a hand-rolled agent loop, bundling: lifecycle controls (turn limits, token budgets, cancellation, stop reasons), tools and structured output, MCP client/server support, multi-agent patterns, memory and sessions, model-provider portability, streaming (including an experimental bidirectional-streaming mode), guardrails, hooks that can intercept and redirect any step of the loop, steering handlers for self-correction, tracing, and evals.\n\nThe repo (`strands-agents/harness-sdk`) is a monorepo containing: `strands-py/` (Python SDK — agent loop, model providers, tools), `strands-ts/` (TypeScript SDK — same scope), `site/` (the strandsagents.com documentation site, Astro/Starlight), and `team/` (governance docs: tenets, decisions, PR/compatibility guidelines, design proposals). It consolidates what were previously separate `sdk-python` and `sdk-typescript` repos.\n\nModel support is provider-agnostic: both SDKs default to Amazon Bedrock (Claude Sonnet via Bedrock, requiring AWS credentials), with first-class support for Anthropic, OpenAI, and Gemini plus additional and custom providers (Ollama among them); application code is intended to stay the same when swapping providers.",
+      "tags": [
+        "agent-framework",
+        "agent-harness",
+        "agent-loop",
+        "multi-agent",
+        "model-agnostic",
+        "mcp",
+        "python",
+        "typescript",
+        "guardrails",
+        "tracing",
+        "bedrock"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-16",
+      "path": "catalog/entries/strands-agents.md"
     },
     {
       "name": "subtext",
@@ -10433,6 +10822,28 @@
       ],
       "reviewed": "2026-09-10",
       "path": "catalog/entries/titans-atlas-cronus.md"
+    },
+    {
+      "name": "tkinter",
+      "title": "tkinter",
+      "url": "https://docs.python.org/3/library/tkinter.html",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Python's standard library interface to the Tcl/Tk GUI toolkit, bundled with CPython on Windows, macOS, and Linux",
+      "body_summary": "tkinter is Python's standard library binding to Tcl/Tk, used to build desktop GUI applications. It ships with CPython on Windows, macOS, and Linux (on some Linux distributions the Tk runtime is a separate OS package), so no `pip install` is required for the core module. It provides widgets (buttons, labels, entries, text boxes, canvas, frames, menus, and standard dialogs), event-driven programming via callback binding, and three geometry managers (`pack`, `grid`, `place`) for layout. The `tkinter.ttk` submodule adds themed widgets that draw using the host platform's native theme engine where available.",
+      "tags": [
+        "gui",
+        "python",
+        "tcl-tk",
+        "standard-library",
+        "desktop",
+        "cross-platform"
+      ],
+      "workflows": [],
+      "license": "PSF-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-16",
+      "path": "catalog/entries/tkinter.md"
     },
     {
       "name": "tolvi",
