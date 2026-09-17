@@ -46,3 +46,7 @@ The coding benchmarks are impressive for the parameter count — SWE-bench Verif
 - **Supply chain**: Published by Qwen team (Alibaba Cloud) on Hugging Face; large organization with established release track record (Qwen 2.0 through 3.6 series)
 - **Dangerous patterns**: N/A for model weights. The model can generate arbitrary code when used as a coding agent — standard LLM code execution risks apply at the deployment boundary
 - **Maintenance**: Active development; Qwen 3.5 released February 2026, 3.6 in April 2026; rapid iteration cadence
+
+## Usage notes
+
+- **3.6 → 3.8 lineage**: Qwen 3.8 and 3.5/3.6 share the same architecture. The 3.6→3.8 improvement came from post-training (better RL environments), not architectural changes. The improvement jump is described as "extremely large" by practitioners. PLE/n-gram tables (pulled from SSD) are a key architectural feature that works well. n-gram speculative decoding is described as "the way to go" — validated by Qwen3.8 Flash Next's performance. Qwen4 expected to ship imminently (as of Sept 2026).

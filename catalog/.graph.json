@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T04:15:38.651Z",
+  "generated_at": "2026-09-17T02:19:21.856Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -98,6 +98,15 @@
       "url": "https://github.com/vercel-labs/agent-browser",
       "summary": "Rust-native browser automation CLI for AI agents — snapshot-based accessibility tree with ref selectors, MCP server mode, annotated screenshots, multi-session isolation, plugin system, cloud provider integrations (Browserbase/Browserless/AWS AgentCore); Apache-2.0, Vercel-backed",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "agent-cost-governors",
+      "kind": "entry",
+      "title": "Agent Cost Governors & Circuit Breakers",
+      "summary": "Three-layer cost governance pattern for autonomous agents — hard token leases per step, circuit breakers on retry-without-progress, and step cost degradation (frontier → local model fallback) to prevent denial-of-wallet from recursive error loops",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -835,6 +844,16 @@
       "exists": true
     },
     {
+      "id": "cartographer",
+      "kind": "entry",
+      "title": "Cartographer",
+      "url": "https://github.com/kingbootoshi/cartographer",
+      "summary": "Claude Code plugin plus companion Bun CLI for codebase mapping/documentation: the plugin's legacy skill orchestrates parallel Sonnet subagents into docs/CODEBASE_MAP.md and a CLAUDE.md summary, while the v2 CLI indexes a repo into a local SQLite graph for bounded agent briefs, removal/completeness audits, and evidence-backed notes",
+      "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "castem-first-principles-model-mediated-work",
       "kind": "entry",
       "title": "CASTEM: First Principles for Model-Mediated Work",
@@ -985,6 +1004,16 @@
       "title": "Claude Code Commands Reference",
       "url": "https://code.claude.com/docs/en/commands",
       "summary": "Anthropic's official reference documentation for every Claude Code CLI slash command, covering description, parameters, aliases, and minimum CLI version per command as of v2.1.224",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "claude-code-dynamic-workflows",
+      "kind": "entry",
+      "title": "Claude Code Dynamic Workflows",
+      "url": "https://code.claude.com/docs/en/workflows",
+      "summary": "Anthropic docs page describing Claude Code's dynamic workflows feature, a JavaScript orchestration script that fans work out to many subagents in the background",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -2041,6 +2070,16 @@
       "exists": true
     },
     {
+      "id": "ghidra",
+      "kind": "entry",
+      "title": "Ghidra",
+      "url": "https://github.com/nationalsecurityagency/ghidra",
+      "summary": "Open-source software reverse engineering (SRE) framework from NSA's Research Directorate — disassembly, decompilation, graphing, and scripting for compiled code on Windows, macOS, and Linux",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "glama",
       "kind": "entry",
       "title": "Glama",
@@ -2497,6 +2536,16 @@
       "exists": false
     },
     {
+      "id": "kasetto",
+      "kind": "entry",
+      "title": "Kasetto",
+      "url": "https://github.com/pivoshenko/kasetto",
+      "summary": "Declarative environment manager for AI coding agents — one YAML config syncs skills, MCPs, commands, and instructions across 23 agents (Claude Code, Cursor, Codex, etc.) with lockfile pinning, secret injection, and per-agent format translation; Rust binary",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "kb",
       "kind": "entry",
       "title": "kb (Repo-Local Wiki + Agent Dispatch + Graph)",
@@ -2629,6 +2678,15 @@
       "kind": "entry",
       "title": "Local Model + Cloud Adversarial Workflow",
       "summary": "Multi-model orchestration pattern — local 27B model (Qwen) handles drafting, planning, and implementation; cloud models (Opus, GPT) do adversarial code reviews; repeated review loops until green; domain-specific MCP tools for database/web verification reduce hallucinations and token costs",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "local-model-harness-patterns",
+      "kind": "entry",
+      "title": "Local Model Harness Patterns",
+      "summary": "Harness design patterns for running local LLMs as coding agents — subagent delegation, reasoning-level routing, loop detection with context cleanup, and speculative decoding",
       "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
@@ -3016,6 +3074,16 @@
       "exists": true
     },
     {
+      "id": "nemo-switchyard",
+      "kind": "entry",
+      "title": "NVIDIA NeMo Switchyard",
+      "url": "https://github.com/NVIDIA-NeMo/Switchyard",
+      "summary": "Model-routing layer that selects which LLM serves each request (efficient vs. capable) per call, embeddable as a library, run through a standalone OpenAI/Anthropic-compatible proxy, or loaded as a NeMo Relay / LiteLLM plugin",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "nemotron-3-ultra",
       "kind": "entry",
       "title": "NVIDIA Nemotron 3 Ultra",
@@ -3105,6 +3173,16 @@
       "title": "Oh My Hermes (OMH)",
       "url": "https://github.com/rlaope/oh-my-hermes",
       "summary": "Operating layer for Hermes Agent — 101 installable workflow skills across six capability families (plan, build, research, code, create, operate) with deterministic routing, evidence boundaries, review-first project memory, and multi-language classification; Python-based, local-first control plane",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "okf-agent-memory",
+      "kind": "entry",
+      "title": "OKF Agent Memory",
+      "url": "https://github.com/okf-memory/okf-agent-memory",
+      "summary": "Git-native persistent memory framework for AI coding agents — a compact push-layer behavioral codex (AGENTS.md, ~100-150 tokens) enforced through Agent Action Grammar (AAG), plus a pull-layer knowledge bundle (OKF v0.2 Markdown+YAML) searched via a pure-Go embedded MCP server with sub-300us in-memory BM25; ships a linter enforcing AAG's token budget, ASCII-only syntax, and tool-signature parity rules",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -3339,6 +3417,16 @@
       "exists": true
     },
     {
+      "id": "openspec-plus",
+      "kind": "entry",
+      "title": "OpenSpec Plus",
+      "url": "https://github.com/sudokar/openspec-plus",
+      "summary": "Spec-driven engineering workflow with strict TDD, adversarial review agents, and self-fixing on failures; similar approach to SpecShip",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "openwiki",
       "kind": "entry",
       "title": "OpenWiki",
@@ -3419,6 +3507,16 @@
       "exists": true
     },
     {
+      "id": "pandas-tutor",
+      "kind": "entry",
+      "title": "Pandas Tutor",
+      "url": "https://pandastutor.com/",
+      "summary": "Browser-based tool that visualizes step-by-step how Python pandas code transforms DataFrames across chained operations like filtering, sorting, grouping, and joining.",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "pandera",
       "kind": "entry",
       "title": "Pandera",
@@ -3455,6 +3553,16 @@
       "url": "https://github.com/vllm-project/vllm",
       "summary": "Strategy for maximizing local GPU throughput by running multiple concurrent LLM agents via vLLM — exploits idle compute from memory-bandwidth bottleneck; 8-9x aggregate throughput over single-stream; per-agent throughput drops slightly but total throughput scales near-linearly with concurrency",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "parsebench",
+      "kind": "entry",
+      "title": "ParseBench",
+      "url": "https://github.com/run-llama/ParseBench",
+      "summary": "LlamaIndex document parser benchmark — tests parsers across text, formatting, tables, charts, and page-location attribution; v1.0 with visual checks and scoring fixes (breaking change from v0.2)",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -3623,6 +3731,26 @@
       "url": "https://platform.claude.com/cookbook/managed-agents-cma-prompt-versioning-and-rollback",
       "summary": ">-",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "pulsarforge",
+      "kind": "entry",
+      "title": "PulsarForge",
+      "url": "https://github.com/siris9476/pulsarforge",
+      "summary": "CPU-only MoE inference engine in C11 — streams 744B-parameter models off SSD via expert-level LRU caching, cross-layer predictive prefetch (80.8% recall), and dynamic-k expert truncation; 21x speedup over naive on i7-8550U/32GB",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "pylint",
+      "kind": "entry",
+      "title": "Pylint",
+      "url": "https://github.com/pylint-dev/pylint",
+      "summary": "Static code analyzer for Python that checks for errors, enforces coding standards, and flags code smells and refactoring opportunities without executing the code.",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -3937,6 +4065,16 @@
       "exists": true
     },
     {
+      "id": "shepherd-agents",
+      "kind": "entry",
+      "title": "Shepherd (shepherd-agents/shepherd)",
+      "url": "https://github.com/shepherd-agents/shepherd",
+      "summary": "Python runtime substrate that records agent runs as durable, inspectable, reversible execution traces — agent-written outputs land as retained proposals (changesets) that a human selects, applies, releases, or discards, with OS-level (Seatbelt/Landlock) enforcement of per-task read/write permission grants declared in function signatures",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "shrimply",
       "kind": "entry",
       "title": "Shrimply",
@@ -4065,6 +4203,16 @@
       "exists": true
     },
     {
+      "id": "skillspector",
+      "kind": "entry",
+      "title": "SkillSpector (NVIDIA)",
+      "url": "https://github.com/nvidia/skillspector",
+      "summary": "NVIDIA open-source security scanner for AI agent skills — scans SKILL.md files, folders, repos, and libraries for prompt injection, credential theft, data exfiltration, remote scripts, hidden persistence, and MCP tool poisoning; returns 0–100 risk score; installable as MCP server",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "skylos",
       "kind": "entry",
       "title": "Skylos",
@@ -4144,6 +4292,16 @@
       "exists": true
     },
     {
+      "id": "specship",
+      "kind": "entry",
+      "title": "SpecShip",
+      "url": "https://github.com/aws-samples/sample-specship",
+      "summary": "AWS spec-driven autonomous engineering framework (Kiro Power) — brownfield recon, contract-first markdown specs, strict TDD gates, adversarial parallel validation with up to 7 subagents, and self-healing fix agents",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "spiderbrain-v3",
       "kind": "entry",
       "title": "Spiderbrain V3",
@@ -4199,6 +4357,16 @@
       "title": "Storybloq",
       "url": "https://github.com/Storybloq/storybloq",
       "summary": "PolyForm Noncommercial license + heavy overlap with kb wiki",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "strands-agents",
+      "kind": "entry",
+      "title": "Strands Agents SDK",
+      "url": "https://github.com/strands-agents/harness-sdk",
+      "summary": "Open-source Python/TypeScript SDK for building and running AI agents in-process — agent loop with lifecycle controls, tools, MCP, multi-agent patterns, memory/sessions, guardrails, tracing, and evals; defaults to Amazon Bedrock with Anthropic, OpenAI, Gemini, and Ollama provider support",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -4630,6 +4798,11 @@
     },
     {
       "id": "tag:agent-retrieval",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:agent-safety",
       "kind": "tag",
       "exists": true
     },
@@ -5129,6 +5302,11 @@
       "exists": true
     },
     {
+      "id": "tag:autonomous-engineering",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:autonomous-research",
       "kind": "tag",
       "exists": true
@@ -5379,6 +5557,11 @@
       "exists": true
     },
     {
+      "id": "tag:c",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:cag",
       "kind": "tag",
       "exists": true
@@ -5495,6 +5678,11 @@
     },
     {
       "id": "tag:ci-cd",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:circuit-breaker",
       "kind": "tag",
       "exists": true
     },
@@ -5679,6 +5867,11 @@
       "exists": true
     },
     {
+      "id": "tag:code-graph",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:code-health",
       "kind": "tag",
       "exists": true
@@ -5705,6 +5898,11 @@
     },
     {
       "id": "tag:codebase-intelligence",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:codebase-mapping",
       "kind": "tag",
       "exists": true
     },
@@ -6049,6 +6247,11 @@
       "exists": true
     },
     {
+      "id": "tag:cost-control",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:cost-estimation",
       "kind": "tag",
       "exists": true
@@ -6339,6 +6542,11 @@
       "exists": true
     },
     {
+      "id": "tag:data-visualization",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:database",
       "kind": "tag",
       "exists": true
@@ -6424,6 +6632,11 @@
       "exists": true
     },
     {
+      "id": "tag:decompiler",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:decomposition",
       "kind": "tag",
       "exists": true
@@ -6485,6 +6698,11 @@
     },
     {
       "id": "tag:demo",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:denial-of-wallet",
       "kind": "tag",
       "exists": true
     },
@@ -6605,6 +6823,11 @@
     },
     {
       "id": "tag:direct-corpus-interaction",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:disassembler",
       "kind": "tag",
       "exists": true
     },
@@ -6950,6 +7173,11 @@
     },
     {
       "id": "tag:env-vars",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:environment-manager",
       "kind": "tag",
       "exists": true
     },
@@ -8199,6 +8427,11 @@
       "exists": true
     },
     {
+      "id": "tag:kiro",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:knowledge",
       "kind": "tag",
       "exists": true
@@ -8369,6 +8602,11 @@
       "exists": true
     },
     {
+      "id": "tag:litellm",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:livecode-bench",
       "kind": "tag",
       "exists": true
@@ -8534,6 +8772,11 @@
       "exists": true
     },
     {
+      "id": "tag:loop-detection",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:lora",
       "kind": "tag",
       "exists": true
@@ -8575,6 +8818,11 @@
     },
     {
       "id": "tag:maker-checker",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:malware-analysis",
       "kind": "tag",
       "exists": true
     },
@@ -8765,6 +9013,11 @@
     },
     {
       "id": "tag:meta-agent",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:meta-agents",
       "kind": "tag",
       "exists": true
     },
@@ -9119,6 +9372,11 @@
       "exists": true
     },
     {
+      "id": "tag:nemo",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:nemotron",
       "kind": "tag",
       "exists": true
@@ -9375,6 +9633,11 @@
     },
     {
       "id": "tag:openai",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:openai-api",
       "kind": "tag",
       "exists": true
     },
@@ -10379,6 +10642,11 @@
       "exists": true
     },
     {
+      "id": "tag:reversible-execution",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:reviewer-class",
       "kind": "tag",
       "exists": true
@@ -10544,6 +10812,11 @@
       "exists": true
     },
     {
+      "id": "tag:scanning",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:scenario-packs",
       "kind": "tag",
       "exists": true
@@ -10625,6 +10898,11 @@
     },
     {
       "id": "tag:search",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:seatbelt",
       "kind": "tag",
       "exists": true
     },
@@ -11159,6 +11437,11 @@
       "exists": true
     },
     {
+      "id": "tag:standard-library",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:stanford",
       "kind": "tag",
       "exists": true
@@ -11195,6 +11478,11 @@
     },
     {
       "id": "tag:storage",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:streaming",
       "kind": "tag",
       "exists": true
     },
@@ -11365,6 +11653,11 @@
     },
     {
       "id": "tag:taxonomy",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:tcl-tk",
       "kind": "tag",
       "exists": true
     },
@@ -11545,6 +11838,11 @@
     },
     {
       "id": "tag:token-analytics",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:token-budget",
       "kind": "tag",
       "exists": true
     },
@@ -12214,6 +12512,11 @@
       "exists": true
     },
     {
+      "id": "tag:workflows",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:workspace",
       "kind": "tag",
       "exists": true
@@ -12377,6 +12680,16 @@
       "title": "Titans (Atlas + Cronus)",
       "url": "https://github.com/titans-tools",
       "summary": "Local-first, agent-first infrastructure pair from a solo AI-assisted builder — Atlas is persistent project memory (knowledge packages, typed graph, evidence/provenance, SQL, blobs, audit history; retrieval blends lexical + vector + graph + evidence, scoped per project/tenant), Cronus is durable execution (DAG workflows, scheduling, checkpoints, at-least-once retries with lease fencing, dead-letter, approval gates); shared MCP server over stdio plus REST/gRPC; free binaries, proprietary source, signed releases (SHA-256 + Ed25519); Windows/Linux",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "tkinter",
+      "kind": "entry",
+      "title": "tkinter",
+      "url": "https://docs.python.org/3/library/tkinter.html",
+      "summary": "Python's standard library interface to the Tcl/Tk GUI toolkit, bundled with CPython on Windows, macOS, and Linux",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -13106,6 +13419,36 @@
     {
       "source": "agent-browser",
       "target": "tag:web-scraping",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-cost-governors",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "agent-cost-governors",
+      "target": "tag:agent-safety",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-cost-governors",
+      "target": "tag:circuit-breaker",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-cost-governors",
+      "target": "tag:cost-control",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-cost-governors",
+      "target": "tag:denial-of-wallet",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-cost-governors",
+      "target": "tag:token-budget",
       "relation": "tagged"
     },
     {
@@ -16274,6 +16617,66 @@
       "relation": "tagged"
     },
     {
+      "source": "cartographer",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "cartographer",
+      "target": "openwiki",
+      "relation": "overlaps"
+    },
+    {
+      "source": "cartographer",
+      "target": "repowise",
+      "relation": "overlaps"
+    },
+    {
+      "source": "cartographer",
+      "target": "tag:claude-code-plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "cartographer",
+      "target": "tag:cli",
+      "relation": "tagged"
+    },
+    {
+      "source": "cartographer",
+      "target": "tag:code-graph",
+      "relation": "tagged"
+    },
+    {
+      "source": "cartographer",
+      "target": "tag:codebase-mapping",
+      "relation": "tagged"
+    },
+    {
+      "source": "cartographer",
+      "target": "tag:documentation",
+      "relation": "tagged"
+    },
+    {
+      "source": "cartographer",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "cartographer",
+      "target": "tag:sqlite",
+      "relation": "tagged"
+    },
+    {
+      "source": "cartographer",
+      "target": "tag:subagents",
+      "relation": "tagged"
+    },
+    {
+      "source": "cartographer",
+      "target": "understand-anything",
+      "relation": "overlaps"
+    },
+    {
       "source": "castem-first-principles-model-mediated-work",
       "target": "ai-needs-what-alcoa-gave-records",
       "relation": "overlaps"
@@ -16711,6 +17114,36 @@
     {
       "source": "claude-code-commands-reference",
       "target": "tag:slash-commands",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-dynamic-workflows",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "claude-code-dynamic-workflows",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-dynamic-workflows",
+      "target": "tag:documentation",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-dynamic-workflows",
+      "target": "tag:orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-dynamic-workflows",
+      "target": "tag:subagents",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-dynamic-workflows",
+      "target": "tag:workflows",
       "relation": "tagged"
     },
     {
@@ -21329,6 +21762,36 @@
       "relation": "tagged"
     },
     {
+      "source": "ghidra",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "ghidra",
+      "target": "tag:decompiler",
+      "relation": "tagged"
+    },
+    {
+      "source": "ghidra",
+      "target": "tag:disassembler",
+      "relation": "tagged"
+    },
+    {
+      "source": "ghidra",
+      "target": "tag:malware-analysis",
+      "relation": "tagged"
+    },
+    {
+      "source": "ghidra",
+      "target": "tag:reverse-engineering",
+      "relation": "tagged"
+    },
+    {
+      "source": "ghidra",
+      "target": "tag:security",
+      "relation": "tagged"
+    },
+    {
       "source": "glama",
       "target": "cat:reference",
       "relation": "categorized"
@@ -23319,6 +23782,41 @@
       "relation": "overlaps"
     },
     {
+      "source": "kasetto",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "kasetto",
+      "target": "tag:configuration",
+      "relation": "tagged"
+    },
+    {
+      "source": "kasetto",
+      "target": "tag:environment-manager",
+      "relation": "tagged"
+    },
+    {
+      "source": "kasetto",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "kasetto",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "kasetto",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "kasetto",
+      "target": "tag:skills",
+      "relation": "tagged"
+    },
+    {
       "source": "kb",
       "target": "cat:framework",
       "relation": "categorized"
@@ -24051,6 +24549,36 @@
     {
       "source": "local-model-adversarial-workflow",
       "target": "tag:qwen",
+      "relation": "tagged"
+    },
+    {
+      "source": "local-model-harness-patterns",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "local-model-harness-patterns",
+      "target": "tag:harness",
+      "relation": "tagged"
+    },
+    {
+      "source": "local-model-harness-patterns",
+      "target": "tag:llama-cpp",
+      "relation": "tagged"
+    },
+    {
+      "source": "local-model-harness-patterns",
+      "target": "tag:local-llm",
+      "relation": "tagged"
+    },
+    {
+      "source": "local-model-harness-patterns",
+      "target": "tag:loop-detection",
+      "relation": "tagged"
+    },
+    {
+      "source": "local-model-harness-patterns",
+      "target": "tag:subagents",
       "relation": "tagged"
     },
     {
@@ -25869,6 +26397,76 @@
       "relation": "tagged"
     },
     {
+      "source": "nemo-switchyard",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "nemo-switchyard",
+      "target": "headroom",
+      "relation": "overlaps"
+    },
+    {
+      "source": "nemo-switchyard",
+      "target": "litellm",
+      "relation": "overlaps"
+    },
+    {
+      "source": "nemo-switchyard",
+      "target": "tag:anthropic-api",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemo-switchyard",
+      "target": "tag:cost-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemo-switchyard",
+      "target": "tag:litellm",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemo-switchyard",
+      "target": "tag:llm-gateway",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemo-switchyard",
+      "target": "tag:model-routing",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemo-switchyard",
+      "target": "tag:nemo",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemo-switchyard",
+      "target": "tag:nvidia",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemo-switchyard",
+      "target": "tag:openai-api",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemo-switchyard",
+      "target": "tag:proxy",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemo-switchyard",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemo-switchyard",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
       "source": "nemotron-3-ultra",
       "target": "cat:framework",
       "relation": "categorized"
@@ -26251,6 +26849,41 @@
     {
       "source": "oh-my-hermes",
       "target": "tag:workflow",
+      "relation": "tagged"
+    },
+    {
+      "source": "okf-agent-memory",
+      "target": "ai-memory-comparison",
+      "relation": "overlaps"
+    },
+    {
+      "source": "okf-agent-memory",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "okf-agent-memory",
+      "target": "tag:agent-architecture",
+      "relation": "tagged"
+    },
+    {
+      "source": "okf-agent-memory",
+      "target": "tag:context-engineering",
+      "relation": "tagged"
+    },
+    {
+      "source": "okf-agent-memory",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "okf-agent-memory",
+      "target": "tag:memory",
+      "relation": "tagged"
+    },
+    {
+      "source": "okf-agent-memory",
+      "target": "tag:prompt-optimization",
       "relation": "tagged"
     },
     {
@@ -27239,6 +27872,36 @@
       "relation": "tagged"
     },
     {
+      "source": "openspec-plus",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "openspec-plus",
+      "target": "specship",
+      "relation": "overlaps"
+    },
+    {
+      "source": "openspec-plus",
+      "target": "tag:adversarial-review",
+      "relation": "tagged"
+    },
+    {
+      "source": "openspec-plus",
+      "target": "tag:autonomous-engineering",
+      "relation": "tagged"
+    },
+    {
+      "source": "openspec-plus",
+      "target": "tag:spec-driven",
+      "relation": "tagged"
+    },
+    {
+      "source": "openspec-plus",
+      "target": "tag:tdd",
+      "relation": "tagged"
+    },
+    {
       "source": "openwiki",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -27614,6 +28277,41 @@
       "relation": "tagged"
     },
     {
+      "source": "pandas-tutor",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "pandas-tutor",
+      "target": "tag:data-visualization",
+      "relation": "tagged"
+    },
+    {
+      "source": "pandas-tutor",
+      "target": "tag:dataframes",
+      "relation": "tagged"
+    },
+    {
+      "source": "pandas-tutor",
+      "target": "tag:debugging",
+      "relation": "tagged"
+    },
+    {
+      "source": "pandas-tutor",
+      "target": "tag:education",
+      "relation": "tagged"
+    },
+    {
+      "source": "pandas-tutor",
+      "target": "tag:pandas",
+      "relation": "tagged"
+    },
+    {
+      "source": "pandas-tutor",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
       "source": "pandera",
       "target": "cat:framework",
       "relation": "categorized"
@@ -27786,6 +28484,31 @@
     {
       "source": "parallel-local-inference",
       "target": "tag:vllm",
+      "relation": "tagged"
+    },
+    {
+      "source": "parsebench",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "parsebench",
+      "target": "tag:benchmark",
+      "relation": "tagged"
+    },
+    {
+      "source": "parsebench",
+      "target": "tag:document-parsing",
+      "relation": "tagged"
+    },
+    {
+      "source": "parsebench",
+      "target": "tag:evaluation",
+      "relation": "tagged"
+    },
+    {
+      "source": "parsebench",
+      "target": "tag:llamaindex",
       "relation": "tagged"
     },
     {
@@ -28591,6 +29314,66 @@
     {
       "source": "prompt-versioning-managed-agents",
       "target": "tag:versioning",
+      "relation": "tagged"
+    },
+    {
+      "source": "pulsarforge",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "pulsarforge",
+      "target": "tag:cpu",
+      "relation": "tagged"
+    },
+    {
+      "source": "pulsarforge",
+      "target": "tag:c",
+      "relation": "tagged"
+    },
+    {
+      "source": "pulsarforge",
+      "target": "tag:inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "pulsarforge",
+      "target": "tag:local-llm",
+      "relation": "tagged"
+    },
+    {
+      "source": "pulsarforge",
+      "target": "tag:moe",
+      "relation": "tagged"
+    },
+    {
+      "source": "pulsarforge",
+      "target": "tag:streaming",
+      "relation": "tagged"
+    },
+    {
+      "source": "pylint",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "pylint",
+      "target": "tag:code-quality",
+      "relation": "tagged"
+    },
+    {
+      "source": "pylint",
+      "target": "tag:linter",
+      "relation": "tagged"
+    },
+    {
+      "source": "pylint",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "pylint",
+      "target": "tag:static-analysis",
       "relation": "tagged"
     },
     {
@@ -29919,6 +30702,76 @@
       "relation": "tagged"
     },
     {
+      "source": "shepherd-agents",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "shepherd-agents",
+      "target": "deepseek-harness",
+      "relation": "overlaps"
+    },
+    {
+      "source": "shepherd-agents",
+      "target": "landlock-lsm",
+      "relation": "overlaps"
+    },
+    {
+      "source": "shepherd-agents",
+      "target": "tag:agent-framework",
+      "relation": "tagged"
+    },
+    {
+      "source": "shepherd-agents",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "shepherd-agents",
+      "target": "tag:git",
+      "relation": "tagged"
+    },
+    {
+      "source": "shepherd-agents",
+      "target": "tag:landlock",
+      "relation": "tagged"
+    },
+    {
+      "source": "shepherd-agents",
+      "target": "tag:meta-agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "shepherd-agents",
+      "target": "tag:permissions",
+      "relation": "tagged"
+    },
+    {
+      "source": "shepherd-agents",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "shepherd-agents",
+      "target": "tag:research-paper",
+      "relation": "tagged"
+    },
+    {
+      "source": "shepherd-agents",
+      "target": "tag:reversible-execution",
+      "relation": "tagged"
+    },
+    {
+      "source": "shepherd-agents",
+      "target": "tag:sandbox",
+      "relation": "tagged"
+    },
+    {
+      "source": "shepherd-agents",
+      "target": "tag:seatbelt",
+      "relation": "tagged"
+    },
+    {
       "source": "shrimply",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -30494,6 +31347,41 @@
       "relation": "tagged"
     },
     {
+      "source": "skillspector",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "skillspector",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "skillspector",
+      "target": "tag:nvidia",
+      "relation": "tagged"
+    },
+    {
+      "source": "skillspector",
+      "target": "tag:scanning",
+      "relation": "tagged"
+    },
+    {
+      "source": "skillspector",
+      "target": "tag:security",
+      "relation": "tagged"
+    },
+    {
+      "source": "skillspector",
+      "target": "tag:skills",
+      "relation": "tagged"
+    },
+    {
+      "source": "skillspector",
+      "target": "tag:supply-chain",
+      "relation": "tagged"
+    },
+    {
       "source": "skylos",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -30834,6 +31722,41 @@
       "relation": "tagged"
     },
     {
+      "source": "specship",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "specship",
+      "target": "tag:adversarial-review",
+      "relation": "tagged"
+    },
+    {
+      "source": "specship",
+      "target": "tag:autonomous-engineering",
+      "relation": "tagged"
+    },
+    {
+      "source": "specship",
+      "target": "tag:aws",
+      "relation": "tagged"
+    },
+    {
+      "source": "specship",
+      "target": "tag:kiro",
+      "relation": "tagged"
+    },
+    {
+      "source": "specship",
+      "target": "tag:spec-driven",
+      "relation": "tagged"
+    },
+    {
+      "source": "specship",
+      "target": "tag:tdd",
+      "relation": "tagged"
+    },
+    {
       "source": "spiderbrain-v3",
       "target": "cat:framework",
       "relation": "categorized"
@@ -31066,6 +31989,86 @@
     {
       "source": "storybloq",
       "target": "tag:wiki",
+      "relation": "tagged"
+    },
+    {
+      "source": "strands-agents",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "strands-agents",
+      "target": "crewai",
+      "relation": "overlaps"
+    },
+    {
+      "source": "strands-agents",
+      "target": "deepseek-harness",
+      "relation": "overlaps"
+    },
+    {
+      "source": "strands-agents",
+      "target": "harnessx",
+      "relation": "overlaps"
+    },
+    {
+      "source": "strands-agents",
+      "target": "smolagents",
+      "relation": "overlaps"
+    },
+    {
+      "source": "strands-agents",
+      "target": "tag:agent-framework",
+      "relation": "tagged"
+    },
+    {
+      "source": "strands-agents",
+      "target": "tag:agent-harness",
+      "relation": "tagged"
+    },
+    {
+      "source": "strands-agents",
+      "target": "tag:agent-loop",
+      "relation": "tagged"
+    },
+    {
+      "source": "strands-agents",
+      "target": "tag:bedrock",
+      "relation": "tagged"
+    },
+    {
+      "source": "strands-agents",
+      "target": "tag:guardrails",
+      "relation": "tagged"
+    },
+    {
+      "source": "strands-agents",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "strands-agents",
+      "target": "tag:model-agnostic",
+      "relation": "tagged"
+    },
+    {
+      "source": "strands-agents",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "strands-agents",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "strands-agents",
+      "target": "tag:tracing",
+      "relation": "tagged"
+    },
+    {
+      "source": "strands-agents",
+      "target": "tag:typescript",
       "relation": "tagged"
     },
     {
@@ -32021,6 +33024,41 @@
     {
       "source": "titans-atlas-cronus",
       "target": "tag:workflow-engine",
+      "relation": "tagged"
+    },
+    {
+      "source": "tkinter",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "tkinter",
+      "target": "tag:cross-platform",
+      "relation": "tagged"
+    },
+    {
+      "source": "tkinter",
+      "target": "tag:desktop",
+      "relation": "tagged"
+    },
+    {
+      "source": "tkinter",
+      "target": "tag:gui",
+      "relation": "tagged"
+    },
+    {
+      "source": "tkinter",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "tkinter",
+      "target": "tag:standard-library",
+      "relation": "tagged"
+    },
+    {
+      "source": "tkinter",
+      "target": "tag:tcl-tk",
       "relation": "tagged"
     },
     {
