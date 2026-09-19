@@ -52,3 +52,7 @@ Tools include document conversion (PDF → structured JSON), document generation
 - No eval() or shell injection patterns observed
 - LLM endpoint credentials for RAG integrations configured via environment variables
 - Part of LF AI & Data Foundation; IBM Research Zurich origin
+
+## Usage notes
+
+- Docling is the enabling technology for IBM's "Chunkless RAG" architecture — reconstructs logical document hierarchy from PDFs so an AI agent can navigate the tree structure (headings, sections, subsections) instead of retrieving fixed-size chunks. See the chunkless-rag catalog entry.

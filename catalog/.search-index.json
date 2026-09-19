@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-09-17",
-  "count": 479,
+  "generated": "2026-09-19",
+  "count": 492,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -1807,6 +1807,29 @@
       "path": "catalog/entries/boris-cherny-claude-md.md"
     },
     {
+      "name": "brag",
+      "title": "/brag — Launch Video Generator",
+      "url": "https://github.com/latent-spaces/brag",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Claude Code skill/plugin that generates short shareable launch videos from any project — analyzes the codebase, creates a product story with music/motion/share copy, renders via Hyperframes; one command; works with Claude Code, Codex CLI, opencode, Gemini CLI, Cursor via skills CLI; optional AI voiceover via Kokoro; MIT",
+      "body_summary": "/brag is an agent skill that turns a software project into a short launch video. It analyzes the project, crafts a product narrative (angle, tone, key moments), then hands a focused brief to Hyperframes for video rendering with music, motion, and timing.\n\nUsage: run /brag inside any project. Optional flags:\n- --tone to steer the narrative style\n- --voice to enable AI voiceover via Kokoro through Hyperframes (off by default)\n\nOutput: brag-output/ folder with the plan, composition brief, share copy, and rendered brag.mp4.\n\nInstallation:\n- Claude Code: plugin marketplace add, then plugin install\n- Other agents (Cursor, Codex, Copilot, Gemini CLI, opencode): npx skills add with the repo URL\n- Manual: copy skills/brag/ to ~/.claude/skills/brag/\n\nCross-agent discovery via symlinks for Claude Code, Codex CLI, and opencode. Requirements: Node.js 22+, FFmpeg on PATH, Hyperframes CLI.",
+      "tags": [
+        "claude-code-plugin",
+        "video",
+        "launch",
+        "marketing",
+        "hyperframes",
+        "skill",
+        "multi-platform"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-18",
+      "path": "catalog/entries/brag.md"
+    },
+    {
       "name": "browser-use",
       "title": "Browser Use",
       "url": "https://github.com/browser-use/browser-use",
@@ -2142,6 +2165,30 @@
       "security_flags": [],
       "reviewed": "2026-06-18",
       "path": "catalog/entries/chromadb.md"
+    },
+    {
+      "name": "chunkless-rag",
+      "title": "Chunkless RAG (IBM)",
+      "url": "https://note.com/tam2_sys/n/n2d9c200fb19d?hl=en",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "RAG architecture that preserves document tree structure instead of splitting into fixed-size chunks — AI agents navigate the document hierarchy (table of contents, headings, sections) like a human reader, reading short section summaries to locate relevant content, then drilling into specific sections; requires structural document parsing (e.g. Docling) to reconstruct logical hierarchy from PDFs; trades higher latency and compute for better cross-section reasoning, context preservation, and reduced hallucination on complex documents",
+      "body_summary": "Chunkless RAG replaces the traditional chunk-embed-retrieve pipeline with agent-driven document navigation. Instead of splitting a document into fixed-size chunks (which destroys headings, sections, and hierarchical relationships), the system:\n\n1. Parses the document into a tree structure preserving headings, sections, subsections, tables, and images (using Docling or similar structural parsers)\n2. Generates short summaries for each section node in the tree\n3. Agent navigates the tree at query time — reads section summaries, infers relevance, drills into specific sections, follows references to other sections as needed\n\nThis preserves the logical context that chunking destroys. The agent always knows which hierarchy level a piece of information belongs to, enabling cross-section reasoning and integrated answers.\n\nWhen to use: complex documents requiring high-precision answers — contracts, technical manuals, research papers, regulatory filings. Not suited for ambiguous keyword searches across millions of documents, where traditional RAG is more efficient.\n\nTrade-offs: higher latency (more model interactions per query), higher compute cost, requires structural document parsing as a prerequisite.\n\nSource: summary article of an IBM Technology video (August 2026).",
+      "tags": [
+        "rag",
+        "retrieval",
+        "document-structure",
+        "chunking-alternative",
+        "docling",
+        "ibm",
+        "pdf",
+        "agent-navigation"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-18",
+      "path": "catalog/entries/chunkless-rag.md"
     },
     {
       "name": "cl4r1t4s",
@@ -3469,6 +3516,35 @@
       "path": "catalog/entries/data-science-for-beginners.md"
     },
     {
+      "name": "databasement",
+      "title": "Databasement",
+      "url": "https://github.com/David-Crty/databasement",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Self-hosted database backup manager with web UI — schedule, backup, and restore MySQL, PostgreSQL, MariaDB, SQL Server, MongoDB, SQLite, Firebird, and Redis to S3/SFTP/Samba/Azure Blob/local storage; SSH tunnels, remote agents, GFS retention, AES-256 encryption, cross-server restore, scheduled restores, built-in Adminer browser, multi-tenant RBAC with OAuth/SSO, REST API and MCP server; single Docker container; MIT",
+      "body_summary": "Databasement is a self-hosted web application for managing database backups across 8 database engines (MySQL, PostgreSQL, MariaDB, SQL Server, MongoDB, SQLite, Firebird, Redis/Valkey).\n\nKey features:\n- Automated backups on daily/weekly schedules with simple time-based or GFS (grandfather-father-son) retention policies\n- Compression: gzip, zstd (20-40% better compression), or AES-256 encryption\n- Storage targets: local disk, S3-compatible (AWS S3, MinIO), Azure Blob Storage, Samba/SMB, SFTP/FTP\n- SSH tunnels for databases in private networks through bastion/jump servers\n- Remote agents: lightweight agent connects out over HTTPS from firewalled networks, dumps locally, uploads to storage\n- Cross-server restore: restore snapshots from production to staging or between compatible servers\n- Scheduled restores: recurring prod-to-staging refreshes replaying the latest completed snapshot\n- Built-in Adminer data browser for MySQL, PostgreSQL, and SQLite (admin-enabled, role-gated)\n- Multi-tenant organizations with RBAC, OAuth/SSO (Google, GitHub, GitLab, OIDC), optional 2FA\n- Notifications: Email, Slack, Discord, Telegram, Pushover, Gotify, Webhook\n- REST API and MCP server for scripting, CI/CD, and AI assistant integration\n\nDeployment: single Docker container with built-in web server, queue worker, and scheduler. Also supports Docker Compose, Kubernetes (Helm), and native Ubuntu.",
+      "tags": [
+        "database",
+        "backup",
+        "restore",
+        "self-hosted",
+        "docker",
+        "mcp-server",
+        "mysql",
+        "postgresql",
+        "mongodb",
+        "sqlite",
+        "ssh-tunnel",
+        "s3",
+        "encryption"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-18",
+      "path": "catalog/entries/databasement.md"
+    },
+    {
       "name": "decomposition-over-context",
       "title": "Decomposition Over Context: Chat Is the Wrong Abstraction",
       "url": "https://example.com",
@@ -3755,6 +3831,29 @@
       "security_flags": [],
       "reviewed": "2026-09-10",
       "path": "catalog/entries/docker-alternatives-for-ai-agents.md"
+    },
+    {
+      "name": "docker-isolated-agent-sandbox",
+      "title": "Docker-Isolated Agent Sandbox Pattern",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Architecture pattern for running multiple AI coding agents in Docker containers with filesystem isolation — agents access only explicitly shared files and connections, work in git worktrees, all changes visible and reviewable in git; includes port collision prevention, resource exhaustion guards, zombie process cleanup, and merge conflict prevention; reported 38% token savings vs uncontained agents",
+      "body_summary": "A practitioner-described architecture for running multiple AI coding agents concurrently in isolated Docker containers:\n\n- Filesystem isolation: agents run inside Docker, accessing only files explicitly dropped in and connections explicitly granted\n- Git-backed workspace: entire filesystem agents work in lives in git, making all changes visible and reviewable\n- Worktree isolation: agents work in git worktrees to prevent merge conflicts between concurrent sessions\n- Resource management: port collision prevention, resource exhaustion guards, and zombie process cleanup (e.g. leftover browser sessions consuming RAM)\n\nDescribed as \"a VSCode inside docker that's focused on agentic work.\" Reported benefit: 38% token savings over the past month compared to uncontained agent operation.\n\nThe pattern is described at a conceptual level without naming a specific open-source project.",
+      "tags": [
+        "agents",
+        "docker",
+        "isolation",
+        "sandbox",
+        "worktrees",
+        "multi-agent",
+        "resource-management",
+        "security"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-18",
+      "path": "catalog/entries/docker-isolated-agent-sandbox.md"
     },
     {
       "name": "docling-mcp",
@@ -4529,6 +4628,35 @@
       "path": "catalog/entries/five-levels-of-chunking.md"
     },
     {
+      "name": "floci",
+      "title": "Floci — Local Cloud Emulators",
+      "url": "https://floci.io/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Local cloud emulators for AWS (119 services, port 4566), Azure (28 services), GCP (25 services), and OCI (8 services) — native binaries compiled with GraalVM Mandrel, 24ms cold start, 13 MiB idle; drop-in LocalStack replacement (same port, zero code changes); real engines (Lambda in Docker, RDS with real PostgreSQL/MySQL, ElastiCache with real Redis); no auth tokens, no accounts, no telemetry; unified CLI and visual dashboard; MIT",
+      "body_summary": "Floci provides standalone cloud emulators for four cloud providers, each running as a native binary with no cloud account or authentication required.\n\nEmulators:\n- floci (AWS): 119 services on port 4566; drop-in replacement for LocalStack with same port and zero code changes\n- floci-az (Azure): 28 services on port 4577; Blob, Queue, Table, Functions, App Config, Key Vault, Event Hubs, Service Bus\n- floci-gcp (GCP): 25 services on port 4588; GCS, Pub/Sub, Firestore, Cloud Run, Cloud SQL, GKE\n- floci-oci (OCI): 8 services on port 4599; Object Storage, Identity, Queue, Streaming, KMS, Vault, Functions\n\nPerformance: 24ms cold start, 13 MiB idle memory. Compiled with GraalVM Mandrel.\n\nReal engines: Lambda runs in real Docker containers, RDS uses real PostgreSQL/MySQL, ElastiCache runs real Redis. Works with every SDK, CLI, Terraform/OpenTofu module, and test runner.\n\nDeveloper tools: floci-cli (unified CLI) and floci-ui (visual dashboard to browse resources across all providers).\n\nPositioned as a credential-free alternative to LocalStack, which started requiring an auth token in March 2026.",
+      "tags": [
+        "cloud-emulator",
+        "aws",
+        "azure",
+        "gcp",
+        "oci",
+        "localstack-alternative",
+        "local-development",
+        "docker",
+        "lambda",
+        "s3",
+        "ci",
+        "terraform",
+        "mit"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-18",
+      "path": "catalog/entries/floci.md"
+    },
+    {
       "name": "fluiddocs-deck-builder",
       "title": "FluidDocs Deck Builder",
       "url": "https://github.com/FluidForm-ai/fluiddocs-deck-builder",
@@ -5275,6 +5403,31 @@
       "path": "catalog/entries/hackingtool-plugin.md"
     },
     {
+      "name": "hacksplaining",
+      "title": "Hacksplaining",
+      "url": "https://www.hacksplaining.com/",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Interactive secure coding education platform with 45 lessons covering OWASP vulnerabilities and AI-era threats (prompt injection) — 15-30 minute lessons with vulnerable/secure code examples in Python, JavaScript, Java, Go; quizzes and progress tracking; free for personal use, paid team plans with SSO and dashboards; 500K+ registered users",
+      "body_summary": "Hacksplaining provides 45 interactive lessons on web application security vulnerabilities. Each lesson (15-30 minutes) features:\n\n- Character-driven narratives with attacker personas (The Savant, The Cowboy, The Hacker, The Specialist, The Mark)\n- Multi-language code examples: vulnerable and secure code in Python, JavaScript, Java, Go\n- Quizzes after each lesson with progress tracking\n- Coverage from OWASP classics (SQL injection, XSS, CSRF, auth flaws) through AI-era threats like prompt injection\n\nFree for personal use, no credit card required. Team plans include dashboards, SSO, and compliance reporting. Used at Google, IBM, Microsoft, Amazon, Intel, and others (500K+ registered users as of July 2026).",
+      "tags": [
+        "security",
+        "education",
+        "owasp",
+        "secure-coding",
+        "interactive-learning",
+        "web-security",
+        "xss",
+        "sql-injection",
+        "csrf"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-18",
+      "path": "catalog/entries/hacksplaining.md"
+    },
+    {
       "name": "harness-engineering",
       "title": "Harness Engineering (Fowler / Böckeler)",
       "url": "https://martinfowler.com/articles/harness-engineering.html",
@@ -5779,6 +5932,30 @@
       ],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/jcode.md"
+    },
+    {
+      "name": "jev",
+      "title": "Jev (TypeSafe AI)",
+      "url": "https://typesafe.ai",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Non-generative 'System One' classification model from TypeSafe AI — evaluates state and returns typed answers with calibrated probabilities (choice, score, noul/boolean) instead of generating text; trained with RLCD; reports up to 200x faster inference and 400x lower cost than LLMs on classification tasks; parallel multi-question evaluation per request; LangChain integration via langchain-typesafe; use cases include model routing, agent guardrails (auto-mode safety classification), and ticket triage",
+      "body_summary": "Jev is a classification model (not an LLM) designed for fast, structured decisions in agent workflows. TypeSafe AI calls it a \"System One\" model — it evaluates a state and returns typed answers with calibrated probabilities, without generating text.\n\nAPI: send a state (text, structured data, or LangChain messages) and one or more questions. Three question types:\n- Choice: pick from a set of options; returns probability per option plus confidence\n- Score: rate against ordered levels (low/medium/high); returns continuous score plus distribution plus confidence\n- Noul: yes/no question; returns probability that a statement is true\n\nAll questions in a request evaluate in parallel — adding questions barely changes response time.\n\nLangChain integration: langchain-typesafe package exposes TypeSafeClassifier with .invoke(). Experimental middleware:\n- ModelRouterMiddleware: classifies request complexity and routes to appropriate model (fast vs powerful)\n- AutoModeMiddleware: classifies tool calls for risk before execution, blocking dangerous actions\n\nReported performance: up to 200x faster inference and 400x lower cost compared to LLMs on classification tasks.",
+      "tags": [
+        "classification",
+        "inference",
+        "llm-alternative",
+        "langchain",
+        "agent-routing",
+        "guardrails",
+        "model-routing",
+        "typesafe-ai"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-18",
+      "path": "catalog/entries/jev.md"
     },
     {
       "name": "jit-agent",
@@ -6734,6 +6911,31 @@
       ],
       "reviewed": "2026-06-17",
       "path": "catalog/entries/mex.md"
+    },
+    {
+      "name": "microsoft-activation-scripts",
+      "title": "Microsoft Activation Scripts (MAS)",
+      "url": "https://massgrave.dev/",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Open-source Windows and Office activator using HWID, Ohook, TSforge, and Online KMS methods — batch-script-based; HWID for permanent Windows 10/11 activation, Ohook for permanent Office activation, TSforge for permanent Windows/ESU/Office, Online KMS for 180-day renewable activation; includes edition changing and troubleshooting; v3.12 (July 2026)",
+      "body_summary": "Microsoft Activation Scripts (MAS) provides multiple methods for activating Windows and Office products:\n\n- HWID (Hardware ID): permanent Windows 10/11 activation tied to hardware fingerprint; requires internet\n- Ohook: permanent Office activation; works offline\n- TSforge: permanent activation for Windows, ESU, and Office; mostly offline\n- Online KMS: 180-day renewable activation for Windows/Office; lifetime with scheduled renewal task\n\nPrimary install: PowerShell one-liner that downloads and executes a script. Also available as a downloadable offline package. Built entirely on batch scripts. Includes utilities for changing Windows/Office editions and checking activation status.\n\nLatest release: v3.12 (July 4, 2026). Hosted on GitHub, Azure DevOps, and self-hosted Git.",
+      "tags": [
+        "windows",
+        "office",
+        "activation",
+        "batch-scripts",
+        "hwid",
+        "kms",
+        "open-source"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [
+        "powershell-remote-execution"
+      ],
+      "reviewed": "2026-09-18",
+      "path": "catalog/entries/microsoft-activation-scripts.md"
     },
     {
       "name": "microsoft-agentic-unified-data-foundation-fabric",
@@ -8784,6 +8986,27 @@
       "path": "catalog/entries/production-rag-system-taxonomy.md"
     },
     {
+      "name": "prompt-assembly-cache-discipline",
+      "title": "Prompt Assembly and Cache Discipline",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Rules for LLM prompt assembly that preserve KV-cache efficiency — never rewrite the front of a prompt (invalidates cached tokens), avoid sliding windows that evict oldest turns (same cost), cap fat messages in-place to stay cacheable, put retrieval/per-query content last as a suffix so changes do not poison the cached prefix; includes five-layer assembler concept and ablation methodology",
+      "body_summary": "A set of rules for assembling LLM prompts that preserve KV-cache efficiency:\n\n1. Do not rewrite the front: summarizing conversation history rewrites the beginning of the prompt, forcing recomputation of every cached token behind it\n2. Sliding windows are expensive: evicting the oldest turn from the front has the same cache-invalidation cost as summarization\n3. Cap in place: truncating an oversized message without moving it preserves its position in the cache\n4. Retrieval goes last: per-query content (RAG results, search hits) placed as a suffix means changes cannot invalidate the cached prefix\n5. Measure without API calls: use a validity gate that voids a run if a probe question could be answered by a different mechanism\n\nThe source also describes a five-layer prompt assembler architecture, an ablation ladder (each rung adds one mechanism), and a technique for identifying which layer earns its token budget.",
+      "tags": [
+        "prompt-engineering",
+        "kv-cache",
+        "context-management",
+        "token-efficiency",
+        "prompt-assembly",
+        "caching"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-18",
+      "path": "catalog/entries/prompt-assembly-cache-discipline.md"
+    },
+    {
       "name": "prompt-caching-mcp",
       "title": "Prompt Caching MCP",
       "url": "https://github.com/flightlesstux/prompt-caching",
@@ -9005,6 +9228,31 @@
       ],
       "reviewed": "2026-09-10",
       "path": "catalog/entries/qwen38-27b-200k-on-16gb.md"
+    },
+    {
+      "name": "qwopus38-27b-flash",
+      "title": "Qwopus3.8-27B-Flash",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Post-trained efficiency variant of Qwen3.8-27B (hybrid DeltaNet + attention architecture) focused on reducing unnecessary reasoning while preserving capability — +12.8% decoder throughput, MTP acceptance 66.1% to 80.7%, ~9.9% less total output with significantly fewer P95 runaway-reasoning cases; trades 1.45pp on MMLU-Pro (92.73% to 91.28%); 13/14 agent tasks passed at 99 tok/s on RTX 5090; trained with high-quality SFT (top 10% of 1.5M samples) + NVIDIA NeMo-RL GSPO; GGUF format",
+      "body_summary": "Qwopus3.8-27B-Flash is a post-trained variant of Qwen3.8-27B optimized for inference efficiency, reasoning efficiency, and agent workloads. The goal is not higher benchmark accuracy but reducing unnecessary compute while preserving most capability.\n\nBase architecture (Qwen3.8-27B): 64 layers in a hybrid pattern — 48 Gated DeltaNet layers + 16 Gated Attention layers. DeltaNet layers act as recurrent state updates for efficient long-context processing; attention layers provide periodic precise retrieval. 262K native context, native Multi-Token Prediction (MTP) support.\n\nPost-training: high-quality SFT filtered to top ~10% of 1.5M teacher-generated samples, then GSPO via NVIDIA NeMo-RL to reinforce effective reasoning trajectories and better termination behavior.\n\nMeasured improvements over base Qwen3.8-27B (Q5_K_M + MTP, MMLU-Pro math/physics/chemistry):\n- Decoder throughput: +12.8%\n- MTP acceptance: 66.1% to 80.7% (+14.6pp)\n- Output reduction: ~9.9% fewer total characters; P95 extreme outputs decreased 13-40%\n- Accuracy trade-off: MMLU-Pro 92.73% to 91.28% (-1.45pp)\n\nAgent evaluation (14 held-out SW engineering tasks, RTX 5090): 13/14 tasks passed, 99 tok/s average, 88.8% MTP acceptance, 26 minutes total.\n\nKnown issue: abnormal Python indentation in some nested block structures.",
+      "tags": [
+        "qwen",
+        "local-inference",
+        "efficiency",
+        "mtp",
+        "speculative-decoding",
+        "reasoning",
+        "gguf",
+        "agent-workloads",
+        "post-training",
+        "deltanet"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-18",
+      "path": "catalog/entries/qwopus38-27b-flash.md"
     },
     {
       "name": "rag-architecture-decision-tree",
@@ -10191,6 +10439,33 @@
       "path": "catalog/entries/spiderbrain-v3.md"
     },
     {
+      "name": "sqltools",
+      "title": "SQLTools",
+      "url": "https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "VS Code extension for database management — connects to MySQL, PostgreSQL, SQL Server, SQLite, CockroachDB, MariaDB, TiDB via official drivers, plus 25+ community drivers (DuckDB, BigQuery, Snowflake, Oracle, ClickHouse, etc.); SQL formatter/beautifier, query runner with history and bookmarks, connection explorer, INSERT query generator; pluggable driver architecture; maintained by George James Software; MIT",
+      "body_summary": "SQLTools is a set of VS Code extensions providing database management directly inside the editor. Core extension plus separate driver packages for each database engine.\n\nFeatures:\n- Connection management with explorer, add/edit/remove\n- Query runner with history, bookmarks, and result display\n- SQL beautifier and formatter\n- INSERT query generator from table structure\n- Pluggable driver architecture: install only the drivers you need\n\nOfficial drivers: MySQL, PostgreSQL, SQL Server, SQLite, CockroachDB, MariaDB, TiDB.\n\nCommunity drivers (25+): Amazon Redshift, ClickHouse, Databricks, Db2, DolphinDB, DuckDB, Google BigQuery, Google Cloud Spanner, Hive, InterSystems IRIS, kdb+/q, Mimer SQL, Netezza, Oracle, SAP HANA, SingleStore, Snowflake, Teradata, Trino, Vertica, and more.\n\nMaintained by Matheus Teixeira and George James Software with community contributions.",
+      "tags": [
+        "vscode",
+        "database",
+        "sql",
+        "mysql",
+        "postgresql",
+        "sqlite",
+        "duckdb",
+        "snowflake",
+        "bigquery",
+        "extension",
+        "query-runner"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-18",
+      "path": "catalog/entries/sqltools.md"
+    },
+    {
       "name": "staff-engineer-systems-thinking",
       "title": "Staff Engineers: Shift from Solving Problems to Shaping Systems",
       "url": "https://leaddev.com/career-development/staff-engineers-shift-from-solving-problems-to-shaping-systems",
@@ -10681,6 +10956,33 @@
       "path": "catalog/entries/textual.md"
     },
     {
+      "name": "tfm-tui",
+      "title": "tfm — Terminal File Manager",
+      "url": "https://github.com/clarkarch/tfm-tui",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Mouse-first terminal file manager with places sidebar, grid view, drag-and-drop, image/video thumbnails (kitty graphics protocol), dual pane, embedded terminal, network locations (sftp/smb/WebDAV/FTP via gvfs), XDG trash, archive operations, tabs, 30+ themes, TypeScript plugin system; Linux only, built with Bun; MIT",
+      "body_summary": "tfm is a terminal file manager designed around mouse interaction rather than keyboard-only workflows. Runs inside a terminal emulator but provides GUI-like features: click to select, rubber-band selection, right-click context menus, inline rename, and drag-and-drop between folders.\n\nKey features:\n- Dual pane with independent tabs, path bar, sort, and search per side\n- Places sidebar with GTK bookmarks, recent files, XDG trash with restore, clipboard\n- Image/video thumbnails via kitty graphics protocol (kitty, ghostty, WezTerm, Konsole); falls back to Nerd Font glyphs\n- Network locations: sftp://, smb://, WebDAV, FTP via gvfs with in-app credential prompts\n- Embedded terminal (right-click → Open Terminal Here)\n- Archive extract and compress via right-click menu\n- Auto-hide panes: sidebar/preview/terminal collapse to edges and slide back on mouse hover\n- TypeScript plugins in ~/.config/tfm/plugins/ with hot reload, custom commands/keybinds, context menus, previews, event hooks, and UI slots\n\nCross-app drag-and-drop requires kitty. Linux only. Configuration via TOML at ~/.config/tfm/config.toml.",
+      "tags": [
+        "file-manager",
+        "tui",
+        "terminal",
+        "kitty-graphics",
+        "dual-pane",
+        "drag-and-drop",
+        "bun",
+        "linux",
+        "plugins"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "install-script-curl-pipe"
+      ],
+      "reviewed": "2026-09-18",
+      "path": "catalog/entries/tfm-tui.md"
+    },
+    {
       "name": "third-brain-v5-wiki",
       "title": "Third Brain V5 (Wiki/Knowledge Layer)",
       "url": "https://github.com/Mark393295827/third-brain-v5-skills",
@@ -11021,6 +11323,33 @@
       "security_flags": [],
       "reviewed": "2026-07-06",
       "path": "catalog/entries/trl.md"
+    },
+    {
+      "name": "tuios",
+      "title": "TUIOS — Terminal UI OS",
+      "url": "https://github.com/Gaurav-Gosain/tuios",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Terminal multiplexer and window manager built in Go on Charm's Bubble Tea v2 — vim-like modal interface, BSP/scrolling/master-stack tiling, 9 workspaces, kitty graphics protocol passthrough (flicker-free video, sixel experimental), daemon mode with session resurrection, vim-style copy mode with 10K-line scrollback, tape scripting DSL for automation, command palette, app launcher, SSH server mode, web terminal mode; event-driven rendering (zero idle CPU); MIT",
+      "body_summary": "TUIOS is a terminal multiplexer combining tmux session management with i3/sway-style tiling window management. Built in Go on Charm's Bubble Tea v2 and Lipgloss v2.\n\nCore capabilities:\n- Modal interface: Window Management mode (vim-like navigation) and Terminal mode; Ctrl+P command palette\n- Tiling: BSP (binary space partitioning) with spiral layout, scrolling layout (niri-style infinite horizontal strip), master-stack layout; preselection for controlling split placement\n- 9 workspaces with independent isolation and instant switching\n- Kitty graphics: full image rendering with flicker-free video (image ID reuse + mode 2026 sync); sixel passthrough experimental; supports mpv --vo=kitty\n- Daemon mode with detach/reattach (like tmux), session resurrection across daemon restarts/reboots\n- Vim-style copy mode over 10,000-line scrollback with search, yank, mouse wheel scrolling, interactive scrollbar\n- Tape scripting DSL for recording and replaying terminal workflows; headless execution against daemon sessions\n- App launcher (Alt+Space, frecency-ranked with desktop app icons), aggregate view across all workspaces, multifocus broadcast typing\n- TOML config, customizable keybindings, hooks (shell commands on window events), themes\n\nInstallable via Homebrew, AUR, Nix, Go, Docker, or install script.",
+      "tags": [
+        "terminal-multiplexer",
+        "tui",
+        "go",
+        "bubble-tea",
+        "tiling",
+        "kitty-graphics",
+        "tmux-alternative",
+        "vim",
+        "daemon",
+        "session-management",
+        "automation"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-18",
+      "path": "catalog/entries/tuios.md"
     },
     {
       "name": "turboquant",
