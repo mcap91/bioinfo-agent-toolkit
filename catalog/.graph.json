@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-17T02:19:21.856Z",
+  "generated_at": "2026-09-19T06:24:58.670Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -764,6 +764,16 @@
       "exists": true
     },
     {
+      "id": "brag",
+      "kind": "entry",
+      "title": "/brag — Launch Video Generator",
+      "url": "https://github.com/latent-spaces/brag",
+      "summary": "Claude Code skill/plugin that generates short shareable launch videos from any project — analyzes the codebase, creates a product story with music/motion/share copy, renders via Hyperframes; one command; works with Claude Code, Codex CLI, opencode, Gemini CLI, Cursor via skills CLI; optional AI voiceover via Kokoro; MIT",
+      "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "browser-use",
       "kind": "entry",
       "title": "Browser Use",
@@ -950,6 +960,16 @@
       "url": "https://www.trychroma.com/products/chromadb",
       "summary": "Open-source AI search infrastructure with vector, full-text, regex, and hybrid search — embedding-agnostic with Python/JS SDKs, serverless cloud option, and multi-modal retrieval; strong fit for literature/sequence RAG pipelines",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "chunkless-rag",
+      "kind": "entry",
+      "title": "Chunkless RAG (IBM)",
+      "url": "https://note.com/tam2_sys/n/n2d9c200fb19d?hl=en",
+      "summary": "RAG architecture that preserves document tree structure instead of splitting into fixed-size chunks — AI agents navigate the document hierarchy (table of contents, headings, sections) like a human reader, reading short section summaries to locate relevant content, then drilling into specific sections; requires structural document parsing (e.g. Docling) to reconstruct logical hierarchy from PDFs; trades higher latency and compute for better cross-section reasoning, context preservation, and reduced hallucination on complex documents",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -1526,6 +1546,16 @@
       "exists": true
     },
     {
+      "id": "databasement",
+      "kind": "entry",
+      "title": "Databasement",
+      "url": "https://github.com/David-Crty/databasement",
+      "summary": "Self-hosted database backup manager with web UI — schedule, backup, and restore MySQL, PostgreSQL, MariaDB, SQL Server, MongoDB, SQLite, Firebird, and Redis to S3/SFTP/Samba/Azure Blob/local storage; SSH tunnels, remote agents, GFS retention, AES-256 encryption, cross-server restore, scheduled restores, built-in Adminer browser, multi-tenant RBAC with OAuth/SSO, REST API and MCP server; single Docker container; MIT",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "decomposition-over-context",
       "kind": "entry",
       "title": "Decomposition Over Context: Chat Is the Wrong Abstraction",
@@ -1642,6 +1672,15 @@
       "url": "https://grigio.org/docker-alternatives-for-ai-agents-podman-bwrap-and-firejail/",
       "summary": "Blog comparison (grigio.org, Jul 2026) of Podman, Bubblewrap, and Firejail as agent-sandboxing alternatives to Docker — decision matrix over startup time, isolation strength, attack surface, profiles, and portability; recommends Podman for production agent services, bwrap for per-command local sandboxes, Firejail for desktop agents",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "docker-isolated-agent-sandbox",
+      "kind": "entry",
+      "title": "Docker-Isolated Agent Sandbox Pattern",
+      "summary": "Architecture pattern for running multiple AI coding agents in Docker containers with filesystem isolation — agents access only explicitly shared files and connections, work in git worktrees, all changes visible and reviewable in git; includes port collision prevention, resource exhaustion guards, zombie process cleanup, and merge conflict prevention; reported 38% token savings vs uncontained agents",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -1970,6 +2009,16 @@
       "exists": true
     },
     {
+      "id": "floci",
+      "kind": "entry",
+      "title": "Floci — Local Cloud Emulators",
+      "url": "https://floci.io/",
+      "summary": "Local cloud emulators for AWS (119 services, port 4566), Azure (28 services), GCP (25 services), and OCI (8 services) — native binaries compiled with GraalVM Mandrel, 24ms cold start, 13 MiB idle; drop-in LocalStack replacement (same port, zero code changes); real engines (Lambda in Docker, RDS with real PostgreSQL/MySQL, ElastiCache with real Redis); no auth tokens, no accounts, no telemetry; unified CLI and visual dashboard; MIT",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "fluiddocs-deck-builder",
       "kind": "entry",
       "title": "FluidDocs Deck Builder",
@@ -2278,6 +2327,16 @@
       "exists": true
     },
     {
+      "id": "hacksplaining",
+      "kind": "entry",
+      "title": "Hacksplaining",
+      "url": "https://www.hacksplaining.com/",
+      "summary": "Interactive secure coding education platform with 45 lessons covering OWASP vulnerabilities and AI-era threats (prompt injection) — 15-30 minute lessons with vulnerable/secure code examples in Python, JavaScript, Java, Go; quizzes and progress tracking; free for personal use, paid team plans with SSO and dashboards; 500K+ registered users",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "handoff",
       "kind": "entry",
       "exists": false
@@ -2482,6 +2541,16 @@
       "title": "jcode",
       "url": "https://github.com/1jehuang/jcode",
       "summary": "Feature-rich Rust coding agent harness with exceptional performance (14ms boot, 28MB RAM), swarm collaboration, and 30+ provider integrations; compelling alternative harness to watch",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "jev",
+      "kind": "entry",
+      "title": "Jev (TypeSafe AI)",
+      "url": "https://typesafe.ai",
+      "summary": "Non-generative 'System One' classification model from TypeSafe AI — evaluates state and returns typed answers with calibrated probabilities (choice, score, noul/boolean) instead of generating text; trained with RLCD; reports up to 200x faster inference and 400x lower cost than LLMs on classification tasks; parallel multi-question evaluation per request; LangChain integration via langchain-typesafe; use cases include model routing, agent guardrails (auto-mode safety classification), and ticket triage",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -2867,6 +2936,16 @@
       "title": "mex",
       "url": "https://github.com/theDakshJaitly/mex",
       "summary": "Structured markdown scaffold + 11-checker drift-detection CLI for persistent AI agent memory; provider-neutral, ~60% token reduction claims, but single-contributor and overlaps with kb wiki + built-in memory",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "microsoft-activation-scripts",
+      "kind": "entry",
+      "title": "Microsoft Activation Scripts (MAS)",
+      "url": "https://massgrave.dev/",
+      "summary": "Open-source Windows and Office activator using HWID, Ohook, TSforge, and Online KMS methods — batch-script-based; HWID for permanent Windows 10/11 activation, Ohook for permanent Office activation, TSforge for permanent Windows/ESU/Office, Online KMS for 180-day renewable activation; includes edition changing and troubleshooting; v3.12 (July 2026)",
       "category": "cli-tool",
       "decision_status": "open",
       "exists": true
@@ -3715,6 +3794,15 @@
       "exists": true
     },
     {
+      "id": "prompt-assembly-cache-discipline",
+      "kind": "entry",
+      "title": "Prompt Assembly and Cache Discipline",
+      "summary": "Rules for LLM prompt assembly that preserve KV-cache efficiency — never rewrite the front of a prompt (invalidates cached tokens), avoid sliding windows that evict oldest turns (same cost), cap fat messages in-place to stay cacheable, put retrieval/per-query content last as a suffix so changes do not poison the cached prefix; includes five-layer assembler concept and ablation methodology",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "prompt-caching-mcp",
       "kind": "entry",
       "title": "Prompt Caching MCP",
@@ -3811,6 +3899,15 @@
       "url": "https://huggingface.co/unsloth/Qwen3.8-27B-GGUF",
       "summary": "Practitioner recipe for running Qwen 3.8 27B UD-IQ4_XS at ~196K context and 50 t/s on a single RTX 5070 Ti (16GB) — prune non-ASCII rows from the embedding table and LM head (~700MB, ASCII-condensed variant published), offload the embedding table to CPU, disable MTP, use adaptive-KV streaming (llama.cpp fork) to page KV cache from host RAM, and quantize cache Q8 K / Q4 V",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "qwopus38-27b-flash",
+      "kind": "entry",
+      "title": "Qwopus3.8-27B-Flash",
+      "summary": "Post-trained efficiency variant of Qwen3.8-27B (hybrid DeltaNet + attention architecture) focused on reducing unnecessary reasoning while preserving capability — +12.8% decoder throughput, MTP acceptance 66.1% to 80.7%, ~9.9% less total output with significantly fewer P95 runaway-reasoning cases; trades 1.45pp on MMLU-Pro (92.73% to 91.28%); 13/14 agent tasks passed at 99 tok/s on RTX 5090; trained with high-quality SFT (top 10% of 1.5M samples) + NVIDIA NeMo-RL GSPO; GGUF format",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -4312,6 +4409,16 @@
       "exists": true
     },
     {
+      "id": "sqltools",
+      "kind": "entry",
+      "title": "SQLTools",
+      "url": "https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools",
+      "summary": "VS Code extension for database management — connects to MySQL, PostgreSQL, SQL Server, SQLite, CockroachDB, MariaDB, TiDB via official drivers, plus 25+ community drivers (DuckDB, BigQuery, Snowflake, Oracle, ClickHouse, etc.); SQL formatter/beautifier, query runner with history and bookmarks, connection explorer, INSERT query generator; pluggable driver architecture; maintained by George James Software; MIT",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "staff-engineer-systems-thinking",
       "kind": "entry",
       "title": "Staff Engineers: Shift from Solving Problems to Shaping Systems",
@@ -4617,6 +4724,11 @@
       "exists": true
     },
     {
+      "id": "tag:activation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ad-blocking",
       "kind": "tag",
       "exists": true
@@ -4762,6 +4874,11 @@
       "exists": true
     },
     {
+      "id": "tag:agent-navigation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:agent-orchestration",
       "kind": "tag",
       "exists": true
@@ -4798,6 +4915,11 @@
     },
     {
       "id": "tag:agent-retrieval",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:agent-routing",
       "kind": "tag",
       "exists": true
     },
@@ -4848,6 +4970,11 @@
     },
     {
       "id": "tag:agent-workflow",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:agent-workloads",
       "kind": "tag",
       "exists": true
     },
@@ -5392,6 +5519,11 @@
       "exists": true
     },
     {
+      "id": "tag:batch-scripts",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:bayesian-classifier",
       "kind": "tag",
       "exists": true
@@ -5443,6 +5575,11 @@
     },
     {
       "id": "tag:bevy",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:bigquery",
       "kind": "tag",
       "exists": true
     },
@@ -5522,6 +5659,11 @@
       "exists": true
     },
     {
+      "id": "tag:bubble-tea",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:bubblewrap",
       "kind": "tag",
       "exists": true
@@ -5558,6 +5700,11 @@
     },
     {
       "id": "tag:c",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:caching",
       "kind": "tag",
       "exists": true
     },
@@ -5672,6 +5819,11 @@
       "exists": true
     },
     {
+      "id": "tag:chunking-alternative",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ci",
       "kind": "tag",
       "exists": true
@@ -5688,6 +5840,11 @@
     },
     {
       "id": "tag:cjk",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:classification",
       "kind": "tag",
       "exists": true
     },
@@ -5803,6 +5960,11 @@
     },
     {
       "id": "tag:cloud",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:cloud-emulator",
       "kind": "tag",
       "exists": true
     },
@@ -6387,6 +6549,11 @@
       "exists": true
     },
     {
+      "id": "tag:csrf",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:css",
       "kind": "tag",
       "exists": true
@@ -6697,6 +6864,11 @@
       "exists": true
     },
     {
+      "id": "tag:deltanet",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:demo",
       "kind": "tag",
       "exists": true
@@ -6927,6 +7099,11 @@
       "exists": true
     },
     {
+      "id": "tag:document-structure",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:documentation",
       "kind": "tag",
       "exists": true
@@ -6967,6 +7144,11 @@
       "exists": true
     },
     {
+      "id": "tag:drag-and-drop",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:drift-detection",
       "kind": "tag",
       "exists": true
@@ -6988,6 +7170,16 @@
     },
     {
       "id": "tag:drug-response",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:dual-pane",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:duckdb",
       "kind": "tag",
       "exists": true
     },
@@ -7048,6 +7240,11 @@
     },
     {
       "id": "tag:educational",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:efficiency",
       "kind": "tag",
       "exists": true
     },
@@ -7322,6 +7519,11 @@
       "exists": true
     },
     {
+      "id": "tag:extension",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:fable",
       "kind": "tag",
       "exists": true
@@ -7403,6 +7605,11 @@
     },
     {
       "id": "tag:file-formats",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:file-manager",
       "kind": "tag",
       "exists": true
     },
@@ -7608,6 +7815,11 @@
     },
     {
       "id": "tag:gatk",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:gcp",
       "kind": "tag",
       "exists": true
     },
@@ -8112,12 +8324,22 @@
       "exists": true
     },
     {
+      "id": "tag:hwid",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:hybrid-retrieval",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:hybrid-search",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:hyperframes",
       "kind": "tag",
       "exists": true
     },
@@ -8258,6 +8480,11 @@
     },
     {
       "id": "tag:inter-session",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:interactive-learning",
       "kind": "tag",
       "exists": true
     },
@@ -8432,6 +8659,16 @@
       "exists": true
     },
     {
+      "id": "tag:kitty-graphics",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:kms",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:knowledge",
       "kind": "tag",
       "exists": true
@@ -8537,6 +8774,11 @@
       "exists": true
     },
     {
+      "id": "tag:launch",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:leadership",
       "kind": "tag",
       "exists": true
@@ -8637,6 +8879,11 @@
       "exists": true
     },
     {
+      "id": "tag:llm-alternative",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:llm-coordination",
       "kind": "tag",
       "exists": true
@@ -8732,6 +8979,11 @@
       "exists": true
     },
     {
+      "id": "tag:local-development",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:local-first",
       "kind": "tag",
       "exists": true
@@ -8758,6 +9010,11 @@
     },
     {
       "id": "tag:local-seo",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:localstack-alternative",
       "kind": "tag",
       "exists": true
     },
@@ -9242,6 +9499,11 @@
       "exists": true
     },
     {
+      "id": "tag:mongodb",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:monte-carlo-tree-search",
       "kind": "tag",
       "exists": true
@@ -9333,6 +9595,11 @@
     },
     {
       "id": "tag:multiplayer",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:mysql",
       "kind": "tag",
       "exists": true
     },
@@ -9533,6 +9800,11 @@
     },
     {
       "id": "tag:offensive-security",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:office",
       "kind": "tag",
       "exists": true
     },
@@ -10062,6 +10334,11 @@
       "exists": true
     },
     {
+      "id": "tag:postgresql",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:powerup",
       "kind": "tag",
       "exists": true
@@ -10208,6 +10485,11 @@
     },
     {
       "id": "tag:project-strategy",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:prompt-assembly",
       "kind": "tag",
       "exists": true
     },
@@ -10378,6 +10660,11 @@
     },
     {
       "id": "tag:query-language",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:query-runner",
       "kind": "tag",
       "exists": true
     },
@@ -10607,6 +10894,11 @@
       "exists": true
     },
     {
+      "id": "tag:restore",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:retrieval",
       "kind": "tag",
       "exists": true
@@ -10728,6 +11020,11 @@
     },
     {
       "id": "tag:rust",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:s3",
       "kind": "tag",
       "exists": true
     },
@@ -10932,6 +11229,11 @@
       "exists": true
     },
     {
+      "id": "tag:secure-coding",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:security",
       "kind": "tag",
       "exists": true
@@ -11078,6 +11380,11 @@
     },
     {
       "id": "tag:serving",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:session-management",
       "kind": "tag",
       "exists": true
     },
@@ -11317,6 +11624,11 @@
       "exists": true
     },
     {
+      "id": "tag:snowflake",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:socket-api",
       "kind": "tag",
       "exists": true
@@ -11412,12 +11724,22 @@
       "exists": true
     },
     {
+      "id": "tag:sql-injection",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:sqlite",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:ssd",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ssh-tunnel",
       "kind": "tag",
       "exists": true
     },
@@ -11732,6 +12054,11 @@
       "exists": true
     },
     {
+      "id": "tag:terraform",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:tesseract",
       "kind": "tag",
       "exists": true
@@ -11807,6 +12134,11 @@
       "exists": true
     },
     {
+      "id": "tag:tiling",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:time-tracking",
       "kind": "tag",
       "exists": true
@@ -11828,6 +12160,11 @@
     },
     {
       "id": "tag:tmux",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:tmux-alternative",
       "kind": "tag",
       "exists": true
     },
@@ -12042,6 +12379,11 @@
       "exists": true
     },
     {
+      "id": "tag:typesafe-ai",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:typescript",
       "kind": "tag",
       "exists": true
@@ -12242,6 +12584,11 @@
       "exists": true
     },
     {
+      "id": "tag:vim",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:virtual-screening",
       "kind": "tag",
       "exists": true
@@ -12343,6 +12690,11 @@
     },
     {
       "id": "tag:vs-code",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:vscode",
       "kind": "tag",
       "exists": true
     },
@@ -12532,6 +12884,11 @@
       "exists": true
     },
     {
+      "id": "tag:worktrees",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:write-surface",
       "kind": "tag",
       "exists": true
@@ -12548,6 +12905,11 @@
     },
     {
       "id": "tag:xla",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:xss",
       "kind": "tag",
       "exists": true
     },
@@ -12622,6 +12984,16 @@
       "url": "https://github.com/Textualize/textual",
       "summary": "Textualize's Python TUI framework for building cross-platform terminal user interfaces with a simple, optionally-async API and a large widget library (buttons, trees, data tables, inputs, text areas); apps can also be served to a web browser via textual serve / Textual Web. MIT.",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "tfm-tui",
+      "kind": "entry",
+      "title": "tfm — Terminal File Manager",
+      "url": "https://github.com/clarkarch/tfm-tui",
+      "summary": "Mouse-first terminal file manager with places sidebar, grid view, drag-and-drop, image/video thumbnails (kitty graphics protocol), dual pane, embedded terminal, network locations (sftp/smb/WebDAV/FTP via gvfs), XDG trash, archive operations, tabs, 30+ themes, TypeScript plugin system; Linux only, built with Bun; MIT",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -12761,6 +13133,16 @@
       "url": "https://huggingface.co/docs/trl/en/index",
       "summary": "Hugging Face full-stack post-training library — SFT, GRPO, DPO, reward modeling, PPO, and more; vLLM integration for online RL; Harbor sandboxed agent training; vision-language model alignment; co-located vLLM for GPU efficiency; integrated with transformers/PEFT/DeepSpeed/Liger Kernel; Apache 2.0",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "tuios",
+      "kind": "entry",
+      "title": "TUIOS — Terminal UI OS",
+      "url": "https://github.com/Gaurav-Gosain/tuios",
+      "summary": "Terminal multiplexer and window manager built in Go on Charm's Bubble Tea v2 — vim-like modal interface, BSP/scrolling/master-stack tiling, 9 workspaces, kitty graphics protocol passthrough (flicker-free video, sixel experimental), daemon mode with session resurrection, vim-style copy mode with 10K-line scrollback, tape scripting DSL for automation, command palette, app launcher, SSH server mode, web terminal mode; event-driven rendering (zero idle CPU); MIT",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -16297,6 +16679,46 @@
       "relation": "tagged"
     },
     {
+      "source": "brag",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "brag",
+      "target": "tag:claude-code-plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "brag",
+      "target": "tag:hyperframes",
+      "relation": "tagged"
+    },
+    {
+      "source": "brag",
+      "target": "tag:launch",
+      "relation": "tagged"
+    },
+    {
+      "source": "brag",
+      "target": "tag:marketing",
+      "relation": "tagged"
+    },
+    {
+      "source": "brag",
+      "target": "tag:multi-platform",
+      "relation": "tagged"
+    },
+    {
+      "source": "brag",
+      "target": "tag:skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "brag",
+      "target": "tag:video",
+      "relation": "tagged"
+    },
+    {
       "source": "browser-use",
       "target": "cat:framework",
       "relation": "categorized"
@@ -16904,6 +17326,66 @@
     {
       "source": "chromadb",
       "target": "tag:vector-database",
+      "relation": "tagged"
+    },
+    {
+      "source": "chunkless-rag",
+      "target": "agentic-rag-terminal-tools",
+      "relation": "overlaps"
+    },
+    {
+      "source": "chunkless-rag",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "chunkless-rag",
+      "target": "docling-mcp",
+      "relation": "overlaps"
+    },
+    {
+      "source": "chunkless-rag",
+      "target": "five-levels-of-chunking",
+      "relation": "overlaps"
+    },
+    {
+      "source": "chunkless-rag",
+      "target": "tag:agent-navigation",
+      "relation": "tagged"
+    },
+    {
+      "source": "chunkless-rag",
+      "target": "tag:chunking-alternative",
+      "relation": "tagged"
+    },
+    {
+      "source": "chunkless-rag",
+      "target": "tag:docling",
+      "relation": "tagged"
+    },
+    {
+      "source": "chunkless-rag",
+      "target": "tag:document-structure",
+      "relation": "tagged"
+    },
+    {
+      "source": "chunkless-rag",
+      "target": "tag:ibm",
+      "relation": "tagged"
+    },
+    {
+      "source": "chunkless-rag",
+      "target": "tag:pdf",
+      "relation": "tagged"
+    },
+    {
+      "source": "chunkless-rag",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "chunkless-rag",
+      "target": "tag:retrieval",
       "relation": "tagged"
     },
     {
@@ -19312,6 +19794,76 @@
       "relation": "overlaps"
     },
     {
+      "source": "databasement",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "databasement",
+      "target": "tag:backup",
+      "relation": "tagged"
+    },
+    {
+      "source": "databasement",
+      "target": "tag:database",
+      "relation": "tagged"
+    },
+    {
+      "source": "databasement",
+      "target": "tag:docker",
+      "relation": "tagged"
+    },
+    {
+      "source": "databasement",
+      "target": "tag:encryption",
+      "relation": "tagged"
+    },
+    {
+      "source": "databasement",
+      "target": "tag:mcp-server",
+      "relation": "tagged"
+    },
+    {
+      "source": "databasement",
+      "target": "tag:mongodb",
+      "relation": "tagged"
+    },
+    {
+      "source": "databasement",
+      "target": "tag:mysql",
+      "relation": "tagged"
+    },
+    {
+      "source": "databasement",
+      "target": "tag:postgresql",
+      "relation": "tagged"
+    },
+    {
+      "source": "databasement",
+      "target": "tag:restore",
+      "relation": "tagged"
+    },
+    {
+      "source": "databasement",
+      "target": "tag:s3",
+      "relation": "tagged"
+    },
+    {
+      "source": "databasement",
+      "target": "tag:self-hosted",
+      "relation": "tagged"
+    },
+    {
+      "source": "databasement",
+      "target": "tag:sqlite",
+      "relation": "tagged"
+    },
+    {
+      "source": "databasement",
+      "target": "tag:ssh-tunnel",
+      "relation": "tagged"
+    },
+    {
       "source": "decomposition-over-context",
       "target": "cat:agent-pattern",
       "relation": "categorized"
@@ -19839,6 +20391,51 @@
     {
       "source": "docker-alternatives-for-ai-agents",
       "target": "tag:sandbox",
+      "relation": "tagged"
+    },
+    {
+      "source": "docker-isolated-agent-sandbox",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "docker-isolated-agent-sandbox",
+      "target": "tag:agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "docker-isolated-agent-sandbox",
+      "target": "tag:docker",
+      "relation": "tagged"
+    },
+    {
+      "source": "docker-isolated-agent-sandbox",
+      "target": "tag:isolation",
+      "relation": "tagged"
+    },
+    {
+      "source": "docker-isolated-agent-sandbox",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "docker-isolated-agent-sandbox",
+      "target": "tag:resource-management",
+      "relation": "tagged"
+    },
+    {
+      "source": "docker-isolated-agent-sandbox",
+      "target": "tag:sandbox",
+      "relation": "tagged"
+    },
+    {
+      "source": "docker-isolated-agent-sandbox",
+      "target": "tag:security",
+      "relation": "tagged"
+    },
+    {
+      "source": "docker-isolated-agent-sandbox",
+      "target": "tag:worktrees",
       "relation": "tagged"
     },
     {
@@ -21297,6 +21894,76 @@
       "relation": "tagged"
     },
     {
+      "source": "floci",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "floci",
+      "target": "tag:aws",
+      "relation": "tagged"
+    },
+    {
+      "source": "floci",
+      "target": "tag:azure",
+      "relation": "tagged"
+    },
+    {
+      "source": "floci",
+      "target": "tag:ci",
+      "relation": "tagged"
+    },
+    {
+      "source": "floci",
+      "target": "tag:cloud-emulator",
+      "relation": "tagged"
+    },
+    {
+      "source": "floci",
+      "target": "tag:docker",
+      "relation": "tagged"
+    },
+    {
+      "source": "floci",
+      "target": "tag:gcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "floci",
+      "target": "tag:lambda",
+      "relation": "tagged"
+    },
+    {
+      "source": "floci",
+      "target": "tag:local-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "floci",
+      "target": "tag:localstack-alternative",
+      "relation": "tagged"
+    },
+    {
+      "source": "floci",
+      "target": "tag:mit",
+      "relation": "tagged"
+    },
+    {
+      "source": "floci",
+      "target": "tag:oci",
+      "relation": "tagged"
+    },
+    {
+      "source": "floci",
+      "target": "tag:s3",
+      "relation": "tagged"
+    },
+    {
+      "source": "floci",
+      "target": "tag:terraform",
+      "relation": "tagged"
+    },
+    {
       "source": "fluiddocs-deck-builder",
       "target": "cat:plugin",
       "relation": "categorized"
@@ -22652,6 +23319,56 @@
       "relation": "tagged"
     },
     {
+      "source": "hacksplaining",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "hacksplaining",
+      "target": "tag:csrf",
+      "relation": "tagged"
+    },
+    {
+      "source": "hacksplaining",
+      "target": "tag:education",
+      "relation": "tagged"
+    },
+    {
+      "source": "hacksplaining",
+      "target": "tag:interactive-learning",
+      "relation": "tagged"
+    },
+    {
+      "source": "hacksplaining",
+      "target": "tag:owasp",
+      "relation": "tagged"
+    },
+    {
+      "source": "hacksplaining",
+      "target": "tag:secure-coding",
+      "relation": "tagged"
+    },
+    {
+      "source": "hacksplaining",
+      "target": "tag:security",
+      "relation": "tagged"
+    },
+    {
+      "source": "hacksplaining",
+      "target": "tag:sql-injection",
+      "relation": "tagged"
+    },
+    {
+      "source": "hacksplaining",
+      "target": "tag:web-security",
+      "relation": "tagged"
+    },
+    {
+      "source": "hacksplaining",
+      "target": "tag:xss",
+      "relation": "tagged"
+    },
+    {
       "source": "harness-engineering",
       "target": "cat:reference",
       "relation": "categorized"
@@ -23614,6 +24331,51 @@
     {
       "source": "jcode",
       "target": "tag:swarm",
+      "relation": "tagged"
+    },
+    {
+      "source": "jev",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "jev",
+      "target": "tag:agent-routing",
+      "relation": "tagged"
+    },
+    {
+      "source": "jev",
+      "target": "tag:classification",
+      "relation": "tagged"
+    },
+    {
+      "source": "jev",
+      "target": "tag:guardrails",
+      "relation": "tagged"
+    },
+    {
+      "source": "jev",
+      "target": "tag:inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "jev",
+      "target": "tag:langchain",
+      "relation": "tagged"
+    },
+    {
+      "source": "jev",
+      "target": "tag:llm-alternative",
+      "relation": "tagged"
+    },
+    {
+      "source": "jev",
+      "target": "tag:model-routing",
+      "relation": "tagged"
+    },
+    {
+      "source": "jev",
+      "target": "tag:typesafe-ai",
       "relation": "tagged"
     },
     {
@@ -25494,6 +26256,46 @@
     {
       "source": "mex",
       "target": "tag:scaffold",
+      "relation": "tagged"
+    },
+    {
+      "source": "microsoft-activation-scripts",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "microsoft-activation-scripts",
+      "target": "tag:activation",
+      "relation": "tagged"
+    },
+    {
+      "source": "microsoft-activation-scripts",
+      "target": "tag:batch-scripts",
+      "relation": "tagged"
+    },
+    {
+      "source": "microsoft-activation-scripts",
+      "target": "tag:hwid",
+      "relation": "tagged"
+    },
+    {
+      "source": "microsoft-activation-scripts",
+      "target": "tag:kms",
+      "relation": "tagged"
+    },
+    {
+      "source": "microsoft-activation-scripts",
+      "target": "tag:office",
+      "relation": "tagged"
+    },
+    {
+      "source": "microsoft-activation-scripts",
+      "target": "tag:open-source",
+      "relation": "tagged"
+    },
+    {
+      "source": "microsoft-activation-scripts",
+      "target": "tag:windows",
       "relation": "tagged"
     },
     {
@@ -29247,6 +30049,41 @@
       "relation": "tagged"
     },
     {
+      "source": "prompt-assembly-cache-discipline",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "prompt-assembly-cache-discipline",
+      "target": "tag:caching",
+      "relation": "tagged"
+    },
+    {
+      "source": "prompt-assembly-cache-discipline",
+      "target": "tag:context-management",
+      "relation": "tagged"
+    },
+    {
+      "source": "prompt-assembly-cache-discipline",
+      "target": "tag:kv-cache",
+      "relation": "tagged"
+    },
+    {
+      "source": "prompt-assembly-cache-discipline",
+      "target": "tag:prompt-assembly",
+      "relation": "tagged"
+    },
+    {
+      "source": "prompt-assembly-cache-discipline",
+      "target": "tag:prompt-engineering",
+      "relation": "tagged"
+    },
+    {
+      "source": "prompt-assembly-cache-discipline",
+      "target": "tag:token-efficiency",
+      "relation": "tagged"
+    },
+    {
       "source": "prompt-caching-mcp",
       "target": "cat:mcp-server",
       "relation": "categorized"
@@ -29634,6 +30471,66 @@
     {
       "source": "qwen38-27b-200k-on-16gb",
       "target": "tag:vram-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwopus38-27b-flash",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "qwopus38-27b-flash",
+      "target": "qwen38-27b-200k-on-16gb",
+      "relation": "overlaps"
+    },
+    {
+      "source": "qwopus38-27b-flash",
+      "target": "tag:agent-workloads",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwopus38-27b-flash",
+      "target": "tag:deltanet",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwopus38-27b-flash",
+      "target": "tag:efficiency",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwopus38-27b-flash",
+      "target": "tag:gguf",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwopus38-27b-flash",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwopus38-27b-flash",
+      "target": "tag:mtp",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwopus38-27b-flash",
+      "target": "tag:post-training",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwopus38-27b-flash",
+      "target": "tag:qwen",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwopus38-27b-flash",
+      "target": "tag:reasoning",
+      "relation": "tagged"
+    },
+    {
+      "source": "qwopus38-27b-flash",
+      "target": "tag:speculative-decoding",
       "relation": "tagged"
     },
     {
@@ -31782,6 +32679,66 @@
       "relation": "tagged"
     },
     {
+      "source": "sqltools",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "sqltools",
+      "target": "tag:bigquery",
+      "relation": "tagged"
+    },
+    {
+      "source": "sqltools",
+      "target": "tag:database",
+      "relation": "tagged"
+    },
+    {
+      "source": "sqltools",
+      "target": "tag:duckdb",
+      "relation": "tagged"
+    },
+    {
+      "source": "sqltools",
+      "target": "tag:extension",
+      "relation": "tagged"
+    },
+    {
+      "source": "sqltools",
+      "target": "tag:mysql",
+      "relation": "tagged"
+    },
+    {
+      "source": "sqltools",
+      "target": "tag:postgresql",
+      "relation": "tagged"
+    },
+    {
+      "source": "sqltools",
+      "target": "tag:query-runner",
+      "relation": "tagged"
+    },
+    {
+      "source": "sqltools",
+      "target": "tag:snowflake",
+      "relation": "tagged"
+    },
+    {
+      "source": "sqltools",
+      "target": "tag:sqlite",
+      "relation": "tagged"
+    },
+    {
+      "source": "sqltools",
+      "target": "tag:sql",
+      "relation": "tagged"
+    },
+    {
+      "source": "sqltools",
+      "target": "tag:vscode",
+      "relation": "tagged"
+    },
+    {
       "source": "staff-engineer-systems-thinking",
       "target": "cat:reference",
       "relation": "categorized"
@@ -32757,6 +33714,56 @@
       "relation": "tagged"
     },
     {
+      "source": "tfm-tui",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "tfm-tui",
+      "target": "tag:bun",
+      "relation": "tagged"
+    },
+    {
+      "source": "tfm-tui",
+      "target": "tag:drag-and-drop",
+      "relation": "tagged"
+    },
+    {
+      "source": "tfm-tui",
+      "target": "tag:dual-pane",
+      "relation": "tagged"
+    },
+    {
+      "source": "tfm-tui",
+      "target": "tag:file-manager",
+      "relation": "tagged"
+    },
+    {
+      "source": "tfm-tui",
+      "target": "tag:kitty-graphics",
+      "relation": "tagged"
+    },
+    {
+      "source": "tfm-tui",
+      "target": "tag:linux",
+      "relation": "tagged"
+    },
+    {
+      "source": "tfm-tui",
+      "target": "tag:plugins",
+      "relation": "tagged"
+    },
+    {
+      "source": "tfm-tui",
+      "target": "tag:terminal",
+      "relation": "tagged"
+    },
+    {
+      "source": "tfm-tui",
+      "target": "tag:tui",
+      "relation": "tagged"
+    },
+    {
       "source": "third-brain-v5-wiki",
       "target": "cat:framework",
       "relation": "categorized"
@@ -33455,6 +34462,66 @@
       "source": "trl",
       "target": "unsloth",
       "relation": "overlaps"
+    },
+    {
+      "source": "tuios",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "tuios",
+      "target": "tag:automation",
+      "relation": "tagged"
+    },
+    {
+      "source": "tuios",
+      "target": "tag:bubble-tea",
+      "relation": "tagged"
+    },
+    {
+      "source": "tuios",
+      "target": "tag:daemon",
+      "relation": "tagged"
+    },
+    {
+      "source": "tuios",
+      "target": "tag:go",
+      "relation": "tagged"
+    },
+    {
+      "source": "tuios",
+      "target": "tag:kitty-graphics",
+      "relation": "tagged"
+    },
+    {
+      "source": "tuios",
+      "target": "tag:session-management",
+      "relation": "tagged"
+    },
+    {
+      "source": "tuios",
+      "target": "tag:terminal-multiplexer",
+      "relation": "tagged"
+    },
+    {
+      "source": "tuios",
+      "target": "tag:tiling",
+      "relation": "tagged"
+    },
+    {
+      "source": "tuios",
+      "target": "tag:tmux-alternative",
+      "relation": "tagged"
+    },
+    {
+      "source": "tuios",
+      "target": "tag:tui",
+      "relation": "tagged"
+    },
+    {
+      "source": "tuios",
+      "target": "tag:vim",
+      "relation": "tagged"
     },
     {
       "source": "turboquant",

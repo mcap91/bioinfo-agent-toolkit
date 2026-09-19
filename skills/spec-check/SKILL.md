@@ -74,7 +74,37 @@ Trust the text. If the doc reads as decided, it is decided. If it reads as
 ambiguous, apply the three conditions above — most ambiguities are
 mechanical and do not block a cold agent.
 
-### 4. Return the verdict
+### 4. Verify resolution state (mandatory — do this BEFORE returning findings)
+
+Every candidate "open" item must survive a resolution check before you
+report it. This step exists because docs use temporal layering — early
+text says "open" or "deferred", later text resolves it. The failure mode
+(observed repeatedly) is pattern-matching on "OPEN"/"deferred" keywords
+without checking whether a later ruling closed the question.
+
+For each candidate open item:
+
+1. **"Deferred to X" or "decided at X" is a LEAD, not a finding.** Check
+   whether X has happened. Read the ruling doc, tracker status row, or
+   code that X points at. If X resolved it, the item is closed.
+2. **Addenda and supersession notes override earlier text in the same doc.**
+   Many ruling docs have dated addenda appended below the original ruling.
+   A ruling that says "OPEN" at line 50 may have an addendum at line 200
+   that says "RULED 2026-09-15." Read the WHOLE doc before classifying.
+3. **Later-dated rulings override earlier-dated rulings.** If ruling doc A
+   (dated Sept 13) says "deferred" and ruling doc B (dated Sept 15)
+   resolves it, it is closed. Check dates.
+4. **Tracker status rows are authoritative.** If the tracker marks a task
+   or gate as `done`, the decisions it required are closed — even if a
+   ruling doc still shows them as pending.
+5. **The final state wins.** Build the chain: who opened it → who closed
+   it → current state. Report only items where the chain ends OPEN.
+
+If you cannot find a resolution, the item survives. But "I see the word
+OPEN" is not sufficient — you must demonstrate you looked for the
+resolution and it does not exist.
+
+### 5. Return the verdict
 
 **If open decisions exist:**
 
@@ -82,10 +112,13 @@ mechanical and do not block a cold agent.
 # BLOCKED — N open decisions
 
 1. **Decision name** — One sentence: what the agent cannot do without an answer. [source:line]
+
 2. **Decision name** — One sentence. [source:line]
 ```
 
 Rules:
+- **Blank line between every numbered item.** The output is read in a terminal;
+  a wall of dense items is unreadable.
 - Each item must be something a cold agent would stop and ask about. If
   you cannot imagine the agent getting stuck, do not list it.
 - One sentence per decision. No sub-questions, no "also" clauses, no
