@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-09-19",
-  "count": 492,
+  "generated": "2026-09-25",
+  "count": 526,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -263,6 +263,36 @@
       "security_flags": [],
       "reviewed": "2026-09-16",
       "path": "catalog/entries/agent-cost-governors.md"
+    },
+    {
+      "name": "agent-dispatcher",
+      "title": "Agent Dispatcher — repository retrieval and specialist-role routing for Claude Code and Codex",
+      "url": "https://github.com/nahid-sparktales/agent-dispatcher",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Claude Code plugin and Codex skill pack that routes a task to one of 27 specialist roles (engineering, design, testing, research, writing, operations) and assembles a bounded context packet of source excerpts using symbols, source text, code relationships, Git history, and stack-trace frames — rather than a full-repo dump. Ships 79 bundled local skills, references 31 external skills, 8 workflow recipes, a registry of 19 MCP servers, and 50 detection signals for role/skill selection. Standard retrieval runs locally with no model or network calls; optional features (model-assisted reranking, an external 'Jev' decision-engine API, an Onboarding Explorer, procedural learning from recorded outcomes) are off by default and require the operator's own provider configuration. Installs via `claude plugin marketplace add` + `claude plugin install` for Claude Code, or `python3 install_codex.py` for Codex (installs one skill to `~/.agents/skills/agent-dispatcher/`). Invoked with `/agent-dispatcher:agent-dispatcher <request>` (Claude) or `$agent-dispatcher <request>` (Codex); roles can be forced directly (e.g. `$agent-dispatcher reviewer`). Verification is explicit: each role defines what evidence counts as done and reports which checks ran, passed, or were left unverified. Requires Python 3.10+, Git, and an authenticated Claude Code or Codex; native Windows is unsupported (WSL recommended). MIT license, single maintainer, repo created 2026-09-19 with ~50 GitHub stars and 4 forks as of this review.",
+      "body_summary": "Agent Dispatcher installs as a Claude Code plugin or a Codex skill and, given a task, routes it to one of 27 specialist roles (e.g., debugger, reviewer, uidesigner) — small, obvious edits take a direct path without a role. It retrieves the code a task needs by combining paths, symbols, source text, stack-trace frames, code relationships, and Git history into a bounded context packet of actual source excerpts, each tagged with why it was selected, rather than handing the whole repository to the model. Retrieval reuses source-linked project maps and private caches stored outside the working tree; an explicitly built deep index adds broader coverage, resumable onboarding, and incremental refresh.\n\nBundled content: 27 roles, 79 local skills, 31 referenced external skills, 8 workflow recipes, a registry of 19 MCP servers, and 50 detection signals used to pick a role/skill set. Commands include `context explain`, `context build <request>`, `doctor`, `health`, `inventory setup`, `status`, and `on here`/`off here` to toggle automatic activation per project.",
+      "tags": [
+        "claude-code-plugin",
+        "codex-skill",
+        "repository-retrieval",
+        "role-routing",
+        "context-engineering",
+        "multi-agent",
+        "mcp",
+        "verification",
+        "code-search",
+        "git-history"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "bus-factor-1",
+        "young-project",
+        "hook-requires-trust-review"
+      ],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/agent-dispatcher.md"
     },
     {
       "name": "agent-execution-governance",
@@ -727,6 +757,31 @@
       "path": "catalog/entries/ai-agent-sandbox-ranking.md"
     },
     {
+      "name": "ai-engineering-hub",
+      "title": "AI Engineering Hub",
+      "url": "https://github.com/patchy631/ai-engineering-hub",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Curated collection of 93+ hands-on tutorial projects for LLM/RAG/agent engineering, organized by difficulty (beginner/intermediate/advanced), covering OCR, chat UIs, RAG variants, MCP integrations, model comparisons, fine-tuning, and production agent systems",
+      "body_summary": "GitHub repository maintained by Akshay Pachaar (patchy631), a Sr. AI Engineer & Developer Advocate at\nLightning AI. It is a collection of 93+ project-based tutorials for AI/LLM engineering, each living in\nits own subdirectory with runnable code. Projects are grouped into three difficulty tiers:\n\n-…",
+      "tags": [
+        "llm",
+        "rag",
+        "agents",
+        "mcp",
+        "tutorials",
+        "fine-tuning",
+        "multimodal",
+        "crewai",
+        "llamaindex"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/ai-engineering-hub.md"
+    },
+    {
       "name": "ai-engineering-skills-map",
       "title": "The AI Engineering Skills Map",
       "url": "https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map",
@@ -1166,6 +1221,30 @@
       "path": "catalog/entries/apito-ai.md"
     },
     {
+      "name": "applied-ml",
+      "title": "Applied ML",
+      "url": "https://github.com/eugeneyan/applied-ml",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Curated collection of ~400+ papers and engineering blog posts on data science & ML in production, maintained by Eugene Yan — organized by company (Airbnb, Uber, Netflix, Amazon, LinkedIn, etc.) and by application area (recommendation, search & ranking, feature stores, MLOps platforms, A/B testing, NLP, computer vision, and more)",
+      "body_summary": "Curated list of papers, articles, and engineering blog posts describing how companies design and operate machine learning systems in production, maintained by Eugene Yan (who also runs ApplyingML.com and the applyingml/ml-surveys repos). The stated purpose is to help practitioners see how other organizations framed a problem, what ML techniques worked (and what didn't), the reasoning/research behind the approach, and the real-world results achieved.\n\nContent is organized into two overlapping structures:\n\n- **By company**: Airbnb, Uber, Netflix, Google, Amazon, LinkedIn, Spotify, DoorDash, Alibaba, Meta/Facebook, Pinterest, Twitter, Shopify, Lyft, Stitch Fix, Gojek, and dozens more.\n- **By application area** (table of contents, ~30 sections): Data Quality, Data Engineering, Data Discovery, Feature Stores, Classification, Regression, Forecasting, Recommendation, Search & Ranking, Embeddings, Natural Language Processing, Sequence Modelling, Computer Vision, Reinforcement Learning, Anomaly Detection, Graph, Optimization, Information Extraction, Weak Supervision, Generation, Audio, Privacy-Preserving ML, Validation and A/B Testing, Model Management, Efficiency, Ethics, Infra, MLOps Platforms, Practices, Team Structure, and Fails (post-mortems of ML failures, e.g., Google Photos gorilla-tagging incident, COMPAS-style criminality prediction).\n\nEach list item is a link (paper and/or blog post, sometimes with linked code) tagged with the originating company and year, e.g. \"Deep Neural Networks for YouTube Recommendations · YouTube · 2016\" or \"Applying Deep Learning To Airbnb Search (Paper) · Airbnb · 2018\". No summaries or commentary are included in the repo itself — it is purely a link index.\n\n~30k GitHub stars, ~4k forks, 53 contributors, created July 2020. Community-contributed via pull requests following a CONTRIBUTING.md template. Companion resources by the same author: `ml-surveys` (survey papers summarizing ML sub-field advancements) and `applyingml` (guides and mentor interviews on applying ML).",
+      "tags": [
+        "ml-in-production",
+        "curated-list",
+        "engineering-blogs",
+        "papers",
+        "mlops",
+        "case-studies",
+        "recommendation-systems",
+        "search-ranking"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/applied-ml.md"
+    },
+    {
       "name": "archify",
       "title": "Archify",
       "url": "https://github.com/tt-a1i/archify",
@@ -1291,6 +1370,36 @@
       "security_flags": [],
       "reviewed": "2026-09-02",
       "path": "catalog/entries/askcos.md"
+    },
+    {
+      "name": "astra-flash-orchestrator",
+      "title": "Astra Flash Orchestrator",
+      "url": "https://github.com/ethanplusai/astra-flash-orchestrator",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Codex skill that reserves GPT-6 Astra for planning/architecture/review and routes discovery, implementation, testing, and reporting to DeepSeek V4.1 Flash via a native astra_flash_builder subagent role and an existing Codex Router route; author's one field build measured 98.9% less Astra input per 1K implementation lines ($10/$50 per-1M-token Astra pricing vs $0.15-0.30/$0.60-1.20 for Flash); installs a skill under ~/.agents/skills/, a pinned agent role under $CODEX_HOME/agents/, and a scoped policy block in $CODEX_HOME/AGENTS.md, with preview/apply, backups, and an undo receipt; MIT",
+      "body_summary": "Astra Flash Orchestrator is a Codex skill/installer implementing the \"expensive model plans and reviews, cheap model builds\" pattern for Codex specifically (vs. Claude Code or generic multi-harness tools). The loop: Astra defines scope, produces a design, and writes task briefs → a native `astra_flash_builder` subagent role (pinned to DeepSeek V4.1 Flash) explores the repo, implements the task, runs tests, and reports evidence → Astra reviews the patch and either accepts it or requests fixes → integrate, checkpoint, next task. There is no mode switch — the package always routes substantial implementation this way, while trivial work and explicit single-agent requests stay with the root session, and security/architecture/payments/tenancy/migration-risk work can still get targeted additional Astra review.\n\nOriginated from a Reddit post (r/vibecoding) by the author (\"Ethan+\" / Ethan Rogers) describing hitting Astra weekly usage limits on a 20x plan shortly after launch, and iterating from ad hoc subagent delegation (Sol/Luna/Opus/Sonnet, ~10% savings) to a Flash-only worker loop (60% savings) to the current phased Astra→Flash→Astra workflow (98%+ savings across the author's tests, including a 7-hour build using 2% of weekly usage vs. a prior 5-hour build using 28%).",
+      "tags": [
+        "codex",
+        "astra",
+        "deepseek",
+        "orchestration",
+        "cost-optimization",
+        "multi-agent",
+        "model-routing",
+        "subagents",
+        "codex-router"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "writes-to-user-home",
+        "api-key-required",
+        "self-reported-benchmarks",
+        "single-maintainer"
+      ],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/astra-flash-orchestrator.md"
     },
     {
       "name": "attention-control",
@@ -1513,6 +1622,32 @@
       "security_flags": [],
       "reviewed": "2026-07-21",
       "path": "catalog/entries/awesome-harness-engineering.md"
+    },
+    {
+      "name": "ax",
+      "title": "AX (Google)",
+      "url": "https://github.com/google/ax",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Google's open-source declarative orchestrator for AI agent workloads on Kubernetes — four Kubernetes-style primitives (Task, Workspace, Gateway, Model) run agents as sandboxed, suspendable actors on top of Agent Substrate; Go, Apache-2.0, gRPC + Redis control plane, kubectl-shaped CLI; early-stage/pre-stable",
+      "body_summary": "AX is a high-throughput, declarative orchestrator for running autonomous AI agent workloads on Kubernetes, released open-source by Google. It runs on top of \"Agent Substrate,\" a separate execution runtime for dense actor multiplexing, and treats each agent run as an isolated, sandboxed actor rather…",
+      "tags": [
+        "agent-infrastructure",
+        "kubernetes",
+        "orchestrator",
+        "sandbox",
+        "suspend-resume",
+        "go",
+        "grpc",
+        "declarative",
+        "agent-substrate",
+        "google"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/ax.md"
     },
     {
       "name": "axolotl",
@@ -2308,6 +2443,29 @@
       "path": "catalog/entries/claude-code-commands-reference.md"
     },
     {
+      "name": "claude-code-cross-session-pitfalls",
+      "title": "Claude Code Cross-Session Communication Pitfalls",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Documentation of Claude Code's cross-session SendMessage behavior — agents in one CLI session can discover and message stale sessions via ListAgents/SendMessage, triggering context consumption and cache invalidation across all open sessions; mitigations: crossSessionInbound: refuse in settings (preferred), or deny SendMessage/ListAgents (but this also disables subagent and team messaging)",
+      "body_summary": "Documents a Claude Code behavior where agents in one CLI session discover and message other open sessions on the same machine (r/ClaudeCode, Sep 2026).\n\n**The problem:** A Claude session starting work on a feature used SendMessage to contact 6+ other open sessions to \"claim\" file paths and check for conflicts. This triggered all stale sessions, consumed tokens across all of them (one empty session hit 60K tokens on Opus medium), and burned through usage quotas.\n\n**Root cause:** SendMessage serves three purposes — subagent communication, agent-team messaging, and cross-session messaging. All use the same tool.\n\n**Mitigations (in settings.json):**\n1. **Preferred:** `\"crossSessionInbound\": \"refuse\"` — refuses inbound messages from other sessions while preserving subagent and team messaging\n2. **Nuclear:** `\"permissions\": { \"deny\": [\"SendMessage\", \"ListAgents\"] }` — but this also kills subagent communication (not recommended)\n3. **Middle ground:** `\"isolatePeerMachines\": true` — requires approval before messages leave the machine\n\n**Important:** Do NOT deny SendMessage — it also removes messaging to subagents and agent-team teammates. Use `crossSessionInbound: refuse` instead.",
+      "tags": [
+        "claude-code",
+        "cross-session",
+        "sendmessage",
+        "listagents",
+        "settings",
+        "pitfall",
+        "token-consumption",
+        "configuration"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/claude-code-cross-session-pitfalls.md"
+    },
+    {
       "name": "claude-code-dynamic-workflows",
       "title": "Claude Code Dynamic Workflows",
       "url": "https://code.claude.com/docs/en/workflows",
@@ -2609,6 +2767,33 @@
       "path": "catalog/entries/claude-peers-mcp.md"
     },
     {
+      "name": "claude-projects",
+      "title": "Claude Projects",
+      "url": "https://support.claude.com/en/articles/9517075-what-are-projects",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Anthropic support documentation for Claude Projects — persistent workspaces with an uploaded-file knowledge base and custom instructions across claude.ai chat, Cowork, and Claude Code, plus a September 2026 beta redesign (Claude Code first) that turns a project into one coordinator conversation dispatching parallel cloud-hosted worker threads",
+      "body_summary": "Official Anthropic Help Center article explaining the Projects feature, describing two versions that coexist as of this writing.\n\n**Current (established) version**: a project is a self-contained workspace bundling a chat history, an uploaded-file knowledge base, and custom project instructions…",
+      "tags": [
+        "claude",
+        "anthropic",
+        "projects",
+        "claude-code",
+        "rag",
+        "knowledge-base",
+        "documentation",
+        "cowork"
+      ],
+      "workflows": [],
+      "license": "proprietary",
+      "security_flags": [
+        "proprietary-feature",
+        "hosted-saas-only"
+      ],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/claude-projects.md"
+    },
+    {
       "name": "claude-science",
       "title": "Claude Science",
       "url": "https://www.anthropic.com/news/claude-science-ai-workbench",
@@ -2820,6 +3005,32 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/cli-anything.md"
+    },
+    {
+      "name": "clm",
+      "title": "CLM (Contrastive Language Model)",
+      "url": "https://github.com/Contrastive-LM/CLM",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-weights, self-hostable classification model positioned as a drop-in alternative to TypeSafe AI's Jev — a frozen Qwen3-8B encoder plus two 20M-param trainable projection heads (state/action) trained with bidirectional InfoNCE contrastive loss; serves the same three typed-question primitives (Choice, Noul, Score) behind a TypeSafe-compatible API; reference head is ~75MB (Apache-2.0); reports up to 9x lower zero-shot latency and, with lightweight fine-tuning, SOTA verifier accuracy on Terminal-Bench 2.1 (87.6%) and DeepSWE (81.6%) at 4-6x Jev's speed",
+      "body_summary": "CLM (Contrastive Language Models) is a \"System One\" classification model from Stanford/Hazy Research and NVIDIA Research, released as an open-weights, self-hostable alternative to TypeSafe AI's Jev (see `jev` entry). It implements the same three typed-question primitives as Jev — Choice (categorical probability over options), Noul (true/false probability), and Score (rubric/ordinal scoring) — and its client library (`clm`) accepts Jev's wire format directly: \"a request written for TypeSafe replays as `client.system_one(state, questions)`.\"\n\nArchitecture: a frozen Qwen3-8B backbone produces last-token-pooled embeddings; a state encoder and an action encoder are each the frozen backbone plus a separate ~20M-parameter trainable projection head. The two heads are trained with a bidirectional InfoNCE contrastive loss so a state embedding is pulled toward the action actually taken and pushed away from other candidates. At inference, CLM scores each candidate action by the dot product of its embedding with the state embedding; a softmax over those scores is the answer distribution. Because state and action embeddings are computed independently, action embeddings can be cached and reused across requests (\"disaggregated caching\").\n\nTraining recipe (three stages): pre-training on ~60M Nemotron DQA question-answer pairs; mid-training on ~30M synthetic hard negatives generated by Gemini 2.5 Flash-Lite; post-training on ~1M agentic trajectories (Agent Data Protocol, Endless-Terminals, LiteCoder-Terminal-SFT). The reference release, `Contrastive-LM/CLM-v0.1-8B`, is a ~75MB checkpoint (`torch.save` dict with `state_head`/`action_head` state dicts, `logit_scale`, and architecture `cfg`); any head in that checkpoint format is only meaningful paired with the Qwen3-8B encoder and pooling it was trained against.",
+      "tags": [
+        "classification",
+        "inference",
+        "llm-alternative",
+        "open-weights",
+        "contrastive-learning",
+        "qwen3",
+        "verifier",
+        "agent-routing",
+        "self-hosted",
+        "jev-compatible"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/clm.md"
     },
     {
       "name": "cloud-session-context-repo",
@@ -3038,6 +3249,29 @@
       "security_flags": [],
       "reviewed": "2026-07-06",
       "path": "catalog/entries/codex-plugin-cc.md"
+    },
+    {
+      "name": "codex-reasoning-effort-cache",
+      "title": "Codex reasoning_effort_override (Prompt Cache Preservation)",
+      "url": "https://github.com/openai/codex/issues/42996",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Undocumented Codex CLI flag (reasoning_effort_override) that preserves 98.9% prompt cache when switching Astra reasoning effort levels — instead of changing the request-level effort (which invalidates the cache), adds a trusted configuration_update to the conversation; tested on bundled 0.155.0-alpha.2.6 in ChatGPT 26.911.61220",
+      "body_summary": "Workaround for Codex CLI prompt cache invalidation when switching GPT-6 Astra reasoning effort levels.\n\n**Problem:** Changing reasoning effort on a Codex session changes the request parameters, invalidating the prompt cache. On a low → medium switch: only 55.8% cache hit (12,160/21,791 tokens).\n\n**Fix:** Enable `reasoning_effort_override` flag. Codex keeps the request-level effort fixed and instead adds a trusted `configuration_update` to the conversation. Result: 98.9% cache hit (21,504/21,743 tokens). Switching back: 99.3% cached.\n\n**Usage:**\n```\ncodex --enable reasoning_effort_override -m gpt-6-astra   # one session\ncodex features enable reasoning_effort_override            # persistent\n```\n\n**Caveats:** Marked \"under development\"; tested on bundled 0.155.0-alpha.2.6. Newer builds also check a model-capability flag. Astra-only as of Sep 2026. Fully quit and reopen the Mac app after enabling.\n\nDiscussion source: r/codex (Sep 2026). GitHub issue #42996 was the discovery vector.",
+      "tags": [
+        "codex",
+        "openai",
+        "gpt-6-astra",
+        "prompt-caching",
+        "reasoning-effort",
+        "workaround",
+        "cli"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/codex-reasoning-effort-cache.md"
     },
     {
       "name": "codex-reasoning-token-collapse",
@@ -3495,6 +3729,29 @@
       "path": "catalog/entries/cupy.md"
     },
     {
+      "name": "customtkinter",
+      "title": "CustomTkinter",
+      "url": "https://github.com/tomschimansky/customtkinter",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Python UI library built on Tkinter providing modern, customizable widgets (CTkButton, CTkFrame, scrollable frames) with light/dark appearance modes, HighDPI scaling, and JSON-based theming across Windows, macOS, and Linux",
+      "body_summary": "CustomTkinter is a Python UI library built on top of the standard `tkinter` module. It provides\ndrop-in replacement widgets (`CTkButton`, `CTkLabel`, `CTkFrame`, `CTkEntry`, scrollable frames, etc.)\nthat are created and used the same way as normal Tkinter widgets, and can be freely mixed with plain…",
+      "tags": [
+        "python",
+        "gui",
+        "tkinter",
+        "desktop",
+        "cross-platform",
+        "theming",
+        "dark-mode"
+      ],
+      "workflows": [],
+      "license": "CC0-1.0",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/customtkinter.md"
+    },
+    {
       "name": "data-science-for-beginners",
       "title": "Data Science for Beginners (Microsoft)",
       "url": "https://github.com/microsoft/data-science-for-beginners",
@@ -3808,6 +4065,30 @@
       "path": "catalog/entries/distill.md"
     },
     {
+      "name": "distributed-inference-multi-node",
+      "title": "Distributed LLM Inference Across Multiple Consumer PCs",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Practitioner reference on connecting multiple consumer PCs for combined VRAM — llama.cpp and vLLM both support distributed inference and ROCm, but neither supports tensor parallelism across nodes (pipeline parallel only, splitting layers across nodes); minimum 2.5GbE or WiFi 6 recommended; one practitioner building four nodes with 56GB InfiniBand connectivity",
+      "body_summary": "Reference documenting the current state of multi-node consumer LLM inference (as of Sep 2026):\n\n- **llama.cpp / vLLM:** Both support distributed inference and ROCm, but tensor parallelism across multiple nodes is not supported — only pipeline parallelism (layer-splitting). Works but slower than single-node TP.\n- **Networking:** WiFi 6 minimum, 2.5GbE or faster preferred. Latency adds up even though data volume is modest.\n- **Mixed backends:** Unknown whether different GPU backends can be mixed across nodes.\n- **Real build:** One practitioner assembling four nodes with 56GB InfiniBand, targeting 128GB+ combined VRAM.\n\nDiscussion source: r/LocalLLaMA (Sep 2026).",
+      "tags": [
+        "distributed-inference",
+        "multi-node",
+        "local-inference",
+        "llama-cpp",
+        "vllm",
+        "rocm",
+        "infiniband",
+        "networking",
+        "consumer-hardware"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/distributed-inference-multi-node.md"
+    },
+    {
       "name": "docker-alternatives-for-ai-agents",
       "title": "Docker Alternatives for AI Agents: Podman, bwrap, Firejail",
       "url": "https://grigio.org/docker-alternatives-for-ai-agents-podman-bwrap-and-firejail/",
@@ -4020,6 +4301,30 @@
       "security_flags": [],
       "reviewed": "2026-07-27",
       "path": "catalog/entries/duckdb.md"
+    },
+    {
+      "name": "dynamic-context-injection",
+      "title": "Dynamic Context Injection in Claude Code Skills",
+      "url": "https://code.claude.com/docs/en/skills",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Claude Code SKILL.md feature — `!`<command>`` (inline) or fenced ` ```! ` blocks (multi-line) run shell commands before the skill body reaches Claude, splicing stdout into the prompt; enables deterministic, non-LLM routing of which instructions get loaded instead of prose like 'if X, read file Y'",
+      "body_summary": "A Claude Code-specific extension to the SKILL.md format (Claude Code, not the cross-vendor Agent Skills spec body). Any line starting with `!`<command>`` — or a fenced code block opened with ` ```! ` for multiple commands — is executed as a shell command when the skill is loaded, and its stdout is substituted into the skill text before Claude ever sees it. Claude receives the rendered output, not the command syntax.\n\nTwo forms:\n- **Inline**: `!`<command>``. Only recognized when `!` is at the start of a line or immediately follows whitespace; `!` glued to a preceding character (e.g. `KEY=!`cmd``) is left as literal text and nothing runs.\n- **Multi-line**: a fenced block opened with ` ```! ` containing several commands.\n\nSubstitution is a single pass over the original file — command output is inserted as plain text and is not re-scanned, so an injected command cannot itself emit a new `!`<command>`` placeholder for further expansion.\n\nThe stated motivation: replace prose-level routing instructions (\"If you are fixing a bug, read `./references/bugfix-instructions.md`\") with a shell command that conditionally embeds the right reference file directly, e.g. `!`cat \"${CLAUDE_SKILL_DIR}/references/$workType-instructions.md\" || true``. This moves the routing decision out of LLM interpretation and into deterministic shell logic, and avoids the token cost of an intermediate \"read about what to read\" step.",
+      "tags": [
+        "claude-code",
+        "skills",
+        "skill-md",
+        "shell-injection",
+        "determinism",
+        "context-engineering",
+        "allowed-tools",
+        "prompt-construction"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/dynamic-context-injection.md"
     },
     {
       "name": "e2b",
@@ -4436,6 +4741,34 @@
       "path": "catalog/entries/fast-bioinformatics-tool-replacements.md"
     },
     {
+      "name": "fast-jev-compaction",
+      "title": "Fast Jev Compaction",
+      "url": "https://github.com/tamaratran/fast-jev-compaction",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Claude Code plugin/npm library that replaces the built-in compaction summary with a Jev (TypeSafe AI) scored prune of tool calls/results; depends on Claude Code's unshipped function-hooks feature and an early-access third-party API, and a filed issue shows its hook events go unrecognized (silent no-op) on a recent Claude Code build",
+      "body_summary": "fast-jev-compaction is both an npm library (`fast-jev-compaction`) and a Claude Code plugin (repo root doubles as `hooks/` + `.claude-plugin/`). It replaces Claude Code's built-in `/compact` and auto-compaction summary with a pruned version of the *original* transcript instead of an LLM-written summary. Every `tool_use`/`tool_result` pair (matched by `tool_use_id`) outside the pinned first message and the newest `preserveRecentMessages` (default 6) messages is a candidate for removal. The whole conversation so far — oldest first, tool inputs and user/assistant text included verbatim, tool results replaced by a short note — is sent to TypeSafe AI's Jev \"System One\" model (`api.typesafe.ai/v1/systemone`) with two yes/no (\"noul\") questions per candidate call: should the call stay, should its result stay verbatim. Below `keepThreshold` (default 0.5) a result is truncated to `truncateHeadChars` (300) characters plus a note; below both thresholds the call and result are removed entirely. Text messages are never rewritten or removed in the output — only tool calls/results are dropped or truncated. If the state doesn't fit `maxStateTokens` (25k, estimated via a character-based heuristic, not a real tokenizer), it is progressively degraded (input truncation, text head/tail abridgment, old-message collapsing) before Jev is asked. API failures, malformed responses, a missing key, or an unfittable history throw; the Claude Code hook catches this and falls back to Claude Code's built-in summary.\n\nAs a library it also exports composable primitives (`collectToolCalls`, `fitState`, `batchCalls`, `decideCall`, `applyDecisions`, a `JevAsker` interface, `buildJevRequest`/`parseJevResponse`) so a caller can supply their own transport instead of calling TypeSafe directly.",
+      "tags": [
+        "token-reduction",
+        "compaction",
+        "claude-code",
+        "plugin",
+        "hooks",
+        "context-management"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "external-api-dependency",
+        "api-key-required",
+        "unshipped-feature-dependency",
+        "known-compatibility-bug",
+        "unverified-stars"
+      ],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/fast-jev-compaction.md"
+    },
+    {
       "name": "fastapi",
       "title": "FastAPI",
       "url": "https://github.com/fastapi/fastapi",
@@ -4533,6 +4866,31 @@
       ],
       "reviewed": "2026-07-09",
       "path": "catalog/entries/finding-unknowns-skills.md"
+    },
+    {
+      "name": "firecracker",
+      "title": "Firecracker",
+      "url": "https://github.com/firecracker-microvm/firecracker",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "AWS-developed open-source VMM (KVM-based) that creates minimal-overhead 'microVMs' for secure multi-tenant workload isolation — ~125ms boot, <5MiB overhead per VM; powers every AWS Lambda/Fargate invocation and underlies sandbox platforms like E2B and Vercel Sandbox; Apache-2.0, Rust",
+      "body_summary": "Firecracker is an open-source virtualization technology built at Amazon Web Services for secure, multi-tenant execution of container and function workloads. It provides a virtual machine monitor (VMM) that uses Linux KVM to create and run \"microVMs\" — lightweight VMs that combine hardware-virtualization-grade isolation with container-like speed and density.\n\nFirecracker's design is deliberately minimal: it excludes unnecessary devices and guest-facing functionality to shrink both memory footprint and attack surface. Each microVM gets its own guest kernel, fully separated from the host, so an attacker must escape both the guest kernel and the hypervisor to reach other tenants. Firecracker was purpose-built to power AWS Lambda and AWS Fargate — every Lambda invocation runs inside its own Firecracker microVM, making it the largest known production deployment of the technology.\n\nControl surface: a single VMM process per microVM exposes a REST-like API (OpenAPI-specified) over a Unix socket, used to configure vCPUs/memory/CPU templates, attach network interfaces and file-backed block devices, set virtio rate limiters, configure logging/metrics, attach vsock/entropy/pmem devices, manage memory hotplugging, and (x86_64 only) stop the microVM. A `jailer` process wraps Firecracker for production use, applying cgroup/namespace isolation and dropping privileges before the VMM starts.\n\nFirecracker is a low-level primitive, not a hosted sandbox product — it has no built-in orchestration, snapshotting UI, or multi-tenant control plane of its own. Higher-level platforms build on top of it: Kata Containers and Flintlock integrate it as a container-runtime backend, and AI-agent sandbox platforms such as E2B and Vercel Sandbox (built on Vercel's internal \"Hive\" orchestration layer) use it as the isolation layer under their SDKs.",
+      "tags": [
+        "microvm",
+        "virtualization",
+        "kvm",
+        "sandbox",
+        "isolation",
+        "vmm",
+        "aws",
+        "agent-infrastructure",
+        "code-execution"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/firecracker.md"
     },
     {
       "name": "firecrawl",
@@ -4726,6 +5084,32 @@
       "path": "catalog/entries/free-claude-code.md"
     },
     {
+      "name": "free-for-dev",
+      "title": "free-for.dev",
+      "url": "https://free-for.dev/",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Community-maintained list of SaaS, PaaS, and IaaS services with free tiers useful for developers — covers cloud hosting, CI/CD, databases, monitoring, email, DNS, CDN, storage, auth, search, and more; GitHub-hosted, regularly updated",
+      "body_summary": "Curated, community-maintained directory of cloud and developer services offering free tiers. Categories include:\n\n- Cloud providers (compute, storage, functions)\n- CI/CD platforms\n- Databases (hosted PostgreSQL, Redis, etc.)\n- Monitoring and logging\n- Email and messaging\n- DNS, CDN, SSL\n- Auth and identity\n- Search (Algolia, Meilisearch hosted, etc.)\n- And many more\n\nHosted on GitHub with regular contributions. Useful for bootstrapping projects without upfront infrastructure costs.",
+      "tags": [
+        "free-tier",
+        "saas",
+        "paas",
+        "iaas",
+        "developer-tools",
+        "hosting",
+        "ci-cd",
+        "database",
+        "monitoring",
+        "directory"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/free-for-dev.md"
+    },
+    {
       "name": "freetoken",
       "title": "FreeToken",
       "url": "https://github.com/FlashML-org/FreeToken",
@@ -4796,6 +5180,30 @@
       "path": "catalog/entries/gbrain.md"
     },
     {
+      "name": "gemini-3-8-flash",
+      "title": "Gemini 3.8 Flash",
+      "url": "https://deepmind.google/models/model-cards/gemini-3-8-flash/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Google DeepMind's Gemini 3 family Flash-tier model (built on Gemini 3.7 Flash), published 2026-09-02 — 1M-token multimodal input context (text/image/audio/video), 64K text output, customizable inference effort levels, $0.75/$3.75 per 1M input/output tokens; targets cost-effective software engineering and agentic knowledge-work at production scale",
+      "body_summary": "Gemini 3.8 Flash is Google DeepMind's next Flash-tier release in the Gemini 3 model family, built directly on Gemini 3.7 Flash (architecture, training dataset/processing, and hardware/software stack are inherited unchanged — the model card defers to the 3.7 Flash card for those details). It accepts text, images, audio, and video with up to a 1M-token context window, and produces text output up to 64K tokens. It supports customizable \"effort levels\" to trade off quality, cost, and latency at inference time. Published 2 September 2026, alongside a separate cybersecurity-specialized sibling, Gemini 3.8 Flash Cyber (frontier-level vulnerability detection and automated patching).",
+      "tags": [
+        "google-deepmind",
+        "gemini",
+        "llm",
+        "multimodal",
+        "agentic",
+        "model-card",
+        "long-context",
+        "api-model"
+      ],
+      "workflows": [],
+      "license": "proprietary",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/gemini-3-8-flash.md"
+    },
+    {
       "name": "gentrl",
       "title": "GENTRL",
       "url": "https://github.com/insilicomedicine/GENTRL",
@@ -4864,6 +5272,27 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/get-shit-done.md"
+    },
+    {
+      "name": "gethuman",
+      "title": "GetHuman",
+      "url": "https://gethuman.com/",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Crowdsourced directory of customer service phone numbers, wait times, and fastest routes to a human representative for thousands of companies — includes callback scheduling and step-by-step IVR navigation guides",
+      "body_summary": "Crowdsourced database of customer service contact information:\n- Direct phone numbers that skip automated menus\n- Average wait times by time of day\n- Step-by-step IVR navigation (e.g., \"press 2, then 0, then say 'representative'\")\n- Callback scheduling service\n- Coverage for thousands of companies",
+      "tags": [
+        "customer-service",
+        "phone",
+        "utility",
+        "directory",
+        "crowdsourced"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/gethuman.md"
     },
     {
       "name": "ggwas",
@@ -5934,6 +6363,33 @@
       "path": "catalog/entries/jcode.md"
     },
     {
+      "name": "jev-kit",
+      "title": "Jev-kit",
+      "url": "https://github.com/jonathanavis96/jev-kit",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Multi-component Claude Code integration kit wiring TypeSafe's Jev (a ~0.3s typed-decision model) into the agent loop: a PreToolUse tool-call guard ('Airlock', code rules first + one Jev question for the ambiguous ~7%), sub-agent tier right-sizing, a 'Belay' check that sends unverified 'done' claims back to the agent, plocate/Everything-based file search, a Jev-driven browser agent (vendored fork of browser-use's jev-ultrafast), plus installer/doctor/warm-daemon tooling; MIT, requires a TypeSafe API key, Linux/WSL2-first with a reduced-feature native Windows port",
+      "body_summary": "jev-kit bundles everything the author wired up to run TypeSafe's Jev (a non-generative \"System One\" model that returns typed yes/no/choice/score decisions with a probability in ~0.3s, rather than free text) inside Claude Code. It frames itself around one idea: the judge (Jev) is easy to call; the value is in the wiring around it — which tool call to question, which sub-agent rung a task needs, what to redact before sending, and how to fail open when no answer arrives.\n\nComponents:\n- **Airlock** (tool-call guard, formerly `jev-guard`/`plumbline`): a `PreToolUse` hook registered for every tool call. Code-first rules (R1–R10 deny triggers, R11 cost steers) filter ~93% of calls in ~33ms median with no network call; the remaining ambiguous fraction gets one typed Jev question. Not a sandbox — it is \"a policy hook inside your own session that judges individual tool calls and at most returns a deny to Claude Code,\" with no containment.\n- **Tier guard**: asks Jev what kind of job a sub-agent dispatch is and flags mismatches (e.g., dispatching Opus for a grep-sized task). Reported 98.2% accuracy with zero false denies.\n- **Belay**: a check that sends an agent's turn back when it reports \"done\" without verifying its own work.\n- **File search**: swaps `find` for a per-user `plocate` index on Linux (steers to `es.exe`/Everything on Windows).\n- **Browse**: a Jev-backed browser-automation tool where Jev makes the click/navigation decisions and Sonnet (low-effort) plans, positioned as an alternative to Playwright MCP for simple navigation. Reports 233x lower cost per run than a Sonnet-driven browse agent for the same task (9/9 success on both). The vendored agent is browser-use's `jev-ultrafast`, pulled in via git subtree with modifications tracked in a `NOTICE` file.\n- **Review**: a Jev-powered code reviewer with a fail-open wrapper.\n- **Compaction**: an optional plugin that reduces raw tool input tokens (community feature, opt-in).\n- **Warm daemon**: keeps a persistent connection to cut judgment latency from ~0.9s (cold) to ~0.3s.\n- **Installer/doctor/auto-updater**: install, verify, and roll back the kit; checks guard status at startup; updates Claude Code when no run is active; five-minute health checks with optional push monitoring; a tuning loop that scores shadow-log verdicts and commits results to a dedicated branch.\n\nEvery component except the guard is optional and separately installable by flag.",
+      "tags": [
+        "claude-code",
+        "hook",
+        "pretooluse",
+        "guardrails",
+        "agent-routing",
+        "sub-agent",
+        "typesafe-ai",
+        "model-routing",
+        "file-search",
+        "browser-automation",
+        "installer"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/jev-kit.md"
+    },
+    {
       "name": "jev",
       "title": "Jev (TypeSafe AI)",
       "url": "https://typesafe.ai",
@@ -5984,6 +6440,38 @@
       ],
       "reviewed": "2026-09-10",
       "path": "catalog/entries/jit-agent.md"
+    },
+    {
+      "name": "jive",
+      "title": "Jive",
+      "url": "https://github.com/merijjeyn/jive",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Terminal coding-agent harness (TypeScript/Bun) whose planner submits one DAG ('graph call') of bash and Jev-decision nodes per turn instead of one tool call at a time, executing the plan locally and returning to the LLM only when a node's accept predicate fails; author-published, single-run benchmarks across 6 tasks report a mean 2m31s/8.7k output tokens for Jive vs 12m12s/32.7k tokens for Claude Code and ~17m40s/16.2k tokens for Codex. MIT license, single contributor, repo created 2026-09-21.",
+      "body_summary": "Jive is a terminal coding agent that replaces the conventional \"LLM call -> tool call -> LLM call\" loop with a single \"graph call\" per planner turn. Instead of invoking one tool at a time, the planner model submits a JSON program (a DAG) whose executable nodes are `bash` (shell commands) and `jev` (typed, bounded decisions sent to an external decision model). `foreach`/`repeat` node groups expand into parallel batches or bounded loops; nodes reference each other's outputs via JSON-pointer `$ref`s so data flows between nodes without extra glue code from the planner; `needs` adds ordering without a data reference; `when` expresses a typed predicate that can block a node. Node execution starts as soon as its definition has streamed in, overlapping generation with execution. Every `jev` node declares an `accept` predicate over the returned answer — a false predicate hands control back to the planner with the evidence collected so far rather than continuing blindly.\n\nThe `jev` node type calls a separate hosted product, \"Jev\" — publicly described (by its maker, TypeSafe AI) as a \"System One\" decision model that takes unstructured state plus typed questions and returns schema-constrained answers with probabilities rather than generated text. The intent is to let a graph make many bounded/repetitive judgments (bulk classification, dataset triage, multi-step profiling) without a full LLM turn per decision. `JEV_API_TOKEN` is required only for graphs that use `jev` nodes; bash-only graphs run without it.\n\nSessions, graphs, command output, and decisions are recorded to disk and can be resumed, inspected, and replayed. Any planner model/provider can be used: OpenRouter, Anthropic, OpenAI, Google, DeepSeek, Groq, and Ollama are built in, plus any OpenAI-, Anthropic-, or Responses-compatible endpoint via `~/.config/jive/models.json`.\n\nThe README credits pi (pi.dev, cataloged separately as `pi-coding-agent`) as a direct inspiration (\"carrying the torch lit by pi coding agent\") for its minimal-scaffold philosophy (no built-in MCP, no sub-agents), while diverging from pi's sequential tool-call loop by batching a full DAG of steps — including bounded Jev decisions — into one planner turn.",
+      "tags": [
+        "coding-agent",
+        "terminal",
+        "cli-tool",
+        "dag",
+        "graph-execution",
+        "typescript",
+        "bun",
+        "decision-model",
+        "jev",
+        "benchmarks"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "curl-pipe-sh-install",
+        "single-contributor",
+        "new-repo",
+        "self-reported-benchmarks",
+        "third-party-decision-api-dependency"
+      ],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/jive.md"
     },
     {
       "name": "karakeep",
@@ -6247,6 +6735,86 @@
       "path": "catalog/entries/large-moe-consumer-hardware.md"
     },
     {
+      "name": "laya-notification-center",
+      "title": "Laya (Notification Center — aayushch)",
+      "url": "https://github.com/aayushch/laya",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "AI-powered notification command center (Tauri + Svelte + Python) — unrelated to the convaiinnovations/laya decision model; aggregates notifications from multiple sources with AI-assisted triage and prioritization; desktop app",
+      "body_summary": "Desktop notification aggregation and triage application built with Tauri (Rust backend), Svelte (frontend), and Python (AI processing). Distinct from the convaiinnovations/laya System One decision model.\n\nAggregates notifications from multiple sources and uses AI to assist with prioritization and triage.",
+      "tags": [
+        "notifications",
+        "desktop-app",
+        "tauri",
+        "svelte",
+        "python",
+        "ai-triage",
+        "productivity"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/laya-notification-center.md"
+    },
+    {
+      "name": "laya",
+      "title": "Laya (Convai Innovations)",
+      "url": "https://huggingface.co/convaiinnovations/laya",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Multilingual, non-autoregressive 'System 1' decision model family from Convai Innovations — takes a state (text/email/ticket/JSON) plus typed questions (choice/score/noul) and returns typed answers with calibrated probabilities in one forward pass (~33ms); open-weight (Apache 2.0), self-hostable alternative to TypeSafe AI's closed Jev API, with a Jev-compatible HTTP endpoint; trained via RLCD so honest probability reporting is reward-maximizing",
+      "body_summary": "Laya is a \"System 1\" decision model: given a state (text, email, ticket, or JSON) and one or more typed questions (choice, score, or noul/boolean), it returns typed answers with calibrated probabilities in a single forward pass — it never generates free text, so there is nothing to parse and nothing to hallucinate. It is explicitly positioned by its author (NandhaKishorM, Convai Innovations) as an open-weight, self-hostable alternative to TypeSafe AI's closed, hosted Jev \"System One\" API, matching Jev's input/output shape.\n\nThree checkpoints ship under the `convaiinnovations/laya` Hugging Face repo family:\n- `convaiinnovations/laya` (repo root): ModernBERT-large backbone, 421M params, 512 context — best for English text, guardrails, email triage.\n- `convaiinnovations/laya-multilingual`: mmBERT-base backbone, 322M params, 1024 context (up to 8192 via `max_len`), 100+ languages, ~2.2x faster.\n- `convaiinnovations/laya-typed-decisions`: ModernBERT-large, 421M params, 1024 context, fine-tuned for four typed-decisions workflows (invoice processing, security incidents, customer service, agent-trace observability).\n\nThe built-in `Router` class detects script/language in under 0.5ms and dispatches to the right checkpoint automatically (or accepts an explicit `lang_guess`/`model=` override). `laya-serve` (optional extra) exposes a `POST /v1/systemone` endpoint with the same request/response shape as TypeSafe Jev, so existing Jev clients can switch by changing the base URL.\n\nTraining method: RLCD (Reinforcement Learning for Calibrated Decisions). The policy reports a probability distribution; exploration adds zero-mean Gaussian noise to the logits; the reward is a strictly proper scoring rule (log + spherical, plus ranked probability score for ordinal questions), so expected reward is maximized only by reporting honest probabilities. Updates are REINFORCE with a group-mean baseline (GRPO-style); multi-turn conversations use TD(λ=1.0) over prefix slices.",
+      "tags": [
+        "classification",
+        "inference",
+        "llm-alternative",
+        "open-weights",
+        "multilingual",
+        "rlcd",
+        "bert",
+        "jev-alternative",
+        "self-hosted",
+        "agent-routing"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "no-auth-by-default"
+      ],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/laya.md"
+    },
+    {
+      "name": "lazydraw",
+      "title": "lazydraw",
+      "url": "https://www.npmjs.com/package/lazydraw",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Terminal ASCII diagram/sketch editor modeled on ASCIIFlow — mouse-driven box/arrow/line/text/eraser tools in a full-screen TUI (OpenTUI), multi-format export (basic/extended chars, 11 comment styles, Markdown fence), undo/redo, autosaving named drawings; Bun runtime, MIT, single-maintainer, npm-only (GitHub repo unavailable)",
+      "body_summary": "lazydraw is a terminal ASCII editor for drawing quick diagrams and sketches, with options to export to text files or copy to the clipboard. It runs as a full-screen TUI built on the OpenTUI (sst/opentui) terminal engine and is explicitly modeled on the browser tool ASCIIFlow — the author ported…",
+      "tags": [
+        "terminal",
+        "tui",
+        "ascii-art",
+        "diagram-editor",
+        "drawing",
+        "bun",
+        "opentui",
+        "cli-tool"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "github-repo-unavailable",
+        "very-new-package",
+        "single-maintainer",
+        "no-external-adoption-signal"
+      ],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/lazydraw.md"
+    },
+    {
       "name": "leantime",
       "title": "Leantime",
       "url": "https://github.com/leantime/leantime",
@@ -6348,6 +6916,33 @@
       "security_flags": [],
       "reviewed": "2026-07-06",
       "path": "catalog/entries/llamafactory.md"
+    },
+    {
+      "name": "llm-compressor",
+      "title": "LLM Compressor",
+      "url": "https://github.com/vllm-project/llm-compressor",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Transformers-compatible model quantization/compression library for optimized vLLM deployment — GPTQ, AWQ, SmoothQuant, AutoRound, rotation-based (SpinQuant, QuIP), and REAP expert pruning; weight/activation/KV-cache/attention quantization (INT8, FP8, NVFP4, MXFP4, MXFP8); saves in compressed-tensors format; DDP and disk offloading for large-model compression; maintained by Red Hat AI and the vLLM Project",
+      "body_summary": "llmcompressor is a Transformers-compatible library from Red Hat AI and the vLLM Project for applying post-training compression algorithms to LLMs, producing checkpoints optimized for deployment with vLLM. It quantizes weights, activations, KV cache, and attention to reduced precision while preserving accuracy, and integrates directly with Hugging Face models/repositories.\n\n### Supported precisions and types\n\n- **Activation quantization**: W8A8 (int8 and fp8), W4AFP8, Microscale (NVFP4, MXFP4, MXFP8)\n- **Mixed precision**: W4A16, W8A16, MXFP8A16, MXFP4A16, NVFP4A16\n- **Attention and KV cache quantization**: FP8, NVFP4\n- **Low/arbitrary-bit quantization**: WNA4, WNA8, WNA16\n\n### Supported algorithms\n\nSimple PTQ (round-to-nearest), GPTQ, AWQ (derived from AutoAWQ, built with AutoAWQ's original maintainer), SmoothQuant, AutoRound, rotation-based transforms (SpinQuant, QuIP), and REAP expert pruning (prunes least-salient MoE experts before quantization).\n\n### Workflow\n\nModels are quantized via a one-shot API (`llmcompressor.oneshot`) using a `QuantizationModifier` recipe that targets layers (e.g. `Linear`), a quantization scheme (e.g. `FP8_BLOCK`), and ignore-list (e.g. `lm_head`). Output is saved via standard Hugging Face `save_pretrained` in the compressed-tensors format (a safetensors extension), which vLLM loads natively.\n\n### Scale and hardware support\n\n- DDP (distributed data parallel) and disk offloading support for compressing very large models with limited hardware\n- Non-uniform quantization (different schemes per layer/module)\n- Architecture-specific support for MoE LLMs, Vision-Language Models, and Audio-Language Models\n- Model-free definition quantization (models without a Hugging Face model class definition)\n- Batched GPTQ with a Triton kernel (~15x faster than the prior eager path; up to ~30x end-to-end on MoE workloads via same-shape layer batching)",
+      "tags": [
+        "quantization",
+        "compression",
+        "vllm",
+        "gptq",
+        "awq",
+        "fp8",
+        "nvfp4",
+        "mxfp4",
+        "inference-optimization",
+        "model-deployment",
+        "huggingface"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/llm-compressor.md"
     },
     {
       "name": "llmfit",
@@ -6780,6 +7375,34 @@
       "path": "catalog/entries/meetily.md"
     },
     {
+      "name": "memoose",
+      "title": "Memoose",
+      "url": "https://github.com/AndrewNgo-ini/memoose",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Local, no-API-key dual-path memory system for coding agents — SQLite knowledge graph, CLI + 26 MCP tools + skills/hooks harness; procedures stored as self-evolving 'procedural graphs' (steps as nodes, edges carrying conditions/advice/pitfalls) after Google's Procedural Graphs paper (arXiv 2609.09153)",
+      "body_summary": "Memoose is a dual-path, local memory system for coding agents (author: AndrewNgo-ini), pairing a deterministic engine (SQLite-backed knowledge graph, a CLI, and 26 MCP tools) with a harness of skills, hooks, and a maintenance subagent. It stores two kinds of memory: factual/declarative memory (decisions, conventions, ownership facts, each carrying an evidence pointer to its source) and procedural memory, modeled explicitly as \"procedural graphs\" rather than a knowledge graph — following the framing in Google's paper \"Procedural Graphs: Self-Evolving Execution Structures for LLM Agents\" (arXiv 2609.09153, Lu/Chen/Wu/Arık; Google, Georgia Tech, Peking University). That paper argues knowledge graphs (entity-relation-entity triplets) suit \"what is\" questions but not \"what to do\" procedural knowledge, and proposes graphs of (procedure, relation, procedure) triplets instead: an online phase localizes the agent's active step and feeds its 2-hop neighborhood plus recent steps to a guidance model that injects step-level guidance, and an offline phase self-evolves the graph by having an LLM refiner contrast failed vs. successful trajectories and edit the graph's topology, validating edits against held-out performance.\n\nIn Memoose's implementation, a procedure is stored as a graph of step nodes; edges between steps carry a condition, advice, and a pitfall. At runtime the agent declares its current step, the engine surfaces the outgoing (2-hop) transitions, and the agent picks the next step. Each transition taken is tallied against its outcome, so repeated runs bias the graph toward what worked in practice — Memoose's stated mechanism for learning from real runs, which parallels but is simpler than the paper's offline LLM-refiner graph-editing step.\n\nSeparately from procedures, Memoose exposes two retrieval paths for memory generally: recall (explicit search, for a question the agent thought to ask) and recommendation (an automatic hint surfaced before each prompt, for what it didn't think to ask). `memoose maintain` periodically sweeps the store into a worklist that a small subagent judges (e.g., retiring stale facts) rather than doing so automatically.",
+      "tags": [
+        "memory",
+        "procedural-graph",
+        "knowledge-graph",
+        "mcp-server",
+        "cli-tool",
+        "sqlite",
+        "local-first",
+        "no-api-key",
+        "claude-code",
+        "hooks"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "unverified-vendor-claims"
+      ],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/memoose.md"
+    },
+    {
       "name": "mempalace",
       "title": "MemPalace",
       "url": "https://github.com/MemPalace/mempalace",
@@ -7163,6 +7786,31 @@
       "path": "catalog/entries/mixpeek.md"
     },
     {
+      "name": "ml-learning-roadmap-2026",
+      "title": "Machine Learning Learning Roadmap (2026)",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Comprehensive practitioner/professor-authored learning path for ML — 5 stages totaling ~25-35 weeks at 8-10 hrs/week: Python (3-5w), math (6-10w, 6 sub-tracks from linear algebra to information theory), PyTorch (2w), ML foundations (10-14w, 5 units from perceptrons to evaluation), then specialization (NLP/CV/RL); emphasizes concept ordering as the primary blocker, spaced repetition for retention, and exercises over passive consumption",
+      "body_summary": "Structured ML curriculum authored by a visiting NLP professor (r/learnmachinelearning, Sep 2026). ~350 concepts across 5 stages, ordered to prevent the \"hit a concept that assumed three others you skipped\" stall.\n\n**Stage 1: Python (3-5 weeks)** — ML-relevant slice: environments, data structures, comprehensions/generators, classes (nn.Module), type hints, file I/O, debugging.\n\n**Stage 2: Math (6-10 weeks)** — 6 sub-tracks: mathematical toolkit/notation (1w), linear algebra (3w, 5 units through SVD/tensors), calculus and optimization (2w, through backprop and saddle points), probability and statistics (3w, 6 units through MCMC and bootstrap), information theory (3d), numerical computation (2d, floating-point, log-sum-exp, EMA).\n\n**Stage 3: PyTorch (2 weeks)** — Tensor library before models. Autograd, broadcasting, devices, reproducibility.\n\n**Stage 4: ML Foundations (10-14 weeks)** — 5 units: single neuron to classifier, deep neural networks, training that works (optimizers, scheduling, checkpointing), generalization (regularization, double descent), evaluation and diagnostics.\n\n**Stage 5: Specialization** — NLP (tokenization → transformers), CV (convolutions → detection), RL, etc.\n\n**Key pedagogical claims:** Concept ordering is the primary blocker; spaced repetition is the retention mechanism; writing code from scratch (not just reading) is required for concepts used weekly.",
+      "tags": [
+        "learning",
+        "education",
+        "machine-learning",
+        "roadmap",
+        "python",
+        "pytorch",
+        "linear-algebra",
+        "probability",
+        "deep-learning",
+        "curriculum"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/ml-learning-roadmap-2026.md"
+    },
+    {
       "name": "mlx-vlm-turboquant",
       "title": "mlx-vlm TurboQuant (Apple Silicon KV Cache Compression)",
       "url": "https://github.com/Blaizzy/mlx-vlm/pull/858",
@@ -7494,6 +8142,34 @@
       "path": "catalog/entries/nginx.md"
     },
     {
+      "name": "north-star-osint",
+      "title": "North Star",
+      "url": "https://nstarlive.com/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Commercial SaaS OSINT platform unifying nine intelligence sectors — a live 250,000+ camera globe with local YOLOv8 detection, username/breach-database lookup, multi-chain crypto wallet tracing, network/port/.onion scanning, photo geolocation, radio-spectrum monitoring, trackable-link visitor telemetry (Fisherman), and 100+-registry public-records search — behind a paid subscription with no self-hosting or open-source code",
+      "body_summary": "North Star is a browser-based, subscription-only OSINT (open-source intelligence) platform bundling nine \"intelligence sectors\" behind one interface:\n\n1. **Camera Globe** — 250,000+ live public cameras plotted on a 3D globe; YOLOv8 object detection (people, vehicles, 80+ classes) runs locally in the browser; a geofenced AI search scans every camera inside a drawn boundary; GeoCLIP estimates location from an uploaded photo and reads its EXIF (GPS, camera model, timestamp).\n2. **Username Research** — cross-platform username search, breach/leak database cross-referencing, IP/domain/ASN lookups tied to an identity, exposed-device/service discovery, linked-email discovery, exportable case reports.\n3. **Crypto Tracing** — wallet address analysis across 22+ chains (Bitcoin, Ethereum and other EVM chains, Solana, Tron, XRP, Cardano); hop-by-hop transaction graph with exchange/mixer labelling, time-window isolation, and case export.\n4. **NetScan** — accepts an IP, domain, CIDR range, or .onion address; WHOIS/DNS/subdomain enumeration from six independent sources; port, service-version, TLS, and OS fingerprinting; Tor-routed scanning of hidden services; historical scan data and related-host discovery with known CVEs.\n5. **Hawk** — geolocates a photograph by matching it against satellite and street-level imagery, plus OCR of signage, phone prefixes, and licence-plate formats.\n6. **Skywave** — radio-frequency lookup (service/band plan/licensee), ranks public receivers by distance, reports real-time propagation for maritime and shortwave bands.\n7. **Fisherman** — generates trackable links; each visit is logged with timestamped browser, device, referrer, IP, ASN, and (if location is shared) GPS coordinates.\n8. **Catalogue** — fans a single search across 100+ official public-record sources (courts, corporate filings, sanctions/PEP lists, property/vital records); falls back to a pre-filled deep link where a source has no API.\n9. **Watchtower** (founders-tier only) — live vessel/aircraft tracking, natural-hazard feeds, and infrastructure layers (submarine cables, pipelines, power).\n\nBuilt on OpenStreetMap, NASA Earth Observatory imagery, MaxMind GeoIP, GeoCLIP, and Ultralytics YOLOv8.",
+      "tags": [
+        "osint",
+        "geospatial",
+        "geolocation",
+        "crypto-tracing",
+        "network-scanning",
+        "saas",
+        "surveillance"
+      ],
+      "workflows": [],
+      "license": "Proprietary",
+      "security_flags": [
+        "closed-source",
+        "new-project",
+        "unverified-vendor-claims",
+        "third-party-data-capture"
+      ],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/north-star-osint.md"
+    },
+    {
       "name": "nvidia-build",
       "title": "NVIDIA Build (NIM)",
       "url": "https://build.nvidia.com/models",
@@ -7514,6 +8190,38 @@
       "security_flags": [],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/nvidia-build.md"
+    },
+    {
+      "name": "nvidia-pair",
+      "title": "NVIDIA Personal AI Router (PAIR)",
+      "url": "https://www.nvidia.com/en-us/ai-on-rtx/personal-ai-router/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source local inference router (public beta) that proxies AI app/agent requests to a single endpoint and schedules them across NVIDIA DGX Spark, RTX Windows/Linux PCs, and Apple Silicon Macs on the same LAN — infrastructure tool, not an agent/dev workflow component",
+      "body_summary": "NVIDIA Personal AI Router (PAIR) is a local inference router that gives AI apps and agents a single local endpoint while it routes each request to whichever compatible machine on the same LAN has capacity. It targets a household or small-office mix of NVIDIA DGX Spark units, Windows/Linux PCs with RTX GPUs, and macOS devices (Apple M4+), presenting Ollama-compatible, OpenAI-compatible, and Anthropic Messages API proxy endpoints so existing clients need no code changes to talk to it.\n\nPAIR discovers eligible nodes on the network via mDNS, establishes trust through PIN-based pairing, and encrypts node-to-node traffic with mTLS. It tracks per-node state — which inference engines are running, which models are already loaded, current job load, and GPU utilization — and schedules each incoming request to a single eligible node. At launch it drives two backend engines: Ollama and LM Studio.\n\nCritically, PAIR is a router, not a distributed inference runtime: it does not pool VRAM or combine GPUs across machines into one larger logical device, and it does not shard a model across nodes. A node is only a scheduling candidate if it already has the exact requested model loaded. The stated benefit is maximizing use of a household's/lab's existing idle local compute (e.g., diverting work off a machine someone starts gaming on) while keeping prompts, files, and agent context on the local network rather than sending them to a cloud API.",
+      "tags": [
+        "inference-routing",
+        "local-inference",
+        "llm-serving",
+        "ollama",
+        "lm-studio",
+        "rtx",
+        "dgx-spark",
+        "macos",
+        "self-hosted",
+        "proxy",
+        "nvidia",
+        "lan-discovery"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "beta-software",
+        "new-project",
+        "binds-local-network-endpoints"
+      ],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/nvidia-pair.md"
     },
     {
       "name": "oauth-cli-coder",
@@ -8437,6 +9145,32 @@
       "path": "catalog/entries/ovisocr2.md"
     },
     {
+      "name": "oxc",
+      "title": "Oxc (Oxidation Compiler)",
+      "url": "https://github.com/oxc-project/oxc",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Rust-based JavaScript/TypeScript toolchain from VoidZero (Evan You) providing a shared parser, linter (Oxlint), formatter (Oxfmt), transformer, minifier, and module resolver; Oxlint targets ESLint compatibility with 870+ built-in rules, claims 50-100x ESLint's speed, and offers type-aware linting via tsgo (the Go port of the TypeScript compiler). MIT.",
+      "body_summary": "Oxc (the Oxidation Compiler, pronounced \"ox-ee-see\") is a collection of high-performance JavaScript/TypeScript tools written in Rust, developed under VoidZero, the company founded by Vue.js/Vite creator Evan You. Rather than one tool, it is a shared toolchain: a parser, linter (Oxlint), formatter (Oxfmt), transformer, minifier, and module resolver, all built on common infrastructure so behavior stays consistent across the stack. The parser allocates its AST in a bumpalo memory arena and inlines short strings via CompactString to minimize heap allocations, and delegates scope binding, symbol resolution, and some syntax-error detection to a separate semantic analyzer rather than doing it inline. Oxc powers Rolldown (Vite's Rust-based bundler — used for parsing, transformation, and minification) and Nuxt (parsing); `oxc_resolver` is also used independently by Nova, swc-node, and knip.\n\nThe most mature and widely adopted component is Oxlint, a linter targeting ESLint compatibility. It ships 870+ built-in rules covering ESLint core, TypeScript (including type-aware rules), and popular plugins (React, Jest, Vitest, Import, Unicorn, jsx-a11y), and the docs claim 50-100x the speed of ESLint. Type-aware linting is powered by tsgo (the native Go port of the TypeScript compiler, aka \"TypeScript 7\") for TypeScript type-system compatibility — contrasted in Oxc's own docs with Biome, which implements its own type inference instead. Oxlint supports multi-file analysis (a project-wide module graph shared across rules, improving checks like `import/no-cycle`) and alpha-stage JS plugins for compatibility with the existing ESLint plugin ecosystem. It is used in production by elastic/kibana, getsentry/sentry, electron/electron, renovatebot/renovate, preactjs/preact, date-fns/date-fns, outline/outline, PostHog/posthog, actualbudget/actual, and cloudflare/agents.\n\nPer Oxc's own docs, the parser and Oxlint are production-ready and widely used; the transformer and minifier are in active development approaching stability; Oxfmt (the Prettier-compatible formatter) is newer.",
+      "tags": [
+        "javascript",
+        "typescript",
+        "rust",
+        "linter",
+        "formatter",
+        "parser",
+        "compiler-toolchain",
+        "eslint-alternative",
+        "voidzero",
+        "static-analysis"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/oxc.md"
+    },
+    {
       "name": "paddleocr",
       "title": "PaddleOCR",
       "url": "https://github.com/PaddlePaddle/PaddleOCR",
@@ -8683,6 +9417,34 @@
       "path": "catalog/entries/perplexity-mcp-server.md"
     },
     {
+      "name": "photon-studio",
+      "title": "Photon Studio",
+      "url": "https://tenzen.studio/photon/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Free proprietary desktop image editor (macOS/Windows 11/Linux) from Tenzen Studio positioned as a Photoshop alternative — layers, masks, smart objects, curves, liquify, local (on-device) background removal, and native PSD read/write; local-first with no upload or account required; reported by press as built largely via AI-assisted ('vibe-coded') development for roughly $2,000 in model tokens",
+      "body_summary": "Photon Studio is a free desktop image editor and design tool from Tenzen Studio, distributed for macOS, Windows 11, and Linux. It combines photo editing with layer-based design work: groups, masks, adjustment layers, smart objects, layer effects (shadows, glows, strokes, overlays), editable text, vector shapes, pen paths, brushes, and gradients. Retouching tools include healing brush, clone stamp, content-aware fill, and Liquify; color/tone adjustments are handled via Curves and Levels with live preview. Subject selection and background removal run through an on-device model rather than a cloud API. The application reads and writes PSD files natively (the vendor notes some Photoshop-specific features may not transfer identically) and includes a command-search palette for finding tools/menu items by name, plus Photoshop-style customizable keyboard shortcuts.\n\nAll processing is local — no upload step, no processing queue, and no account required to open and edit a file. Distribution is via the vendor's site (tenzen.studio/photon), which gates the download behind an email address; there is no public source repository.",
+      "tags": [
+        "photo-editing",
+        "image-editor",
+        "photoshop-alternative",
+        "desktop-app",
+        "psd",
+        "vibe-coded",
+        "local-first",
+        "proprietary",
+        "closed-source"
+      ],
+      "workflows": [],
+      "license": "Proprietary",
+      "security_flags": [
+        "closed-source",
+        "unverified-user-claims"
+      ],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/photon-studio.md"
+    },
+    {
       "name": "pi-coding-agent",
       "title": "Pi Coding Agent",
       "url": "https://github.com/earendil-works/pi",
@@ -8732,6 +9494,33 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/pi-hole.md"
+    },
+    {
+      "name": "pi-system-one",
+      "title": "pi-system-one",
+      "url": "https://iamaamir.github.io/system-one/",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Pi coding-agent extension registering a single system_one tool for bounded decisions (choice, noul, score) with calibrated probabilities; a thin wrapper over the provider-neutral system-one-core SDK, so any compatible 'System One' backend (TypeSafe Jev, Reflex, custom /v1/systemone endpoints) can sit behind it; pi-bifrost (same author) is a separate consumer of the same SDK",
+      "body_summary": "pi-system-one is an extension for the Pi coding agent (github.com/earendil-works/pi) that registers a single `system_one` tool for bounded, calibrated decisions inside an agent session. The tool exposes three question types:\n\n- **choice** — pick among bounded options; returns a probability per option plus a confidence score\n- **noul** — binary true/false proposition; returns the probability the statement is true (no confidence field, since it's already binary)\n- **score** — ordered scalar rating; returns a continuous score plus distribution and confidence\n\nResults come back as calibrated, state-conditional probabilities rather than free-text estimates. The tool/skill is documented as expecting the calling agent to have already retrieved relevant facts — it weighs supplied state, it does not perform its own fact retrieval.\n\npi-system-one is a thin Pi-side wrapper around `system-one-core`, a separate provider-neutral npm package (same monorepo, github.com/iamaamir/system-one) that defines a `SystemOneProvider` interface, a `SystemOne` client, typed builders (`choice`, `noul`, `score`), an `HttpSystemOneProvider` for any backend exposing `POST /v1/systemone`, fail-closed response validation, and a mock provider for tests. Because the Pi extension depends on system-one-core rather than one backend, it can run against any compatible provider. The author's announcement states this was a deliberate extraction: pi-system-one originally hard-wired to TypeSafe Jev as \"the decision engine inside Pi\"; once open alternatives surfaced (Laya, von, Reflex were named), hard-wiring to one provider stopped making sense.\n\nA separate project, pi-bifrost (same author), is described as another, independent consumer of the same system-one-core SDK for routing/policy decisions — it does not depend on pi-system-one or vice versa.",
+      "tags": [
+        "pi",
+        "pi-coding-agent",
+        "decision-making",
+        "tool-calling",
+        "provider-neutral",
+        "classification",
+        "extension",
+        "system-one-core",
+        "judge"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [
+        "no-license"
+      ],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/pi-system-one.md"
     },
     {
       "name": "pii-detection",
@@ -8961,6 +9750,29 @@
       "security_flags": [],
       "reviewed": "2026-08-31",
       "path": "catalog/entries/production-agentic-platforms-2026.md"
+    },
+    {
+      "name": "production-ai-portfolio-checklist",
+      "title": "Production AI Portfolio Checklist (What Senior Engineers Actually Look For)",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Community-sourced checklist from senior/lead AI engineers on what distinguishes a production-grade AI portfolio project from tutorial copies — eval sets built from real failures, p50/p95 latency and cost-per-successful-task metrics, idempotent tool calls, prompt versioning tied to eval runs, traces of failed runs, and a 'what went wrong' section; consensus recommendation: build one narrow-domain agent (#2 deterministic workflow) over a routing gateway (#1) or fine-tuning demo (#3)",
+      "body_summary": "Synthesis of senior/lead AI engineer perspectives on what makes a portfolio project signal production competence (r/AI_Agents, Sep 2026).\n\n**Green flags in a repo:**\n- Eval set hand-built from real failures (not only synthetic), with before/after pass rates from actual changes\n- Numbers: p50/p95 latency, cost per *successful* task (not per call), failure rate by step\n- Timeouts, retries with backoff, idempotency on tool calls with side effects\n- Prompts versioned and tied to eval runs (which change broke what)\n- \"What went wrong / what I'd change\" README section\n- Traces you can open — one screenshot of a failed run in Langfuse showing *why* it failed beats buzzwords\n\n**Common gaps:**\n- Evals that only test the happy path\n- No story for partial failure (step 3 of 5 dies, now what?)\n- Using an LLM for tasks a regex or SQL query handles (showing when *not* to call the model is a strong signal)\n- Stacking 6 frameworks — one boring, well-understood stack reads as more senior\n\n**Consensus recommendation:** Pick one narrow domain with messy inputs, build a deterministic agent workflow around it, bolt on cost/latency tracking, spend at least a third of time on evals and failure handling. Also suggested: build a quality MCP server with observability + security testing suite that runs in CI.",
+      "tags": [
+        "career",
+        "portfolio",
+        "production",
+        "evaluation",
+        "observability",
+        "agent-engineering",
+        "best-practices",
+        "hiring"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/production-ai-portfolio-checklist.md"
     },
     {
       "name": "production-rag-system-taxonomy",
@@ -10344,6 +11156,30 @@
       "path": "catalog/entries/software-cost-estimation-models.md"
     },
     {
+      "name": "software-factory-orchestration",
+      "title": "Software Factory Orchestration (DAG-Based Dev Lifecycle Automation)",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Pattern for automating the full software development lifecycle with a deterministic workflow DAG — spec writing → ticket generation → per-ticket plan/execute/review → final code review — using coding agents as nodes and a workflow engine (n8n, Airflow, or custom bash/TS script) as the orchestrator; addresses opacity and steering problems of pure multi-agent approaches",
+      "body_summary": "Pattern for end-to-end software development automation where a deterministic orchestrator (workflow DAG, bash script, or TS script with Pi SDK) drives coding agents through the full lifecycle:\n\n1. `pi -p /write-spec \"$GOAL\"` → human review/edit\n2. `pi -p /write-tickets-for-spec @spec.md` → human review/edit\n3. Per ticket: plan → execute → quick review/fix\n4. Final `pi -p /code-review`\n\nKey design choice: use a programmatic orchestrator (n8n, Airflow, custom code) rather than multi-agent conversation for steering. Addresses the \"too loose, opaque and difficult to steer\" problem of pure subagent delegation.\n\nDiscussion source: r/PiCodingAgent (Sep 2026). Practitioners evaluating both GUI workflow builders (n8n-like DAG editors with CLI/REST API) and code-first approaches (bash scripts, TS SDK).",
+      "tags": [
+        "orchestration",
+        "workflow",
+        "dag",
+        "software-factory",
+        "dev-lifecycle",
+        "automation",
+        "pi",
+        "coding-agent",
+        "deterministic"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/software-factory-orchestration.md"
+    },
+    {
       "name": "sota-scan",
       "title": "sota-scan",
       "url": "https://github.com/MerlijnW70/sota-scan",
@@ -10661,6 +11497,28 @@
       "security_flags": [],
       "reviewed": "2026-07-15",
       "path": "catalog/entries/suede-creator-skills.md"
+    },
+    {
+      "name": "suncalc",
+      "title": "SunCalc",
+      "url": "https://www.suncalc.org/",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Interactive web app showing sun position, sunlight phases, shadow length, and golden/blue hour times on a map for any location and date — useful for field work planning (outdoor sensor deployment, drone surveys, photography timing)",
+      "body_summary": "Browser-based sun position calculator and visualizer. Enter coordinates and date to see:\n- Sun azimuth and altitude throughout the day\n- Sunrise, sunset, golden hour, blue hour times\n- Shadow direction and length on the map\n- Moon position and phases",
+      "tags": [
+        "sun-position",
+        "mapping",
+        "field-work",
+        "planning",
+        "utility",
+        "web-app"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/suncalc.md"
     },
     {
       "name": "supabase",
@@ -11881,6 +12739,34 @@
       "security_flags": [],
       "reviewed": "2026-08-17",
       "path": "catalog/entries/you-cannot-automate-habit.md"
+    },
+    {
+      "name": "zdr-router-trust",
+      "title": "ZDR Router Trust — DeepSeek/Kimi/Xiaomi Data Leak Investigation (Sep 2026)",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Chinese authorities investigating DeepSeek, Moonshot (Kimi), and Xiaomi for routing third-party router users' requests to Anthropic models, injecting hidden prompts to harvest CoT traces, modifying returned text, and training on the interactions — raising questions about ZDR (zero data retention) credibility of third-party model routers like OpenRouter and OpenCode",
+      "body_summary": "Reference documenting a September 2026 investigation by China's Cyberspace Administration into DeepSeek, Moonshot (Kimi), and Xiaomi Mimo model providers. Key findings:\n\n- These providers routed user requests from third-party routers (likely OpenRouter, OpenCode) to Anthropic models\n- Injected hidden prompts to harvest chain-of-thought traces\n- Modified returned text before passing to users\n- Used captured data to train their own models\n- Leaked sessions contained names, email addresses, company data, and sensitive information in 12+ languages\n\nAnthropic published a 146-page investigation report documenting the detection and evidence.\n\nSource: The Standard (HK), Sep 2026; Anthropic investigation report (anthropic.com).",
+      "tags": [
+        "security",
+        "privacy",
+        "zdr",
+        "model-routing",
+        "openrouter",
+        "deepseek",
+        "kimi",
+        "anthropic",
+        "data-leak",
+        "trust"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [
+        "data-exfiltration",
+        "privacy-violation"
+      ],
+      "reviewed": "2026-09-25",
+      "path": "catalog/entries/zdr-router-trust.md"
     },
     {
       "name": "zero-to-mastery-ml",

@@ -39,3 +39,7 @@ Validates the advisor-strategy pattern (executor/advisor split) with a concrete 
 ## Security
 
 Not applicable — this is a workflow pattern, not executable code.
+
+## Usage notes
+
+- **Qwen + Claude overseer pipeline (r/ClaudeCode):** Setup: Windows rig (64GB DDR5, R9 9950x3d, RTX 5090) runs Qwen 3.8 Q6_K in LM Studio (low thinking, temp 0.7, 55K context), accessible over VPN to Mac running Cline. Claude subscription used for an "overseer" skill where Claude knows it's working with a weaker model, makes plans for it, then verifies Qwen's implementation. User reports daily-driving this for over a month — Claude plans, Qwen executes, Claude reviews. Wants to automate the message-passing so human only does final code review.
