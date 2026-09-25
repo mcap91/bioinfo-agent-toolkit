@@ -46,3 +46,7 @@ N/A — model selection notes, no code or dependencies.
 - **64GB Mac Mini M4 Pro**: Qwen 3.6 35B (a3b quant) replaced Gemma 4 and was a step-change improvement for coding via Ollama + OpenClaw.
 
 Source: r/LocalLLaMA, r/LocalLLM practitioner threads (unverified).
+
+## Usage notes
+
+- **Qwen 3.8 27B vs 3.6 35B-A3B on 8GB VRAM (r/unsloth, Sep 2026):** With RTX 4060 (8GB) + 64GB DDR5 RAM, user running Qwen3.6 35B-A3B MTP at Q4 128K gets 26-30 t/s. Qwen3.8 27B at Q2 should fit fully in VRAM (faster) but quality at that quant level is questionable. Bonsai's smaller Qwen3.8 variant scores well on benchmarks but reported as poor in practice. Community recommendations for 35B-A3B finetunes: Ornith 1.5-35B-A3B, Ternary Bonsai, Occamy, Tiel-Coder-35B-A3B. Also suggested: empero-ai/Qwen3.8-35B-A3B-Distill-GGUF (but has 8K token limit).
