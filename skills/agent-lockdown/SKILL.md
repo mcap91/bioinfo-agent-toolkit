@@ -26,10 +26,10 @@ selector apply to any coding agent CLI.
 Tell the user to run this themselves (it requires global npm access):
 
 ```
-npm install -g @anthropic-ai/claude-code@2.1.223
+npm install -g @anthropic-ai/claude-code@2.1.280
 ```
 
-> **Pin note:** `2.1.223` is the verified-safe version as of 2026-08-09. This pin needs periodic
+> **Pin note:** `2.1.280` is the verified-safe version as of 2026-09-26. This pin needs periodic
 > re-verification — run this skill in **upgrade-check** mode before the next re-pin; do not treat
 > it as a permanent hardcode.
 
@@ -86,7 +86,7 @@ aliases used by `/model` and subagent model fields. They do **not** conflict wit
 Sonnet or Haiku slug (the tier default is fine for most uses).
 
 > **Fable caveat:** Do **not** add `ANTHROPIC_DEFAULT_FABLE_MODEL`. Unlike Opus/Sonnet/Haiku, Fable
-> has no native family row in `2.1.223` — it is gated behind a consent/entitlement flow (the binary
+> has no native family row in `2.1.280` — it is gated behind a consent/entitlement flow (the binary
 > carries `isFableCreditsRequired`, `hasFableConsentDialogInteracted`, and a "Fable bridge dialog"
 > the others don't have). The env var is silently inert. To use Fable, type its model slug directly
 > into `/model` when needed.
@@ -220,7 +220,7 @@ Tell the user to open a **new terminal** (env vars are read at launch), then:
    ```
    claude --version
    ```
-   Expected: `2.1.223`
+   Expected: `2.1.280`
 
 2. Check model pin — open Claude Code and type `/model`. The picker should show:
    - **Default** → Opus 5.5 (1M) (pinned via `model` + `ANTHROPIC_DEFAULT_OPUS_MODEL`)
@@ -330,7 +330,7 @@ no deny rules at all, report as MISSING and offer to create them.
 
 ### Step 4 — Check CLI version
 
-Run `claude --version` and compare to `2.1.223`. Report OK or DRIFTED.
+Run `claude --version` and compare to `2.1.280`. Report OK or DRIFTED.
 
 ### Step 5 — Flag unexpected entries (user-level)
 
@@ -387,7 +387,7 @@ Present to the user:
 ```
 === Agent Lockdown Checkup ===
 
-CLI version:  2.1.223  ✓
+CLI version:  2.1.280  ✓
 
 --- User-level settings ---
 
