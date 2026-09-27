@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T17:21:15.688Z",
+  "generated_at": "2026-09-27T00:08:50.697Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -320,6 +320,16 @@
       "title": "AI Engineering Hub",
       "url": "https://github.com/patchy631/ai-engineering-hub",
       "summary": "Curated collection of 93+ hands-on tutorial projects for LLM/RAG/agent engineering, organized by difficulty (beginner/intermediate/advanced), covering OCR, chat UIs, RAG variants, MCP integrations, model comparisons, fine-tuning, and production agent systems",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "ai-engineering-project-ideas",
+      "kind": "entry",
+      "title": "5 AI Engineering Projects to Build",
+      "url": "https://www.instagram.com/reel/DdMz98mI6AC/",
+      "summary": "Curated list of 5 hands-on AI engineering projects — LLM cost autopilot, semantic caching layer, model regression detector, failure forensics tool, self-healing technical docs; sourced from Instagram reel",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -660,6 +670,16 @@
       "exists": true
     },
     {
+      "id": "awesome-claude-code-subagents",
+      "kind": "entry",
+      "title": "Awesome Claude Code Subagents (VoltAgent)",
+      "url": "https://github.com/VoltAgent/awesome-claude-code-subagents",
+      "summary": "Curated collection of 161+ Claude Code subagent definitions across 10 categories (core dev, language specialists, infrastructure, quality/security, data/AI, developer experience, specialized domains, business/product, meta-orchestration, research/analysis); installable via Claude Code plugin marketplace, interactive shell script, or manual copy to ~/.claude/agents/; each subagent is a Markdown file with YAML frontmatter (name, description, tools, model); includes a /subagent-catalog skill for browsing and fetching agents; MIT, 6.4k stars",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "awesome-design-md",
       "kind": "entry",
       "title": "awesome-design-md",
@@ -820,6 +840,16 @@
       "url": "https://github.com/latent-spaces/brag",
       "summary": "Claude Code skill/plugin that generates short shareable launch videos from any project — analyzes the codebase, creates a product story with music/motion/share copy, renders via Hyperframes; one command; works with Claude Code, Codex CLI, opencode, Gemini CLI, Cursor via skills CLI; optional AI voiceover via Kokoro; MIT",
       "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "breachdirectory",
+      "kind": "entry",
+      "title": "BreachDirectory",
+      "url": "https://breachdirectory.org/",
+      "summary": "Free breach lookup engine — searches billions of breached credentials and personal records by email, username, or domain; shows plaintext and hashed passwords from real data dumps; API available via RapidAPI (free basic tier, paid pro); dual-use OSINT tool for breach monitoring and credential exposure checking; proprietary, web-based",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -3239,6 +3269,16 @@
       "exists": true
     },
     {
+      "id": "mineru",
+      "kind": "entry",
+      "title": "MinerU",
+      "url": "https://github.com/opendatalab/MinerU",
+      "summary": "Open-source document parsing engine by OpenDataLab — converts PDFs, images, Office docs (Word/PPT/Excel), EPUB, OFD, HTML/MHTML, CSV into LLM-ready Markdown/JSON with four quality tiers (flash/basic/standard/advanced); VLM+OCR dual engine supporting 109 languages; local-first with optional remote API; CLI with agent-oriented continuation/locator system; local document library with search/watch/scan; MCP server; integrations with LangChain, RAGFlow, Dify, FastGPT; Python >=3.10; Apache-2.0 with commercial threshold (100M MAU or $20M revenue); ~80k stars",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "minimal-agent-integration",
       "kind": "entry",
       "title": "Minimal Agent Integration Philosophy",
@@ -3416,6 +3456,16 @@
       "url": "https://research.nvidia.com/labs/nemotron/Nemotron-3-Ultra/",
       "summary": "NVIDIA's most capable open model — 550B total / 55B active parameters, Mixture-of-Experts Hybrid Mamba-Attention architecture with LatentMoE and MTP speculative decoding; 1M context length; 5.9x throughput vs GLM-5.1, 4.8x vs Kimi K2.6; open checkpoints (base, post-trained, NVFP4 quantized, GenRM) and training datasets released",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "netscanner",
+      "kind": "entry",
+      "title": "netscanner",
+      "url": "https://github.com/Chleba/netscanner",
+      "summary": "Rust TUI network scanner and diagnostic tool — lists hardware interfaces, WiFi scanning with signal strength charts, IPv4 CIDR ping with hostname/OUI/MAC resolution, TCP/UDP/ICMP/ARP packet dump with pause/filter, open port scanning, traffic counting with DNS records, CSV export; requires root; built on Ratatui + libpnet; Linux/macOS/Windows (Npcap); MIT, ~1.8k stars",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -4023,6 +4073,16 @@
       "exists": true
     },
     {
+      "id": "pixel-agents",
+      "kind": "entry",
+      "title": "Pixel Agents",
+      "url": "https://github.com/pixel-agents-hq/pixel-agents",
+      "summary": "Animated pixel-art office that visualizes AI coding agents as characters — renders live activity (editing, reading, waiting for input) via Claude Code hooks or transcript heuristics; ships as VS Code extension and standalone CLI (npx pixel-agents); agent-agnostic HookProvider interface with Claude Code as reference integration; office layout editor, sub-agent/team visualization, areas mapped to workspace folders; React 19 + Canvas 2D; MIT",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "piyaz",
       "kind": "entry",
       "title": "Piyaz",
@@ -4313,6 +4373,16 @@
       "exists": true
     },
     {
+      "id": "revealer-us",
+      "kind": "entry",
+      "title": "Revealer.US",
+      "url": "https://revealer.us/",
+      "summary": "OSINT platform for username, email, and phone lookup across 800+ live sources (social, gaming, forum, developer platforms) plus breach and stealer-log dataset search; results arrive as each source responds; AI Deep Search (paid) follows reused handles and writes cited reports with confidence scores; REST API for programmatic access; SaaS with free demo tier, paid from $12.99/mo; domain registered January 2026, low third-party trust score (27/100 Gridinsoft)",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "robyn",
       "kind": "entry",
       "title": "Robyn",
@@ -4474,6 +4544,16 @@
       "url": "https://github.com/shepherd-agents/shepherd",
       "summary": "Python runtime substrate that records agent runs as durable, inspectable, reversible execution traces — agent-written outputs land as retained proposals (changesets) that a human selects, applies, releases, or discards, with OS-level (Seatbelt/Landlock) enforcement of per-task read/write permission grants declared in function signatures",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "shodan",
+      "kind": "entry",
+      "title": "Shodan",
+      "url": "https://www.shodan.io/",
+      "summary": "Search engine for internet-connected devices — crawls all public IPv4 addresses weekly, indexes service banners/vulnerabilities/exposed services; search filters for ports, protocols, products, OS, geo, vulns; CLI and REST API for programmatic access; Shodan Monitor for real-time network exposure alerts; data streaming firehose; 3M+ registered users including 89% of Fortune 100; free tier, one-time $49 membership, subscriptions from $69/mo; proprietary",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -4690,6 +4770,16 @@
       "url": "https://github.com/MerlijnW70/sota-scan",
       "summary": "Useful comparative benchmarking skill for Claude Code, but single-contributor, no tests, and high token cost for exhaustive mode",
       "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "soup",
+      "kind": "entry",
+      "title": "Soup",
+      "url": "https://github.com/MakazhanAlpamys/Soup",
+      "summary": "LLM fine-tuning CLI — one YAML config, one command; supports SFT, DPO, GRPO, PPO, KTO, ORPO, SimPO, IPO, BCO, pre-training, distillation, vision/audio; layer streaming trains an 8B model on a 4 GB GPU by streaming frozen base from host RAM one decoder layer at a time (bit-exact); auto batch size, GPU detection, quantization (4-bit/8-bit/FP8/QAT); backends: transformers, Unsloth, MLX; web UI dashboard; export to GGUF/ONNX/TensorRT/AWQ; 100+ model recipes; Python 3.10-3.12; Apache-2.0",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -5709,6 +5799,11 @@
       "exists": true
     },
     {
+      "id": "tag:attack-surface",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:attention",
       "kind": "tag",
       "exists": true
@@ -6005,6 +6100,11 @@
     },
     {
       "id": "tag:brand-design",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:breach-search",
       "kind": "tag",
       "exists": true
     },
@@ -7404,6 +7504,11 @@
       "exists": true
     },
     {
+      "id": "tag:device-tree",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:devops",
       "kind": "tag",
       "exists": true
@@ -7420,6 +7525,11 @@
     },
     {
       "id": "tag:dhcp",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:diagnostics",
       "kind": "tag",
       "exists": true
     },
@@ -7744,6 +7854,11 @@
       "exists": true
     },
     {
+      "id": "tag:email-lookup",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:embedded",
       "kind": "tag",
       "exists": true
@@ -7860,6 +7975,11 @@
     },
     {
       "id": "tag:episodic-memory",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:epub",
       "kind": "tag",
       "exists": true
     },
@@ -9084,6 +9204,11 @@
       "exists": true
     },
     {
+      "id": "tag:ios",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:iot",
       "kind": "tag",
       "exists": true
@@ -9365,6 +9490,11 @@
     },
     {
       "id": "tag:launch",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:layer-streaming",
       "kind": "tag",
       "exists": true
     },
@@ -9985,6 +10115,11 @@
     },
     {
       "id": "tag:mobile",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:mobile-testing",
       "kind": "tag",
       "exists": true
     },
@@ -10714,6 +10849,11 @@
       "exists": true
     },
     {
+      "id": "tag:packet-capture",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:paddlepaddle",
       "kind": "tag",
       "exists": true
@@ -10775,6 +10915,11 @@
     },
     {
       "id": "tag:parser",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:password",
       "kind": "tag",
       "exists": true
     },
@@ -10944,6 +11089,11 @@
       "exists": true
     },
     {
+      "id": "tag:pixel-art",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:plan-execution",
       "kind": "tag",
       "exists": true
@@ -11020,6 +11170,11 @@
     },
     {
       "id": "tag:political-science",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:port-scanner",
       "kind": "tag",
       "exists": true
     },
@@ -11190,6 +11345,11 @@
     },
     {
       "id": "tag:programming-language",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:project-ideas",
       "kind": "tag",
       "exists": true
     },
@@ -11510,6 +11670,11 @@
     },
     {
       "id": "tag:recommendation-systems",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:reconnaissance",
       "kind": "tag",
       "exists": true
     },
@@ -12229,6 +12394,11 @@
       "exists": true
     },
     {
+      "id": "tag:sft",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:shaders",
       "kind": "tag",
       "exists": true
@@ -12715,6 +12885,11 @@
     },
     {
       "id": "tag:swarm",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:swift",
       "kind": "tag",
       "exists": true
     },
@@ -13329,6 +13504,16 @@
       "exists": true
     },
     {
+      "id": "tag:usb",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:username-lookup",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:utility",
       "kind": "tag",
       "exists": true
@@ -13589,7 +13774,17 @@
       "exists": true
     },
     {
+      "id": "tag:vscode-extension",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:vulnerabilities",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:vulnerability",
       "kind": "tag",
       "exists": true
     },
@@ -13704,6 +13899,11 @@
       "exists": true
     },
     {
+      "id": "tag:wifi",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:wifi-sensing",
       "kind": "tag",
       "exists": true
@@ -13810,6 +14010,11 @@
     },
     {
       "id": "tag:yagni",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:yaml",
       "kind": "tag",
       "exists": true
     },
@@ -14155,6 +14360,16 @@
       "exists": true
     },
     {
+      "id": "usbtree",
+      "kind": "entry",
+      "title": "usbtree",
+      "url": "https://github.com/gnomeria/usbtree",
+      "summary": "Cross-platform Rust TUI for live USB device tree inspection — enumerates hubs/devices/classes/speeds via nusb (no root, no libusb), hot-plug watch with timestamped event log, live per-device activity sparklines and bandwidth graphs (Linux), safe eject, PCI view, filter/yank; single static binary (~1.5 MB), zero runtime deps; Linux/macOS/Windows; MIT",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "vaultwarden",
       "kind": "entry",
       "title": "Vaultwarden",
@@ -14218,6 +14433,16 @@
       "title": "Vidnote",
       "url": "https://github.com/amingilani/vidnote",
       "summary": "Self-hosted video-lecture-to-markdown converter with slide screenshots (Whisper + PySceneDetect); 'heavily vibe-coded' single-purpose tool — useful concept for certification-course capture but low polish and bus-factor 1",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "vphone-cli",
+      "kind": "entry",
+      "title": "vphone-cli",
+      "url": "https://github.com/Lakr233/vphone-cli",
+      "summary": "Virtual iPhone on Apple Silicon Mac — uses Apple's Virtualization.framework and PCC research VM infrastructure to boot full iOS (up to iOS 27) as a VM; firmware patching, restore, and VM lifecycle management; GUI window with app/file browsing, clipboard, screenshots, recording; local HTTP/WebSocket API for automation (screenshots, touch, swipes, hardware keys); guest control daemon with Irisin package manager; macOS 15+, Apple Silicon only; MIT, ~12k stars",
       "category": "cli-tool",
       "decision_status": "open",
       "exists": true
@@ -15733,6 +15958,46 @@
       "relation": "tagged"
     },
     {
+      "source": "ai-engineering-project-ideas",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "ai-engineering-project-ideas",
+      "target": "tag:ai-engineering",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-engineering-project-ideas",
+      "target": "tag:caching",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-engineering-project-ideas",
+      "target": "tag:learning",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-engineering-project-ideas",
+      "target": "tag:llm-ops",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-engineering-project-ideas",
+      "target": "tag:observability",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-engineering-project-ideas",
+      "target": "tag:project-ideas",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-engineering-project-ideas",
+      "target": "tag:testing",
+      "relation": "tagged"
+    },
+    {
       "source": "ai-engineering-skills-map",
       "target": "cat:reference",
       "relation": "categorized"
@@ -17148,6 +17413,66 @@
       "relation": "tagged"
     },
     {
+      "source": "awesome-claude-code-subagents",
+      "target": "agent-dispatcher",
+      "relation": "overlaps"
+    },
+    {
+      "source": "awesome-claude-code-subagents",
+      "target": "awesome-claude-code",
+      "relation": "overlaps"
+    },
+    {
+      "source": "awesome-claude-code-subagents",
+      "target": "awesome-design-md",
+      "relation": "overlaps"
+    },
+    {
+      "source": "awesome-claude-code-subagents",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "awesome-claude-code-subagents",
+      "target": "tag:agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "awesome-claude-code-subagents",
+      "target": "tag:awesome-list",
+      "relation": "tagged"
+    },
+    {
+      "source": "awesome-claude-code-subagents",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "awesome-claude-code-subagents",
+      "target": "tag:curated-list",
+      "relation": "tagged"
+    },
+    {
+      "source": "awesome-claude-code-subagents",
+      "target": "tag:developer-tools",
+      "relation": "tagged"
+    },
+    {
+      "source": "awesome-claude-code-subagents",
+      "target": "tag:orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "awesome-claude-code-subagents",
+      "target": "tag:plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "awesome-claude-code-subagents",
+      "target": "tag:subagents",
+      "relation": "tagged"
+    },
+    {
       "source": "awesome-claude-code",
       "target": "cat:reference",
       "relation": "categorized"
@@ -17900,6 +18225,61 @@
     {
       "source": "brag",
       "target": "tag:video",
+      "relation": "tagged"
+    },
+    {
+      "source": "breachdirectory",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "breachdirectory",
+      "target": "revealer-us",
+      "relation": "overlaps"
+    },
+    {
+      "source": "breachdirectory",
+      "target": "shodan",
+      "relation": "overlaps"
+    },
+    {
+      "source": "breachdirectory",
+      "target": "tag:api",
+      "relation": "tagged"
+    },
+    {
+      "source": "breachdirectory",
+      "target": "tag:breach-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "breachdirectory",
+      "target": "tag:credentials",
+      "relation": "tagged"
+    },
+    {
+      "source": "breachdirectory",
+      "target": "tag:email-lookup",
+      "relation": "tagged"
+    },
+    {
+      "source": "breachdirectory",
+      "target": "tag:osint",
+      "relation": "tagged"
+    },
+    {
+      "source": "breachdirectory",
+      "target": "tag:password",
+      "relation": "tagged"
+    },
+    {
+      "source": "breachdirectory",
+      "target": "tag:reconnaissance",
+      "relation": "tagged"
+    },
+    {
+      "source": "breachdirectory",
+      "target": "tag:security",
       "relation": "tagged"
     },
     {
@@ -28758,6 +29138,76 @@
       "relation": "tagged"
     },
     {
+      "source": "mineru",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "mineru",
+      "target": "tag:agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "mineru",
+      "target": "tag:document-parsing",
+      "relation": "tagged"
+    },
+    {
+      "source": "mineru",
+      "target": "tag:epub",
+      "relation": "tagged"
+    },
+    {
+      "source": "mineru",
+      "target": "tag:json",
+      "relation": "tagged"
+    },
+    {
+      "source": "mineru",
+      "target": "tag:markdown",
+      "relation": "tagged"
+    },
+    {
+      "source": "mineru",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "mineru",
+      "target": "tag:ocr",
+      "relation": "tagged"
+    },
+    {
+      "source": "mineru",
+      "target": "tag:office",
+      "relation": "tagged"
+    },
+    {
+      "source": "mineru",
+      "target": "tag:pdf",
+      "relation": "tagged"
+    },
+    {
+      "source": "mineru",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "mineru",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "mineru",
+      "target": "tag:vlm",
+      "relation": "tagged"
+    },
+    {
+      "source": "mineru",
+      "target": "unstructured",
+      "relation": "overlaps"
+    },
+    {
       "source": "minimal-agent-integration",
       "target": "advisor-strategy",
       "relation": "overlaps"
@@ -29575,6 +30025,61 @@
     {
       "source": "nemotron-3-ultra",
       "target": "tag:speculative-decoding",
+      "relation": "tagged"
+    },
+    {
+      "source": "netscanner",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "netscanner",
+      "target": "tag:diagnostics",
+      "relation": "tagged"
+    },
+    {
+      "source": "netscanner",
+      "target": "tag:network",
+      "relation": "tagged"
+    },
+    {
+      "source": "netscanner",
+      "target": "tag:packet-capture",
+      "relation": "tagged"
+    },
+    {
+      "source": "netscanner",
+      "target": "tag:port-scanner",
+      "relation": "tagged"
+    },
+    {
+      "source": "netscanner",
+      "target": "tag:ratatui",
+      "relation": "tagged"
+    },
+    {
+      "source": "netscanner",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "netscanner",
+      "target": "tag:scanner",
+      "relation": "tagged"
+    },
+    {
+      "source": "netscanner",
+      "target": "tag:security",
+      "relation": "tagged"
+    },
+    {
+      "source": "netscanner",
+      "target": "tag:tui",
+      "relation": "tagged"
+    },
+    {
+      "source": "netscanner",
+      "target": "tag:wifi",
       "relation": "tagged"
     },
     {
@@ -32218,6 +32723,41 @@
       "relation": "tagged"
     },
     {
+      "source": "pixel-agents",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "pixel-agents",
+      "target": "tag:agent-orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "pixel-agents",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "pixel-agents",
+      "target": "tag:hooks",
+      "relation": "tagged"
+    },
+    {
+      "source": "pixel-agents",
+      "target": "tag:pixel-art",
+      "relation": "tagged"
+    },
+    {
+      "source": "pixel-agents",
+      "target": "tag:visualization",
+      "relation": "tagged"
+    },
+    {
+      "source": "pixel-agents",
+      "target": "tag:vscode-extension",
+      "relation": "tagged"
+    },
+    {
       "source": "piyaz",
       "target": "cat:framework",
       "relation": "categorized"
@@ -33493,6 +34033,56 @@
       "relation": "tagged"
     },
     {
+      "source": "revealer-us",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "revealer-us",
+      "target": "shodan",
+      "relation": "overlaps"
+    },
+    {
+      "source": "revealer-us",
+      "target": "tag:api",
+      "relation": "tagged"
+    },
+    {
+      "source": "revealer-us",
+      "target": "tag:breach-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "revealer-us",
+      "target": "tag:email-lookup",
+      "relation": "tagged"
+    },
+    {
+      "source": "revealer-us",
+      "target": "tag:osint",
+      "relation": "tagged"
+    },
+    {
+      "source": "revealer-us",
+      "target": "tag:reconnaissance",
+      "relation": "tagged"
+    },
+    {
+      "source": "revealer-us",
+      "target": "tag:saas",
+      "relation": "tagged"
+    },
+    {
+      "source": "revealer-us",
+      "target": "tag:security",
+      "relation": "tagged"
+    },
+    {
+      "source": "revealer-us",
+      "target": "tag:username-lookup",
+      "relation": "tagged"
+    },
+    {
       "source": "robyn",
       "target": "cat:framework",
       "relation": "categorized"
@@ -34245,6 +34835,61 @@
     {
       "source": "shepherd-agents",
       "target": "tag:seatbelt",
+      "relation": "tagged"
+    },
+    {
+      "source": "shodan",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "shodan",
+      "target": "revealer-us",
+      "relation": "overlaps"
+    },
+    {
+      "source": "shodan",
+      "target": "tag:api",
+      "relation": "tagged"
+    },
+    {
+      "source": "shodan",
+      "target": "tag:attack-surface",
+      "relation": "tagged"
+    },
+    {
+      "source": "shodan",
+      "target": "tag:cli",
+      "relation": "tagged"
+    },
+    {
+      "source": "shodan",
+      "target": "tag:iot",
+      "relation": "tagged"
+    },
+    {
+      "source": "shodan",
+      "target": "tag:network-scanning",
+      "relation": "tagged"
+    },
+    {
+      "source": "shodan",
+      "target": "tag:osint",
+      "relation": "tagged"
+    },
+    {
+      "source": "shodan",
+      "target": "tag:reconnaissance",
+      "relation": "tagged"
+    },
+    {
+      "source": "shodan",
+      "target": "tag:security",
+      "relation": "tagged"
+    },
+    {
+      "source": "shodan",
+      "target": "tag:vulnerability",
       "relation": "tagged"
     },
     {
@@ -35191,6 +35836,96 @@
       "source": "sota-scan",
       "target": "tag:skill",
       "relation": "tagged"
+    },
+    {
+      "source": "soup",
+      "target": "axolotl",
+      "relation": "overlaps"
+    },
+    {
+      "source": "soup",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "soup",
+      "target": "llamafactory",
+      "relation": "overlaps"
+    },
+    {
+      "source": "soup",
+      "target": "tag:cli",
+      "relation": "tagged"
+    },
+    {
+      "source": "soup",
+      "target": "tag:dpo",
+      "relation": "tagged"
+    },
+    {
+      "source": "soup",
+      "target": "tag:fine-tuning",
+      "relation": "tagged"
+    },
+    {
+      "source": "soup",
+      "target": "tag:grpo",
+      "relation": "tagged"
+    },
+    {
+      "source": "soup",
+      "target": "tag:layer-streaming",
+      "relation": "tagged"
+    },
+    {
+      "source": "soup",
+      "target": "tag:llm",
+      "relation": "tagged"
+    },
+    {
+      "source": "soup",
+      "target": "tag:lora",
+      "relation": "tagged"
+    },
+    {
+      "source": "soup",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "soup",
+      "target": "tag:qlora",
+      "relation": "tagged"
+    },
+    {
+      "source": "soup",
+      "target": "tag:sft",
+      "relation": "tagged"
+    },
+    {
+      "source": "soup",
+      "target": "tag:training",
+      "relation": "tagged"
+    },
+    {
+      "source": "soup",
+      "target": "tag:yaml",
+      "relation": "tagged"
+    },
+    {
+      "source": "soup",
+      "target": "torchtune",
+      "relation": "overlaps"
+    },
+    {
+      "source": "soup",
+      "target": "trl",
+      "relation": "overlaps"
+    },
+    {
+      "source": "soup",
+      "target": "unsloth",
+      "relation": "overlaps"
     },
     {
       "source": "spacetimedb",
@@ -37663,6 +38398,61 @@
       "relation": "tagged"
     },
     {
+      "source": "usbtree",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "usbtree",
+      "target": "tag:cli",
+      "relation": "tagged"
+    },
+    {
+      "source": "usbtree",
+      "target": "tag:cross-platform",
+      "relation": "tagged"
+    },
+    {
+      "source": "usbtree",
+      "target": "tag:device-tree",
+      "relation": "tagged"
+    },
+    {
+      "source": "usbtree",
+      "target": "tag:hardware",
+      "relation": "tagged"
+    },
+    {
+      "source": "usbtree",
+      "target": "tag:linux",
+      "relation": "tagged"
+    },
+    {
+      "source": "usbtree",
+      "target": "tag:macos",
+      "relation": "tagged"
+    },
+    {
+      "source": "usbtree",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "usbtree",
+      "target": "tag:tui",
+      "relation": "tagged"
+    },
+    {
+      "source": "usbtree",
+      "target": "tag:usb",
+      "relation": "tagged"
+    },
+    {
+      "source": "usbtree",
+      "target": "tag:windows",
+      "relation": "tagged"
+    },
+    {
       "source": "vaultwarden",
       "target": "cat:framework",
       "relation": "categorized"
@@ -37946,6 +38736,51 @@
       "source": "vidnote",
       "target": "whisperx",
       "relation": "overlaps"
+    },
+    {
+      "source": "vphone-cli",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "vphone-cli",
+      "target": "tag:api",
+      "relation": "tagged"
+    },
+    {
+      "source": "vphone-cli",
+      "target": "tag:apple-silicon",
+      "relation": "tagged"
+    },
+    {
+      "source": "vphone-cli",
+      "target": "tag:automation",
+      "relation": "tagged"
+    },
+    {
+      "source": "vphone-cli",
+      "target": "tag:ios",
+      "relation": "tagged"
+    },
+    {
+      "source": "vphone-cli",
+      "target": "tag:macos",
+      "relation": "tagged"
+    },
+    {
+      "source": "vphone-cli",
+      "target": "tag:mobile-testing",
+      "relation": "tagged"
+    },
+    {
+      "source": "vphone-cli",
+      "target": "tag:swift",
+      "relation": "tagged"
+    },
+    {
+      "source": "vphone-cli",
+      "target": "tag:virtualization",
+      "relation": "tagged"
     },
     {
       "source": "web-artifacts-builder",

@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-09-25",
-  "count": 526,
+  "generated": "2026-09-27",
+  "count": 537,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -782,6 +782,29 @@
       "path": "catalog/entries/ai-engineering-hub.md"
     },
     {
+      "name": "ai-engineering-project-ideas",
+      "title": "5 AI Engineering Projects to Build",
+      "url": "https://www.instagram.com/reel/DdMz98mI6AC/",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Curated list of 5 hands-on AI engineering projects — LLM cost autopilot, semantic caching layer, model regression detector, failure forensics tool, self-healing technical docs; sourced from Instagram reel",
+      "body_summary": "Five project ideas for learning AI engineering, sourced from an Instagram reel:\n\n1. **LLM cost autopilot** — automated cost monitoring and optimization for LLM API usage\n2. **Semantic caching layer** — cache LLM responses by semantic similarity of inputs rather than exact match, reducing redundant…",
+      "tags": [
+        "ai-engineering",
+        "learning",
+        "project-ideas",
+        "llm-ops",
+        "caching",
+        "testing",
+        "observability"
+      ],
+      "workflows": [],
+      "license": "unknown",
+      "security_flags": [],
+      "reviewed": "2026-09-26",
+      "path": "catalog/entries/ai-engineering-project-ideas.md"
+    },
+    {
       "name": "ai-engineering-skills-map",
       "title": "The AI Engineering Skills Map",
       "url": "https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map",
@@ -1555,6 +1578,30 @@
       "path": "catalog/entries/awesome-a2a.md"
     },
     {
+      "name": "awesome-claude-code-subagents",
+      "title": "Awesome Claude Code Subagents (VoltAgent)",
+      "url": "https://github.com/VoltAgent/awesome-claude-code-subagents",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Curated collection of 161+ Claude Code subagent definitions across 10 categories (core dev, language specialists, infrastructure, quality/security, data/AI, developer experience, specialized domains, business/product, meta-orchestration, research/analysis); installable via Claude Code plugin marketplace, interactive shell script, or manual copy to ~/.claude/agents/; each subagent is a Markdown file with YAML frontmatter (name, description, tools, model); includes a /subagent-catalog skill for browsing and fetching agents; MIT, 6.4k stars",
+      "body_summary": "A curated repository of 161+ Claude Code subagent definitions organized into 10 plugin categories: Core Development (13 agents — API designer, backend/frontend/fullstack developer, mobile, microservices, etc.), Language Specialists (30 agents — TypeScript, Python, Go, Rust, Java, PHP, Ruby, Swift, C++, C#, Kotlin, Elixir, and framework-specific variants like Next.js, Django, Laravel, Rails, Spring Boot), Infrastructure (16 agents — cloud architect, DevOps, Kubernetes, Terraform, Docker, SRE, network, security), Quality & Security (17 agents — code reviewer, penetration tester, chaos engineer, GDPR compliance, accessibility, performance), Data & AI (13 agents — ML engineer, data scientist, LLM architect, NLP, MLOps, reinforcement learning), Developer Experience (16 agents — CLI developer, MCP developer, documentation, refactoring, git workflow, build engineer), Specialized Domains (16 agents — blockchain, fintech, IoT, game dev, healthcare, SEO), Business & Product (17 agents — product manager, scrum master, technical writer, UX researcher, sales engineer), Meta & Orchestration (16 agents — multi-agent coordinator, context manager, workflow orchestrator, agent installer, memory curator), and Research & Analysis (11 agents — competitive analyst, market researcher, trend analyst, A/B test analysis).\n\nEach subagent is a standalone Markdown file with YAML frontmatter specifying name, description, tool permissions (Read/Write/Edit/Bash/Grep/Glob/WebFetch/WebSearch scoped per role), and model routing (opus for deep reasoning, sonnet for everyday coding, haiku for quick tasks). Subagents run in isolated context windows and can be shared across projects.",
+      "tags": [
+        "claude-code",
+        "subagents",
+        "agents",
+        "curated-list",
+        "plugin",
+        "orchestration",
+        "developer-tools",
+        "awesome-list"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-26",
+      "path": "catalog/entries/awesome-claude-code-subagents.md"
+    },
+    {
       "name": "awesome-claude-code",
       "title": "Awesome Claude Code",
       "url": "https://github.com/hesreallyhim/awesome-claude-code",
@@ -1963,6 +2010,33 @@
       "security_flags": [],
       "reviewed": "2026-09-18",
       "path": "catalog/entries/brag.md"
+    },
+    {
+      "name": "breachdirectory",
+      "title": "BreachDirectory",
+      "url": "https://breachdirectory.org/",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Free breach lookup engine — searches billions of breached credentials and personal records by email, username, or domain; shows plaintext and hashed passwords from real data dumps; API available via RapidAPI (free basic tier, paid pro); dual-use OSINT tool for breach monitoring and credential exposure checking; proprietary, web-based",
+      "body_summary": "BreachDirectory is a web-based search engine over publicly disclosed data breaches. It indexes billions of breached credentials and personal records, allowing lookup by email address, username, or domain to determine if they appear in known breach datasets.\n\nKey capabilities:\n\n- **Email/username search**: Checks an email or username against known breach datasets and returns which breaches contained that identifier, along with the types of data exposed (email, username, password hash, plaintext password, IP address, etc.).\n- **Password exposure**: Shows plaintext and hashed passwords from real data dumps associated with the searched identifier. This distinguishes it from services like Have I Been Pwned, which only indicate breach membership without revealing credential details.\n- **Domain search**: Check whether any accounts under a domain have appeared in breaches.\n- **API access**: Available via RapidAPI with a free Basic plan and a paid Pro plan. Third-party tools like BreachCheck integrate with the API for programmatic breach lookups.",
+      "tags": [
+        "osint",
+        "breach-search",
+        "security",
+        "credentials",
+        "email-lookup",
+        "password",
+        "api",
+        "reconnaissance"
+      ],
+      "workflows": [],
+      "license": "Proprietary",
+      "security_flags": [
+        "dual-use",
+        "shows-partial-passwords"
+      ],
+      "reviewed": "2026-09-26",
+      "path": "catalog/entries/breachdirectory.md"
     },
     {
       "name": "browser-use",
@@ -7692,6 +7766,36 @@
       "path": "catalog/entries/microsoft-release-manager-assistant.md"
     },
     {
+      "name": "mineru",
+      "title": "MinerU",
+      "url": "https://github.com/opendatalab/MinerU",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source document parsing engine by OpenDataLab — converts PDFs, images, Office docs (Word/PPT/Excel), EPUB, OFD, HTML/MHTML, CSV into LLM-ready Markdown/JSON with four quality tiers (flash/basic/standard/advanced); VLM+OCR dual engine supporting 109 languages; local-first with optional remote API; CLI with agent-oriented continuation/locator system; local document library with search/watch/scan; MCP server; integrations with LangChain, RAGFlow, Dify, FastGPT; Python >=3.10; Apache-2.0 with commercial threshold (100M MAU or $20M revenue); ~80k stars",
+      "body_summary": "MinerU is a document parsing engine that extracts content from unstructured documents and converts it to machine-readable Markdown and JSON. It targets three use cases: LLM pre-training data pipelines, RAG document ingestion, and agent-driven document reading workflows.\n\nVersion 4.0 combines document parsing, a local document library, and service tools into one CLI:\n\n- **Parsing**: Processes PDFs (including scanned), images (PNG/JPG/WebP/GIF/BMP/TIFF/JP2), Word (.doc/.docx), PowerPoint (.ppt/.pptx), Excel (.xls/.xlsx), RTF, OpenDocument (.odt/.ods/.odp), EPUB, OFD, HTML/MHTML, and CSV/TSV. Four quality tiers — flash (fastest, lowest quality), basic (OCR/model-based), standard (high quality, default), and advanced (maximum quality, slowest). PDF and images support all tiers; Office/HTML/EPUB/OFD use local flash parsing.\n- **Agent reading**: Continuation-based reading with stable locators (`doc:{id}/tier:{tier}/page:{page}/block:{block}`) for citation, follow-up reads, and progressive document traversal. Default reads first 10 pages with continuation markers. `--json` mode for structured agent control flow.\n- **Local document library**: Background service with file discovery (`scan`), persistent folder watching (`watch`), content search across indexed documents, and cache management. `DoclibClient` Python SDK for programmatic access.\n- **Privacy-first**: All parsing runs locally by default. Remote parsing requires explicit `--remote` flag and user consent. Local failure does not silently fall back to remote.\n\nUses PDF-Extract-Kit models internally. Model engines include ONNX (CPU), PyTorch (GPU/MPS), llama.cpp (Vulkan), and vLLM/lmdeploy/mlx for VLM inference. Base install (~0.8–2 GB models) works on CPU; `mineru[full]` extra adds GPU-accelerated inference for NVIDIA GPUs with 8+ GB VRAM.",
+      "tags": [
+        "document-parsing",
+        "pdf",
+        "ocr",
+        "markdown",
+        "json",
+        "vlm",
+        "rag",
+        "agent",
+        "mcp",
+        "python",
+        "office",
+        "epub"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "commercial-threshold-license"
+      ],
+      "reviewed": "2026-09-26",
+      "path": "catalog/entries/mineru.md"
+    },
+    {
       "name": "minimal-agent-integration",
       "title": "Minimal Agent Integration Philosophy",
       "url": "https://community.anthropic.com",
@@ -8120,6 +8224,34 @@
       "security_flags": [],
       "reviewed": "2026-07-06",
       "path": "catalog/entries/nemotron-3-ultra.md"
+    },
+    {
+      "name": "netscanner",
+      "title": "netscanner",
+      "url": "https://github.com/Chleba/netscanner",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Rust TUI network scanner and diagnostic tool — lists hardware interfaces, WiFi scanning with signal strength charts, IPv4 CIDR ping with hostname/OUI/MAC resolution, TCP/UDP/ICMP/ARP packet dump with pause/filter, open port scanning, traffic counting with DNS records, CSV export; requires root; built on Ratatui + libpnet; Linux/macOS/Windows (Npcap); MIT, ~1.8k stars",
+      "body_summary": "A terminal-based network scanner and diagnostic tool written in Rust using Ratatui for the TUI and libpnet for packet capture. Provides multiple network inspection capabilities in a single interface:\n\n- **Interface listing**: enumerates hardware network interfaces, allows switching active interface for scanning and packet dumping.\n- **WiFi scanning**: discovers nearby WiFi networks with signal strength visualization (charts).\n- **IPv4 CIDR ping**: scans a subnet range, resolving hostname, OUI vendor, and MAC address for each discovered host.\n- **Packet dump**: captures and displays TCP, UDP, ICMP, ARP (IPv4) and ICMP6 (IPv6) packets with start/pause control and log filtering.\n- **Port scanning**: TCP open port scanning against discovered hosts.\n- **Traffic counting**: tracks traffic volume with DNS record resolution.\n- **CSV export**: exports scanned IPs, ports, and packets to CSV files (default path: user's `$HOME` directory).",
+      "tags": [
+        "rust",
+        "tui",
+        "network",
+        "scanner",
+        "packet-capture",
+        "wifi",
+        "port-scanner",
+        "diagnostics",
+        "security",
+        "ratatui"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "requires-root"
+      ],
+      "reviewed": "2026-09-26",
+      "path": "catalog/entries/netscanner.md"
     },
     {
       "name": "nginx",
@@ -9601,6 +9733,28 @@
       "path": "catalog/entries/pinchtab.md"
     },
     {
+      "name": "pixel-agents",
+      "title": "Pixel Agents",
+      "url": "https://github.com/pixel-agents-hq/pixel-agents",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Animated pixel-art office that visualizes AI coding agents as characters — renders live activity (editing, reading, waiting for input) via Claude Code hooks or transcript heuristics; ships as VS Code extension and standalone CLI (npx pixel-agents); agent-agnostic HookProvider interface with Claude Code as reference integration; office layout editor, sub-agent/team visualization, areas mapped to workspace folders; React 19 + Canvas 2D; MIT",
+      "body_summary": "Pixel Agents renders AI coding agents as animated pixel-art characters in a virtual office. Each agent terminal gets its own character that walks to a desk, sits, types when editing, reads when searching, and raises a speech bubble when waiting for user input or permission. Ships two forms from one codebase:\n\n- **VS Code extension** (Marketplace + Open VSX) — agents launch into VS Code terminals; characters render in the panel area.\n- **Standalone CLI** (`npx pixel-agents`) — starts a local Fastify server serving the office as a browser app; works with tmux, remote, and non-VS Code workflows.\n\nSupports sub-agents and Claude teammate visualization as separate characters with lifecycle tracking. Office layouts persist across sessions and can be imported/exported as JSON.",
+      "tags": [
+        "visualization",
+        "claude-code",
+        "vscode-extension",
+        "hooks",
+        "pixel-art",
+        "agent-orchestration"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-26",
+      "path": "catalog/entries/pixel-agents.md"
+    },
+    {
       "name": "piyaz",
       "title": "Piyaz",
       "url": "https://github.com/FrkAk/piyaz/",
@@ -10288,6 +10442,34 @@
       "path": "catalog/entries/repowise.md"
     },
     {
+      "name": "revealer-us",
+      "title": "Revealer.US",
+      "url": "https://revealer.us/",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "OSINT platform for username, email, and phone lookup across 800+ live sources (social, gaming, forum, developer platforms) plus breach and stealer-log dataset search; results arrive as each source responds; AI Deep Search (paid) follows reused handles and writes cited reports with confidence scores; REST API for programmatic access; SaaS with free demo tier, paid from $12.99/mo; domain registered January 2026, low third-party trust score (27/100 Gridinsoft)",
+      "body_summary": "Revealer.US is a web-based OSINT platform that checks a username, email, or phone number against 800+ live sources and known breach/stealer-log datasets. Three main capabilities:\n\n- **Username lookup**: Checks a handle across 700+ social, gaming, forum, and developer platforms in real time. Each source returns its own display name, bio, and outbound links. Results arrive progressively as sources respond.\n- **Email lookup**: Checks an email address against 157 email-specific modules plus breach and stealer-log datasets. Breach results show the source type, date, and exposed field types (email, username, IP, browser, etc.). Password values are always redacted — the record indicates a password was present but does not display it.\n- **AI Deep Search** (Basic plan and above): Reads all rows from the sweep, follows reused handles and linked accounts, and writes a short report with citations back to specific rows and confidence values for each claim. Reports explicitly flag uncertain matches.\n\nAlso offers a REST API for email lookup, username search, breach detection, and OSINT enrichment, available on Pro plan and above.",
+      "tags": [
+        "osint",
+        "username-lookup",
+        "email-lookup",
+        "breach-search",
+        "security",
+        "reconnaissance",
+        "api",
+        "saas"
+      ],
+      "workflows": [],
+      "license": "Proprietary",
+      "security_flags": [
+        "young-domain",
+        "low-trust-score",
+        "saas-only"
+      ],
+      "reviewed": "2026-09-26",
+      "path": "catalog/entries/revealer-us.md"
+    },
+    {
       "name": "robyn",
       "title": "Robyn",
       "url": "https://github.com/sparckles/Robyn",
@@ -10692,6 +10874,31 @@
       ],
       "reviewed": "2026-09-16",
       "path": "catalog/entries/shepherd-agents.md"
+    },
+    {
+      "name": "shodan",
+      "title": "Shodan",
+      "url": "https://www.shodan.io/",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Search engine for internet-connected devices — crawls all public IPv4 addresses weekly, indexes service banners/vulnerabilities/exposed services; search filters for ports, protocols, products, OS, geo, vulns; CLI and REST API for programmatic access; Shodan Monitor for real-time network exposure alerts; data streaming firehose; 3M+ registered users including 89% of Fortune 100; free tier, one-time $49 membership, subscriptions from $69/mo; proprietary",
+      "body_summary": "Shodan is a search engine that indexes internet-connected devices rather than web pages. It sends connection requests to every public IPv4 address across dozens of common ports, captures service response banners, and stores the data in a searchable index. Updated weekly via continuous global crawling.\n\nKey capabilities:\n\n- **Device search**: Query by port, protocol, product name, version, operating system, geography, organization, SSL certificate details, and known vulnerabilities (CVE). Returns banner data, open ports, HTTP headers, SSL certificates, and device metadata.\n- **Shodan Monitor**: Real-time network monitoring — define IP ranges and receive notifications when new services appear, vulnerabilities are detected, or unexpected changes occur. Setup within 5 minutes per their documentation.\n- **Vulnerability detection**: Cross-references discovered services against known CVEs. The `vuln` search filter (Small Business plan and above) finds devices with specific vulnerabilities.\n- **Data streaming**: Firehose API providing real-time access to Shodan's crawl data as it is collected. Available on subscription plans.\n- **IP enrichment**: Lookup any IP address for open ports, services, geolocation, organization, hostnames, and known vulnerabilities.\n- **Network scanning**: On-demand scanning of specific IPs or CIDR ranges using Shodan's distributed infrastructure (consumes scan credits).",
+      "tags": [
+        "security",
+        "osint",
+        "network-scanning",
+        "iot",
+        "vulnerability",
+        "api",
+        "cli",
+        "reconnaissance",
+        "attack-surface"
+      ],
+      "workflows": [],
+      "license": "Proprietary",
+      "security_flags": [],
+      "reviewed": "2026-09-26",
+      "path": "catalog/entries/shodan.md"
     },
     {
       "name": "shrimply",
@@ -11202,6 +11409,34 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/sota-scan.md"
+    },
+    {
+      "name": "soup",
+      "title": "Soup",
+      "url": "https://github.com/MakazhanAlpamys/Soup",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "LLM fine-tuning CLI — one YAML config, one command; supports SFT, DPO, GRPO, PPO, KTO, ORPO, SimPO, IPO, BCO, pre-training, distillation, vision/audio; layer streaming trains an 8B model on a 4 GB GPU by streaming frozen base from host RAM one decoder layer at a time (bit-exact); auto batch size, GPU detection, quantization (4-bit/8-bit/FP8/QAT); backends: transformers, Unsloth, MLX; web UI dashboard; export to GGUF/ONNX/TensorRT/AWQ; 100+ model recipes; Python 3.10-3.12; Apache-2.0",
+      "body_summary": "Soup is a command-line tool for LLM fine-tuning and post-training that wraps the complexity of training infrastructure behind a single YAML configuration file. The goal is zero SSH, zero config debugging — `soup init`, `soup train`, done.\n\nKey capabilities:\n\n- **Training methods**: SFT, DPO, GRPO, PPO, KTO, ORPO, SimPO, IPO, BCO, RLHF, PRM, tool-calling, pre-training, distillation, classification, vision/audio/TTS fine-tuning, unlearning, RAFT/RA-DIT.\n- **Layer streaming** (beta): Streams the frozen base model from host RAM to GPU one decoder layer at a time, keeping VRAM usage constant regardless of model size. Trains Llama-3.1-8B-Instruct + NF4 on an RTX 3050 4 GB at 119.6 tok/s, 3.32 GB peak — bit-exact against a normal resident run. Described in a Zenodo preprint (v3, August 2026).\n- **PEFT methods**: LoRA, DoRA, LoRA+, rsLoRA, VeRA, OLoRA, NEFTune, PiSSA, ReLoRA, LLaMA Pro, GaLore.\n- **Quantization**: 4-bit (NF4/FP4), 8-bit, FP8, QAT, AWQ, GPTQ, BitNet, KV-cache quantization.\n- **Auto-configuration**: Automatic batch size selection, GPU detection, quantization defaults. `soup autopilot` for zero-config training with just a model ID, data file, and goal.\n- **Backends**: Transformers (default), Unsloth (2-5x faster, `[fast]` extra), MLX (Apple Silicon).\n- **Export**: GGUF (for Ollama/llama.cpp), ONNX, TensorRT, AWQ, GPTQ, BitNet. LoRA merge. OpenAI-compatible serving.\n- **Web UI**: Local browser dashboard (`soup ui`) for experiments, training setup, live metrics, dataset exploration, and model chat.\n- **100+ model recipes**: Ready-made configs for Llama 3.x/4, Qwen 2.5/3, Gemma 3, Mistral, Mixtral, DeepSeek R1/V3, Phi-4, and more.",
+      "tags": [
+        "llm",
+        "fine-tuning",
+        "lora",
+        "qlora",
+        "sft",
+        "dpo",
+        "grpo",
+        "training",
+        "cli",
+        "yaml",
+        "layer-streaming",
+        "python"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-26",
+      "path": "catalog/entries/soup.md"
     },
     {
       "name": "spacetimedb",
@@ -12465,6 +12700,32 @@
       "path": "catalog/entries/unusual-whales-mcp.md"
     },
     {
+      "name": "usbtree",
+      "title": "usbtree",
+      "url": "https://github.com/gnomeria/usbtree",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Cross-platform Rust TUI for live USB device tree inspection — enumerates hubs/devices/classes/speeds via nusb (no root, no libusb), hot-plug watch with timestamped event log, live per-device activity sparklines and bandwidth graphs (Linux), safe eject, PCI view, filter/yank; single static binary (~1.5 MB), zero runtime deps; Linux/macOS/Windows; MIT",
+      "body_summary": "A terminal UI for inspecting USB device trees across Linux, macOS, and Windows. Enumerates all connected USB devices via the `nusb` crate (pure Rust, no libusb dependency) and displays them in a hierarchical tree with color-coded class gutters, per-class icons, tree rails, and speed badges (low/full ▂, high 480M ▄, SuperSpeed+ 5G/10G █). Rescans every second.\n\nKey capabilities:\n\n- **Hot-plug detection**: plugged devices flash green, unplugged devices linger as red ghosts for 30 seconds; all events logged with timestamps.\n- **Live activity metrics** (Linux only): inline sparklines showing URBs/s (unprivileged) or real bytes/s bandwidth via usbmon (requires root + `modprobe usbmon`).\n- **Detail panel**: sysfs path, vid:pid, vendor name, device class, speed, bMaxPower, serial number, connected children.\n- **Device names**: resolved via a fallback chain — `overrides.ids` (user-defined) → USB descriptor strings → downloaded `usb.ids` → embedded snapshot → vendor/class heuristics.\n- **Safe eject** (Linux): unmounts + cuts port power via udisks2 with a confirm dialog.\n- **PCI view**: flat address-sorted PCI device list with detail pane (prog-if, subsystem, link speed/width, NUMA, IOMMU group, power state).\n- **Composite device classification**: Misc (0xef) class devices reclassified by interface class (e.g., a MOTU M2 shows as Audio, not Misc).\n- **Utilities**: live filter (`/`), yank vid:pid (`y`) or full details (`Y`), `--dump` for non-interactive output, `--demo` for scripted fake tree.",
+      "tags": [
+        "rust",
+        "tui",
+        "usb",
+        "hardware",
+        "device-tree",
+        "linux",
+        "macos",
+        "windows",
+        "cross-platform",
+        "cli"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-26",
+      "path": "catalog/entries/usbtree.md"
+    },
+    {
       "name": "vaultwarden",
       "title": "Vaultwarden",
       "url": "https://github.com/dani-garcia/vaultwarden",
@@ -12625,6 +12886,32 @@
       ],
       "reviewed": "2026-06-19",
       "path": "catalog/entries/vidnote.md"
+    },
+    {
+      "name": "vphone-cli",
+      "title": "vphone-cli",
+      "url": "https://github.com/Lakr233/vphone-cli",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Virtual iPhone on Apple Silicon Mac — uses Apple's Virtualization.framework and PCC research VM infrastructure to boot full iOS (up to iOS 27) as a VM; firmware patching, restore, and VM lifecycle management; GUI window with app/file browsing, clipboard, screenshots, recording; local HTTP/WebSocket API for automation (screenshots, touch, swipes, hardware keys); guest control daemon with Irisin package manager; macOS 15+, Apple Silicon only; MIT, ~12k stars",
+      "body_summary": "vphone-cli creates and runs virtual iPhones on Apple Silicon Macs using Apple's Virtualization.framework and PCC (Private Cloud Compute) research VM infrastructure. It boots a real iOS system image (up to iOS 27) as a full virtual machine, not an emulator.\n\nKey capabilities:\n\n- **VM lifecycle**: Create, launch, stop, export (backup as `.tzst`), import, and manage multiple VMs. VMs live under `~/.vphone/` by default.\n- **Firmware management**: Downloads iPhone and cloudOS IPSWs from Apple's firmware catalog, applies a complete firmware patch set, handles restore tickets. Supports custom IPSW files.\n- **GUI window**: App and file browsing, clipboard sync, preference tools, screenshots, screen recording, and diagnostics — all through a native macOS window.\n- **Local API**: HTTP and WebSocket API on `127.0.0.1:8765` with bearer token authentication. Exposes screenshots, touch events, swipes, hardware key presses. Token rotates per launch or can be pinned via `VPHONE_API_TOKEN`. Useful for AI-driven end-to-end testing and MCP server integration.\n- **Guest environment**: Bundled `vphoned` daemon in the guest provides controls used by the window and API. Irisin package manager for installing packages (apt, bash) in the guest. Bootstrap install resolves initial dependency cycles.",
+      "tags": [
+        "ios",
+        "virtualization",
+        "apple-silicon",
+        "macos",
+        "mobile-testing",
+        "automation",
+        "api",
+        "swift"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "requires-sip-modification"
+      ],
+      "reviewed": "2026-09-26",
+      "path": "catalog/entries/vphone-cli.md"
     },
     {
       "name": "web-artifacts-builder",
