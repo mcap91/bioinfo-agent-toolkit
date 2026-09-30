@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-09-27",
-  "count": 537,
+  "generated": "2026-09-30",
+  "count": 556,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -336,6 +336,29 @@
       "security_flags": [],
       "reviewed": "2026-08-09",
       "path": "catalog/entries/agent-first-architecture.md"
+    },
+    {
+      "name": "agent-gateway-concept",
+      "title": "Agent Gateway (Concept)",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Explainer on agent gateways — a specialized gateway layer between AI agents and their backends (LLMs, MCP servers, other agents) that understands agentic protocols (MCP, A2A) and provides unified identity, per-tool policy, prompt-injection screening, PII redaction, provider-agnostic model routing, and full-hop observability; distinguishes from traditional API gateways and LLM-only gateways",
+      "body_summary": "An agent gateway is a single front door between AI agents and everything they talk to — LLM providers, MCP tool servers, and other agents. Every call passes through it, providing one place to connect, secure, and observe all agent traffic.\n\nTraditional API gateways see HTTP verbs and URL paths.…",
+      "tags": [
+        "agent-gateway",
+        "mcp",
+        "a2a",
+        "infrastructure",
+        "security",
+        "observability",
+        "routing",
+        "policy"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-29",
+      "path": "catalog/entries/agent-gateway-concept.md"
     },
     {
       "name": "agent-harness-meta-harness-terminology",
@@ -898,6 +921,31 @@
       "security_flags": [],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/ai-memory-comparison.md"
+    },
+    {
+      "name": "ai-native-sdlc-playbook",
+      "title": "AI-Native SDLC Playbook (Anthropic)",
+      "url": "https://claude.com/blog/the-ai-native-sdlc-playbook",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Anthropic's stage-by-stage playbook for AI-native software development — six-stage loop (Plan→Design→Build→Test→Deploy→Maintain) where each stage commits a version-controlled artifact triggering the next; covers CLAUDE.md as institutional knowledge, skills/hooks as guardrails, plan mode before implementation, agentic review with human gates, and production monitoring feeding back into intent; Claude Code-centric",
+      "body_summary": "Anthropic's published playbook (August 2026, by Louis Claxton) for restructuring the software development lifecycle around AI agents. Core thesis: code generation is no longer the bottleneck — planning, review, testing, and deployment still run at human speed, so those stages need the same…",
+      "tags": [
+        "sdlc",
+        "claude-code",
+        "anthropic",
+        "planning",
+        "skills",
+        "hooks",
+        "software-engineering",
+        "agent-workflow",
+        "governance"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-29",
+      "path": "catalog/entries/ai-native-sdlc-playbook.md"
     },
     {
       "name": "ai-work-receipt",
@@ -2354,6 +2402,29 @@
       "path": "catalog/entries/chemberta3.md"
     },
     {
+      "name": "chroma",
+      "title": "Chroma",
+      "url": "https://github.com/chroma-core/chroma",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "AI-native open-source embedding database — 4-function core API, automatic tokenization/embedding/indexing, metadata filtering, in-memory or persistent modes, SIMD-accelerated maxscore, sharding, group-by aggregation, Python/JS/Go clients; Chroma Cloud for managed serverless; Apache-2.0",
+      "body_summary": "Chroma is an open-source embedding database designed for simplicity in AI application development. Written in Rust, Python, TypeScript, and Go. Optimized for developer experience with a minimal API surface.\n\nCore capabilities:\n\n- **4-function API**: `create_collection`, `add`, `query`, `get` — automatic tokenization, embedding, and indexing\n- **Automatic vectorization**: Handles embedding generation at insert time, or accepts pre-computed vectors\n- **Metadata filtering**: Filter results by metadata fields and document content during search\n- **Multiple modes**: In-memory for prototyping, persistent for production, client-server for distributed use\n- **Sharding**: Per-shard retry logic, seal operator, merge/sort/truncate in frontend (v1.5.x)\n- **SIMD maxscore**: Hardware-accelerated scoring for fast retrieval\n- **Group-by**: Aggregate search results by metadata values (v1.5.9)\n- **Advanced Search API**: Full-text search, quantization options\n\nClient libraries: Python (`pip install chromadb`), JavaScript/TypeScript (`npm install chromadb`), Go.",
+      "tags": [
+        "vector-database",
+        "embeddings",
+        "rag",
+        "python",
+        "javascript",
+        "similarity-search",
+        "developer-experience"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-29",
+      "path": "catalog/entries/chroma.md"
+    },
+    {
       "name": "chromadb",
       "title": "ChromaDB",
       "url": "https://www.trychroma.com/products/chromadb",
@@ -3494,6 +3565,33 @@
       "path": "catalog/entries/conductor-orchestration.md"
     },
     {
+      "name": "conductor-oss",
+      "title": "Conductor OSS",
+      "url": "https://github.com/conductor-oss/conductor",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source durable execution platform (ex-Netflix) for microservices, AI agents, and adaptive workflow graphs — JSON-defined orchestration with durable state, native LLM tasks, MCP tool calling, human approval, dynamic fork/join, DO_WHILE loops, polyglot workers (Java/Python/Go/JS/C#/Ruby/Rust), 5 persistence backends, 6 message brokers; Claude Code plugin; Apache-2.0",
+      "body_summary": "Conductor is a durable execution platform that separates orchestration (versioned JSON workflow graphs) from business logic (polyglot workers that poll, execute, and report). Originated at Netflix, maintained by Orkes and community. Every step is persisted — survives crashes, restarts, and network failures.\n\nKey capabilities:\n\n- **Durable adaptive graphs**: runtime-selected paths, bounded fan-out, tool calls, approvals, retries, cancellation, and recovery — all inspectable.\n- **AI agent orchestration**: native `LLM_CHAT_COMPLETE` tasks, `LIST_MCP_TOOLS` / `CALL_MCP_TOOL` for MCP server integration, human approval gates, vector workflows for RAG, DO_WHILE loops for agent think-act cycles.\n- **Dynamic at runtime**: dynamic forks, tasks, and sub-workflows resolved at runtime. LLMs can generate and modify workflow JSON — no compile/deploy cycle.\n- **Execution recovery**: restart, rerun, retry, pause, resume, or terminate. Long-running workflows (days/weeks/months) with no in-memory state.\n- **Polyglot workers**: Java, Python, Go, JavaScript, C#, Ruby (incubating), Rust (incubating). Workers are plain code — any language, library, or I/O.\n- **Control flow**: SWITCH (branching), DO_WHILE (loops), FORK_JOIN (parallel), SUB_WORKFLOW (composition), DYNAMIC tasks.",
+      "tags": [
+        "workflow-engine",
+        "durable-execution",
+        "orchestration",
+        "ai-agents",
+        "mcp",
+        "llm",
+        "microservices",
+        "java",
+        "polyglot",
+        "netflix",
+        "orkes"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-29",
+      "path": "catalog/entries/conductor-oss.md"
+    },
+    {
       "name": "confidence-probing-prompts",
       "title": "Confidence-Probing Prompts",
       "url": "https://reddit.com",
@@ -4546,6 +4644,33 @@
       "security_flags": [],
       "reviewed": "2026-08-09",
       "path": "catalog/entries/end-of-session-review-questions.md"
+    },
+    {
+      "name": "engraft-ngram",
+      "title": "ENGRAFT",
+      "url": "https://github.com/fulvian/engraft-ngram",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Technique for writing facts into an LLM's n-gram (Engram) lookup table by gradient descent on table rows only — no weight changes, one removable overlay file; measured on Qwen3.8-Flash-Next (320M-row table); 84.1% exact-match on 100 invented facts, 0.013 KL divergence on neutral text; gradient runs on CPU replica, verified on llama.cpp GGUF; early-stage research",
+      "body_summary": "ENGRAFT writes new facts into the Engram-style n-gram lookup table that some LLMs carry alongside the transformer (DeepSeek V4.1 Flash, Qwen3.8-Flash-Next) by gradient descent on selected table rows only. The transformer weights stay frozen and the model file is never modified. New facts ship as one small overlay file; remove it and the model is back, bit for bit.\n\nA fact lives in the rows its n-grams hash to and fires when a prompt contains those n-grams. It sits inside the model's own forward pass — no context tokens, no retriever, no second model.\n\nKey measurements on Qwen3.8-Flash-Next (IQ4_XS, 320M-row table):\n\n- **Accuracy**: 84.1% exact-match (707/841 test sentences) on 100 invented facts; 35/98 correct when asked freely in chat.\n- **Capacity**: no ceiling found — 24 facts (0.804), 100 facts (0.792), 300 facts (0.821) on first-token-ranked metric.\n- **Collateral damage**: 0.013 KL divergence on neutral text (~4x the table's own 4-bit storage noise); grows with fact count.\n- **Cross-lingual**: a fact written in Chinese left Italian questions exactly where the base model had them (one language pair measured).",
+      "tags": [
+        "engram",
+        "n-gram",
+        "knowledge-editing",
+        "qwen",
+        "llama-cpp",
+        "model-editing",
+        "overlay",
+        "local-inference"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [
+        "early-stage",
+        "single-model-validated"
+      ],
+      "reviewed": "2026-09-29",
+      "path": "catalog/entries/engraft-ngram.md"
     },
     {
       "name": "engram-learning-engine",
@@ -6488,6 +6613,34 @@
       "path": "catalog/entries/jev.md"
     },
     {
+      "name": "jina-ocr-v1",
+      "title": "Jina-OCR-v1",
+      "url": "https://huggingface.co/jinaai/jina-ocr-v1",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "End-to-end document-to-Markdown OCR model (3.4B total / 570M active MoE) with FastMTP speculative decoding (K=3, ~2x decode speed on L4) — scores 91.14 OmniDocBench, 83.4 olmOCR-Bench, 2.57 pages/s on A100; handles text, tables, math, handwriting, 100+ languages; runs via Transformers or vLLM; hosted via Jina Reader API; CC BY-NC 4.0 (weights)",
+      "body_summary": "Jina-OCR-v1 is a visual document parser that converts a page image into clean Markdown in one pass — text, formulas (LaTeX), tables (HTML), and reading order together. It builds on DeepSeek-OCR's backbone: a DeepEncoder vision tower (256 visual tokens for a 1024x1024 view + dynamic local tiles) and a 3B-parameter MoE decoder (12 layers, 64 routed + 2 shared experts, top-6 routing, ~570M active parameters per token).\n\nThe key addition is **FastMTP** — a speculative decoding head where one dense draft block is applied recursively for K=3 prediction steps (not K separate heads). Greedy verification accepts the longest token-equality prefix, making it lossless (byte-identical to autoregressive decoding). On an L4 at batch 1, FastMTP lifts eager-mode decoding from 42.7 to 83.1 tokens/s (1.95x). Commits ~2.7 tokens per verifier pass on average.",
+      "tags": [
+        "ocr",
+        "document-parsing",
+        "speculative-decoding",
+        "moe",
+        "vision-language",
+        "markdown",
+        "vllm",
+        "transformers",
+        "jina"
+      ],
+      "workflows": [],
+      "license": "CC-BY-NC-4.0",
+      "security_flags": [
+        "trust-remote-code",
+        "noncommercial-license"
+      ],
+      "reviewed": "2026-09-29",
+      "path": "catalog/entries/jina-ocr-v1.md"
+    },
+    {
       "name": "jit-agent",
       "title": "JIT-Agent (Just-in-Time Harness Evolution)",
       "url": "https://github.com/bingreeky/JIT",
@@ -6732,6 +6885,31 @@
       "path": "catalog/entries/kv-cache-vram-sizing.md"
     },
     {
+      "name": "lancedb",
+      "title": "LanceDB",
+      "url": "https://github.com/lancedb/lancedb",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Embedded serverless vector database built on Lance columnar format — runs in-process with no server, IVF/HNSW/PQ/RQ vector indexes + BM25 full-text, multimodal columns (text/image/video/audio), Git-style versioning, zero-copy reads, object storage backend (S3/GCS/AZ), DuckDB SQL integration, Python/TypeScript/Rust/REST SDKs; Apache-2.0",
+      "body_summary": "LanceDB is an embedded, serverless vector database that runs directly inside the application process — no separate server to manage. Built on the Lance columnar format, an Apache Arrow-native storage format designed for ML and multimodal data.\n\nCore capabilities:\n\n- **Serverless/embedded**: Runs in-process in Python, TypeScript, or Rust — no server deployment\n- **Multimodal storage**: Text, vectors, images, audio, video stored as columns in the same table\n- **Vector indexes**: IVF, HNSW, PQ (product quantization), RQ (RabitQ quantization)\n- **Full-text search**: BM25 keyword search alongside vector similarity\n- **Hybrid search**: Combine vector and keyword retrieval with configurable re-rankers\n- **Git-style versioning**: Every write creates a new version — checkout, restore, tag any past state\n- **Object storage**: Same API works against local disk, S3, GCS, or Azure Blob\n- **Schema evolution**: Add, rename, retype, or drop columns without full rewrite\n- **DuckDB integration**: Lance extension for DuckDB exposes vector/FTS/hybrid retrieval as SQL table functions\n- **Geospatial**: Arrow-native geospatial with R-Tree indexing\n\nSDKs: Python, TypeScript/JavaScript, Rust, REST API. Integrates with LangChain, LlamaIndex, Apache Arrow, Pandas, Polars, DuckDB.",
+      "tags": [
+        "vector-database",
+        "embedded",
+        "serverless",
+        "lance",
+        "multimodal",
+        "versioning",
+        "similarity-search",
+        "duckdb",
+        "arrow"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-29",
+      "path": "catalog/entries/lancedb.md"
+    },
+    {
       "name": "landlock-lsm",
       "title": "Landlock LSM (org and ecosystem)",
       "url": "https://github.com/landlock-lsm",
@@ -6941,6 +7119,35 @@
       "security_flags": [],
       "reviewed": "2026-06-26",
       "path": "catalog/entries/litellm.md"
+    },
+    {
+      "name": "llama-cpp-adaptive-kv-streaming",
+      "title": "llama.cpp Adaptive KV Streaming",
+      "url": "https://github.com/RaymondHuang210129/llama.cpp-adaptive-kv-streaming",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "llama.cpp fork that streams KV cache pages from pinned host RAM to GPU on demand — runs Qwen3.8-27B at full 256K context on 16GB VRAM (RTX 5070 Ti) without UVM thrashing; phase arena multiplexes prefill/decode workspaces, adaptive policy adjusts resident/ring split in real time, V2 adds MTP (speculative decoding) with shared ring; CUDA-only, experimental, MIT",
+      "body_summary": "A focused fork of llama.cpp that solves one problem: when model weights consume most of the VRAM and a long context needs a KV cache that no longer fits, CUDA Unified Memory pages migrate in an uncontrolled way that thrashes. This fork takes explicit control: authoritative KV tensors live in pinned host RAM, a bounded GPU pool is split between resident KV pages and a transfer ring, and while one attention layer computes, the pages needed next are prefetched via a separate CUDA stream.\n\nV2 rebuilds V1's streaming, cross-layer prefetch, and phase arena on explicit memory ownership and adds long-context MTP (Multi-Token Prediction) without a second full GPU KV allocation.\n\nKey engineering:\n\n- **Phase arena**: one fixed GPU allocation multiplexed between prefill (large graph + gather workspace, smaller KV pool) and decode (smaller graph, larger KV pool). Prefill and decode never need peak buffers simultaneously.\n- **Adaptive policy**: resident/ring split adjusted in real time based on context length and measured prefetch behavior — not a static setting. Hysteresis prevents oscillation.\n- **Ordered attention**: streaming changes physical addresses but preserves the logical tile order — resident pages, ring tiles before wrap, ring tiles after wrap, then stock-style final reduction. No approximate per-chunk normalization.\n- **MTP integration**: MTP is layer 17 sharing the target's physical pool via a complete-layer lease. Ring is protected during catch-up/draft, returned to target before verification. Recurrent rollback via bounded two-slot GPU stage into pinned host snapshots.\n- **Benchmark driver**: automatically probes largest workable arena per context size, generates CSV, PNG, SVG results. Reproducible rather than asserted.",
+      "tags": [
+        "llama-cpp",
+        "kv-cache",
+        "long-context",
+        "vram-optimization",
+        "cuda",
+        "streaming",
+        "local-inference",
+        "speculative-decoding",
+        "mtp",
+        "phase-arena"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "experimental",
+        "single-config-qualified"
+      ],
+      "reviewed": "2026-09-29",
+      "path": "catalog/entries/llama-cpp-adaptive-kv-streaming.md"
     },
     {
       "name": "llama-index",
@@ -7266,6 +7473,30 @@
       "security_flags": [],
       "reviewed": "2026-05-27",
       "path": "catalog/entries/markitdown.md"
+    },
+    {
+      "name": "markov-junior",
+      "title": "MarkovJunior",
+      "url": "https://github.com/mxgmn/MarkovJunior",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Probabilistic programming language where programs are ordered lists of rewrite rules and inference is constraint propagation — generates dungeons, mazes, architecture, puzzles, and simulations on 2D/3D grids; C#/.NET, 153 examples, supports WFC and ConvChain nodes; MIT",
+      "body_summary": "MarkovJunior is a probabilistic programming language based on Markov algorithms — ordered lists of rewrite rules applied to grids. On each step the interpreter finds the first rule with a match, selects a random match, and applies it. Programs compose rules into sequence nodes (run one after another) and Markov nodes (loop back to the first matching child). Inference via constraint propagation allows imposing constraints on future state, generating only runs that reach the constrained goal.\n\nCore capabilities:\n\n- **Rewrite rules on grids**: `(RBB=WWR)` is a self-avoiding walk. `(WBB=WAW)` generates mazes. Rules work in any number of dimensions without modification.\n- **Inference**: connects two states via rewrite rule chains using unidirectional or bidirectional constraint propagation. Generalizes Dijkstra fields to arbitrary rules. Solves Sokoban puzzles, generates grid-covering paths, connects points with constrained paths.\n- **Composability**: sequence nodes, Markov nodes (with nesting à la REFAL), forall-nodes (from Imagegram), WFC and ConvChain custom nodes.\n- **153 examples**: maze generation, dungeon generation (including Bob Nystrom's algorithm), architecture (ModernHouse, Apartemazements), puzzles, growth models, percolation.",
+      "tags": [
+        "procedural-generation",
+        "rewrite-rules",
+        "constraint-propagation",
+        "markov-algorithms",
+        "wave-function-collapse",
+        "grid-generation",
+        "csharp",
+        "dotnet"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-29",
+      "path": "catalog/entries/markov-junior.md"
     },
     {
       "name": "matt-pocock-skills",
@@ -7764,6 +7995,32 @@
       ],
       "reviewed": "2026-08-09",
       "path": "catalog/entries/microsoft-release-manager-assistant.md"
+    },
+    {
+      "name": "milvus",
+      "title": "Milvus",
+      "url": "https://github.com/milvus-io/milvus",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Go/C++ cloud-native vector database — fully distributed K8s-native architecture, HNSW/IVF/DiskANN/CAGRA GPU indexes, dense + sparse + BM25 full-text + hybrid search, lake-native data access (v3.0) with Apache Iceberg/Parquet/Lance, multi-tenancy with hot/cold storage, Milvus Lite for embedded use; LF AI and Data Foundation; Apache-2.0",
+      "body_summary": "Milvus is a high-performance, cloud-native vector database designed for billion-scale similarity search. Written in Go and C++ with hardware acceleration. Under the Linux Foundation AI and Data, with Zilliz as primary contributor.\n\nCore capabilities:\n\n- **Distributed architecture**: Separates compute and storage, horizontally scalable on Kubernetes with independent query and data nodes\n- **Index types**: HNSW, IVF, FLAT, SCANN, DiskANN, GPU-accelerated CAGRA (NVIDIA cuVS)\n- **Hybrid search**: Dense vectors + sparse vectors (SPLADE, BGE-M3) + native BM25 full-text search, fused via configurable reranking\n- **Lake-native access (v3.0)**: Index vectors directly in S3/GCS/ADLS using Apache Iceberg, Parquet, Lance, or Vortex — no ETL required\n- **External collections**: Define searchable indexes over data in object storage\n- **Snapshots**: Point-in-time read-only views for evaluation and validation\n- **Multi-tenancy**: Isolation at database, collection, partition, or partition-key level\n- **Hot/cold storage**: Frequently accessed data in memory/SSD, cold data on cheaper storage\n- **Milvus Lite**: Embedded variant via `pip install pymilvus`, stores to local file\n\nClient libraries: Python, Java, Go, Node.js, C#, RESTful API. 44k+ GitHub stars.",
+      "tags": [
+        "vector-database",
+        "distributed",
+        "kubernetes",
+        "hybrid-search",
+        "gpu",
+        "embeddings",
+        "rag",
+        "data-lake",
+        "go",
+        "cpp"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-29",
+      "path": "catalog/entries/milvus.md"
     },
     {
       "name": "mineru",
@@ -9148,6 +9405,36 @@
       "path": "catalog/entries/opus-fable-mode.md"
     },
     {
+      "name": "orca-ade",
+      "title": "Orca (ADE)",
+      "url": "https://github.com/stablyai/orca",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Agent Development Environment for running parallel coding agents (Claude Code, Codex, OpenCode, Pi, 30+ others) side-by-side — each in its own git worktree, tracked in one place; Ghostty-class terminal splits, Design Mode (Chromium click-to-prompt), annotate AI diffs, GitHub/Linear integration, SSH worktrees, mobile companion (iOS/Android), CLI for scripting; Electron, MIT",
+      "body_summary": "Orca is an Agent Development Environment (ADE) that runs multiple coding agents in parallel, each in its own isolated git worktree, with results tracked in a unified UI. It works with any CLI agent — Claude Code, Codex, OpenCode, Pi, Grok, Cursor, Devin, and 30+ others.\n\nKey capabilities:\n\n- **Parallel worktrees**: fan one prompt across five agents, each in its own worktree. Compare results and merge the winner.\n- **Terminal splits**: Ghostty-class terminals with WebGL rendering, infinite splits, scrollback surviving restarts.\n- **Design Mode**: click any UI element in a real Chromium window to send its HTML, CSS, and a cropped screenshot into the agent prompt.\n- **Diff annotation**: drop comments on any diff line and ship them back to the agent. Review, edit, and commit without leaving Orca.\n- **GitHub & Linear native**: browse PRs, issues, and project boards in-app. Open a worktree from any task.\n- **SSH worktrees**: run agents on remote machines with full file editing, git, terminals, auto-reconnect, and port forwarding.\n- **Mobile companion**: iOS/Android apps to monitor and steer agents from phone — notifications when agents finish, follow-ups from anywhere.\n- **Orca CLI**: script workflows with `orca worktree create`, `snapshot`, `click`, `fill`.\n- **Computer Use**: agents operate desktop apps and visible UI when a workflow needs real interaction.",
+      "tags": [
+        "agent-orchestration",
+        "worktrees",
+        "parallel-agents",
+        "claude-code",
+        "codex",
+        "terminal",
+        "design-mode",
+        "github",
+        "linear",
+        "mobile",
+        "ssh",
+        "diff-review"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "telemetry-opt-out"
+      ],
+      "reviewed": "2026-09-29",
+      "path": "catalog/entries/orca-ade.md"
+    },
+    {
       "name": "ossu-computer-science",
       "title": "OSSU Computer Science",
       "url": "https://github.com/ossu/computer-science",
@@ -9242,6 +9529,32 @@
       ],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/overcut.md"
+    },
+    {
+      "name": "ovis-vl-embedding",
+      "title": "Ovis-VL-Embedding",
+      "url": "https://huggingface.co/ATH-MaaS/Ovis-VL-Embedding-2B",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Omni-modal embedding model (2B and 9B variants) built on Qwen3.5 backbone — encodes text, images, visual documents, and video frames in a shared representation space; 77.46 overall on MMEB-v2 (78 datasets), 80.47 on visual document retrieval; no modality-specific projection heads, last-token hidden state as embedding; for multimodal RAG, cross-modal search, document retrieval",
+      "body_summary": "Ovis-VL-Embedding is a multimodal embedding model that encodes text, images, visual documents, and sampled video frames as one interleaved sequence. The final-layer hidden state at the last non-padding token becomes the retrieval embedding, with no modality-specific projection heads.\n\nBuilt on Qwen3.5's native text and vision encoders with a shared multimodal language backbone. Two sizes: 2B (initialized from Qwen3.5-2B) and 9B (from Qwen3.5-9B). Unlike approaches that bolt separate modality towers together, Ovis-Embedding starts from a pretrained omni-modal understanding model with natively aligned front-ends.\n\nIntended use cases:\n\n- Semantic text search and cross-modal retrieval (text-to-image, image-to-text, image-to-image)\n- Multimodal RAG indexing and retrieval\n- Visual document and page retrieval (e.g., searching for an underwriting fee in a scanned table, or a location on a map)\n- Text-to-video and video retrieval\n- Recommendation and nearest-neighbor matching",
+      "tags": [
+        "embeddings",
+        "multimodal",
+        "visual-document-retrieval",
+        "qwen",
+        "rag",
+        "cross-modal-search",
+        "vision-language",
+        "video-retrieval"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [
+        "trust-remote-code"
+      ],
+      "reviewed": "2026-09-29",
+      "path": "catalog/entries/ovis-vl-embedding.md"
     },
     {
       "name": "ovisocr2",
@@ -9428,6 +9741,32 @@
       "path": "catalog/entries/paperless-ngx.md"
     },
     {
+      "name": "parallax",
+      "title": "Parallax",
+      "url": "https://github.com/GradientHQ/parallax",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Fully decentralized distributed LLM inference engine by Gradient — pipeline-parallel model sharding across heterogeneous devices (CUDA/Metal/CPU, mixed platforms, phones), P2P communication via Lattica, GPU backend via SGLang/vLLM, Mac backend via MLX LM, paged KV cache and continuous batching; supports DeepSeek, Qwen, GLM, Kimi-K2, gpt-oss, MiniMax; cross-platform",
+      "body_summary": "Parallax is a decentralized inference engine that distributes LLM inference across multiple heterogeneous devices via pipeline parallelism. It slices a model's layers across every node on the network — GPU machines (via SGLang/vLLM), Macs (via MLX LM), and even phones — with P2P communication powered by Lattica.\n\nKey capabilities:\n\n- **Pipeline parallel sharding**: splits model layers across devices with varying hardware. An RTX 3060 mini PC, a Mac mini, MacBooks, a Windows laptop, and an Android phone can collectively run a 120B model that none could load individually.\n- **Dynamic scheduling**: routes requests and balances load across heterogeneous nodes.\n- **Paged KV cache & continuous batching**: on Mac backend for efficient serving.\n- **Self-healing**: if a node drops, the cluster redistributes its shard to remaining devices without downtime.\n- **OpenClaw integration**: supported as of February 2026.\n\nSupported model families: DeepSeek (V3.2, R1), MiniMax (M3, M2.7), GLM (5.2, 5.1, 4.7), Kimi-K2 (Thinking, Instruct), Qwen (3.6-35B-A3B), gpt-oss (120B, safeguard-120B), Step (3.5-Flash).",
+      "tags": [
+        "distributed-inference",
+        "local-inference",
+        "pipeline-parallelism",
+        "decentralized",
+        "cross-platform",
+        "mlx",
+        "vllm",
+        "sglang",
+        "model-sharding",
+        "cluster"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-29",
+      "path": "catalog/entries/parallax.md"
+    },
+    {
       "name": "parallel-local-inference",
       "title": "Parallel Local Inference Pattern (vLLM)",
       "url": "https://github.com/vllm-project/vllm",
@@ -9547,6 +9886,30 @@
       "security_flags": [],
       "reviewed": "2026-07-06",
       "path": "catalog/entries/perplexity-mcp-server.md"
+    },
+    {
+      "name": "pgvector",
+      "title": "pgvector",
+      "url": "https://github.com/pgvector/pgvector",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "PostgreSQL extension for vector similarity search — HNSW and IVFFlat indexes, exact and approximate nearest neighbor, vector/halfvec/bit/sparsevec types, 6 distance functions (L2/IP/cosine/L1/Hamming/Jaccard), iterative index scans, binary quantization, multitenancy via partitioning, hybrid search with pg full-text; all Postgres guarantees (ACID, JOINs, WAL replication); PostgreSQL License",
+      "body_summary": "pgvector adds vector similarity search to PostgreSQL as a native extension. Vectors live alongside relational data in the same database, with full access to ACID transactions, JOINs, WAL replication, and point-in-time recovery.\n\nCore capabilities:\n\n- **Vector types**: `vector` (float32, up to 16k dims), `halfvec` (float16, up to 16k dims), `bit` (binary, up to 64k dims), `sparsevec` (sparse, up to 16k non-zero elements)\n- **Index types**: HNSW (better speed-recall tradeoff, no training) and IVFFlat (faster builds, less memory)\n- **Distance functions**: L2, inner product, cosine, L1, Hamming, Jaccard\n- **Iterative index scans** (v0.8): Automatically scans more of the index when metadata filters reduce results, with strict or relaxed ordering\n- **Binary quantization**: Expression indexing for compressed binary indexes with re-ranking\n- **Hybrid search**: Combine with PostgreSQL full-text search using RRF or cross-encoder fusion\n- **Multitenancy**: List partitioning or separate tables for tenant isolation\n- **Subvector indexing**: Index and search on vector subsets with re-ranking\n\nWorks with any language that has a PostgreSQL client. Dedicated client libraries for 30+ languages.",
+      "tags": [
+        "vector-database",
+        "postgresql",
+        "extension",
+        "hnsw",
+        "ivfflat",
+        "embeddings",
+        "sql",
+        "similarity-search"
+      ],
+      "workflows": [],
+      "license": "PostgreSQL",
+      "security_flags": [],
+      "reviewed": "2026-09-29",
+      "path": "catalog/entries/pgvector.md"
     },
     {
       "name": "photon-studio",
@@ -10081,6 +10444,31 @@
       "security_flags": [],
       "reviewed": "2026-07-27",
       "path": "catalog/entries/pyscript.md"
+    },
+    {
+      "name": "qdrant",
+      "title": "Qdrant",
+      "url": "https://github.com/qdrant/qdrant",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Rust-based vector similarity search engine and database — HNSW with inline payload filtering, dense/sparse/multi-vector search, hybrid search with RRF/DBSF fusion, TurboQuant 4-bit/8-bit compression, GPU-accelerated indexing, distributed sharding and replication, gRPC and REST APIs, Edge variant for in-process use; Apache-2.0",
+      "body_summary": "Qdrant is a vector similarity search engine and database for storing, searching, and managing vectors with JSON payload metadata. Written in Rust with SIMD optimizations and a custom storage engine (Gridstore).\n\nCore capabilities:\n\n- **Dense, sparse, and multi-vector search**: Supports named vectors per point, enabling ColBERT-style late interaction and multi-modal workflows\n- **Inline payload filtering**: Metadata filters applied during HNSW graph traversal (not pre/post-processing), maintaining recall under selective filters\n- **Hybrid search**: Combines multiple vector types in a single query with configurable fusion (RRF, DBSF)\n- **Quantization**: Scalar, product, and TurboQuant (4-bit/8-bit) compression — up to 32x memory reduction with under 1% recall loss\n- **Distributed mode**: Sharding and replication across nodes with zero-downtime resharding\n- **GPU indexing**: NVIDIA and AMD GPU support for accelerated index builds\n- **Qdrant Edge**: Lightweight in-process variant for edge devices with server sync\n\nClient libraries: Python, Rust, Go, JavaScript/TypeScript, .NET/C#, Java. Community: Kotlin, PHP.",
+      "tags": [
+        "vector-database",
+        "similarity-search",
+        "rust",
+        "hnsw",
+        "embeddings",
+        "rag",
+        "hybrid-search",
+        "quantization",
+        "gpu"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-09-29",
+      "path": "catalog/entries/qdrant.md"
     },
     {
       "name": "qwen25-coder-32b",
@@ -11681,6 +12069,56 @@
       "path": "catalog/entries/strands-agents.md"
     },
     {
+      "name": "strata",
+      "title": "Strata",
+      "url": "https://github.com/Niko1221/Strata",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "One-click inference engine for Qwen3.8-Flash-Next (125B MoE) on consumer NVIDIA GPUs (12-24GB) — expert offloading between GPU/RAM/SSD, speculative decoding via built-in MTP, 60-95 t/s on RTX 5070; multi-GPU pipeline, OpenAI/Anthropic-compatible API, vision support, browser UI with live monitor; built on ggml; MIT",
+      "body_summary": "Strata runs Qwen3.8-Flash-Next (125B parameters, 6B active per token, 24,576 experts) on a consumer gaming PC. It shares work across GPU, RAM, and SSD: the GPU handles per-token computation and caches hot experts, RAM holds all experts for CPU fallback, and the SSD stores the 29GB engram lookup table with small row reads per token. GPU and CPU work in parallel so neither waits.\n\nKey capabilities:\n\n- **Expert offloading**: only ~10 of 24,576 experts needed per token. GPU keeps the most-requested experts and learns which ones to retain during use.\n- **Speculative decoding**: built-in MTP helper guesses next words, big model verifies in one pass — 1.6-1.8x speedup with identical output quality.\n- **One-click install**: `START-HERE.bat` (Windows) or `./setup.sh` (Linux) handles Python, engine, and model download (~70GB). Calibration mode optimizes for specific hardware.\n- **Multi-GPU**: pipeline parallelism across 2-3 NVIDIA cards (RTX 20+, 8GB+ each). 18-20% faster prompt processing on dual-GPU vs single.\n- **API compatibility**: OpenAI (`/v1`) and Anthropic (`/v1/messages`) endpoints on localhost:8080. Thinking mode (off/low/medium/high).\n- **Vision**: optional image input support.\n- **AMD HIP**: experimental Radeon RX 7900 XT/XTX support on Linux.",
+      "tags": [
+        "local-inference",
+        "qwen",
+        "moe",
+        "expert-offloading",
+        "speculative-decoding",
+        "one-click",
+        "nvidia",
+        "cuda",
+        "openai-compatible",
+        "consumer-gpu"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-29",
+      "path": "catalog/entries/strata.md"
+    },
+    {
+      "name": "structure-aware-rendering",
+      "title": "Structure-Aware Rendering (Eye-Tracking Study)",
+      "url": "https://arxiv.org/abs/2609.24616",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Eye-tracking study (n=53) comparing how code rendering strategies (static, token-by-token, AST-based structured) affect programmer visual attention — structured rendering reveals code in syntactic chunks (outer blocks before inner details), inducing deeper processing and better structural awareness than character-based streaming; argues rendering is a first-class interaction primitive for AI coding tools",
+      "body_summary": "Paper by Su et al. (arXiv 2609.24616, September 2026) arguing that how AI-generated code is rendered to the programmer matters as much as what is generated. Standard approaches — static block reveal or token-by-token streaming — reflect model generation order, not how programmers actually read code…",
+      "tags": [
+        "eye-tracking",
+        "cognitive-load",
+        "code-rendering",
+        "ast",
+        "vibe-coding",
+        "hci",
+        "ai-assisted-coding",
+        "user-study"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-09-29",
+      "path": "catalog/entries/structure-aware-rendering.md"
+    },
+    {
       "name": "subtext",
       "title": "Subtext",
       "url": "https://github.com/ninjahawk/Subtext",
@@ -12023,6 +12461,31 @@
       "security_flags": [],
       "reviewed": "2026-08-09",
       "path": "catalog/entries/tencentdb-agent-memory.md"
+    },
+    {
+      "name": "termdraw",
+      "title": "termDRAW",
+      "url": "https://github.com/benvinegar/termdraw",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Agent-friendly ASCII diagram editor for the terminal — retained vector-style objects (lines, boxes, text) with rearranging, fenced Markdown export, native .td.json documents for re-editing, clipboard via OSC 52, embeddable OpenTUI components; Bun 1.3+, MIT",
+      "body_summary": "termDRAW is a terminal-based diagram editor that treats drawn elements as retained objects rather than painted pixels. Lines, boxes, and text remain selectable and rearrangeable after creation. Boxes can act as frames for fully contained children. The editor outputs terminal text (not SVG or bitmap), making the output directly usable in READMEs, docs, tickets, and agent prompts.\n\nDescribed as \"agent-friendly\" — it was built because the author found himself hand-typing ASCII diagrams to help coding agents understand intent, and a proper drawing tool works better for that.\n\nKey capabilities:\n\n- **Tools**: Brush (B), Select (A), Box (U), Line (P), Text (T); clean line glyph rendering including sub-cell Braille for shallow/steep angles.\n- **Export**: plain text to stdout on Enter/Ctrl+S, fenced Markdown (`--fenced`), clipboard via OSC 52 (`--clipboard`).\n- **Persistence**: native `.td.json` documents preserve object metadata for re-editing; plain-text output is export-only.\n- **Embeddable**: the `@termdraw/opentui` package exposes `TermDrawApp`, `TermDrawEditor`, and lower-level renderables for embedding in OpenTUI applications.\n- **Pi integration**: `@termdraw/pi` opens termDRAW in a Pi overlay (`/termdraw`).",
+      "tags": [
+        "terminal",
+        "ascii-art",
+        "diagrams",
+        "drawing",
+        "agent-friendly",
+        "opentui",
+        "pi",
+        "bun",
+        "markdown-export"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-09-29",
+      "path": "catalog/entries/termdraw.md"
     },
     {
       "name": "textual",
@@ -12912,6 +13375,30 @@
       ],
       "reviewed": "2026-09-26",
       "path": "catalog/entries/vphone-cli.md"
+    },
+    {
+      "name": "weaviate",
+      "title": "Weaviate",
+      "url": "https://github.com/weaviate/weaviate",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Go-based AI-native vector database — stores objects with vectors, integrated vectorization via OpenAI/Cohere/HuggingFace modules, semantic + BM25 keyword + hybrid search, built-in RAG and reranking, ACORN filtered search, multi-tenancy with RBAC, object TTL, gRPC/REST/GraphQL APIs; BSD-3-Clause",
+      "body_summary": "Weaviate is an open-source, cloud-native vector database that stores data objects alongside their vector embeddings. Written in Go. Supports automatic vectorization at import time through integrated model modules, or direct import of pre-computed embeddings.\n\nCore capabilities:\n\n- **Semantic search**: Vector similarity search across text, images, and audio\n- **Hybrid search**: Combines vector similarity with BM25 keyword search, adjustable alpha parameter for balance\n- **Built-in RAG and reranking**: Generative search and reranking as query-time operations, no external tooling needed\n- **Integrated vectorization**: Modules for OpenAI, Cohere, HuggingFace, Google, and lightweight Model2Vec; model swapping supported\n- **ACORN filtered search**: Fast filtered vector search algorithm\n- **Multi-tenancy**: Native tenant isolation with RBAC authorization\n- **Object TTL**: Configurable time-to-live per collection for automatic data expiry\n- **Weaviate Agents**: Autonomous data workflow capabilities (2026)\n\nClient libraries: Python, JavaScript/TypeScript, Java, Go, C#/.NET. APIs: REST, gRPC, GraphQL.",
+      "tags": [
+        "vector-database",
+        "semantic-search",
+        "hybrid-search",
+        "rag",
+        "go",
+        "embeddings",
+        "multi-tenancy",
+        "reranking"
+      ],
+      "workflows": [],
+      "license": "BSD-3-Clause",
+      "security_flags": [],
+      "reviewed": "2026-09-29",
+      "path": "catalog/entries/weaviate.md"
     },
     {
       "name": "web-artifacts-builder",
