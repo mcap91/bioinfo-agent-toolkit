@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-27T00:08:50.697Z",
+  "generated_at": "2026-09-30T04:05:53.073Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -136,6 +136,15 @@
       "url": "https://example.com",
       "summary": "Architecture pattern where a general coding agent (Claude Code, Codex, OpenCode) running on a VPS is the orchestrator, calling deterministic scripts and connectors from a repo, inverting the usual app-calls-LLM relationship",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "agent-gateway-concept",
+      "kind": "entry",
+      "title": "Agent Gateway (Concept)",
+      "summary": "Explainer on agent gateways — a specialized gateway layer between AI agents and their backends (LLMs, MCP servers, other agents) that understands agentic protocols (MCP, A2A) and provides unified identity, per-tool policy, prompt-injection screening, PII redaction, provider-agnostic model routing, and full-hop observability; distinguishes from traditional API gateways and LLM-only gateways",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -370,6 +379,16 @@
       "title": "AI Memory Comparison",
       "url": "https://github.com/carsteneu/ai-memory-comparison",
       "summary": "Definitive source-backed survey of 73 open-source AI agent memory systems across 79 features — every claim cites public code or docs.",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "ai-native-sdlc-playbook",
+      "kind": "entry",
+      "title": "AI-Native SDLC Playbook (Anthropic)",
+      "url": "https://claude.com/blog/the-ai-native-sdlc-playbook",
+      "summary": "Anthropic's stage-by-stage playbook for AI-native software development — six-stage loop (Plan→Design→Build→Test→Deploy→Maintain) where each stage commits a version-controlled artifact triggering the next; covers CLAUDE.md as institutional knowledge, skills/hooks as guardrails, plan mode before implementation, agentic review with human gates, and production monitoring feeding back into intent; Claude Code-centric",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -1034,6 +1053,16 @@
       "exists": true
     },
     {
+      "id": "chroma",
+      "kind": "entry",
+      "title": "Chroma",
+      "url": "https://github.com/chroma-core/chroma",
+      "summary": "AI-native open-source embedding database — 4-function core API, automatic tokenization/embedding/indexing, metadata filtering, in-memory or persistent modes, SIMD-accelerated maxscore, sharding, group-by aggregation, Python/JS/Go clients; Chroma Cloud for managed serverless; Apache-2.0",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "chromadb",
       "kind": "entry",
       "title": "ChromaDB",
@@ -1525,6 +1554,16 @@
       "exists": true
     },
     {
+      "id": "conductor-oss",
+      "kind": "entry",
+      "title": "Conductor OSS",
+      "url": "https://github.com/conductor-oss/conductor",
+      "summary": "Open-source durable execution platform (ex-Netflix) for microservices, AI agents, and adaptive workflow graphs — JSON-defined orchestration with durable state, native LLM tasks, MCP tool calling, human approval, dynamic fork/join, DO_WHILE loops, polyglot workers (Java/Python/Go/JS/C#/Ruby/Rust), 5 persistence backends, 6 message brokers; Claude Code plugin; Apache-2.0",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "confidence-probing-prompts",
       "kind": "entry",
       "title": "Confidence-Probing Prompts",
@@ -1964,6 +2003,16 @@
       "url": "https://example.com",
       "summary": "Two standing end-of-session prompts ('what are you least confident about' and 'what am I probably missing') used to surface glossed-over assumptions and context gaps, with community variants and known failure modes",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "engraft-ngram",
+      "kind": "entry",
+      "title": "ENGRAFT",
+      "url": "https://github.com/fulvian/engraft-ngram",
+      "summary": "Technique for writing facts into an LLM's n-gram (Engram) lookup table by gradient descent on table rows only — no weight changes, one removable overlay file; measured on Qwen3.8-Flash-Next (320M-row table); 84.1% exact-match on 100 invented facts, 0.013 KL divergence on neutral text; gradient runs on CPU replica, verified on llama.cpp GGUF; early-stage research",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -2764,6 +2813,16 @@
       "exists": true
     },
     {
+      "id": "jina-ocr-v1",
+      "kind": "entry",
+      "title": "Jina-OCR-v1",
+      "url": "https://huggingface.co/jinaai/jina-ocr-v1",
+      "summary": "End-to-end document-to-Markdown OCR model (3.4B total / 570M active MoE) with FastMTP speculative decoding (K=3, ~2x decode speed on L4) — scores 91.14 OmniDocBench, 83.4 olmOCR-Bench, 2.57 pages/s on A100; handles text, tables, math, handwriting, 100+ languages; runs via Transformers or vLLM; hosted via Jina Reader API; CC BY-NC 4.0 (weights)",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "jit-agent",
       "kind": "entry",
       "title": "JIT-Agent (Just-in-Time Harness Evolution)",
@@ -2872,6 +2931,16 @@
       "exists": true
     },
     {
+      "id": "lancedb",
+      "kind": "entry",
+      "title": "LanceDB",
+      "url": "https://github.com/lancedb/lancedb",
+      "summary": "Embedded serverless vector database built on Lance columnar format — runs in-process with no server, IVF/HNSW/PQ/RQ vector indexes + BM25 full-text, multimodal columns (text/image/video/audio), Git-style versioning, zero-copy reads, object storage backend (S3/GCS/AZ), DuckDB SQL integration, Python/TypeScript/Rust/REST SDKs; Apache-2.0",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "landlock-lsm",
       "kind": "entry",
       "title": "Landlock LSM (org and ecosystem)",
@@ -2946,6 +3015,16 @@
       "title": "LiteLLM",
       "url": "https://github.com/BerriAI/litellm",
       "summary": "Open-source Python SDK and self-hosted AI gateway (proxy server) providing a unified OpenAI-compatible interface to 100+ LLM providers — model routing, automatic fallbacks, cost tracking, per-team budgets, Redis caching, guardrails, MCP/A2A support; ~40K stars, 1300+ contributors, YC-backed; MIT",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "llama-cpp-adaptive-kv-streaming",
+      "kind": "entry",
+      "title": "llama.cpp Adaptive KV Streaming",
+      "url": "https://github.com/RaymondHuang210129/llama.cpp-adaptive-kv-streaming",
+      "summary": "llama.cpp fork that streams KV cache pages from pinned host RAM to GPU on demand — runs Qwen3.8-27B at full 256K context on 16GB VRAM (RTX 5070 Ti) without UVM thrashing; phase arena multiplexes prefill/decode workspaces, adaptive policy adjusts resident/ring split in real time, V2 adds MTP (speculative decoding) with shared ring; CUDA-only, experimental, MIT",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -3075,6 +3154,16 @@
       "url": "https://github.com/microsoft/markitdown",
       "summary": "directly useful for converting PDFs, Excel, PPTX, and other docs to markdown for LLM pipelines; MIT, Microsoft-maintained",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "markov-junior",
+      "kind": "entry",
+      "title": "MarkovJunior",
+      "url": "https://github.com/mxgmn/MarkovJunior",
+      "summary": "Probabilistic programming language where programs are ordered lists of rewrite rules and inference is constraint propagation — generates dungeons, mazes, architecture, puzzles, and simulations on 2D/3D grids; C#/.NET, 153 examples, supports WFC and ConvChain nodes; MIT",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -3264,6 +3353,16 @@
       "title": "Release Manager Assistant (RMA)",
       "url": "https://github.com/microsoft/release-manager-assistant",
       "summary": "Microsoft solution accelerator that augments release managers with a multi-agent system (Planner, JIRA Agent, Azure DevOps Agent via MCP, Visualization Agent, Fallback Agent) for cross-system release planning, scheduling, and readiness reporting; built on Azure AI Foundry + Microsoft Agent Framework + Redis; ships mock/synthetic-data MCP servers for JIRA and Azure DevOps so it can be evaluated without live system access; MIT",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "milvus",
+      "kind": "entry",
+      "title": "Milvus",
+      "url": "https://github.com/milvus-io/milvus",
+      "summary": "Go/C++ cloud-native vector database — fully distributed K8s-native architecture, HNSW/IVF/DiskANN/CAGRA GPU indexes, dense + sparse + BM25 full-text + hybrid search, lake-native data access (v3.0) with Apache Iceberg/Parquet/Lance, multi-tenancy with hot/cold storage, Milvus Lite for embedded use; LF AI and Data Foundation; Apache-2.0",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -3843,6 +3942,16 @@
       "exists": true
     },
     {
+      "id": "orca-ade",
+      "kind": "entry",
+      "title": "Orca (ADE)",
+      "url": "https://github.com/stablyai/orca",
+      "summary": "Agent Development Environment for running parallel coding agents (Claude Code, Codex, OpenCode, Pi, 30+ others) side-by-side — each in its own git worktree, tracked in one place; Ghostty-class terminal splits, Design Mode (Chromium click-to-prompt), annotate AI diffs, GitHub/Linear integration, SSH worktrees, mobile companion (iOS/Android), CLI for scripting; Electron, MIT",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "ossu-computer-science",
       "kind": "entry",
       "title": "OSSU Computer Science",
@@ -3878,6 +3987,16 @@
       "title": "Overcut — Agentic SDLC Orchestration",
       "url": "https://overcut.ai",
       "summary": "Commercial orchestration layer for multi-agent SDLC; addresses real coordination gap but closed-source, early-stage, and not yet individually usable",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "ovis-vl-embedding",
+      "kind": "entry",
+      "title": "Ovis-VL-Embedding",
+      "url": "https://huggingface.co/ATH-MaaS/Ovis-VL-Embedding-2B",
+      "summary": "Omni-modal embedding model (2B and 9B variants) built on Qwen3.5 backbone — encodes text, images, visual documents, and video frames in a shared representation space; 77.46 overall on MMEB-v2 (78 datasets), 80.47 on visual document retrieval; no modality-specific projection heads, last-token hidden state as embedding; for multimodal RAG, cross-modal search, document retrieval",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -3953,6 +4072,16 @@
       "exists": true
     },
     {
+      "id": "parallax",
+      "kind": "entry",
+      "title": "Parallax",
+      "url": "https://github.com/GradientHQ/parallax",
+      "summary": "Fully decentralized distributed LLM inference engine by Gradient — pipeline-parallel model sharding across heterogeneous devices (CUDA/Metal/CPU, mixed platforms, phones), P2P communication via Lattica, GPU backend via SGLang/vLLM, Mac backend via MLX LM, paged KV cache and continuous batching; supports DeepSeek, Qwen, GLM, Kimi-K2, gpt-oss, MiniMax; cross-platform",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "parallel-local-inference",
       "kind": "entry",
       "title": "Parallel Local Inference Pattern (vLLM)",
@@ -3999,6 +4128,16 @@
       "url": "https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server",
       "summary": "Official Perplexity MCP server providing real-time web search, conversational AI, and advanced reasoning tools to MCP-compatible clients; one-click install for Claude Code, Cursor, Codex; npm package @perplexity-ai/mcp-server; requires Perplexity API key",
       "category": "mcp-server",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "pgvector",
+      "kind": "entry",
+      "title": "pgvector",
+      "url": "https://github.com/pgvector/pgvector",
+      "summary": "PostgreSQL extension for vector similarity search — HNSW and IVFFlat indexes, exact and approximate nearest neighbor, vector/halfvec/bit/sparsevec types, 6 distance functions (L2/IP/cosine/L1/Hamming/Jaccard), iterative index scans, binary quantization, multitenancy via partitioning, hybrid search with pg full-text; all Postgres guarantees (ACID, JOINs, WAL replication); PostgreSQL License",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -4214,6 +4353,16 @@
       "title": "PyScript",
       "url": "https://github.com/pyscript/pyscript",
       "summary": "Open-source platform for running Python in the browser via Pyodide (CPython on WASM) or MicroPython; embed Python in HTML with a <script type='py'/'mpy'> tag to build browser apps that run client-side on desktop, mobile, or any browser. Born at Anaconda; Apache-2.0.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "qdrant",
+      "kind": "entry",
+      "title": "Qdrant",
+      "url": "https://github.com/qdrant/qdrant",
+      "summary": "Rust-based vector similarity search engine and database — HNSW with inline payload filtering, dense/sparse/multi-vector search, hybrid search with RRF/DBSF fusion, TurboQuant 4-bit/8-bit compression, GPU-accelerated indexing, distributed sharding and replication, gRPC and REST APIs, Edge variant for in-process use; Apache-2.0",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -4884,6 +5033,26 @@
       "exists": true
     },
     {
+      "id": "strata",
+      "kind": "entry",
+      "title": "Strata",
+      "url": "https://github.com/Niko1221/Strata",
+      "summary": "One-click inference engine for Qwen3.8-Flash-Next (125B MoE) on consumer NVIDIA GPUs (12-24GB) — expert offloading between GPU/RAM/SSD, speculative decoding via built-in MTP, 60-95 t/s on RTX 5070; multi-GPU pipeline, OpenAI/Anthropic-compatible API, vision support, browser UI with live monitor; built on ggml; MIT",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "structure-aware-rendering",
+      "kind": "entry",
+      "title": "Structure-Aware Rendering (Eye-Tracking Study)",
+      "url": "https://arxiv.org/abs/2609.24616",
+      "summary": "Eye-tracking study (n=53) comparing how code rendering strategies (static, token-by-token, AST-based structured) affect programmer visual attention — structured rendering reveals code in syntactic chunks (outer blocks before inner details), inducing deeper processing and better structural awareness than character-based streaming; argues rendering is a first-class interaction primitive for AI coding tools",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "subtext",
       "kind": "entry",
       "title": "Subtext",
@@ -5234,6 +5403,11 @@
       "exists": true
     },
     {
+      "id": "tag:agent-gateway",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:agent-governance",
       "kind": "tag",
       "exists": true
@@ -5475,6 +5649,11 @@
     },
     {
       "id": "tag:ai-assistant",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ai-assisted-coding",
       "kind": "tag",
       "exists": true
     },
@@ -5745,6 +5924,11 @@
     },
     {
       "id": "tag:array-computing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:arrow",
       "kind": "tag",
       "exists": true
     },
@@ -6469,6 +6653,11 @@
       "exists": true
     },
     {
+      "id": "tag:cluster",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:clustering",
       "kind": "tag",
       "exists": true
@@ -6520,6 +6709,11 @@
     },
     {
       "id": "tag:code-quality",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:code-rendering",
       "kind": "tag",
       "exists": true
     },
@@ -6610,6 +6804,11 @@
     },
     {
       "id": "tag:cognitive-frames",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:cognitive-load",
       "kind": "tag",
       "exists": true
     },
@@ -6764,12 +6963,22 @@
       "exists": true
     },
     {
+      "id": "tag:constraint-propagation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:consultation",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:consulting",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:consumer-gpu",
       "kind": "tag",
       "exists": true
     },
@@ -6949,6 +7158,11 @@
       "exists": true
     },
     {
+      "id": "tag:cpp",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:cpu",
       "kind": "tag",
       "exists": true
@@ -7024,6 +7238,11 @@
       "exists": true
     },
     {
+      "id": "tag:cross-modal-search",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:cross-model-review",
       "kind": "tag",
       "exists": true
@@ -7055,6 +7274,11 @@
     },
     {
       "id": "tag:crypto-tracing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:csharp",
       "kind": "tag",
       "exists": true
     },
@@ -7195,6 +7419,11 @@
     },
     {
       "id": "tag:data-integrity",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:data-lake",
       "kind": "tag",
       "exists": true
     },
@@ -7444,6 +7673,11 @@
       "exists": true
     },
     {
+      "id": "tag:design-mode",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:design-review",
       "kind": "tag",
       "exists": true
@@ -7490,6 +7724,11 @@
     },
     {
       "id": "tag:developer-education",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:developer-experience",
       "kind": "tag",
       "exists": true
     },
@@ -7549,6 +7788,11 @@
       "exists": true
     },
     {
+      "id": "tag:diff-review",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:diffusion",
       "kind": "tag",
       "exists": true
@@ -7595,6 +7839,11 @@
     },
     {
       "id": "tag:distance-metrics",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:distributed",
       "kind": "tag",
       "exists": true
     },
@@ -7705,6 +7954,11 @@
     },
     {
       "id": "tag:domain-tools",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:dotnet",
       "kind": "tag",
       "exists": true
     },
@@ -7929,6 +8183,11 @@
       "exists": true
     },
     {
+      "id": "tag:engram",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:enterprise",
       "kind": "tag",
       "exists": true
@@ -8099,6 +8358,11 @@
       "exists": true
     },
     {
+      "id": "tag:expert-offloading",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:explainer",
       "kind": "tag",
       "exists": true
@@ -8120,6 +8384,11 @@
     },
     {
       "id": "tag:extension",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:eye-tracking",
       "kind": "tag",
       "exists": true
     },
@@ -8739,6 +9008,11 @@
       "exists": true
     },
     {
+      "id": "tag:grid-generation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:grilling",
       "kind": "tag",
       "exists": true
@@ -8860,6 +9134,11 @@
     },
     {
       "id": "tag:harness-generation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:hci",
       "kind": "tag",
       "exists": true
     },
@@ -9239,6 +9518,11 @@
       "exists": true
     },
     {
+      "id": "tag:ivfflat",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:j-lens",
       "kind": "tag",
       "exists": true
@@ -9250,6 +9534,11 @@
     },
     {
       "id": "tag:jacobian-lens",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:java",
       "kind": "tag",
       "exists": true
     },
@@ -9270,6 +9559,11 @@
     },
     {
       "id": "tag:jev-compatible",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:jina",
       "kind": "tag",
       "exists": true
     },
@@ -9394,6 +9688,11 @@
       "exists": true
     },
     {
+      "id": "tag:knowledge-editing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:knowledge-graph",
       "kind": "tag",
       "exists": true
@@ -9455,6 +9754,11 @@
     },
     {
       "id": "tag:lan-discovery",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:lance",
       "kind": "tag",
       "exists": true
     },
@@ -9535,6 +9839,11 @@
     },
     {
       "id": "tag:lessons-learned",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:linear",
       "kind": "tag",
       "exists": true
     },
@@ -9849,6 +10158,11 @@
       "exists": true
     },
     {
+      "id": "tag:markdown-export",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:market-data",
       "kind": "tag",
       "exists": true
@@ -9865,6 +10179,11 @@
     },
     {
       "id": "tag:marketplace",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:markov-algorithms",
       "kind": "tag",
       "exists": true
     },
@@ -10059,6 +10378,11 @@
       "exists": true
     },
     {
+      "id": "tag:microservices",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:microsoft",
       "kind": "tag",
       "exists": true
@@ -10159,6 +10483,11 @@
       "exists": true
     },
     {
+      "id": "tag:model-editing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:model-escalation",
       "kind": "tag",
       "exists": true
@@ -10195,6 +10524,11 @@
     },
     {
       "id": "tag:model-selection",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:model-sharding",
       "kind": "tag",
       "exists": true
     },
@@ -10354,6 +10688,11 @@
       "exists": true
     },
     {
+      "id": "tag:multi-tenancy",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:multilingual",
       "kind": "tag",
       "exists": true
@@ -10430,6 +10769,11 @@
     },
     {
       "id": "tag:netavark",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:netflix",
       "kind": "tag",
       "exists": true
     },
@@ -10644,6 +10988,11 @@
       "exists": true
     },
     {
+      "id": "tag:one-click",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ontologies",
       "kind": "tag",
       "exists": true
@@ -10794,6 +11143,11 @@
       "exists": true
     },
     {
+      "id": "tag:orkes",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:osint",
       "kind": "tag",
       "exists": true
@@ -10815,6 +11169,11 @@
     },
     {
       "id": "tag:over-engineering",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:overlay",
       "kind": "tag",
       "exists": true
     },
@@ -11024,6 +11383,11 @@
       "exists": true
     },
     {
+      "id": "tag:phase-arena",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:philosophy",
       "kind": "tag",
       "exists": true
@@ -11075,6 +11439,11 @@
     },
     {
       "id": "tag:pipe",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:pipeline-parallelism",
       "kind": "tag",
       "exists": true
     },
@@ -11169,7 +11538,17 @@
       "exists": true
     },
     {
+      "id": "tag:policy",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:political-science",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:polyglot",
       "kind": "tag",
       "exists": true
     },
@@ -11879,6 +12258,11 @@
       "exists": true
     },
     {
+      "id": "tag:rewrite-rules",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:rl",
       "kind": "tag",
       "exists": true
@@ -12399,6 +12783,11 @@
       "exists": true
     },
     {
+      "id": "tag:sglang",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:shaders",
       "kind": "tag",
       "exists": true
@@ -12614,6 +13003,11 @@
       "exists": true
     },
     {
+      "id": "tag:software-engineering",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:software-engineering-workflow",
       "kind": "tag",
       "exists": true
@@ -12720,6 +13114,11 @@
     },
     {
       "id": "tag:ssd",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ssh",
       "kind": "tag",
       "exists": true
     },
@@ -13509,6 +13908,11 @@
       "exists": true
     },
     {
+      "id": "tag:user-study",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:username-lookup",
       "kind": "tag",
       "exists": true
@@ -13644,6 +14048,11 @@
       "exists": true
     },
     {
+      "id": "tag:video-retrieval",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:vim",
       "kind": "tag",
       "exists": true
@@ -13675,6 +14084,11 @@
     },
     {
       "id": "tag:visual-builder",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:visual-document-retrieval",
       "kind": "tag",
       "exists": true
     },
@@ -13795,6 +14209,11 @@
     },
     {
       "id": "tag:wasm",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:wave-function-collapse",
       "kind": "tag",
       "exists": true
     },
@@ -14079,6 +14498,16 @@
       "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory",
       "summary": "Tencent-built team-level memory hub for AI agents providing four asset types — layered Chat Memory (L0-L3), versioned Skills, linked Wiki pages, and a CodeGraph — managed through a human-reviewable Memory Hub panel with ACL-based sharing",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "termdraw",
+      "kind": "entry",
+      "title": "termDRAW",
+      "url": "https://github.com/benvinegar/termdraw",
+      "summary": "Agent-friendly ASCII diagram editor for the terminal — retained vector-style objects (lines, boxes, text) with rearranging, fenced Markdown export, native .td.json documents for re-editing, clipboard via OSC 52, embeddable OpenTUI components; Bun 1.3+, MIT",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -14444,6 +14873,16 @@
       "url": "https://github.com/Lakr233/vphone-cli",
       "summary": "Virtual iPhone on Apple Silicon Mac — uses Apple's Virtualization.framework and PCC research VM infrastructure to boot full iOS (up to iOS 27) as a VM; firmware patching, restore, and VM lifecycle management; GUI window with app/file browsing, clipboard, screenshots, recording; local HTTP/WebSocket API for automation (screenshots, touch, swipes, hardware keys); guest control daemon with Irisin package manager; macOS 15+, Apple Silicon only; MIT, ~12k stars",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "weaviate",
+      "kind": "entry",
+      "title": "Weaviate",
+      "url": "https://github.com/weaviate/weaviate",
+      "summary": "Go-based AI-native vector database — stores objects with vectors, integrated vectorization via OpenAI/Cohere/HuggingFace modules, semantic + BM25 keyword + hybrid search, built-in RAG and reranking, ACORN filtered search, multi-tenancy with RBAC, object TTL, gRPC/REST/GraphQL APIs; BSD-3-Clause",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -15095,6 +15534,51 @@
     {
       "source": "agent-first-architecture",
       "target": "tag:vps",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-gateway-concept",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "agent-gateway-concept",
+      "target": "tag:a2a",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-gateway-concept",
+      "target": "tag:agent-gateway",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-gateway-concept",
+      "target": "tag:infrastructure",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-gateway-concept",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-gateway-concept",
+      "target": "tag:observability",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-gateway-concept",
+      "target": "tag:policy",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-gateway-concept",
+      "target": "tag:routing",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-gateway-concept",
+      "target": "tag:security",
       "relation": "tagged"
     },
     {
@@ -16185,6 +16669,56 @@
     {
       "source": "ai-memory-comparison",
       "target": "tag:vector-db",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-native-sdlc-playbook",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "ai-native-sdlc-playbook",
+      "target": "tag:agent-workflow",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-native-sdlc-playbook",
+      "target": "tag:anthropic",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-native-sdlc-playbook",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-native-sdlc-playbook",
+      "target": "tag:governance",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-native-sdlc-playbook",
+      "target": "tag:hooks",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-native-sdlc-playbook",
+      "target": "tag:planning",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-native-sdlc-playbook",
+      "target": "tag:sdlc",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-native-sdlc-playbook",
+      "target": "tag:skills",
+      "relation": "tagged"
+    },
+    {
+      "source": "ai-native-sdlc-playbook",
+      "target": "tag:software-engineering",
       "relation": "tagged"
     },
     {
@@ -18893,6 +19427,71 @@
       "relation": "tagged"
     },
     {
+      "source": "chroma",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "chroma",
+      "target": "lancedb",
+      "relation": "overlaps"
+    },
+    {
+      "source": "chroma",
+      "target": "milvus",
+      "relation": "overlaps"
+    },
+    {
+      "source": "chroma",
+      "target": "pgvector",
+      "relation": "overlaps"
+    },
+    {
+      "source": "chroma",
+      "target": "qdrant",
+      "relation": "overlaps"
+    },
+    {
+      "source": "chroma",
+      "target": "tag:developer-experience",
+      "relation": "tagged"
+    },
+    {
+      "source": "chroma",
+      "target": "tag:embeddings",
+      "relation": "tagged"
+    },
+    {
+      "source": "chroma",
+      "target": "tag:javascript",
+      "relation": "tagged"
+    },
+    {
+      "source": "chroma",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "chroma",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "chroma",
+      "target": "tag:similarity-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "chroma",
+      "target": "tag:vector-database",
+      "relation": "tagged"
+    },
+    {
+      "source": "chroma",
+      "target": "weaviate",
+      "relation": "overlaps"
+    },
+    {
       "source": "chunkless-rag",
       "target": "agentic-rag-terminal-tools",
       "relation": "overlaps"
@@ -20978,6 +21577,66 @@
       "relation": "tagged"
     },
     {
+      "source": "conductor-oss",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "conductor-oss",
+      "target": "tag:ai-agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "conductor-oss",
+      "target": "tag:durable-execution",
+      "relation": "tagged"
+    },
+    {
+      "source": "conductor-oss",
+      "target": "tag:java",
+      "relation": "tagged"
+    },
+    {
+      "source": "conductor-oss",
+      "target": "tag:llm",
+      "relation": "tagged"
+    },
+    {
+      "source": "conductor-oss",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "conductor-oss",
+      "target": "tag:microservices",
+      "relation": "tagged"
+    },
+    {
+      "source": "conductor-oss",
+      "target": "tag:netflix",
+      "relation": "tagged"
+    },
+    {
+      "source": "conductor-oss",
+      "target": "tag:orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "conductor-oss",
+      "target": "tag:orkes",
+      "relation": "tagged"
+    },
+    {
+      "source": "conductor-oss",
+      "target": "tag:polyglot",
+      "relation": "tagged"
+    },
+    {
+      "source": "conductor-oss",
+      "target": "tag:workflow-engine",
+      "relation": "tagged"
+    },
+    {
       "source": "confidence-probing-prompts",
       "target": "cat:agent-pattern",
       "relation": "categorized"
@@ -22920,6 +23579,51 @@
     {
       "source": "end-of-session-review-questions",
       "target": "tag:verification",
+      "relation": "tagged"
+    },
+    {
+      "source": "engraft-ngram",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "engraft-ngram",
+      "target": "tag:engram",
+      "relation": "tagged"
+    },
+    {
+      "source": "engraft-ngram",
+      "target": "tag:knowledge-editing",
+      "relation": "tagged"
+    },
+    {
+      "source": "engraft-ngram",
+      "target": "tag:llama-cpp",
+      "relation": "tagged"
+    },
+    {
+      "source": "engraft-ngram",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "engraft-ngram",
+      "target": "tag:model-editing",
+      "relation": "tagged"
+    },
+    {
+      "source": "engraft-ngram",
+      "target": "tag:n-gram",
+      "relation": "tagged"
+    },
+    {
+      "source": "engraft-ngram",
+      "target": "tag:overlay",
+      "relation": "tagged"
+    },
+    {
+      "source": "engraft-ngram",
+      "target": "tag:qwen",
       "relation": "tagged"
     },
     {
@@ -26608,6 +27312,56 @@
       "relation": "tagged"
     },
     {
+      "source": "jina-ocr-v1",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "jina-ocr-v1",
+      "target": "tag:document-parsing",
+      "relation": "tagged"
+    },
+    {
+      "source": "jina-ocr-v1",
+      "target": "tag:jina",
+      "relation": "tagged"
+    },
+    {
+      "source": "jina-ocr-v1",
+      "target": "tag:markdown",
+      "relation": "tagged"
+    },
+    {
+      "source": "jina-ocr-v1",
+      "target": "tag:moe",
+      "relation": "tagged"
+    },
+    {
+      "source": "jina-ocr-v1",
+      "target": "tag:ocr",
+      "relation": "tagged"
+    },
+    {
+      "source": "jina-ocr-v1",
+      "target": "tag:speculative-decoding",
+      "relation": "tagged"
+    },
+    {
+      "source": "jina-ocr-v1",
+      "target": "tag:transformers",
+      "relation": "tagged"
+    },
+    {
+      "source": "jina-ocr-v1",
+      "target": "tag:vision-language",
+      "relation": "tagged"
+    },
+    {
+      "source": "jina-ocr-v1",
+      "target": "tag:vllm",
+      "relation": "tagged"
+    },
+    {
       "source": "jit-agent",
       "target": "cat:framework",
       "relation": "categorized"
@@ -27053,6 +27807,81 @@
       "relation": "overlaps"
     },
     {
+      "source": "lancedb",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "lancedb",
+      "target": "chroma",
+      "relation": "overlaps"
+    },
+    {
+      "source": "lancedb",
+      "target": "milvus",
+      "relation": "overlaps"
+    },
+    {
+      "source": "lancedb",
+      "target": "pgvector",
+      "relation": "overlaps"
+    },
+    {
+      "source": "lancedb",
+      "target": "qdrant",
+      "relation": "overlaps"
+    },
+    {
+      "source": "lancedb",
+      "target": "tag:arrow",
+      "relation": "tagged"
+    },
+    {
+      "source": "lancedb",
+      "target": "tag:duckdb",
+      "relation": "tagged"
+    },
+    {
+      "source": "lancedb",
+      "target": "tag:embedded",
+      "relation": "tagged"
+    },
+    {
+      "source": "lancedb",
+      "target": "tag:lance",
+      "relation": "tagged"
+    },
+    {
+      "source": "lancedb",
+      "target": "tag:multimodal",
+      "relation": "tagged"
+    },
+    {
+      "source": "lancedb",
+      "target": "tag:serverless",
+      "relation": "tagged"
+    },
+    {
+      "source": "lancedb",
+      "target": "tag:similarity-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "lancedb",
+      "target": "tag:vector-database",
+      "relation": "tagged"
+    },
+    {
+      "source": "lancedb",
+      "target": "tag:versioning",
+      "relation": "tagged"
+    },
+    {
+      "source": "lancedb",
+      "target": "weaviate",
+      "relation": "overlaps"
+    },
+    {
       "source": "landlock-lsm",
       "target": "bubblewrap-containers",
       "relation": "overlaps"
@@ -27460,6 +28289,66 @@
     {
       "source": "litellm",
       "target": "tag:openai-compatible",
+      "relation": "tagged"
+    },
+    {
+      "source": "llama-cpp-adaptive-kv-streaming",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "llama-cpp-adaptive-kv-streaming",
+      "target": "qwen38-27b-200k-on-16gb",
+      "relation": "overlaps"
+    },
+    {
+      "source": "llama-cpp-adaptive-kv-streaming",
+      "target": "tag:cuda",
+      "relation": "tagged"
+    },
+    {
+      "source": "llama-cpp-adaptive-kv-streaming",
+      "target": "tag:kv-cache",
+      "relation": "tagged"
+    },
+    {
+      "source": "llama-cpp-adaptive-kv-streaming",
+      "target": "tag:llama-cpp",
+      "relation": "tagged"
+    },
+    {
+      "source": "llama-cpp-adaptive-kv-streaming",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "llama-cpp-adaptive-kv-streaming",
+      "target": "tag:long-context",
+      "relation": "tagged"
+    },
+    {
+      "source": "llama-cpp-adaptive-kv-streaming",
+      "target": "tag:mtp",
+      "relation": "tagged"
+    },
+    {
+      "source": "llama-cpp-adaptive-kv-streaming",
+      "target": "tag:phase-arena",
+      "relation": "tagged"
+    },
+    {
+      "source": "llama-cpp-adaptive-kv-streaming",
+      "target": "tag:speculative-decoding",
+      "relation": "tagged"
+    },
+    {
+      "source": "llama-cpp-adaptive-kv-streaming",
+      "target": "tag:streaming",
+      "relation": "tagged"
+    },
+    {
+      "source": "llama-cpp-adaptive-kv-streaming",
+      "target": "tag:vram-optimization",
       "relation": "tagged"
     },
     {
@@ -28135,6 +29024,51 @@
     {
       "source": "markitdown",
       "target": "tag:pdf",
+      "relation": "tagged"
+    },
+    {
+      "source": "markov-junior",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "markov-junior",
+      "target": "tag:constraint-propagation",
+      "relation": "tagged"
+    },
+    {
+      "source": "markov-junior",
+      "target": "tag:csharp",
+      "relation": "tagged"
+    },
+    {
+      "source": "markov-junior",
+      "target": "tag:dotnet",
+      "relation": "tagged"
+    },
+    {
+      "source": "markov-junior",
+      "target": "tag:grid-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "markov-junior",
+      "target": "tag:markov-algorithms",
+      "relation": "tagged"
+    },
+    {
+      "source": "markov-junior",
+      "target": "tag:procedural-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "markov-junior",
+      "target": "tag:rewrite-rules",
+      "relation": "tagged"
+    },
+    {
+      "source": "markov-junior",
+      "target": "tag:wave-function-collapse",
       "relation": "tagged"
     },
     {
@@ -29136,6 +30070,86 @@
       "source": "microsoft-release-manager-assistant",
       "target": "tag:solution-accelerator",
       "relation": "tagged"
+    },
+    {
+      "source": "milvus",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "milvus",
+      "target": "chroma",
+      "relation": "overlaps"
+    },
+    {
+      "source": "milvus",
+      "target": "lancedb",
+      "relation": "overlaps"
+    },
+    {
+      "source": "milvus",
+      "target": "pgvector",
+      "relation": "overlaps"
+    },
+    {
+      "source": "milvus",
+      "target": "qdrant",
+      "relation": "overlaps"
+    },
+    {
+      "source": "milvus",
+      "target": "tag:cpp",
+      "relation": "tagged"
+    },
+    {
+      "source": "milvus",
+      "target": "tag:data-lake",
+      "relation": "tagged"
+    },
+    {
+      "source": "milvus",
+      "target": "tag:distributed",
+      "relation": "tagged"
+    },
+    {
+      "source": "milvus",
+      "target": "tag:embeddings",
+      "relation": "tagged"
+    },
+    {
+      "source": "milvus",
+      "target": "tag:go",
+      "relation": "tagged"
+    },
+    {
+      "source": "milvus",
+      "target": "tag:gpu",
+      "relation": "tagged"
+    },
+    {
+      "source": "milvus",
+      "target": "tag:hybrid-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "milvus",
+      "target": "tag:kubernetes",
+      "relation": "tagged"
+    },
+    {
+      "source": "milvus",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "milvus",
+      "target": "tag:vector-database",
+      "relation": "tagged"
+    },
+    {
+      "source": "milvus",
+      "target": "weaviate",
+      "relation": "overlaps"
     },
     {
       "source": "mineru",
@@ -31658,6 +32672,71 @@
       "relation": "tagged"
     },
     {
+      "source": "orca-ade",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "orca-ade",
+      "target": "tag:agent-orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "orca-ade",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "orca-ade",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "orca-ade",
+      "target": "tag:design-mode",
+      "relation": "tagged"
+    },
+    {
+      "source": "orca-ade",
+      "target": "tag:diff-review",
+      "relation": "tagged"
+    },
+    {
+      "source": "orca-ade",
+      "target": "tag:github",
+      "relation": "tagged"
+    },
+    {
+      "source": "orca-ade",
+      "target": "tag:linear",
+      "relation": "tagged"
+    },
+    {
+      "source": "orca-ade",
+      "target": "tag:mobile",
+      "relation": "tagged"
+    },
+    {
+      "source": "orca-ade",
+      "target": "tag:parallel-agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "orca-ade",
+      "target": "tag:ssh",
+      "relation": "tagged"
+    },
+    {
+      "source": "orca-ade",
+      "target": "tag:terminal",
+      "relation": "tagged"
+    },
+    {
+      "source": "orca-ade",
+      "target": "tag:worktrees",
+      "relation": "tagged"
+    },
+    {
       "source": "ossu-computer-science",
       "target": "build-your-own-x",
       "relation": "overlaps"
@@ -31840,6 +32919,51 @@
     {
       "source": "overcut",
       "target": "tag:workflow-automation",
+      "relation": "tagged"
+    },
+    {
+      "source": "ovis-vl-embedding",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "ovis-vl-embedding",
+      "target": "tag:cross-modal-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "ovis-vl-embedding",
+      "target": "tag:embeddings",
+      "relation": "tagged"
+    },
+    {
+      "source": "ovis-vl-embedding",
+      "target": "tag:multimodal",
+      "relation": "tagged"
+    },
+    {
+      "source": "ovis-vl-embedding",
+      "target": "tag:qwen",
+      "relation": "tagged"
+    },
+    {
+      "source": "ovis-vl-embedding",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "ovis-vl-embedding",
+      "target": "tag:video-retrieval",
+      "relation": "tagged"
+    },
+    {
+      "source": "ovis-vl-embedding",
+      "target": "tag:vision-language",
+      "relation": "tagged"
+    },
+    {
+      "source": "ovis-vl-embedding",
+      "target": "tag:visual-document-retrieval",
       "relation": "tagged"
     },
     {
@@ -32183,6 +33307,61 @@
       "relation": "tagged"
     },
     {
+      "source": "parallax",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "parallax",
+      "target": "tag:cluster",
+      "relation": "tagged"
+    },
+    {
+      "source": "parallax",
+      "target": "tag:cross-platform",
+      "relation": "tagged"
+    },
+    {
+      "source": "parallax",
+      "target": "tag:decentralized",
+      "relation": "tagged"
+    },
+    {
+      "source": "parallax",
+      "target": "tag:distributed-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "parallax",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "parallax",
+      "target": "tag:mlx",
+      "relation": "tagged"
+    },
+    {
+      "source": "parallax",
+      "target": "tag:model-sharding",
+      "relation": "tagged"
+    },
+    {
+      "source": "parallax",
+      "target": "tag:pipeline-parallelism",
+      "relation": "tagged"
+    },
+    {
+      "source": "parallax",
+      "target": "tag:sglang",
+      "relation": "tagged"
+    },
+    {
+      "source": "parallax",
+      "target": "tag:vllm",
+      "relation": "tagged"
+    },
+    {
       "source": "parallel-local-inference",
       "target": "cat:agent-pattern",
       "relation": "categorized"
@@ -32386,6 +33565,76 @@
       "source": "perplexity-mcp-server",
       "target": "tag:web-search",
       "relation": "tagged"
+    },
+    {
+      "source": "pgvector",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "pgvector",
+      "target": "chroma",
+      "relation": "overlaps"
+    },
+    {
+      "source": "pgvector",
+      "target": "lancedb",
+      "relation": "overlaps"
+    },
+    {
+      "source": "pgvector",
+      "target": "milvus",
+      "relation": "overlaps"
+    },
+    {
+      "source": "pgvector",
+      "target": "qdrant",
+      "relation": "overlaps"
+    },
+    {
+      "source": "pgvector",
+      "target": "tag:embeddings",
+      "relation": "tagged"
+    },
+    {
+      "source": "pgvector",
+      "target": "tag:extension",
+      "relation": "tagged"
+    },
+    {
+      "source": "pgvector",
+      "target": "tag:hnsw",
+      "relation": "tagged"
+    },
+    {
+      "source": "pgvector",
+      "target": "tag:ivfflat",
+      "relation": "tagged"
+    },
+    {
+      "source": "pgvector",
+      "target": "tag:postgresql",
+      "relation": "tagged"
+    },
+    {
+      "source": "pgvector",
+      "target": "tag:similarity-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "pgvector",
+      "target": "tag:sql",
+      "relation": "tagged"
+    },
+    {
+      "source": "pgvector",
+      "target": "tag:vector-database",
+      "relation": "tagged"
+    },
+    {
+      "source": "pgvector",
+      "target": "weaviate",
+      "relation": "overlaps"
     },
     {
       "source": "photon-studio",
@@ -33376,6 +34625,81 @@
       "source": "pyscript",
       "target": "tag:webassembly",
       "relation": "tagged"
+    },
+    {
+      "source": "qdrant",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "qdrant",
+      "target": "chroma",
+      "relation": "overlaps"
+    },
+    {
+      "source": "qdrant",
+      "target": "lancedb",
+      "relation": "overlaps"
+    },
+    {
+      "source": "qdrant",
+      "target": "milvus",
+      "relation": "overlaps"
+    },
+    {
+      "source": "qdrant",
+      "target": "pgvector",
+      "relation": "overlaps"
+    },
+    {
+      "source": "qdrant",
+      "target": "tag:embeddings",
+      "relation": "tagged"
+    },
+    {
+      "source": "qdrant",
+      "target": "tag:gpu",
+      "relation": "tagged"
+    },
+    {
+      "source": "qdrant",
+      "target": "tag:hnsw",
+      "relation": "tagged"
+    },
+    {
+      "source": "qdrant",
+      "target": "tag:hybrid-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "qdrant",
+      "target": "tag:quantization",
+      "relation": "tagged"
+    },
+    {
+      "source": "qdrant",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "qdrant",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "qdrant",
+      "target": "tag:similarity-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "qdrant",
+      "target": "tag:vector-database",
+      "relation": "tagged"
+    },
+    {
+      "source": "qdrant",
+      "target": "weaviate",
+      "relation": "overlaps"
     },
     {
       "source": "qwen25-coder-32b",
@@ -36398,6 +37722,116 @@
       "relation": "tagged"
     },
     {
+      "source": "strata",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "strata",
+      "target": "llama-cpp-adaptive-kv-streaming",
+      "relation": "overlaps"
+    },
+    {
+      "source": "strata",
+      "target": "qwen38-27b-200k-on-16gb",
+      "relation": "overlaps"
+    },
+    {
+      "source": "strata",
+      "target": "tag:consumer-gpu",
+      "relation": "tagged"
+    },
+    {
+      "source": "strata",
+      "target": "tag:cuda",
+      "relation": "tagged"
+    },
+    {
+      "source": "strata",
+      "target": "tag:expert-offloading",
+      "relation": "tagged"
+    },
+    {
+      "source": "strata",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "strata",
+      "target": "tag:moe",
+      "relation": "tagged"
+    },
+    {
+      "source": "strata",
+      "target": "tag:nvidia",
+      "relation": "tagged"
+    },
+    {
+      "source": "strata",
+      "target": "tag:one-click",
+      "relation": "tagged"
+    },
+    {
+      "source": "strata",
+      "target": "tag:openai-compatible",
+      "relation": "tagged"
+    },
+    {
+      "source": "strata",
+      "target": "tag:qwen",
+      "relation": "tagged"
+    },
+    {
+      "source": "strata",
+      "target": "tag:speculative-decoding",
+      "relation": "tagged"
+    },
+    {
+      "source": "structure-aware-rendering",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "structure-aware-rendering",
+      "target": "tag:ai-assisted-coding",
+      "relation": "tagged"
+    },
+    {
+      "source": "structure-aware-rendering",
+      "target": "tag:ast",
+      "relation": "tagged"
+    },
+    {
+      "source": "structure-aware-rendering",
+      "target": "tag:code-rendering",
+      "relation": "tagged"
+    },
+    {
+      "source": "structure-aware-rendering",
+      "target": "tag:cognitive-load",
+      "relation": "tagged"
+    },
+    {
+      "source": "structure-aware-rendering",
+      "target": "tag:eye-tracking",
+      "relation": "tagged"
+    },
+    {
+      "source": "structure-aware-rendering",
+      "target": "tag:hci",
+      "relation": "tagged"
+    },
+    {
+      "source": "structure-aware-rendering",
+      "target": "tag:user-study",
+      "relation": "tagged"
+    },
+    {
+      "source": "structure-aware-rendering",
+      "target": "tag:vibe-coding",
+      "relation": "tagged"
+    },
+    {
       "source": "subtext",
       "target": "cat:framework",
       "relation": "categorized"
@@ -37070,6 +38504,56 @@
     {
       "source": "tencentdb-agent-memory",
       "target": "tag:wiki",
+      "relation": "tagged"
+    },
+    {
+      "source": "termdraw",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "termdraw",
+      "target": "tag:agent-friendly",
+      "relation": "tagged"
+    },
+    {
+      "source": "termdraw",
+      "target": "tag:ascii-art",
+      "relation": "tagged"
+    },
+    {
+      "source": "termdraw",
+      "target": "tag:bun",
+      "relation": "tagged"
+    },
+    {
+      "source": "termdraw",
+      "target": "tag:diagrams",
+      "relation": "tagged"
+    },
+    {
+      "source": "termdraw",
+      "target": "tag:drawing",
+      "relation": "tagged"
+    },
+    {
+      "source": "termdraw",
+      "target": "tag:markdown-export",
+      "relation": "tagged"
+    },
+    {
+      "source": "termdraw",
+      "target": "tag:opentui",
+      "relation": "tagged"
+    },
+    {
+      "source": "termdraw",
+      "target": "tag:pi",
+      "relation": "tagged"
+    },
+    {
+      "source": "termdraw",
+      "target": "tag:terminal",
       "relation": "tagged"
     },
     {
@@ -38780,6 +40264,76 @@
     {
       "source": "vphone-cli",
       "target": "tag:virtualization",
+      "relation": "tagged"
+    },
+    {
+      "source": "weaviate",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "weaviate",
+      "target": "chroma",
+      "relation": "overlaps"
+    },
+    {
+      "source": "weaviate",
+      "target": "lancedb",
+      "relation": "overlaps"
+    },
+    {
+      "source": "weaviate",
+      "target": "milvus",
+      "relation": "overlaps"
+    },
+    {
+      "source": "weaviate",
+      "target": "pgvector",
+      "relation": "overlaps"
+    },
+    {
+      "source": "weaviate",
+      "target": "qdrant",
+      "relation": "overlaps"
+    },
+    {
+      "source": "weaviate",
+      "target": "tag:embeddings",
+      "relation": "tagged"
+    },
+    {
+      "source": "weaviate",
+      "target": "tag:go",
+      "relation": "tagged"
+    },
+    {
+      "source": "weaviate",
+      "target": "tag:hybrid-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "weaviate",
+      "target": "tag:multi-tenancy",
+      "relation": "tagged"
+    },
+    {
+      "source": "weaviate",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "weaviate",
+      "target": "tag:reranking",
+      "relation": "tagged"
+    },
+    {
+      "source": "weaviate",
+      "target": "tag:semantic-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "weaviate",
+      "target": "tag:vector-database",
       "relation": "tagged"
     },
     {
