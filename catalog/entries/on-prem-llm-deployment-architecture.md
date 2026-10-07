@@ -60,3 +60,7 @@ Qwen 3.6 (27B, 35B), DeepSeek (R1, V3, V3.1), Llama, GLM, various MoE architectu
 ## Security
 
 Discussion post — no code to audit. All architectures described keep data on-premises by design.
+
+## Usage notes
+
+- Qwen3.8-27B (IQ4_XS, 14.25 GB) on 1x RTX 4090 24GB via llama-server + llama-swap: 115 t/s decode, 22,934 MiB peak VRAM, 196K context. DeepSWE single-task result: 40/43 hidden tests passed (partial 0.980). Code-review task: 12/12. Full config: `-ngl 99 --jinja --ctx-size 196608 --spec-type draft-mtp --spec-draft-n-max 4 --reasoning on -fa on -ctk q8_0 -ctv q8_0 --parallel 1`. Heavier alt: Q4_K_XL (17.56 GB). Context ceiling guide: https://ai.ttindall.com/blog/27b-24gb-context-ceiling/

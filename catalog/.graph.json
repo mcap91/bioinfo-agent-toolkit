@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-30T04:05:53.073Z",
+  "generated_at": "2026-10-07T03:31:57.374Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -615,6 +615,16 @@
       "url": "https://github.com/aaddrick/attention-control",
       "summary": "Output style / skill for coding agents applying air-traffic-control communication discipline (fixed message shape + controlled vocabulary) to agent prose, combining the shape rules from 'i-have-adhd' with the language rules from 'asd-ste100'; ships as a native Claude Code output style and as a skill/rules-file for Codex, Cursor, Gemini CLI, GitHub Copilot, and Zed.",
       "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "atuin",
+      "kind": "entry",
+      "title": "Atuin",
+      "url": "https://github.com/atuinsh/atuin",
+      "summary": "Shell history replacement backed by SQLite — records exit code, duration, cwd, hostname, session per command; full-screen search UI; encrypted sync across machines via Atuin server (self-hosted or cloud); supports bash/zsh/fish/nushell/xonsh/PowerShell; Rust; MIT",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -1398,12 +1408,32 @@
       "exists": true
     },
     {
+      "id": "cloudflare-clef",
+      "kind": "entry",
+      "title": "Cloudflare Clef",
+      "url": "https://huggingface.co/cloudflare/clef",
+      "summary": "Open-weight decision models from Cloudflare — Clef (27B, Qwen 3.8-27B backbone, 209ms median) and Clef-flash (9B, Qwen 3.5-9B backbone, 39ms median); return typed probabilities instead of text; 64K context; vision encoder (up to 4 images); RL fine-tuning platform on Workers AI; beats Jev on 7/10 benchmarks; Apache 2.0",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "cloudflare-os",
       "kind": "entry",
       "title": "Cloudflare OS",
       "url": "https://github.com/cloudflare/cloudflare-os",
       "summary": "Cloudflare's open-sourced internal 'agent workspace' platform on Workers/Durable Objects — sandboxed per-user 'Gadgets' (AI-built mini-apps) governed by capability-based 'Gatekeeper' services that mediate external-API access and support async human-in-the-loop approval",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "cloudflare-security-audit-skill",
+      "kind": "entry",
+      "title": "Cloudflare Security Audit Skill",
+      "url": "https://github.com/cloudflare/security-audit-skill",
+      "summary": "Six-phase coding-agent skill for structured security audits — reconnaissance, coverage-led hunting with isolated agents, adversarial candidate validation, structured JSON output with schema validation, independent record verification, and target-neutral reporting; seeds Cloudflare's internal vulnerability discovery harness; installs via `npx skills add`; MIT",
+      "category": "skill",
       "decision_status": "open",
       "exists": true
     },
@@ -1804,6 +1834,16 @@
       "exists": true
     },
     {
+      "id": "diagram-design",
+      "kind": "entry",
+      "title": "Diagram Design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "summary": "Editorial-quality diagram skill for Claude Code, Codex, Copilot, Factory Droid, Pi, and other Agent Skills hosts — 42 visual types (architecture, flowchart, sequence, state, ER, timeline, Sankey, Wardley map, exploded axonometric, etc.) as self-contained HTML+SVG; brand onboarding from a URL; import from draw.io/Mermaid/Excalidraw; export to SVG/PNG; 9 semantic behavior patterns; optional accessible motion; 87 monochrome icons; no shadows, no Mermaid; MIT",
+      "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "diffdock",
       "kind": "entry",
       "title": "DiffDock",
@@ -1973,6 +2013,16 @@
       "url": "https://www.claudepluginhub.com/plugins/affaan-m-everything-claude-code",
       "summary": "rate-limited (429 errors); trial when accessible",
       "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "embeddinggemma-2",
+      "kind": "entry",
+      "title": "EmbeddingGemma 2",
+      "url": "https://huggingface.co/unsloth/embeddinggemma-2-GGUF",
+      "summary": "Google DeepMind's 740M-parameter open multimodal embedding model — maps text, code, images, video, and audio into one 768-dim vector space; modular encoders (270M text-only to 740M full); 8K context window; runs on-device (191MB RAM for text-only on Pixel 11 Pro); Matryoshka truncation to 512/256/128 dims; built on Gemma 4; Apache 2.0",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -2292,6 +2342,16 @@
       "url": "https://github.com/WellDunDun/frontier",
       "summary": "Well-architected multi-harness orchestration runtime for Claude Code; early preview but the token-economics argument and delegation model are sound",
       "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "fzf",
+      "kind": "entry",
+      "title": "fzf",
+      "url": "https://github.com/junegunn/fzf",
+      "summary": "General-purpose command-line fuzzy finder and interactive terminal toolkit — processes millions of items in milliseconds; event-driven architecture for custom workflows; shell integration (CTRL-R history, CTRL-T files, ALT-C directories) for bash/zsh/fish/nushell; preview window with image support; popup mode (tmux 3.3+/Zellij); single Go binary; MIT",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -2843,6 +2903,16 @@
       "exists": true
     },
     {
+      "id": "jq",
+      "kind": "entry",
+      "title": "jq",
+      "url": "https://github.com/jqlang/jq",
+      "summary": "Lightweight command-line JSON processor — slice, filter, map, and transform structured data; portable C with zero runtime dependencies; sed/awk/grep for JSON; MIT",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "karakeep",
       "kind": "entry",
       "title": "Karakeep",
@@ -2980,6 +3050,16 @@
       "exists": true
     },
     {
+      "id": "laya-decision-model",
+      "kind": "entry",
+      "title": "Laya",
+      "url": "https://github.com/receptron/laya",
+      "summary": "Open-source non-autoregressive decision model from Convai Innovations — 421M params (ModernBERT-large backbone) English, 322M multilingual (100+ languages); single forward pass in ~33-40ms on T4; three primitives (choice, score, noul); accuracy 0.766 vs Jev's 0.727 on typed-decisions benchmark at 7.8x lower latency; self-hosted, zero marginal cost; Apache 2.0",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "laya-notification-center",
       "kind": "entry",
       "title": "Laya (Notification Center — aayushch)",
@@ -2995,6 +3075,16 @@
       "title": "lazydraw",
       "url": "https://www.npmjs.com/package/lazydraw",
       "summary": "Terminal ASCII diagram/sketch editor modeled on ASCIIFlow — mouse-driven box/arrow/line/text/eraser tools in a full-screen TUI (OpenTUI), multi-format export (basic/extended chars, 11 comment styles, Markdown fence), undo/redo, autosaving named drawings; Bun runtime, MIT, single-maintainer, npm-only (GitHub repo unavailable)",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "lazygit",
+      "kind": "entry",
+      "title": "lazygit",
+      "url": "https://github.com/jesseduffield/lazygit",
+      "summary": "Terminal UI for git — interactive staging (hunks/lines), interactive rebase (squash/fixup/drop/edit/reorder), cherry-pick, bisect, worktrees, custom patches, undo/redo via reflog, commit graph, diff comparison, GitHub PR integration; Go; MIT",
       "category": "cli-tool",
       "decision_status": "open",
       "exists": true
@@ -3144,6 +3234,16 @@
       "url": "https://github.com/3b1b/manim",
       "summary": "Grant Sanderson's (3Blue1Brown) Python animation engine for explanatory math videos — scenes are Python classes composing Mobjects (LaTeX, shapes, graphs, 3D surfaces) with animations rendered via OpenGL, including an interactive live-preview mode; this is the original personal version, distinct from the community-maintained fork ManimCE; MIT, ~94k stars",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "mapgen4",
+      "kind": "entry",
+      "title": "mapgen4",
+      "url": "https://github.com/redblobgames/mapgen4",
+      "summary": "Procedural wilderness map generator — real-time terrain regeneration as you paint; Delaunay/Voronoi mesh with 25K+ cells; elevation, rivers, rainfall, biomes; oblique projection rendering; TypeScript/JavaScript; Apache 2.0",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -3688,6 +3788,16 @@
       "exists": false
     },
     {
+      "id": "ollama-system-one-api",
+      "kind": "entry",
+      "title": "Ollama System One API (Decision Models)",
+      "url": "https://docs.ollama.com/api/systemone",
+      "summary": "Local decision-model endpoint in Ollama 0.35+ — Jev-compatible /v1/systemone API returns typed choices, yes/no probabilities, and rubric scores instead of generated text; ships three models (Nimble 9B from Bespoke Labs, Tev1 4B and 0.8B from Together AI); 91ms average latency on M5 Max; runs entirely offline; MIT",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "olmocr",
       "kind": "entry",
       "title": "olmOCR",
@@ -3952,6 +4062,16 @@
       "exists": true
     },
     {
+      "id": "ornith-dgx-spark-setup",
+      "kind": "entry",
+      "title": "Ornith-1.5-35B-A3B DGX Spark Setup",
+      "url": "https://github.com/Hitheshkaranth/Ornith-1.5_A3B_Model_DGX_Spark_Setup",
+      "summary": "Deployment toolkit for serving Ornith-1.5-35B-A3B (35B MoE, 3B active) on a single NVIDIA DGX Spark (128GB unified memory) via vLLM 0.24 with multi-token prediction — includes multi-user API gateway with per-user token counting and Grafana dashboards; 79 tok/s single-user, 25 tok/s × 20 concurrent users (490 tok/s aggregate), 262K context; NVFP4 checkpoint (~22 GiB)",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "ossu-computer-science",
       "kind": "entry",
       "title": "OSSU Computer Science",
@@ -4027,6 +4147,16 @@
       "title": "PaddleOCR",
       "url": "https://github.com/PaddlePaddle/PaddleOCR",
       "summary": ">",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "pageindex",
+      "kind": "entry",
+      "title": "PageIndex",
+      "url": "https://github.com/VectifyAI/PageIndex",
+      "summary": "Vectorless reasoning-based RAG engine — replaces vector index with hierarchical tree index, uses LLM reasoning for retrieval instead of similarity search; 98.7% accuracy on FinanceBench (vs vector RAG baselines); SDK with local mode (pip install pageindex) and cloud mode; ~$0.001/page indexing cost; ideal for financial/legal/medical/technical documents; MIT",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -4268,6 +4398,16 @@
       "url": "https://github.com/DietrichGebert/ponytail",
       "summary": "YAGNI enforcement plugin with strong benchmarks (80-94% less code, 47-77% cheaper); multi-platform support and clean design make it worth trialing",
       "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "procedura",
+      "kind": "entry",
+      "title": "Procedura",
+      "url": "https://github.com/SpatiaOS/Procedura",
+      "summary": "Agentic text-to-3D modeling pipeline — turns a text prompt into an editable parametric OpenSCAD program with named parts joined by typed mates; optional per-part PBR materials, articulation export to OpenUSD/URDF with Isaac Sim validation; part-by-part generation with LLM reasoning, 3D feedback loop, and refine critic; any OpenAI-compatible endpoint; MIT",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -4532,6 +4672,16 @@
       "exists": true
     },
     {
+      "id": "ripgrep",
+      "kind": "entry",
+      "title": "ripgrep",
+      "url": "https://github.com/burntsushi/ripgrep",
+      "summary": "Line-oriented recursive regex search tool — respects .gitignore by default, skips hidden/binary files; SIMD-accelerated Rust regex engine; 3-30x faster than grep/ag/ack on benchmarks; PCRE2 opt-in for look-around; searches compressed files, multiple encodings; static binary; dual MIT/UNLICENSE",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "robyn",
       "kind": "entry",
       "title": "Robyn",
@@ -4677,6 +4827,16 @@
       "exists": true
     },
     {
+      "id": "shan-shui-inf",
+      "kind": "entry",
+      "title": "shan-shui-inf",
+      "url": "https://github.com/LingDong-/shan-shui-inf",
+      "summary": "Procedurally-generated infinitely-scrolling Chinese landscape paintings in SVG — mathematical models for mountains and trees using noise functions; runs in the browser; pure JavaScript; inspired by traditional Chinese landscape scrolls",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "shannon",
       "kind": "entry",
       "title": "Shannon (AI Pentester)",
@@ -4693,6 +4853,16 @@
       "url": "https://github.com/shepherd-agents/shepherd",
       "summary": "Python runtime substrate that records agent runs as durable, inspectable, reversible execution traces — agent-written outputs land as retained proposals (changesets) that a human selects, applies, releases, or discards, with OS-level (Seatbelt/Landlock) enforcement of per-task read/write permission grants declared in function signatures",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "shift-left-security",
+      "kind": "entry",
+      "title": "Shift Left Security",
+      "url": "https://owasp.org/www-project-devsecops-guideline/",
+      "summary": "Security testing practice — move checks earlier in the delivery pipeline; SAST (static, e.g. CodeQL/Semgrep in CI), DAST (dynamic, e.g. OWASP ZAP in staging), pre-commit hooks (Semgrep on changed files), editor plugins (SonarQube); canonical example is SQL injection prevented by parameterized queries",
+      "category": "reference",
       "decision_status": "open",
       "exists": true
     },
@@ -5343,6 +5513,11 @@
       "exists": true
     },
     {
+      "id": "tag:adversarial-validation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:advisor",
       "kind": "tag",
       "exists": true
@@ -5389,6 +5564,11 @@
     },
     {
       "id": "tag:agent-eval",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:agent-executor",
       "kind": "tag",
       "exists": true
     },
@@ -6008,6 +6188,11 @@
       "exists": true
     },
     {
+      "id": "tag:audiobook",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:audit",
       "kind": "tag",
       "exists": true
@@ -6248,12 +6433,22 @@
       "exists": true
     },
     {
+      "id": "tag:biomes",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:bitwarden",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:blast-radius",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:blender",
       "kind": "tag",
       "exists": true
     },
@@ -6358,6 +6553,11 @@
       "exists": true
     },
     {
+      "id": "tag:cad",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:cag",
       "kind": "tag",
       "exists": true
@@ -6408,6 +6608,11 @@
       "exists": true
     },
     {
+      "id": "tag:cd",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:cdp",
       "kind": "tag",
       "exists": true
@@ -6438,6 +6643,11 @@
       "exists": true
     },
     {
+      "id": "tag:cheatsheets",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:checklist",
       "kind": "tag",
       "exists": true
@@ -6454,6 +6664,11 @@
     },
     {
       "id": "tag:chinese",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:chinese-landscape",
       "kind": "tag",
       "exists": true
     },
@@ -6674,6 +6889,11 @@
     },
     {
       "id": "tag:cocomo-ii",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:code",
       "kind": "tag",
       "exists": true
     },
@@ -7153,6 +7373,11 @@
       "exists": true
     },
     {
+      "id": "tag:coverage-tracking",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:cowork",
       "kind": "tag",
       "exists": true
@@ -7179,6 +7404,11 @@
     },
     {
       "id": "tag:crawling",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:creative-coding",
       "kind": "tag",
       "exists": true
     },
@@ -7234,6 +7464,11 @@
     },
     {
       "id": "tag:cross-llm",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:cross-machine",
       "kind": "tag",
       "exists": true
     },
@@ -7379,6 +7614,11 @@
     },
     {
       "id": "tag:dashboards",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:dast",
       "kind": "tag",
       "exists": true
     },
@@ -7533,6 +7773,11 @@
       "exists": true
     },
     {
+      "id": "tag:decision-models",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:decision-traces",
       "kind": "tag",
       "exists": true
@@ -7614,6 +7859,11 @@
     },
     {
       "id": "tag:defuddle",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:delaunay",
       "kind": "tag",
       "exists": true
     },
@@ -7788,6 +8038,11 @@
       "exists": true
     },
     {
+      "id": "tag:dictation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:diff-review",
       "kind": "tag",
       "exists": true
@@ -7809,6 +8064,11 @@
     },
     {
       "id": "tag:directory",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:directory-navigation",
       "kind": "tag",
       "exists": true
     },
@@ -7918,6 +8178,11 @@
       "exists": true
     },
     {
+      "id": "tag:document-retrieval",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:document-signing",
       "kind": "tag",
       "exists": true
@@ -8013,6 +8278,11 @@
       "exists": true
     },
     {
+      "id": "tag:dubbing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:duckdb",
       "kind": "tag",
       "exists": true
@@ -8064,6 +8334,11 @@
     },
     {
       "id": "tag:edge-inference",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:editorial",
       "kind": "tag",
       "exists": true
     },
@@ -8333,6 +8608,11 @@
       "exists": true
     },
     {
+      "id": "tag:examples",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:excel",
       "kind": "tag",
       "exists": true
@@ -8503,7 +8783,17 @@
       "exists": true
     },
     {
+      "id": "tag:filter",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:finance",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:financial",
       "kind": "tag",
       "exists": true
     },
@@ -8628,6 +8918,11 @@
       "exists": true
     },
     {
+      "id": "tag:freecad",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:freemium",
       "kind": "tag",
       "exists": true
@@ -8663,7 +8958,17 @@
       "exists": true
     },
     {
+      "id": "tag:fuzzy-finder",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:fuzzy-search",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:fzf",
       "kind": "tag",
       "exists": true
     },
@@ -8674,6 +8979,11 @@
     },
     {
       "id": "tag:gadgets",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:game-dev",
       "kind": "tag",
       "exists": true
     },
@@ -8718,6 +9028,11 @@
       "exists": true
     },
     {
+      "id": "tag:gemma",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:gene-expression",
       "kind": "tag",
       "exists": true
@@ -8729,6 +9044,11 @@
     },
     {
       "id": "tag:general-agent",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:generative-art",
       "kind": "tag",
       "exists": true
     },
@@ -8819,6 +9139,11 @@
     },
     {
       "id": "tag:github-issues",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:gitignore",
       "kind": "tag",
       "exists": true
     },
@@ -8964,6 +9289,11 @@
     },
     {
       "id": "tag:gradio",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:grafana",
       "kind": "tag",
       "exists": true
     },
@@ -9338,6 +9668,11 @@
       "exists": true
     },
     {
+      "id": "tag:import-export",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:in-context-learning",
       "kind": "tag",
       "exists": true
@@ -9443,7 +9778,17 @@
       "exists": true
     },
     {
+      "id": "tag:interactive",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:interactive-learning",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:interactive-rebase",
       "kind": "tag",
       "exists": true
     },
@@ -9559,6 +9904,11 @@
     },
     {
       "id": "tag:jev-compatible",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:jev-competitor",
       "kind": "tag",
       "exists": true
     },
@@ -9834,6 +10184,11 @@
     },
     {
       "id": "tag:lecture-capture",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:legal",
       "kind": "tag",
       "exists": true
     },
@@ -10133,12 +10488,27 @@
       "exists": true
     },
     {
+      "id": "tag:man-pages",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:managed-agents",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:manhattan-plot",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:manufacturing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:map-generation",
       "kind": "tag",
       "exists": true
     },
@@ -10543,6 +10913,11 @@
       "exists": true
     },
     {
+      "id": "tag:modernbert",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:modular-architecture",
       "kind": "tag",
       "exists": true
@@ -10693,6 +11068,11 @@
       "exists": true
     },
     {
+      "id": "tag:multi-user",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:multilingual",
       "kind": "tag",
       "exists": true
@@ -10833,6 +11213,11 @@
       "exists": true
     },
     {
+      "id": "tag:nimble",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:nist",
       "kind": "tag",
       "exists": true
@@ -10859,6 +11244,11 @@
     },
     {
       "id": "tag:nodejs",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:non-autoregressive",
       "kind": "tag",
       "exists": true
     },
@@ -10983,6 +11373,11 @@
       "exists": true
     },
     {
+      "id": "tag:on-device",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:onboarding",
       "kind": "tag",
       "exists": true
@@ -11093,6 +11488,11 @@
       "exists": true
     },
     {
+      "id": "tag:openscad",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:opentui",
       "kind": "tag",
       "exists": true
@@ -11144,6 +11544,11 @@
     },
     {
       "id": "tag:orkes",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ornith",
       "kind": "tag",
       "exists": true
     },
@@ -11268,6 +11673,11 @@
       "exists": true
     },
     {
+      "id": "tag:parametric",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:parquet",
       "kind": "tag",
       "exists": true
@@ -11314,6 +11724,11 @@
     },
     {
       "id": "tag:peft",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:pen-testing",
       "kind": "tag",
       "exists": true
     },
@@ -11563,6 +11978,11 @@
       "exists": true
     },
     {
+      "id": "tag:pose-estimation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:post-training",
       "kind": "tag",
       "exists": true
@@ -11634,6 +12054,11 @@
     },
     {
       "id": "tag:pretraining",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:preview",
       "kind": "tag",
       "exists": true
     },
@@ -12263,6 +12688,11 @@
       "exists": true
     },
     {
+      "id": "tag:rivers",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:rl",
       "kind": "tag",
       "exists": true
@@ -12583,6 +13013,11 @@
       "exists": true
     },
     {
+      "id": "tag:security-audit",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:security-awareness",
       "kind": "tag",
       "exists": true
@@ -12798,7 +13233,22 @@
       "exists": true
     },
     {
+      "id": "tag:shell",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:shell-history",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:shell-injection",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:shift-left",
       "kind": "tag",
       "exists": true
     },
@@ -13143,6 +13593,11 @@
       "exists": true
     },
     {
+      "id": "tag:staging",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:standard-library",
       "kind": "tag",
       "exists": true
@@ -13293,6 +13748,11 @@
       "exists": true
     },
     {
+      "id": "tag:sync",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:synchronous",
       "kind": "tag",
       "exists": true
@@ -13309,6 +13769,11 @@
     },
     {
       "id": "tag:synthetic-data",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:system-1",
       "kind": "tag",
       "exists": true
     },
@@ -13463,6 +13928,11 @@
       "exists": true
     },
     {
+      "id": "tag:terminal-toolkit",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:terminal-tools",
       "kind": "tag",
       "exists": true
@@ -13474,6 +13944,11 @@
     },
     {
       "id": "tag:terraform",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:terrain",
       "kind": "tag",
       "exists": true
     },
@@ -13493,12 +13968,27 @@
       "exists": true
     },
     {
+      "id": "tag:tev1",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:text",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:text-recognition",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:text-splitting",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:text-to-3d",
       "kind": "tag",
       "exists": true
     },
@@ -13569,6 +14059,11 @@
     },
     {
       "id": "tag:timescale",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:tiny-model",
       "kind": "tag",
       "exists": true
     },
@@ -13703,6 +14198,11 @@
       "exists": true
     },
     {
+      "id": "tag:tracking",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:training",
       "kind": "tag",
       "exists": true
@@ -13728,6 +14228,11 @@
       "exists": true
     },
     {
+      "id": "tag:transform",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:transformer",
       "kind": "tag",
       "exists": true
@@ -13739,6 +14244,11 @@
     },
     {
       "id": "tag:transformers",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:tree-index",
       "kind": "tag",
       "exists": true
     },
@@ -13813,6 +14323,11 @@
       "exists": true
     },
     {
+      "id": "tag:typed-output",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:typesafe-ai",
       "kind": "tag",
       "exists": true
@@ -13878,6 +14393,11 @@
       "exists": true
     },
     {
+      "id": "tag:unix",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:unix-philosophy",
       "kind": "tag",
       "exists": true
@@ -13903,7 +14423,17 @@
       "exists": true
     },
     {
+      "id": "tag:urdf",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:usb",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:usd",
       "kind": "tag",
       "exists": true
     },
@@ -13973,6 +14503,11 @@
       "exists": true
     },
     {
+      "id": "tag:vectorless",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:vendor-blog",
       "kind": "tag",
       "exists": true
@@ -14004,6 +14539,11 @@
     },
     {
       "id": "tag:verifier",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:version-control",
       "kind": "tag",
       "exists": true
     },
@@ -14148,7 +14688,17 @@
       "exists": true
     },
     {
+      "id": "tag:voice-cloning",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:voidzero",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:voronoi",
       "kind": "tag",
       "exists": true
     },
@@ -14199,6 +14749,11 @@
     },
     {
       "id": "tag:vulnerability",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:vulnerability-discovery",
       "kind": "tag",
       "exists": true
     },
@@ -14358,6 +14913,11 @@
       "exists": true
     },
     {
+      "id": "tag:workers-ai",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:workflow",
       "kind": "tag",
       "exists": true
@@ -14443,6 +15003,11 @@
       "exists": true
     },
     {
+      "id": "tag:yolo",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:youtube",
       "kind": "tag",
       "exists": true
@@ -14460,6 +15025,16 @@
     {
       "id": "tag:zero-shot",
       "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "taiga-s1",
+      "kind": "entry",
+      "title": "Taiga-S1",
+      "url": "https://github.com/mckeown12/taiga-s1",
+      "summary": "1.2M-parameter System-1 decision model for building CAD parts in FreeCAD — ~1ms per decision on CPU, no LLM/GPU/screenshots; covers PartDesign workflows (sketch, pad, pocket, hole, revolve, pattern, fillet, chamfer, shell); generalizes to 17-feature parts (95%) despite training on ≤5-feature; 86-100% recovery from 20% random action corruption; part of the Biome-S1 family; 4.9 MB model file",
+      "category": "framework",
+      "decision_status": "open",
       "exists": true
     },
     {
@@ -14601,6 +15176,16 @@
       "exists": true
     },
     {
+      "id": "tldr-pages",
+      "kind": "entry",
+      "title": "tldr-pages",
+      "url": "https://github.com/tldr-pages/tldr",
+      "summary": "Community-maintained simplified man pages — practical examples for common CLI commands; covers UNIX/Linux/macOS/FreeBSD/Windows/Android/Cisco IOS; official clients in Python, Rust (tlrc), and Node.js; web client with offline PWA; 40+ language translations; CC BY 4.0",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "tolvi",
       "kind": "entry",
       "title": "Tolvi — Engineering Decision Vault",
@@ -14725,6 +15310,16 @@
       "title": "Ultimate DeepSeek UltraCode (Reasonix Fleet)",
       "url": "https://github.com/Tatlatat/ultimate-deepseek-ultracode",
       "summary": "Claude Code extension routing Workflow/UltraCode fan-out lanes to DeepSeek v4-flash via a local Reasonix gateway — keeps Claude as main agent, runs subagent work on cheaper DeepSeek inference with ephemeral sessions and server-side cache optimization reaching 99%+ hit rates",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "ultralytics-yolo",
+      "kind": "entry",
+      "title": "Ultralytics YOLO",
+      "url": "https://github.com/ultralytics/ultralytics",
+      "summary": "Unified real-time computer vision framework — object detection, instance/semantic segmentation, classification, pose estimation, oriented bounding boxes, and tracking; YOLO26 (latest) is NMS-free, DFL-free, 43% faster CPU inference than YOLO11; five model sizes (Nano to X-Large); CLI + Python API; export to ONNX/TensorRT/CoreML/TFLite; AGPL-3.0 (Enterprise license available)",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -14867,6 +15462,16 @@
       "exists": true
     },
     {
+      "id": "voicestudio",
+      "kind": "entry",
+      "title": "VoiceStudio",
+      "url": "https://github.com/debpalash/VoiceStudio",
+      "summary": "Open-source local-first ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription, and audiobook creation in 646 languages; Electron desktop app with local API and MCP server for agent integration; NVIDIA CUDA and Apple Metal acceleration; AGPL-3.0",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "vphone-cli",
       "kind": "entry",
       "title": "vphone-cli",
@@ -14965,6 +15570,16 @@
       "title": "Zoetrope",
       "url": "https://github.com/furkankly/zoetrope",
       "summary": "Rust TUI that visualizes Claude Code sessions as live flow graphs — reads JSONL transcripts from ~/.claude/projects/, shows agents/subagents/workflows as nodes with tool calls, status, and token counts; time-travel scrubbing, live following, gap compression, agent detail panels with prompts and tool timings; also runs in-browser via WASM; zero network, read-only; MIT",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "zoxide",
+      "kind": "entry",
+      "title": "zoxide",
+      "url": "https://github.com/ajeetdsouza/zoxide",
+      "summary": "Smarter cd command — learns which directories you use most frequently for instant jumps; frecency-based ranking; interactive selection via fzf; supports bash/zsh/fish/nushell/PowerShell/elvish/xonsh/tcsh/POSIX; imports from autojump/z/fasd/atuin; Rust; MIT",
       "category": "cli-tool",
       "decision_status": "open",
       "exists": true
@@ -17744,6 +18359,56 @@
     {
       "source": "attention-control",
       "target": "tag:simplified-technical-english",
+      "relation": "tagged"
+    },
+    {
+      "source": "atuin",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "atuin",
+      "target": "tag:cli",
+      "relation": "tagged"
+    },
+    {
+      "source": "atuin",
+      "target": "tag:cross-machine",
+      "relation": "tagged"
+    },
+    {
+      "source": "atuin",
+      "target": "tag:encryption",
+      "relation": "tagged"
+    },
+    {
+      "source": "atuin",
+      "target": "tag:productivity",
+      "relation": "tagged"
+    },
+    {
+      "source": "atuin",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "atuin",
+      "target": "tag:search",
+      "relation": "tagged"
+    },
+    {
+      "source": "atuin",
+      "target": "tag:shell-history",
+      "relation": "tagged"
+    },
+    {
+      "source": "atuin",
+      "target": "tag:sqlite",
+      "relation": "tagged"
+    },
+    {
+      "source": "atuin",
+      "target": "tag:sync",
       "relation": "tagged"
     },
     {
@@ -20917,6 +21582,66 @@
       "relation": "tagged"
     },
     {
+      "source": "cloudflare-clef",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "cloudflare-clef",
+      "target": "ollama-system-one-api",
+      "relation": "overlaps"
+    },
+    {
+      "source": "cloudflare-clef",
+      "target": "tag:apache-2",
+      "relation": "tagged"
+    },
+    {
+      "source": "cloudflare-clef",
+      "target": "tag:classification",
+      "relation": "tagged"
+    },
+    {
+      "source": "cloudflare-clef",
+      "target": "tag:cloudflare",
+      "relation": "tagged"
+    },
+    {
+      "source": "cloudflare-clef",
+      "target": "tag:decision-models",
+      "relation": "tagged"
+    },
+    {
+      "source": "cloudflare-clef",
+      "target": "tag:jev-competitor",
+      "relation": "tagged"
+    },
+    {
+      "source": "cloudflare-clef",
+      "target": "tag:non-autoregressive",
+      "relation": "tagged"
+    },
+    {
+      "source": "cloudflare-clef",
+      "target": "tag:open-weights",
+      "relation": "tagged"
+    },
+    {
+      "source": "cloudflare-clef",
+      "target": "tag:scoring",
+      "relation": "tagged"
+    },
+    {
+      "source": "cloudflare-clef",
+      "target": "tag:vision",
+      "relation": "tagged"
+    },
+    {
+      "source": "cloudflare-clef",
+      "target": "tag:workers-ai",
+      "relation": "tagged"
+    },
+    {
       "source": "cloudflare-os",
       "target": "cat:framework",
       "relation": "categorized"
@@ -20959,6 +21684,51 @@
     {
       "source": "cloudflare-os",
       "target": "tag:sandboxing",
+      "relation": "tagged"
+    },
+    {
+      "source": "cloudflare-security-audit-skill",
+      "target": "cat:skill",
+      "relation": "categorized"
+    },
+    {
+      "source": "cloudflare-security-audit-skill",
+      "target": "tag:adversarial-validation",
+      "relation": "tagged"
+    },
+    {
+      "source": "cloudflare-security-audit-skill",
+      "target": "tag:agent-skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "cloudflare-security-audit-skill",
+      "target": "tag:cloudflare",
+      "relation": "tagged"
+    },
+    {
+      "source": "cloudflare-security-audit-skill",
+      "target": "tag:coverage-tracking",
+      "relation": "tagged"
+    },
+    {
+      "source": "cloudflare-security-audit-skill",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "cloudflare-security-audit-skill",
+      "target": "tag:pen-testing",
+      "relation": "tagged"
+    },
+    {
+      "source": "cloudflare-security-audit-skill",
+      "target": "tag:security-audit",
+      "relation": "tagged"
+    },
+    {
+      "source": "cloudflare-security-audit-skill",
+      "target": "tag:vulnerability-discovery",
       "relation": "tagged"
     },
     {
@@ -22672,6 +23442,76 @@
       "relation": "tagged"
     },
     {
+      "source": "diagram-design",
+      "target": "cat:skill",
+      "relation": "categorized"
+    },
+    {
+      "source": "diagram-design",
+      "target": "tag:accessibility",
+      "relation": "tagged"
+    },
+    {
+      "source": "diagram-design",
+      "target": "tag:agent-skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "diagram-design",
+      "target": "tag:brand-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "diagram-design",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "diagram-design",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "diagram-design",
+      "target": "tag:copilot",
+      "relation": "tagged"
+    },
+    {
+      "source": "diagram-design",
+      "target": "tag:diagrams",
+      "relation": "tagged"
+    },
+    {
+      "source": "diagram-design",
+      "target": "tag:editorial",
+      "relation": "tagged"
+    },
+    {
+      "source": "diagram-design",
+      "target": "tag:html",
+      "relation": "tagged"
+    },
+    {
+      "source": "diagram-design",
+      "target": "tag:import-export",
+      "relation": "tagged"
+    },
+    {
+      "source": "diagram-design",
+      "target": "tag:skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "diagram-design",
+      "target": "tag:svg",
+      "relation": "tagged"
+    },
+    {
+      "source": "diagram-design",
+      "target": "tag:visualization",
+      "relation": "tagged"
+    },
+    {
       "source": "diffdock",
       "target": "autodock-vina",
       "relation": "overlaps"
@@ -23439,6 +24279,76 @@
     {
       "source": "ecc-plugin",
       "target": "tag:plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "embeddinggemma-2",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "embeddinggemma-2",
+      "target": "tag:apache-2",
+      "relation": "tagged"
+    },
+    {
+      "source": "embeddinggemma-2",
+      "target": "tag:audio",
+      "relation": "tagged"
+    },
+    {
+      "source": "embeddinggemma-2",
+      "target": "tag:code",
+      "relation": "tagged"
+    },
+    {
+      "source": "embeddinggemma-2",
+      "target": "tag:embeddings",
+      "relation": "tagged"
+    },
+    {
+      "source": "embeddinggemma-2",
+      "target": "tag:gemma",
+      "relation": "tagged"
+    },
+    {
+      "source": "embeddinggemma-2",
+      "target": "tag:google",
+      "relation": "tagged"
+    },
+    {
+      "source": "embeddinggemma-2",
+      "target": "tag:image",
+      "relation": "tagged"
+    },
+    {
+      "source": "embeddinggemma-2",
+      "target": "tag:multimodal",
+      "relation": "tagged"
+    },
+    {
+      "source": "embeddinggemma-2",
+      "target": "tag:on-device",
+      "relation": "tagged"
+    },
+    {
+      "source": "embeddinggemma-2",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "embeddinggemma-2",
+      "target": "tag:text",
+      "relation": "tagged"
+    },
+    {
+      "source": "embeddinggemma-2",
+      "target": "tag:vector-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "embeddinggemma-2",
+      "target": "tag:video",
       "relation": "tagged"
     },
     {
@@ -24999,6 +25909,51 @@
     {
       "source": "frontier",
       "target": "tag:pi",
+      "relation": "tagged"
+    },
+    {
+      "source": "fzf",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "fzf",
+      "target": "tag:cli",
+      "relation": "tagged"
+    },
+    {
+      "source": "fzf",
+      "target": "tag:fuzzy-finder",
+      "relation": "tagged"
+    },
+    {
+      "source": "fzf",
+      "target": "tag:go",
+      "relation": "tagged"
+    },
+    {
+      "source": "fzf",
+      "target": "tag:interactive",
+      "relation": "tagged"
+    },
+    {
+      "source": "fzf",
+      "target": "tag:preview",
+      "relation": "tagged"
+    },
+    {
+      "source": "fzf",
+      "target": "tag:productivity",
+      "relation": "tagged"
+    },
+    {
+      "source": "fzf",
+      "target": "tag:shell",
+      "relation": "tagged"
+    },
+    {
+      "source": "fzf",
+      "target": "tag:terminal-toolkit",
       "relation": "tagged"
     },
     {
@@ -27472,6 +28427,51 @@
       "relation": "tagged"
     },
     {
+      "source": "jq",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "jq",
+      "target": "tag:cli",
+      "relation": "tagged"
+    },
+    {
+      "source": "jq",
+      "target": "tag:c",
+      "relation": "tagged"
+    },
+    {
+      "source": "jq",
+      "target": "tag:data-processing",
+      "relation": "tagged"
+    },
+    {
+      "source": "jq",
+      "target": "tag:filter",
+      "relation": "tagged"
+    },
+    {
+      "source": "jq",
+      "target": "tag:json",
+      "relation": "tagged"
+    },
+    {
+      "source": "jq",
+      "target": "tag:pipe",
+      "relation": "tagged"
+    },
+    {
+      "source": "jq",
+      "target": "tag:transform",
+      "relation": "tagged"
+    },
+    {
+      "source": "jq",
+      "target": "tag:unix",
+      "relation": "tagged"
+    },
+    {
       "source": "karakeep",
       "target": "cat:framework",
       "relation": "categorized"
@@ -28052,6 +29052,71 @@
       "relation": "tagged"
     },
     {
+      "source": "laya-decision-model",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "laya-decision-model",
+      "target": "cloudflare-clef",
+      "relation": "overlaps"
+    },
+    {
+      "source": "laya-decision-model",
+      "target": "ollama-system-one-api",
+      "relation": "overlaps"
+    },
+    {
+      "source": "laya-decision-model",
+      "target": "tag:apache-2",
+      "relation": "tagged"
+    },
+    {
+      "source": "laya-decision-model",
+      "target": "tag:classification",
+      "relation": "tagged"
+    },
+    {
+      "source": "laya-decision-model",
+      "target": "tag:decision-models",
+      "relation": "tagged"
+    },
+    {
+      "source": "laya-decision-model",
+      "target": "tag:jev-alternative",
+      "relation": "tagged"
+    },
+    {
+      "source": "laya-decision-model",
+      "target": "tag:modernbert",
+      "relation": "tagged"
+    },
+    {
+      "source": "laya-decision-model",
+      "target": "tag:multilingual",
+      "relation": "tagged"
+    },
+    {
+      "source": "laya-decision-model",
+      "target": "tag:non-autoregressive",
+      "relation": "tagged"
+    },
+    {
+      "source": "laya-decision-model",
+      "target": "tag:open-source",
+      "relation": "tagged"
+    },
+    {
+      "source": "laya-decision-model",
+      "target": "tag:scoring",
+      "relation": "tagged"
+    },
+    {
+      "source": "laya-decision-model",
+      "target": "tag:self-hosted",
+      "relation": "tagged"
+    },
+    {
       "source": "laya-notification-center",
       "target": "cat:framework",
       "relation": "categorized"
@@ -28194,6 +29259,51 @@
     {
       "source": "lazydraw",
       "target": "tag:tui",
+      "relation": "tagged"
+    },
+    {
+      "source": "lazygit",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "lazygit",
+      "target": "tag:git",
+      "relation": "tagged"
+    },
+    {
+      "source": "lazygit",
+      "target": "tag:go",
+      "relation": "tagged"
+    },
+    {
+      "source": "lazygit",
+      "target": "tag:interactive-rebase",
+      "relation": "tagged"
+    },
+    {
+      "source": "lazygit",
+      "target": "tag:productivity",
+      "relation": "tagged"
+    },
+    {
+      "source": "lazygit",
+      "target": "tag:staging",
+      "relation": "tagged"
+    },
+    {
+      "source": "lazygit",
+      "target": "tag:terminal",
+      "relation": "tagged"
+    },
+    {
+      "source": "lazygit",
+      "target": "tag:tui",
+      "relation": "tagged"
+    },
+    {
+      "source": "lazygit",
+      "target": "tag:version-control",
       "relation": "tagged"
     },
     {
@@ -28989,6 +30099,61 @@
     {
       "source": "manim",
       "target": "tag:visualization",
+      "relation": "tagged"
+    },
+    {
+      "source": "mapgen4",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "mapgen4",
+      "target": "tag:biomes",
+      "relation": "tagged"
+    },
+    {
+      "source": "mapgen4",
+      "target": "tag:creative-coding",
+      "relation": "tagged"
+    },
+    {
+      "source": "mapgen4",
+      "target": "tag:delaunay",
+      "relation": "tagged"
+    },
+    {
+      "source": "mapgen4",
+      "target": "tag:game-dev",
+      "relation": "tagged"
+    },
+    {
+      "source": "mapgen4",
+      "target": "tag:map-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "mapgen4",
+      "target": "tag:procedural-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "mapgen4",
+      "target": "tag:rivers",
+      "relation": "tagged"
+    },
+    {
+      "source": "mapgen4",
+      "target": "tag:terrain",
+      "relation": "tagged"
+    },
+    {
+      "source": "mapgen4",
+      "target": "tag:typescript",
+      "relation": "tagged"
+    },
+    {
+      "source": "mapgen4",
+      "target": "tag:voronoi",
       "relation": "tagged"
     },
     {
@@ -31582,6 +32747,61 @@
       "relation": "tagged"
     },
     {
+      "source": "ollama-system-one-api",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "ollama-system-one-api",
+      "target": "laya-decision-model",
+      "relation": "overlaps"
+    },
+    {
+      "source": "ollama-system-one-api",
+      "target": "tag:classification",
+      "relation": "tagged"
+    },
+    {
+      "source": "ollama-system-one-api",
+      "target": "tag:decision-models",
+      "relation": "tagged"
+    },
+    {
+      "source": "ollama-system-one-api",
+      "target": "tag:jev-compatible",
+      "relation": "tagged"
+    },
+    {
+      "source": "ollama-system-one-api",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "ollama-system-one-api",
+      "target": "tag:nimble",
+      "relation": "tagged"
+    },
+    {
+      "source": "ollama-system-one-api",
+      "target": "tag:ollama",
+      "relation": "tagged"
+    },
+    {
+      "source": "ollama-system-one-api",
+      "target": "tag:scoring",
+      "relation": "tagged"
+    },
+    {
+      "source": "ollama-system-one-api",
+      "target": "tag:tev1",
+      "relation": "tagged"
+    },
+    {
+      "source": "ollama-system-one-api",
+      "target": "tag:typed-output",
+      "relation": "tagged"
+    },
+    {
       "source": "olmocr",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -32737,6 +33957,71 @@
       "relation": "tagged"
     },
     {
+      "source": "ornith-dgx-spark-setup",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "ornith-dgx-spark-setup",
+      "target": "on-prem-llm-deployment-architecture",
+      "relation": "overlaps"
+    },
+    {
+      "source": "ornith-dgx-spark-setup",
+      "target": "tag:api-gateway",
+      "relation": "tagged"
+    },
+    {
+      "source": "ornith-dgx-spark-setup",
+      "target": "tag:deployment",
+      "relation": "tagged"
+    },
+    {
+      "source": "ornith-dgx-spark-setup",
+      "target": "tag:dgx-spark",
+      "relation": "tagged"
+    },
+    {
+      "source": "ornith-dgx-spark-setup",
+      "target": "tag:gpu",
+      "relation": "tagged"
+    },
+    {
+      "source": "ornith-dgx-spark-setup",
+      "target": "tag:grafana",
+      "relation": "tagged"
+    },
+    {
+      "source": "ornith-dgx-spark-setup",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "ornith-dgx-spark-setup",
+      "target": "tag:moe",
+      "relation": "tagged"
+    },
+    {
+      "source": "ornith-dgx-spark-setup",
+      "target": "tag:multi-user",
+      "relation": "tagged"
+    },
+    {
+      "source": "ornith-dgx-spark-setup",
+      "target": "tag:ornith",
+      "relation": "tagged"
+    },
+    {
+      "source": "ornith-dgx-spark-setup",
+      "target": "tag:self-hosted",
+      "relation": "tagged"
+    },
+    {
+      "source": "ornith-dgx-spark-setup",
+      "target": "tag:vllm",
+      "relation": "tagged"
+    },
+    {
       "source": "ossu-computer-science",
       "target": "build-your-own-x",
       "relation": "overlaps"
@@ -33134,6 +34419,66 @@
     {
       "source": "paddleocr",
       "target": "tag:vision-language-model",
+      "relation": "tagged"
+    },
+    {
+      "source": "pageindex",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "pageindex",
+      "target": "rag-retrieval-recipe",
+      "relation": "overlaps"
+    },
+    {
+      "source": "pageindex",
+      "target": "tag:document-retrieval",
+      "relation": "tagged"
+    },
+    {
+      "source": "pageindex",
+      "target": "tag:financial",
+      "relation": "tagged"
+    },
+    {
+      "source": "pageindex",
+      "target": "tag:legal",
+      "relation": "tagged"
+    },
+    {
+      "source": "pageindex",
+      "target": "tag:llm",
+      "relation": "tagged"
+    },
+    {
+      "source": "pageindex",
+      "target": "tag:pdf",
+      "relation": "tagged"
+    },
+    {
+      "source": "pageindex",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "pageindex",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "pageindex",
+      "target": "tag:reasoning",
+      "relation": "tagged"
+    },
+    {
+      "source": "pageindex",
+      "target": "tag:tree-index",
+      "relation": "tagged"
+    },
+    {
+      "source": "pageindex",
+      "target": "tag:vectorless",
       "relation": "tagged"
     },
     {
@@ -34239,6 +35584,66 @@
     {
       "source": "ponytail",
       "target": "tag:yagni",
+      "relation": "tagged"
+    },
+    {
+      "source": "procedura",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "procedura",
+      "target": "tag:3d-modeling",
+      "relation": "tagged"
+    },
+    {
+      "source": "procedura",
+      "target": "tag:agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "procedura",
+      "target": "tag:blender",
+      "relation": "tagged"
+    },
+    {
+      "source": "procedura",
+      "target": "tag:cad",
+      "relation": "tagged"
+    },
+    {
+      "source": "procedura",
+      "target": "tag:llm",
+      "relation": "tagged"
+    },
+    {
+      "source": "procedura",
+      "target": "tag:openscad",
+      "relation": "tagged"
+    },
+    {
+      "source": "procedura",
+      "target": "tag:parametric",
+      "relation": "tagged"
+    },
+    {
+      "source": "procedura",
+      "target": "tag:procedural-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "procedura",
+      "target": "tag:text-to-3d",
+      "relation": "tagged"
+    },
+    {
+      "source": "procedura",
+      "target": "tag:urdf",
+      "relation": "tagged"
+    },
+    {
+      "source": "procedura",
+      "target": "tag:usd",
       "relation": "tagged"
     },
     {
@@ -35407,6 +36812,51 @@
       "relation": "tagged"
     },
     {
+      "source": "ripgrep",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "ripgrep",
+      "target": "tag:cli",
+      "relation": "tagged"
+    },
+    {
+      "source": "ripgrep",
+      "target": "tag:code-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "ripgrep",
+      "target": "tag:gitignore",
+      "relation": "tagged"
+    },
+    {
+      "source": "ripgrep",
+      "target": "tag:grep",
+      "relation": "tagged"
+    },
+    {
+      "source": "ripgrep",
+      "target": "tag:performance",
+      "relation": "tagged"
+    },
+    {
+      "source": "ripgrep",
+      "target": "tag:regex",
+      "relation": "tagged"
+    },
+    {
+      "source": "ripgrep",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "ripgrep",
+      "target": "tag:search",
+      "relation": "tagged"
+    },
+    {
       "source": "robyn",
       "target": "cat:framework",
       "relation": "categorized"
@@ -36047,6 +37497,46 @@
       "relation": "tagged"
     },
     {
+      "source": "shan-shui-inf",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "shan-shui-inf",
+      "target": "tag:browser",
+      "relation": "tagged"
+    },
+    {
+      "source": "shan-shui-inf",
+      "target": "tag:chinese-landscape",
+      "relation": "tagged"
+    },
+    {
+      "source": "shan-shui-inf",
+      "target": "tag:creative-coding",
+      "relation": "tagged"
+    },
+    {
+      "source": "shan-shui-inf",
+      "target": "tag:generative-art",
+      "relation": "tagged"
+    },
+    {
+      "source": "shan-shui-inf",
+      "target": "tag:javascript",
+      "relation": "tagged"
+    },
+    {
+      "source": "shan-shui-inf",
+      "target": "tag:procedural-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "shan-shui-inf",
+      "target": "tag:svg",
+      "relation": "tagged"
+    },
+    {
       "source": "shannon",
       "target": "cat:framework",
       "relation": "categorized"
@@ -36159,6 +37649,51 @@
     {
       "source": "shepherd-agents",
       "target": "tag:seatbelt",
+      "relation": "tagged"
+    },
+    {
+      "source": "shift-left-security",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "shift-left-security",
+      "target": "tag:ci-cd",
+      "relation": "tagged"
+    },
+    {
+      "source": "shift-left-security",
+      "target": "tag:dast",
+      "relation": "tagged"
+    },
+    {
+      "source": "shift-left-security",
+      "target": "tag:devsecops",
+      "relation": "tagged"
+    },
+    {
+      "source": "shift-left-security",
+      "target": "tag:pre-commit",
+      "relation": "tagged"
+    },
+    {
+      "source": "shift-left-security",
+      "target": "tag:sast",
+      "relation": "tagged"
+    },
+    {
+      "source": "shift-left-security",
+      "target": "tag:security",
+      "relation": "tagged"
+    },
+    {
+      "source": "shift-left-security",
+      "target": "tag:shift-left",
+      "relation": "tagged"
+    },
+    {
+      "source": "shift-left-security",
+      "target": "tag:sql-injection",
       "relation": "tagged"
     },
     {
@@ -38297,6 +39832,61 @@
       "relation": "tagged"
     },
     {
+      "source": "taiga-s1",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "taiga-s1",
+      "target": "tag:3d-modeling",
+      "relation": "tagged"
+    },
+    {
+      "source": "taiga-s1",
+      "target": "tag:agent-executor",
+      "relation": "tagged"
+    },
+    {
+      "source": "taiga-s1",
+      "target": "tag:cad",
+      "relation": "tagged"
+    },
+    {
+      "source": "taiga-s1",
+      "target": "tag:computer-use",
+      "relation": "tagged"
+    },
+    {
+      "source": "taiga-s1",
+      "target": "tag:cpu",
+      "relation": "tagged"
+    },
+    {
+      "source": "taiga-s1",
+      "target": "tag:decision-model",
+      "relation": "tagged"
+    },
+    {
+      "source": "taiga-s1",
+      "target": "tag:freecad",
+      "relation": "tagged"
+    },
+    {
+      "source": "taiga-s1",
+      "target": "tag:manufacturing",
+      "relation": "tagged"
+    },
+    {
+      "source": "taiga-s1",
+      "target": "tag:system-1",
+      "relation": "tagged"
+    },
+    {
+      "source": "taiga-s1",
+      "target": "tag:tiny-model",
+      "relation": "tagged"
+    },
+    {
       "source": "tailscale-mobile-approval",
       "target": "cat:agent-pattern",
       "relation": "categorized"
@@ -38957,6 +40547,46 @@
       "relation": "tagged"
     },
     {
+      "source": "tldr-pages",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "tldr-pages",
+      "target": "tag:cheatsheets",
+      "relation": "tagged"
+    },
+    {
+      "source": "tldr-pages",
+      "target": "tag:cli",
+      "relation": "tagged"
+    },
+    {
+      "source": "tldr-pages",
+      "target": "tag:community",
+      "relation": "tagged"
+    },
+    {
+      "source": "tldr-pages",
+      "target": "tag:cross-platform",
+      "relation": "tagged"
+    },
+    {
+      "source": "tldr-pages",
+      "target": "tag:documentation",
+      "relation": "tagged"
+    },
+    {
+      "source": "tldr-pages",
+      "target": "tag:examples",
+      "relation": "tagged"
+    },
+    {
+      "source": "tldr-pages",
+      "target": "tag:man-pages",
+      "relation": "tagged"
+    },
+    {
       "source": "tolvi",
       "target": "cat:framework",
       "relation": "categorized"
@@ -39607,6 +41237,66 @@
       "relation": "tagged"
     },
     {
+      "source": "ultralytics-yolo",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "ultralytics-yolo",
+      "target": "tag:classification",
+      "relation": "tagged"
+    },
+    {
+      "source": "ultralytics-yolo",
+      "target": "tag:computer-vision",
+      "relation": "tagged"
+    },
+    {
+      "source": "ultralytics-yolo",
+      "target": "tag:deep-learning",
+      "relation": "tagged"
+    },
+    {
+      "source": "ultralytics-yolo",
+      "target": "tag:edge-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "ultralytics-yolo",
+      "target": "tag:object-detection",
+      "relation": "tagged"
+    },
+    {
+      "source": "ultralytics-yolo",
+      "target": "tag:pose-estimation",
+      "relation": "tagged"
+    },
+    {
+      "source": "ultralytics-yolo",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "ultralytics-yolo",
+      "target": "tag:real-time",
+      "relation": "tagged"
+    },
+    {
+      "source": "ultralytics-yolo",
+      "target": "tag:segmentation",
+      "relation": "tagged"
+    },
+    {
+      "source": "ultralytics-yolo",
+      "target": "tag:tracking",
+      "relation": "tagged"
+    },
+    {
+      "source": "ultralytics-yolo",
+      "target": "tag:yolo",
+      "relation": "tagged"
+    },
+    {
       "source": "understand-anything",
       "target": "cat:plugin",
       "relation": "categorized"
@@ -40222,6 +41912,61 @@
       "relation": "overlaps"
     },
     {
+      "source": "voicestudio",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "voicestudio",
+      "target": "tag:agent-skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "voicestudio",
+      "target": "tag:audiobook",
+      "relation": "tagged"
+    },
+    {
+      "source": "voicestudio",
+      "target": "tag:dictation",
+      "relation": "tagged"
+    },
+    {
+      "source": "voicestudio",
+      "target": "tag:dubbing",
+      "relation": "tagged"
+    },
+    {
+      "source": "voicestudio",
+      "target": "tag:electron",
+      "relation": "tagged"
+    },
+    {
+      "source": "voicestudio",
+      "target": "tag:local-first",
+      "relation": "tagged"
+    },
+    {
+      "source": "voicestudio",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "voicestudio",
+      "target": "tag:transcription",
+      "relation": "tagged"
+    },
+    {
+      "source": "voicestudio",
+      "target": "tag:tts",
+      "relation": "tagged"
+    },
+    {
+      "source": "voicestudio",
+      "target": "tag:voice-cloning",
+      "relation": "tagged"
+    },
+    {
       "source": "vphone-cli",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -40654,6 +42399,51 @@
     {
       "source": "zoetrope",
       "target": "tag:wasm",
+      "relation": "tagged"
+    },
+    {
+      "source": "zoxide",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "zoxide",
+      "target": "tag:cd",
+      "relation": "tagged"
+    },
+    {
+      "source": "zoxide",
+      "target": "tag:cli",
+      "relation": "tagged"
+    },
+    {
+      "source": "zoxide",
+      "target": "tag:directory-navigation",
+      "relation": "tagged"
+    },
+    {
+      "source": "zoxide",
+      "target": "tag:frecency",
+      "relation": "tagged"
+    },
+    {
+      "source": "zoxide",
+      "target": "tag:fzf",
+      "relation": "tagged"
+    },
+    {
+      "source": "zoxide",
+      "target": "tag:productivity",
+      "relation": "tagged"
+    },
+    {
+      "source": "zoxide",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "zoxide",
+      "target": "tag:shell",
       "relation": "tagged"
     }
   ],

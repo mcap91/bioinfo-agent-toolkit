@@ -44,3 +44,9 @@ Also supports ISTA-DASLab Coder variant (half experts pruned, 91% SWE-bench Veri
 ## Security
 
 MIT licensed. Runs entirely local — no telemetry, no cloud calls. Model files carry their own licenses (Qwen Community License 1.0 for original). Listens on localhost by default; `--host 0.0.0.0` exposes the API with user-specified `--api-key`.
+
+## Usage notes
+
+- Strata update (Oct 2026): users report 200-230+ tok/s on dual 5090s with Flash Next IQ3 model, up from 170-190 tok/s pre-update. Hardware: Epyc 7402p, 256GB DDR4 3200 ECC, 192GB allocated to AI server VM in Proxmox. Q4 with vision support pending.
+- Dual RTX 3090 (24GB each), Ryzen 7 9800, 64GB DDR5-5200, Linux/Proxmox: Qwen3.8-Flash-Next-OrcaRouter IQ4_XS with vision. 100+ t/s decode short context. Extended context results: 200K prompt → 2,004 t/s PP / 73 t/s decode; 400K → 1,633 t/s PP / 46 t/s decode; 900K → 1,110 t/s PP / 44 t/s decode. Machine runs notably cooler than prior vLLM setup (60-70 t/s).
+- Orca 3.8 Flash Next uncensored variant: 75-80 t/s output on a 4090 via Strata. Compared to 180 t/s for a 3.6 35B censored model via llama.cpp. User reports the 180B Orca version runs with as little as 12GB VRAM via Strata's expert offloading.

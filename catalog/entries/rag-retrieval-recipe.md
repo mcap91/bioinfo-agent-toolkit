@@ -46,3 +46,7 @@ Directly applicable to literature RAG for bioinformatics — chunk papers/protoc
 ## Security
 
 Not applicable — this is a technique description, not installable software. Security considerations would apply to the individual components (vector DB, embedding model, LLM) chosen for implementation.
+
+## Usage notes
+
+- **Chunking strategy selection guide**: (1) Fixed-size: cut every N tokens, fast but splits mid-sentence. (2) Recursive: paragraphs → lines → words until each piece fits. (3) Document-based: keep headers, tables, code blocks whole. (4) Semantic: cut where embedding distance between sentences spikes. (5) Propositional: LLM breaks text into atomic self-contained facts. (6) Agentic: LLM agent decides chunk boundaries. Smart strategies (4-6) call a model at index time (slower, costs more). Start with a middle chunk size + sliding window with ~10-25% overlap. Common failure modes: chunks too small → context cut away, chunks too large → one vector blurs multiple topics and retrieval misses.
