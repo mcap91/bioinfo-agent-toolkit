@@ -68,7 +68,7 @@ Replace `PATH/TO` with the absolute path to your local clone of this repo.
 
 | Tool | Purpose |
 |---|---|
-| `search` | Keyword search with field-weighted ranking (title > tags > summary > body). Returns scores and truncation signal. |
+| `search` | Hybrid semantic + lexical search (field-weighted ranking: title > tags > summary > body, blended with embedding-based cosine similarity). Returns scores and truncation signal. |
 | `graph-query` | Knowledge graph traversal. `neighbors` mode: explore connections from a known entry (overlaps, shared tags, shared category). `topic` mode: discover entries by concept (substring match on tags/categories). |
 | `graph-build` | Rebuild the knowledge graph on demand (normally auto-rebuilds via `index`). |
 
@@ -116,6 +116,22 @@ The catalog is managed by an MCP tool server in [`packages/catalog-mcp/`](packag
 | Graph | `graph-build`, `graph-query` |
 
 Running `index` regenerates `catalog/index.md`, `catalog/.search-index.json`, and `catalog/.graph.json`.
+
+### Prerequisites
+
+Running the catalog MCP server requires:
+
+- Node.js
+- Python 3.10+
+- [uv](https://astral.sh/uv) — manages the Python environment for semantic search; never base/system Python, never plain pip
+- `fastembed`, installed via:
+  ```bash
+  cd packages/catalog-embedder && uv venv && uv pip install -r requirements.txt
+  ```
+
+The `search` tool blends semantic (embedding) and lexical matching and requires this Python
+environment to be set up. See [docs/semantic-search.md](docs/semantic-search.md) for the full
+setup guide, scoring details, and auto-rebuild behavior.
 
 ## Structure
 
