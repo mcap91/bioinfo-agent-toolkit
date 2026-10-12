@@ -55,12 +55,13 @@ def run_search(
         lexical = 0
         if query_terms:
             lexical = score_entry(frontmatter, body, query_terms, tax_index)
-            if lexical == 0:
-                continue
 
         cosine = 0.0
         if query_vector is not None and name in entry_vectors:
             cosine = max(0.0, min(1.0, cosine_similarity(query_vector, entry_vectors[name])))
+
+        if lexical == 0 and cosine == 0.0 and query_terms:
+            continue
 
         candidates.append(
             {

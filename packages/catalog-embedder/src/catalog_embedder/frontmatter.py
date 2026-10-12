@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+import sys
 from pathlib import Path
 
 import yaml
@@ -33,6 +34,7 @@ def read_all_entries(entries_dir: Path) -> dict[str, tuple[dict, str]]:
         content = file.read_text(encoding="utf-8")
         try:
             entries[file.stem] = parse_frontmatter(content)
-        except ValueError:
+        except (ValueError, yaml.YAMLError):
+            print(f"catalog-embedder: skipping {file.name} (YAML parse error)", file=sys.stderr)
             continue
     return entries
