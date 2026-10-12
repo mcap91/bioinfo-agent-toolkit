@@ -1,7 +1,7 @@
 # Catalog inbox
 
 Drop URLs (one per line, optional ` — note`) or fenced ```text blocks here, then run the drain (`/catalog-intake`). Blocked items are marked `⚠ needs-link` and stay until resolved.
-⚠ not-cataloguable
+
 ```text
 10 vector databases worth knowing. Swipe for all 10.
 
@@ -23,3 +23,6 @@ Which one are you running?
 mxp.co/i/vector-databases
 
 ```
+https://mixpeek.com/guides/vector-database-cost-comparison?utm_source=instagram&utm_medium=social&utm_campaign=ig-top10-vector-dbs
+
+https://github.com/karpathy/llm-council
