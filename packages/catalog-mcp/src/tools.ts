@@ -136,7 +136,11 @@ export const tools: ToolDef[] = [
         return { error: 'Search failed', stderr };
       }
 
-      return JSON.parse(stdout);
+      try {
+        return JSON.parse(stdout);
+      } catch {
+        return { error: 'Failed to parse search output', stdout: stdout.slice(0, 500) };
+      }
     },
   },
   {
