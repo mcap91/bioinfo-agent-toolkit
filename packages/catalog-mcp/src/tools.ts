@@ -4,7 +4,6 @@ import { dirSchema, CATEGORIES } from './core/schema.js';
 import { resolveDir, loadConfig, loadState, saveState } from './core/config.js';
 import { generateAndWriteIndex, buildSearchIndex } from './core/index-gen.js';
 import { lint } from './core/lint.js';
-import { searchEntries } from './core/search.js';
 import { scaffoldEntry } from './core/scaffold.js';
 import { readQueue, removeFromQueue, returnToInbox, clearQueue } from './core/queue.js';
 import { ingest } from './core/ingest.js';
@@ -18,9 +17,25 @@ import { listGoals, getGoal, addGoal, updateGoal, removeGoal } from './core/goal
 import { PROJECT_STATUSES, PRIORITIES } from './core/schema.js';
 import { drainInbox } from './core/drain.js';
 import { readFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
+import { execFile } from 'node:child_process';
+import path from 'node:path';
 import { catalogPaths } from './core/config.js';
 import { buildAndWriteGraph, queryNeighbors, queryTopic } from './core/graph/index.js';
 import type { GraphExport } from './core/graph/types.js';
+
+function venvPythonPath(dir: string): string {
+  return path.join(dir, 'packages', 'catalog-embedder', '.venv', 'bin', 'python');
+}
+
+function runCatalogEmbedder(venvPython: string, args: string[]): Promise<{ stdout: string; stderr: string; code: number }> {
+  return new Promise((resolve) => {
+    execFile(venvPython, ['-m', 'catalog_embedder', ...args], { maxBuffer: 1024 * 1024 * 64 }, (error, stdout, stderr) => {
+      if (stderr) process.stderr.write(stderr);
+      resolve({ stdout, stderr, code: error && 'code' in error && typeof error.code === 'number' ? error.code : (error ? 1 : 0) });
+    });
+  });
+}
 
 export interface ToolDef {
   name: string;
@@ -44,6 +59,16 @@ export const tools: ToolDef[] = [
       });
       const searchResult = await buildSearchIndex(dir);
       const graphResult = await buildAndWriteGraph(dir);
+
+      const venvPython = venvPythonPath(dir);
+      let vectorResult: { status: string; reason?: string; stderr?: string };
+      if (existsSync(venvPython)) {
+        const { stderr, code } = await runCatalogEmbedder(venvPython, ['build', '--dir', dir]);
+        vectorResult = code === 0 ? { status: 'ok' } : { status: 'error', stderr };
+      } else {
+        vectorResult = { status: 'skipped', reason: 'venv not found' };
+      }
+
       return {
         path: result.path,
         searchIndexPath: searchResult.path,
@@ -52,6 +77,7 @@ export const tools: ToolDef[] = [
         decisionStatusCounts: result.decisionStatusCounts,
         graphNodeCount: graphResult.nodeCount,
         graphEdgeCount: graphResult.edgeCount,
+        vectorResult,
       };
     },
   },
@@ -75,24 +101,42 @@ export const tools: ToolDef[] = [
   },
   {
     name: 'search',
-    description: 'Query catalog entries by field values or freeform text',
+    description: 'Hybrid semantic + lexical search over catalog entries. Finds tools by concept (e.g. "PDF parsing scientific papers") without exact keyword matches. Supports filters: decision_status, category.',
     inputSchema: dirSchema.extend({
       query: z.string(),
-      fields: z.array(z.string()).optional(),
       decision_status: z.enum(['adopted', 'rejected', 'open']).optional(),
       category: z.string().optional(),
       limit: z.number().int().positive().default(200),
     }),
     handler: async (input) => {
       const dir = resolveDir(input.dir as string | undefined);
-      return searchEntries({
-        dir,
-        query: input.query as string,
-        fields: input.fields as string[] | undefined,
-        decision_status: input.decision_status as string | undefined,
-        category: input.category as string | undefined,
-        limit: input.limit as number,
-      });
+      const venvPython = venvPythonPath(dir);
+      if (!existsSync(venvPython)) {
+        return {
+          error: 'Semantic search not available. Run: cd packages/catalog-embedder && uv venv && uv pip install -r requirements.txt',
+        };
+      }
+
+      const query = input.query as string;
+      const limit = input.limit as number;
+      const decision_status = input.decision_status as string | undefined;
+      const category = input.category as string | undefined;
+
+      const { stdout, stderr, code } = await runCatalogEmbedder(venvPython, [
+        'search',
+        '--query', query,
+        '--dir', dir,
+        '--limit', String(limit),
+        '--alpha', '0.5',
+        ...(decision_status ? ['--decision-status', decision_status] : []),
+        ...(category ? ['--category', category] : []),
+      ]);
+
+      if (code !== 0) {
+        return { error: 'Search failed', stderr };
+      }
+
+      return JSON.parse(stdout);
     },
   },
   {
