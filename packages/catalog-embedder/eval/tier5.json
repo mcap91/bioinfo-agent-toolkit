@@ -1,0 +1,977 @@
+{
+  "tier": 5,
+  "topics": 50,
+  "queries": [
+    {
+      "query": "converting scientific papers to readable text",
+      "expected": [
+        "olmocr",
+        "opendataloader-pdf",
+        "markitdown",
+        "docling-mcp"
+      ],
+      "topic": "ocr-document-parsing"
+    },
+    {
+      "query": "pulling structured text out of scanned pdfs with messy layouts",
+      "expected": [
+        "mineru",
+        "paddleocr",
+        "unstructured",
+        "chandra-ocr"
+      ],
+      "topic": "ocr-document-parsing"
+    },
+    {
+      "query": "tools that turn handwritten or image-based pages into plain text",
+      "expected": [
+        "olmocr",
+        "paddleocr",
+        "chandra-ocr",
+        "markitdown"
+      ],
+      "topic": "ocr-document-parsing"
+    },
+    {
+      "query": "running open-source models on my own hardware without the cloud",
+      "expected": [
+        "lm-studio",
+        "localai",
+        "ollama-system-one-api"
+      ],
+      "topic": "local-llm-hosting"
+    },
+    {
+      "query": "self-hosted chat interface for local models with an api server",
+      "expected": [
+        "open-webui",
+        "localai",
+        "lm-studio"
+      ],
+      "topic": "local-llm-hosting"
+    },
+    {
+      "query": "serving large language models efficiently on your own gpu",
+      "expected": [
+        "sglang",
+        "llama-cpp-adaptive-kv-streaming",
+        "localai"
+      ],
+      "topic": "local-llm-hosting"
+    },
+    {
+      "query": "figuring out how to make a drug molecule from scratch",
+      "expected": [
+        "aizynthfinder",
+        "askcos",
+        "synfrag"
+      ],
+      "topic": "drug-discovery-cheminformatics"
+    },
+    {
+      "query": "predicting how tightly a candidate compound binds its target protein",
+      "expected": [
+        "autodock-vina",
+        "diffdock",
+        "boltz-api"
+      ],
+      "topic": "drug-discovery-cheminformatics"
+    },
+    {
+      "query": "generating novel molecules with desired chemical properties",
+      "expected": [
+        "gentrl",
+        "drugex",
+        "reinvent4",
+        "chemberta3"
+      ],
+      "topic": "drug-discovery-cheminformatics"
+    },
+    {
+      "query": "patterns for structuring ai agent workflows",
+      "expected": [
+        "architect-loop",
+        "fable-agent-orchestration",
+        "advisor-strategy",
+        "herdr"
+      ],
+      "topic": "agent-design-patterns"
+    },
+    {
+      "query": "reusable blueprints for how multiple agents should hand off work",
+      "expected": [
+        "fable-orchestrator-pattern",
+        "architect-loop",
+        "embodied-agent-design-patterns"
+      ],
+      "topic": "agent-design-patterns"
+    },
+    {
+      "query": "philosophy behind designing reliable autonomous agent loops",
+      "expected": [
+        "architect-loop",
+        "embodied-agent-design-patterns",
+        "advisor-strategy"
+      ],
+      "topic": "agent-design-patterns"
+    },
+    {
+      "query": "running untrusted code safely without risking the host machine",
+      "expected": [
+        "bubblewrap-containers",
+        "firejail",
+        "e2b"
+      ],
+      "topic": "sandboxed-code-execution"
+    },
+    {
+      "query": "lightweight virtual machines for isolating agent-generated code",
+      "expected": [
+        "firecracker",
+        "e2b",
+        "opensandbox"
+      ],
+      "topic": "sandboxed-code-execution"
+    },
+    {
+      "query": "kernel-level primitives for restricting what a process can touch",
+      "expected": [
+        "landlock-lsm",
+        "bubblewrap-containers",
+        "firejail"
+      ],
+      "topic": "sandboxed-code-execution"
+    },
+    {
+      "query": "preventing ai agents from running up unexpected bills",
+      "expected": [
+        "agent-cost-governors",
+        "codeburn",
+        "deepseek-and-destroy"
+      ],
+      "topic": "agent-cost-control"
+    },
+    {
+      "query": "tracking and capping how much an autonomous agent spends on api calls",
+      "expected": [
+        "agent-cost-governors",
+        "claude-code-fable-cost-playbook",
+        "litellm"
+      ],
+      "topic": "agent-cost-control"
+    },
+    {
+      "query": "stopping a runaway agent loop before it burns through your budget",
+      "expected": [
+        "codeburn",
+        "deepseek-and-destroy",
+        "agent-cost-governors"
+      ],
+      "topic": "agent-cost-control"
+    },
+    {
+      "query": "finding similar items using meaning not keywords",
+      "expected": [
+        "faiss",
+        "chroma",
+        "qdrant",
+        "lancedb"
+      ],
+      "topic": "vector-similarity-search"
+    },
+    {
+      "query": "approximate nearest neighbor indexes for embeddings at scale",
+      "expected": [
+        "milvus",
+        "weaviate",
+        "vector-database-basics-hnsw"
+      ],
+      "topic": "vector-similarity-search"
+    },
+    {
+      "query": "picking a database built around cosine similarity instead of sql rows",
+      "expected": [
+        "qdrant",
+        "lancedb",
+        "pgvector"
+      ],
+      "topic": "vector-similarity-search"
+    },
+    {
+      "query": "keeping what an agent learned between conversations",
+      "expected": [
+        "fluxmem",
+        "mempalace",
+        "synapse-memory-layer"
+      ],
+      "topic": "agent-memory-systems"
+    },
+    {
+      "query": "giving a chatbot persistent recall of past sessions",
+      "expected": [
+        "okf-agent-memory",
+        "tencentdb-agent-memory",
+        "three-store-hybrid-memory-architecture"
+      ],
+      "topic": "agent-memory-systems"
+    },
+    {
+      "query": "architectures for long-term episodic memory in autonomous agents",
+      "expected": [
+        "three-store-hybrid-memory-architecture",
+        "synapse-memory-layer",
+        "fluxmem"
+      ],
+      "topic": "agent-memory-systems"
+    },
+    {
+      "query": "making large models fit on a normal computer",
+      "expected": [
+        "bitnet-cpp",
+        "airllm",
+        "llm-compressor"
+      ],
+      "topic": "model-quantization"
+    },
+    {
+      "query": "shrinking model weights to 4-bit or 8-bit without losing much accuracy",
+      "expected": [
+        "llm-compressor",
+        "turboquant",
+        "mlx-vlm-turboquant"
+      ],
+      "topic": "model-quantization"
+    },
+    {
+      "query": "squeezing billion-parameter models onto consumer gpus",
+      "expected": [
+        "airllm",
+        "bitnet-cpp",
+        "unsloth"
+      ],
+      "topic": "model-quantization"
+    },
+    {
+      "query": "terminal-based visual interfaces for managing complex workflows",
+      "expected": [
+        "herdr",
+        "zoetrope",
+        "tuios"
+      ],
+      "topic": "tui-interactive-tools"
+    },
+    {
+      "query": "building rich interactive text-mode dashboards",
+      "expected": [
+        "textual",
+        "tuios",
+        "zoetrope"
+      ],
+      "topic": "tui-interactive-tools"
+    },
+    {
+      "query": "navigating and fuzzy-filtering things from the command line",
+      "expected": [
+        "fzf",
+        "lazygit",
+        "herdr"
+      ],
+      "topic": "tui-interactive-tools"
+    },
+    {
+      "query": "choosing the right retrieval design for grounding an llm in your own documents",
+      "expected": [
+        "rag-architecture-decision-tree",
+        "production-rag-system-taxonomy",
+        "rag-retrieval-recipe"
+      ],
+      "topic": "rag-architectures"
+    },
+    {
+      "query": "splitting documents into pieces before feeding them to a retriever",
+      "expected": [
+        "five-levels-of-chunking",
+        "chunkless-rag",
+        "contextual-retrieval-anthropic"
+      ],
+      "topic": "rag-architectures"
+    },
+    {
+      "query": "mapping relationships between entities instead of flat text chunks",
+      "expected": [
+        "knowledge-graph-construction-anthropic",
+        "graphify",
+        "context-graphs-trillion-dollar-elephant"
+      ],
+      "topic": "knowledge-graphs"
+    },
+    {
+      "query": "combining a graph structure with retrieval for better grounded answers",
+      "expected": [
+        "graphrag-agent-memory-linkedin-series",
+        "knowledge-graph-construction-anthropic",
+        "codegraph"
+      ],
+      "topic": "knowledge-graphs"
+    },
+    {
+      "query": "letting an agent click around and fill out forms on real websites",
+      "expected": [
+        "browser-use",
+        "agent-browser",
+        "playwright-cli"
+      ],
+      "topic": "browser-automation"
+    },
+    {
+      "query": "pulling clean content out of web pages for feeding into a model",
+      "expected": [
+        "crawl4ai",
+        "firecrawl",
+        "scrapegraph-ai"
+      ],
+      "topic": "browser-automation"
+    },
+    {
+      "query": "standardized ways for separate ai agents to talk to each other",
+      "expected": [
+        "a2a-protocol",
+        "agentconnect",
+        "awesome-a2a"
+      ],
+      "topic": "multi-agent-protocols"
+    },
+    {
+      "query": "a shared specification for how tools and agents exchange context",
+      "expected": [
+        "mcp-2026-07-28-spec",
+        "agent-gateway-concept",
+        "a2a-protocol"
+      ],
+      "topic": "multi-agent-protocols"
+    },
+    {
+      "query": "running your own document, password, and photo management instead of cloud saas",
+      "expected": [
+        "paperless-ngx",
+        "vaultwarden",
+        "immich"
+      ],
+      "topic": "self-hosted-services"
+    },
+    {
+      "query": "self-hosted file sync and workflow automation on your own server",
+      "expected": [
+        "syncthing",
+        "n8n",
+        "actual-budget"
+      ],
+      "topic": "self-hosted-services"
+    },
+    {
+      "query": "customizing a pretrained model on your own data without retraining everything",
+      "expected": [
+        "lora-peft-guide",
+        "unsloth",
+        "axolotl"
+      ],
+      "topic": "fine-tuning-lora"
+    },
+    {
+      "query": "frameworks for running a full fine-tuning job end to end",
+      "expected": [
+        "llamafactory",
+        "torchtune",
+        "trl"
+      ],
+      "topic": "fine-tuning-lora"
+    },
+    {
+      "query": "combining several fine-tuned models into a single checkpoint",
+      "expected": [
+        "mergekit",
+        "lora-peft-guide"
+      ],
+      "topic": "fine-tuning-lora"
+    },
+    {
+      "query": "turning data or math concepts into animated explainer visuals",
+      "expected": [
+        "manim",
+        "paperbanana",
+        "diagram-design"
+      ],
+      "topic": "data-visualization"
+    },
+    {
+      "query": "visualizing geographic or spatial data without heavyweight gis software",
+      "expected": [
+        "geolibre",
+        "diagram-design",
+        "manim"
+      ],
+      "topic": "data-visualization"
+    },
+    {
+      "query": "faster ways to search, jump, and navigate from the terminal",
+      "expected": [
+        "fzf",
+        "zoxide",
+        "ripgrep"
+      ],
+      "topic": "cli-productivity"
+    },
+    {
+      "query": "quick reference and history recall for shell commands",
+      "expected": [
+        "tldr-pages",
+        "atuin",
+        "jq"
+      ],
+      "topic": "cli-productivity"
+    },
+    {
+      "query": "working with genetic variant data at scale",
+      "expected": [
+        "vcf-parquet-discussion",
+        "ggwas",
+        "fast-bioinformatics-tool-replacements"
+      ],
+      "topic": "genomics-bioinformatics"
+    },
+    {
+      "query": "benchmarking tools against real biological and genomic datasets",
+      "expected": [
+        "epibench",
+        "synthesize-bio",
+        "fast-bioinformatics-tool-replacements"
+      ],
+      "topic": "genomics-bioinformatics"
+    },
+    {
+      "query": "turning a text description into a 3d model you can edit",
+      "expected": [
+        "procedura",
+        "img2threejs"
+      ],
+      "topic": "cad-3d-modeling"
+    },
+    {
+      "query": "parametric and procedural approaches to generating 3d geometry",
+      "expected": [
+        "procedura",
+        "taiga-s1",
+        "img2threejs"
+      ],
+      "topic": "cad-3d-modeling"
+    },
+    {
+      "query": "extracting structured data from arbitrary websites automatically",
+      "expected": [
+        "scrapegraph-ai",
+        "maxun",
+        "firecrawl"
+      ],
+      "topic": "web-scraping-extraction"
+    },
+    {
+      "query": "turning raw web pages into clean markdown for llm pipelines",
+      "expected": [
+        "crawl4ai",
+        "firecrawl",
+        "agent-reach"
+      ],
+      "topic": "web-scraping-extraction"
+    },
+    {
+      "query": "catching code quality issues automatically before merging",
+      "expected": [
+        "pylint",
+        "ruff",
+        "oxc"
+      ],
+      "topic": "testing-qa-automation"
+    },
+    {
+      "query": "scanning a codebase for dead code and leaked secrets",
+      "expected": [
+        "skylos",
+        "ruff",
+        "pylint"
+      ],
+      "topic": "testing-qa-automation"
+    },
+    {
+      "query": "automatically generating and keeping a wiki of how a codebase works",
+      "expected": [
+        "openwiki",
+        "cartographer",
+        "understand-anything"
+      ],
+      "topic": "documentation-generation"
+    },
+    {
+      "query": "giving coding agents a map of an unfamiliar repository",
+      "expected": [
+        "cartographer",
+        "understand-anything",
+        "openwiki"
+      ],
+      "topic": "documentation-generation"
+    },
+    {
+      "query": "self-hosted storage for passwords and sensitive secrets",
+      "expected": [
+        "vaultwarden",
+        "agent-identity-borrowed-credentials"
+      ],
+      "topic": "secrets-credential-management"
+    },
+    {
+      "query": "checking whether your credentials have shown up in a data breach",
+      "expected": [
+        "breachdirectory",
+        "vaultwarden",
+        "agent-identity-borrowed-credentials"
+      ],
+      "topic": "secrets-credential-management"
+    },
+    {
+      "query": "visual drag-and-drop automation connecting different apps and apis",
+      "expected": [
+        "n8n",
+        "n8n-mcp"
+      ],
+      "topic": "workflow-automation-tools"
+    },
+    {
+      "query": "chaining tools together into repeatable automated pipelines",
+      "expected": [
+        "n8n",
+        "software-factory-orchestration",
+        "n8n-mcp"
+      ],
+      "topic": "workflow-automation-tools"
+    },
+    {
+      "query": "tracking personal spending with envelope-style budgeting instead of a spreadsheet",
+      "expected": [
+        "actual-budget"
+      ],
+      "topic": "budget-finance"
+    },
+    {
+      "query": "agentic tooling for investment research and market data",
+      "expected": [
+        "anthropic-financial-services",
+        "unusual-whales-mcp",
+        "actual-budget"
+      ],
+      "topic": "budget-finance"
+    },
+    {
+      "query": "blocking ads and trackers network-wide for every device at home",
+      "expected": [
+        "adguard-home",
+        "pi-hole"
+      ],
+      "topic": "network-privacy-dns-filtering"
+    },
+    {
+      "query": "self-hosted dns-level filtering instead of a browser extension",
+      "expected": [
+        "pi-hole",
+        "adguard-home"
+      ],
+      "topic": "network-privacy-dns-filtering"
+    },
+    {
+      "query": "smarter directory jumping that learns your habits instead of typing full paths",
+      "expected": [
+        "zoxide",
+        "atuin"
+      ],
+      "topic": "shell-history-productivity"
+    },
+    {
+      "query": "searchable, synced history of everything you've typed in the terminal",
+      "expected": [
+        "atuin",
+        "fzf",
+        "zoxide"
+      ],
+      "topic": "shell-history-productivity"
+    },
+    {
+      "query": "ai-assisted triage and cleanup of an overflowing inbox",
+      "expected": [
+        "inbox-zero",
+        "googleworkspace-cli"
+      ],
+      "topic": "email-management"
+    },
+    {
+      "query": "automating routine email and workspace tasks for an agent",
+      "expected": [
+        "googleworkspace-cli",
+        "inbox-zero",
+        "laya"
+      ],
+      "topic": "email-management"
+    },
+    {
+      "query": "turning spoken meetings into searchable notes automatically",
+      "expected": [
+        "meetily",
+        "granola-cli",
+        "granola-mcp"
+      ],
+      "topic": "meeting-transcription"
+    },
+    {
+      "query": "local-first tools for capturing and summarizing calls",
+      "expected": [
+        "granola-cli",
+        "meetily",
+        "granola-mcp"
+      ],
+      "topic": "meeting-transcription"
+    },
+    {
+      "query": "reusing and versioning prompt text across an agent codebase",
+      "expected": [
+        "prompt-versioning-managed-agents",
+        "prompt-assembly-cache-discipline"
+      ],
+      "topic": "prompt-engineering"
+    },
+    {
+      "query": "cutting token costs by reusing the same prefix across requests",
+      "expected": [
+        "anthropic-prompt-caching-guide",
+        "prompt-caching-mcp",
+        "prompt-assembly-cache-discipline"
+      ],
+      "topic": "prompt-engineering"
+    },
+    {
+      "query": "self-hosted platform for deploying apps without managing raw infrastructure",
+      "expected": [
+        "coolify",
+        "crossplane"
+      ],
+      "topic": "deployment-release-automation"
+    },
+    {
+      "query": "coordinating release readiness across multiple ticketing and devops systems",
+      "expected": [
+        "microsoft-release-manager-assistant",
+        "crossplane",
+        "coolify"
+      ],
+      "topic": "deployment-release-automation"
+    },
+    {
+      "query": "transcribing spoken audio into text quickly and accurately",
+      "expected": [
+        "faster-whisper",
+        "whisperx"
+      ],
+      "topic": "speech-audio-processing"
+    },
+    {
+      "query": "turning text into natural-sounding speech locally",
+      "expected": [
+        "voicestudio",
+        "faster-whisper",
+        "whisperx"
+      ],
+      "topic": "speech-audio-processing"
+    },
+    {
+      "query": "finding known vulnerabilities in container images and dependencies",
+      "expected": [
+        "trivy",
+        "hacksplaining"
+      ],
+      "topic": "security-vulnerability-scanning"
+    },
+    {
+      "query": "reverse engineering binaries to understand what they actually do",
+      "expected": [
+        "ghidra",
+        "trivy"
+      ],
+      "topic": "security-vulnerability-scanning"
+    },
+    {
+      "query": "high-throughput backends for answering many inference requests at once",
+      "expected": [
+        "sglang",
+        "nemo-switchyard"
+      ],
+      "topic": "model-serving-infrastructure"
+    },
+    {
+      "query": "a unified api layer for calling many different hosted model providers",
+      "expected": [
+        "huggingface-inference-providers",
+        "litellm",
+        "nemo-switchyard"
+      ],
+      "topic": "model-serving-infrastructure"
+    },
+    {
+      "query": "rootless alternatives to docker for running containers",
+      "expected": [
+        "podman",
+        "docker-alternatives-for-ai-agents"
+      ],
+      "topic": "container-infrastructure"
+    },
+    {
+      "query": "declarative infrastructure control planes built on kubernetes primitives",
+      "expected": [
+        "crossplane",
+        "ax",
+        "docker-alternatives-for-ai-agents"
+      ],
+      "topic": "container-infrastructure"
+    },
+    {
+      "query": "directories and registries for discovering available mcp servers",
+      "expected": [
+        "glama",
+        "smithery"
+      ],
+      "topic": "mcp-ecosystem"
+    },
+    {
+      "query": "gateways that broker access between agents and many backend tools",
+      "expected": [
+        "agent-gateway-concept",
+        "mcp-2026-07-28-spec",
+        "glama"
+      ],
+      "topic": "mcp-ecosystem"
+    },
+    {
+      "query": "breaking a big vague task into smaller verifiable steps before an agent starts",
+      "expected": [
+        "decomposition-over-context",
+        "jit-agent"
+      ],
+      "topic": "planning-patterns"
+    },
+    {
+      "query": "loop structures that let an agent revise its own plan as it goes",
+      "expected": [
+        "claudex-loop",
+        "decomposition-over-context",
+        "jit-agent"
+      ],
+      "topic": "planning-patterns"
+    },
+    {
+      "query": "models that understand both images and text together",
+      "expected": [
+        "sam3",
+        "ovis-vl-embedding",
+        "mmeb-benchmark"
+      ],
+      "topic": "multimodal-models"
+    },
+    {
+      "query": "segmenting objects in an image using a vision model",
+      "expected": [
+        "sam3",
+        "ovis-vl-embedding"
+      ],
+      "topic": "multimodal-models"
+    },
+    {
+      "query": "standardized test sets for measuring document extraction accuracy",
+      "expected": [
+        "extractbench",
+        "parsebench"
+      ],
+      "topic": "benchmark-datasets-for-agents"
+    },
+    {
+      "query": "evaluation datasets for biology and genomics-focused agents",
+      "expected": [
+        "biomysterybench",
+        "epibench"
+      ],
+      "topic": "benchmark-datasets-for-agents"
+    },
+    {
+      "query": "predicting the 3d shape a protein folds into",
+      "expected": [
+        "boltz-api",
+        "diffdock"
+      ],
+      "topic": "protein-structure-prediction"
+    },
+    {
+      "query": "simulating how atoms in a molecule move over time",
+      "expected": [
+        "gromacs",
+        "openmm",
+        "boltz-api"
+      ],
+      "topic": "protein-structure-prediction"
+    },
+    {
+      "query": "an ai pair programmer that edits files and runs commands in your terminal",
+      "expected": [
+        "aider",
+        "claw-code",
+        "pi-coding-agent"
+      ],
+      "topic": "coding-agents"
+    },
+    {
+      "query": "autonomous software engineering agents that open their own pull requests",
+      "expected": [
+        "openhands",
+        "aider",
+        "claw-code"
+      ],
+      "topic": "coding-agents"
+    },
+    {
+      "query": "figuring out how much vram a model's cache will actually need",
+      "expected": [
+        "kv-cache-vram-sizing",
+        "cpubrrr"
+      ],
+      "topic": "gpu-optimization"
+    },
+    {
+      "query": "squeezing more throughput out of limited gpu memory",
+      "expected": [
+        "mlx-vlm-turboquant",
+        "llm-compressor",
+        "kv-cache-vram-sizing"
+      ],
+      "topic": "gpu-optimization"
+    },
+    {
+      "query": "routing requests across many different llm providers through one endpoint",
+      "expected": [
+        "litellm",
+        "openrouter"
+      ],
+      "topic": "api-gateway-model-routing"
+    },
+    {
+      "query": "a managed gateway for brokering access to hosted foundation models",
+      "expected": [
+        "bedrock-agentcore-gateway",
+        "openrouter",
+        "litellm"
+      ],
+      "topic": "api-gateway-model-routing"
+    },
+    {
+      "query": "building a personal knowledge base that an agent can read and update",
+      "expected": [
+        "obsidian-claude-second-brain-workflow",
+        "second-brain-skills"
+      ],
+      "topic": "note-taking-knowledge-management"
+    },
+    {
+      "query": "bookmarking and organizing things you find online for later recall",
+      "expected": [
+        "karakeep",
+        "second-brain-skills"
+      ],
+      "topic": "note-taking-knowledge-management"
+    },
+    {
+      "query": "generating and editing images with a node-based visual pipeline",
+      "expected": [
+        "comfyui",
+        "paperbanana"
+      ],
+      "topic": "image-generation"
+    },
+    {
+      "query": "producing polished illustrations or diagrams from a text description",
+      "expected": [
+        "paperbanana",
+        "comfyui"
+      ],
+      "topic": "image-generation"
+    },
+    {
+      "query": "cutting and assembling video clips programmatically",
+      "expected": [
+        "overcut",
+        "vidnote"
+      ],
+      "topic": "video-processing"
+    },
+    {
+      "query": "summarizing or extracting notes from long video content",
+      "expected": [
+        "vidnote",
+        "claude-video",
+        "overcut"
+      ],
+      "topic": "video-processing"
+    },
+    {
+      "query": "understanding the hidden ongoing cost of relying on an automated tool",
+      "expected": [
+        "automation-credit-dependency",
+        "gpu-rental-cost-benchmarks"
+      ],
+      "topic": "dependency-cost-tracking"
+    },
+    {
+      "query": "comparing the price of renting gpu capacity versus running agents locally",
+      "expected": [
+        "gpu-rental-cost-benchmarks",
+        "claude-code-fable-cost-playbook",
+        "automation-credit-dependency"
+      ],
+      "topic": "dependency-cost-tracking"
+    },
+    {
+      "query": "ai-assisted generation of game assets and levels",
+      "expected": [
+        "godogen",
+        "procedura"
+      ],
+      "topic": "game-development-tooling"
+    },
+    {
+      "query": "agent-driven workflows for building playable prototypes",
+      "expected": [
+        "godogen",
+        "taiga-s1"
+      ],
+      "topic": "game-development-tooling"
+    },
+    {
+      "query": "rigorous methodology for building trustworthy eval suites for llm behavior",
+      "expected": [
+        "building-evals-anthropic",
+        "awesome-harness-engineering"
+      ],
+      "topic": "evaluation-methodology"
+    },
+    {
+      "query": "harnesses for automatically scoring and comparing agent runs",
+      "expected": [
+        "autoharness",
+        "building-evals-anthropic",
+        "awesome-harness-engineering"
+      ],
+      "topic": "evaluation-methodology"
+    }
+  ]
+}

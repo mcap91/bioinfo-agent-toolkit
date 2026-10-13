@@ -1,0 +1,282 @@
+{
+  "tier": 3,
+  "topics": 10,
+  "queries": [
+    {
+      "query": "converting scientific papers to readable text",
+      "expected": [
+        "olmocr",
+        "opendataloader-pdf",
+        "markitdown",
+        "docling-mcp"
+      ],
+      "topic": "ocr-document-parsing"
+    },
+    {
+      "query": "pulling structured text out of scanned pdfs with messy layouts",
+      "expected": [
+        "mineru",
+        "paddleocr",
+        "unstructured",
+        "chandra-ocr"
+      ],
+      "topic": "ocr-document-parsing"
+    },
+    {
+      "query": "tools that turn handwritten or image-based pages into plain text",
+      "expected": [
+        "olmocr",
+        "paddleocr",
+        "chandra-ocr",
+        "markitdown"
+      ],
+      "topic": "ocr-document-parsing"
+    },
+    {
+      "query": "running open-source models on my own hardware without the cloud",
+      "expected": [
+        "lm-studio",
+        "localai",
+        "ollama-system-one-api"
+      ],
+      "topic": "local-llm-hosting"
+    },
+    {
+      "query": "self-hosted chat interface for local models with an api server",
+      "expected": [
+        "open-webui",
+        "localai",
+        "lm-studio"
+      ],
+      "topic": "local-llm-hosting"
+    },
+    {
+      "query": "serving large language models efficiently on your own gpu",
+      "expected": [
+        "sglang",
+        "llama-cpp-adaptive-kv-streaming",
+        "localai"
+      ],
+      "topic": "local-llm-hosting"
+    },
+    {
+      "query": "figuring out how to make a drug molecule from scratch",
+      "expected": [
+        "aizynthfinder",
+        "askcos",
+        "synfrag"
+      ],
+      "topic": "drug-discovery-cheminformatics"
+    },
+    {
+      "query": "predicting how tightly a candidate compound binds its target protein",
+      "expected": [
+        "autodock-vina",
+        "diffdock",
+        "boltz-api"
+      ],
+      "topic": "drug-discovery-cheminformatics"
+    },
+    {
+      "query": "generating novel molecules with desired chemical properties",
+      "expected": [
+        "gentrl",
+        "drugex",
+        "reinvent4",
+        "chemberta3"
+      ],
+      "topic": "drug-discovery-cheminformatics"
+    },
+    {
+      "query": "patterns for structuring ai agent workflows",
+      "expected": [
+        "architect-loop",
+        "fable-agent-orchestration",
+        "advisor-strategy",
+        "herdr"
+      ],
+      "topic": "agent-design-patterns"
+    },
+    {
+      "query": "reusable blueprints for how multiple agents should hand off work",
+      "expected": [
+        "fable-orchestrator-pattern",
+        "architect-loop",
+        "embodied-agent-design-patterns"
+      ],
+      "topic": "agent-design-patterns"
+    },
+    {
+      "query": "philosophy behind designing reliable autonomous agent loops",
+      "expected": [
+        "architect-loop",
+        "embodied-agent-design-patterns",
+        "advisor-strategy"
+      ],
+      "topic": "agent-design-patterns"
+    },
+    {
+      "query": "running untrusted code safely without risking the host machine",
+      "expected": [
+        "bubblewrap-containers",
+        "firejail",
+        "e2b"
+      ],
+      "topic": "sandboxed-code-execution"
+    },
+    {
+      "query": "lightweight virtual machines for isolating agent-generated code",
+      "expected": [
+        "firecracker",
+        "e2b",
+        "opensandbox"
+      ],
+      "topic": "sandboxed-code-execution"
+    },
+    {
+      "query": "kernel-level primitives for restricting what a process can touch",
+      "expected": [
+        "landlock-lsm",
+        "bubblewrap-containers",
+        "firejail"
+      ],
+      "topic": "sandboxed-code-execution"
+    },
+    {
+      "query": "preventing ai agents from running up unexpected bills",
+      "expected": [
+        "agent-cost-governors",
+        "codeburn",
+        "deepseek-and-destroy"
+      ],
+      "topic": "agent-cost-control"
+    },
+    {
+      "query": "tracking and capping how much an autonomous agent spends on api calls",
+      "expected": [
+        "agent-cost-governors",
+        "claude-code-fable-cost-playbook",
+        "litellm"
+      ],
+      "topic": "agent-cost-control"
+    },
+    {
+      "query": "stopping a runaway agent loop before it burns through your budget",
+      "expected": [
+        "codeburn",
+        "deepseek-and-destroy",
+        "agent-cost-governors"
+      ],
+      "topic": "agent-cost-control"
+    },
+    {
+      "query": "finding similar items using meaning not keywords",
+      "expected": [
+        "faiss",
+        "chroma",
+        "qdrant",
+        "lancedb"
+      ],
+      "topic": "vector-similarity-search"
+    },
+    {
+      "query": "approximate nearest neighbor indexes for embeddings at scale",
+      "expected": [
+        "milvus",
+        "weaviate",
+        "vector-database-basics-hnsw"
+      ],
+      "topic": "vector-similarity-search"
+    },
+    {
+      "query": "picking a database built around cosine similarity instead of sql rows",
+      "expected": [
+        "qdrant",
+        "lancedb",
+        "pgvector"
+      ],
+      "topic": "vector-similarity-search"
+    },
+    {
+      "query": "keeping what an agent learned between conversations",
+      "expected": [
+        "fluxmem",
+        "mempalace",
+        "synapse-memory-layer"
+      ],
+      "topic": "agent-memory-systems"
+    },
+    {
+      "query": "giving a chatbot persistent recall of past sessions",
+      "expected": [
+        "okf-agent-memory",
+        "tencentdb-agent-memory",
+        "three-store-hybrid-memory-architecture"
+      ],
+      "topic": "agent-memory-systems"
+    },
+    {
+      "query": "architectures for long-term episodic memory in autonomous agents",
+      "expected": [
+        "three-store-hybrid-memory-architecture",
+        "synapse-memory-layer",
+        "fluxmem"
+      ],
+      "topic": "agent-memory-systems"
+    },
+    {
+      "query": "making large models fit on a normal computer",
+      "expected": [
+        "bitnet-cpp",
+        "airllm",
+        "llm-compressor"
+      ],
+      "topic": "model-quantization"
+    },
+    {
+      "query": "shrinking model weights to 4-bit or 8-bit without losing much accuracy",
+      "expected": [
+        "llm-compressor",
+        "turboquant",
+        "mlx-vlm-turboquant"
+      ],
+      "topic": "model-quantization"
+    },
+    {
+      "query": "squeezing billion-parameter models onto consumer gpus",
+      "expected": [
+        "airllm",
+        "bitnet-cpp",
+        "unsloth"
+      ],
+      "topic": "model-quantization"
+    },
+    {
+      "query": "terminal-based visual interfaces for managing complex workflows",
+      "expected": [
+        "herdr",
+        "zoetrope",
+        "tuios"
+      ],
+      "topic": "tui-interactive-tools"
+    },
+    {
+      "query": "building rich interactive text-mode dashboards",
+      "expected": [
+        "textual",
+        "tuios",
+        "zoetrope"
+      ],
+      "topic": "tui-interactive-tools"
+    },
+    {
+      "query": "navigating and fuzzy-filtering things from the command line",
+      "expected": [
+        "fzf",
+        "lazygit",
+        "herdr"
+      ],
+      "topic": "tui-interactive-tools"
+    }
+  ]
+}
