@@ -26,3 +26,4 @@ mxp.co/i/vector-databases
 https://mixpeek.com/guides/vector-database-cost-comparison?utm_source=instagram&utm_medium=social&utm_campaign=ig-top10-vector-dbs
 
 https://github.com/karpathy/llm-council
+https://github.com/storytold
