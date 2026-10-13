@@ -9,7 +9,10 @@ workflows: []
 reviewed: 2026-08-25
 acquired: 2026-08-25
 license: Apache-2.0
-security_flags: ["Published by Hugging Face org 'ATH-MaaS'; third-party analysis (note.com/ai_driven) identifies ATH-MaaS as a rebranding of the former Alibaba AIDC-AI team (publisher of the earlier 'Ovis' VLM series) following an internal reorg — not independently confirmed by Alibaba itself", "Model card provides only publisher-reported benchmark numbers (OmniDocBench v1.6, PureDocBench); no independent third-party benchmark reproduction found", "\"Publisher's own disclaimer: due to real-world document diversity/complexity", the model may still produce incorrect or incomplete outputs (repeated text, invalid table/formula structures, reading-order errors); manual verification recommended for critical applications"]
+security_flags:
+  - "Published by Hugging Face org 'ATH-MaaS'; third-party analysis (note.com/ai_driven) identifies ATH-MaaS as a rebranding of the former Alibaba AIDC-AI team (publisher of the earlier 'Ovis' VLM series) following an internal reorg — not independently confirmed by Alibaba itself"
+  - 'Model card provides only publisher-reported benchmark numbers (OmniDocBench v1.6, PureDocBench); no independent third-party benchmark reproduction found'
+  - "Publisher's own disclaimer: due to real-world document diversity/complexity, the model may still produce incorrect or incomplete outputs (repeated text, invalid table/formula structures, reading-order errors); manual verification recommended for critical applications"
 supersedes: []
 overlaps: [olmocr, opendataloader-pdf, locate-anything]
 ---

@@ -9,7 +9,10 @@ workflows: []
 reviewed: 2026-08-25
 acquired: 2026-08-25
 license: MIT
-security_flags: ["\"Requires third-party API keys with outbound network calls to external paid services during agent runs: GOOGLE_API_KEY (Gemini image generation)", XAI_API_KEY (Grok image/video generation), TRIPO3D_API_KEY (image-to-3D and rigged animation) — these keys and generated content leave the local machine", "\"Designed to run an AI coding agent (Claude Code or Codex) autonomously/unattended for extended periods ('a full generation run can take hours'); the README suggests running under tmux/screen on a remote server with the agent's remote-control interface", i.e. long unattended agent execution with real API credentials and code-execution ability", "No LICENSE file found at the repository's raw content path checked (githubusercontent.com/htdt/godogen/main/LICENSE returned 404); license is asserted via the GitHub repository metadata API (license.spdx_id: MIT) rather than confirmed from an in-repo LICENSE file"]
+security_flags:
+  - 'Requires third-party API keys with outbound network calls to external paid services during agent runs: GOOGLE_API_KEY (Gemini image generation), XAI_API_KEY (Grok image/video generation), TRIPO3D_API_KEY (image-to-3D and rigged animation) — these keys and generated content leave the local machine'
+  - "Designed to run an AI coding agent (Claude Code or Codex) autonomously/unattended for extended periods ('a full generation run can take hours'); the README suggests running under tmux/screen on a remote server with the agent's remote-control interface, i.e. long unattended agent execution with real API credentials and code-execution ability"
+  - 'No LICENSE file found at the repository''s raw content path checked (githubusercontent.com/htdt/godogen/main/LICENSE returned 404); license is asserted via the GitHub repository metadata API (license.spdx_id: MIT) rather than confirmed from an in-repo LICENSE file'
 supersedes: []
 overlaps: []
 ---

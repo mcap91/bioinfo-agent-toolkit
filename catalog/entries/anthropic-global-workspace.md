@@ -3,7 +3,7 @@ name: anthropic-global-workspace
 title: A Global Workspace in Language Models
 url: "https://www.anthropic.com/research/global-workspace"
 category: reference
-summary: "Anthropic interpretability research identifying the \"J-space\" — a small set of internal neural patterns in Claude that function as a global workspace for deliberate reasoning, reportable thoughts, and internal monitoring; includes J-lens technique for reading model thoughts not expressed in output"
+summary: 'Anthropic interpretability research identifying the "J-space" — a small set of internal neural patterns in Claude that function as a global workspace for deliberate reasoning, reportable thoughts, and internal monitoring; includes J-lens technique for reading model thoughts not expressed in output'
 tags: [interpretability, anthropic, consciousness, j-space, j-lens, global-workspace-theory, model-internals, safety-monitoring]
 reviewed: 2026-07-12
 acquired: 2026-07-12
