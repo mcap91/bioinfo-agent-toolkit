@@ -4,7 +4,7 @@ title: MinerU
 url: "https://github.com/opendatalab/MinerU"
 category: framework
 summary: "Open-source document parsing engine by OpenDataLab — converts PDFs, images, Office docs (Word/PPT/Excel), EPUB, OFD, HTML/MHTML, CSV into LLM-ready Markdown/JSON with four quality tiers (flash/basic/standard/advanced); VLM+OCR dual engine supporting 109 languages; local-first with optional remote API; CLI with agent-oriented continuation/locator system; local document library with search/watch/scan; MCP server; integrations with LangChain, RAGFlow, Dify, FastGPT; Python >=3.10; Apache-2.0 with commercial threshold (100M MAU or $20M revenue); ~80k stars"
-install: "uv tool install \\"mineru>=4.0,<5\\""
+install: 'uv tool install "mineru>=4.0,<5"'
 tags: [document-parsing, pdf, ocr, markdown, json, vlm, rag, agent, mcp, python, office, epub]
 reviewed: 2026-09-26
 acquired: 2026-09-26

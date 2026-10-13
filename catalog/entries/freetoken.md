@@ -4,7 +4,7 @@ title: FreeToken
 url: "https://github.com/FlashML-org/FreeToken"
 category: framework
 summary: "Edge-native MoE inference engine from UC Berkeley/UT Austin — runs 290B+ frontier MoE models on consumer hardware by keeping experts in system RAM and LRU-caching active experts to GPU; bandwidth-adaptive Q* scheduling, double-buffered prefill streaming, semantic anchor checkpoints for agentic context reuse, elastic VRAM reallocation; 3-4x faster decode and 6-30x faster prefill vs Ollama/llama.cpp on VRAM-oversubscribed MoE workloads; OpenAI/Anthropic-compatible API; desktop app + CLI; supports RTX 30/40/50 series; Apache-2.0"
-install: "uv pip install \\"freetoken[accel]\\""
+install: 'uv pip install "freetoken[accel]"'
 tags: [moe, local-inference, edge-inference, vram-oversubscription, expert-caching, consumer-hardware, gpu, llm-inference, openai-compatible, apache-2]
 reviewed: 2026-08-31
 acquired: 2026-08-31
