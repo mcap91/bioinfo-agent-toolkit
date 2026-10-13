@@ -527,7 +527,7 @@
       "expected": [
         "vaultwarden",
         "agent-identity-borrowed-credentials",
-        "breachdirectory"
+        "kasetto"
       ],
       "topic": "secrets-credential-management"
     },
@@ -563,8 +563,8 @@
       "query": "tracking personal spending with envelope-style budgeting instead of a spreadsheet",
       "expected": [
         "actual-budget",
-        "anthropic-financial-services",
-        "unusual-whales-mcp"
+        "inbox-zero",
+        "immich"
       ],
       "topic": "budget-finance"
     },
@@ -582,8 +582,7 @@
       "expected": [
         "adguard-home",
         "pi-hole",
-        "vaultwarden",
-        "syncthing"
+        "netscanner"
       ],
       "topic": "network-privacy-dns-filtering"
     },
@@ -592,8 +591,7 @@
       "expected": [
         "pi-hole",
         "adguard-home",
-        "vaultwarden",
-        "syncthing"
+        "netscanner"
       ],
       "topic": "network-privacy-dns-filtering"
     },
@@ -718,9 +716,8 @@
       "query": "taking apart a compiled executable to figure out what its machine code is actually doing",
       "expected": [
         "ghidra",
-        "trivy",
-        "shannon",
-        "hackingtool-plugin"
+        "hackingtool-plugin",
+        "skylos"
       ],
       "topic": "security-vulnerability-scanning"
     },
@@ -802,7 +799,7 @@
       "expected": [
         "sam3",
         "ovis-vl-embedding",
-        "mmeb-benchmark"
+        "locate-anything"
       ],
       "topic": "multimodal-models"
     },
@@ -810,8 +807,8 @@
       "query": "segmenting objects in an image using a vision model",
       "expected": [
         "sam3",
-        "ovis-vl-embedding",
-        "mmeb-benchmark"
+        "ultralytics-yolo",
+        "locate-anything"
       ],
       "topic": "multimodal-models"
     },
@@ -988,7 +985,7 @@
       "topic": "game-development-tooling"
     },
     {
-      "query": "agent-driven workflows for building playable prototypes",
+      "query": "using ai to generate a working game from a description without manually coding it",
       "expected": [
         "godogen",
         "taiga-s1",

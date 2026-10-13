@@ -527,7 +527,7 @@
       "expected": [
         "vaultwarden",
         "agent-identity-borrowed-credentials",
-        "breachdirectory"
+        "kasetto"
       ],
       "topic": "secrets-credential-management"
     },
