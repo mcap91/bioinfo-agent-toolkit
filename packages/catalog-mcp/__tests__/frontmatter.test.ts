@@ -35,10 +35,10 @@ describe('parseFrontmatter', () => {
     expect(result.frontmatter.url).toBe('https://github.com/org/tool');
   });
 
-  it('returns undefined for empty values', () => {
+  it('returns null for empty values', () => {
     const content = '---\nurl: \n---\n';
     const result = parseFrontmatter(content);
-    expect(result.frontmatter.url).toBeUndefined();
+    expect(result.frontmatter.url).toBeNull();
   });
 
   it('handles CRLF line endings', () => {
@@ -60,5 +60,28 @@ describe('serializeFrontmatter round-trip', () => {
     const reparsed = parseFrontmatter(serialized);
     expect(reparsed.frontmatter).toEqual(parsed.frontmatter);
     expect(reparsed.body).toBe(parsed.body);
+  });
+
+  it('round-trips values containing double quotes', () => {
+    const fm = {
+      name: 'quoted-tool',
+      install: 'pip install "some-pkg[extra]"',
+      summary: 'Has "quotes" inside',
+    };
+    const serialized = serializeFrontmatter(fm, 'Body\n');
+    const reparsed = parseFrontmatter(serialized);
+    expect(reparsed.frontmatter.install).toBe('pip install "some-pkg[extra]"');
+    expect(reparsed.frontmatter.summary).toBe('Has "quotes" inside');
+  });
+
+  it('round-trips values containing backslashes and special YAML characters', () => {
+    const fm = {
+      name: 'special-chars',
+      summary: 'path: C:\\Users\\test # comment-like',
+      tags: ["it's-a-test", 'key: value'],
+    };
+    const serialized = serializeFrontmatter(fm, '');
+    const reparsed = parseFrontmatter(serialized);
+    expect(reparsed.frontmatter).toEqual(fm);
   });
 });
