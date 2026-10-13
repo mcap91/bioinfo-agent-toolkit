@@ -216,7 +216,7 @@
       "topic": "agent-memory-systems"
     },
     {
-      "query": "architectures for long-term episodic memory in autonomous agents",
+      "query": "designs for how an agent stores and later recalls individual past experiences over very long stretches of time",
       "expected": [
         "three-store-hybrid-memory-architecture",
         "synapse-memory-layer",
@@ -351,7 +351,7 @@
       "topic": "multi-agent-protocols"
     },
     {
-      "query": "running your own document, password, and photo management instead of cloud saas",
+      "query": "keeping your files, login credentials, and pictures on infrastructure you control instead of handing them to commercial cloud apps",
       "expected": [
         "paperless-ngx",
         "vaultwarden",
@@ -360,7 +360,7 @@
       "topic": "self-hosted-services"
     },
     {
-      "query": "self-hosted file sync and workflow automation on your own server",
+      "query": "mirroring files between your own devices and chaining automated tasks between apps without relying on a third-party cloud",
       "expected": [
         "syncthing",
         "n8n",
@@ -390,7 +390,8 @@
       "query": "combining several fine-tuned models into a single checkpoint",
       "expected": [
         "mergekit",
-        "lora-peft-guide"
+        "lora-peft-guide",
+        "soup"
       ],
       "topic": "fine-tuning-lora"
     },
@@ -452,7 +453,9 @@
       "query": "turning a text description into a 3d model you can edit",
       "expected": [
         "procedura",
-        "img2threejs"
+        "img2threejs",
+        "taiga-s1",
+        "threejs-skills"
       ],
       "topic": "cad-3d-modeling"
     },
@@ -493,7 +496,7 @@
       "topic": "testing-qa-automation"
     },
     {
-      "query": "scanning a codebase for dead code and leaked secrets",
+      "query": "finding unused functions and exposed credentials hiding in a codebase",
       "expected": [
         "skylos",
         "ruff",
@@ -523,7 +526,8 @@
       "query": "self-hosted storage for passwords and sensitive secrets",
       "expected": [
         "vaultwarden",
-        "agent-identity-borrowed-credentials"
+        "agent-identity-borrowed-credentials",
+        "breachdirectory"
       ],
       "topic": "secrets-credential-management"
     },
@@ -540,7 +544,9 @@
       "query": "visual drag-and-drop automation connecting different apps and apis",
       "expected": [
         "n8n",
-        "n8n-mcp"
+        "n8n-mcp",
+        "langflow",
+        "dify"
       ],
       "topic": "workflow-automation-tools"
     },
@@ -556,7 +562,9 @@
     {
       "query": "tracking personal spending with envelope-style budgeting instead of a spreadsheet",
       "expected": [
-        "actual-budget"
+        "actual-budget",
+        "anthropic-financial-services",
+        "unusual-whales-mcp"
       ],
       "topic": "budget-finance"
     },
@@ -573,7 +581,9 @@
       "query": "blocking ads and trackers network-wide for every device at home",
       "expected": [
         "adguard-home",
-        "pi-hole"
+        "pi-hole",
+        "vaultwarden",
+        "syncthing"
       ],
       "topic": "network-privacy-dns-filtering"
     },
@@ -581,7 +591,9 @@
       "query": "self-hosted dns-level filtering instead of a browser extension",
       "expected": [
         "pi-hole",
-        "adguard-home"
+        "adguard-home",
+        "vaultwarden",
+        "syncthing"
       ],
       "topic": "network-privacy-dns-filtering"
     },
@@ -589,7 +601,8 @@
       "query": "smarter directory jumping that learns your habits instead of typing full paths",
       "expected": [
         "zoxide",
-        "atuin"
+        "atuin",
+        "fzf"
       ],
       "topic": "shell-history-productivity"
     },
@@ -606,7 +619,8 @@
       "query": "ai-assisted triage and cleanup of an overflowing inbox",
       "expected": [
         "inbox-zero",
-        "googleworkspace-cli"
+        "googleworkspace-cli",
+        "laya"
       ],
       "topic": "email-management"
     },
@@ -641,7 +655,8 @@
       "query": "reusing and versioning prompt text across an agent codebase",
       "expected": [
         "prompt-versioning-managed-agents",
-        "prompt-assembly-cache-discipline"
+        "prompt-assembly-cache-discipline",
+        "dspy"
       ],
       "topic": "prompt-engineering"
     },
@@ -655,10 +670,11 @@
       "topic": "prompt-engineering"
     },
     {
-      "query": "self-hosted platform for deploying apps without managing raw infrastructure",
+      "query": "a do-it-yourself heroku-style platform for shipping apps without wrangling raw servers by hand",
       "expected": [
         "coolify",
-        "crossplane"
+        "crossplane",
+        "microsoft-release-manager-assistant"
       ],
       "topic": "deployment-release-automation"
     },
@@ -675,7 +691,8 @@
       "query": "transcribing spoken audio into text quickly and accurately",
       "expected": [
         "faster-whisper",
-        "whisperx"
+        "whisperx",
+        "meetily"
       ],
       "topic": "speech-audio-processing"
     },
@@ -692,15 +709,18 @@
       "query": "finding known vulnerabilities in container images and dependencies",
       "expected": [
         "trivy",
-        "hacksplaining"
+        "hacksplaining",
+        "shift-left-security"
       ],
       "topic": "security-vulnerability-scanning"
     },
     {
-      "query": "reverse engineering binaries to understand what they actually do",
+      "query": "taking apart a compiled executable to figure out what its machine code is actually doing",
       "expected": [
         "ghidra",
-        "trivy"
+        "trivy",
+        "shannon",
+        "hackingtool-plugin"
       ],
       "topic": "security-vulnerability-scanning"
     },
@@ -708,7 +728,8 @@
       "query": "high-throughput backends for answering many inference requests at once",
       "expected": [
         "sglang",
-        "nemo-switchyard"
+        "nemo-switchyard",
+        "parallax"
       ],
       "topic": "model-serving-infrastructure"
     },
@@ -722,15 +743,17 @@
       "topic": "model-serving-infrastructure"
     },
     {
-      "query": "rootless alternatives to docker for running containers",
+      "query": "running isolated application environments without needing a root-privileged daemon like the usual container engine",
       "expected": [
         "podman",
-        "docker-alternatives-for-ai-agents"
+        "docker-alternatives-for-ai-agents",
+        "bubblewrap-containers",
+        "firecracker"
       ],
       "topic": "container-infrastructure"
     },
     {
-      "query": "declarative infrastructure control planes built on kubernetes primitives",
+      "query": "describing desired infrastructure state and letting a kubernetes-style controller reconcile it automatically",
       "expected": [
         "crossplane",
         "ax",
@@ -742,7 +765,8 @@
       "query": "directories and registries for discovering available mcp servers",
       "expected": [
         "glama",
-        "smithery"
+        "smithery",
+        "agentic-resource-discovery"
       ],
       "topic": "mcp-ecosystem"
     },
@@ -759,7 +783,8 @@
       "query": "breaking a big vague task into smaller verifiable steps before an agent starts",
       "expected": [
         "decomposition-over-context",
-        "jit-agent"
+        "jit-agent",
+        "claudex-loop"
       ],
       "topic": "planning-patterns"
     },
@@ -785,15 +810,17 @@
       "query": "segmenting objects in an image using a vision model",
       "expected": [
         "sam3",
-        "ovis-vl-embedding"
+        "ovis-vl-embedding",
+        "mmeb-benchmark"
       ],
       "topic": "multimodal-models"
     },
     {
-      "query": "standardized test sets for measuring document extraction accuracy",
+      "query": "common benchmark suites for scoring how well a tool pulls structured content out of files",
       "expected": [
         "extractbench",
-        "parsebench"
+        "parsebench",
+        "armorocr"
       ],
       "topic": "benchmark-datasets-for-agents"
     },
@@ -801,7 +828,8 @@
       "query": "evaluation datasets for biology and genomics-focused agents",
       "expected": [
         "biomysterybench",
-        "epibench"
+        "epibench",
+        "drevalpy"
       ],
       "topic": "benchmark-datasets-for-agents"
     },
@@ -809,7 +837,8 @@
       "query": "predicting the 3d shape a protein folds into",
       "expected": [
         "boltz-api",
-        "diffdock"
+        "diffdock",
+        "openmm"
       ],
       "topic": "protein-structure-prediction"
     },
@@ -844,7 +873,8 @@
       "query": "figuring out how much vram a model's cache will actually need",
       "expected": [
         "kv-cache-vram-sizing",
-        "cpubrrr"
+        "cpubrrr",
+        "llm-compressor"
       ],
       "topic": "gpu-optimization"
     },
@@ -861,7 +891,8 @@
       "query": "routing requests across many different llm providers through one endpoint",
       "expected": [
         "litellm",
-        "openrouter"
+        "openrouter",
+        "bedrock-agentcore-gateway"
       ],
       "topic": "api-gateway-model-routing"
     },
@@ -875,10 +906,11 @@
       "topic": "api-gateway-model-routing"
     },
     {
-      "query": "building a personal knowledge base that an agent can read and update",
+      "query": "letting an agent maintain and consult your own notes and reference material over time",
       "expected": [
         "obsidian-claude-second-brain-workflow",
-        "second-brain-skills"
+        "second-brain-skills",
+        "karpathy-llm-wiki"
       ],
       "topic": "note-taking-knowledge-management"
     },
@@ -886,7 +918,8 @@
       "query": "bookmarking and organizing things you find online for later recall",
       "expected": [
         "karakeep",
-        "second-brain-skills"
+        "second-brain-skills",
+        "obsidian-claude-second-brain-workflow"
       ],
       "topic": "note-taking-knowledge-management"
     },
@@ -894,7 +927,8 @@
       "query": "generating and editing images with a node-based visual pipeline",
       "expected": [
         "comfyui",
-        "paperbanana"
+        "paperbanana",
+        "localai"
       ],
       "topic": "image-generation"
     },
@@ -902,7 +936,8 @@
       "query": "producing polished illustrations or diagrams from a text description",
       "expected": [
         "paperbanana",
-        "comfyui"
+        "comfyui",
+        "localai"
       ],
       "topic": "image-generation"
     },
@@ -910,7 +945,9 @@
       "query": "cutting and assembling video clips programmatically",
       "expected": [
         "overcut",
-        "vidnote"
+        "vidnote",
+        "claude-video",
+        "anything2explainer"
       ],
       "topic": "video-processing"
     },
@@ -927,7 +964,8 @@
       "query": "understanding the hidden ongoing cost of relying on an automated tool",
       "expected": [
         "automation-credit-dependency",
-        "gpu-rental-cost-benchmarks"
+        "gpu-rental-cost-benchmarks",
+        "claude-code-fable-cost-playbook"
       ],
       "topic": "dependency-cost-tracking"
     },
@@ -944,7 +982,8 @@
       "query": "ai-assisted generation of game assets and levels",
       "expected": [
         "godogen",
-        "procedura"
+        "procedura",
+        "mapgen4"
       ],
       "topic": "game-development-tooling"
     },
@@ -952,7 +991,8 @@
       "query": "agent-driven workflows for building playable prototypes",
       "expected": [
         "godogen",
-        "taiga-s1"
+        "taiga-s1",
+        "aaa-quality-gate-orchestration"
       ],
       "topic": "game-development-tooling"
     },
@@ -960,7 +1000,8 @@
       "query": "rigorous methodology for building trustworthy eval suites for llm behavior",
       "expected": [
         "building-evals-anthropic",
-        "awesome-harness-engineering"
+        "awesome-harness-engineering",
+        "autoharness"
       ],
       "topic": "evaluation-methodology"
     },

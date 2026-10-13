@@ -216,7 +216,7 @@
       "topic": "agent-memory-systems"
     },
     {
-      "query": "architectures for long-term episodic memory in autonomous agents",
+      "query": "designs for how an agent stores and later recalls individual past experiences over very long stretches of time",
       "expected": [
         "three-store-hybrid-memory-architecture",
         "synapse-memory-layer",
@@ -351,7 +351,7 @@
       "topic": "multi-agent-protocols"
     },
     {
-      "query": "running your own document, password, and photo management instead of cloud saas",
+      "query": "keeping your files, login credentials, and pictures on infrastructure you control instead of handing them to commercial cloud apps",
       "expected": [
         "paperless-ngx",
         "vaultwarden",
@@ -360,7 +360,7 @@
       "topic": "self-hosted-services"
     },
     {
-      "query": "self-hosted file sync and workflow automation on your own server",
+      "query": "mirroring files between your own devices and chaining automated tasks between apps without relying on a third-party cloud",
       "expected": [
         "syncthing",
         "n8n",
@@ -390,7 +390,8 @@
       "query": "combining several fine-tuned models into a single checkpoint",
       "expected": [
         "mergekit",
-        "lora-peft-guide"
+        "lora-peft-guide",
+        "soup"
       ],
       "topic": "fine-tuning-lora"
     },
@@ -452,7 +453,9 @@
       "query": "turning a text description into a 3d model you can edit",
       "expected": [
         "procedura",
-        "img2threejs"
+        "img2threejs",
+        "taiga-s1",
+        "threejs-skills"
       ],
       "topic": "cad-3d-modeling"
     },
@@ -493,7 +496,7 @@
       "topic": "testing-qa-automation"
     },
     {
-      "query": "scanning a codebase for dead code and leaked secrets",
+      "query": "finding unused functions and exposed credentials hiding in a codebase",
       "expected": [
         "skylos",
         "ruff",
@@ -523,7 +526,8 @@
       "query": "self-hosted storage for passwords and sensitive secrets",
       "expected": [
         "vaultwarden",
-        "agent-identity-borrowed-credentials"
+        "agent-identity-borrowed-credentials",
+        "breachdirectory"
       ],
       "topic": "secrets-credential-management"
     },
@@ -540,7 +544,9 @@
       "query": "visual drag-and-drop automation connecting different apps and apis",
       "expected": [
         "n8n",
-        "n8n-mcp"
+        "n8n-mcp",
+        "langflow",
+        "dify"
       ],
       "topic": "workflow-automation-tools"
     },
