@@ -14,10 +14,6 @@ export interface TaxonomyIndex {
   knownTerms: Set<string>;            // every key + alias
 }
 
-export function tokenize(s: string): string[] {
-  return s.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
-}
-
 export async function loadTaxonomy(dir: string): Promise<Taxonomy> {
   try {
     const raw = await readFile(catalogPaths(dir).taxonomy, 'utf-8');
@@ -41,12 +37,6 @@ export function buildIndex(tax: Taxonomy): TaxonomyIndex {
     }
   }
   return { groups, canonicalOf, knownTerms };
-}
-
-export function expandTerm(term: string, index: TaxonomyIndex): string[] {
-  const t = term.toLowerCase();
-  const group = index.groups.get(t);
-  return group ? [...group] : [t];
 }
 
 export function canonicalForTag(tag: string, index: TaxonomyIndex): string | null {

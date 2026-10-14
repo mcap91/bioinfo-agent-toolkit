@@ -1,9 +1,10 @@
-"""Eval harness for catalog-embedder hybrid search.
+"""Eval harness for catalog-embedder semantic + BM25 rescue search.
 
 Runs the golden fixtures (tier1.json..tier5.json) against the `catalog_embedder search`
-CLI via subprocess, computing recall@3/5/10 and MRR. Supports an alpha sweep
-(--sweep) and a reciprocal-rank-fusion comparison (--rrf). Does not import
-catalog_embedder — all interaction with the search logic goes through the CLI.
+CLI via subprocess, measuring threshold-based full recall and precision. Supports a
+threshold sweep (--sweep) comparing three methods: fusion (default), semantic, and bm25.
+Does not import catalog_embedder — all interaction with the search logic goes through
+the CLI.
 """
 
 from __future__ import annotations
@@ -16,11 +17,10 @@ import time
 from pathlib import Path
 from typing import Any
 
-DEFAULT_ALPHA = 0.5
-DEFAULT_LIMIT = 200
+DEFAULT_LIMIT = 10000
 DEFAULT_TIMEOUT = 300.0
-SWEEP_ALPHAS = [0.0, 0.25, 0.5, 0.75, 1.0]
-RRF_K = 60
+SWEEP_THRESHOLDS = [0.0, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.50, 0.60, 0.70, 0.80, 0.90]
+METHODS = ["fusion", "semantic", "bm25"]
 
 
 def load_fixtures(eval_dir: Path, tiers: list[int] | None) -> list[dict[str, Any]]:
@@ -36,7 +36,7 @@ def call_search(
     pkg_dir: Path,
     repo_dir: Path,
     query: str,
-    alpha: float,
+    method: str,
     limit: int,
     timeout: float,
 ) -> tuple[dict[str, Any], float]:
@@ -44,7 +44,8 @@ def call_search(
         "uv", "run", "python", "-m", "catalog_embedder", "search",
         "--query", query,
         "--dir", str(repo_dir),
-        "--alpha", str(alpha),
+        "--method", method,
+        "--threshold", "0.0",
         "--limit", str(limit),
     ]
     start = time.perf_counter()
@@ -52,91 +53,92 @@ def call_search(
     elapsed = time.perf_counter() - start
     if proc.returncode != 0:
         raise RuntimeError(
-            f"search CLI failed (exit {proc.returncode}) for query {query!r} alpha={alpha}:\n{proc.stderr}"
+            f"search CLI failed (exit {proc.returncode}) for query {query!r} method={method}:\n{proc.stderr}"
         )
     try:
         data = json.loads(proc.stdout)
     except json.JSONDecodeError as exc:
         raise RuntimeError(
-            f"search CLI produced invalid JSON for query {query!r} alpha={alpha}: {exc}\nstdout: {proc.stdout!r}"
+            f"search CLI produced invalid JSON for query {query!r} method={method}: {exc}\nstdout: {proc.stdout!r}"
         ) from exc
     return data, elapsed
 
 
 def get_search_result(
-    cache: dict[tuple[str, float], tuple[dict[str, Any], float]],
+    cache: dict[tuple[str, str], tuple[dict[str, Any], float]],
     pkg_dir: Path,
     repo_dir: Path,
     query: str,
-    alpha: float,
+    method: str,
     limit: int,
     timeout: float,
 ) -> tuple[dict[str, Any], float]:
-    key = (query, alpha)
+    key = (query, method)
     if key not in cache:
-        cache[key] = call_search(pkg_dir, repo_dir, query, alpha, limit, timeout)
+        cache[key] = call_search(pkg_dir, repo_dir, query, method, limit, timeout)
     return cache[key]
 
 
-def recall_at_k(ranked: list[str], expected: list[str], k: int) -> float:
-    if not expected:
-        return 0.0
-    top_k = set(ranked[:k])
-    hits = sum(1 for e in expected if e in top_k)
-    return hits / len(expected)
-
-
-def mrr(ranked: list[str], expected: list[str]) -> float:
+def metrics_at_threshold(scored: list[tuple[str, float]], expected: list[str], threshold: float) -> dict[str, Any]:
+    above = [name for name, score in scored if score > threshold]
+    above_set = set(above)
     expected_set = set(expected)
-    for i, name in enumerate(ranked, start=1):
-        if name in expected_set:
-            return 1.0 / i
-    return 0.0
+    hits = len(expected_set & above_set)
+    recall = hits / len(expected_set) if expected_set else 0.0
+    precision = hits / len(above_set) if above_set else 0.0
+    return {
+        "recall": recall,
+        "precision": precision,
+        "n_results": len(above),
+        "perfect": 1 if recall == 1.0 else 0,
+    }
 
 
-def rrf_fuse(lexical_ranked: list[str], semantic_ranked: list[str], k: int = RRF_K) -> list[str]:
-    scores: dict[str, float] = {}
-    for ranked in (lexical_ranked, semantic_ranked):
-        for rank, name in enumerate(ranked, start=1):
-            scores[name] = scores.get(name, 0.0) + 1.0 / (k + rank)
-    return sorted(scores, key=lambda name: scores[name], reverse=True)
-
-
-def score_query(query: str, topic: str | None, expected: list[str], ranked: list[str], wall_time_s: float) -> dict[str, Any]:
+def score_query(
+    query: str,
+    topic: str | None,
+    expected: list[str],
+    scored: list[tuple[str, float]],
+    wall_time_s: float,
+    thresholds: list[float],
+) -> dict[str, Any]:
+    by_threshold = {str(t): metrics_at_threshold(scored, expected, t) for t in thresholds}
     return {
         "query": query,
         "topic": topic,
         "expected": expected,
-        "recall@3": recall_at_k(ranked, expected, 3),
-        "recall@5": recall_at_k(ranked, expected, 5),
-        "recall@10": recall_at_k(ranked, expected, 10),
-        "mrr": mrr(ranked, expected),
+        "by_threshold": by_threshold,
         "wall_time_s": wall_time_s,
     }
 
 
-def aggregate(query_results: list[dict[str, Any]]) -> dict[str, Any]:
+def aggregate(query_results: list[dict[str, Any]], thresholds: list[float]) -> dict[str, Any]:
     n = len(query_results)
-    if n == 0:
-        return {"recall@3": 0.0, "recall@5": 0.0, "recall@10": 0.0, "mrr": 0.0, "wall_time_s": 0.0, "n_queries": 0}
-    return {
-        "recall@3": sum(r["recall@3"] for r in query_results) / n,
-        "recall@5": sum(r["recall@5"] for r in query_results) / n,
-        "recall@10": sum(r["recall@10"] for r in query_results) / n,
-        "mrr": sum(r["mrr"] for r in query_results) / n,
-        "wall_time_s": sum(r["wall_time_s"] for r in query_results) / n,
-        "n_queries": n,
-    }
+    agg: dict[str, Any] = {"n_queries": n}
+    for t in thresholds:
+        key = str(t)
+        if n == 0:
+            agg[key] = {"recall": 0.0, "precision": 0.0, "n_results": 0.0, "perfect": 0.0}
+            continue
+        agg[key] = {
+            "recall": sum(r["by_threshold"][key]["recall"] for r in query_results) / n,
+            "precision": sum(r["by_threshold"][key]["precision"] for r in query_results) / n,
+            "n_results": sum(r["by_threshold"][key]["n_results"] for r in query_results) / n,
+            "perfect": sum(r["by_threshold"][key]["perfect"] for r in query_results) / n,
+        }
+    agg["wall_time_s"] = sum(r["wall_time_s"] for r in query_results) / n if n else 0.0
+    return agg
 
 
-def run_eval_alpha(
+def run_eval_method(
     pkg_dir: Path,
     repo_dir: Path,
     fixtures: list[dict[str, Any]],
-    alpha: float,
+    method: str,
     limit: int,
     timeout: float,
-    cache: dict[tuple[str, float], tuple[dict[str, Any], float]],
+    thresholds: list[float],
+    cache: dict[tuple[str, str], tuple[dict[str, Any], float]],
 ) -> dict[str, Any]:
     tiers_out: dict[str, Any] = {}
     all_results: list[dict[str, Any]] = []
@@ -144,87 +146,56 @@ def run_eval_alpha(
         tier = str(fixture["tier"])
         tier_results = []
         for q in fixture["queries"]:
-            data, elapsed = get_search_result(cache, pkg_dir, repo_dir, q["query"], alpha, limit, timeout)
-            ranked = [r["name"] for r in data.get("results", [])]
-            tier_results.append(score_query(q["query"], q.get("topic"), q["expected"], ranked, elapsed))
+            data, elapsed = get_search_result(cache, pkg_dir, repo_dir, q["query"], method, limit, timeout)
+            scored = [(r["name"], r["score"]) for r in data.get("results", [])]
+            tier_results.append(score_query(q["query"], q.get("topic"), q["expected"], scored, elapsed, thresholds))
         tiers_out[tier] = {
             "topics": fixture.get("topics"),
             "queries": tier_results,
-            "aggregate": aggregate(tier_results),
+            "aggregate": aggregate(tier_results, thresholds),
         }
         all_results.extend(tier_results)
-    return {"alpha": alpha, "tiers": tiers_out, "overall": aggregate(all_results)}
+    return {"method": method, "tiers": tiers_out, "overall": aggregate(all_results, thresholds)}
 
 
-def run_eval_rrf(
-    pkg_dir: Path,
-    repo_dir: Path,
-    fixtures: list[dict[str, Any]],
-    limit: int,
-    timeout: float,
-    cache: dict[tuple[str, float], tuple[dict[str, Any], float]],
-) -> dict[str, Any]:
-    tiers_out: dict[str, Any] = {}
-    all_results: list[dict[str, Any]] = []
-    for fixture in fixtures:
-        tier = str(fixture["tier"])
-        tier_results = []
-        for q in fixture["queries"]:
-            lexical_data, lex_time = get_search_result(cache, pkg_dir, repo_dir, q["query"], 0.0, limit, timeout)
-            semantic_data, sem_time = get_search_result(cache, pkg_dir, repo_dir, q["query"], 1.0, limit, timeout)
-            lexical_ranked = [r["name"] for r in lexical_data.get("results", [])]
-            semantic_ranked = [r["name"] for r in semantic_data.get("results", [])]
-            fused = rrf_fuse(lexical_ranked, semantic_ranked)
-            tier_results.append(score_query(q["query"], q.get("topic"), q["expected"], fused, lex_time + sem_time))
-        tiers_out[tier] = {
-            "topics": fixture.get("topics"),
-            "queries": tier_results,
-            "aggregate": aggregate(tier_results),
-        }
-        all_results.extend(tier_results)
-    return {"tiers": tiers_out, "overall": aggregate(all_results)}
-
-
-def print_block(label: str, result: dict[str, Any], file: Any) -> None:
-    print(f"\n=== {label} ===", file=file)
-    print(f"{'tier':<10}{'n':>5}{'recall@3':>10}{'recall@5':>10}{'recall@10':>11}{'mrr':>8}{'avg_s':>8}", file=file)
+def print_block(label: str, result: dict[str, Any], threshold: float, file: Any) -> None:
+    key = str(threshold)
+    print(f"\n=== {label} (threshold={threshold}) ===", file=file)
+    print(f"{'tier':<10}{'n':>5}{'recall':>10}{'precision':>11}{'n_results':>11}{'perfect':>9}", file=file)
     for tier, data in sorted(result["tiers"].items(), key=lambda kv: int(kv[0])):
-        agg = data["aggregate"]
+        agg = data["aggregate"][key]
         print(
-            f"{tier:<10}{agg['n_queries']:>5}{agg['recall@3']:>10.3f}{agg['recall@5']:>10.3f}"
-            f"{agg['recall@10']:>11.3f}{agg['mrr']:>8.3f}{agg['wall_time_s']:>8.3f}",
+            f"{tier:<10}{data['aggregate']['n_queries']:>5}{agg['recall']:>10.3f}{agg['precision']:>11.3f}"
+            f"{agg['n_results']:>11.2f}{agg['perfect']:>9.3f}",
             file=file,
         )
-    agg = result["overall"]
+    agg = result["overall"][key]
     print(
-        f"{'overall':<10}{agg['n_queries']:>5}{agg['recall@3']:>10.3f}{agg['recall@5']:>10.3f}"
-        f"{agg['recall@10']:>11.3f}{agg['mrr']:>8.3f}{agg['wall_time_s']:>8.3f}",
+        f"{'overall':<10}{result['overall']['n_queries']:>5}{agg['recall']:>10.3f}{agg['precision']:>11.3f}"
+        f"{agg['n_results']:>11.2f}{agg['perfect']:>9.3f}",
         file=file,
     )
 
 
-def print_summary(output: dict[str, Any], file: Any) -> None:
+def print_summary(output: dict[str, Any], thresholds: list[float], file: Any) -> None:
     if "sweep" in output:
-        for a in output["sweep"]["alphas"]:
-            print_block(f"alpha={a}", output["sweep"]["results"][str(a)], file)
-    if "alpha_run" in output:
-        print_block(f"alpha={output['alpha_run']['alpha']}", output["alpha_run"], file)
-    if "rrf" in output:
-        print_block(f"RRF (k={RRF_K})", output["rrf"], file)
+        for method in output["sweep"]["methods"]:
+            result = output["sweep"]["results"][method]
+            print_block(f"method={method}", result, thresholds[0], file)
+    if "run" in output:
+        print_block(f"method={output['run']['method']}", output["run"], thresholds[0], file)
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="run_eval.py",
-        description="Eval harness for catalog-embedder hybrid search: recall@k, MRR, alpha sweep, RRF comparison.",
+        description="Eval harness for catalog-embedder semantic + BM25 rescue search: threshold-based recall/precision, 3-method comparison.",
     )
     parser.add_argument("--dir", required=True, help="Path to the repo root (passed to the search CLI's --dir)")
     parser.add_argument("--tier", type=int, choices=range(1, 6), default=None, help="Run only this tier (default: all tiers 1-5)")
-    parser.add_argument("--alpha", type=float, default=DEFAULT_ALPHA, help="Blend weight for a single-alpha run (ignored with --sweep)")
     parser.add_argument("--limit", type=int, default=DEFAULT_LIMIT, help="--limit passed to the search CLI")
     parser.add_argument("--timeout", type=float, default=DEFAULT_TIMEOUT, help="Per-search-call subprocess timeout in seconds")
-    parser.add_argument("--sweep", action="store_true", help=f"Run the alpha sweep {SWEEP_ALPHAS} and save eval/sweep_results.json")
-    parser.add_argument("--rrf", action="store_true", help="Also compute the RRF (lexical + semantic fusion) comparison")
+    parser.add_argument("--sweep", action="store_true", help=f"Run the threshold sweep {SWEEP_THRESHOLDS} across methods {METHODS} and save eval/threshold_sweep_results.json")
     args = parser.parse_args(argv)
 
     eval_dir = Path(__file__).resolve().parent
@@ -237,26 +208,23 @@ def main(argv: list[str] | None = None) -> int:
         print(f"no fixture files found in {eval_dir}", file=sys.stderr)
         return 1
 
-    cache: dict[tuple[str, float], tuple[dict[str, Any], float]] = {}
+    cache: dict[tuple[str, str], tuple[dict[str, Any], float]] = {}
     output: dict[str, Any] = {}
+    thresholds = SWEEP_THRESHOLDS if args.sweep else [0.0]
 
     if args.sweep:
-        per_alpha = {}
-        for a in SWEEP_ALPHAS:
-            print(f"running sweep alpha={a}...", file=sys.stderr)
-            per_alpha[str(a)] = run_eval_alpha(pkg_dir, repo_dir, fixtures, a, args.limit, args.timeout, cache)
-        output["sweep"] = {"alphas": SWEEP_ALPHAS, "results": per_alpha}
+        per_method = {}
+        for method in METHODS:
+            print(f"running sweep method={method}...", file=sys.stderr)
+            per_method[method] = run_eval_method(pkg_dir, repo_dir, fixtures, method, args.limit, args.timeout, thresholds, cache)
+        output["sweep"] = {"thresholds": thresholds, "methods": METHODS, "results": per_method}
     else:
-        output["alpha_run"] = run_eval_alpha(pkg_dir, repo_dir, fixtures, args.alpha, args.limit, args.timeout, cache)
+        output["run"] = run_eval_method(pkg_dir, repo_dir, fixtures, "fusion", args.limit, args.timeout, thresholds, cache)
 
-    if args.rrf:
-        print("running RRF comparison...", file=sys.stderr)
-        output["rrf"] = run_eval_rrf(pkg_dir, repo_dir, fixtures, args.limit, args.timeout, cache)
-
-    print_summary(output, file=sys.stderr)
+    print_summary(output, thresholds, file=sys.stderr)
 
     if args.sweep:
-        sweep_path = eval_dir / "sweep_results.json"
+        sweep_path = eval_dir / "threshold_sweep_results.json"
         sweep_path.write_text(json.dumps(output, indent=2))
         print(f"\nsweep results written to {sweep_path}", file=sys.stderr)
 

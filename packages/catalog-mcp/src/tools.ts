@@ -101,7 +101,7 @@ export const tools: ToolDef[] = [
   },
   {
     name: 'search',
-    description: 'Hybrid semantic + lexical search over catalog entries. Finds tools by concept (e.g. "PDF parsing scientific papers") without exact keyword matches. Supports filters: decision_status, category.',
+    description: 'Semantic search over catalog entries with BM25 keyword rescue. Finds tools by concept (e.g. "PDF parsing scientific papers") without exact keyword matches. Supports filters: decision_status, category.',
     inputSchema: dirSchema.extend({
       query: z.string(),
       decision_status: z.enum(['adopted', 'rejected', 'open']).optional(),
@@ -127,7 +127,6 @@ export const tools: ToolDef[] = [
         '--query', query,
         '--dir', dir,
         '--limit', String(limit),
-        '--alpha', '0.5',
         ...(decision_status ? ['--decision-status', decision_status] : []),
         ...(category ? ['--category', category] : []),
       ]);

@@ -1,25 +1,32 @@
 # Semantic Search
 
-Hybrid semantic + lexical search over catalog entries. Concept queries like "PDF parsing
-scientific papers with tables" surface relevant tools even when they share no exact keywords
-with the query, blended with field-weighted lexical ranking for precise keyword matches.
+Semantic-first search over catalog entries, with BM25 keyword matching as a rescue signal.
+Concept queries like "PDF parsing scientific papers with tables" surface relevant tools even
+when they share no exact keywords with the query, while exact tool names and rare terms still
+rank highly through the BM25 rescue.
 
 ## What it does
 
-Search runs two scorers and blends them:
+Search runs two scorers and takes the max of the two, per entry:
 
 - **Semantic**: embeds the query and every catalog entry with a local model
   ([fastembed](https://github.com/qdrant/fastembed), `BAAI/bge-small-en-v1.5`, 384 dimensions,
   ~34MB quantized ONNX model), then ranks by cosine similarity.
-- **Lexical**: field-weighted keyword scoring (title: 10, name: 5, summary: 3, body: 1, tags: 5).
-
-The two scores are blended:
+- **BM25**: an inline keyword scorer (k1=1.2, b=0.75) over all entry fields (title, name,
+  summary, body, tags). Its result is normalized into `[0, BM25_RESCUE_CAP]` (0.5), not
+  `[0, 1]`, so it can only *rescue* a weak semantic match — it never outranks a strong
+  cosine match.
 
 ```
-final_score = (1 - alpha) * lexical_normalized + alpha * cosine_similarity
+final_score = max(cosine_similarity, normalized_bm25)
 ```
 
-`alpha` defaults to `0.5` and is tunable per query.
+There is no blend and no alpha parameter: semantic ranks everything, and BM25 can only help
+entries with strong keyword overlap but weak embeddings (exact tool names, rare terms) — it
+can never drag a good semantic score down. An optional `--threshold` filters results to
+`score > threshold` (default `0.0`, i.e. return everything that scored above zero). A query
+that's empty after tokenization bypasses scoring entirely and returns every entry with
+`score = 0.0`, preserving filtered-listing behavior (e.g. `search "" --category reference`).
 
 ## Prerequisites
 
@@ -52,12 +59,16 @@ Run a search:
 python -m catalog_embedder search --query "PDF parsing scientific papers with tables" \
   --dir {YOUR_PROJECT} \
   [--limit 10] \
-  [--alpha 0.5] \
+  [--threshold 0.0] \
+  [--method fusion] \
   [--decision-status adopted] \
   [--category "document-processing"]
 ```
 
 Both commands take `--dir`, the path to the project root containing the catalog data.
+`--threshold` filters results to `score > threshold` (default `0.0`). `--method`
+(`fusion` | `semantic` | `bm25`) selects a single scorer for eval baselines; the MCP
+`search` tool always uses `fusion`.
 
 ## Auto-rebuild
 
@@ -86,11 +97,12 @@ index in the background.
 
 Consuming repos don't need to run the CLI directly. Register the project's MCP server in
 `.mcp.json` as usual, then call its `search` tool — the tool invokes the embedding CLI as a
-subprocess and handles the semantic+lexical blend transparently. No extra configuration is
-required beyond the one-time `uv`/`fastembed` setup on the host running the server.
+subprocess and handles the semantic + BM25 rescue fusion transparently. No extra
+configuration is required beyond the one-time `uv`/`fastembed` setup on the host running
+the server.
 
 If the Python environment isn't set up, `search` returns an error describing the missing
-setup step rather than silently falling back to lexical-only results.
+setup step rather than silently falling back to BM25-only results.
 
 ## Performance
 

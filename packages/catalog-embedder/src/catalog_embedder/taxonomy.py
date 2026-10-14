@@ -1,16 +1,9 @@
-"""Query-term expansion via synonym groups (ported from taxonomy.ts)."""
+"""Canonical synonym groups (ported from taxonomy.ts)."""
 
 from __future__ import annotations
 
 import json
-import re
 from pathlib import Path
-
-TOKEN_RE = re.compile(r"[^a-z0-9]+")
-
-
-def tokenize(s: str) -> list[str]:
-    return [t for t in TOKEN_RE.split(s.lower()) if t]
 
 
 class TaxonomyIndex:
@@ -43,17 +36,3 @@ def build_index(canonical: dict[str, list[str]]) -> TaxonomyIndex:
             index.canonical_of[member] = canon
             index.known_terms.add(member)
     return index
-
-
-def expand_term(term: str, index: TaxonomyIndex) -> list[str]:
-    t = term.lower()
-    group = index.groups.get(t)
-    return list(group) if group else [t]
-
-
-def canonical_for_tag(tag: str, index: TaxonomyIndex) -> str | None:
-    return index.canonical_of.get(tag.lower())
-
-
-def unclassified_tags(tags: list[str], index: TaxonomyIndex) -> list[str]:
-    return [t for t in tags if t.lower() not in index.known_terms]
