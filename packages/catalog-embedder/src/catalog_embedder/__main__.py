@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 
 from .build import run_build
-from .search import DEFAULT_ALPHA, DEFAULT_LIMIT, run_search
+from .search import DEFAULT_LIMIT, run_search
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -18,11 +18,12 @@ def main(argv: list[str] | None = None) -> int:
     build_parser = subparsers.add_parser("build", help="Embed all catalog entries and write the vector file")
     build_parser.add_argument("--dir", required=True, help="Path to the repo root")
 
-    search_parser = subparsers.add_parser("search", help="Hybrid lexical + semantic search")
+    search_parser = subparsers.add_parser("search", help="Semantic + BM25 rescue search")
     search_parser.add_argument("--query", required=True)
     search_parser.add_argument("--dir", required=True, help="Path to the repo root")
     search_parser.add_argument("--limit", type=int, default=DEFAULT_LIMIT)
-    search_parser.add_argument("--alpha", type=float, default=DEFAULT_ALPHA)
+    search_parser.add_argument("--threshold", type=float, default=0.0)
+    search_parser.add_argument("--method", choices=["fusion", "semantic", "bm25"], default="fusion")
     search_parser.add_argument("--decision-status", dest="decision_status", default=None)
     search_parser.add_argument("--category", dest="category", default=None)
 
@@ -37,7 +38,8 @@ def main(argv: list[str] | None = None) -> int:
             Path(args.dir),
             args.query,
             limit=args.limit,
-            alpha=args.alpha,
+            threshold=args.threshold,
+            method=args.method,
             decision_status=args.decision_status,
             category=args.category,
         )

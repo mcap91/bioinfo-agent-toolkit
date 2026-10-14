@@ -1,7 +1,7 @@
 [project]
 name = "catalog-embedder"
 version = "0.1.0"
-description = "CLI for building fastembed vectors and running hybrid lexical+semantic search over the catalog."
+description = "CLI for building fastembed vectors and running semantic + BM25 rescue search over the catalog."
 requires-python = ">=3.10"
 dependencies = [
     "fastembed>=0.3.0",
