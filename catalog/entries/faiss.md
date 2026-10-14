@@ -6,12 +6,12 @@ category: framework
 summary: "Meta's C++/Python library for efficient similarity search and clustering of dense vectors — billion-scale datasets, GPU acceleration (CUDA/ROCm), multiple index types (HNSW, NSG, IVF, PQ), L2/dot-product/cosine similarity; 40K+ stars, MIT"
 tags: [similarity-search, vector-search, clustering, gpu, embeddings, nearest-neighbor]
 workflows: []
-reviewed: 2026-07-01
+reviewed: 2026-10-13
 acquired: 2026-07-01
 license: MIT
 security_flags: []
 supersedes: []
-overlaps: [chromadb]
+overlaps: [chromadb, hnswlib, scann]
 ---
 
 ## What it does
@@ -23,9 +23,9 @@ Supports three distance metrics: L2 (Euclidean), dot product, and cosine similar
 ## Differentiators
 
 - **Scale**: Handles billion-scale vector sets on a single server via compressed representations (binary vectors, compact quantization codes)
-- **GPU acceleration**: Drop-in GPU index replacements (e.g., `GpuIndexFlatL2`) for NVIDIA CUDA and AMD ROCm, with automatic CPU/GPU memory management; optional cuVS backend for NVIDIA GPU implementations
+- **GPU acceleration**: Drop-in GPU index replacements (e.g., `GpuIndexFlatL2`) for NVIDIA CUDA and AMD ROCm, with automatic CPU/GPU memory management; optional cuVS backend for NVIDIA GPU implementations; experimental Metal backend for Apple GPUs (`MetalIndexIVFPQ`, added v1.15.0)
 - **Index variety**: Multiple index structures — flat (exact), IVF (inverted file), PQ (product quantization), HNSW, NSG, RaBitQ — each with different search-time/quality/memory tradeoffs
-- **Mature**: Published research backing (IEEE TBD 2019, arXiv 2024), extensive wiki documentation, active community via GitHub Discussions, latest release v1.14.2
+- **Mature**: Published research backing (IEEE TBD 2019, arXiv 2024), extensive wiki documentation, active community via GitHub Discussions, latest release v1.15.1 (Sept 2026)
 
 ## Mechanical details
 

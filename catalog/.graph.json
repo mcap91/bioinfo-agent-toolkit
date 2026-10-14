@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T03:31:57.374Z",
+  "generated_at": "2026-10-14T04:36:35.154Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -479,6 +479,15 @@
       "exists": true
     },
     {
+      "id": "ann-index-methods",
+      "kind": "entry",
+      "title": "Approximate Nearest Neighbor (ANN) Index Methods Cheat Sheet",
+      "summary": "Practitioner cheat sheet comparing 5 ANN vector-index methods by mechanism, complexity, and scale: Flat (exact brute-force, O(N) scan, <100K vectors or ground truth), IVF (k-means partitioning, O(nlist+nprobe*cluster_size), 100K-10M), HNSW (multi-layer proximity graph, O(log N) search, best recall/latency when the graph fits in RAM), IVF-PQ (IVF + Product Quantization residual compression, ~m bytes/vector, 100M-billion scale), and ScaNN (Google's anisotropic vector quantization + rerank, ~2x the QPS of the next-fastest of 11 tuned libraries at matched accuracy on ann-benchmarks.com); includes FAISS's own memory formulas and scale-bracket recommendations",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "anthropic-financial-services",
       "kind": "entry",
       "title": "Claude for Financial Services",
@@ -493,7 +502,7 @@
       "kind": "entry",
       "title": "A Global Workspace in Language Models",
       "url": "https://www.anthropic.com/research/global-workspace",
-      "summary": "Anthropic interpretability research identifying the \\\"J-space\\\" — a small set of internal neural patterns in Claude that function as a global workspace for deliberate reasoning, reportable thoughts, and internal monitoring; includes J-lens technique for reading model thoughts not expressed in output",
+      "summary": "Anthropic interpretability research identifying the \"J-space\" — a small set of internal neural patterns in Claude that function as a global workspace for deliberate reasoning, reportable thoughts, and internal monitoring; includes J-lens technique for reading model thoughts not expressed in output",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -2709,6 +2718,16 @@
       "exists": true
     },
     {
+      "id": "hnswlib",
+      "kind": "entry",
+      "title": "HNSWlib",
+      "url": "https://github.com/nmslib/hnswlib",
+      "summary": "Header-only C++ library (with Python bindings) implementing HNSW (Hierarchical Navigable Small World) graph search — the standalone reference implementation of the HNSW algorithm by Yury Malkov and Dmitry Yashunin; incremental index construction, element deletion/update, custom C++ distances, L2/inner-product/cosine spaces; Apache-2.0",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "hotdog",
       "kind": "entry",
       "title": "hotdog",
@@ -4742,6 +4761,16 @@
       "title": "SAM 3 (Segment Anything Model 3)",
       "url": "https://github.com/facebookresearch/sam3",
       "summary": "Meta's 848M-param unified foundation model for promptable segmentation in images and video; adds open-vocabulary detection/segmentation of all instances of a concept from a short text phrase or visual exemplars, on top of SAM 2's point/box/mask tracking. Checkpoints are gated (access request + HF auth).",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "scann",
+      "kind": "entry",
+      "title": "ScaNN",
+      "url": "https://github.com/google-research/google-research/tree/master/scann",
+      "summary": "Google Research library for efficient large-scale vector similarity search — anisotropic vector quantization (AVQ) for Maximum Inner Product Search plus SOAR indexing, partition/score/rescore search pipeline, native Python and optional TensorFlow APIs, AVX/NEON-optimized x86/ARM wheels; powers Vertex AI Vector Search; Apache-2.0",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -8703,6 +8732,11 @@
       "exists": true
     },
     {
+      "id": "tag:faiss",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:false-positive",
       "kind": "tag",
       "exists": true
@@ -9473,6 +9507,11 @@
       "exists": true
     },
     {
+      "id": "tag:header-only",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:headless",
       "kind": "tag",
       "exists": true
@@ -9859,6 +9898,16 @@
     },
     {
       "id": "tag:iteration",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ivf",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ivf-pq",
       "kind": "tag",
       "exists": true
     },
@@ -12118,6 +12167,11 @@
       "exists": true
     },
     {
+      "id": "tag:product-quantization",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:production",
       "kind": "tag",
       "exists": true
@@ -12869,6 +12923,11 @@
     },
     {
       "id": "tag:scalability",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:scann",
       "kind": "tag",
       "exists": true
     },
@@ -17680,6 +17739,66 @@
       "source": "andrej-karpathy-skills",
       "target": "tag:karpathy",
       "relation": "tagged"
+    },
+    {
+      "source": "ann-index-methods",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "ann-index-methods",
+      "target": "faiss",
+      "relation": "overlaps"
+    },
+    {
+      "source": "ann-index-methods",
+      "target": "tag:ann-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "ann-index-methods",
+      "target": "tag:faiss",
+      "relation": "tagged"
+    },
+    {
+      "source": "ann-index-methods",
+      "target": "tag:hnsw",
+      "relation": "tagged"
+    },
+    {
+      "source": "ann-index-methods",
+      "target": "tag:ivf-pq",
+      "relation": "tagged"
+    },
+    {
+      "source": "ann-index-methods",
+      "target": "tag:ivf",
+      "relation": "tagged"
+    },
+    {
+      "source": "ann-index-methods",
+      "target": "tag:product-quantization",
+      "relation": "tagged"
+    },
+    {
+      "source": "ann-index-methods",
+      "target": "tag:scann",
+      "relation": "tagged"
+    },
+    {
+      "source": "ann-index-methods",
+      "target": "tag:vector-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "ann-index-methods",
+      "target": "vector-database-basics-hnsw",
+      "relation": "overlaps"
+    },
+    {
+      "source": "ann-index-methods",
+      "target": "vector-distance-metrics-cheatsheet",
+      "relation": "overlaps"
     },
     {
       "source": "anthropic-financial-services",
@@ -24988,6 +25107,16 @@
     },
     {
       "source": "faiss",
+      "target": "hnswlib",
+      "relation": "overlaps"
+    },
+    {
+      "source": "faiss",
+      "target": "scann",
+      "relation": "overlaps"
+    },
+    {
+      "source": "faiss",
       "target": "tag:clustering",
       "relation": "tagged"
     },
@@ -27474,6 +27603,56 @@
     {
       "source": "herdr",
       "target": "tag:tui",
+      "relation": "tagged"
+    },
+    {
+      "source": "hnswlib",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "hnswlib",
+      "target": "faiss",
+      "relation": "overlaps"
+    },
+    {
+      "source": "hnswlib",
+      "target": "scann",
+      "relation": "overlaps"
+    },
+    {
+      "source": "hnswlib",
+      "target": "tag:ann-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "hnswlib",
+      "target": "tag:cpp",
+      "relation": "tagged"
+    },
+    {
+      "source": "hnswlib",
+      "target": "tag:embeddings",
+      "relation": "tagged"
+    },
+    {
+      "source": "hnswlib",
+      "target": "tag:header-only",
+      "relation": "tagged"
+    },
+    {
+      "source": "hnswlib",
+      "target": "tag:hnsw",
+      "relation": "tagged"
+    },
+    {
+      "source": "hnswlib",
+      "target": "tag:nearest-neighbor",
+      "relation": "tagged"
+    },
+    {
+      "source": "hnswlib",
+      "target": "tag:similarity-search",
       "relation": "tagged"
     },
     {
@@ -37134,6 +37313,56 @@
     {
       "source": "sam3",
       "target": "tag:video",
+      "relation": "tagged"
+    },
+    {
+      "source": "scann",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "scann",
+      "target": "faiss",
+      "relation": "overlaps"
+    },
+    {
+      "source": "scann",
+      "target": "hnswlib",
+      "relation": "overlaps"
+    },
+    {
+      "source": "scann",
+      "target": "tag:ann-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "scann",
+      "target": "tag:embeddings",
+      "relation": "tagged"
+    },
+    {
+      "source": "scann",
+      "target": "tag:nearest-neighbor",
+      "relation": "tagged"
+    },
+    {
+      "source": "scann",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "scann",
+      "target": "tag:quantization",
+      "relation": "tagged"
+    },
+    {
+      "source": "scann",
+      "target": "tag:similarity-search",
+      "relation": "tagged"
+    },
+    {
+      "source": "scann",
+      "target": "tag:tensorflow",
       "relation": "tagged"
     },
     {

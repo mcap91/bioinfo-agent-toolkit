@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-10-07",
-  "count": 578,
+  "generated": "2026-10-14",
+  "count": 581,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -1140,6 +1140,29 @@
       "path": "catalog/entries/andrej-karpathy-skills.md"
     },
     {
+      "name": "ann-index-methods",
+      "title": "Approximate Nearest Neighbor (ANN) Index Methods Cheat Sheet",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Practitioner cheat sheet comparing 5 ANN vector-index methods by mechanism, complexity, and scale: Flat (exact brute-force, O(N) scan, <100K vectors or ground truth), IVF (k-means partitioning, O(nlist+nprobe*cluster_size), 100K-10M), HNSW (multi-layer proximity graph, O(log N) search, best recall/latency when the graph fits in RAM), IVF-PQ (IVF + Product Quantization residual compression, ~m bytes/vector, 100M-billion scale), and ScaNN (Google's anisotropic vector quantization + rerank, ~2x the QPS of the next-fastest of 11 tuned libraries at matched accuracy on ann-benchmarks.com); includes FAISS's own memory formulas and scale-bracket recommendations",
+      "body_summary": "Decision reference for picking a vector-search index at a given data scale. Five methods compared, roughly in order of increasing scale/decreasing exactness:\n\n1. **Flat (brute-force exact search)**: Compares the query to every stored vector — no index structure, no training. Guarantees exact top-k (100% recall) at O(N·d) query cost and no memory overhead beyond the raw vectors (d·4 bytes/vector, float32). Best under ~10K-100K vectors, for low query volume, or as the ground truth used to measure recall when tuning the other four methods.\n\n2. **IVF (Inverted File Index)**: K-means partitions the dataset into `nlist` cells (Voronoi regions); each vector is filed under its nearest centroid. A query probes only the `nprobe` nearest cells instead of the whole set, cutting query cost to roughly O(nlist + nprobe·cluster_size) instead of O(N). Requires a training pass before vectors can be added — FAISS recommends a training sample of 30-256x `nlist` — and periodic re-training as data drifts. Sizing rule of thumb: `nlist` ≈ 4·sqrt(N) (FAISS's own guidance widens this to 4·sqrt(N)-16·sqrt(N) under 1M vectors); `nprobe` set to roughly 1-10% of `nlist`, trading recall (typically ~0.85-0.95) for speed. Good fit for 100K-10M vectors when some tuning effort is acceptable.\n\n3. **HNSW (Hierarchical Navigable Small World)**: Builds a multi-layer proximity graph — sparse, long-range links in upper layers acting as skip-list-style highways, dense short-range links at the bottom — and greedily descends layer by layer toward the query. No training step; average search and insert cost is O(log N), full-index construction is O(N log N). Memory runs ≈ (d·4 + M·2·4) bytes/vector (FAISS's formula), where `M` (links per node, typically 4-64) is the main recall/memory dial, alongside `efConstruction` (build-time, ~100-500) and `efSearch` (query-time, ~64-512) candidate-list sizes. Typically the best recall (0.95-0.99+) at a given latency when the whole graph fits in RAM, but construction is slow at 100M+ vectors and deletion is awkward (no native remove in FAISS's base implementation).\n\n4. **IVF-PQ (IVF + Product Quantization)**: Layers Product Quantization on top of IVF — each vector's residual from its cell centroid is split into `m` sub-vectors, and each sub-vector is encoded as a 1-byte codeword from its own trained codebook, shrinking storage from d·4 bytes to roughly `m` bytes per vector. Worked example: a 128-dim float32 vector (512 bytes) encoded as 8 sub-vectors of 1 byte each becomes 8 bytes — a 64x reduction. Query-time distances are estimated from precomputed lookup tables (asymmetric distance computation) rather than by decompressing vectors. The compression is lossy — recall typically lands around 0.90-0.97, below IVF-Flat or HNSW at equal `nprobe` — and is only partially recoverable by reranking top candidates against raw vectors or loosening the compression ratio (fewer, larger sub-vectors). Two independent tuning dials: `nprobe` buys recall with scan time (as in plain IVF), `m` buys recall with memory. This is the index that makes billion-scale search fit in RAM: 1B vectors at 768 dimensions in float32 is ~3TB uncompressed, infeasible on one machine without this kind of compression.\n\n5. **ScaNN (Scalable Nearest Neighbors, Google)**: Google Research's library (ICML 2020, \"Accelerating Large-Scale Inference with Anisotropic Vector Quantization\"), built around a 3-stage pipeline — partition (IVF-like clustering), anisotropic vector quantization, and rerank. Core idea: standard quantization minimizes average reconstruction error, but for maximum inner-product search (MIPS) and cosine similarity, a quantization error *parallel* to a vector's direction distorts its inner product with queries more than an *orthogonal* error of the same magnitude — so ScaNN's loss function penalizes parallel error more heavily (tunable via a threshold t∈[0,1)), then reranks top candidates with exact distances. Google's own benchmark on glove-100-angular (ann-benchmarks.com) reports ScaNN handling roughly twice the queries-per-second of the next-fastest of 11 other carefully tuned vector-search libraries at matched accuracy. Open source (`pip install scann`, TensorFlow/NumPy interfaces); powers Google Cloud's Vertex AI Vector Search. Best fit when the workload is MIPS/cosine-shaped and the goal is maximum QPS at a fixed accuracy/memory budget.\n\n### Comparison table\n\n| Method | Mechanism | Query cost | Memory/vector | Typical recall | Training/build | Best scale |\n|---|---|---|---|---|---|---|\n| Flat | Linear scan vs. every vector | O(N·d) | d·4 B (uncompressed) | 100% (exact) | None | <10K-100K, or ground truth |\n| IVF | k-means into `nlist` cells; probe `nprobe` nearest | O(nlist + nprobe·cluster_size) | ≈ d·4 B + small list overhead | ~0.85-0.95 | k-means (needs 30-256x `nlist` training vectors) | 100K-10M |\n| HNSW | Multi-layer proximity graph, greedy descent | O(log N) search; O(N log N) build | d·4 + M·2·4 B | ~0.95-0.99+ | None (incremental insert, O(log N) each) | Up to ~10M-100M, RAM-permitting |\n| IVF-PQ | IVF + per-sub-vector quantization of residuals | Same shape as IVF; cheap table-lookup (ADC) distances | ≈ `m` B (e.g., 64x smaller than Flat at d=128, m=8) | ~0.90-0.97 | k-means (coarse) + PQ codebook training | 100M-billion+, memory-bound |\n| ScaNN | Partition + anisotropic quantization + exact rerank | Same shape as IVF-PQ, plus a rerank pass | Comparable to IVF-PQ's class; tunable | Matched-accuracy comparisons show ~2x QPS vs. the next-best of 11 libraries (Google, glove-100-angular) | Partition + anisotropic codebook training | Million-billion, MIPS/cosine workloads |\n\n### Scale thresholds (FAISS's own guidance)\n\n- **<10K-100K vectors**, or few queries: Flat — direct computation is already fast enough and exact.\n- **100K-1M**: `IVF{nlist}` with `nlist` ≈ 4·sqrt(N) to 16·sqrt(N).\n- **1M-10M**: FAISS recommends an HNSW coarse quantizer inside IVF (`IVF65536_HNSW32`).\n- **10M-100M**: `IVF262144_HNSW32`.\n- **100M-1B**: `IVF1048576_HNSW32`, generally paired with PQ/OPQ compression (i.e., IVF-PQ) once vectors no longer fit RAM uncompressed.\n- **MIPS/cosine workloads at any of the above scales** where maximum QPS-per-accuracy-per-dollar matters: ScaNN, or its managed form (Vertex AI Vector Search).",
+      "tags": [
+        "ann-search",
+        "vector-search",
+        "hnsw",
+        "ivf",
+        "ivf-pq",
+        "product-quantization",
+        "scann",
+        "faiss"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-13",
+      "path": "catalog/entries/ann-index-methods.md"
+    },
+    {
       "name": "anthropic-financial-services",
       "title": "Claude for Financial Services",
       "url": "https://github.com/anthropics/financial-services",
@@ -1169,7 +1192,7 @@
       "url": "https://www.anthropic.com/research/global-workspace",
       "category": "reference",
       "decision_status": "open",
-      "summary": "Anthropic interpretability research identifying the \\\"J-space\\\" — a small set of internal neural patterns in Claude that function as a global workspace for deliberate reasoning, reportable thoughts, and internal monitoring; includes J-lens technique for reading model thoughts not expressed in output",
+      "summary": "Anthropic interpretability research identifying the \"J-space\" — a small set of internal neural patterns in Claude that function as a global workspace for deliberate reasoning, reportable thoughts, and internal monitoring; includes J-lens technique for reading model thoughts not expressed in output",
       "body_summary": "A research paper and blog post from Anthropic presenting evidence that Claude has developed an internal \"global workspace\" — a small collection of neural activation patterns (the \"J-space\") that play a privileged role compared to all other internal processing. The J-space was not designed but…",
       "tags": [
         "interpretability",
@@ -5045,7 +5068,7 @@
       "workflows": [],
       "license": "MIT",
       "security_flags": [],
-      "reviewed": "2026-07-01",
+      "reviewed": "2026-10-13",
       "path": "catalog/entries/faiss.md"
     },
     {
@@ -5741,12 +5764,9 @@
       "workflows": [],
       "license": "MIT",
       "security_flags": [
-        "\\\"Requires third-party API keys with outbound network calls to external paid services during agent runs: GOOGLE_API_KEY (Gemini image generation)",
-        "XAI_API_KEY (Grok image/video generation)",
-        "TRIPO3D_API_KEY (image-to-3D and rigged animation) — these keys and generated content leave the local machine\"",
-        "\\\"Designed to run an AI coding agent (Claude Code or Codex) autonomously/unattended for extended periods ('a full generation run can take hours'); the README suggests running under tmux/screen on a remote server with the agent's remote-control interface",
-        "i.e. long unattended agent execution with real API credentials and code-execution ability\"",
-        "No LICENSE file found at the repository's raw content path checked (githubusercontent.com/htdt/godogen/main/LICENSE returned 404); license is asserted via the GitHub repository metadata API (license.spdx_id: MIT) rather than confirmed from an in-repo LICENSE file"
+        "Requires third-party API keys with outbound network calls to external paid services during agent runs: GOOGLE_API_KEY (Gemini image generation), XAI_API_KEY (Grok image/video generation), TRIPO3D_API_KEY (image-to-3D and rigged animation) — these keys and generated content leave the local machine",
+        "Designed to run an AI coding agent (Claude Code or Codex) autonomously/unattended for extended periods ('a full generation run can take hours'); the README suggests running under tmux/screen on a remote server with the agent's remote-control interface, i.e. long unattended agent execution with real API credentials and code-execution ability",
+        "No LICENSE file found at the repository''s raw content path checked (githubusercontent.com/htdt/godogen/main/LICENSE returned 404); license is asserted via the GitHub repository metadata API (license.spdx_id: MIT) rather than confirmed from an in-repo LICENSE file"
       ],
       "reviewed": "2026-08-25",
       "path": "catalog/entries/godogen.md"
@@ -6375,6 +6395,29 @@
       ],
       "reviewed": "2026-07-09",
       "path": "catalog/entries/herdr.md"
+    },
+    {
+      "name": "hnswlib",
+      "title": "HNSWlib",
+      "url": "https://github.com/nmslib/hnswlib",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Header-only C++ library (with Python bindings) implementing HNSW (Hierarchical Navigable Small World) graph search — the standalone reference implementation of the HNSW algorithm by Yury Malkov and Dmitry Yashunin; incremental index construction, element deletion/update, custom C++ distances, L2/inner-product/cosine spaces; Apache-2.0",
+      "body_summary": "HNSWlib is a header-only C++ library implementing Hierarchical Navigable Small World (HNSW) graphs for approximate nearest neighbor search, with full Python bindings. Written by Yury Malkov — co-inventor of the HNSW algorithm (with Dmitry Yashunin) — and maintained under the nmslib GitHub organization as the standalone extraction of NMSLIB's fastest method. ~5,350 GitHub stars.\n\nUnlike multi-index libraries (FAISS, Milvus), HNSWlib implements a single algorithm: the HNSW graph. There is no flat, IVF, or PQ index — HNSW is the only option.\n\nCore capabilities:\n\n- **Distances/spaces**: L2 (squared Euclidean), inner product (`ip`), and cosine, selected at index creation (`hnswlib.Index(space, dim)`); custom user-defined distances supported in C++\n- **Incremental construction**: elements can be added after index creation (`add_items`), and the index capacity can be resized; most ANN graph structures are build-once\n- **Element deletion/update**: `mark_deleted`/`unmark_deleted` flag elements out of search results without freeing memory; `allow_replace_deleted` lets new inserts reuse that freed capacity; re-adding an existing label updates it in place (slower than a fresh insert, but more memory/query-efficient)\n- **Filtering**: boolean filter callback in `knn_query`, though the Python filter path is GIL-limited — the README recommends `num_threads=1` when filtering\n- **Multi-vector document search and epsilon search** (v0.8+, C++ only so far)\n- **Picklable Python index**: full serialization round-trip via `pickle` or `save_index`/`load_index` to a binary file\n- **No-exceptions C++ API** (`v0.10.0` release candidate, Sept 2026): `*NoExceptions` method variants return `Status`/`StatusOr` instead of throwing, for builds compiled with `-fno-exceptions`\n\nThird-party bindings (not in the core repo) exist for Java, R, Rust, Go, .NET, and a CUDA port.",
+      "tags": [
+        "similarity-search",
+        "nearest-neighbor",
+        "hnsw",
+        "embeddings",
+        "cpp",
+        "ann-search",
+        "header-only"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-10-13",
+      "path": "catalog/entries/hnswlib.md"
     },
     {
       "name": "hotdog",
@@ -9888,12 +9931,8 @@
       "license": "Apache-2.0",
       "security_flags": [
         "Published by Hugging Face org 'ATH-MaaS'; third-party analysis (note.com/ai_driven) identifies ATH-MaaS as a rebranding of the former Alibaba AIDC-AI team (publisher of the earlier 'Ovis' VLM series) following an internal reorg — not independently confirmed by Alibaba itself",
-        "\"Model card provides only publisher-reported benchmark numbers (OmniDocBench v1.6",
-        "PureDocBench); no independent third-party benchmark reproduction found\"",
-        "\\\"Publisher's own disclaimer: due to real-world document diversity/complexity",
-        "the model may still produce incorrect or incomplete outputs (repeated text",
-        "invalid table/formula structures",
-        "reading-order errors); manual verification recommended for critical applications\""
+        "Model card provides only publisher-reported benchmark numbers (OmniDocBench v1.6, PureDocBench); no independent third-party benchmark reproduction found",
+        "Publisher's own disclaimer: due to real-world document diversity/complexity, the model may still produce incorrect or incomplete outputs (repeated text, invalid table/formula structures, reading-order errors); manual verification recommended for critical applications"
       ],
       "reviewed": "2026-08-25",
       "path": "catalog/entries/ovisocr2.md"
@@ -10901,18 +10940,10 @@
       "workflows": [],
       "license": "Apache-2.0",
       "security_flags": [
-        "\\\"UNCENSORED/ABLITERATED MODEL: publisher explicitly markets this as safety-guardrail-removed — 'Qwen3.8-27B uncensored by HauhauCS",
-        "0/465 Refusals'",
-        "'Aggressive variant: direct answers",
-        "no refusal behavior",
-        "and minimal preamble on hard prompts'; refusal behavior for harmful/hard prompts is intentionally disabled relative to the base Qwen3.8-27B release\\\"",
-        "\"Unverified community artifact from a pseudonymous",
-        "non-affiliated publisher (HauhauCS): not the original Qwen/Alibaba release; publisher self-signs its own release manifest with an Ed25519 key it also generated",
-        "which authenticates file integrity against HauhauCS's own claims but does not constitute third-party verification\\\"",
-        "\"Independent third-party benchmarking (Nathan Sapwell",
-        "'Uncensored LLM Abliteration Benchmarked') of other HauhauCS releases found the '0/N refusals' marketing claim only partially accurate — some soft/truncated refusals remained under adversarial testing — so the 0/465 figure for this specific release should be treated as an unverified publisher claim\\\"",
-        "\\\"Running the bundled 'HauhauCS FastMTP' acceleration sidecar requires downloading and applying a third-party patch file to a llama.cpp source checkout and compiling it (git apply of HauhauCS-FastMTP-llama.cpp.patch) — review the patch before applying",
-        "as with any third-party build patch\""
+        "UNCENSORED/ABLITERATED MODEL: publisher explicitly markets this as safety-guardrail-removed — Qwen3.8-27B uncensored by HauhauCS, 0/465 Refusals, Aggressive variant: direct answers, no refusal behavior, and minimal preamble on hard prompts; refusal behavior for harmful/hard prompts is intentionally disabled relative to the base Qwen3.8-27B release",
+        "Unverified community artifact from a pseudonymous, non-affiliated publisher (HauhauCS): not the original Qwen/Alibaba release; publisher self-signs its own release manifest with an Ed25519 key it also generated, which authenticates file integrity against HauhauCS's own claims but does not constitute third-party verification",
+        "Independent third-party benchmarking (Nathan Sapwell, Uncensored LLM Abliteration Benchmarked) of other HauhauCS releases found the 0/N refusals marketing claim only partially accurate — some soft/truncated refusals remained under adversarial testing — so the 0/465 figure for this specific release should be treated as an unverified publisher claim",
+        "Running the bundled HauhauCS FastMTP acceleration sidecar requires downloading and applying a third-party patch file to a llama.cpp source checkout and compiling it (git apply of HauhauCS-FastMTP-llama.cpp.patch) — review the patch before applying, as with any third-party build patch"
       ],
       "reviewed": "2026-08-25",
       "path": "catalog/entries/qwen3-8-27b-uncensored-hauhaucs-aggressive-gguf.md"
@@ -11398,6 +11429,29 @@
       "security_flags": [],
       "reviewed": "2026-08-17",
       "path": "catalog/entries/sam3.md"
+    },
+    {
+      "name": "scann",
+      "title": "ScaNN",
+      "url": "https://github.com/google-research/google-research/tree/master/scann",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Google Research library for efficient large-scale vector similarity search — anisotropic vector quantization (AVQ) for Maximum Inner Product Search plus SOAR indexing, partition/score/rescore search pipeline, native Python and optional TensorFlow APIs, AVX/NEON-optimized x86/ARM wheels; powers Vertex AI Vector Search; Apache-2.0",
+      "body_summary": "ScaNN (Scalable Nearest Neighbors) is a Google Research library for efficient similarity search over large vector datasets. It ships as a subdirectory of the `google-research/google-research` monorepo rather than a standalone repository. Core algorithm is anisotropic vector quantization (AVQ) — from \"Accelerating Large-Scale Inference with Anisotropic Vector Quantization\" (Guo et al., ICML 2020) — built for Maximum Inner Product Search (MIPS), plus Euclidean distance support. SOAR (\"SOAR: Improved Indexing for Approximate Nearest Neighbor Search\", Sun et al., NeurIPS 2023) adds a redundant backup routing path so a second index can recover neighbors AVQ's primary clustering route misses. Optimized for x86 (AVX/FMA) and ARM (NEON) processors; no GPU backend.",
+      "tags": [
+        "similarity-search",
+        "nearest-neighbor",
+        "quantization",
+        "embeddings",
+        "ann-search",
+        "python",
+        "tensorflow"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-10-13",
+      "path": "catalog/entries/scann.md"
     },
     {
       "name": "scheduled-multi-agent-coordinator",
