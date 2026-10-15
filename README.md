@@ -72,6 +72,10 @@ Replace `PATH/TO` with the absolute path to your local clone of this repo.
 | `graph-query` | Knowledge graph traversal. `neighbors` mode: explore connections from a known entry (overlaps, shared tags, shared category). `topic` mode: discover entries by concept (substring match on tags/categories). |
 | `graph-build` | Rebuild the knowledge graph on demand (normally auto-rebuilds via `index`). |
 
+![Survey search coverage](packages/catalog-embedder/eval/search_eval.png)
+
+The lexical sweep returns the complete matching set for each term; semantic suggestions are flagged extras for concepts phrased differently.
+
 **Add retrieval instructions to your project's CLAUDE.md:**
 
 ```markdown
