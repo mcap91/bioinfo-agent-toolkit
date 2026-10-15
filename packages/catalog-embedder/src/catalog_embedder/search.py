@@ -13,12 +13,14 @@ from .build import run_build
 from .frontmatter import read_all_entries
 from .vectors import cosine_similarity, is_valid, read_vectors
 
-DEFAULT_LIMIT = 200
-
 BM25_K1 = 1.2
 BM25_B = 0.75
-BM25_RESCUE_CAP = 0.5  # max score BM25 can assign; prevents lexical from outranking strong semantic
 BM25_TOKENIZE_RE = re.compile(r"[^a-z0-9]+")
+
+DEFAULT_SEMANTIC_N = 10
+MAX_TERMS = 50
+MAX_TERM_CHARS = 200
+MAX_QUERY_CHARS = 2000
 
 
 def _bm25_tokenize(text: str) -> list[str]:
@@ -75,15 +77,93 @@ def bm25_score_all(
     return scores
 
 
+def _term_regexes(term: str) -> list[re.Pattern[str]]:
+    """One boundary regex per whitespace token; a term matches iff ALL match (AND).
+
+    (?<!\\w) instead of \\b: identical for word-leading tokens, correct for
+    punctuation-leading ones (".net" matches " .net" but not "asp.net"). (N3)
+    """
+    return [re.compile(r"(?<!\w)" + re.escape(tok)) for tok in term.lower().split()]
+
+
+def resolve_terms(terms: list[str] | None, query: str) -> list[str]:
+    """Normalize agent-supplied terms; fall back to the whole query as ONE AND term.
+
+    Explicit terms: strip, lowercase, drop empties, dedupe preserving order (count and
+    length bounds are raised by run_search, not silently truncated here — HO-0024 F2).
+    Fallback: deduped query tokens joined into a single multi-token AND term (N2, N4).
+    Returns [] only when there is nothing to search lexically.
+    """
+    cleaned = [t.strip().lower() for t in (terms or []) if t and t.strip()]
+    seen: set[str] = set()
+    deduped = [t for t in cleaned if not (t in seen or seen.add(t))]
+    if deduped:
+        return deduped
+    tokens = list(dict.fromkeys(_bm25_tokenize(query)))
+    return [" ".join(tokens)] if tokens else []
+
+
+def lexical_members(
+    entries_dir: Path, names: list[str], terms: list[str]
+) -> tuple[dict[str, list[str]], dict[str, int]]:
+    """({name: [matched terms]}, {term: hit count}) over raw lowercased file text."""
+    raw = {n: (entries_dir / f"{n}.md").read_text(encoding="utf-8").lower() for n in names}
+    members: dict[str, list[str]] = {}
+    hits: dict[str, int] = {}
+    for term in terms:
+        regexes = _term_regexes(term)
+        if not regexes:
+            hits[term] = 0
+            continue
+        count = 0
+        for name, text in raw.items():
+            if all(r.search(text) for r in regexes):
+                members.setdefault(name, []).append(term)
+                count += 1
+        hits[term] = count
+    return members, hits
+
+
+_EVIDENCE_FIELDS = ("title", "name", "summary", "tags", "body")
+
+
+def _match_fields(matched_terms: list[str], frontmatter: dict, body: str) -> list[str]:
+    """Which named fields any matched term hits; ["frontmatter"] when none do."""
+    texts = {
+        "title": str(frontmatter.get("title") or "").lower(),
+        "name": str(frontmatter.get("name") or "").lower(),
+        "summary": str(frontmatter.get("summary") or "").lower(),
+        "tags": " ".join(str(t) for t in (frontmatter.get("tags") or [])).lower(),
+        "body": body.lower(),
+    }
+    out: list[str] = []
+    for field in _EVIDENCE_FIELDS:
+        for term in matched_terms:
+            if all(r.search(texts[field]) for r in _term_regexes(term)):
+                out.append(field)
+                break
+    return out or ["frontmatter"]
+
+
 def run_search(
     dir: Path,
     query: str,
-    limit: int = DEFAULT_LIMIT,
-    threshold: float = 0.0,
-    method: str = "fusion",  # "fusion" | "semantic" | "bm25" — for eval baselines
+    terms: list[str] | None = None,
+    semantic_n: int = DEFAULT_SEMANTIC_N,
     decision_status: str | None = None,
     category: str | None = None,
 ) -> dict[str, Any]:
+    # Input bounds — enforced here too, not only at CLI/Zod (N1, N4, HO-0024 F2)
+    if not 1 <= semantic_n <= 50:
+        raise ValueError("semantic_n must be between 1 and 50")
+    if len(query) > MAX_QUERY_CHARS:
+        raise ValueError(f"query exceeds {MAX_QUERY_CHARS} characters")
+    raw_terms = terms or []
+    if len(raw_terms) > MAX_TERMS:
+        raise ValueError(f"too many terms (max {MAX_TERMS})")
+    if any(len(t) > MAX_TERM_CHARS for t in raw_terms):
+        raise ValueError(f"term exceeds {MAX_TERM_CHARS} characters")
+
     vector_data = read_vectors(dir)
     if not is_valid(vector_data):
         print(
@@ -122,7 +202,7 @@ def run_search(
             }
         )
 
-    def _build_result(c: dict[str, Any], score: float) -> dict[str, Any]:
+    def _build_result(c: dict[str, Any], match: dict[str, Any]) -> dict[str, Any]:
         fm = c["frontmatter"]
         result: dict[str, Any] = {
             "name": c["name"],
@@ -134,54 +214,60 @@ def run_search(
         result["decision_status"] = c["status"]
         result["summary"] = fm.get("summary")
         result["tags"] = fm.get("tags") or []
-        result["score"] = score
+        result["match"] = match
         return result
 
-    # Tokenize query with BM25 tokenizer (same as document tokenization)
-    bm25_query_terms = _bm25_tokenize(query)
+    entries_dir = dir / "catalog" / "entries"
+    term_list = resolve_terms(terms, query)
 
-    # Empty query: return all entries with score=0 (filtered listing mode)
-    if not bm25_query_terms:
-        results = [_build_result(c, 0.0) for c in candidates]
-        results.sort(key=lambda r: (-r["score"], (r["title"] or "").lower(), (r["name"] or "").lower()))
-        total = len(results)
-        truncated = total > limit
-        return {
-            "results": results[:limit],
-            "total": total,
-            "truncated": truncated,
-        }
+    if not term_list and not query.strip():  # listing mode: empty query, no terms
+        results = [_build_result(c, {"type": "listing"}) for c in candidates]
+        results.sort(key=lambda r: ((r["title"] or "").lower(), (r["name"] or "").lower()))
+        return {"results": results, "swept_terms": [], "lexical_total": 0, "total": len(results)}
 
-    bm25_scores = bm25_score_all(
-        [(c["name"], c["frontmatter"], c["body"]) for c in candidates],
-        bm25_query_terms,
+    if term_list:
+        members, hits = lexical_members(entries_dir, [c["name"] for c in candidates], term_list)
+        swept = [{"term": t, "hits": hits[t]} for t in term_list]
+    else:
+        # Non-empty query that tokenized to nothing (N2): zero-hit sweep, but semantic
+        # selection below STILL RUNS on the embedded query (HO-0024 F1).
+        members = {}
+        swept = [{"term": query.strip().lower(), "hits": 0}]
+
+    bm25_tokens = [tok for t in term_list for tok in _bm25_tokenize(t)]
+    lex_candidates = [c for c in candidates if c["name"] in members]
+    bm25 = bm25_score_all(
+        [(c["name"], c["frontmatter"], c["body"]) for c in lex_candidates], bm25_tokens
     )
-    max_bm25 = max(bm25_scores.values(), default=0.0)
+    lex_candidates.sort(key=lambda c: (
+        -bm25.get(c["name"], 0.0),
+        str(c["frontmatter"].get("title") or "").lower(),
+        c["name"],
+    ))
+    lexical_results = [
+        _build_result(c, {
+            "type": "lexical",
+            "terms": members[c["name"]],
+            "fields": _match_fields(members[c["name"]], c["frontmatter"], c["body"]),
+        })
+        for c in lex_candidates
+    ]
 
-    results: list[dict[str, Any]] = []
-    for c in candidates:
-        cosine = c["cosine"]
-        capped_bm25 = (bm25_scores.get(c["name"], 0.0) / max_bm25 * BM25_RESCUE_CAP) if max_bm25 > 0 else 0.0
+    sem_candidates = [c for c in candidates if c["name"] not in members and c["cosine"] > 0.0]
+    sem_candidates.sort(key=lambda c: (
+        -c["cosine"],
+        str(c["frontmatter"].get("title") or "").lower(),
+        c["name"],
+    ))
+    semantic_results = [
+        _build_result(c, {"type": "semantic", "rank": i + 1})
+        for i, c in enumerate(sem_candidates[:semantic_n])
+    ]
 
-        if method == "semantic":
-            score = cosine
-        elif method == "bm25":
-            score = capped_bm25
-        else:  # fusion
-            score = max(cosine, capped_bm25)
-
-        if score <= threshold:
-            continue
-
-        results.append(_build_result(c, score))
-
-    results.sort(key=lambda r: (-r["score"], (r["title"] or "").lower(), (r["name"] or "").lower()))
-
-    total = len(results)
-    truncated = total > limit
-
+    results = lexical_results + semantic_results
     return {
-        "results": results[:limit],
-        "total": total,
-        "truncated": truncated,
+        "results": results,
+        "swept_terms": swept,
+        "lexical_total": len(lexical_results),
+        "total": len(results),
     }

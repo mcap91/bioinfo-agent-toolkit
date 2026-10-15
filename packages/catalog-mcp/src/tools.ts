@@ -18,24 +18,10 @@ import { PROJECT_STATUSES, PRIORITIES } from './core/schema.js';
 import { drainInbox } from './core/drain.js';
 import { readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
-import { execFile } from 'node:child_process';
-import path from 'node:path';
 import { catalogPaths } from './core/config.js';
 import { buildAndWriteGraph, queryNeighbors, queryTopic } from './core/graph/index.js';
 import type { GraphExport } from './core/graph/types.js';
-
-function venvPythonPath(dir: string): string {
-  return path.join(dir, 'packages', 'catalog-embedder', '.venv', 'bin', 'python');
-}
-
-function runCatalogEmbedder(venvPython: string, args: string[]): Promise<{ stdout: string; stderr: string; code: number }> {
-  return new Promise((resolve) => {
-    execFile(venvPython, ['-m', 'catalog_embedder', ...args], { maxBuffer: 1024 * 1024 * 64 }, (error, stdout, stderr) => {
-      if (stderr) process.stderr.write(stderr);
-      resolve({ stdout, stderr, code: error && 'code' in error && typeof error.code === 'number' ? error.code : (error ? 1 : 0) });
-    });
-  });
-}
+import { runCatalogEmbedder, venvPythonPath } from './core/embedder-subprocess.js';
 
 export interface ToolDef {
   name: string;
@@ -101,12 +87,13 @@ export const tools: ToolDef[] = [
   },
   {
     name: 'search',
-    description: 'Semantic search over catalog entries with BM25 keyword rescue. Finds tools by concept (e.g. "PDF parsing scientific papers") without exact keyword matches. Supports filters: decision_status, category.',
+    description: 'Survey search over catalog entries. Returns EVERY entry lexically matching your terms (word-prefix match, uncapped), plus up to semantic_n flagged semantic suggestions for concepts phrased differently. Expand your query into synonyms and related terms (e.g. "ocr" -> ["ocr", "text extraction", "document to markdown", "handwriting recognition"]) and pass them as terms; omitting terms treats the whole query as one all-tokens-must-match lookup term. Response reports per-term hit counts (swept_terms) and lexical_total — lexical_total 0 means an honest miss. Filters: decision_status, category.',
     inputSchema: dirSchema.extend({
-      query: z.string(),
+      query: z.string().max(2000),
+      terms: z.array(z.string().min(1).max(200)).max(50).optional(),
+      semantic_n: z.number().int().min(1).max(50).default(10),
       decision_status: z.enum(['adopted', 'rejected', 'open']).optional(),
       category: z.string().optional(),
-      limit: z.number().int().positive().default(200),
     }),
     handler: async (input) => {
       const dir = resolveDir(input.dir as string | undefined);
@@ -118,7 +105,8 @@ export const tools: ToolDef[] = [
       }
 
       const query = input.query as string;
-      const limit = input.limit as number;
+      const terms = (input.terms as string[] | undefined) ?? [];
+      const semantic_n = input.semantic_n as number;
       const decision_status = input.decision_status as string | undefined;
       const category = input.category as string | undefined;
 
@@ -126,7 +114,8 @@ export const tools: ToolDef[] = [
         'search',
         '--query', query,
         '--dir', dir,
-        '--limit', String(limit),
+        ...terms.flatMap((t) => ['--term', t]),
+        '--semantic-n', String(semantic_n),
         ...(decision_status ? ['--decision-status', decision_status] : []),
         ...(category ? ['--category', category] : []),
       ]);

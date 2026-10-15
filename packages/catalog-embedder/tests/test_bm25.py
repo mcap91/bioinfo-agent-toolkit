@@ -4,7 +4,7 @@ import pytest
 
 from catalog_embedder import embeddings
 from catalog_embedder.build import run_build
-from catalog_embedder.search import BM25_RESCUE_CAP, _bm25_tokenize, bm25_score_all, run_search
+from catalog_embedder.search import _bm25_tokenize, bm25_score_all, run_search
 from conftest import write_entry
 
 
@@ -66,20 +66,7 @@ def patch_embeddings(monkeypatch):
     monkeypatch.setattr(embeddings, "embed_texts", fake_embed_texts)
 
 
-def test_bm25_rescue_never_exceeds_cap(catalog_dir: Path):
-    """F3 fix: a BM25-only match (zero cosine overlap) is capped at BM25_RESCUE_CAP, not 1.0."""
-    entries_dir = catalog_dir / "catalog" / "entries"
-    write_entry(entries_dir, "xylotool", "Xylophone Tool", "cli-tool", "a niche instrument utility", [], "xylophone body")
-
-    run_build(catalog_dir)
-    response = run_search(catalog_dir, "pdf xylophone")
-
-    assert response["total"] == 1
-    assert response["results"][0]["score"] == pytest.approx(BM25_RESCUE_CAP)
-
-
-def test_empty_query_returns_all_with_zero_score(catalog_dir: Path):
-    """F7 fix: empty query preserves filtered-listing behavior."""
+def test_empty_query_lists_all_entries(catalog_dir: Path):
     entries_dir = catalog_dir / "catalog" / "entries"
     write_entry(entries_dir, "one", "One", "cli-tool", "summary", [], "body")
     write_entry(entries_dir, "two", "Two", "cli-tool", "summary", [], "body")
@@ -88,4 +75,8 @@ def test_empty_query_returns_all_with_zero_score(catalog_dir: Path):
     response = run_search(catalog_dir, "")
 
     assert response["total"] == 2
-    assert all(r["score"] == 0.0 for r in response["results"])
+    assert response["swept_terms"] == []
+    assert response["lexical_total"] == 0
+    for r in response["results"]:
+        assert r["match"] == {"type": "listing"}
+        assert "score" not in r
