@@ -68,7 +68,7 @@ Replace `PATH/TO` with the absolute path to your local clone of this repo.
 
 | Tool | Purpose |
 |---|---|
-| `search` | Semantic search with BM25 keyword rescue (`max(cosine_similarity, normalized_bm25)`). Returns scores and truncation signal. |
+| `search` | Survey search: returns every entry lexically matching your terms (word-prefix, uncapped), plus flagged semantic suggestions for concepts phrased differently. No scores exposed. |
 | `graph-query` | Knowledge graph traversal. `neighbors` mode: explore connections from a known entry (overlaps, shared tags, shared category). `topic` mode: discover entries by concept (substring match on tags/categories). |
 | `graph-build` | Rebuild the knowledge graph on demand (normally auto-rebuilds via `index`). |
 
@@ -129,10 +129,10 @@ Running the catalog MCP server requires:
   cd packages/catalog-embedder && uv venv && uv pip install -r requirements.txt
   ```
 
-The `search` tool combines semantic (embedding) search with BM25 keyword rescue and
-requires this Python environment to be set up. See
-[docs/semantic-search.md](docs/semantic-search.md) for the full setup guide, scoring
-details, and auto-rebuild behavior.
+The `search` tool runs a complete lexical sweep backstopped by flagged semantic
+suggestions, and requires this Python environment to be set up. See
+[docs/semantic-search.md](docs/semantic-search.md) for the full setup guide, matching
+semantics, and auto-rebuild behavior.
 
 ## Structure
 

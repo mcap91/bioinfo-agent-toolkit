@@ -1,32 +1,36 @@
 # Semantic Search
 
-Semantic-first search over catalog entries, with BM25 keyword matching as a rescue signal.
-Concept queries like "PDF parsing scientific papers with tables" surface relevant tools even
-when they share no exact keywords with the query, while exact tool names and rare terms still
-rank highly through the BM25 rescue.
+Survey-first search over catalog entries: a complete lexical sweep, backstopped by
+flagged semantic suggestions for concepts phrased differently. The lexical set is never
+capped or truncated — if a term matches, the entry is in the response.
 
 ## What it does
 
-Search runs two scorers and takes the max of the two, per entry:
+Search runs two independent passes over the filtered universe of entries:
 
-- **Semantic**: embeds the query and every catalog entry with a local model
-  ([fastembed](https://github.com/qdrant/fastembed), `BAAI/bge-small-en-v1.5`, 384 dimensions,
-  ~34MB quantized ONNX model), then ranks by cosine similarity.
-- **BM25**: an inline keyword scorer (k1=1.2, b=0.75) over all entry fields (title, name,
-  summary, body, tags). Its result is normalized into `[0, BM25_RESCUE_CAP]` (0.5), not
-  `[0, 1]`, so it can only *rescue* a weak semantic match — it never outranks a strong
-  cosine match.
+- **Lexical sweep** (the backbone): each term — explicit, or the whole query folded into
+  one term when no terms are supplied — is matched as a word-prefix (`(?<!\w)token`,
+  case-insensitive) against the raw entry text. A multi-word term matches only when every
+  one of its tokens matches (AND). This set is complete: every matching entry is
+  returned, ordered by BM25 internally, tie-broken by title then name. No score is
+  exposed.
+- **Semantic rescue**: the top `semantic_n` non-lexical entries by cosine similarity
+  (cosine > 0.0), appended after the lexical block with a `rank` (1..N) — no cosine value
+  is exposed. There may be fewer than `semantic_n`, including zero.
 
-```
-final_score = max(cosine_similarity, normalized_bm25)
-```
+Passing explicit `terms` runs a real survey — an OR of independent AND-of-tokens terms,
+each reported with its own hit count in `swept_terms`. Omitting `terms` treats the whole
+query as a single AND lookup term (a narrow, exact-ish lookup, not a broad sweep) — the
+single-term fallback exists for backward compatibility with query-only callers.
 
-There is no blend and no alpha parameter: semantic ranks everything, and BM25 can only help
-entries with strong keyword overlap but weak embeddings (exact tool names, rare terms) — it
-can never drag a good semantic score down. An optional `--threshold` filters results to
-`score > threshold` (default `0.0`, i.e. return everything that scored above zero). A query
-that's empty after tokenization bypasses scoring entirely and returns every entry with
-`score = 0.0`, preserving filtered-listing behavior (e.g. `search "" --category reference`).
+An empty query with no terms is **listing mode**: every entry in the filtered universe is
+returned with `match: {"type": "listing"}`, and `swept_terms` is empty — this is how
+listing is distinguished from a miss.
+
+A **miss** is `lexical_total: 0` with a non-empty `swept_terms` (every term's hit count
+was zero). Semantic selection still runs on a miss — it may return entries phrased
+differently than the query, or it may return nothing if no candidate has positive
+cosine. An empty result set is only legal on a true miss or an empty universe.
 
 ## Prerequisites
 
@@ -53,22 +57,22 @@ Build the vector index for all entries:
 python -m catalog_embedder build --dir {YOUR_PROJECT}
 ```
 
-Run a search:
+Run a survey:
 
 ```bash
-python -m catalog_embedder search --query "PDF parsing scientific papers with tables" \
+python -m catalog_embedder search --query "ocr" \
   --dir {YOUR_PROJECT} \
-  [--limit 10] \
-  [--threshold 0.0] \
-  [--method fusion] \
+  [--term ocr --term "text extraction"] \
+  [--semantic-n 10] \
   [--decision-status adopted] \
   [--category "document-processing"]
 ```
 
 Both commands take `--dir`, the path to the project root containing the catalog data.
-`--threshold` filters results to `score > threshold` (default `0.0`). `--method`
-(`fusion` | `semantic` | `bm25`) selects a single scorer for eval baselines; the MCP
-`search` tool always uses `fusion`.
+`--term` is repeatable (max 50, 200 chars each) and expands the sweep beyond the query
+text — e.g. `--term ocr --term "text extraction"` runs both as independent AND terms.
+`--semantic-n` (1–50, default 10) bounds the semantic suggestion count. Omitting
+`--term` entirely falls back to the query tokenized into one AND term.
 
 ## Auto-rebuild
 
@@ -97,12 +101,12 @@ index in the background.
 
 Consuming repos don't need to run the CLI directly. Register the project's MCP server in
 `.mcp.json` as usual, then call its `search` tool — the tool invokes the embedding CLI as a
-subprocess and handles the semantic + BM25 rescue fusion transparently. No extra
-configuration is required beyond the one-time `uv`/`fastembed` setup on the host running
-the server.
+subprocess and returns the survey response (lexical sweep + semantic suggestions)
+transparently. No extra configuration is required beyond the one-time `uv`/`fastembed`
+setup on the host running the server.
 
 If the Python environment isn't set up, `search` returns an error describing the missing
-setup step rather than silently falling back to BM25-only results.
+setup step rather than silently returning empty results.
 
 ## Performance
 
