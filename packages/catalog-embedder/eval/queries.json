@@ -1,6 +1,6 @@
 {
   "frozen": "2026-10-19",
-  "note": "Written before any engine ran against them; local-llm-keyword-2 changed from \"ollama\" to \"local llm\" on 2026-10-19 per red-team HO-0029 F4, still before any run. Do not edit. Queries of type name are answered by their single named entry; all other types are answered by their topic's list in answer_key.json.",
+  "note": "Written before any engine ran against them; local-llm-keyword-2 changed from \"ollama\" to \"local llm\" on 2026-10-19 after review, still before any run. Do not edit. Queries of type name are answered by their single named entry; all other types are answered by their topic's list in answer_key.json.",
   "queries": [
     { "id": "ocr-name-1", "topic": "ocr", "type": "name", "query": "markitdown", "answer": ["markitdown"] },
     { "id": "ocr-name-2", "topic": "ocr", "type": "name", "query": "paddleocr", "answer": ["paddleocr"] },
