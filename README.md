@@ -74,19 +74,16 @@ Replace `PATH/TO` with the absolute path to your local clone of this repo.
 
 ![This repo's catalog search vs. plain substring search, by query style](packages/catalog-embedder/eval/search_eval.png)
 
-**Search eval: this repo's search vs. plain substring search** ([method](docs/semantic-search.md#evaluation)). 40 test queries in four styles, each run through three engines on the same frozen copy of the catalog: **substring** search (the baseline, the repo's original lookup), this repo's **lexical** search alone, and its full **lexical+semantic** search. The answer list was labeled by Claude Opus 5.5 without seeing the queries; calibration entries repeated in every labeling batch got identical labels 88% of the time.
-
-- **Exact-name queries** (e.g. "paddleocr"): percent of queries where the named tool is the first result.
-- **Topic queries**: relevant results returned per query, then **topic recall** (percent of the topic's relevant entries returned; each query is checked against its topic's full answer list) and **topic precision** (percent of returned entries that are relevant).
+**Search eval: this repo's search vs. plain substring search** ([method](docs/semantic-search.md#evaluation)). 40 test queries in four styles (10 each), run through three engines on the same frozen copy of the catalog: **substring** search (the baseline, the repo's original lookup), this repo's **lexical** search alone, and its full **lexical+semantic** search. Each cell is the share of relevant entries the engine surfaced, with the count: found / should have found, summed over the style's 10 queries. Relevance comes from an answer key labeled by Claude Opus 5.5 without seeing the queries; calibration entries repeated in every labeling batch got identical labels 88% of the time.
 
 | query style | substring | lexical | lexical+semantic |
 |---|---|---|---|
-| exact name: named tool ranked first | 70% | 90% | 90% |
-| keyword (e.g. "document parsing") | 5.0 relevant (16%, 44%) | 15.8 relevant (50%, 38%) | 18.4 relevant (60%, 37%) |
-| plain-language need | 0.0 (no results) | 0.0 (no results) | 3.9 relevant (14%, 39%) |
-| keyword list (e.g. "local llm inference gpu quantization") | 0.0 (no results) | 1.0 relevant (3%, 27%), no results on 70% of queries | 7.5 relevant (27%, 66%) |
+| exact name (e.g. "paddleocr") | 100% (10/10) | 100% (10/10) | 100% (10/10) |
+| keyword (e.g. "document parsing") | 18% (50/284) | 56% (158/284) | 65% (184/284) |
+| plain-language need | 0% (0/284) | 0% (0/284) | 14% (39/284) |
+| keyword list (e.g. "local llm inference gpu quantization") | 0% (0/284) | 4% (10/284) | 26% (75/284) |
 
-Lexical search returned 48.6 candidate entries per keyword query, 0.0 per plain-language query, and 1.3 per keyword-list query. On those last two styles, nearly all relevant results come from semantic suggestions (3.9 of 3.9 and 6.5 of 7.5). Semantic suggestions are limited to 10 per query by default, which caps recall on large topics.
+On exact-name queries the named tool was the first result 70% of the time for substring and 90% for lexical and lexical+semantic. Lexical search returned 48.6 entries per keyword query, 0.0 per plain-language query, and 1.3 per keyword-list query; on those last two styles, nearly all surfaced entries come from semantic suggestions (39 of 39 and 65 of 75). Semantic suggestions are limited to 10 per query by default, which caps how much of a large topic they can surface.
 
 **Add retrieval instructions to your project's CLAUDE.md:**
 

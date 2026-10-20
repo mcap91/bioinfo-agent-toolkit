@@ -146,6 +146,7 @@ def compute_metrics_for_query(
             "topic_recall": (len(inter) / len(target)) if target else 0.0,
             "topic_precision": (len(inter) / size_r) if size_r else 0.0,
             "relevant_found": len(inter),
+            "relevant_total": len(target),
             "empty": size_r == 0,
         }
 
@@ -186,6 +187,8 @@ def aggregate_group(rows: list[dict], query_type: str) -> dict[str, Any]:
             "topic_precision_mean": mean([m["topic_precision"] for m in engine_rows]),
             "size_mean": mean([m["size"] for m in engine_rows]),
             "relevant_found_mean": mean([m["relevant_found"] for m in engine_rows]),
+            "relevant_found_sum": sum(m["relevant_found"] for m in engine_rows),
+            "relevant_total_sum": sum(m["relevant_total"] for m in engine_rows),
             "empty_rate": mean([1.0 if m["empty"] else 0.0 for m in engine_rows]),
         }
         if query_type == "name":
@@ -209,6 +212,10 @@ def aggregate_group(rows: list[dict], query_type: str) -> dict[str, Any]:
             agg["recall_by_channel_mean"] = {
                 "lexical": mean([m["recall_by_channel"]["lexical"] for m in engine_rows]),
                 "semantic": mean([m["recall_by_channel"]["semantic"] for m in engine_rows]),
+            }
+            agg["relevant_found_by_channel_sum"] = {
+                "lexical": sum(m["relevant_found_by_channel"]["lexical"] for m in engine_rows),
+                "semantic": sum(m["relevant_found_by_channel"]["semantic"] for m in engine_rows),
             }
             agg["relevant_found_by_channel_mean"] = {
                 "lexical": mean([m["relevant_found_by_channel"]["lexical"] for m in engine_rows]),

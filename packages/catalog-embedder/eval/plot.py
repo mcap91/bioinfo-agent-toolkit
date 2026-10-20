@@ -1,7 +1,8 @@
 """Render the search eval figure from results.json.
 
-Two panels: exact-name queries (% with the named tool ranked first) and topic queries
-(relevant results returned per query). Recall and precision are reported in the README.
+One axis: % of the relevant entries each engine surfaced, pooled over the queries of each
+style (found / should have found), labeled with the counts. For name queries the one
+relevant entry is the named tool.
 
 Run: `uv run python eval/plot.py` (after `run_eval.py` has written results.json).
 Regenerates eval/search_eval.png in place.
@@ -16,8 +17,8 @@ import matplotlib.pyplot as plt
 
 EVAL_DIR = Path(__file__).parent
 
-TOPIC_GROUPS = ("keyword", "description", "keyword_list")
-GROUP_TITLES = {"keyword": "Keyword", "description": "Plain-language", "keyword_list": "Keyword list"}
+GROUPS = ("name", "keyword", "description", "keyword_list")
+GROUP_TITLES = {"name": "Exact name", "keyword": "Keyword", "description": "Plain-language", "keyword_list": "Keyword list"}
 ENGINES = ("substring", "lexical", "lexical+semantic")
 ENGINE_LABELS = {"substring": "substring", "lexical": "lexical", "lexical+semantic": "lexical +\nsemantic"}
 
@@ -36,37 +37,47 @@ BAR_WIDTH = 0.24
 BAR_SPACING = 0.3
 
 
-def _name_segments(engine: str, stats: dict) -> tuple[float, float]:
-    """(lexical-or-solid, semantic) share of name queries with the named tool ranked first."""
-    engine_stats = stats["name"]["engines"][engine]
-    if engine != "lexical+semantic":
-        return engine_stats["found_at_1_rate"], 0.0
-    split = engine_stats["found_at_1_by_match_type"]
-    return split["lexical"], split["semantic"]
-
-
-def _count_segments(group: str, engine: str, stats: dict) -> tuple[float, float]:
-    """(lexical-or-solid, semantic) relevant results returned per query."""
+def _segments(group: str, engine: str, stats: dict) -> tuple[int, int, int]:
+    """(found by lexical-or-solid, found by semantic, should have found), summed over the group."""
     engine_stats = stats[group]["engines"][engine]
+    total = engine_stats["relevant_total_sum"]
     if engine != "lexical+semantic":
-        return engine_stats["relevant_found_mean"], 0.0
-    channel = engine_stats["relevant_found_by_channel_mean"]
-    return channel["lexical"], channel["semantic"]
+        return engine_stats["relevant_found_sum"], 0, total
+    channel = engine_stats["relevant_found_by_channel_sum"]
+    return channel["lexical"], channel["semantic"], total
 
 
-def _draw_bar(ax, x: float, engine: str, solid: float, semantic: float, label: str) -> None:
-    ax.bar(x, solid, BAR_WIDTH, color=ENGINE_COLORS[engine], edgecolor=SURFACE, linewidth=1.5)
-    if semantic:
-        ax.bar(x, semantic, BAR_WIDTH, bottom=solid, color=SEMANTIC_COLOR, hatch="//", edgecolor=SURFACE, linewidth=1.5)
-    ax.text(x, solid + semantic, label, ha="center", va="bottom", fontsize=9, fontweight="bold", color=INK_PRIMARY)
-    ax.text(x, -0.02, ENGINE_LABELS[engine], ha="center", va="top", fontsize=7.5, color=INK_SECONDARY,
-            transform=ax.get_xaxis_transform())
+def main() -> None:
+    results = json.loads((EVAL_DIR / "results.json").read_text(encoding="utf-8"))
+    stats = results["aggregate_by_type_engine"]
 
-
-def _style(ax, title: str) -> None:
+    fig, ax = plt.subplots(figsize=(10, 5), dpi=150, facecolor=SURFACE)
     ax.set_facecolor(SURFACE)
-    ax.set_title(title, fontsize=10, fontweight="bold", color=INK_PRIMARY, pad=10)
+    axis_transform = ax.get_xaxis_transform()
+
+    for g, group in enumerate(GROUPS):
+        for i, engine in enumerate(ENGINES):
+            x = g + (i - 1) * BAR_SPACING
+            lexical, semantic, total = _segments(group, engine, stats)
+            found = lexical + semantic
+            ax.bar(x, lexical / total, BAR_WIDTH, color=ENGINE_COLORS[engine], edgecolor=SURFACE, linewidth=1.5)
+            if semantic:
+                ax.bar(x, semantic / total, BAR_WIDTH, bottom=lexical / total, color=SEMANTIC_COLOR, hatch="//",
+                       edgecolor=SURFACE, linewidth=1.5)
+            ax.text(x, found / total + 0.01, f"{found / total * 100:.0f}%", ha="center", va="bottom", fontsize=9,
+                    fontweight="bold", color=INK_PRIMARY)
+            ax.text(x, found / total + 0.065, f"{found}/{total}", ha="center", va="bottom", fontsize=7,
+                    color=INK_SECONDARY)
+            ax.text(x, -0.02, ENGINE_LABELS[engine], ha="center", va="top", fontsize=7.5, color=INK_SECONDARY,
+                    transform=axis_transform)
+        ax.text(g, -0.13, GROUP_TITLES[group], ha="center", va="top", fontsize=10, fontweight="bold",
+                color=INK_PRIMARY, transform=axis_transform)
+
     ax.set_xticks([])
+    ax.set_xlim(-0.55, len(GROUPS) - 0.45)
+    ax.set_ylim(0, 1.15)
+    ax.set_yticks([0, 0.25, 0.5, 0.75, 1.0], ["0%", "25%", "50%", "75%", "100%"])
+    ax.set_ylabel("Relevant entries surfaced", color=INK_SECONDARY, fontsize=9)
     ax.tick_params(axis="y", colors=INK_MUTED, labelsize=8, length=0)
     ax.grid(axis="y", color=GRIDLINE, linewidth=0.8)
     ax.set_axisbelow(True)
@@ -74,47 +85,17 @@ def _style(ax, title: str) -> None:
         ax.spines[side].set_visible(False)
     ax.spines["bottom"].set_color(AXIS)
 
-
-def main() -> None:
-    results = json.loads((EVAL_DIR / "results.json").read_text(encoding="utf-8"))
-    stats = results["aggregate_by_type_engine"]
-
-    fig, (ax_name, ax_topic) = plt.subplots(
-        1, 2, figsize=(10, 5), dpi=150, facecolor=SURFACE, gridspec_kw={"width_ratios": [1, 3]}
-    )
-
-    for i, engine in enumerate(ENGINES):
-        solid, semantic = _name_segments(engine, stats)
-        _draw_bar(ax_name, (i - 1) * BAR_SPACING, engine, solid, semantic, f"{(solid + semantic) * 100:.0f}%")
-    ax_name.set_ylim(0, 1.1)
-    ax_name.set_yticks([0, 0.25, 0.5, 0.75, 1.0], ["0%", "25%", "50%", "75%", "100%"])
-    ax_name.set_xlim(-0.55, 0.55)
-    _style(ax_name, "Exact tool name\n% ranked first")
-
-    top = 0.0
-    for g, group in enumerate(TOPIC_GROUPS):
-        for i, engine in enumerate(ENGINES):
-            solid, semantic = _count_segments(group, engine, stats)
-            top = max(top, solid + semantic)
-            _draw_bar(ax_topic, g + (i - 1) * BAR_SPACING, engine, solid, semantic, f"{solid + semantic:.1f}")
-        ax_topic.text(g, -0.13, GROUP_TITLES[group], ha="center", va="top", fontsize=10, fontweight="bold",
-                      color=INK_PRIMARY, transform=ax_topic.get_xaxis_transform())
-    ax_topic.set_ylim(0, top * 1.15)
-    ax_topic.set_yticks(range(0, int(top * 1.15) + 1, 5))
-    ax_topic.set_xlim(-0.55, len(TOPIC_GROUPS) - 0.45)
-    _style(ax_topic, "Topic searches\nrelevant results returned per query")
-
-    fig.suptitle("Catalog search vs. plain substring search", x=0.06, ha="left", fontsize=13, fontweight="bold",
-                 color=INK_PRIMARY)
+    ax.set_title("Catalog search vs. plain substring search", loc="left", fontsize=13, fontweight="bold",
+                 color=INK_PRIMARY, pad=28)
     legend_handles = [
         plt.Rectangle((0, 0), 1, 1, color=INK_MUTED, label="substring search (baseline)"),
         plt.Rectangle((0, 0), 1, 1, color=LEXICAL_COLOR, label="lexical match"),
         plt.Rectangle((0, 0), 1, 1, facecolor=SEMANTIC_COLOR, edgecolor=SURFACE, hatch="//", label="semantic match"),
     ]
-    fig.legend(handles=legend_handles, loc="upper right", ncol=3, fontsize=8, frameon=False, labelcolor=INK_SECONDARY,
-               bbox_to_anchor=(0.98, 0.985))
+    ax.legend(handles=legend_handles, loc="lower left", bbox_to_anchor=(0, 1.0), ncol=3, fontsize=8, frameon=False,
+              labelcolor=INK_SECONDARY)
 
-    fig.subplots_adjust(left=0.06, right=0.98, top=0.8, bottom=0.2, wspace=0.12)
+    fig.subplots_adjust(left=0.08, right=0.98, top=0.84, bottom=0.2)
     fig.savefig(EVAL_DIR / "search_eval.png", facecolor=SURFACE)
     print(f"wrote {EVAL_DIR / 'search_eval.png'}")
 
