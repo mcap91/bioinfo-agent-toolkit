@@ -5726,7 +5726,7 @@
       "url": "https://glama.ai/mcp/servers",
       "category": "reference",
       "decision_status": "open",
-      "summary": "Glama indexes the Model Context Protocol ecosystem — submitted GitHub repos are indexed with every tool, schema, and annotation — and provides an in-browser inspector, a gateway with access control and OAuth, and pre-configured connectors for 50,000+ MCP servers",
+      "summary": "Glama indexes the Model Context Protocol ecosystem — submitted GitHub repos are indexed with every tool, schema, and annotation — and provides a registry of 50,000+ servers with verification tiers, an in-browser inspector for live JSON-RPC calls, a gateway with access control and OAuth, and pre-configured connectors with managed credentials for hosted MCP servers",
       "body_summary": "Glama indexes the Model Context Protocol ecosystem — submit a GitHub repo and it indexes\nevery tool, schema, and annotation. Servers appear in search, categories, and\nrecommendations. An in-browser inspector lets visitors exercise tools with real JSON-RPC\ncalls without cloning or building anything…",
       "tags": [
         "MCP",
@@ -12040,7 +12040,7 @@
       "url": "https://github.com/vercel-labs/skills",
       "category": "cli-tool",
       "decision_status": "open",
-      "summary": "The Skills CLI (npx skills) is a package manager for agent skills — modular SKILL.md packages — providing discovery, installation, update checking, and scaffolding, backed by the skills.sh registry which ranks skills by install count and source reputation",
+      "summary": "The Skills CLI (npx skills) is a package manager for agent skills — modular SKILL.md packages — providing discovery, installation, update checking, and scaffolding, backed by the skills.sh registry which ranks skills by total installs and verifies quality via install count, source reputation, and GitHub stars",
       "body_summary": "The Skills CLI (`npx skills`) is a package manager for agent skills — modular SKILL.md\npackages that extend AI coding agent capabilities with specialized knowledge, workflows,\nand tools. It provides discovery, installation, update checking, and scaffolding for new\nskills.\n\n- `npx skills find…",
       "tags": [
         "skills",

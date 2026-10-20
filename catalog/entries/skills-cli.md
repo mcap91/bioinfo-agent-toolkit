@@ -6,7 +6,7 @@ category: cli-tool
 tags: [skills, package-manager, discovery, CLI, agent-skills, vercel]
 reviewed: 2026-07-03
 security_flags: []
-summary: "The Skills CLI (npx skills) is a package manager for agent skills — modular SKILL.md packages — providing discovery, installation, update checking, and scaffolding, backed by the skills.sh registry which ranks skills by install count and source reputation"
+summary: "The Skills CLI (npx skills) is a package manager for agent skills — modular SKILL.md packages — providing discovery, installation, update checking, and scaffolding, backed by the skills.sh registry which ranks skills by total installs and verifies quality via install count, source reputation, and GitHub stars"
 acquired: 2026-07-04
 ---
 

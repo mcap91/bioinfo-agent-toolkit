@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-20T04:35:05.365Z",
+  "generated_at": "2026-10-20T04:51:09.270Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -2449,7 +2449,7 @@
       "kind": "entry",
       "title": "Glama",
       "url": "https://glama.ai/mcp/servers",
-      "summary": "Glama indexes the Model Context Protocol ecosystem — submitted GitHub repos are indexed with every tool, schema, and annotation — and provides an in-browser inspector, a gateway with access control and OAuth, and pre-configured connectors for 50,000+ MCP servers",
+      "summary": "Glama indexes the Model Context Protocol ecosystem — submitted GitHub repos are indexed with every tool, schema, and annotation — and provides a registry of 50,000+ servers with verification tiers, an in-browser inspector for live JSON-RPC calls, a gateway with access control and OAuth, and pre-configured connectors with managed credentials for hosted MCP servers",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -5018,7 +5018,7 @@
       "kind": "entry",
       "title": "Skills CLI (skills.sh)",
       "url": "https://github.com/vercel-labs/skills",
-      "summary": "The Skills CLI (npx skills) is a package manager for agent skills — modular SKILL.md packages — providing discovery, installation, update checking, and scaffolding, backed by the skills.sh registry which ranks skills by install count and source reputation",
+      "summary": "The Skills CLI (npx skills) is a package manager for agent skills — modular SKILL.md packages — providing discovery, installation, update checking, and scaffolding, backed by the skills.sh registry which ranks skills by total installs and verifies quality via install count, source reputation, and GitHub stars",
       "category": "cli-tool",
       "decision_status": "open",
       "exists": true
