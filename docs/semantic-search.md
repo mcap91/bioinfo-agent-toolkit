@@ -147,7 +147,10 @@ a named reason. It never asserts which engine wins.
 "topic precision" (non-name queries are scored against their topic's full answer list,
 not judged one by one); report each query type separately, never one overall winner;
 state the lexical candidate counts for description and keyword_list queries; state the
-calibration `unanimous_rate`. Every number must come from `results.json`.
+calibration `unanimous_rate`. Every number must come from `results.json`. The figure's
+headline metric for topic queries is **relevant results returned per query**
+(`relevant_found_mean`): unlike topic recall it is not depressed by the semantic suggestion
+cap on large topics, and unlike precision it does not reward returning nothing.
 
 Commands (run with the project venv, from the repo root):
 

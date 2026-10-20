@@ -145,6 +145,7 @@ def compute_metrics_for_query(
             "size": size_r,
             "topic_recall": (len(inter) / len(target)) if target else 0.0,
             "topic_precision": (len(inter) / size_r) if size_r else 0.0,
+            "relevant_found": len(inter),
             "empty": size_r == 0,
         }
 
@@ -161,6 +162,10 @@ def compute_metrics_for_query(
             engine_metrics["recall_by_channel"] = {
                 "lexical": (len(target & lexical_names) / len(target)) if target else 0.0,
                 "semantic": (len(target & semantic_names) / len(target)) if target else 0.0,
+            }
+            engine_metrics["relevant_found_by_channel"] = {
+                "lexical": len(target & lexical_names),
+                "semantic": len(target & semantic_names),
             }
 
         metrics[engine] = engine_metrics
@@ -180,6 +185,7 @@ def aggregate_group(rows: list[dict], query_type: str) -> dict[str, Any]:
             "topic_recall_mean": mean([m["topic_recall"] for m in engine_rows]),
             "topic_precision_mean": mean([m["topic_precision"] for m in engine_rows]),
             "size_mean": mean([m["size"] for m in engine_rows]),
+            "relevant_found_mean": mean([m["relevant_found"] for m in engine_rows]),
             "empty_rate": mean([1.0 if m["empty"] else 0.0 for m in engine_rows]),
         }
         if query_type == "name":
@@ -203,6 +209,10 @@ def aggregate_group(rows: list[dict], query_type: str) -> dict[str, Any]:
             agg["recall_by_channel_mean"] = {
                 "lexical": mean([m["recall_by_channel"]["lexical"] for m in engine_rows]),
                 "semantic": mean([m["recall_by_channel"]["semantic"] for m in engine_rows]),
+            }
+            agg["relevant_found_by_channel_mean"] = {
+                "lexical": mean([m["relevant_found_by_channel"]["lexical"] for m in engine_rows]),
+                "semantic": mean([m["relevant_found_by_channel"]["semantic"] for m in engine_rows]),
             }
         engines_agg[engine] = agg
     return {"lexical_candidates_mean": lexical_candidates_mean, "engines": engines_agg}

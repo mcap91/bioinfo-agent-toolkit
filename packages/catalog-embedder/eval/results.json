@@ -12,6 +12,7 @@
           "size": 2,
           "topic_recall": 1.0,
           "topic_precision": 0.5,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true
@@ -20,6 +21,7 @@
           "size": 3,
           "topic_recall": 1.0,
           "topic_precision": 0.3333333333333333,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true
@@ -28,6 +30,7 @@
           "size": 13,
           "topic_recall": 1.0,
           "topic_precision": 0.07692307692307693,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true,
@@ -35,6 +38,10 @@
           "recall_by_channel": {
             "lexical": 1.0,
             "semantic": 0.0
+          },
+          "relevant_found_by_channel": {
+            "lexical": 1,
+            "semantic": 0
           }
         }
       }
@@ -49,6 +56,7 @@
           "size": 2,
           "topic_recall": 1.0,
           "topic_precision": 0.5,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": false
@@ -57,6 +65,7 @@
           "size": 4,
           "topic_recall": 1.0,
           "topic_precision": 0.25,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true
@@ -65,6 +74,7 @@
           "size": 14,
           "topic_recall": 1.0,
           "topic_precision": 0.07142857142857142,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true,
@@ -72,6 +82,10 @@
           "recall_by_channel": {
             "lexical": 1.0,
             "semantic": 0.0
+          },
+          "relevant_found_by_channel": {
+            "lexical": 1,
+            "semantic": 0
           }
         }
       }
@@ -86,22 +100,29 @@
           "size": 20,
           "topic_recall": 0.47619047619047616,
           "topic_precision": 0.5,
+          "relevant_found": 10,
           "empty": false
         },
         "lexical": {
           "size": 32,
           "topic_recall": 0.9523809523809523,
           "topic_precision": 0.625,
+          "relevant_found": 20,
           "empty": false
         },
         "lexical+semantic": {
           "size": 42,
           "topic_recall": 0.9523809523809523,
           "topic_precision": 0.47619047619047616,
+          "relevant_found": 20,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.9523809523809523,
             "semantic": 0.0
+          },
+          "relevant_found_by_channel": {
+            "lexical": 20,
+            "semantic": 0
           }
         }
       }
@@ -116,22 +137,29 @@
           "size": 5,
           "topic_recall": 0.19047619047619047,
           "topic_precision": 0.8,
+          "relevant_found": 4,
           "empty": false
         },
         "lexical": {
           "size": 23,
           "topic_recall": 0.6666666666666666,
           "topic_precision": 0.6086956521739131,
+          "relevant_found": 14,
           "empty": false
         },
         "lexical+semantic": {
           "size": 33,
           "topic_recall": 0.8095238095238095,
           "topic_precision": 0.5151515151515151,
+          "relevant_found": 17,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.6666666666666666,
             "semantic": 0.14285714285714285
+          },
+          "relevant_found_by_channel": {
+            "lexical": 14,
+            "semantic": 3
           }
         }
       }
@@ -146,22 +174,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical+semantic": {
           "size": 10,
           "topic_recall": 0.19047619047619047,
           "topic_precision": 0.4,
+          "relevant_found": 4,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.0,
             "semantic": 0.19047619047619047
+          },
+          "relevant_found_by_channel": {
+            "lexical": 0,
+            "semantic": 4
           }
         }
       }
@@ -176,22 +211,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical+semantic": {
           "size": 10,
           "topic_recall": 0.2857142857142857,
           "topic_precision": 0.6,
+          "relevant_found": 6,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.0,
             "semantic": 0.2857142857142857
+          },
+          "relevant_found_by_channel": {
+            "lexical": 0,
+            "semantic": 6
           }
         }
       }
@@ -206,22 +248,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 2,
           "topic_recall": 0.09523809523809523,
           "topic_precision": 1.0,
+          "relevant_found": 2,
           "empty": false
         },
         "lexical+semantic": {
           "size": 12,
           "topic_recall": 0.47619047619047616,
           "topic_precision": 0.8333333333333334,
+          "relevant_found": 10,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.09523809523809523,
             "semantic": 0.38095238095238093
+          },
+          "relevant_found_by_channel": {
+            "lexical": 2,
+            "semantic": 8
           }
         }
       }
@@ -236,22 +285,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical+semantic": {
           "size": 10,
           "topic_recall": 0.42857142857142855,
           "topic_precision": 0.9,
+          "relevant_found": 9,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.0,
             "semantic": 0.42857142857142855
+          },
+          "relevant_found_by_channel": {
+            "lexical": 0,
+            "semantic": 9
           }
         }
       }
@@ -266,6 +322,7 @@
           "size": 11,
           "topic_recall": 1.0,
           "topic_precision": 0.09090909090909091,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": false
@@ -274,6 +331,7 @@
           "size": 11,
           "topic_recall": 1.0,
           "topic_precision": 0.09090909090909091,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": false
@@ -282,6 +340,7 @@
           "size": 21,
           "topic_recall": 1.0,
           "topic_precision": 0.047619047619047616,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": false,
@@ -289,6 +348,10 @@
           "recall_by_channel": {
             "lexical": 1.0,
             "semantic": 0.0
+          },
+          "relevant_found_by_channel": {
+            "lexical": 1,
+            "semantic": 0
           }
         }
       }
@@ -303,6 +366,7 @@
           "size": 1,
           "topic_recall": 1.0,
           "topic_precision": 1.0,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true
@@ -311,6 +375,7 @@
           "size": 1,
           "topic_recall": 1.0,
           "topic_precision": 1.0,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true
@@ -319,6 +384,7 @@
           "size": 11,
           "topic_recall": 1.0,
           "topic_precision": 0.09090909090909091,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true,
@@ -326,6 +392,10 @@
           "recall_by_channel": {
             "lexical": 1.0,
             "semantic": 0.0
+          },
+          "relevant_found_by_channel": {
+            "lexical": 1,
+            "semantic": 0
           }
         }
       }
@@ -340,22 +410,29 @@
           "size": 9,
           "topic_recall": 0.125,
           "topic_precision": 0.5555555555555556,
+          "relevant_found": 5,
           "empty": false
         },
         "lexical": {
           "size": 70,
           "topic_recall": 0.8,
           "topic_precision": 0.45714285714285713,
+          "relevant_found": 32,
           "empty": false
         },
         "lexical+semantic": {
           "size": 80,
           "topic_recall": 0.8,
           "topic_precision": 0.4,
+          "relevant_found": 32,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.8,
             "semantic": 0.0
+          },
+          "relevant_found_by_channel": {
+            "lexical": 32,
+            "semantic": 0
           }
         }
       }
@@ -370,22 +447,29 @@
           "size": 9,
           "topic_recall": 0.175,
           "topic_precision": 0.7777777777777778,
+          "relevant_found": 7,
           "empty": false
         },
         "lexical": {
           "size": 112,
           "topic_recall": 0.6,
           "topic_precision": 0.21428571428571427,
+          "relevant_found": 24,
           "empty": false
         },
         "lexical+semantic": {
           "size": 122,
           "topic_recall": 0.65,
           "topic_precision": 0.21311475409836064,
+          "relevant_found": 26,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.6,
             "semantic": 0.05
+          },
+          "relevant_found_by_channel": {
+            "lexical": 24,
+            "semantic": 2
           }
         }
       }
@@ -400,22 +484,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical+semantic": {
           "size": 10,
           "topic_recall": 0.1,
           "topic_precision": 0.4,
+          "relevant_found": 4,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.0,
             "semantic": 0.1
+          },
+          "relevant_found_by_channel": {
+            "lexical": 0,
+            "semantic": 4
           }
         }
       }
@@ -430,22 +521,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical+semantic": {
           "size": 10,
           "topic_recall": 0.225,
           "topic_precision": 0.9,
+          "relevant_found": 9,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.0,
             "semantic": 0.225
+          },
+          "relevant_found_by_channel": {
+            "lexical": 0,
+            "semantic": 9
           }
         }
       }
@@ -460,22 +558,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 10,
           "topic_recall": 0.175,
           "topic_precision": 0.7,
+          "relevant_found": 7,
           "empty": false
         },
         "lexical+semantic": {
           "size": 20,
           "topic_recall": 0.325,
           "topic_precision": 0.65,
+          "relevant_found": 13,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.175,
             "semantic": 0.15
+          },
+          "relevant_found_by_channel": {
+            "lexical": 7,
+            "semantic": 6
           }
         }
       }
@@ -490,22 +595,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical+semantic": {
           "size": 10,
           "topic_recall": 0.125,
           "topic_precision": 0.5,
+          "relevant_found": 5,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.0,
             "semantic": 0.125
+          },
+          "relevant_found_by_channel": {
+            "lexical": 0,
+            "semantic": 5
           }
         }
       }
@@ -520,6 +632,7 @@
           "size": 1,
           "topic_recall": 1.0,
           "topic_precision": 1.0,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true
@@ -528,6 +641,7 @@
           "size": 1,
           "topic_recall": 1.0,
           "topic_precision": 1.0,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true
@@ -536,6 +650,7 @@
           "size": 11,
           "topic_recall": 1.0,
           "topic_precision": 0.09090909090909091,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true,
@@ -543,6 +658,10 @@
           "recall_by_channel": {
             "lexical": 1.0,
             "semantic": 0.0
+          },
+          "relevant_found_by_channel": {
+            "lexical": 1,
+            "semantic": 0
           }
         }
       }
@@ -557,6 +676,7 @@
           "size": 1,
           "topic_recall": 1.0,
           "topic_precision": 1.0,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true
@@ -565,6 +685,7 @@
           "size": 1,
           "topic_recall": 1.0,
           "topic_precision": 1.0,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true
@@ -573,6 +694,7 @@
           "size": 11,
           "topic_recall": 1.0,
           "topic_precision": 0.09090909090909091,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true,
@@ -580,6 +702,10 @@
           "recall_by_channel": {
             "lexical": 1.0,
             "semantic": 0.0
+          },
+          "relevant_found_by_channel": {
+            "lexical": 1,
+            "semantic": 0
           }
         }
       }
@@ -594,22 +720,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 30,
           "topic_recall": 0.1111111111111111,
           "topic_precision": 0.03333333333333333,
+          "relevant_found": 1,
           "empty": false
         },
         "lexical+semantic": {
           "size": 40,
           "topic_recall": 0.3333333333333333,
           "topic_precision": 0.075,
+          "relevant_found": 3,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.1111111111111111,
             "semantic": 0.2222222222222222
+          },
+          "relevant_found_by_channel": {
+            "lexical": 1,
+            "semantic": 2
           }
         }
       }
@@ -624,22 +757,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 34,
           "topic_recall": 0.1111111111111111,
           "topic_precision": 0.029411764705882353,
+          "relevant_found": 1,
           "empty": false
         },
         "lexical+semantic": {
           "size": 44,
           "topic_recall": 0.1111111111111111,
           "topic_precision": 0.022727272727272728,
+          "relevant_found": 1,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.1111111111111111,
             "semantic": 0.0
+          },
+          "relevant_found_by_channel": {
+            "lexical": 1,
+            "semantic": 0
           }
         }
       }
@@ -654,22 +794,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical+semantic": {
           "size": 10,
           "topic_recall": 0.2222222222222222,
           "topic_precision": 0.2,
+          "relevant_found": 2,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.0,
             "semantic": 0.2222222222222222
+          },
+          "relevant_found_by_channel": {
+            "lexical": 0,
+            "semantic": 2
           }
         }
       }
@@ -684,22 +831,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical+semantic": {
           "size": 10,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.0,
             "semantic": 0.0
+          },
+          "relevant_found_by_channel": {
+            "lexical": 0,
+            "semantic": 0
           }
         }
       }
@@ -714,22 +868,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical+semantic": {
           "size": 10,
           "topic_recall": 0.2222222222222222,
           "topic_precision": 0.2,
+          "relevant_found": 2,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.0,
             "semantic": 0.2222222222222222
+          },
+          "relevant_found_by_channel": {
+            "lexical": 0,
+            "semantic": 2
           }
         }
       }
@@ -744,22 +905,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical+semantic": {
           "size": 10,
           "topic_recall": 0.1111111111111111,
           "topic_precision": 0.1,
+          "relevant_found": 1,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.0,
             "semantic": 0.1111111111111111
+          },
+          "relevant_found_by_channel": {
+            "lexical": 0,
+            "semantic": 1
           }
         }
       }
@@ -774,6 +942,7 @@
           "size": 1,
           "topic_recall": 1.0,
           "topic_precision": 1.0,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true
@@ -782,6 +951,7 @@
           "size": 65,
           "topic_recall": 1.0,
           "topic_precision": 0.015384615384615385,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true
@@ -790,6 +960,7 @@
           "size": 75,
           "topic_recall": 1.0,
           "topic_precision": 0.013333333333333334,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true,
@@ -797,6 +968,10 @@
           "recall_by_channel": {
             "lexical": 1.0,
             "semantic": 0.0
+          },
+          "relevant_found_by_channel": {
+            "lexical": 1,
+            "semantic": 0
           }
         }
       }
@@ -811,6 +986,7 @@
           "size": 1,
           "topic_recall": 1.0,
           "topic_precision": 1.0,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true
@@ -819,6 +995,7 @@
           "size": 1,
           "topic_recall": 1.0,
           "topic_precision": 1.0,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true
@@ -827,6 +1004,7 @@
           "size": 11,
           "topic_recall": 1.0,
           "topic_precision": 0.09090909090909091,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true,
@@ -834,6 +1012,10 @@
           "recall_by_channel": {
             "lexical": 1.0,
             "semantic": 0.0
+          },
+          "relevant_found_by_channel": {
+            "lexical": 1,
+            "semantic": 0
           }
         }
       }
@@ -848,22 +1030,29 @@
           "size": 14,
           "topic_recall": 0.3333333333333333,
           "topic_precision": 0.6428571428571429,
+          "relevant_found": 9,
           "empty": false
         },
         "lexical": {
           "size": 89,
           "topic_recall": 0.6296296296296297,
           "topic_precision": 0.19101123595505617,
+          "relevant_found": 17,
           "empty": false
         },
         "lexical+semantic": {
           "size": 99,
           "topic_recall": 0.7037037037037037,
           "topic_precision": 0.1919191919191919,
+          "relevant_found": 19,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.6296296296296297,
             "semantic": 0.07407407407407407
+          },
+          "relevant_found_by_channel": {
+            "lexical": 17,
+            "semantic": 2
           }
         }
       }
@@ -878,22 +1067,29 @@
           "size": 1,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": false
         },
         "lexical": {
           "size": 11,
           "topic_recall": 0.18518518518518517,
           "topic_precision": 0.45454545454545453,
+          "relevant_found": 5,
           "empty": false
         },
         "lexical+semantic": {
           "size": 21,
           "topic_recall": 0.48148148148148145,
           "topic_precision": 0.6190476190476191,
+          "relevant_found": 13,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.18518518518518517,
             "semantic": 0.2962962962962963
+          },
+          "relevant_found_by_channel": {
+            "lexical": 5,
+            "semantic": 8
           }
         }
       }
@@ -908,22 +1104,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical+semantic": {
           "size": 10,
           "topic_recall": 0.1111111111111111,
           "topic_precision": 0.3,
+          "relevant_found": 3,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.0,
             "semantic": 0.1111111111111111
+          },
+          "relevant_found_by_channel": {
+            "lexical": 0,
+            "semantic": 3
           }
         }
       }
@@ -938,22 +1141,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical+semantic": {
           "size": 10,
           "topic_recall": 0.037037037037037035,
           "topic_precision": 0.1,
+          "relevant_found": 1,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.0,
             "semantic": 0.037037037037037035
+          },
+          "relevant_found_by_channel": {
+            "lexical": 0,
+            "semantic": 1
           }
         }
       }
@@ -968,22 +1178,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical+semantic": {
           "size": 10,
           "topic_recall": 0.2962962962962963,
           "topic_precision": 0.8,
+          "relevant_found": 8,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.0,
             "semantic": 0.2962962962962963
+          },
+          "relevant_found_by_channel": {
+            "lexical": 0,
+            "semantic": 8
           }
         }
       }
@@ -998,22 +1215,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical+semantic": {
           "size": 10,
           "topic_recall": 0.25925925925925924,
           "topic_precision": 0.7,
+          "relevant_found": 7,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.0,
             "semantic": 0.25925925925925924
+          },
+          "relevant_found_by_channel": {
+            "lexical": 0,
+            "semantic": 7
           }
         }
       }
@@ -1028,6 +1252,7 @@
           "size": 7,
           "topic_recall": 1.0,
           "topic_precision": 0.14285714285714285,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": false
@@ -1036,6 +1261,7 @@
           "size": 12,
           "topic_recall": 1.0,
           "topic_precision": 0.08333333333333333,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true
@@ -1044,6 +1270,7 @@
           "size": 22,
           "topic_recall": 1.0,
           "topic_precision": 0.045454545454545456,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true,
@@ -1051,6 +1278,10 @@
           "recall_by_channel": {
             "lexical": 1.0,
             "semantic": 0.0
+          },
+          "relevant_found_by_channel": {
+            "lexical": 1,
+            "semantic": 0
           }
         }
       }
@@ -1065,6 +1296,7 @@
           "size": 2,
           "topic_recall": 1.0,
           "topic_precision": 0.5,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true
@@ -1073,6 +1305,7 @@
           "size": 7,
           "topic_recall": 1.0,
           "topic_precision": 0.14285714285714285,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true
@@ -1081,6 +1314,7 @@
           "size": 17,
           "topic_recall": 1.0,
           "topic_precision": 0.058823529411764705,
+          "relevant_found": 1,
           "empty": false,
           "found": true,
           "found_at_1": true,
@@ -1088,6 +1322,10 @@
           "recall_by_channel": {
             "lexical": 1.0,
             "semantic": 0.0
+          },
+          "relevant_found_by_channel": {
+            "lexical": 1,
+            "semantic": 0
           }
         }
       }
@@ -1102,22 +1340,29 @@
           "size": 20,
           "topic_recall": 0.1111111111111111,
           "topic_precision": 0.25,
+          "relevant_found": 5,
           "empty": false
         },
         "lexical": {
           "size": 66,
           "topic_recall": 0.6444444444444445,
           "topic_precision": 0.4393939393939394,
+          "relevant_found": 29,
           "empty": false
         },
         "lexical+semantic": {
           "size": 76,
           "topic_recall": 0.6888888888888889,
           "topic_precision": 0.40789473684210525,
+          "relevant_found": 31,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.6444444444444445,
             "semantic": 0.044444444444444446
+          },
+          "relevant_found_by_channel": {
+            "lexical": 29,
+            "semantic": 2
           }
         }
       }
@@ -1132,22 +1377,29 @@
           "size": 11,
           "topic_recall": 0.2222222222222222,
           "topic_precision": 0.9090909090909091,
+          "relevant_found": 10,
           "empty": false
         },
         "lexical": {
           "size": 19,
           "topic_recall": 0.3333333333333333,
           "topic_precision": 0.7894736842105263,
+          "relevant_found": 15,
           "empty": false
         },
         "lexical+semantic": {
           "size": 29,
           "topic_recall": 0.4888888888888889,
           "topic_precision": 0.7586206896551724,
+          "relevant_found": 22,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.3333333333333333,
             "semantic": 0.15555555555555556
+          },
+          "relevant_found_by_channel": {
+            "lexical": 15,
+            "semantic": 7
           }
         }
       }
@@ -1162,22 +1414,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical+semantic": {
           "size": 10,
           "topic_recall": 0.1111111111111111,
           "topic_precision": 0.5,
+          "relevant_found": 5,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.0,
             "semantic": 0.1111111111111111
+          },
+          "relevant_found_by_channel": {
+            "lexical": 0,
+            "semantic": 5
           }
         }
       }
@@ -1192,22 +1451,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical+semantic": {
           "size": 10,
           "topic_recall": 0.1111111111111111,
           "topic_precision": 0.5,
+          "relevant_found": 5,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.0,
             "semantic": 0.1111111111111111
+          },
+          "relevant_found_by_channel": {
+            "lexical": 0,
+            "semantic": 5
           }
         }
       }
@@ -1222,22 +1488,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 1,
           "topic_recall": 0.022222222222222223,
           "topic_precision": 1.0,
+          "relevant_found": 1,
           "empty": false
         },
         "lexical+semantic": {
           "size": 11,
           "topic_recall": 0.24444444444444444,
           "topic_precision": 1.0,
+          "relevant_found": 11,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.022222222222222223,
             "semantic": 0.2222222222222222
+          },
+          "relevant_found_by_channel": {
+            "lexical": 1,
+            "semantic": 10
           }
         }
       }
@@ -1252,22 +1525,29 @@
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical": {
           "size": 0,
           "topic_recall": 0.0,
           "topic_precision": 0.0,
+          "relevant_found": 0,
           "empty": true
         },
         "lexical+semantic": {
           "size": 10,
           "topic_recall": 0.2,
           "topic_precision": 0.9,
+          "relevant_found": 9,
           "empty": false,
           "recall_by_channel": {
             "lexical": 0.0,
             "semantic": 0.2
+          },
+          "relevant_found_by_channel": {
+            "lexical": 0,
+            "semantic": 9
           }
         }
       }
@@ -1281,6 +1561,7 @@
           "topic_recall_mean": 1.0,
           "topic_precision_mean": 0.6733766233766234,
           "size_mean": 2.9,
+          "relevant_found_mean": 1.0,
           "empty_rate": 0.0,
           "found_rate": 1.0,
           "found_at_1_rate": 0.7
@@ -1289,6 +1570,7 @@
           "topic_recall_mean": 1.0,
           "topic_precision_mean": 0.49158175158175155,
           "size_mean": 10.6,
+          "relevant_found_mean": 1.0,
           "empty_rate": 0.0,
           "found_rate": 1.0,
           "found_at_1_rate": 0.9
@@ -1297,6 +1579,7 @@
           "topic_recall_mean": 1.0,
           "topic_precision_mean": 0.06772184678067031,
           "size_mean": 20.6,
+          "relevant_found_mean": 1.0,
           "empty_rate": 0.0,
           "found_rate": 1.0,
           "found_at_1_rate": 0.9,
@@ -1305,6 +1588,10 @@
             "semantic": 0.0
           },
           "recall_by_channel_mean": {
+            "lexical": 1.0,
+            "semantic": 0.0
+          },
+          "relevant_found_by_channel_mean": {
             "lexical": 1.0,
             "semantic": 0.0
           }
@@ -1318,22 +1605,29 @@
           "topic_recall_mean": 0.16333333333333333,
           "topic_precision_mean": 0.44352813852813855,
           "size_mean": 8.9,
+          "relevant_found_mean": 5.0,
           "empty_rate": 0.2
         },
         "lexical": {
           "topic_recall_mean": 0.5033862433862434,
           "topic_precision_mean": 0.38422936357466764,
           "size_mean": 48.6,
+          "relevant_found_mean": 15.8,
           "empty_rate": 0.0
         },
         "lexical+semantic": {
           "topic_recall_mean": 0.6019312169312169,
           "topic_precision_mean": 0.36796662556317133,
           "size_mean": 58.6,
+          "relevant_found_mean": 18.4,
           "empty_rate": 0.0,
           "recall_by_channel_mean": {
             "lexical": 0.5033862433862434,
             "semantic": 0.09854497354497355
+          },
+          "relevant_found_by_channel_mean": {
+            "lexical": 15.8,
+            "semantic": 2.6
           }
         }
       }
@@ -1345,22 +1639,29 @@
           "topic_recall_mean": 0.0,
           "topic_precision_mean": 0.0,
           "size_mean": 0.0,
+          "relevant_found_mean": 0.0,
           "empty_rate": 1.0
         },
         "lexical": {
           "topic_recall_mean": 0.0,
           "topic_precision_mean": 0.0,
           "size_mean": 0.0,
+          "relevant_found_mean": 0.0,
           "empty_rate": 1.0
         },
         "lexical+semantic": {
           "topic_recall_mean": 0.13937830687830688,
           "topic_precision_mean": 0.39,
           "size_mean": 10.0,
+          "relevant_found_mean": 3.9,
           "empty_rate": 0.0,
           "recall_by_channel_mean": {
             "lexical": 0.0,
             "semantic": 0.13937830687830688
+          },
+          "relevant_found_by_channel_mean": {
+            "lexical": 0.0,
+            "semantic": 3.9
           }
         }
       }
@@ -1372,22 +1673,29 @@
           "topic_recall_mean": 0.0,
           "topic_precision_mean": 0.0,
           "size_mean": 0.0,
+          "relevant_found_mean": 0.0,
           "empty_rate": 1.0
         },
         "lexical": {
           "topic_recall_mean": 0.029246031746031742,
           "topic_precision_mean": 0.27,
           "size_mean": 1.3,
+          "relevant_found_mean": 1.0,
           "empty_rate": 0.7
         },
         "lexical+semantic": {
           "topic_recall_mean": 0.2688095238095238,
           "topic_precision_mean": 0.6583333333333333,
           "size_mean": 11.3,
+          "relevant_found_mean": 7.5,
           "empty_rate": 0.0,
           "recall_by_channel_mean": {
             "lexical": 0.029246031746031742,
             "semantic": 0.23956349206349206
+          },
+          "relevant_found_by_channel_mean": {
+            "lexical": 1.0,
+            "semantic": 6.5
           }
         }
       }
@@ -1402,6 +1710,7 @@
             "topic_recall_mean": 1.0,
             "topic_precision_mean": 1.0,
             "size_mean": 1.0,
+            "relevant_found_mean": 1.0,
             "empty_rate": 0.0,
             "found_rate": 1.0,
             "found_at_1_rate": 1.0
@@ -1410,6 +1719,7 @@
             "topic_recall_mean": 1.0,
             "topic_precision_mean": 0.5076923076923077,
             "size_mean": 33.0,
+            "relevant_found_mean": 1.0,
             "empty_rate": 0.0,
             "found_rate": 1.0,
             "found_at_1_rate": 1.0
@@ -1418,6 +1728,7 @@
             "topic_recall_mean": 1.0,
             "topic_precision_mean": 0.052121212121212124,
             "size_mean": 43.0,
+            "relevant_found_mean": 1.0,
             "empty_rate": 0.0,
             "found_rate": 1.0,
             "found_at_1_rate": 1.0,
@@ -1426,6 +1737,10 @@
               "semantic": 0.0
             },
             "recall_by_channel_mean": {
+              "lexical": 1.0,
+              "semantic": 0.0
+            },
+            "relevant_found_by_channel_mean": {
               "lexical": 1.0,
               "semantic": 0.0
             }
@@ -1439,22 +1754,29 @@
             "topic_recall_mean": 0.16666666666666666,
             "topic_precision_mean": 0.32142857142857145,
             "size_mean": 7.5,
+            "relevant_found_mean": 4.5,
             "empty_rate": 0.0
           },
           "lexical": {
             "topic_recall_mean": 0.40740740740740744,
             "topic_precision_mean": 0.32277834525025534,
             "size_mean": 50.0,
+            "relevant_found_mean": 11.0,
             "empty_rate": 0.0
           },
           "lexical+semantic": {
             "topic_recall_mean": 0.5925925925925926,
             "topic_precision_mean": 0.4054834054834055,
             "size_mean": 60.0,
+            "relevant_found_mean": 16.0,
             "empty_rate": 0.0,
             "recall_by_channel_mean": {
               "lexical": 0.40740740740740744,
               "semantic": 0.18518518518518517
+            },
+            "relevant_found_by_channel_mean": {
+              "lexical": 11.0,
+              "semantic": 5.0
             }
           }
         }
@@ -1466,22 +1788,29 @@
             "topic_recall_mean": 0.0,
             "topic_precision_mean": 0.0,
             "size_mean": 0.0,
+            "relevant_found_mean": 0.0,
             "empty_rate": 1.0
           },
           "lexical": {
             "topic_recall_mean": 0.0,
             "topic_precision_mean": 0.0,
             "size_mean": 0.0,
+            "relevant_found_mean": 0.0,
             "empty_rate": 1.0
           },
           "lexical+semantic": {
             "topic_recall_mean": 0.07407407407407407,
             "topic_precision_mean": 0.2,
             "size_mean": 10.0,
+            "relevant_found_mean": 2.0,
             "empty_rate": 0.0,
             "recall_by_channel_mean": {
               "lexical": 0.0,
               "semantic": 0.07407407407407407
+            },
+            "relevant_found_by_channel_mean": {
+              "lexical": 0.0,
+              "semantic": 2.0
             }
           }
         }
@@ -1493,22 +1822,29 @@
             "topic_recall_mean": 0.0,
             "topic_precision_mean": 0.0,
             "size_mean": 0.0,
+            "relevant_found_mean": 0.0,
             "empty_rate": 1.0
           },
           "lexical": {
             "topic_recall_mean": 0.0,
             "topic_precision_mean": 0.0,
             "size_mean": 0.0,
+            "relevant_found_mean": 0.0,
             "empty_rate": 1.0
           },
           "lexical+semantic": {
             "topic_recall_mean": 0.2777777777777778,
             "topic_precision_mean": 0.75,
             "size_mean": 10.0,
+            "relevant_found_mean": 7.5,
             "empty_rate": 0.0,
             "recall_by_channel_mean": {
               "lexical": 0.0,
               "semantic": 0.2777777777777778
+            },
+            "relevant_found_by_channel_mean": {
+              "lexical": 0.0,
+              "semantic": 7.5
             }
           }
         }
@@ -1522,6 +1858,7 @@
             "topic_recall_mean": 1.0,
             "topic_precision_mean": 0.5454545454545454,
             "size_mean": 6.0,
+            "relevant_found_mean": 1.0,
             "empty_rate": 0.0,
             "found_rate": 1.0,
             "found_at_1_rate": 0.5
@@ -1530,6 +1867,7 @@
             "topic_recall_mean": 1.0,
             "topic_precision_mean": 0.5454545454545454,
             "size_mean": 6.0,
+            "relevant_found_mean": 1.0,
             "empty_rate": 0.0,
             "found_rate": 1.0,
             "found_at_1_rate": 0.5
@@ -1538,6 +1876,7 @@
             "topic_recall_mean": 1.0,
             "topic_precision_mean": 0.06926406926406926,
             "size_mean": 16.0,
+            "relevant_found_mean": 1.0,
             "empty_rate": 0.0,
             "found_rate": 1.0,
             "found_at_1_rate": 0.5,
@@ -1546,6 +1885,10 @@
               "semantic": 0.0
             },
             "recall_by_channel_mean": {
+              "lexical": 1.0,
+              "semantic": 0.0
+            },
+            "relevant_found_by_channel_mean": {
               "lexical": 1.0,
               "semantic": 0.0
             }
@@ -1559,22 +1902,29 @@
             "topic_recall_mean": 0.15,
             "topic_precision_mean": 0.6666666666666667,
             "size_mean": 9.0,
+            "relevant_found_mean": 6.0,
             "empty_rate": 0.0
           },
           "lexical": {
             "topic_recall_mean": 0.7,
             "topic_precision_mean": 0.3357142857142857,
             "size_mean": 91.0,
+            "relevant_found_mean": 28.0,
             "empty_rate": 0.0
           },
           "lexical+semantic": {
             "topic_recall_mean": 0.7250000000000001,
             "topic_precision_mean": 0.30655737704918035,
             "size_mean": 101.0,
+            "relevant_found_mean": 29.0,
             "empty_rate": 0.0,
             "recall_by_channel_mean": {
               "lexical": 0.7,
               "semantic": 0.025
+            },
+            "relevant_found_by_channel_mean": {
+              "lexical": 28.0,
+              "semantic": 1.0
             }
           }
         }
@@ -1586,22 +1936,29 @@
             "topic_recall_mean": 0.0,
             "topic_precision_mean": 0.0,
             "size_mean": 0.0,
+            "relevant_found_mean": 0.0,
             "empty_rate": 1.0
           },
           "lexical": {
             "topic_recall_mean": 0.0,
             "topic_precision_mean": 0.0,
             "size_mean": 0.0,
+            "relevant_found_mean": 0.0,
             "empty_rate": 1.0
           },
           "lexical+semantic": {
             "topic_recall_mean": 0.1625,
             "topic_precision_mean": 0.65,
             "size_mean": 10.0,
+            "relevant_found_mean": 6.5,
             "empty_rate": 0.0,
             "recall_by_channel_mean": {
               "lexical": 0.0,
               "semantic": 0.1625
+            },
+            "relevant_found_by_channel_mean": {
+              "lexical": 0.0,
+              "semantic": 6.5
             }
           }
         }
@@ -1613,22 +1970,29 @@
             "topic_recall_mean": 0.0,
             "topic_precision_mean": 0.0,
             "size_mean": 0.0,
+            "relevant_found_mean": 0.0,
             "empty_rate": 1.0
           },
           "lexical": {
             "topic_recall_mean": 0.0875,
             "topic_precision_mean": 0.35,
             "size_mean": 5.0,
+            "relevant_found_mean": 3.5,
             "empty_rate": 0.5
           },
           "lexical+semantic": {
             "topic_recall_mean": 0.225,
             "topic_precision_mean": 0.575,
             "size_mean": 15.0,
+            "relevant_found_mean": 9.0,
             "empty_rate": 0.0,
             "recall_by_channel_mean": {
               "lexical": 0.0875,
               "semantic": 0.1375
+            },
+            "relevant_found_by_channel_mean": {
+              "lexical": 3.5,
+              "semantic": 5.5
             }
           }
         }
@@ -1642,6 +2006,7 @@
             "topic_recall_mean": 1.0,
             "topic_precision_mean": 1.0,
             "size_mean": 1.0,
+            "relevant_found_mean": 1.0,
             "empty_rate": 0.0,
             "found_rate": 1.0,
             "found_at_1_rate": 1.0
@@ -1650,6 +2015,7 @@
             "topic_recall_mean": 1.0,
             "topic_precision_mean": 1.0,
             "size_mean": 1.0,
+            "relevant_found_mean": 1.0,
             "empty_rate": 0.0,
             "found_rate": 1.0,
             "found_at_1_rate": 1.0
@@ -1658,6 +2024,7 @@
             "topic_recall_mean": 1.0,
             "topic_precision_mean": 0.09090909090909091,
             "size_mean": 11.0,
+            "relevant_found_mean": 1.0,
             "empty_rate": 0.0,
             "found_rate": 1.0,
             "found_at_1_rate": 1.0,
@@ -1666,6 +2033,10 @@
               "semantic": 0.0
             },
             "recall_by_channel_mean": {
+              "lexical": 1.0,
+              "semantic": 0.0
+            },
+            "relevant_found_by_channel_mean": {
               "lexical": 1.0,
               "semantic": 0.0
             }
@@ -1679,22 +2050,29 @@
             "topic_recall_mean": 0.0,
             "topic_precision_mean": 0.0,
             "size_mean": 0.0,
+            "relevant_found_mean": 0.0,
             "empty_rate": 1.0
           },
           "lexical": {
             "topic_recall_mean": 0.1111111111111111,
             "topic_precision_mean": 0.03137254901960784,
             "size_mean": 32.0,
+            "relevant_found_mean": 1.0,
             "empty_rate": 0.0
           },
           "lexical+semantic": {
             "topic_recall_mean": 0.2222222222222222,
             "topic_precision_mean": 0.04886363636363636,
             "size_mean": 42.0,
+            "relevant_found_mean": 2.0,
             "empty_rate": 0.0,
             "recall_by_channel_mean": {
               "lexical": 0.1111111111111111,
               "semantic": 0.1111111111111111
+            },
+            "relevant_found_by_channel_mean": {
+              "lexical": 1.0,
+              "semantic": 1.0
             }
           }
         }
@@ -1706,22 +2084,29 @@
             "topic_recall_mean": 0.0,
             "topic_precision_mean": 0.0,
             "size_mean": 0.0,
+            "relevant_found_mean": 0.0,
             "empty_rate": 1.0
           },
           "lexical": {
             "topic_recall_mean": 0.0,
             "topic_precision_mean": 0.0,
             "size_mean": 0.0,
+            "relevant_found_mean": 0.0,
             "empty_rate": 1.0
           },
           "lexical+semantic": {
             "topic_recall_mean": 0.1111111111111111,
             "topic_precision_mean": 0.1,
             "size_mean": 10.0,
+            "relevant_found_mean": 1.0,
             "empty_rate": 0.0,
             "recall_by_channel_mean": {
               "lexical": 0.0,
               "semantic": 0.1111111111111111
+            },
+            "relevant_found_by_channel_mean": {
+              "lexical": 0.0,
+              "semantic": 1.0
             }
           }
         }
@@ -1733,22 +2118,29 @@
             "topic_recall_mean": 0.0,
             "topic_precision_mean": 0.0,
             "size_mean": 0.0,
+            "relevant_found_mean": 0.0,
             "empty_rate": 1.0
           },
           "lexical": {
             "topic_recall_mean": 0.0,
             "topic_precision_mean": 0.0,
             "size_mean": 0.0,
+            "relevant_found_mean": 0.0,
             "empty_rate": 1.0
           },
           "lexical+semantic": {
             "topic_recall_mean": 0.16666666666666666,
             "topic_precision_mean": 0.15000000000000002,
             "size_mean": 10.0,
+            "relevant_found_mean": 1.5,
             "empty_rate": 0.0,
             "recall_by_channel_mean": {
               "lexical": 0.0,
               "semantic": 0.16666666666666666
+            },
+            "relevant_found_by_channel_mean": {
+              "lexical": 0.0,
+              "semantic": 1.5
             }
           }
         }
@@ -1762,6 +2154,7 @@
             "topic_recall_mean": 1.0,
             "topic_precision_mean": 0.5,
             "size_mean": 2.0,
+            "relevant_found_mean": 1.0,
             "empty_rate": 0.0,
             "found_rate": 1.0,
             "found_at_1_rate": 0.5
@@ -1770,6 +2163,7 @@
             "topic_recall_mean": 1.0,
             "topic_precision_mean": 0.29166666666666663,
             "size_mean": 3.5,
+            "relevant_found_mean": 1.0,
             "empty_rate": 0.0,
             "found_rate": 1.0,
             "found_at_1_rate": 1.0
@@ -1778,6 +2172,7 @@
             "topic_recall_mean": 1.0,
             "topic_precision_mean": 0.07417582417582418,
             "size_mean": 13.5,
+            "relevant_found_mean": 1.0,
             "empty_rate": 0.0,
             "found_rate": 1.0,
             "found_at_1_rate": 1.0,
@@ -1786,6 +2181,10 @@
               "semantic": 0.0
             },
             "recall_by_channel_mean": {
+              "lexical": 1.0,
+              "semantic": 0.0
+            },
+            "relevant_found_by_channel_mean": {
               "lexical": 1.0,
               "semantic": 0.0
             }
@@ -1799,22 +2198,29 @@
             "topic_recall_mean": 0.3333333333333333,
             "topic_precision_mean": 0.65,
             "size_mean": 12.5,
+            "relevant_found_mean": 7.0,
             "empty_rate": 0.0
           },
           "lexical": {
             "topic_recall_mean": 0.8095238095238095,
             "topic_precision_mean": 0.6168478260869565,
             "size_mean": 27.5,
+            "relevant_found_mean": 17.0,
             "empty_rate": 0.0
           },
           "lexical+semantic": {
             "topic_recall_mean": 0.8809523809523809,
             "topic_precision_mean": 0.49567099567099565,
             "size_mean": 37.5,
+            "relevant_found_mean": 18.5,
             "empty_rate": 0.0,
             "recall_by_channel_mean": {
               "lexical": 0.8095238095238095,
               "semantic": 0.07142857142857142
+            },
+            "relevant_found_by_channel_mean": {
+              "lexical": 17.0,
+              "semantic": 1.5
             }
           }
         }
@@ -1826,22 +2232,29 @@
             "topic_recall_mean": 0.0,
             "topic_precision_mean": 0.0,
             "size_mean": 0.0,
+            "relevant_found_mean": 0.0,
             "empty_rate": 1.0
           },
           "lexical": {
             "topic_recall_mean": 0.0,
             "topic_precision_mean": 0.0,
             "size_mean": 0.0,
+            "relevant_found_mean": 0.0,
             "empty_rate": 1.0
           },
           "lexical+semantic": {
             "topic_recall_mean": 0.23809523809523808,
             "topic_precision_mean": 0.5,
             "size_mean": 10.0,
+            "relevant_found_mean": 5.0,
             "empty_rate": 0.0,
             "recall_by_channel_mean": {
               "lexical": 0.0,
               "semantic": 0.23809523809523808
+            },
+            "relevant_found_by_channel_mean": {
+              "lexical": 0.0,
+              "semantic": 5.0
             }
           }
         }
@@ -1853,22 +2266,29 @@
             "topic_recall_mean": 0.0,
             "topic_precision_mean": 0.0,
             "size_mean": 0.0,
+            "relevant_found_mean": 0.0,
             "empty_rate": 1.0
           },
           "lexical": {
             "topic_recall_mean": 0.047619047619047616,
             "topic_precision_mean": 0.5,
             "size_mean": 1.0,
+            "relevant_found_mean": 1.0,
             "empty_rate": 0.5
           },
           "lexical+semantic": {
             "topic_recall_mean": 0.45238095238095233,
             "topic_precision_mean": 0.8666666666666667,
             "size_mean": 11.0,
+            "relevant_found_mean": 9.5,
             "empty_rate": 0.0,
             "recall_by_channel_mean": {
               "lexical": 0.047619047619047616,
               "semantic": 0.40476190476190477
+            },
+            "relevant_found_by_channel_mean": {
+              "lexical": 1.0,
+              "semantic": 8.5
             }
           }
         }
@@ -1882,6 +2302,7 @@
             "topic_recall_mean": 1.0,
             "topic_precision_mean": 0.3214285714285714,
             "size_mean": 4.5,
+            "relevant_found_mean": 1.0,
             "empty_rate": 0.0,
             "found_rate": 1.0,
             "found_at_1_rate": 0.5
@@ -1890,6 +2311,7 @@
             "topic_recall_mean": 1.0,
             "topic_precision_mean": 0.11309523809523808,
             "size_mean": 9.5,
+            "relevant_found_mean": 1.0,
             "empty_rate": 0.0,
             "found_rate": 1.0,
             "found_at_1_rate": 1.0
@@ -1898,6 +2320,7 @@
             "topic_recall_mean": 1.0,
             "topic_precision_mean": 0.05213903743315508,
             "size_mean": 19.5,
+            "relevant_found_mean": 1.0,
             "empty_rate": 0.0,
             "found_rate": 1.0,
             "found_at_1_rate": 1.0,
@@ -1906,6 +2329,10 @@
               "semantic": 0.0
             },
             "recall_by_channel_mean": {
+              "lexical": 1.0,
+              "semantic": 0.0
+            },
+            "relevant_found_by_channel_mean": {
               "lexical": 1.0,
               "semantic": 0.0
             }
@@ -1919,22 +2346,29 @@
             "topic_recall_mean": 0.16666666666666666,
             "topic_precision_mean": 0.5795454545454546,
             "size_mean": 15.5,
+            "relevant_found_mean": 7.5,
             "empty_rate": 0.0
           },
           "lexical": {
             "topic_recall_mean": 0.48888888888888893,
             "topic_precision_mean": 0.6144338118022329,
             "size_mean": 42.5,
+            "relevant_found_mean": 22.0,
             "empty_rate": 0.0
           },
           "lexical+semantic": {
             "topic_recall_mean": 0.5888888888888889,
             "topic_precision_mean": 0.5832577132486388,
             "size_mean": 52.5,
+            "relevant_found_mean": 26.5,
             "empty_rate": 0.0,
             "recall_by_channel_mean": {
               "lexical": 0.48888888888888893,
               "semantic": 0.1
+            },
+            "relevant_found_by_channel_mean": {
+              "lexical": 22.0,
+              "semantic": 4.5
             }
           }
         }
@@ -1946,22 +2380,29 @@
             "topic_recall_mean": 0.0,
             "topic_precision_mean": 0.0,
             "size_mean": 0.0,
+            "relevant_found_mean": 0.0,
             "empty_rate": 1.0
           },
           "lexical": {
             "topic_recall_mean": 0.0,
             "topic_precision_mean": 0.0,
             "size_mean": 0.0,
+            "relevant_found_mean": 0.0,
             "empty_rate": 1.0
           },
           "lexical+semantic": {
             "topic_recall_mean": 0.1111111111111111,
             "topic_precision_mean": 0.5,
             "size_mean": 10.0,
+            "relevant_found_mean": 5.0,
             "empty_rate": 0.0,
             "recall_by_channel_mean": {
               "lexical": 0.0,
               "semantic": 0.1111111111111111
+            },
+            "relevant_found_by_channel_mean": {
+              "lexical": 0.0,
+              "semantic": 5.0
             }
           }
         }
@@ -1973,22 +2414,29 @@
             "topic_recall_mean": 0.0,
             "topic_precision_mean": 0.0,
             "size_mean": 0.0,
+            "relevant_found_mean": 0.0,
             "empty_rate": 1.0
           },
           "lexical": {
             "topic_recall_mean": 0.011111111111111112,
             "topic_precision_mean": 0.5,
             "size_mean": 0.5,
+            "relevant_found_mean": 0.5,
             "empty_rate": 0.5
           },
           "lexical+semantic": {
             "topic_recall_mean": 0.2222222222222222,
             "topic_precision_mean": 0.95,
             "size_mean": 10.5,
+            "relevant_found_mean": 10.0,
             "empty_rate": 0.0,
             "recall_by_channel_mean": {
               "lexical": 0.011111111111111112,
               "semantic": 0.2111111111111111
+            },
+            "relevant_found_by_channel_mean": {
+              "lexical": 0.5,
+              "semantic": 9.5
             }
           }
         }
