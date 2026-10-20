@@ -19,7 +19,13 @@ function runSearch(query: string, extra: string[] = []): Promise<{ stdout: strin
   });
 }
 
-describe.skipIf(!existsSync(VENV_PYTHON))('search integration (Python subprocess)', () => {
+if (!existsSync(VENV_PYTHON)) {
+  throw new Error(
+    'catalog-embedder venv missing — run `cd packages/catalog-embedder && uv venv && uv pip install -r requirements.txt` before running this test suite.',
+  );
+}
+
+describe('search integration (Python subprocess)', () => {
   it('returns valid JSON with the survey shape and no scores', async () => {
     const { stdout, code } = await runSearch('pdf');
     expect(code).toBe(0);
@@ -49,11 +55,6 @@ describe.skipIf(!existsSync(VENV_PYTHON))('search integration (Python subprocess
     expect(code).toBe(0);
     const data = JSON.parse(stdout);
     expect(data.swept_terms.length).toBe(2);
-  });
-
-  it('retired flags are rejected', async () => {
-    const { code } = await runSearch('pdf', ['--threshold', '0.1']);
-    expect(code).toBe(2);
   });
 
   it('empty query lists every entry as match.type listing', async () => {

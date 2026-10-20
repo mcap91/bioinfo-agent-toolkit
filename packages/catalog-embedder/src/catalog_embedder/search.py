@@ -81,7 +81,7 @@ def _term_regexes(term: str) -> list[re.Pattern[str]]:
     """One boundary regex per whitespace token; a term matches iff ALL match (AND).
 
     (?<!\\w) instead of \\b: identical for word-leading tokens, correct for
-    punctuation-leading ones (".net" matches " .net" but not "asp.net"). (N3)
+    punctuation-leading ones (".net" matches " .net" but not "asp.net").
     """
     return [re.compile(r"(?<!\w)" + re.escape(tok)) for tok in term.lower().split()]
 
@@ -90,8 +90,8 @@ def resolve_terms(terms: list[str] | None, query: str) -> list[str]:
     """Normalize agent-supplied terms; fall back to the whole query as ONE AND term.
 
     Explicit terms: strip, lowercase, drop empties, dedupe preserving order (count and
-    length bounds are raised by run_search, not silently truncated here — HO-0024 F2).
-    Fallback: deduped query tokens joined into a single multi-token AND term (N2, N4).
+    length bounds are raised by run_search, not silently truncated here).
+    Fallback: deduped query tokens joined into a single multi-token AND term.
     Returns [] only when there is nothing to search lexically.
     """
     cleaned = [t.strip().lower() for t in (terms or []) if t and t.strip()]
@@ -153,7 +153,7 @@ def run_search(
     decision_status: str | None = None,
     category: str | None = None,
 ) -> dict[str, Any]:
-    # Input bounds — enforced here too, not only at CLI/Zod (N1, N4, HO-0024 F2)
+    # Input bounds — enforced here too, not only at CLI/Zod
     if not 1 <= semantic_n <= 50:
         raise ValueError("semantic_n must be between 1 and 50")
     if len(query) > MAX_QUERY_CHARS:
@@ -229,8 +229,8 @@ def run_search(
         members, hits = lexical_members(entries_dir, [c["name"] for c in candidates], term_list)
         swept = [{"term": t, "hits": hits[t]} for t in term_list]
     else:
-        # Non-empty query that tokenized to nothing (N2): zero-hit sweep, but semantic
-        # selection below STILL RUNS on the embedded query (HO-0024 F1).
+        # Non-empty query that tokenized to nothing: zero-hit sweep, but semantic
+        # selection below STILL RUNS on the embedded query.
         members = {}
         swept = [{"term": query.strip().lower(), "hits": 0}]
 

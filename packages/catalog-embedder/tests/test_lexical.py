@@ -33,7 +33,7 @@ def test_regex_metacharacters_escaped(tmp_path):
 
 
 def test_punctuation_leading_term(tmp_path):
-    """N3: '.net' matches standalone '.NET' but not 'asp.net'."""
+    """'.net' matches standalone '.NET' but not 'asp.net'."""
     _write(tmp_path, "yes", "---\nname: yes\n---\nuse the .NET sdk")
     _write(tmp_path, "no", "---\nname: no\n---\nhosted on asp.net only")
     members, hits = lexical_members(tmp_path, ["yes", "no"], [".net"])
@@ -47,11 +47,11 @@ def test_case_insensitive(tmp_path):
 
 
 def test_resolve_terms_explicit_dedupe():
-    assert resolve_terms(["  OCR ", "ocr", ""], "ignored") == ["ocr"]  # N4: dedupe, no silent truncation
+    assert resolve_terms(["  OCR ", "ocr", ""], "ignored") == ["ocr"]  # dedupe, no silent truncation
 
 
 def test_resolve_terms_fallback_is_single_and_term():
-    """N2: query-only falls back to ONE AND term with deduped tokens."""
+    """Query-only falls back to ONE AND term with deduped tokens."""
     assert resolve_terms([], "parsing PDFs? parsing") == ["parsing pdfs"]
     assert resolve_terms(None, "") == []
     assert resolve_terms([], "日本語") == []  # non-ASCII tokenizes to nothing
