@@ -46,7 +46,7 @@ uv venv
 uv pip install -r requirements.txt
 ```
 
-The embedding model (~34MB) downloads once to `~/.cache/fastembed/` on first use, then runs
+The embedding model (~34MB) downloads once to `/tmp/fastembed_cache` on first use, then runs
 offline.
 
 ## CLI usage
@@ -114,3 +114,45 @@ setup step rather than silently returning empty results.
   scoring).
 - **Build**: tens of seconds for a few hundred entries; scales with catalog size.
 - **Model**: downloaded once (~34MB), then fully offline.
+
+## Evaluation
+
+`packages/catalog-embedder/eval/` holds a search eval that scores three engines — **old**
+(the original `search.ts` lookup, run verbatim via `eval/old_search.ts`), **lexical**
+(`run_search`, keeping only `match.type == "lexical"` results), and **lexical+semantic**
+(the full `run_search` response) — against 40 engineered queries (`eval/queries.json`)
+spanning 5 topics (`eval/topics.json`) and 4 query types: **name** (answer is one entry),
+**keyword**, **description**, and **keyword_list**.
+
+Each run builds a **sealed corpus**: every entry's content at a fixed `corpus_commit` is
+written into a fresh temp directory and vectors are rebuilt unconditionally for exactly
+that corpus, so results never depend on working-tree state or stale `.vectors.json`.
+
+The **answer key** (`eval/answer_key.json`) is built once by `eval/label.py`: a no-tools
+model call labels every entry against every topic from an empty temp directory (so no
+repo config can leak in), reading entry text from `corpus_commit` via `git show`. Ten
+fixed calibration entries are included in every batch to measure cross-batch consistency
+(`calibration.unanimous_rate`). The model only classifies — batching, response parsing,
+consistency checks, and the majority vote are deterministic.
+
+Before scoring, `eval/run_eval.py` enforces five gates (exact corpus match, answer-key
+topic/name validity, a production-parser check, `queries.json` schema, and a sanity check
+that the answer key's own topic examples are labeled correctly) — any failure exits 1 with
+a named reason. It never asserts which engine wins.
+
+**Wording rules** for any report of these numbers: call the metrics "topic recall" /
+"topic precision" (non-name queries are scored against their topic's full answer list,
+not judged one by one); report each query type separately, never one overall winner;
+state the lexical candidate counts for description and keyword_list queries; state the
+calibration `unanimous_rate`. Every number must come from `results.json`.
+
+Commands (run with the project venv, from the repo root):
+
+```bash
+# Build the answer key (labels the current HEAD commit — commit catalog changes first)
+packages/catalog-embedder/.venv/bin/python packages/catalog-embedder/eval/label.py --dir .
+
+# Run the eval and render the figure
+packages/catalog-embedder/.venv/bin/python packages/catalog-embedder/eval/run_eval.py --dir .
+packages/catalog-embedder/.venv/bin/python packages/catalog-embedder/eval/plot.py
+```

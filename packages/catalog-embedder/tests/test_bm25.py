@@ -39,7 +39,7 @@ def test_no_entries_returns_empty():
 
 
 def test_punctuated_query_matches():
-    """F4 fix: query tokenizer strips punctuation like document tokenizer."""
+    """Query tokenizer strips punctuation like document tokenizer."""
     entries = [
         ("markitdown", {"title": "MarkItDown", "name": "markitdown", "summary": "converts", "tags": []}, ""),
     ]
@@ -48,7 +48,7 @@ def test_punctuated_query_matches():
 
 
 def test_hyphenated_query_splits():
-    """F4 fix: 'chandra-ocr' becomes ['chandra', 'ocr']."""
+    """'chandra-ocr' becomes ['chandra', 'ocr']."""
     entries = [
         ("chandra", {"title": "chandra OCR", "name": "chandra-ocr", "summary": "ocr", "tags": []}, ""),
     ]
