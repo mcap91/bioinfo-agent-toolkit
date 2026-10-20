@@ -27,3 +27,58 @@ https://mixpeek.com/guides/vector-database-cost-comparison?utm_source=instagram&
 
 https://github.com/karpathy/llm-council
 https://github.com/storytold
+
+## Gmail pull 2026-10-19 (43 items)
+
+https://github.com/hkuds/rag-anything
+https://github.com/cursor/plugins/tree/main/pstack
+https://github.com/cursor/plugins/tree/main/cursor-team-kit/skills/thermo-nuclear-code-quality-review
+https://github.com/morluto/rea
+https://github.com/neo4j
+https://github.com/lancedb/lancedb
+https://github.com/qdrant/qdrant
+https://github.com/weaviate/weaviate
+⚠ needs-link https://www.reddit.com/r/LocalLLaMA/s/JNjEe87YeN — Google Open Sources Harness2 for Self Improving AI Agents
+⚠ needs-link https://www.reddit.com/r/ClaudeCode/s/bmBaoAB9Pw — Why does everyone disregard Anthropic's best practices?
+⚠ needs-link https://www.reddit.com/r/Qwen_AI/s/ITrMhWjMNN — Self hosted Qwen 3.8 27b for real work: my 1 month experience
+⚠ needs-link https://www.reddit.com/r/AI_Agents/s/2ejog7GwMT — Is anyone else noticing that people building AI agents are forgetting basic software engineering?
+⚠ needs-link https://www.reddit.com/r/learnmachinelearning/s/hSo536anUa — I built event2vector: word2vec-style embeddings for event sequences
+⚠ needs-link https://www.reddit.com/r/LocalLLM/s/2aJDkp527G — NVIDIA's Nemotron 3.5 Bolt 74B Brings 74B AI Models to Local Hardware
+⚠ needs-link https://www.reddit.com/r/LowEndLocalAI/s/PQF0wNwqVT — Short review: Local LM on GTX 1060 3 GB
+⚠ needs-link https://www.reddit.com/r/openrouter/s/TZPq5xfqmv — PSA: DeepSeek V4.1 Flash habitually exfiltrates API keys
+⚠ needs-link https://www.reddit.com/r/SATNA_PROJECT/s/p9td5bYkiM — The $500/mo stack for $0: 5 new open-source AI projects
+⚠ needs-link https://www.reddit.com/r/LocalLLM/s/tSKE8VHm94 — PolyStrata: Strata with four more MoE models
+⚠ needs-link https://www.reddit.com/r/LocalLLM/s/SuMGmAmj6L
+⚠ needs-link https://www.reddit.com/r/jobsearchhacks/s/sQuKfOQpgf — A hiring manager casually told me how their ATS actually filters resumes
+⚠ needs-link https://www.reddit.com/r/LocalLLaMA/s/s67i5Ravqx — I gave a 21M model a 6.4B-parameter lookup table
+⚠ needs-link https://www.reddit.com/r/ClaudeCode/s/xFNxQtFS9Q — Best way to handle Cold Cache hits
+⚠ needs-link https://www.reddit.com/r/LocalLLM/s/EI46ISAYLl — Daily driving Qwen 3.8 Flash instead of Claude
+⚠ needs-link https://www.reddit.com/r/claudeskills/s/d552R7QWfT
+⚠ needs-link https://www.reddit.com/r/learnmachinelearning/s/dYUxs7cZFI — I transitioned from software engineer to an AI Engineer who fine tunes LLMs
+⚠ needs-link https://www.reddit.com/r/vibecoding/s/FIuyghmFtH — Look what I built
+⚠ needs-link https://www.instagram.com/reel/DeKlghCOQiC/
+⚠ needs-link https://www.instagram.com/reel/DebFucxs5Xp/
+⚠ needs-link https://www.instagram.com/reel/DeMiEoaP-8i/
+⚠ needs-link https://www.instagram.com/reel/DemMV03uWzP/
+⚠ needs-link https://www.instagram.com/reel/DejwS6fjDvg/
+⚠ needs-link https://www.instagram.com/reel/Dd-WW-AszIG/
+⚠ needs-link https://www.instagram.com/reel/DegQ9xiIESl/
+⚠ needs-link https://www.instagram.com/reel/DeRdV4OjhM-/
+⚠ needs-link https://www.instagram.com/reel/DeecMf9nBBn/
+⚠ needs-link https://www.instagram.com/reel/DeaAbkiyU-A/
+⚠ needs-link https://www.instagram.com/reel/DecS5IkjwSA/
+⚠ needs-link https://www.instagram.com/reel/Deb3bVkHBLV/
+⚠ needs-link https://www.instagram.com/reel/DePGBFXtswr/
+⚠ needs-link https://www.instagram.com/reel/DeZgZk7AhlR/
+⚠ needs-link https://www.instagram.com/reel/DeNJmVuDpx_/
+⚠ needs-link https://www.instagram.com/reel/DeXCWyfgHgz/
+⚠ needs-link https://www.instagram.com/reel/DeRx_ZXFT42/
+⚠ needs-link https://www.instagram.com/reel/DeUWz-7FAgX/
+⚠ needs-link https://www.instagram.com/reel/DeON0MOB5oi/
+⚠ needs-link https://www.instagram.com/reel/DePNK6AgMsN/
+⚠ needs-link https://www.instagram.com/reel/DeFTnCdMfC2/
+⚠ needs-link https://www.instagram.com/reel/DeI8uRMhi3G/
+⚠ needs-link https://www.instagram.com/reel/DeFJd9AHPVS/
+⚠ needs-link https://www.instagram.com/reel/DeIm-UyIzbz/
+⚠ needs-link https://www.instagram.com/reel/DeJyswKCtCY/
+⚠ needs-link https://www.instagram.com/reel/DeIV3Tam24w/

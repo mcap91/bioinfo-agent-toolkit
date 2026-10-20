@@ -26,10 +26,10 @@ selector apply to any coding agent CLI.
 Tell the user to run this themselves (it requires global npm access):
 
 ```
-npm install -g @anthropic-ai/claude-code@2.1.277
+npm install -g @anthropic-ai/claude-code@2.1.281
 ```
 
-> **Pin note:** `2.1.277` is the verified-safe version as of 2026-09-26. This pin needs periodic
+> **Pin note:** `2.1.281` is the verified-safe version as of 2026-10-19. This pin needs periodic
 > re-verification — run this skill in **upgrade-check** mode before the next re-pin; do not treat
 > it as a permanent hardcode.
 
@@ -43,12 +43,13 @@ Required keys to merge:
 
 ```json
 {
-  "model": "claude-opus-4-8[1m]",
+  "model": "claude-opus-5-5[1m]",
+  "attribution": false,
   "env": {
     "DISABLE_AUTOUPDATER": "1",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
     "DISABLE_GROWTHBOOK": "1",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-8[1m]",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-5-5[1m]",
     "ANTHROPIC_CUSTOM_MODEL_OPTION": "claude-opus-4-6[1m]",
     "ANTHROPIC_CUSTOM_MODEL_OPTION_NAME": "Opus 4.6 (1M)",
     "ANTHROPIC_CUSTOM_MODEL_OPTION_DESCRIPTION": "Opus 4.6 with 1M context"
@@ -75,8 +76,8 @@ Required keys to merge:
 
 | Key | Purpose |
 |-----|---------|
-| `model` | Pins the default launch model to Opus 4.8 with 1M context window |
-| `ANTHROPIC_DEFAULT_OPUS_MODEL` | Family-alias override: resolves `opus` → `claude-opus-4-8[1m]` |
+| `model` | Pins the default launch model to Opus 5.5 with 1M context window |
+| `ANTHROPIC_DEFAULT_OPUS_MODEL` | Family-alias override: resolves `opus` → `claude-opus-5-5[1m]` |
 | `ANTHROPIC_DEFAULT_SONNET_MODEL` | Family-alias override for `sonnet` (set if you need a specific Sonnet slug) |
 | `ANTHROPIC_DEFAULT_HAIKU_MODEL` | Family-alias override for `haiku` (set if you need a specific Haiku slug) |
 
@@ -86,7 +87,7 @@ aliases used by `/model` and subagent model fields. They do **not** conflict wit
 Sonnet or Haiku slug (the tier default is fine for most uses).
 
 > **Fable caveat:** Do **not** add `ANTHROPIC_DEFAULT_FABLE_MODEL`. Unlike Opus/Sonnet/Haiku, Fable
-> has no native family row in `2.1.277` — it is gated behind a consent/entitlement flow (the binary
+> has no native family row in `2.1.281` — it is gated behind a consent/entitlement flow (the binary
 > carries `isFableCreditsRequired`, `hasFableConsentDialogInteracted`, and a "Fable bridge dialog"
 > the others don't have). The env var is silently inert. To use Fable, type its model slug directly
 > into `/model` when needed.
@@ -101,29 +102,15 @@ Sonnet or Haiku slug (the tier default is fine for most uses).
 
 **Git attribution:**
 
-Control the `Co-Authored-By` git trailer and "🤖 Generated with Claude Code" lines. These are
-user/global settings and belong in `~/.claude/settings.json`. Add alongside the model keys:
+Hide all commit/PR attribution (trailer, "Generated with" line, session URL). Requires CLI ≥ 2.1.281;
+older versions reject `false` and skip the entire settings file.
 
 ```json
-{
-  "includeCoAuthoredBy": false,
-  "attribution": {
-    "commit": "",
-    "pr": "",
-    "sessionUrl": false
-  }
-}
+{ "attribution": false }
 ```
 
-| Key | Type | Purpose |
-|-----|------|---------|
-| `includeCoAuthoredBy` | boolean | `false` drops the `Co-Authored-By: Claude` git trailer |
-| `attribution.commit` | string | Custom text appended to commit messages; **empty string hides** the "🤖 Generated with Claude Code" line (not a boolean — do not use `false`) |
-| `attribution.pr` | string | Same as above for PR bodies |
-| `attribution.sessionUrl` | boolean | `false` drops the claude.ai session URL from commits/PRs (added in `2.1.183`; not a valid key in `2.1.162`) |
-
-The flat form `"attribution.commit": false` does **not** work — `attribution` must be a nested
-object, and `commit`/`pr` are strings, not booleans.
+Do not set `includeCoAuthoredBy` — deprecated since 2.0.62 and ignored once `attribution` is set.
+Do not put attribution rules in CLAUDE.md — they take precedence over this setting.
 
 **Artifact control (optional):**
 
@@ -158,7 +145,7 @@ Use the CLI flag when you want artifacts off for a single session without changi
 ### Traps to avoid
 
 - The `ANTHROPIC_CUSTOM_MODEL_OPTION` trio is critical: without it, switching to
-  Opus 4.8 via `/model` **evicts** the 4.6 option from the picker permanently
+  Opus 5.5 via `/model` **evicts** the 4.6 option from the picker permanently
   (it was never a standard alias). With it, the custom entry persists
   independently of the `model` field and `/model` auto-save.
 - Do **not** use `availableModels` to surface specific model versions — it
@@ -220,31 +207,31 @@ Tell the user to open a **new terminal** (env vars are read at launch), then:
    ```
    claude --version
    ```
-   Expected: `2.1.277`
+   Expected: `2.1.281`
 
 2. Check model pin — open Claude Code and type `/model`. The picker should show:
-   - **Default** → Opus 4.8 (1M) (pinned via `model` + `ANTHROPIC_DEFAULT_OPUS_MODEL`)
-   - **Opus** → Opus 4.8 (1M) (family alias resolved by `ANTHROPIC_DEFAULT_OPUS_MODEL`)
+   - **Default** → Opus 5.5 (1M) (pinned via `model` + `ANTHROPIC_DEFAULT_OPUS_MODEL`)
+   - **Opus** → Opus 5.5 (1M) (family alias resolved by `ANTHROPIC_DEFAULT_OPUS_MODEL`)
    - **Sonnet** → current Sonnet tier default
    - **Opus 4.6 (1M)** (the custom entry)
 
 3. Check served models — verify both pinned slugs are still alive on the API: the
-   default launch model `claude-opus-4-8` (startup-critical) and the custom-slot
+   default launch model `claude-opus-5-5` (startup-critical) and the custom-slot
    `claude-opus-4-6`. Read the OAuth token from `~/.claude/.credentials.json` (the
    `claudeAiOauth.accessToken` field) and run:
    ```bash
    curl -s -H "Authorization: Bearer <TOKEN>" \
         -H "anthropic-version: 2023-06-01" \
         https://api.anthropic.com/v1/models \
-     | python3 -c "import sys,json; ids={m['id'] for m in json.load(sys.stdin)['data']}; [print(s, 'ALIVE' if s in ids else 'RETIRED') for s in ('claude-opus-4-8','claude-opus-4-6')]"
+     | python3 -c "import sys,json; ids={m['id'] for m in json.load(sys.stdin)['data']}; [print(s, 'ALIVE' if s in ids else 'RETIRED') for s in ('claude-opus-5-5','claude-opus-4-6')]"
    ```
-   If the default (`claude-opus-4-8`) is `RETIRED`, Claude Code may fail to start —
+   If the default (`claude-opus-5-5`) is `RETIRED`, Claude Code may fail to start —
    follow recovery immediately. If only the custom slot (`claude-opus-4-6`) is
    `RETIRED`, just that picker entry breaks; update or drop the custom trio.
 
 ### Recovery — if the pinned model is retired
 
-If Anthropic retires the pinned default `claude-opus-4-8`, Claude Code may fail to
+If Anthropic retires the pinned default `claude-opus-5-5`, Claude Code may fail to
 start or error on API calls. (Retiring the custom-slot `claude-opus-4-6` only breaks
 that picker entry, not startup.) Recovery:
 
@@ -296,7 +283,7 @@ Compare every pinned key against its expected value. Report each as OK, DRIFTED
 | `DISABLE_AUTOUPDATER` | `"1"` |
 | `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` | `"1"` |
 | `DISABLE_GROWTHBOOK` | `"1"` |
-| `ANTHROPIC_DEFAULT_OPUS_MODEL` | `"claude-opus-4-8[1m]"` |
+| `ANTHROPIC_DEFAULT_OPUS_MODEL` | `"claude-opus-5-5[1m]"` |
 | `ANTHROPIC_CUSTOM_MODEL_OPTION` | `"claude-opus-4-6[1m]"` |
 | `ANTHROPIC_CUSTOM_MODEL_OPTION_NAME` | `"Opus 4.6 (1M)"` |
 | `ANTHROPIC_CUSTOM_MODEL_OPTION_DESCRIPTION` | `"Opus 4.6 with 1M context"` |
@@ -305,10 +292,11 @@ Compare every pinned key against its expected value. Report each as OK, DRIFTED
 
 | Key | Expected value |
 |-----|----------------|
-| `model` | `"claude-opus-4-8[1m]"` |
+| `model` | `"claude-opus-5-5[1m]"` |
+| `attribution` | `false` |
 
-**Model drift check (DRIFTED):** If `model` is present but does not equal `"claude-opus-4-8[1m]"`,
-report it as DRIFTED — even if it's a recognizable model slug like `"sonnet"` or `"claude-opus-4-8"`.
+**Model drift check (DRIFTED):** If `model` is present but does not equal `"claude-opus-5-5[1m]"`,
+report it as DRIFTED — even if it's a recognizable model slug like `"sonnet"` or `"claude-opus-5-5"`.
 Using `/model` interactively overwrites `model` in `settings.json` with whatever was selected,
 including bare family aliases. The `ANTHROPIC_CUSTOM_MODEL_OPTION` trio survives this (the custom
 picker row persists), but the default launch model does not. Flag the drift and offer to restore the
@@ -330,7 +318,7 @@ no deny rules at all, report as MISSING and offer to create them.
 
 ### Step 4 — Check CLI version
 
-Run `claude --version` and compare to `2.1.277`. Report OK or DRIFTED.
+Run `claude --version` and compare to `2.1.281`. Report OK or DRIFTED.
 
 ### Step 5 — Flag unexpected entries (user-level)
 
@@ -359,6 +347,10 @@ are normal to see:
 - `permissions` (any structure)
 - `hooks` (any key EXCEPT `SessionStart` — user-configured workflow hooks)
 - `alwaysThinkingEnabled` (any value)
+- `enabledMcpjsonServers` (any value)
+- `extraKnownMarketplaces` (any value) — review new marketplaces; plugins can ship SessionStart hooks
+- `includeCoAuthoredBy` — WARNING: deprecated since 2.0.62; recommend removal
+- `outputStyle` (any value)
 
 **Unexpected** — anything NOT in the expected or known-safe lists. For each:
 
@@ -379,6 +371,7 @@ especially anything with `runOn: folderOpen` (same persistence vector as
 - `permissions.allow` / `permissions.deny` (any entries)
 - Any MCP-related permissions (e.g. `mcp__*`)
 - `enabledMcpjsonServers` (any value)
+- `extraKnownMarketplaces` (any value) — review new marketplaces; plugins can ship SessionStart hooks
 
 ### Step 7 — Report
 
@@ -387,13 +380,14 @@ Present to the user:
 ```
 === Agent Lockdown Checkup ===
 
-CLI version:  2.1.277  ✓
+CLI version:  2.1.281  ✓
 
 --- User-level settings ---
 
 Expected keys:
-  model .......................... claude-opus-4-8[1m]  ✓
-  ANTHROPIC_DEFAULT_OPUS_MODEL .. claude-opus-4-8[1m]  ✓
+  model .......................... claude-opus-5-5[1m]  ✓
+  attribution .................... false                ✓
+  ANTHROPIC_DEFAULT_OPUS_MODEL .. claude-opus-5-5[1m]  ✓
   DISABLE_AUTOUPDATER ........... 1                    ✓
   DISABLE_GROWTHBOOK ............ 1                    ✓
   ...
