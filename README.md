@@ -72,7 +72,18 @@ Replace `PATH/TO` with the absolute path to your local clone of this repo.
 | `graph-query` | Knowledge graph traversal. `neighbors` mode: explore connections from a known entry (overlaps, shared tags, shared category). `topic` mode: discover entries by concept (substring match on tags/categories). |
 | `graph-build` | Rebuild the knowledge graph on demand (normally auto-rebuilds via `index`). |
 
-![Survey search coverage](packages/catalog-embedder/eval/search_eval.png)
+![Search eval: old vs lexical vs lexical+semantic, per query type](packages/catalog-embedder/eval/search_eval.png)
+
+**Search eval** ([method](docs/semantic-search.md#evaluation)): 40 engineered queries across 5 topics and 4 query types, run against a sealed copy of the catalog. Name queries are scored on whether the named entry ranks first (found@1). All other queries are scored against their topic's full answer list (**topic recall** and **topic precision**), not judged one by one. The answer list was labeled by Claude Opus 5.5 without seeing the queries; calibration labels repeated in every labeling batch agreed unanimously at a rate of 0.88.
+
+| query type | old | lexical | lexical+semantic |
+|---|---|---|---|
+| name: found@1 | 0.70 | 0.90 | 0.90 |
+| keyword: topic recall (precision) | 0.16 (0.44) | 0.50 (0.38) | 0.60 (0.37) |
+| description: topic recall (precision) | 0.00 (empty on every query) | 0.00 (empty on every query) | 0.14 (0.39) |
+| keyword_list: topic recall (precision) | 0.00 (empty on every query) | 0.03 (0.27), empty on 70% | 0.27 (0.66) |
+
+Lexical search found 48.6 candidate entries per keyword query, 0.0 per description query, and 1.3 per keyword_list query. On description and keyword_list queries, lexical+semantic recall comes almost entirely from semantic suggestions (0.14 of 0.14 and 0.24 of 0.27).
 
 The lexical sweep returns the complete matching set for each term; semantic suggestions are flagged extras for concepts phrased differently.
 
