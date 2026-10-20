@@ -72,18 +72,22 @@ Replace `PATH/TO` with the absolute path to your local clone of this repo.
 | `graph-query` | Knowledge graph traversal. `neighbors` mode: explore connections from a known entry (overlaps, shared tags, shared category). `topic` mode: discover entries by concept (substring match on tags/categories). |
 | `graph-build` | Rebuild the knowledge graph on demand (normally auto-rebuilds via `index`). |
 
-![Search eval: old vs lexical vs lexical+semantic, per query type](packages/catalog-embedder/eval/search_eval.png)
+![This repo's catalog search vs. plain substring search, by query style](packages/catalog-embedder/eval/search_eval.png)
 
-**Search eval** ([method](docs/semantic-search.md#evaluation)): 40 engineered queries across 5 topics and 4 query types, run against a sealed copy of the catalog. Name queries are scored on whether the named entry ranks first (found@1). All other queries are scored against their topic's full answer list (**topic recall** and **topic precision**), not judged one by one. The answer list was labeled by Claude Opus 5.5 without seeing the queries; calibration labels repeated in every labeling batch agreed unanimously at a rate of 0.88.
+**Search eval: this repo's search vs. plain substring search** ([method](docs/semantic-search.md#evaluation)). 40 test queries in four styles, each run through three engines on the same frozen copy of the catalog: **substring** search (the baseline, the repo's original lookup), this repo's **lexical** search alone, and its full **lexical+semantic** search.
 
-| query type | old | lexical | lexical+semantic |
+- **Exact-name queries** (e.g. "paddleocr"): the percent of queries where the named tool is the first result.
+- **All other queries**: **topic recall**, the percent of the topic's relevant entries that came back. Each query is checked against its topic's full answer list, not judged one by one. In parentheses, **topic precision**: the percent of returned entries that are relevant.
+- **Answer list**: labeled by Claude Opus 5.5 without seeing the queries. Calibration entries, repeated in every labeling batch, got identical labels 88% of the time (unanimous rate 0.88).
+
+| query style | substring | lexical | lexical+semantic |
 |---|---|---|---|
-| name: found@1 | 0.70 | 0.90 | 0.90 |
-| keyword: topic recall (precision) | 0.16 (0.44) | 0.50 (0.38) | 0.60 (0.37) |
-| description: topic recall (precision) | 0.00 (empty on every query) | 0.00 (empty on every query) | 0.14 (0.39) |
-| keyword_list: topic recall (precision) | 0.00 (empty on every query) | 0.03 (0.27), empty on 70% | 0.27 (0.66) |
+| exact name: named tool ranked first | 70% | 90% | 90% |
+| keyword (e.g. "document parsing"): topic recall (precision) | 16% (44%) | 50% (38%) | 60% (37%) |
+| plain-language need: topic recall (precision) | 0% (no results) | 0% (no results) | 14% (39%) |
+| keyword list (e.g. "local llm inference gpu quantization"): topic recall (precision) | 0% (no results) | 3% (27%), no results on 70% of queries | 27% (66%) |
 
-Lexical search found 48.6 candidate entries per keyword query, 0.0 per description query, and 1.3 per keyword_list query. On description and keyword_list queries, lexical+semantic recall comes almost entirely from semantic suggestions (0.14 of 0.14 and 0.24 of 0.27).
+Lexical search found 48.6 candidate entries per keyword query, 0.0 per plain-language query, and 1.3 per keyword-list query. On those last two styles, nearly all of lexical+semantic's recall comes from semantic suggestions (14 of 14 points and 24 of 27 points).
 
 The lexical sweep returns the complete matching set for each term; semantic suggestions are flagged extras for concepts phrased differently.
 

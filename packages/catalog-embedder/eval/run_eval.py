@@ -1,4 +1,4 @@
-"""Search eval: run 40 engineered queries through old/lexical/lexical+semantic search
+"""Search eval: run 40 engineered queries through substring/lexical/lexical+semantic search
 on a sealed copy of the catalog, scored against answer_key.json.
 
 Run: `.venv/bin/python eval/run_eval.py --dir <repo>` (after `label.py` has written
@@ -23,7 +23,7 @@ from catalog_embedder.search import run_search
 EVAL_DIR = Path(__file__).parent
 
 QUERY_TYPES = ("name", "keyword", "description", "keyword_list")
-ENGINES = ("old", "lexical", "lexical+semantic")
+ENGINES = ("substring", "lexical", "lexical+semantic")
 
 
 def fail(reason: str) -> None:
@@ -106,11 +106,11 @@ def gate_5_in_out_examples(topics: dict, relevant: dict) -> None:
             fail(f"gate 5: topic {topic_id!r} out-examples labeled relevant: {wrong_out}")
 
 
-def run_old_engine(repo_dir: Path, tmp_dir: Path, query: str) -> list[str]:
+def run_substring_engine(repo_dir: Path, tmp_dir: Path, query: str) -> list[str]:
     tsx_bin = repo_dir / "node_modules" / ".bin" / "tsx"
-    old_search_ts = EVAL_DIR / "old_search.ts"
+    substring_search_ts = EVAL_DIR / "substring_search.ts"
     result = subprocess.run(
-        [str(tsx_bin), str(old_search_ts), "--dir", str(tmp_dir), "--query", query],
+        [str(tsx_bin), str(substring_search_ts), "--dir", str(tmp_dir), "--query", query],
         capture_output=True,
         text=True,
         check=True,
@@ -247,11 +247,11 @@ def main() -> None:
 
         rows = []
         for query in queries:
-            old_names = run_old_engine(dir, tmp_dir, query["query"])
+            substring_names = run_substring_engine(dir, tmp_dir, query["query"])
             combined_pairs = run_lexical_engines(tmp_dir, query["query"])
             lexical_pairs = [(n, t) for n, t in combined_pairs if t == "lexical"]
             engine_returns = {
-                "old": [(n, None) for n in old_names],
+                "substring": [(n, None) for n in substring_names],
                 "lexical": lexical_pairs,
                 "lexical+semantic": combined_pairs,
             }

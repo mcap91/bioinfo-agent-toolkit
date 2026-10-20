@@ -117,12 +117,13 @@ setup step rather than silently returning empty results.
 
 ## Evaluation
 
-`packages/catalog-embedder/eval/` holds a search eval that scores three engines — **old**
-(the original `search.ts` lookup, run verbatim via `eval/old_search.ts`), **lexical**
-(`run_search`, keeping only `match.type == "lexical"` results), and **lexical+semantic**
-(the full `run_search` response) — against 40 engineered queries (`eval/queries.json`)
-spanning 5 topics (`eval/topics.json`) and 4 query types: **name** (answer is one entry),
-**keyword**, **description**, and **keyword_list**.
+`packages/catalog-embedder/eval/` holds a search eval that scores three engines — **substring**
+(the baseline: the repo's original `search.ts` substring lookup, run verbatim via
+`eval/substring_search.ts`), **lexical** (`run_search`, keeping only
+`match.type == "lexical"` results), and **lexical+semantic** (the full `run_search`
+response) — against 40 engineered queries (`eval/queries.json`) spanning 5 topics
+(`eval/topics.json`) and 4 query types: **name** (answer is one entry, scored on whether
+it is the first result), **keyword**, **description**, and **keyword_list**.
 
 Each run builds a **sealed corpus**: every entry's content at a fixed `corpus_commit` is
 written into a fresh temp directory and vectors are rebuilt unconditionally for exactly
