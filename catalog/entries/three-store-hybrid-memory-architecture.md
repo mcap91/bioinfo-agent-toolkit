@@ -2,7 +2,7 @@
 name: three-store-hybrid-memory-architecture
 title: 3-Store Hybrid Memory Architecture for AI Agents
 category: agent-pattern
-summary: ">"
+summary: "An architecture pattern arguing vector embeddings alone fail for AI agent memory, proposing three parallel stores — a vector store for fuzzy semantic matching, a key-value store for exact fact lookup, and a knowledge graph for multi-hop relationship reasoning — merged by a fusion layer"
 tags: [agent-memory, vector-search, knowledge-graph, key-value-store, rag, hybrid-retrieval, architecture-pattern]
 reviewed: 2026-09-02
 acquired: 2026-09-02

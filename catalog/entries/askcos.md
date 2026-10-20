@@ -3,7 +3,7 @@ name: askcos
 title: ASKCOS
 url: "https://github.com/ASKCOS/ASKCOS"
 category: framework
-summary: ">"
+summary: "ASKCOS is an integrated platform for computer-aided synthesis planning that combines ML models for retrosynthetic analysis, forward reaction prediction, reaction condition recommendation, synthetic complexity scoring, and fast reaction plausibility filtering; code is MPL-2.0, data/models are CC BY-NC-SA (noncommercial)"
 tags: [synthesis-planning, retrosynthesis, forward-prediction, reaction-conditions, scscore, drug-discovery, cheminformatics, casp, docker]
 reviewed: 2026-09-02
 acquired: 2026-09-02

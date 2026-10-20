@@ -3,7 +3,7 @@ name: gromacs
 title: GROMACS
 url: "https://github.com/gromacs/gromacs"
 category: framework
-summary: ">"
+summary: "GROMACS is a widely used molecular dynamics simulation package for proteins, lipids, and nucleic acids, optimized through multi-level parallelism (SIMD, GPU offloading via CUDA/OpenCL/SYCL, and MPI) with support for AMBER/CHARMM/GROMOS/OPLS force fields and free-energy calculations"
 tags: [molecular-dynamics, simulation, gpu-computing, hpc, force-field, protein-simulation, free-energy, structural-biology, parallel-computing]
 reviewed: 2026-09-02
 acquired: 2026-09-02

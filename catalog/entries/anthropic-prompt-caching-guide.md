@@ -5,7 +5,7 @@ url: "https://github.com/anthropics/skills/blob/main/skills/claude-api/shared/pr
 category: reference
 tags: [prompt-caching, anthropic-api, optimization, cost-reduction, claude-api-skill, official]
 reviewed: 2026-07-21
-summary: ">-"
+summary: "The official Anthropic reference for designing prompt-building code that maximizes cache hit rates, covering placement patterns, silent cache invalidators, and key technical limits for the prompt caching prefix-match mechanism"
 acquired: 2026-07-22
 ---
 

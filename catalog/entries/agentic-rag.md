@@ -6,7 +6,7 @@ category: agent-pattern
 tags: [RAG, retrieval, agents, smolagents, vector-search, self-query]
 reviewed: 2026-07-03
 security_flags: []
-summary: ">-"
+summary: "Agentic RAG wraps a vector-database retriever as a tool for an LLM agent, which reformulates queries, critiques retrieved snippets, and iterates through multiple retrieval rounds before synthesizing an answer"
 acquired: 2026-07-03
 ---
 

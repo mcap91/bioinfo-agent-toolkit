@@ -5,7 +5,7 @@ url: "https://docs.anthropic.com/en/docs/about-claude/models"
 category: reference
 tags: [claude-code, safety-classifier, false-positive, troubleshooting, api, context-injection, auto-memory]
 reviewed: 2026-07-21
-summary: ">-"
+summary: "A field-tested diagnosis and fix recipe for Claude Code sessions blocked by the API pre-filter pattern-matching bio- or security-adjacent language, covering the four trigger surfaces, transcript-based diagnosis, and quick/deep fix protocols"
 acquired: 2026-07-22
 ---
 

@@ -6,7 +6,7 @@ category: framework
 tags: [PaaS, self-hosted, deployment, Docker, databases, infrastructure]
 reviewed: 2026-07-03
 security_flags: [prior-cves]
-summary: ">-"
+summary: "Coolify manages servers, applications, and databases on your own hardware via SSH, providing a web dashboard for git-push deployments, one-click database provisioning, preview deployments, and rollback; self-hosted and has had several critical CVEs in 2025/2026"
 acquired: 2026-07-04
 ---
 

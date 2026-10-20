@@ -6,7 +6,7 @@ category: agent-pattern
 tags: [agent-framework, code-execution, LLM-agents, python, research-paper]
 reviewed: 2026-07-03
 security_flags: []
-summary: ">-"
+summary: "CodeAct proposes executable Python code as a unified action space for LLM agents, replacing constrained JSON/text action formats, and includes the CodeActInstruct dataset, fine-tuned CodeActAgent models, and the M3ToolEval benchmark"
 acquired: 2026-07-03
 ---
 

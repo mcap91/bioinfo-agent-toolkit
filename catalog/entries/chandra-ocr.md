@@ -3,7 +3,7 @@ name: chandra-ocr
 title: Chandra OCR
 url: "https://github.com/datalab-to/chandra"
 category: cli-tool
-summary: ">"
+summary: "Chandra OCR 2 is a vision-language model for document parsing that converts images and PDFs into structured Markdown/HTML/JSON while preserving layout, with strength on math, tables, forms, handwriting, and 90+ languages; code is Apache-2.0, model weights use a modified OpenRAIL-M license"
 tags: [ocr, document-parsing, vlm, multilingual, pdf-extraction, table-recognition, handwriting, math-recognition, vllm]
 reviewed: 2026-09-02
 acquired: 2026-09-02

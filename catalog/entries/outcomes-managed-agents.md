@@ -4,7 +4,7 @@ title: Outcomes / Outcome Grader (Managed Agents)
 url: "https://platform.claude.com/cookbook/managed-agents-cma-verify-with-outcome-grader"
 category: agent-pattern
 tags: [managed-agents, verification, grading, rubric, self-correction, claude]
-summary: ">-"
+summary: "Demonstrates the Outcomes feature in Claude Managed Agents, which adds a rubric-driven verification loop where an independent grader — with no visibility into the writer's reasoning — scores an artifact and returns gaps for the writer to revise, up to a configurable iteration cap"
 security_flags: [needs-api-key]
 reviewed: 2026-06-25
 acquired: 2026-06-26

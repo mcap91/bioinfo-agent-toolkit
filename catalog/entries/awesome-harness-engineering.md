@@ -5,7 +5,7 @@ url: "https://github.com/ai-boost/awesome-harness-engineering"
 category: reference
 tags: [awesome-list, harness-engineering, agent-orchestration, mcp, memory, evaluation, observability, permissions, curated]
 reviewed: 2026-07-21
-summary: ">-"
+summary: "A curated awesome list organizing resources for building, testing, and operating AI agent harnesses — covering subagent architecture, context/memory systems, MCP tool integrations, safety and permissions, orchestration patterns, evaluation, and observability"
 acquired: 2026-07-22
 ---
 

@@ -3,7 +3,7 @@ name: syba
 title: SYBA
 url: "https://github.com/lich-uct/syba"
 category: cli-tool
-summary: ">"
+summary: "SYBA classifies organic compounds as easy- or hard-to-synthesize using a Bayesian fragment scoring approach, decomposing each molecule into ECFP4-like fragments scored by their relative frequency in easy- versus hard-to-synthesize reference sets"
 tags: [synthetic-accessibility, bayesian-classifier, fragment-based, cheminformatics, drug-discovery, rdkit]
 reviewed: 2026-09-02
 acquired: 2026-09-02

@@ -5,7 +5,7 @@ url: "https://www.uber.com/"
 category: agent-pattern
 tags: [agent-pattern, enterprise, workflow-automation, cross-functional, sprint, uber]
 reviewed: 2026-07-21
-summary: ">-"
+summary: "An organizational pattern for deploying AI agents at enterprise scale via a 10-day sprint pipeline — shadowing employees, selecting opportunities, building the agent alongside the worker, validating with the team, then shipping — reporting reductions like 2 days to 10 minutes for financial pacing reports"
 acquired: 2026-07-22
 ---
 

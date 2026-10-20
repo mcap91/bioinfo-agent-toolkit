@@ -4,7 +4,7 @@ title: Contextual Retrieval (Anthropic Cookbook)
 url: "https://platform.claude.com/cookbook/capabilities-contextual-embeddings-guide"
 category: agent-pattern
 tags: [rag, embeddings, retrieval, bm25, reranking, claude, prompt-caching]
-summary: ">-"
+summary: "Demonstrates three progressive techniques for improving RAG retrieval quality — contextual embeddings (situating each chunk within its source document before embedding), contextual BM25 hybrid search, and reranking — achieving up to 95.26% Pass@10"
 security_flags: [needs-api-key]
 reviewed: 2026-06-25
 acquired: 2026-06-26

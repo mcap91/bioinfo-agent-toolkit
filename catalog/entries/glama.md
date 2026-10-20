@@ -6,7 +6,7 @@ category: reference
 tags: [MCP, registry, discovery, gateway, tool-directory]
 reviewed: 2026-07-03
 security_flags: []
-summary: ">-"
+summary: "Glama indexes the Model Context Protocol ecosystem — submitted GitHub repos are indexed with every tool, schema, and annotation — and provides an in-browser inspector, a gateway with access control and OAuth, and pre-configured connectors for 50,000+ MCP servers"
 acquired: 2026-07-03
 ---
 

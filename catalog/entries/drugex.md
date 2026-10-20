@@ -3,7 +3,7 @@ name: drugex
 title: DrugEx
 url: "https://github.com/CDDLeiden/DrugEx"
 category: framework
-summary: ">"
+summary: "DrugEx generates novel drug-like small molecules using deep learning generative models within a multi-objective reinforcement learning framework, supporting RNN, SMILES-transformer, and scaffold-constrained graph-transformer generator architectures with Pareto-based multi-objective optimization"
 tags: [de-novo-design, reinforcement-learning, multi-objective-optimization, drug-design, transformer, graph-transformer, scaffold-constrained, cheminformatics, generative-chemistry]
 reviewed: 2026-09-02
 acquired: 2026-09-02

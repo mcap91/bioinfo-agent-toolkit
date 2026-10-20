@@ -5,7 +5,7 @@ url: "https://arxiv.org/abs/2505.00000"
 category: reference
 tags: [memory, agent-memory, research-paper, rag, semantic-memory, episodic-memory, procedural-memory, self-repair]
 reviewed: 2026-07-21
-summary: ">-"
+summary: "FluxMem is a memory architecture for AI agents that treats memory as an evolving graph of interconnected semantic, episodic, and procedural nodes, with runtime self-repair (link expansion/pruning, content reshaping) and offline consolidation into reusable skills"
 acquired: 2026-07-22
 ---
 

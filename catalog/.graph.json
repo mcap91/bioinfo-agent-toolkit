@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-14T04:36:35.154Z",
+  "generated_at": "2026-10-20T04:35:05.365Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -16,7 +16,7 @@
       "kind": "entry",
       "title": "AAA Quality-Gate Multi-Agent Orchestration",
       "url": "https://example.com",
-      "summary": ">-",
+      "summary": "A prompt architecture for orchestrating multi-agent development with built-in quality verification — architecture-first design docs, screenshot-based verification loops, dependency-ordered builder waves, and a critic agent that scores against reference screenshots before passing quality gates",
       "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
@@ -278,7 +278,7 @@
       "kind": "entry",
       "title": "Agentic RAG",
       "url": "https://huggingface.co/learn/cookbook/agent_rag",
-      "summary": ">-",
+      "summary": "Agentic RAG wraps a vector-database retriever as a tool for an LLM agent, which reformulates queries, critiques retrieved snippets, and iterates through multiple retrieval rounds before synthesizing an answer",
       "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
@@ -433,7 +433,7 @@
       "kind": "entry",
       "title": "AiZynthFinder",
       "url": "https://github.com/MolecularAI/aizynthfinder",
-      "summary": ">",
+      "summary": "AiZynthFinder performs retrosynthetic planning — given a target molecule, it finds multi-step synthetic routes back to commercially available starting materials using Monte Carlo tree search with reaction templates suggested by a trained neural network policy",
       "category": "cli-tool",
       "decision_status": "open",
       "exists": true
@@ -463,7 +463,7 @@
       "kind": "entry",
       "title": "Amazon Textract Textractor",
       "url": "https://github.com/aws-samples/amazon-textract-textractor",
-      "summary": ">",
+      "summary": "Textractor is a Python wrapper around Amazon Textract for document intelligence — handles API calls, response parsing, and output formatting for text recognition, table extraction, form extraction, ID analysis, and expense processing",
       "category": "cli-tool",
       "decision_status": "open",
       "exists": true
@@ -512,7 +512,7 @@
       "kind": "entry",
       "title": "Anthropic Prompt Caching Design & Optimization Guide",
       "url": "https://github.com/anthropics/skills/blob/main/skills/claude-api/shared/prompt-caching.md",
-      "summary": ">-",
+      "summary": "The official Anthropic reference for designing prompt-building code that maximizes cache hit rates, covering placement patterns, silent cache invalidators, and key technical limits for the prompt caching prefix-match mechanism",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -602,7 +602,7 @@
       "kind": "entry",
       "title": "ASKCOS",
       "url": "https://github.com/ASKCOS/ASKCOS",
-      "summary": ">",
+      "summary": "ASKCOS is an integrated platform for computer-aided synthesis planning that combines ML models for retrosynthetic analysis, forward reaction prediction, reaction condition recommendation, synthetic complexity scoring, and fast reaction plausibility filtering; code is MPL-2.0, data/models are CC BY-NC-SA (noncommercial)",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -642,7 +642,7 @@
       "kind": "entry",
       "title": "AutoDock Vina",
       "url": "https://github.com/ccsb-scripps/AutoDock-Vina",
-      "summary": ">",
+      "summary": "AutoDock Vina predicts how small molecules bind to protein targets by searching for the lowest-energy binding pose, supporting virtual screening, multi-ligand docking, macrocycle and hydrated-docking protocols, and both AutoDock4.2 and Vina scoring functions",
       "category": "cli-tool",
       "decision_status": "open",
       "exists": true
@@ -732,7 +732,7 @@
       "kind": "entry",
       "title": "Awesome Harness Engineering",
       "url": "https://github.com/ai-boost/awesome-harness-engineering",
-      "summary": ">-",
+      "summary": "A curated awesome list organizing resources for building, testing, and operating AI agent harnesses — covering subagent architecture, context/memory systems, MCP tool integrations, safety and permissions, orchestration patterns, evaluation, and observability",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -956,7 +956,7 @@
       "kind": "entry",
       "title": "Building Evals (Anthropic Cookbook)",
       "url": "https://platform.claude.com/cookbook/misc-building-evals",
-      "summary": ">-",
+      "summary": "Walks through the structure of offline LLM evaluations (prompt, output, golden answer, score) and three grading approaches — code-based, human, and model-based grading — along with design heuristics for building reliable eval sets",
       "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
@@ -966,7 +966,7 @@
       "kind": "entry",
       "title": "Career-Ops",
       "url": "https://github.com/santifer/career-ops",
-      "summary": ">-",
+      "summary": "Career-Ops turns any AI coding CLI into a job search command center that scores job offers against a user profile, generates ATS-optimized CVs and cover letters as PDFs, scans career portals automatically, and tracks everything in a markdown-based pipeline",
       "category": "cli-tool",
       "decision_status": "open",
       "exists": true
@@ -1046,7 +1046,7 @@
       "kind": "entry",
       "title": "Chandra OCR",
       "url": "https://github.com/datalab-to/chandra",
-      "summary": ">",
+      "summary": "Chandra OCR 2 is a vision-language model for document parsing that converts images and PDFs into structured Markdown/HTML/JSON while preserving layout, with strength on math, tables, forms, handwriting, and 90+ languages; code is Apache-2.0, model weights use a modified OpenRAIL-M license",
       "category": "cli-tool",
       "decision_status": "open",
       "exists": true
@@ -1066,7 +1066,7 @@
       "kind": "entry",
       "title": "ChemBERTa-3",
       "url": "https://github.com/deepforestsci/chemberta3",
-      "summary": ">",
+      "summary": "ChemBERTa-3 is a training and benchmarking framework for chemical foundation models, providing a unified pipeline to pretrain, fine-tune, and evaluate transformer and graph-pretraining architectures on molecular property prediction tasks against MoleculeNet benchmarks",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -1121,7 +1121,7 @@
       "kind": "entry",
       "title": "Claude API Pre-Filter False-Positive Troubleshooting",
       "url": "https://docs.anthropic.com/en/docs/about-claude/models",
-      "summary": ">-",
+      "summary": "A field-tested diagnosis and fix recipe for Claude Code sessions blocked by the API pre-filter pattern-matching bio- or security-adjacent language, covering the four trigger surfaces, transcript-based diagnosis, and quick/deep fix protocols",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -1372,7 +1372,7 @@
       "kind": "entry",
       "title": "Claudex-Loop",
       "url": "https://github.com/chaseai-yt/claudex-loop",
-      "summary": ">",
+      "summary": "Claudex-loop enforces a cross-model review invariant where Claude plans and Codex reviews in a read-only sandbox, through four phases — recon, interrogate, review, and optional build — producing a locked plan and a full round-by-round review transcript",
       "category": "skill",
       "decision_status": "open",
       "exists": true
@@ -1461,7 +1461,7 @@
       "kind": "entry",
       "title": "CodeAct",
       "url": "https://github.com/xingyaoww/code-act",
-      "summary": ">-",
+      "summary": "CodeAct proposes executable Python code as a unified action space for LLM agents, replacing constrained JSON/text action formats, and includes the CodeActInstruct dataset, fine-tuned CodeActAgent models, and the M3ToolEval benchmark",
       "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
@@ -1637,7 +1637,7 @@
       "kind": "entry",
       "title": "Contextual Retrieval (Anthropic Cookbook)",
       "url": "https://platform.claude.com/cookbook/capabilities-contextual-embeddings-guide",
-      "summary": ">-",
+      "summary": "Demonstrates three progressive techniques for improving RAG retrieval quality — contextual embeddings (situating each chunk within its source document before embedding), contextual BM25 hybrid search, and reranking — achieving up to 95.26% Pass@10",
       "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
@@ -1647,7 +1647,7 @@
       "kind": "entry",
       "title": "Coolify",
       "url": "https://github.com/coollabsio/coolify",
-      "summary": ">-",
+      "summary": "Coolify manages servers, applications, and databases on your own hardware via SSH, providing a web dashboard for git-push deployments, one-click database provisioning, preview deployments, and rollback; self-hosted and has had several critical CVEs in 2025/2026",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -1687,7 +1687,7 @@
       "kind": "entry",
       "title": "CReM",
       "url": "https://github.com/DrrDom/crem",
-      "summary": ">",
+      "summary": "CReM generates chemically valid molecular structures by swapping, adding, or linking fragments that share the same chemical context, via four modes — mutate, grow, link, and make-cycle — scoring competitively on the GuacaMol goal-directed benchmark",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -1857,7 +1857,7 @@
       "kind": "entry",
       "title": "DiffDock",
       "url": "https://github.com/gcorso/DiffDock",
-      "summary": ">",
+      "summary": "DiffDock predicts protein-ligand binding poses with a generative diffusion model operating over the SE(3) space of ligand translations, rotations, and torsion angles, ranking candidate poses by a learned confidence score instead of scoring pre-sampled poses",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -1867,7 +1867,7 @@
       "kind": "entry",
       "title": "Dify",
       "url": "https://github.com/langgenius/dify",
-      "summary": ">-",
+      "summary": "Dify provides a visual drag-and-drop interface for building AI applications, combining workflow orchestration, RAG document ingestion/retrieval, agent tool use with 50+ built-in tools, model management, and production observability (LLMOps) into a single self-hostable platform",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -1955,7 +1955,7 @@
       "kind": "entry",
       "title": "DrugEx",
       "url": "https://github.com/CDDLeiden/DrugEx",
-      "summary": ">",
+      "summary": "DrugEx generates novel drug-like small molecules using deep learning generative models within a multi-objective reinforcement learning framework, supporting RNN, SMILES-transformer, and scaffold-constrained graph-transformer generator architectures with Pareto-based multi-objective optimization",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -2130,7 +2130,7 @@
       "kind": "entry",
       "title": "ExtractBench",
       "url": "https://github.com/run-llama/ExtractBench",
-      "summary": ">-",
+      "summary": "ExtractBench evaluates document extraction systems on 370 enterprise-grade documents across 67 document types and 8 business domains, scoring schema-valid JSON output with a deterministic unified value F1 metric and no LLM-as-judge",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -2309,7 +2309,7 @@
       "kind": "entry",
       "title": "FluxMem: Continuously Evolving Memory Connectivity",
       "url": "https://arxiv.org/abs/2505.00000",
-      "summary": ">-",
+      "summary": "FluxMem is a memory architecture for AI agents that treats memory as an evolving graph of interconnected semantic, episodic, and procedural nodes, with runtime self-repair (link expansion/pruning, content reshaping) and offline consolidation into reusable skills",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -2389,7 +2389,7 @@
       "kind": "entry",
       "title": "GENTRL",
       "url": "https://github.com/insilicomedicine/GENTRL",
-      "summary": ">",
+      "summary": "GENTRL generates novel small molecules optimized for synthetic feasibility, biological activity, and novelty using a variational autoencoder with a tensor-decomposition-parameterized learned prior, trained in a pretrain-then-RL-optimize two-stage pipeline",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -2449,7 +2449,7 @@
       "kind": "entry",
       "title": "Glama",
       "url": "https://glama.ai/mcp/servers",
-      "summary": ">-",
+      "summary": "Glama indexes the Model Context Protocol ecosystem — submitted GitHub repos are indexed with every tool, schema, and annotation — and provides an in-browser inspector, a gateway with access control and OAuth, and pre-configured connectors for 50,000+ MCP servers",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -2499,7 +2499,7 @@
       "kind": "entry",
       "title": "Governance-First Multi-Agent Architecture",
       "url": "https://example.com",
-      "summary": ">-",
+      "summary": "An architecture pattern for solo-use multi-agent systems built governance-first, using a four-tier hierarchy (lead agent, least-privilege specialists, an independent audit/watcher, and a human owner) with structural approval gates on irreversible actions",
       "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
@@ -2508,7 +2508,7 @@
       "id": "gpu-rental-cost-benchmarks",
       "kind": "entry",
       "title": "GPU Rental Cost-Per-Token Benchmarks",
-      "summary": ">",
+      "summary": "A detailed cost and performance breakdown from renting 4x RTX 4080 Super GPUs to run a 120B MoE model via vLLM, showing cost per token drops 6-8x by batching requests and documenting throughput/latency across concurrency levels",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -2518,7 +2518,7 @@
       "kind": "entry",
       "title": "Gradio",
       "url": "https://gradio.app/",
-      "summary": ">-",
+      "summary": "Gradio lets developers create interactive web UIs for machine learning models, APIs, or arbitrary Python functions in a few lines of code, with a FastAPI backend, Svelte frontend, programmatic Python/JS clients, and free Hugging Face Spaces hosting",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -2528,7 +2528,7 @@
       "kind": "entry",
       "title": "Granola CLI",
       "url": "https://github.com/theantichris/granola",
-      "summary": ">-",
+      "summary": "A Go CLI that exports data from the Granola meeting note-taking app to local files for backup, migration, or offline access, covering both API-based notes export (ProseMirror JSON to Markdown) and cache-based transcript export with speaker labels",
       "category": "cli-tool",
       "decision_status": "open",
       "exists": true
@@ -2597,7 +2597,7 @@
       "kind": "entry",
       "title": "GROMACS",
       "url": "https://github.com/gromacs/gromacs",
-      "summary": ">",
+      "summary": "GROMACS is a widely used molecular dynamics simulation package for proteins, lipids, and nucleic acids, optimized through multi-level parallelism (SIMD, GPU offloading via CUDA/OpenCL/SYCL, and MPI) with support for AMBER/CHARMM/GROMOS/OPLS force fields and free-energy calculations",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -2817,7 +2817,7 @@
       "kind": "entry",
       "title": "Impeccable",
       "url": "https://github.com/pbakaus/impeccable",
-      "summary": ">-",
+      "summary": "Impeccable provides design vocabulary and quality enforcement for AI coding agents, catching common AI-generated frontend tells through 45 deterministic detector rules plus 23 skill commands for shaping, critiquing, and polishing UI work, with provider-native hooks across Cursor, Claude Code, and other tools",
       "category": "skill",
       "decision_status": "open",
       "exists": true
@@ -2995,7 +2995,7 @@
       "kind": "entry",
       "title": "Knowledge Graph Construction (Anthropic Cookbook)",
       "url": "https://platform.claude.com/cookbook/capabilities-knowledge-graph-guide",
-      "summary": ">-",
+      "summary": "An end-to-end pipeline for constructing knowledge graphs from unstructured documents using Claude prompts instead of trained NER/RE models, covering structured-output entity/triple extraction, LLM-based entity resolution, NetworkX graph assembly, hub-node summarization, and multi-hop querying with citations",
       "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
@@ -3005,7 +3005,7 @@
       "kind": "entry",
       "title": "Knowledge Work Plugins (Anthropic)",
       "url": "https://github.com/anthropics/knowledge-work-plugins",
-      "summary": ">-",
+      "summary": "A marketplace of 11 open-source Claude plugins that turn Claude into a role-specific specialist (productivity, sales, customer-support, product-management, marketing, legal, finance, data, enterprise-search, bio-research), each bundling MCP connectors, slash commands, and domain skills",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -3441,7 +3441,7 @@
       "kind": "entry",
       "title": "Microsoft Eval Guide",
       "url": "https://github.com/microsoft/eval-guide",
-      "summary": ">-",
+      "summary": "A Claude Code plugin providing six skills that walk through a five-stage evaluation lifecycle (discover, plan, generate & baseline, run, interpret & improve) for AI agents built on Microsoft Copilot Studio, with architecture-aware scoping and interactive HTML dashboards",
       "category": "plugin",
       "decision_status": "open",
       "exists": true
@@ -3597,7 +3597,7 @@
       "id": "multi-session-management-strategies",
       "kind": "entry",
       "title": "Multi-Session Agent Management Strategies",
-      "summary": ">",
+      "summary": "A Reddit discussion distilling practitioner strategies for managing 3+ concurrent AI coding agent sessions — tool-based multiplexing, terminal customization, agent-managing-agents, and session-count discipline — to avoid lost context and wrong-session mistakes",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -3851,7 +3851,7 @@
       "kind": "entry",
       "title": "OmniRoute",
       "url": "https://github.com/diegosouzapw/OmniRoute",
-      "summary": ">-",
+      "summary": "OmniRoute is a self-hosted AI gateway exposing a single OpenAI-compatible endpoint that routes requests across 271+ LLM providers using 18 routing strategies, an 11-engine token-compression pipeline, quota-sharing across API keys, and MCP/A2A protocol support",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -3870,7 +3870,7 @@
       "kind": "entry",
       "title": "One-Person AI Company Framework",
       "url": "https://www.reddit.com/",
-      "summary": ">-",
+      "summary": "A practitioner's framework distilled from operating a business almost entirely on AI agents for six months from a single git repo, covering context-as-code, a routing brain, human approval queues, reversibility discipline, and a taste loop for improving agent output over time",
       "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
@@ -3935,7 +3935,7 @@
       "kind": "entry",
       "title": "OpenAI Codex Claude Code Proxy",
       "url": "https://github.com/MikeChongCan/OpenAI-Codex-Claude-Code-Proxy",
-      "summary": ">-",
+      "summary": "Two shell launchers that start Claude Code with GPT models as the main agent, routing through a local CLIProxyAPI instance that translates Anthropic Messages API requests to the OpenAI Responses API for OpenAI/Codex OAuth or Azure OpenAI, with per-tier model mapping for subagents",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -3995,7 +3995,7 @@
       "kind": "entry",
       "title": "OpenHands",
       "url": "https://github.com/OpenHands/openhands",
-      "summary": ">-",
+      "summary": "OpenHands provides an Agent Canvas UI and Agent Server for running coding agents — its own built-in agent, Claude Code, Codex, Gemini, or any ACP-compatible agent — as a self-hosted, always-on engineering team with local, Docker, VM, or cloud backends",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -4005,7 +4005,7 @@
       "kind": "entry",
       "title": "OpenMM",
       "url": "https://github.com/openmm/openmm",
-      "summary": ">",
+      "summary": "OpenMM runs molecular dynamics simulations as a standalone engine or embeddable library, with custom forces and integrators, CUDA/OpenCL GPU acceleration, AMBER/CHARMM/OpenFF/GAFF force fields, and support for arbitrary PyTorch models as ML/MM force terms",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -4105,7 +4105,7 @@
       "kind": "entry",
       "title": "Outcomes / Outcome Grader (Managed Agents)",
       "url": "https://platform.claude.com/cookbook/managed-agents-cma-verify-with-outcome-grader",
-      "summary": ">-",
+      "summary": "Demonstrates the Outcomes feature in Claude Managed Agents, which adds a rubric-driven verification loop where an independent grader — with no visibility into the writer's reasoning — scores an artifact and returns gaps for the writer to revise, up to a configurable iteration cap",
       "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
@@ -4165,7 +4165,7 @@
       "kind": "entry",
       "title": "PaddleOCR",
       "url": "https://github.com/PaddlePaddle/PaddleOCR",
-      "summary": ">",
+      "summary": "PaddleOCR provides three product lines for document understanding — PP-OCRv6 scene text recognition, PP-StructureV3 document-structure-to-Markdown/JSON conversion, and the PaddleOCR-VL 0.9B-parameter vision-language model for full document parsing across 109 languages",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -4471,7 +4471,7 @@
       "kind": "entry",
       "title": "Prompt Caching MCP",
       "url": "https://github.com/flightlesstux/prompt-caching",
-      "summary": ">-",
+      "summary": "An MCP server that helps developers building Anthropic SDK applications optimize prompt caching by automatically placing cache_control breakpoints on stable content blocks, with tools to analyze cacheability and track cumulative token savings",
       "category": "mcp-server",
       "decision_status": "open",
       "exists": true
@@ -4481,7 +4481,7 @@
       "kind": "entry",
       "title": "Prompt Versioning and Rollback (Managed Agents)",
       "url": "https://platform.claude.com/cookbook/managed-agents-cma-prompt-versioning-and-rollback",
-      "summary": ">-",
+      "summary": "Demonstrates prompt lifecycle management using Claude Managed Agents' versioning system — immutable version creation on every update, version pinning for controlled evaluation, labeled-test-set comparison between versions, and rollback by switching the pinned version number",
       "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
@@ -4640,7 +4640,7 @@
       "kind": "entry",
       "title": "REINVENT 4",
       "url": "https://github.com/MolecularAI/REINVENT4",
-      "summary": ">",
+      "summary": "REINVENT 4 generates optimized small molecules matching a user-defined multi-component property profile via reinforcement learning over RNN and transformer generative models, supporting de novo design, scaffold hopping, R-group replacement, linker design, and library design",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -4790,7 +4790,7 @@
       "kind": "entry",
       "title": "Scientific Agent Skills (K-Dense)",
       "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
-      "summary": ">",
+      "summary": "Scientific Agent Skills is a library of 163 curated Agent Skills that turn AI coding agents into scientific research assistants, spanning bioinformatics/genomics, cheminformatics/drug discovery, clinical research, ML/AI, scientific databases, and lab automation, each scanned with the Cisco AI Defense Skill Scanner",
       "category": "plugin",
       "decision_status": "open",
       "exists": true
@@ -5018,7 +5018,7 @@
       "kind": "entry",
       "title": "Skills CLI (skills.sh)",
       "url": "https://github.com/vercel-labs/skills",
-      "summary": ">-",
+      "summary": "The Skills CLI (npx skills) is a package manager for agent skills — modular SKILL.md packages — providing discovery, installation, update checking, and scaffolding, backed by the skills.sh registry which ranks skills by install count and source reputation",
       "category": "cli-tool",
       "decision_status": "open",
       "exists": true
@@ -5068,7 +5068,7 @@
       "kind": "entry",
       "title": "Smithery",
       "url": "https://smithery.ai/",
-      "summary": ">-",
+      "summary": "Smithery is a central hub for discovering, installing, and hosting Model Context Protocol servers, with a 7,000+ server registry, a meta-MCP router toolbox, managed OAuth via the agent.pw vault, and both local-install and Smithery-hosted remote deployment",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -5316,7 +5316,7 @@
       "kind": "entry",
       "title": "SYBA",
       "url": "https://github.com/lich-uct/syba",
-      "summary": ">",
+      "summary": "SYBA classifies organic compounds as easy- or hard-to-synthesize using a Bayesian fragment scoring approach, decomposing each molecule into ECFP4-like fragments scored by their relative frequency in easy- versus hard-to-synthesize reference sets",
       "category": "cli-tool",
       "decision_status": "open",
       "exists": true
@@ -5346,7 +5346,7 @@
       "kind": "entry",
       "title": "SynFrag",
       "url": "https://github.com/simmzx/SynFrag",
-      "summary": ">",
+      "summary": "SynFrag predicts whether a molecule is easy or hard to synthesize using a two-stage AttentiveFP graph neural network — pretrained on 9.18M unlabeled molecules via fragment-assembly generation, then fine-tuned on 800K labeled molecules — with attention-heatmap interpretability",
       "category": "cli-tool",
       "decision_status": "open",
       "exists": true
@@ -15179,7 +15179,7 @@
       "id": "three-store-hybrid-memory-architecture",
       "kind": "entry",
       "title": "3-Store Hybrid Memory Architecture for AI Agents",
-      "summary": ">",
+      "summary": "An architecture pattern arguing vector embeddings alone fail for AI agent memory, proposing three parallel stores — a vector store for fuzzy semantic matching, a key-value store for exact fact lookup, and a knowledge graph for multi-hop relationship reasoning — merged by a fusion layer",
       "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
@@ -15348,7 +15348,7 @@
       "kind": "entry",
       "title": "Uber Agentic Pods",
       "url": "https://www.uber.com/",
-      "summary": ">-",
+      "summary": "An organizational pattern for deploying AI agents at enterprise scale via a 10-day sprint pipeline — shadowing employees, selecting opportunities, building the agent alongside the worker, validating with the team, then shipping — reporting reductions like 2 days to 10 minutes for financial pacing reports",
       "category": "agent-pattern",
       "decision_status": "open",
       "exists": true

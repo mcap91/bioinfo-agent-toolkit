@@ -1,6 +1,11 @@
 // packages/catalog-mcp/__tests__/validate-entry.test.ts
 import { describe, it, expect } from 'vitest';
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { validateEntry } from '../src/core/validate-entry.js';
+
+const FIXTURES_DIR = path.join(path.dirname(fileURLToPath(import.meta.url)), 'fixtures', 'wk-0070');
 
 const validMarkdown = `---
 name: test-tool
@@ -61,5 +66,14 @@ describe('validateEntry', () => {
     const result = validateEntry(noSecurity);
     expect(result.valid).toBe(true);
     expect(result.warnings.some((w) => w.includes('Security'))).toBe(true);
+  });
+
+  // Golden fixture: a real pre-repair entry where the old parser kept the
+  // block-scalar header (">") as the summary value instead of the folded text (WK-0070).
+  it('rejects the unedited pre-repair golden fixture (bare block-scalar summary)', async () => {
+    const raw = await readFile(path.join(FIXTURES_DIR, 'amazon-textract-textractor.md'), 'utf-8');
+    const result = validateEntry(raw);
+    expect(result.valid).toBe(false);
+    expect(result.errors.some((e) => e.includes('summary'))).toBe(true);
   });
 });

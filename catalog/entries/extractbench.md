@@ -3,7 +3,7 @@ name: extractbench
 title: ExtractBench
 url: "https://github.com/run-llama/ExtractBench"
 category: reference
-summary: ">-"
+summary: "ExtractBench evaluates document extraction systems on 370 enterprise-grade documents across 67 document types and 8 business domains, scoring schema-valid JSON output with a deterministic unified value F1 metric and no LLM-as-judge"
 tags: [benchmark, document-extraction, ocr, enterprise, llamaindex, kaggle, evaluation, structured-output]
 reviewed: 2026-09-02
 acquired: 2026-09-02

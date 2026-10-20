@@ -3,7 +3,7 @@ name: gentrl
 title: GENTRL
 url: "https://github.com/insilicomedicine/GENTRL"
 category: framework
-summary: ">"
+summary: "GENTRL generates novel small molecules optimized for synthetic feasibility, biological activity, and novelty using a variational autoencoder with a tensor-decomposition-parameterized learned prior, trained in a pretrain-then-RL-optimize two-stage pipeline"
 tags: [generative-chemistry, variational-autoencoder, reinforcement-learning, de-novo-design, drug-discovery, tensor-decomposition, ddr1, insilico-medicine]
 reviewed: 2026-09-02
 acquired: 2026-09-02

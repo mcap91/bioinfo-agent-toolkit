@@ -3,7 +3,7 @@ name: amazon-textract-textractor
 title: Amazon Textract Textractor
 url: "https://github.com/aws-samples/amazon-textract-textractor"
 category: cli-tool
-summary: ">"
+summary: "Textractor is a Python wrapper around Amazon Textract for document intelligence — handles API calls, response parsing, and output formatting for text recognition, table extraction, form extraction, ID analysis, and expense processing"
 tags: [ocr, document-extraction, aws, textract, table-extraction, form-extraction, pdf, cloud-service]
 reviewed: 2026-09-02
 acquired: 2026-09-02

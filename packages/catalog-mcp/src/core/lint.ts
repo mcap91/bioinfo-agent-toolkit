@@ -24,6 +24,23 @@ const RETIRED_FIELDS: Record<string, string> = {
 
 const EMPTY_TAX_INDEX: TaxonomyIndex = buildIndex({ canonical: {} });
 
+const BARE_BLOCK_SCALAR_INDICATORS = new Set(['>', '>-', '>+', '|', '|-', '|+']);
+
+// The old hand-rolled YAML parser silently kept the block-scalar header as the
+// value instead of folding the continuation lines, so a corrupted field reads
+// back as exactly one of these indicators (see WK-0070).
+function findBareBlockScalars(value: unknown, path: string, out: string[]): void {
+  if (typeof value === 'string') {
+    if (BARE_BLOCK_SCALAR_INDICATORS.has(value)) out.push(path);
+  } else if (Array.isArray(value)) {
+    value.forEach((v, i) => findBareBlockScalars(v, `${path}[${i}]`, out));
+  } else if (value && typeof value === 'object') {
+    for (const [k, v] of Object.entries(value as Record<string, unknown>)) {
+      findBareBlockScalars(v, path ? `${path}.${k}` : k, out);
+    }
+  }
+}
+
 export function lintEntry(
   filename: string,
   frontmatter: Record<string, unknown>,
@@ -39,6 +56,12 @@ export function lintEntry(
     if (retired in frontmatter) {
       errors.push(`retired field "${retired}" — migrate to ${target}`);
     }
+  }
+
+  const bareBlockScalarPaths: string[] = [];
+  findBareBlockScalars(frontmatter, '', bareBlockScalarPaths);
+  for (const p of bareBlockScalarPaths) {
+    errors.push(`${p}: bare block-scalar indicator — a YAML parser bug can leave this instead of the real text`);
   }
 
   const result = entrySchema.safeParse(frontmatter);

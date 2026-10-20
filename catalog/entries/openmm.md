@@ -3,7 +3,7 @@ name: openmm
 title: OpenMM
 url: "https://github.com/openmm/openmm"
 category: framework
-summary: ">"
+summary: "OpenMM runs molecular dynamics simulations as a standalone engine or embeddable library, with custom forces and integrators, CUDA/OpenCL GPU acceleration, AMBER/CHARMM/OpenFF/GAFF force fields, and support for arbitrary PyTorch models as ML/MM force terms"
 tags: [molecular-dynamics, gpu-computing, simulation, force-field, protein-simulation, custom-forces, machine-learning-potentials, structural-biology]
 reviewed: 2026-09-02
 acquired: 2026-09-02

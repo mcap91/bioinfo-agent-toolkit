@@ -3,7 +3,7 @@ name: synfrag
 title: SynFrag
 url: "https://github.com/simmzx/SynFrag"
 category: cli-tool
-summary: ">"
+summary: "SynFrag predicts whether a molecule is easy or hard to synthesize using a two-stage AttentiveFP graph neural network — pretrained on 9.18M unlabeled molecules via fragment-assembly generation, then fine-tuned on 800K labeled molecules — with attention-heatmap interpretability"
 tags: [synthetic-accessibility, fragment-assembly, drug-discovery, cheminformatics, pretraining, attentivefp, interpretability]
 reviewed: 2026-09-02
 acquired: 2026-09-02

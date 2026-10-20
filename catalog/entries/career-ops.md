@@ -6,7 +6,7 @@ category: cli-tool
 tags: [job-search, skills, PDF-generation, ATS, batch-processing, multi-CLI]
 reviewed: 2026-07-03
 security_flags: []
-summary: ">-"
+summary: "Career-Ops turns any AI coding CLI into a job search command center that scores job offers against a user profile, generates ATS-optimized CVs and cover letters as PDFs, scans career portals automatically, and tracks everything in a markdown-based pipeline"
 acquired: 2026-07-04
 ---
 

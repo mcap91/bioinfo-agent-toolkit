@@ -3,7 +3,7 @@ name: crem
 title: CReM
 url: "https://github.com/DrrDom/crem"
 category: framework
-summary: ">"
+summary: "CReM generates chemically valid molecular structures by swapping, adding, or linking fragments that share the same chemical context, via four modes — mutate, grow, link, and make-cycle — scoring competitively on the GuacaMol goal-directed benchmark"
 tags: [molecular-generation, fragment-based, matched-molecular-pairs, cheminformatics, drug-design, guacamol, rdkit]
 reviewed: 2026-09-02
 acquired: 2026-09-02

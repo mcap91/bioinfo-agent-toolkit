@@ -3,7 +3,7 @@ name: aaa-quality-gate-orchestration
 title: AAA Quality-Gate Multi-Agent Orchestration
 url: "https://example.com"
 category: agent-pattern
-summary: ">-"
+summary: "A prompt architecture for orchestrating multi-agent development with built-in quality verification — architecture-first design docs, screenshot-based verification loops, dependency-ordered builder waves, and a critic agent that scores against reference screenshots before passing quality gates"
 tags: [multi-agent, orchestration, quality-gates, critic-loop, game-development, 3d-modeling, modular-architecture, verification]
 reviewed: 2026-09-02
 acquired: 2026-09-02

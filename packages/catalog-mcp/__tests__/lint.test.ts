@@ -3,7 +3,11 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { mkdtemp, rm, mkdir, writeFile, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
+import { fileURLToPath } from 'node:url';
 import { lintEntry, lint } from '../src/core/lint.js';
+import { parseFrontmatter } from '../src/core/frontmatter.js';
+
+const FIXTURES_DIR = path.join(path.dirname(fileURLToPath(import.meta.url)), 'fixtures', 'wk-0070');
 
 describe('lintEntry', () => {
   const validFrontmatter = {
@@ -46,6 +50,48 @@ describe('lintEntry', () => {
   it('errors on name mismatch with filename', () => {
     const result = lintEntry('wrong-name', validFrontmatter, '');
     expect(result.errors.some((e: string) => e.includes('name'))).toBe(true);
+  });
+});
+
+describe('lintEntry — bare block-scalar guard (WK-0070)', () => {
+  const validFrontmatter = {
+    name: 'test-tool',
+    title: 'Test Tool',
+    url: 'https://github.com/org/test-tool',
+    category: 'skill',
+    summary: 'looks promising',
+    tags: ['testing'],
+    reviewed: '2026-06-03',
+  };
+
+  // Golden fixture: a real pre-repair capture where the old parser kept the
+  // block-scalar header (">") as the summary value instead of the folded text.
+  it('errors naming "summary" on the unedited pre-repair golden fixture', async () => {
+    const raw = await readFile(path.join(FIXTURES_DIR, 'amazon-textract-textractor.md'), 'utf-8');
+    const { frontmatter, body } = parseFrontmatter(raw);
+    const result = lintEntry('amazon-textract-textractor', frontmatter, body);
+    expect(result.errors.some((e: string) => e.includes('summary'))).toBe(true);
+  });
+
+  it('reports no bare-indicator error once the fixture summary is replaced with real text', async () => {
+    const raw = await readFile(path.join(FIXTURES_DIR, 'amazon-textract-textractor.md'), 'utf-8');
+    const repaired = raw.replace('summary: ">"', 'summary: "A Python wrapper around Amazon Textract."');
+    const { frontmatter, body } = parseFrontmatter(repaired);
+    const result = lintEntry('amazon-textract-textractor', frontmatter, body);
+    expect(result.errors.some((e: string) => e.includes('bare block-scalar'))).toBe(false);
+  });
+
+  const indicators = ['>', '>-', '>+', '|', '|-', '|+'];
+  for (const indicator of indicators) {
+    it(`errors when summary is exactly the bare indicator "${indicator}"`, () => {
+      const result = lintEntry('test-tool', { ...validFrontmatter, summary: indicator }, '');
+      expect(result.errors.some((e: string) => e.includes('bare block-scalar'))).toBe(true);
+    });
+  }
+
+  it('does not error on a normal string that merely contains ">"', () => {
+    const result = lintEntry('test-tool', { ...validFrontmatter, summary: 'a > b' }, '');
+    expect(result.errors.some((e: string) => e.includes('bare block-scalar'))).toBe(false);
   });
 });
 

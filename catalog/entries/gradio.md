@@ -6,7 +6,7 @@ category: framework
 tags: [python, machine-learning, UI, demo, web-app, huggingface]
 reviewed: 2026-07-03
 security_flags: []
-summary: ">-"
+summary: "Gradio lets developers create interactive web UIs for machine learning models, APIs, or arbitrary Python functions in a few lines of code, with a FastAPI backend, Svelte frontend, programmatic Python/JS clients, and free Hugging Face Spaces hosting"
 acquired: 2026-07-03
 ---
 

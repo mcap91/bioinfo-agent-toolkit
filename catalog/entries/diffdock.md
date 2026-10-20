@@ -3,7 +3,7 @@ name: diffdock
 title: DiffDock
 url: "https://github.com/gcorso/DiffDock"
 category: framework
-summary: ">"
+summary: "DiffDock predicts protein-ligand binding poses with a generative diffusion model operating over the SE(3) space of ligand translations, rotations, and torsion angles, ranking candidate poses by a learned confidence score instead of scoring pre-sampled poses"
 tags: [molecular-docking, diffusion-model, protein-ligand, drug-discovery, deep-learning, structural-biology, esmfold]
 reviewed: 2026-09-02
 acquired: 2026-09-02

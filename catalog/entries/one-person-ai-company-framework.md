@@ -5,7 +5,7 @@ url: "https://www.reddit.com/"
 category: agent-pattern
 tags: [agent-pattern, solo-founder, automation, approval-queue, taste-loop, reversibility, operations]
 reviewed: 2026-07-21
-summary: ">-"
+summary: "A practitioner's framework distilled from operating a business almost entirely on AI agents for six months from a single git repo, covering context-as-code, a routing brain, human approval queues, reversibility discipline, and a taste loop for improving agent output over time"
 acquired: 2026-07-22
 ---
 

@@ -3,7 +3,7 @@ name: paddleocr
 title: PaddleOCR
 url: "https://github.com/PaddlePaddle/PaddleOCR"
 category: framework
-summary: ">"
+summary: "PaddleOCR provides three product lines for document understanding — PP-OCRv6 scene text recognition, PP-StructureV3 document-structure-to-Markdown/JSON conversion, and the PaddleOCR-VL 0.9B-parameter vision-language model for full document parsing across 109 languages"
 tags: [ocr, document-parsing, vision-language-model, multilingual, pdf-extraction, text-recognition, table-recognition, rag, paddlepaddle]
 reviewed: 2026-09-02
 acquired: 2026-09-02

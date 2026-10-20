@@ -3,7 +3,7 @@ name: chemberta3
 title: ChemBERTa-3
 url: "https://github.com/deepforestsci/chemberta3"
 category: framework
-summary: ">"
+summary: "ChemBERTa-3 is a training and benchmarking framework for chemical foundation models, providing a unified pipeline to pretrain, fine-tune, and evaluate transformer and graph-pretraining architectures on molecular property prediction tasks against MoleculeNet benchmarks"
 tags: [chemical-foundation-model, smiles, molecular-property-prediction, pretraining, cheminformatics, deepchem, transformer, moleculenet, benchmarking]
 reviewed: 2026-09-02
 acquired: 2026-09-02

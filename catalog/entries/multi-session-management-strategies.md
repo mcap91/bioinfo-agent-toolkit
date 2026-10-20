@@ -2,7 +2,7 @@
 name: multi-session-management-strategies
 title: Multi-Session Agent Management Strategies
 category: reference
-summary: ">"
+summary: "A Reddit discussion distilling practitioner strategies for managing 3+ concurrent AI coding agent sessions — tool-based multiplexing, terminal customization, agent-managing-agents, and session-count discipline — to avoid lost context and wrong-session mistakes"
 tags: [multi-session, agent-management, workflow, terminal-multiplexer, session-organization, best-practices]
 reviewed: 2026-09-02
 acquired: 2026-09-02

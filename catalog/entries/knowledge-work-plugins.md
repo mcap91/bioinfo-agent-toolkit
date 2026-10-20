@@ -4,7 +4,7 @@ title: Knowledge Work Plugins (Anthropic)
 url: "https://github.com/anthropics/knowledge-work-plugins"
 category: framework
 tags: [claude-cowork, claude-code, plugins, skills, connectors, mcp, bio-research]
-summary: ">-"
+summary: "A marketplace of 11 open-source Claude plugins that turn Claude into a role-specific specialist (productivity, sales, customer-support, product-management, marketing, legal, finance, data, enterprise-search, bio-research), each bundling MCP connectors, slash commands, and domain skills"
 security_flags: []
 reviewed: 2026-06-25
 acquired: 2026-06-26

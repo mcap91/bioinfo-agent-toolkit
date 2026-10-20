@@ -4,7 +4,7 @@ title: Knowledge Graph Construction (Anthropic Cookbook)
 url: "https://platform.claude.com/cookbook/capabilities-knowledge-graph-guide"
 category: agent-pattern
 tags: [knowledge-graph, entity-extraction, entity-resolution, structured-output, networkx, claude]
-summary: ">-"
+summary: "An end-to-end pipeline for constructing knowledge graphs from unstructured documents using Claude prompts instead of trained NER/RE models, covering structured-output entity/triple extraction, LLM-based entity resolution, NetworkX graph assembly, hub-node summarization, and multi-hop querying with citations"
 security_flags: [needs-api-key]
 reviewed: 2026-06-25
 acquired: 2026-06-26

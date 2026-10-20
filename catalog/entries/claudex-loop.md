@@ -3,7 +3,7 @@ name: claudex-loop
 title: Claudex-Loop
 url: "https://github.com/chaseai-yt/claudex-loop"
 category: skill
-summary: ">"
+summary: "Claudex-loop enforces a cross-model review invariant where Claude plans and Codex reviews in a read-only sandbox, through four phases — recon, interrogate, review, and optional build — producing a locked plan and a full round-by-round review transcript"
 tags: [cross-model-review, adversarial-review, plan-hardening, codex, claude-code-plugin, multi-model, planning]
 reviewed: 2026-09-02
 acquired: 2026-09-02

@@ -3,7 +3,7 @@ name: reinvent4
 title: REINVENT 4
 url: "https://github.com/MolecularAI/REINVENT4"
 category: framework
-summary: ">"
+summary: "REINVENT 4 generates optimized small molecules matching a user-defined multi-component property profile via reinforcement learning over RNN and transformer generative models, supporting de novo design, scaffold hopping, R-group replacement, linker design, and library design"
 tags: [molecular-design, de-novo-design, reinforcement-learning, generative-chemistry, smiles, drug-design, scaffold-hopping, astrazeneca, cheminformatics]
 reviewed: 2026-09-02
 acquired: 2026-09-02

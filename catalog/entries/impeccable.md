@@ -6,7 +6,7 @@ category: skill
 tags: [design, frontend, UI, anti-patterns, linting, multi-CLI, skills]
 reviewed: 2026-07-03
 security_flags: []
-summary: ">-"
+summary: "Impeccable provides design vocabulary and quality enforcement for AI coding agents, catching common AI-generated frontend tells through 45 deterministic detector rules plus 23 skill commands for shaping, critiquing, and polishing UI work, with provider-native hooks across Cursor, Claude Code, and other tools"
 acquired: 2026-07-04
 ---
 

@@ -5,7 +5,7 @@ url: "https://github.com/microsoft/eval-guide"
 category: plugin
 tags: [evaluation, testing, claude-code-plugin, copilot, copilot-studio, microsoft, agent-eval, test-generation]
 reviewed: 2026-07-21
-summary: ">-"
+summary: "A Claude Code plugin providing six skills that walk through a five-stage evaluation lifecycle (discover, plan, generate & baseline, run, interpret & improve) for AI agents built on Microsoft Copilot Studio, with architecture-aware scoping and interactive HTML dashboards"
 acquired: 2026-07-22
 ---
 

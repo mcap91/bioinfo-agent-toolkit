@@ -3,7 +3,7 @@ name: autodock-vina
 title: AutoDock Vina
 url: "https://github.com/ccsb-scripps/AutoDock-Vina"
 category: cli-tool
-summary: ">"
+summary: "AutoDock Vina predicts how small molecules bind to protein targets by searching for the lowest-energy binding pose, supporting virtual screening, multi-ligand docking, macrocycle and hydrated-docking protocols, and both AutoDock4.2 and Vina scoring functions"
 tags: [molecular-docking, virtual-screening, protein-ligand, drug-discovery, scoring-function, autodock, structural-biology]
 reviewed: 2026-09-02
 acquired: 2026-09-02

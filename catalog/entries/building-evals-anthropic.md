@@ -4,7 +4,7 @@ title: Building Evals (Anthropic Cookbook)
 url: "https://platform.claude.com/cookbook/misc-building-evals"
 category: agent-pattern
 tags: [evaluation, grading, testing, claude, llm-ops]
-summary: ">-"
+summary: "Walks through the structure of offline LLM evaluations (prompt, output, golden answer, score) and three grading approaches — code-based, human, and model-based grading — along with design heuristics for building reliable eval sets"
 security_flags: []
 reviewed: 2026-06-25
 acquired: 2026-06-26

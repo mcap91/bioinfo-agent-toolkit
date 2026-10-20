@@ -5,7 +5,7 @@ url: "https://github.com/MikeChongCan/OpenAI-Codex-Claude-Code-Proxy"
 category: framework
 tags: [claude-code, proxy, openai, azure, gpt, cliproxyapi, model-routing, subagent]
 reviewed: 2026-07-21
-summary: ">-"
+summary: "Two shell launchers that start Claude Code with GPT models as the main agent, routing through a local CLIProxyAPI instance that translates Anthropic Messages API requests to the OpenAI Responses API for OpenAI/Codex OAuth or Azure OpenAI, with per-tier model mapping for subagents"
 acquired: 2026-07-22
 ---
 

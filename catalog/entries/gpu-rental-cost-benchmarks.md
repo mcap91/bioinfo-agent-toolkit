@@ -2,7 +2,7 @@
 name: gpu-rental-cost-benchmarks
 title: GPU Rental Cost-Per-Token Benchmarks
 category: reference
-summary: ">"
+summary: "A detailed cost and performance breakdown from renting 4x RTX 4080 Super GPUs to run a 120B MoE model via vLLM, showing cost per token drops 6-8x by batching requests and documenting throughput/latency across concurrency levels"
 tags: [gpu-rental, cost-optimization, local-inference, vllm, benchmarking, vram, concurrency]
 reviewed: 2026-09-02
 acquired: 2026-09-02

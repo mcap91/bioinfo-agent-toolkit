@@ -3,7 +3,7 @@ name: scientific-agent-skills
 title: Scientific Agent Skills (K-Dense)
 url: "https://github.com/K-Dense-AI/scientific-agent-skills"
 category: plugin
-summary: ">"
+summary: "Scientific Agent Skills is a library of 163 curated Agent Skills that turn AI coding agents into scientific research assistants, spanning bioinformatics/genomics, cheminformatics/drug discovery, clinical research, ML/AI, scientific databases, and lab automation, each scanned with the Cisco AI Defense Skill Scanner"
 tags: [agent-skills, scientific-computing, bioinformatics, cheminformatics, drug-discovery, clinical-research, lab-automation, multi-domain, claude-code-plugin]
 reviewed: 2026-09-02
 acquired: 2026-09-02

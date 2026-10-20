@@ -3,7 +3,7 @@ name: governance-first-multi-agent-architecture
 title: Governance-First Multi-Agent Architecture
 url: "https://example.com"
 category: agent-pattern
-summary: ">-"
+summary: "An architecture pattern for solo-use multi-agent systems built governance-first, using a four-tier hierarchy (lead agent, least-privilege specialists, an independent audit/watcher, and a human owner) with structural approval gates on irreversible actions"
 tags: [multi-agent, governance, oversight, approval-gates, delegation, audit, least-privilege, agent-architecture]
 reviewed: 2026-09-02
 acquired: 2026-09-02

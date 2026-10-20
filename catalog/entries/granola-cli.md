@@ -5,7 +5,7 @@ url: "https://github.com/theantichris/granola"
 category: cli-tool
 tags: [meeting-notes, export, backup, markdown, transcripts, granola, data-portability]
 reviewed: 2026-07-21
-summary: ">-"
+summary: "A Go CLI that exports data from the Granola meeting note-taking app to local files for backup, migration, or offline access, covering both API-based notes export (ProseMirror JSON to Markdown) and cache-based transcript export with speaker labels"
 acquired: 2026-07-22
 ---
 

@@ -3,7 +3,7 @@ name: aizynthfinder
 title: AiZynthFinder
 url: "https://github.com/MolecularAI/aizynthfinder"
 category: cli-tool
-summary: ">"
+summary: "AiZynthFinder performs retrosynthetic planning — given a target molecule, it finds multi-step synthetic routes back to commercially available starting materials using Monte Carlo tree search with reaction templates suggested by a trained neural network policy"
 tags: [retrosynthesis, synthesis-planning, monte-carlo-tree-search, reaction-templates, drug-discovery, astrazeneca, cheminformatics]
 reviewed: 2026-09-02
 acquired: 2026-09-02

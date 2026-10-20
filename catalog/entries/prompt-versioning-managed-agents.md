@@ -4,7 +4,7 @@ title: Prompt Versioning and Rollback (Managed Agents)
 url: "https://platform.claude.com/cookbook/managed-agents-cma-prompt-versioning-and-rollback"
 category: agent-pattern
 tags: [managed-agents, prompt-management, versioning, rollback, evaluation, claude]
-summary: ">-"
+summary: "Demonstrates prompt lifecycle management using Claude Managed Agents' versioning system — immutable version creation on every update, version pinning for controlled evaluation, labeled-test-set comparison between versions, and rollback by switching the pinned version number"
 security_flags: [needs-api-key]
 reviewed: 2026-06-25
 acquired: 2026-06-26

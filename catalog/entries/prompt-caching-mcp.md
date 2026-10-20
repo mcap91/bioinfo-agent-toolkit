@@ -5,7 +5,7 @@ url: "https://github.com/flightlesstux/prompt-caching"
 category: mcp-server
 tags: [prompt-caching, anthropic-api, mcp, token-optimization, cost-reduction, claude-code-plugin]
 reviewed: 2026-07-21
-summary: ">-"
+summary: "An MCP server that helps developers building Anthropic SDK applications optimize prompt caching by automatically placing cache_control breakpoints on stable content blocks, with tools to analyze cacheability and track cumulative token savings"
 acquired: 2026-07-22
 ---
 
