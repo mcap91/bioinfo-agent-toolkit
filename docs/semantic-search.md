@@ -130,7 +130,9 @@ that corpus, so results never depend on working-tree state or stale `.vectors.js
 
 The **answer key** (`eval/answer_key.json`) is built once by `eval/label.py`: a no-tools
 model call labels every entry against every topic from an empty temp directory (so no
-repo config can leak in), reading entry text from `corpus_commit` via `git show`. Ten
+repo config can leak in), reading entry text from `corpus_commit` via `git show`. The
+prompt is sent to `claude` on stdin, never as an argument, because batch prompts reach
+~200 KB, above Linux's single-argument limit. Ten
 fixed calibration entries are included in every batch to measure cross-batch consistency
 (`calibration.unanimous_rate`). The model only classifies — batching, response parsing,
 consistency checks, and the majority vote are deterministic.
@@ -155,4 +157,8 @@ packages/catalog-embedder/.venv/bin/python packages/catalog-embedder/eval/label.
 # Run the eval and render the figure
 packages/catalog-embedder/.venv/bin/python packages/catalog-embedder/eval/run_eval.py --dir .
 packages/catalog-embedder/.venv/bin/python packages/catalog-embedder/eval/plot.py
+
+# Validate
+(cd packages/catalog-embedder && .venv/bin/python -m pytest && .venv/bin/python -m pytest eval/test_label.py)
+npm test && npm run typecheck
 ```

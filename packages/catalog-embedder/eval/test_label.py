@@ -65,6 +65,31 @@ def test_subtype_not_success_exits_naming_field():
     assert "subtype" in stderr
 
 
+def test_call_claude_sends_prompt_on_stdin_not_argv():
+    """Batch prompts reach ~200 KB, above Linux's 131072-byte MAX_ARG_STRLEN single-
+    argument limit, so the prompt must travel as subprocess input, never as an argv
+    element.
+    """
+    prompt = "x" * (131072 + 1)
+    recorded = {}
+
+    class _Recorder:
+        def __init__(self, *args, **kwargs):
+            recorded["args"] = args[0]
+            recorded["kwargs"] = kwargs
+            self.stdout = json.dumps({"ok": True})
+
+    original_run = label.subprocess.run
+    label.subprocess.run = _Recorder
+    try:
+        label.call_claude(prompt)
+    finally:
+        label.subprocess.run = original_run
+
+    assert recorded["kwargs"].get("input") == prompt
+    assert prompt not in recorded["args"]
+
+
 if __name__ == "__main__":
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     for test in tests:

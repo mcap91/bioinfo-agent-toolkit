@@ -112,7 +112,7 @@ def build_prompt(topics_text: str, batch_entries: list[tuple[str, str]]) -> str:
     return "\n\n".join(parts)
 
 
-def build_command(prompt: str) -> list[str]:
+def build_command() -> list[str]:
     return [
         "claude",
         "--print",
@@ -128,15 +128,20 @@ def build_command(prompt: str) -> list[str]:
         MODEL,
         "--json-schema",
         json.dumps(SCHEMA, separators=(",", ":")),
-        prompt,
     ]
 
 
 def call_claude(prompt: str) -> dict[str, Any]:
-    """Run the labeler from an empty temp dir, so no repo CLAUDE.md or config can load."""
-    command = build_command(prompt)
+    """Run the labeler from an empty temp dir, so no repo CLAUDE.md or config can load.
+
+    Prompt goes on stdin, never argv: batch prompts reach ~200 KB, above Linux's
+    131072-byte MAX_ARG_STRLEN (see captures/claude_print_stdin_batch.json).
+    """
+    command = build_command()
     with tempfile.TemporaryDirectory() as tmp:
-        result = subprocess.run(command, cwd=tmp, capture_output=True, text=True, check=True)
+        result = subprocess.run(
+            command, cwd=tmp, input=prompt, capture_output=True, text=True, check=True
+        )
     return json.loads(result.stdout)
 
 

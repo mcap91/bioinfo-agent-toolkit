@@ -28,9 +28,8 @@ def _bar_segments(group: str, engine: str, stats: dict) -> tuple[float, float]:
     if group == "name":
         if engine != "lexical+semantic":
             return engine_stats["found_at_1_rate"], 0.0
-        total = engine_stats["found_at_1_rate"]
         split = engine_stats["found_at_1_by_match_type"]
-        return total * split["lexical"], total * split["semantic"]
+        return split["lexical"], split["semantic"]
     if engine != "lexical+semantic":
         return engine_stats["topic_recall_mean"], 0.0
     channel = engine_stats["recall_by_channel_mean"]

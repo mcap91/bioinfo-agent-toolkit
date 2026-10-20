@@ -186,16 +186,15 @@ def aggregate_group(rows: list[dict], query_type: str) -> dict[str, Any]:
             agg["found_rate"] = mean([1.0 if m["found"] else 0.0 for m in engine_rows])
             agg["found_at_1_rate"] = mean([1.0 if m["found_at_1"] else 0.0 for m in engine_rows])
             if engine == "lexical+semantic":
-                found_at_1_rows = [m for m in engine_rows if m["found_at_1"]]
-                total = len(found_at_1_rows)
+                total = len(engine_rows)
                 agg["found_at_1_by_match_type"] = {
                     "lexical": (
-                        sum(1 for m in found_at_1_rows if m["found_at_1_match_type"] == "lexical") / total
+                        sum(1 for m in engine_rows if m["found_at_1_match_type"] == "lexical") / total
                         if total
                         else 0.0
                     ),
                     "semantic": (
-                        sum(1 for m in found_at_1_rows if m["found_at_1_match_type"] == "semantic") / total
+                        sum(1 for m in engine_rows if m["found_at_1_match_type"] == "semantic") / total
                         if total
                         else 0.0
                     ),
