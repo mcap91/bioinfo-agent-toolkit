@@ -1,7 +1,7 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-10-14",
+  "generated": "2026-10-20",
   "count": 581,
   "decision_statuses": {
     "adopted": "in use",
@@ -37,7 +37,7 @@
       "url": "https://example.com",
       "category": "agent-pattern",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "A prompt architecture for orchestrating multi-agent development with built-in quality verification — architecture-first design docs, screenshot-based verification loops, dependency-ordered builder waves, and a critic agent that scores against reference screenshots before passing quality gates",
       "body_summary": "A prompt architecture for orchestrating multi-agent development of complex software with built-in quality verification. The pattern was demonstrated building a Cities: Skylines II–class city builder in Three.js, but the structural principles generalize to any multi-subsystem project requiring visual or functional quality gates.\n\n**Architecture-first:** Before any code, agents produce an architecture document defining folder structure, module APIs, events, units, determinism constraints (seeded RNG only), a performance budget, and an asset policy. Module failures are isolated so one broken subsystem never takes the whole project down.\n\n**Verification loop before features:** A headless-Chrome screenshot tool captures the app state with camera presets and time-of-day settings, outputting PNGs plus a JSON log (console errors, fps, draw calls). Every module ships a \"showcase\" mode for isolated testing. No agent may claim completion without screenshot evidence.\n\n**Fan-out by dependency:** Builder agents each own a single module folder. They run in waves ordered by dependency: (1) terrain, sky, roads, simulation, UI, audio, effects; (2) zoning, buildings, props, traffic, tools; (3) demo integration. Between waves, an integrator agent — the only one allowed to touch shared core code — applies builders' change requests and fixes seams.\n\n**Critic gauntlet:** After each builder round, a separate critic agent (writes no code) takes screenshots at several times of day and zoom levels, checks API contracts and performance, and scores 0–10 against reference screenshots. Pass threshold is 8.5/10 with zero errors. Below that, the builder receives a ranked issue list and iterates, up to 4 rounds.\n\n**Persistent scoring:** Scores and open issues persist to a STATUS.json so each iteration resumes from the weakest module rather than restarting from scratch.",
       "tags": [
         "multi-agent",
@@ -688,7 +688,7 @@
       "url": "https://huggingface.co/learn/cookbook/agent_rag",
       "category": "agent-pattern",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "Agentic RAG wraps a vector-database retriever as a tool for an LLM agent, which reformulates queries, critiques retrieved snippets, and iterates through multiple retrieval rounds before synthesizing an answer",
       "body_summary": "Agentic RAG wraps a vector-database retriever as a tool available to an LLM agent. Instead\nof embedding the user's raw question for a single retrieval pass, the agent:\n\n1. **Reformulates the query** into affirmative-form statements closer to the target\n   documents (recovering the HyDE technique)…",
       "tags": [
         "RAG",
@@ -1028,7 +1028,7 @@
       "url": "https://github.com/MolecularAI/aizynthfinder",
       "category": "cli-tool",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "AiZynthFinder performs retrosynthetic planning — given a target molecule, it finds multi-step synthetic routes back to commercially available starting materials using Monte Carlo tree search with reaction templates suggested by a trained neural network policy",
       "body_summary": "AiZynthFinder performs retrosynthetic planning — given a target molecule, it finds multi-step\nsynthetic routes back to commercially available starting materials. The default algorithm uses\nMonte Carlo tree search (MCTS) that recursively breaks down molecules by applying reaction\ntemplates suggested by a trained neural network policy.\n\nThe tool is fully customizable:\n\n- **Search algorithms:** MCTS (default), plus pluggable alternatives\n- **Expansion policies:** Neural network trained on known reaction templates; supports custom\n  policies\n- **Filter policies:** Optional trained network to filter infeasible reactions\n- **Stock files:** Define which precursors are considered purchasable/available",
       "tags": [
         "retrosynthesis",
@@ -1098,7 +1098,7 @@
       "url": "https://github.com/aws-samples/amazon-textract-textractor",
       "category": "cli-tool",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "Textractor is a Python wrapper around Amazon Textract for document intelligence — handles API calls, response parsing, and output formatting for text recognition, table extraction, form extraction, ID analysis, and expense processing",
       "body_summary": "Textractor is a Python wrapper around Amazon Textract that simplifies document intelligence\nworkflows. It handles API calls, response parsing, and output formatting in one package.\n\nCapabilities:\n\n- **Text recognition:** `detect_document_text()` — extract lines and words from images/PDFs\n- **Table extraction:** `analyze_document(features=[TABLES])` — extract tables, export to\n  Excel/CSV/DataFrame\n- **Form extraction:** `analyze_document(features=[FORMS])` — extract key-value pairs with\n  fuzzy matching via `document.get(\"email\")`\n- **ID analysis:** `analyze_id()` — extract structured fields from identity documents\n- **Expense processing:** `analyze_expense()` — extract receipt/invoice fields (totals,\n  line items, vendors)\n\nSupports image files, PDFs, bytes, and S3 paths. Both synchronous and asynchronous APIs.",
       "tags": [
         "ocr",
@@ -1219,7 +1219,7 @@
       "url": "https://github.com/anthropics/skills/blob/main/skills/claude-api/shared/prompt-caching.md",
       "category": "reference",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "The official Anthropic reference for designing prompt-building code that maximizes cache hit rates, covering placement patterns, silent cache invalidators, and key technical limits for the prompt caching prefix-match mechanism",
       "body_summary": "The official Anthropic reference for designing prompt-building code that\nmaximizes cache hit rates. Part of the `anthropics/skills` repository,\nused by the bundled `claude-api` skill.\n\nPrompt caching is a prefix match. Any change anywhere in the prefix\ninvalidates everything after it. The cache key…",
       "tags": [
         "prompt-caching",
@@ -1446,7 +1446,7 @@
       "url": "https://github.com/ASKCOS/ASKCOS",
       "category": "framework",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "ASKCOS is an integrated platform for computer-aided synthesis planning that combines ML models for retrosynthetic analysis, forward reaction prediction, reaction condition recommendation, synthetic complexity scoring, and fast reaction plausibility filtering; code is MPL-2.0, data/models are CC BY-NC-SA (noncommercial)",
       "body_summary": "ASKCOS (Automated Synthesis Knowledge for Chemical Operations and Synthesis) is an\nintegrated platform for computer-aided synthesis planning. It combines multiple ML models\nfor different aspects of synthetic route design:\n\n- **Retrosynthetic analysis:** Template-based transformer that suggests single-step\n  precursors with chirality consideration\n- **Forward prediction:** Template-free model for predicting reaction outcomes\n- **Reaction conditions:** Neural network model recommending reagents, solvents, temperature\n- **Synthetic complexity (SCScore):** Learned metric for prioritizing precursors\n- **Fast filter:** Binary classifier for quick reaction plausibility screening\n- **Integrated CASP:** Tree search combining all modules for multi-step route planning",
       "tags": [
         "synthesis-planning",
@@ -1550,7 +1550,7 @@
       "url": "https://github.com/ccsb-scripps/AutoDock-Vina",
       "category": "cli-tool",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "AutoDock Vina predicts how small molecules bind to protein targets by searching for the lowest-energy binding pose, supporting virtual screening, multi-ligand docking, macrocycle and hydrated-docking protocols, and both AutoDock4.2 and Vina scoring functions",
       "body_summary": "AutoDock Vina predicts how small molecules (ligands) bind to protein targets by searching\nfor the lowest-energy binding pose within a defined search space. It uses a simple empirical\nscoring function combined with rapid gradient-based optimization and iterated local search\nfor conformational sampling.\n\nKey capabilities:\n\n- **Docking:** Predict binding poses and affinities for protein-ligand complexes\n- **Virtual screening:** Batch mode processes compound libraries against a target\n- **Multi-ligand docking:** Simultaneously dock multiple ligands\n- **Macrocycle support:** Handle ring systems larger than typical drug-like molecules\n- **Hydrated docking:** Protocol accounting for explicit water molecules\n- **External maps:** Read and write AutoDock grid maps for custom scoring\n- **Dual scoring:** Both AutoDock4.2 and Vina scoring functions available",
       "tags": [
         "molecular-docking",
@@ -1748,7 +1748,7 @@
       "url": "https://github.com/ai-boost/awesome-harness-engineering",
       "category": "reference",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "A curated awesome list organizing resources for building, testing, and operating AI agent harnesses — covering subagent architecture, context/memory systems, MCP tool integrations, safety and permissions, orchestration patterns, evaluation, and observability",
       "body_summary": "A comprehensive awesome list organizing resources for building, testing,\nand operating AI agent harnesses. Covers the full harness engineering\nsurface area across multiple dimensions.\n\n- Subagent architecture patterns\n- Context management and memory systems\n- Tool systems and MCP integrations\n-…",
       "tags": [
         "awesome-list",
@@ -2290,7 +2290,7 @@
       "url": "https://platform.claude.com/cookbook/misc-building-evals",
       "category": "agent-pattern",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "Walks through the structure of offline LLM evaluations (prompt, output, golden answer, score) and three grading approaches — code-based, human, and model-based grading — along with design heuristics for building reliable eval sets",
       "body_summary": "Walks through the structure and grading approaches for offline LLM evaluations. Evals have four parts: an input prompt, model output, a golden answer, and a score. Three grading methods are covered:\n\n- **Code-based grading** — exact match or regex against structured outputs; fastest and most reliable when the eval can be designed for it.\n- **Human grading** — a human compares output to golden answer; most capable but slowest and most expensive.\n- **Model-based grading** — Claude grades its own outputs against golden answers via a grader prompt; nearly as capable as human grading at a fraction of the cost.\n\nKey design heuristics: prefer higher volume over higher quality questions, structure questions to enable automated grading (e.g. reformatting as multiple choice), and match eval distribution to real-world query distribution.",
       "tags": [
         "evaluation",
@@ -2310,7 +2310,7 @@
       "url": "https://github.com/santifer/career-ops",
       "category": "cli-tool",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "Career-Ops turns any AI coding CLI into a job search command center that scores job offers against a user profile, generates ATS-optimized CVs and cover letters as PDFs, scans career portals automatically, and tracks everything in a markdown-based pipeline",
       "body_summary": "Career-Ops turns any AI coding CLI into a job search command center. It evaluates job\noffers against a user profile using a structured scoring system (10 weighted dimensions),\ngenerates tailored ATS-optimized CVs as PDFs, scans career portals automatically, and\ntracks everything in a markdown-based…",
       "tags": [
         "job-search",
@@ -2382,7 +2382,7 @@
       "url": "https://github.com/datalab-to/chandra",
       "category": "cli-tool",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "Chandra OCR 2 is a vision-language model for document parsing that converts images and PDFs into structured Markdown/HTML/JSON while preserving layout, with strength on math, tables, forms, handwriting, and 90+ languages; code is Apache-2.0, model weights use a modified OpenRAIL-M license",
       "body_summary": "Chandra OCR 2 is a vision-language model for document parsing that converts images and PDFs\ninto structured output while preserving layout information.\n\nStrengths:\n\n- **Math:** Equations, handwritten math, non-Latin math notation\n- **Tables:** Statistical, financial, and complex multi-column tables\n- **Forms:** Checkboxes, registration forms, leases\n- **Handwriting:** Cursive writing, handwritten notes\n- **Multilingual:** 90+ languages; 77.8% average accuracy across 43 common languages\n  (vs 67.6% Gemini 2.5 Flash, 60.5% GPT-5 Mini)\n- **Images:** Extracts diagrams/images and adds captions with structured data",
       "tags": [
         "ocr",
@@ -2430,7 +2430,7 @@
       "url": "https://github.com/deepforestsci/chemberta3",
       "category": "framework",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "ChemBERTa-3 is a training and benchmarking framework for chemical foundation models, providing a unified pipeline to pretrain, fine-tune, and evaluate transformer and graph-pretraining architectures on molecular property prediction tasks against MoleculeNet benchmarks",
       "body_summary": "ChemBERTa-3 is a training and benchmarking framework for chemical foundation models. It\nprovides a unified pipeline to pretrain, fine-tune, and evaluate multiple model architectures\non molecular property prediction tasks.\n\nSupported model architectures:\n\n- **Transformer models:** ChemBERTa (masked language modeling on SMILES), MoLFormer\n- **Graph pretraining models:** GROVER, InfoGraph, Infomax3D\n- **Baseline supervised models:** GCN, D-MPNN, Random Forest\n\nPretraining datasets scale from 250K SMILES (graph models) up to 1.4B compounds from ZINC20\nand PubChem. The largest pretrained MoLFormer variant (c3-MoLFormer-1.1B) trains on 100%\nZINC20 + 100% PubChem.",
       "tags": [
         "chemical-foundation-model",
@@ -2547,7 +2547,7 @@
       "url": "https://docs.anthropic.com/en/docs/about-claude/models",
       "category": "reference",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "A field-tested diagnosis and fix recipe for Claude Code sessions blocked by the API pre-filter pattern-matching bio- or security-adjacent language, covering the four trigger surfaces, transcript-based diagnosis, and quick/deep fix protocols",
       "body_summary": "A field-tested diagnosis and fix recipe for Claude Code sessions that become\ncompletely blocked — every turn returns a synthetic refusal record — due to\nthe API pre-filter pattern-matching bio- or security-adjacent language across\nthe combined request payload.\n\n1. **Injected context** (CLAUDE.md,…",
       "tags": [
         "claude-code",
@@ -3133,7 +3133,7 @@
       "url": "https://github.com/chaseai-yt/claudex-loop",
       "category": "skill",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "Claudex-loop enforces a cross-model review invariant where Claude plans and Codex reviews in a read-only sandbox, through four phases — recon, interrogate, review, and optional build — producing a locked plan and a full round-by-round review transcript",
       "body_summary": "Claudex-loop enforces a cross-model invariant: whoever made the artifact never checks it.\nThe workflow has four phases:\n\n1. **RECON (Phase 0):** Claude scouts the codebase or researches greenfield prior art, then\n   presents an Assumptions Ledger for batch confirmation — the interview never asks questions\n   the code already answered.\n\n2. **INTERROGATE (Phase 1):** A decision map splits open questions into load-bearing (asked\n   individually) and cosmetic (batched with veto-by-exception). Each question includes a\n   committed recommendation and stakes explanation.\n\n3. **REVIEW (Phase 2):** Codex reviews the locked PLAN.md in a read-only sandbox, issuing\n   APPROVED or REVISE verdicts with concrete flaws. Claude arbitrates (can reject bad\n   critiques with logged reasons), revises, and resumes the same Codex session. Bounded by\n   MAX_ROUNDS (default 5).\n\n4. **BUILD (Phase 3, optional):** User picks the builder. If Codex builds, Claude reads the\n   entire diff and runs proof tests. If Claude builds, a fresh Codex session cross-inspects.\n   Skipping inspection requires an explicit logged opt-out.\n\nTwo artifacts per run: PLAN.md (the spec) and PLAN-REVIEW-LOG.md (the full round-by-round\nargument transcript).",
       "tags": [
         "cross-model-review",
@@ -3352,7 +3352,7 @@
       "url": "https://github.com/xingyaoww/code-act",
       "category": "agent-pattern",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "CodeAct proposes executable Python code as a unified action space for LLM agents, replacing constrained JSON/text action formats, and includes the CodeActInstruct dataset, fine-tuned CodeActAgent models, and the M3ToolEval benchmark",
       "body_summary": "CodeAct proposes using executable Python code as a unified action space for LLM agents.\nIntegrated with a Python interpreter, agents can execute code actions and dynamically\nrevise prior actions or emit new actions based on execution results through multi-turn\ninteractions. This replaces…",
       "tags": [
         "agent-framework",
@@ -3765,7 +3765,7 @@
       "url": "https://platform.claude.com/cookbook/capabilities-contextual-embeddings-guide",
       "category": "agent-pattern",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "Demonstrates three progressive techniques for improving RAG retrieval quality — contextual embeddings (situating each chunk within its source document before embedding), contextual BM25 hybrid search, and reranking — achieving up to 95.26% Pass@10",
       "body_summary": "Demonstrates three progressive techniques for improving RAG retrieval quality over a baseline chunked-embedding approach:\n\n1. **Contextual Embeddings** — Before embedding each chunk, Claude generates a short description situating the chunk within its source document. The context is prepended to the chunk before embedding. Improves Pass@10 from 87% to 92%. Prompt caching makes this practical: sequential same-document processing achieves ~62% cache hit rate, reducing ingestion cost from ~$9 to ~$3 for the demo corpus.\n\n2. **Contextual BM25 Hybrid Search** — Combines contextual semantic search with BM25 keyword search (via Elasticsearch) using weighted Reciprocal Rank Fusion (default 80% semantic / 20% BM25). Catches exact keyword matches that embeddings miss.\n\n3. **Reranking** — Over-retrieves 10x candidates, then uses Cohere's rerank model to score and select the top-k. Achieves 95.26% Pass@10 — a 47% reduction in retrieval failures vs baseline.\n\nUses Voyage AI for embeddings, Elasticsearch for BM25, and Cohere for reranking.",
       "tags": [
         "rag",
@@ -3789,7 +3789,7 @@
       "url": "https://github.com/coollabsio/coolify",
       "category": "framework",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "Coolify manages servers, applications, and databases on your own hardware via SSH, providing a web dashboard for git-push deployments, one-click database provisioning, preview deployments, and rollback; self-hosted and has had several critical CVEs in 2025/2026",
       "body_summary": "Coolify manages servers, applications, and databases on your own hardware via SSH. It\nprovides a web dashboard for deployments, resource monitoring, log streaming, and\none-click rollback. Supports VPS, bare metal, and Raspberry Pi.\n\n- **Git-push deployments**: push to a connected branch, Coolify…",
       "tags": [
         "PaaS",
@@ -3886,7 +3886,7 @@
       "url": "https://github.com/DrrDom/crem",
       "category": "framework",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "CReM generates chemically valid molecular structures by swapping, adding, or linking fragments that share the same chemical context, via four modes — mutate, grow, link, and make-cycle — scoring competitively on the GuacaMol goal-directed benchmark",
       "body_summary": "CReM generates chemically valid molecular structures by swapping, adding, or linking\nfragments that share the same chemical context — similar to matched molecular pairs. A\nfragment database stores context–fragment relationships extracted from molecular datasets.\n\nFour generation modes:\n\n- **`mutate_mol`** — Replace an existing fragment with an interchangeable one\n- **`grow_mol`** — Decorate a molecule by replacing hydrogens with fragments\n- **`link_mols`** — Connect two molecules with a linker fragment\n- **`make_cycle`** — Form new rings or macrocycles via ring-closure fragments\n\nAll generators share options for context radius, fragment-size windows, frequency thresholds,\natom protection, custom filter/sample functions, deterministic seeding, and multiprocessing.",
       "tags": [
         "molecular-generation",
@@ -4298,7 +4298,7 @@
       "url": "https://github.com/gcorso/DiffDock",
       "category": "framework",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "DiffDock predicts protein-ligand binding poses with a generative diffusion model operating over the SE(3) space of ligand translations, rotations, and torsion angles, ranking candidate poses by a learned confidence score instead of scoring pre-sampled poses",
       "body_summary": "DiffDock predicts protein-ligand binding poses using a generative diffusion model that\noperates over the SE(3) product space of ligand translations, rotations, and torsion angles.\nInstead of scoring pre-sampled poses, it generates poses by running a learned reverse\ndiffusion process, producing a distribution of candidate binding conformations ranked by a\nlearned confidence score.\n\nDiffDock-L (February 2024) extends the original with improved generalization to unseen\nbinding pockets.",
       "tags": [
         "molecular-docking",
@@ -4321,7 +4321,7 @@
       "url": "https://github.com/langgenius/dify",
       "category": "framework",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "Dify provides a visual drag-and-drop interface for building AI applications, combining workflow orchestration, RAG document ingestion/retrieval, agent tool use with 50+ built-in tools, model management, and production observability (LLMOps) into a single self-hostable platform",
       "body_summary": "Dify provides an intuitive visual interface for building AI applications — from chatbots\nto complex multi-step agent workflows. It combines workflow orchestration, RAG document\ningestion/retrieval, agent tool use, model management, and production observability into\na single platform.\n\n- **Visual…",
       "tags": [
         "LLM-platform",
@@ -4533,7 +4533,7 @@
       "url": "https://github.com/CDDLeiden/DrugEx",
       "category": "framework",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "DrugEx generates novel drug-like small molecules using deep learning generative models within a multi-objective reinforcement learning framework, supporting RNN, SMILES-transformer, and scaffold-constrained graph-transformer generator architectures with Pareto-based multi-objective optimization",
       "body_summary": "DrugEx generates novel drug-like small molecules using deep learning generative models\nwithin a multi-objective reinforcement learning framework. It supports three generator\narchitectures spanning four versions of development:\n\n- **RNN (GRU/LSTM):** Sequential SMILES generation with exploitation-exploration strategy\n- **SMILES-based Transformer:** Attention-based generation with BRICS/RECAP fragmentation\n- **Graph-based Transformer:** Enables scaffold-constrained generation — sample molecules\n  containing specific substructures\n\nMulti-objective optimization uses Pareto-based RL to simultaneously optimize multiple\nproperties (activity, selectivity, ADMET, novelty) without collapsing them into a single\nscalar reward.",
       "tags": [
         "de-novo-design",
@@ -4955,7 +4955,7 @@
       "url": "https://github.com/run-llama/ExtractBench",
       "category": "reference",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "ExtractBench evaluates document extraction systems on 370 enterprise-grade documents across 67 document types and 8 business domains, scoring schema-valid JSON output with a deterministic unified value F1 metric and no LLM-as-judge",
       "body_summary": "ExtractBench evaluates document extraction systems on enterprise-grade inputs. Given a document and a user-defined JSON Schema, a system must return schema-valid JSON with correct values and complete record lists. The benchmark covers 370 enterprise documents spanning insurance filings, financial reports, regulatory submissions, contracts, invoices, and more across 67 document types in 8 business domains.\n\nEvaluation uses five axes: task challenge (form-filling, record-list extraction, needle-in-haystack), perception quality (scans, handwriting, rotated inputs), table structure (merged cells, page breaks), document length (short/medium/long), and domain coverage. The headline metric is unified value F1, computed as an unweighted mean over documents. Scoring is deterministic and rule-based with no LLM-as-judge.\n\nSystems evaluated include frontier VLMs (GPT-5.5, Claude Opus 4.8, Gemini 3.5 Flash), coding agents (Codex, Claude Code), open-source models (Qwen3.6 35B, Lift Datalab 9B), and specialized extraction APIs (Reducto, LlamaIndex Extract). Commercial VLMs perform well on short documents but truncate record lists on long ones (Gemini 3.5 Flash drops from 87.9% to 27.9%). Coding agents retain accuracy but cost 3–8x more per page than specialized APIs.",
       "tags": [
         "benchmark",
@@ -5399,7 +5399,7 @@
       "url": "https://arxiv.org/abs/2505.00000",
       "category": "reference",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "FluxMem is a memory architecture for AI agents that treats memory as an evolving graph of interconnected semantic, episodic, and procedural nodes, with runtime self-repair (link expansion/pruning, content reshaping) and offline consolidation into reusable skills",
       "body_summary": "A memory architecture for AI agents that treats memory as an evolving\ngraph of interconnected nodes rather than a flat retrieval store.\n\n- **Semantic memory**: factual knowledge — documents, dialogue history,\n  tool instructions\n- **Episodic memory**: concrete experiences — observations, actions…",
       "tags": [
         "memory",
@@ -5588,7 +5588,7 @@
       "url": "https://github.com/insilicomedicine/GENTRL",
       "category": "framework",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "GENTRL generates novel small molecules optimized for synthetic feasibility, biological activity, and novelty using a variational autoencoder with a tensor-decomposition-parameterized learned prior, trained in a pretrain-then-RL-optimize two-stage pipeline",
       "body_summary": "GENTRL generates novel small molecules optimized for synthetic feasibility, biological\nactivity, and novelty. The architecture is a variational autoencoder (VAE) with a learned\nprior distribution parameterized by tensor decompositions, which encode relationships between\nmolecular structures and properties while handling missing data.\n\nTraining is two-stage:\n\n1. **Pretrain:** Learn a latent manifold mapping of chemical space by maximizing the evidence\n   lower bound (ELBO) on a molecular dataset (e.g., MOSES)\n2. **RL optimization:** Freeze all parameters except the learnable prior; explore the latent\n   space to maximize a reward function (e.g., predicted activity against a target)",
       "tags": [
         "generative-chemistry",
@@ -5726,7 +5726,7 @@
       "url": "https://glama.ai/mcp/servers",
       "category": "reference",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "Glama indexes the Model Context Protocol ecosystem — submitted GitHub repos are indexed with every tool, schema, and annotation — and provides an in-browser inspector, a gateway with access control and OAuth, and pre-configured connectors for 50,000+ MCP servers",
       "body_summary": "Glama indexes the Model Context Protocol ecosystem — submit a GitHub repo and it indexes\nevery tool, schema, and annotation. Servers appear in search, categories, and\nrecommendations. An in-browser inspector lets visitors exercise tools with real JSON-RPC\ncalls without cloning or building anything…",
       "tags": [
         "MCP",
@@ -5766,7 +5766,7 @@
       "security_flags": [
         "Requires third-party API keys with outbound network calls to external paid services during agent runs: GOOGLE_API_KEY (Gemini image generation), XAI_API_KEY (Grok image/video generation), TRIPO3D_API_KEY (image-to-3D and rigged animation) — these keys and generated content leave the local machine",
         "Designed to run an AI coding agent (Claude Code or Codex) autonomously/unattended for extended periods ('a full generation run can take hours'); the README suggests running under tmux/screen on a remote server with the agent's remote-control interface, i.e. long unattended agent execution with real API credentials and code-execution ability",
-        "No LICENSE file found at the repository''s raw content path checked (githubusercontent.com/htdt/godogen/main/LICENSE returned 404); license is asserted via the GitHub repository metadata API (license.spdx_id: MIT) rather than confirmed from an in-repo LICENSE file"
+        "No LICENSE file found at the repository's raw content path checked (githubusercontent.com/htdt/godogen/main/LICENSE returned 404); license is asserted via the GitHub repository metadata API (license.spdx_id: MIT) rather than confirmed from an in-repo LICENSE file"
       ],
       "reviewed": "2026-08-25",
       "path": "catalog/entries/godogen.md"
@@ -5869,7 +5869,7 @@
       "url": "https://example.com",
       "category": "agent-pattern",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "An architecture pattern for solo-use multi-agent systems built governance-first, using a four-tier hierarchy (lead agent, least-privilege specialists, an independent audit/watcher, and a human owner) with structural approval gates on irreversible actions",
       "body_summary": "An architecture pattern for solo-use multi-agent systems built governance-first: the oversight rules, delegation boundaries, and approval gates are defined before any agent capabilities. The design uses a four-tier hierarchy rather than a peer-to-peer agent mesh.\n\n**Tier 0 — Lead Agent (Master Control):** Intakes every request, classifies by objective/priority/risk, delegates to the appropriate specialist, and is the only agent that reports back to the user. Enforces approval gates.\n\n**Tier 1 — Specialist Sub-Agents (least-privilege):** Research/analysis operates read-only with no side effects. Ops/comms handles scheduling and message drafting but cannot send. Build/technical stays sandboxed to its own environment with no access to other agents' tools or data.\n\n**Tier 2 — Audit/Watcher (independent):** Cross-checks agent actions against policy and flags problems directly to the user. Cannot be edited, delayed, or silenced by the lead agent. Has no task-execution role — oversight only.\n\n**Tier 3 — Owner (human):** Final sign-off on anything irreversible. The only tier that can approve remediation after the watcher flags an issue.",
       "tags": [
         "multi-agent",
@@ -5894,7 +5894,7 @@
       "title": "GPU Rental Cost-Per-Token Benchmarks",
       "category": "reference",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "A detailed cost and performance breakdown from renting 4x RTX 4080 Super GPUs to run a 120B MoE model via vLLM, showing cost per token drops 6-8x by batching requests and documenting throughput/latency across concurrency levels",
       "body_summary": "A detailed cost and performance breakdown from renting cloud GPUs (4x RTX 4080 Super 32GB,\n128GB total VRAM) to run a 120B MoE model (gpt-oss-120b, native MXFP4) via vLLM with TP=4.\n\n| Concurrency | Aggregate tok/s | Per-request tok/s | TTFT p50 | $/1M output tokens |\n|---|---|---|---|---|\n| 1 |…",
       "tags": [
         "gpu-rental",
@@ -5917,7 +5917,7 @@
       "url": "https://gradio.app/",
       "category": "framework",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "Gradio lets developers create interactive web UIs for machine learning models, APIs, or arbitrary Python functions in a few lines of code, with a FastAPI backend, Svelte frontend, programmatic Python/JS clients, and free Hugging Face Spaces hosting",
       "body_summary": "Gradio lets developers create interactive web UIs for machine learning models, APIs, or\narbitrary Python functions in a few lines of code. It handles the frontend automatically —\nno JavaScript, CSS, or web hosting experience required. Users interact through the browser\nwhile Python functions run on…",
       "tags": [
         "python",
@@ -5938,7 +5938,7 @@
       "url": "https://github.com/theantichris/granola",
       "category": "cli-tool",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "A Go CLI that exports data from the Granola meeting note-taking app to local files for backup, migration, or offline access, covering both API-based notes export (ProseMirror JSON to Markdown) and cache-based transcript export with speaker labels",
       "body_summary": "A Go CLI that exports data from the Granola meeting note-taking app to\nlocal files for backup, migration, or offline access.\n\n### Notes export (API-based)\n\nReads Supabase credentials from Granola's local config, authenticates\nwith the Granola API, fetches all documents as JSON, converts ProseMirror\nJSON to Markdown, and writes files with YAML frontmatter (ID, timestamps,\ntags).\n\n### Transcripts export (cache-based)\n\nReads Granola's local cache file (double-JSON encoded), extracts transcript\nsegments by document ID, formats with timestamps and speaker labels\n(\"System\" for others, \"You\" for the user's microphone), and writes text\nfiles with metadata headers.\n\n### Features\n\n- Incremental export — only processes new or changed content\n- Cross-platform — macOS, Linux, Windows\n- Configurable via `.granola.toml` or CLI flags\n- Pre-built binaries for all platforms via GoReleaser",
       "tags": [
         "meeting-notes",
@@ -6094,7 +6094,7 @@
       "url": "https://github.com/gromacs/gromacs",
       "category": "framework",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "GROMACS is a widely used molecular dynamics simulation package for proteins, lipids, and nucleic acids, optimized through multi-level parallelism (SIMD, GPU offloading via CUDA/OpenCL/SYCL, and MPI) with support for AMBER/CHARMM/GROMOS/OPLS force fields and free-energy calculations",
       "body_summary": "GROMACS is one of the most widely used molecular dynamics simulation packages, primarily\ndesigned for simulations of proteins, lipids, and nucleic acids. It is extremely optimized\nfor computational performance through multi-level parallelism:\n\n- **Intra-node:** SIMD vectorization, multi-threading\n- **GPU offloading:** CUDA (NVIDIA), OpenCL, SYCL for compute-intensive kernels\n- **Inter-node:** MPI for distributed computing on HPC clusters\n- **Hybrid:** Combined MPI + threads + GPU for maximum throughput\n\nKey simulation capabilities:\n\n- **Force fields:** AMBER, CHARMM, GROMOS, OPLS families\n- **Free energy calculations:** Thermodynamic integration, free energy perturbation\n- **Enhanced sampling:** Replica exchange MD, metadynamics (via PLUMED plugin)\n- **Coarse-grained:** Martini force field support\n- **Analysis:** Extensive built-in trajectory analysis tools (gmx commands)",
       "tags": [
         "molecular-dynamics",
@@ -6619,7 +6619,7 @@
       "url": "https://github.com/pbakaus/impeccable",
       "category": "skill",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "Impeccable provides design vocabulary and quality enforcement for AI coding agents, catching common AI-generated frontend tells through 45 deterministic detector rules plus 23 skill commands for shaping, critiquing, and polishing UI work, with provider-native hooks across Cursor, Claude Code, and other tools",
       "body_summary": "Impeccable provides design vocabulary and quality enforcement for AI coding agents. It\ncatches common AI-generated frontend tells (Inter everywhere, purple gradients, nested\ncards, gray text on colored backgrounds, bounce easing) through 45 deterministic detector\nrules that run without an LLM. On…",
       "tags": [
         "design",
@@ -7046,7 +7046,7 @@
       "url": "https://platform.claude.com/cookbook/capabilities-knowledge-graph-guide",
       "category": "agent-pattern",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "An end-to-end pipeline for constructing knowledge graphs from unstructured documents using Claude prompts instead of trained NER/RE models, covering structured-output entity/triple extraction, LLM-based entity resolution, NetworkX graph assembly, hub-node summarization, and multi-hop querying with citations",
       "body_summary": "End-to-end pipeline for constructing knowledge graphs from unstructured documents using Claude prompts instead of trained NER/RE models:\n\n1. **Extraction** — A single structured-output call per document extracts typed entities (PERSON, ORG, LOCATION, EVENT, ARTIFACT) and subject-predicate-object triples. Uses Pydantic schemas with `client.messages.parse()` for guaranteed valid output. Haiku handles this high-volume step.\n\n2. **Entity Resolution** — Claude clusters surface-form variants (e.g. \"Edwin Aldrin\" / \"Buzz Aldrin\") using extraction descriptions as disambiguation context. Catches cases string-similarity methods miss entirely. Sonnet handles this judgment-heavy step. Scales via blocking (group by cheap signals first, resolve within blocks of 50-100).\n\n3. **Graph Assembly** — Rewrites relation endpoints to canonical forms and loads into NetworkX MultiDiGraph. Nodes carry type, source documents, and mention counts.\n\n4. **Summarization** — Hub nodes get rich profiles synthesized across all mentioning documents, with structured time ranges and key facts.\n\n5. **Querying** — Serializes relevant subgraphs as triples and lets Claude answer multi-hop questions with edge-level citations.\n\nIncludes a precision/recall evaluation harness against gold-labeled triples.",
       "tags": [
         "knowledge-graph",
@@ -7069,7 +7069,7 @@
       "url": "https://github.com/anthropics/knowledge-work-plugins",
       "category": "framework",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "A marketplace of 11 open-source Claude plugins that turn Claude into a role-specific specialist (productivity, sales, customer-support, product-management, marketing, legal, finance, data, enterprise-search, bio-research), each bundling MCP connectors, slash commands, and domain skills",
       "body_summary": "A marketplace of 11 open-source plugins that turn Claude into a role-specific specialist. Each plugin follows a standard structure:\n\n- `plugin.json` — manifest\n- `.mcp.json` — tool connections (MCP servers for CRMs, project trackers, data warehouses, etc.)\n- `commands/` — explicit slash commands (e.g. `/finance:reconciliation`, `/data:write-query`)\n- `skills/` — domain knowledge Claude draws on automatically when relevant\n\n**Available plugins:** productivity (Slack, Notion, Asana, Linear, Jira), sales (HubSpot, Close, Clay, ZoomInfo), customer-support (Intercom, HubSpot, Guru), product-management (Linear, Figma, Amplitude, Pendo), marketing (Canva, Figma, HubSpot, Ahrefs), legal (Box, Egnyte), finance (Snowflake, Databricks, BigQuery), data (Snowflake, Databricks, Hex, Amplitude), enterprise-search, bio-research (PubMed, BioRender, bioRxiv, ClinicalTrials.gov, ChEMBL, Synapse, Open Targets, Benchling), and cowork-plugin-management.\n\nInstallation via `claude plugin marketplace add` and `claude plugin install`. All file-based (markdown + JSON), no code or infrastructure required.",
       "tags": [
         "claude-cowork",
@@ -8197,7 +8197,7 @@
       "url": "https://github.com/microsoft/eval-guide",
       "category": "plugin",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "A Claude Code plugin providing six skills that walk through a five-stage evaluation lifecycle (discover, plan, generate & baseline, run, interpret & improve) for AI agents built on Microsoft Copilot Studio, with architecture-aware scoping and interactive HTML dashboards",
       "body_summary": "A plugin providing six skills that walk through a five-stage evaluation\nlifecycle for AI agents built on Microsoft Copilot Studio. Grounded in\nMicrosoft's Practical Guidance on Agent Evaluation — a 10-step playbook.\n\n### Skills\n\n- **/eval-guide**: full eval lifecycle — discover, plan, generate, run,\n  interpret\n- **/eval-suite-planner**: populated Eval Suite Template workbook + HTML\n  review page for eval sets, methods, gates, human inputs\n- **/eval-generator**: test cases for single-response and conversation\n  (multi-turn) evaluation modes; outputs Copilot Studio-importable CSV\n- **/eval-result-interpreter**: SHIP/ITERATE/BLOCK verdict with root-cause\n  classification\n- **/eval-triage-and-improvement**: interactive diagnosis and remediation\n  for failing evals\n- **/eval-faq**: methodology questions answered from Microsoft's eval\n  ecosystem\n\n### Five stages\n\n0. **Discover**: articulate agent purpose, success criteria, risk tier\n1. **Plan**: scope eval depth by architecture, set pass-rate targets/gates\n2. **Generate & Baseline**: produce test-case CSVs or conversation\n   blueprints; design regression partition\n3. **Run**: execute baseline against a live agent (requires running agent)\n4. **Interpret & Improve**: triage results, gate-based verdict, optimization\n   loop\n\nStages 0–2 work from just an agent description — no running agent required.\n\n### Architecture-aware scoping\n\nAutomatically adjusts evaluation depth based on agent architecture:\nprompt-level (response quality, tone, boundaries), RAG/knowledge-grounded\n(adds retrieval accuracy, grounding, hallucination prevention), or agentic\n(adds tool selection, action correctness, error recovery, task completion).\n\n### Interactive dashboards\n\nEach stage generates a standalone HTML dashboard (zero dependencies, served\nby a Python script) for inline review and editing. Feedback auto-saves via\nlocalStorage. Final deliverables (.docx, .csv) are generated only after\ndashboard confirmation.\n\n### Installation\n\nClaude Code: `claude plugin marketplace add microsoft/eval-guide`.\nGitHub Copilot: `npx skills add microsoft/eval-guide`. Optional companion\nplugin `skills-for-copilot-studio` enables live agent connection via\nDirectLine API.",
       "tags": [
         "evaluation",
@@ -8594,7 +8594,7 @@
       "title": "Multi-Session Agent Management Strategies",
       "category": "reference",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "A Reddit discussion distilling practitioner strategies for managing 3+ concurrent AI coding agent sessions — tool-based multiplexing, terminal customization, agent-managing-agents, and session-count discipline — to avoid lost context and wrong-session mistakes",
       "body_summary": "A 128-comment Reddit discussion distilling practitioner strategies for managing 3+ concurrent\nAI coding agent sessions. The central problem: tab/pane proliferation leads to lost context,\nwrong-session mistakes, and cognitive overload.\n\n- **Herdr / Orca:** Most frequently recommended — orchestrator…",
       "tags": [
         "multi-session",
@@ -9199,7 +9199,7 @@
       "url": "https://github.com/diegosouzapw/OmniRoute",
       "category": "framework",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "OmniRoute is a self-hosted AI gateway exposing a single OpenAI-compatible endpoint that routes requests across 271+ LLM providers using 18 routing strategies, an 11-engine token-compression pipeline, quota-sharing across API keys, and MCP/A2A protocol support",
       "body_summary": "OmniRoute is a self-hosted AI gateway that sits between coding tools and LLM\nproviders. It exposes a single OpenAI-compatible endpoint\n(`http://localhost:20128/v1`) and routes requests across a catalog of 271+\nproviders, 90+ of which have free tiers (40+ free forever).\n\n### Routing\n\nThe system provides 18 routing strategies: priority, fill-first, weighted,\nround-robin, power-of-two-choices, least-used, random, cost-optimized,\nheadroom, reset-window, context-relay, context-optimized, LKGP\n(last-known-good-path), auto (12-factor live scoring), fusion (fan-out to\npanel + judge synthesis), and pipeline (chained stages).\n\n\"Combos\" chain models across providers — when quota runs out, a provider\nfails, or costs spike, the combo silently falls back to the next model.\nZero-config `auto` variants (`auto/coding`, `auto/fast`, `auto/cheap`,\n`auto/smart`) build virtual combos scored live.\n\n### Token compression\n\nAn 11-engine composable pipeline runs transparently on every request:\nSession-Dedup, CCR (archive behind retrieve markers), RTK (tool-result\nfiltering), Headroom (tabular compaction via GCF codec), Relevance\n(extractive scoring), Caveman (rule-based prose compression), LLMLingua-2\n(ML semantic pruning via MobileBERT ONNX), Lite (whitespace trimming),\nAggressive (summarization + aging), and Ultra (heuristic token pruning).\nPresets range from Lite (~15%) to Stacked RTK→Caveman (78–95%).\n\n### Quota-Share\n\nDistributes a provider's time-based quota across multiple keys in a pool\nusing DRR scheduling, with per-connection concurrency, multi-window buckets,\nand session stickiness for prompt-cache integrity.\n\n### Protocols\n\n- MCP server: 104 tools across stdio, HTTP stream, and SSE transports\n- A2A agent protocol: 6 skills, JSON-RPC 2.0 + SSE\n- Full CLI with 80+ commands, interactive TUI chat, setup wizard, diagnostics\n\n### Platforms\n\nRuns via npm (global), Docker (multi-arch), Electron desktop app, Termux\n(Android), PWA, Nix flake, Podman, and from source. Remote mode supports\ndriving a VPS instance from a local CLI via scoped access tokens.",
       "tags": [
         "ai-gateway",
@@ -9255,7 +9255,7 @@
       "url": "https://www.reddit.com/",
       "category": "agent-pattern",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "A practitioner's framework distilled from operating a business almost entirely on AI agents for six months from a single git repo, covering context-as-code, a routing brain, human approval queues, reversibility discipline, and a taste loop for improving agent output over time",
       "body_summary": "A practitioner's framework distilled from operating a real business\n(growth consulting for agencies/startups) almost entirely on AI agents\nfor six months, from a single git repo. Each principle includes both\nwhat held up and where it broke.\n\n1. **Context as code**: move the company to plain files…",
       "tags": [
         "agent-pattern",
@@ -9400,7 +9400,7 @@
       "url": "https://github.com/MikeChongCan/OpenAI-Codex-Claude-Code-Proxy",
       "category": "framework",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "Two shell launchers that start Claude Code with GPT models as the main agent, routing through a local CLIProxyAPI instance that translates Anthropic Messages API requests to the OpenAI Responses API for OpenAI/Codex OAuth or Azure OpenAI, with per-tier model mapping for subagents",
       "body_summary": "Two shell launchers (`claudex-oai` for OpenAI/Codex OAuth, `claudex` for\nAzure OpenAI) that start Claude Code with GPT-5.6 Sol as the main model,\nrouting through a local CLIProxyAPI instance that translates Anthropic\nMessages API requests to the OpenAI Responses API.\n\n### Architecture\n\n```\nClaude Code → localhost:8317 → CLIProxyAPI → Codex OAuth or Azure OpenAI\n```\n\nAzure and OpenAI subscription models use separate prefixed names\n(`gpt-5.6-sol` vs `azure-gpt-5.6-sol`) to prevent cross-billing.\n\n### Model mapping\n\n- `opus` → Sol (main agent)\n- `sonnet` → Terra (implementation/review subagents)\n- `haiku` → Luna (fast exploration/simple checks)\n\nThe launcher appends a routing policy to the system prompt and disables\nthe bundled `claude-api` skill. Per-subagent tier selection is supported\nvia `model: sonnet` or `model: haiku` declarations, with a session-wide\noverride available via `CLAUDEX_SUBAGENT_MODEL`.\n\n### Configuration\n\n- Deferred tool loading (`ENABLE_TOOL_SEARCH=true`) to stay under Azure's\n  128-tool limit\n- Effort mode enabled by default\n- `.env` file for Azure endpoint, API key, and deployment names\n- CLIProxyAPI handles OAuth credential storage in `~/.cli-proxy-api`\n\n### Diagnostics\n\n- `doctor.sh`: tests Azure and protocol translation\n- `cache-doctor.py`: verifies Azure prompt-cache hits through the proxy\n- Offline unit tests + live smoke tests\n\n### Security\n\nProxy listens on 127.0.0.1 only. Generated config is mode 0600. Launchers\nunset `ANTHROPIC_API_KEY` to prevent accidental direct Anthropic billing.\nNever enables `--dangerously-skip-permissions`.",
       "tags": [
         "claude-code",
@@ -9547,7 +9547,7 @@
       "url": "https://github.com/OpenHands/openhands",
       "category": "framework",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "OpenHands provides an Agent Canvas UI and Agent Server for running coding agents — its own built-in agent, Claude Code, Codex, Gemini, or any ACP-compatible agent — as a self-hosted, always-on engineering team with local, Docker, VM, or cloud backends",
       "body_summary": "OpenHands (formerly OpenDevin) provides an Agent Canvas UI and Agent Server for running\ncoding agents as a self-hosted, always-on engineering team. It supports starting\nconversations, automating tasks (report generation, GitHub issue decomposition), and\nintegrating with third-party services.\n\n-…",
       "tags": [
         "agent-framework",
@@ -9568,7 +9568,7 @@
       "url": "https://github.com/openmm/openmm",
       "category": "framework",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "OpenMM runs molecular dynamics simulations as a standalone engine or embeddable library, with custom forces and integrators, CUDA/OpenCL GPU acceleration, AMBER/CHARMM/OpenFF/GAFF force fields, and support for arbitrary PyTorch models as ML/MM force terms",
       "body_summary": "OpenMM runs molecular dynamics simulations with a focus on extensibility and GPU performance.\nIt can function as a standalone simulation engine or as a library called from custom code.\n\nKey capabilities:\n\n- **Custom forces:** Define novel interaction functional forms with minimal code — single\n  implementation runs on all hardware (CPU, CUDA, OpenCL). Includes CustomBondForce,\n  CustomNonbondedForce, CustomAngleForce, CustomHbondForce, CustomManyParticleForce, etc.\n- **Custom integrators:** Define new integration algorithms via CustomIntegrator. Built-in\n  LF-Middle Langevin (allows doubling step size), Nosé-Hoover, multiple time step Langevin\n- **GPU acceleration:** CUDA (NVIDIA) and OpenCL (AMD/Intel) with single or mixed precision\n- **Force fields:** AMBER, CHARMM, OpenFF, GAFF, GLYCAM; extensible to custom force fields\n- **ML potentials (OpenMM 8):** Arbitrary PyTorch models as force terms — enables ML/MM\n  hybrid simulations and differentiable simulation",
       "tags": [
         "molecular-dynamics",
@@ -9814,7 +9814,7 @@
       "url": "https://platform.claude.com/cookbook/managed-agents-cma-verify-with-outcome-grader",
       "category": "agent-pattern",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "Demonstrates the Outcomes feature in Claude Managed Agents, which adds a rubric-driven verification loop where an independent grader — with no visibility into the writer's reasoning — scores an artifact and returns gaps for the writer to revise, up to a configurable iteration cap",
       "body_summary": "Demonstrates the Outcomes feature in Claude Managed Agents, which adds a verification loop to agent sessions:\n\n- **Rubric definition** — A `define_outcome` event provides a task description (for the writer) and a rubric (for the grader). The rubric must make the grader produce evidence — fetch URLs, verify quotes, check filing types — not just skim and approve.\n- **Independent grading** — The platform provisions a grader in its own context window with the same model and tools as the writer. The grader cannot see the writer's reasoning and re-checks the entire artifact each iteration.\n- **Revision loop** — After each writer turn, the grader scores per-criterion and either passes the output or returns a structured list of gaps. The writer revises and the loop runs again, up to `max_iterations` (default 3, max 20).\n- **Real example** — A research brief where the grader catches a press-release exhibit cited as a 10-K, forces the writer to find the actual SEC filing, and passes on the third iteration.\n\nKey rubric design principles: make criteria checkable with evidence, make the grader earn \"satisfied,\" describe goals not steps, anticipate writer shortcuts, mandate feedback format.",
       "tags": [
         "managed-agents",
@@ -9969,7 +9969,7 @@
       "url": "https://github.com/PaddlePaddle/PaddleOCR",
       "category": "framework",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "PaddleOCR provides three product lines for document understanding — PP-OCRv6 scene text recognition, PP-StructureV3 document-structure-to-Markdown/JSON conversion, and the PaddleOCR-VL 0.9B-parameter vision-language model for full document parsing across 109 languages",
       "body_summary": "PaddleOCR provides three product lines for document understanding:\n\n### PP-OCRv6 (Scene OCR)\nUniversal text recognition for natural scenes — IDs, street views, books, industrial\ncomponents. Three model tiers: tiny (1.5M params), small (7.7M), medium (34.5M). Single\nunified model covers Chinese, English, Japanese, and 46 Latin-script languages. 5.2x CPU\ninference speedup over v5.\n\n### PP-StructureV3 (Document Structure)\nConverts complex PDFs and images into Markdown or JSON with fine-grained coordinate\ninformation including table cell coordinates, text coordinates, and layout regions.\n\n### PaddleOCR-VL (Vision-Language Model)\n0.9B parameter VLM for document parsing — 96.3% accuracy on OmniDocBench v1.6. Handles\ntext, formulas, tables, charts, ancient documents, rare characters, and seals. Supports\n109 languages. Structured output in Markdown and JSON.",
       "tags": [
         "ocr",
@@ -10742,7 +10742,7 @@
       "url": "https://github.com/flightlesstux/prompt-caching",
       "category": "mcp-server",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "An MCP server that helps developers building Anthropic SDK applications optimize prompt caching by automatically placing cache_control breakpoints on stable content blocks, with tools to analyze cacheability and track cumulative token savings",
       "body_summary": "An MCP server that helps developers building applications with the Anthropic\nSDK optimize prompt caching. It automatically places `cache_control`\nbreakpoints on stable content blocks so cached reads cost 0.1x instead of\n1x full input price.\n\n### Target audience\n\nDevelopers writing their own Anthropic API applications (Python scripts,\nNode apps, AI agents). Claude Code already handles prompt caching for its\nown sessions automatically — this plugin addresses the layer where custom\ncode calls the API directly.\n\n### Tools\n\n- **optimize_messages**: injects `cache_control` breakpoints into a messages\n  array before Anthropic API calls; returns optimized array + change summary\n- **get_cache_stats**: cumulative token savings for current session — hit\n  rate, tokens saved, estimated cost reduction\n- **reset_cache_stats**: reset session statistics\n- **analyze_cacheability**: dry-run showing which segments would be cached\n  and estimated savings without modifying anything\n\n### Caching strategy\n\nIdentifies three types of stable content: system prompts (cached on first\nturn, reused every subsequent turn), tool definitions (cached once per\nsession), and large user messages (cached when exceeding a configurable\ntoken threshold). Break-even at turn 2; every turn after is pure savings.\n\n### Benchmarks (measured against Anthropic API with Sonnet)\n\n- Bug fix (20 turns): 85% savings\n- Refactor 5 files (15 turns): 80% savings\n- General coding (40 turns): 92% savings\n- Repeated file reads (5x5): 90% savings\n\n### Installation\n\nAvailable as a Claude Code plugin (`/plugin marketplace add`) or via npm\n(`npm install -g prompt-caching-mcp`) for Cursor, Windsurf, Zed,\nContinue.dev, or any MCP client. Optional `.prompt-cache.json` config\nfor tuning thresholds.",
       "tags": [
         "prompt-caching",
@@ -10763,7 +10763,7 @@
       "url": "https://platform.claude.com/cookbook/managed-agents-cma-prompt-versioning-and-rollback",
       "category": "agent-pattern",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "Demonstrates prompt lifecycle management using Claude Managed Agents' versioning system — immutable version creation on every update, version pinning for controlled evaluation, labeled-test-set comparison between versions, and rollback by switching the pinned version number",
       "body_summary": "Demonstrates prompt lifecycle management using Claude Managed Agents' versioning system:\n\n- **Version creation** — `agents.create` returns version 1; each `agents.update` produces a new immutable version with the same agent ID.\n- **Version pinning** — Sessions can pin to an exact version for controlled evaluation, or use the bare agent ID to always get the latest.\n- **Evaluation** — Runs a labeled test set against pinned versions to compare accuracy. The cookbook shows a support-ticket triage agent where a v2 prompt change causes billing-ticket routing to regress from 4/5 to 2/5.\n- **Rollback** — Callers simply switch back to passing the previous version number. No deployment needed.\n\nKey operational pattern: production callers always pin to an explicit version. Creating versions is exploratory; updating the production pin is the change that goes through review.",
       "tags": [
         "managed-agents",
@@ -11125,7 +11125,7 @@
       "url": "https://github.com/MolecularAI/REINVENT4",
       "category": "framework",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "REINVENT 4 generates optimized small molecules matching a user-defined multi-component property profile via reinforcement learning over RNN and transformer generative models, supporting de novo design, scaffold hopping, R-group replacement, linker design, and library design",
       "body_summary": "REINVENT 4 generates optimized small molecules compliant with a user-defined multi-component\nproperty profile. The core loop uses reinforcement learning to steer generative models (RNN\nand transformer architectures operating on SMILES strings) toward desired molecular properties.\n\nSupported design modes:\n\n- **De novo design:** Generate novel molecules from scratch matching a property profile\n- **Scaffold hopping:** Replace a molecular scaffold while preserving activity-relevant features\n- **R-group replacement:** Explore substitutions at defined positions on a scaffold\n- **Linker design:** Generate molecular linkers connecting two fragments (e.g., for PROTACs)\n- **Molecule optimization:** Iteratively improve an existing molecule's properties\n- **Library design:** Generate focused compound libraries\n\nTransfer learning pre-trains or fine-tunes models toward a target chemical space. Curriculum\nlearning stages objectives progressively during RL.",
       "tags": [
         "molecular-design",
@@ -11484,7 +11484,7 @@
       "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
       "category": "plugin",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "Scientific Agent Skills is a library of 163 curated Agent Skills that turn AI coding agents into scientific research assistants, spanning bioinformatics/genomics, cheminformatics/drug discovery, clinical research, ML/AI, scientific databases, and lab automation, each scanned with the Cisco AI Defense Skill Scanner",
       "body_summary": "Scientific Agent Skills is a comprehensive Agent Skills library that transforms AI coding\nagents into scientific research assistants. It provides 163 curated skills across multiple\nscientific domains, each with documentation, code examples, and best practices.\n\nKey domains covered:\n\n- **Bioinformatics & Genomics (27 skills):** Scanpy, BioPython, pysam, scvi-tools, scVelo,\n  PyDESeq2, gget, population genomics (OneKGPd), pathogen surveillance\n- **Cheminformatics & Drug Discovery (10 skills):** RDKit, Datamol, DeepChem, DiffDock,\n  OpenMM/MDAnalysis, MedChem, PyTDC\n- **Clinical Research (8 skills):** PK/PD modeling, DepMap, clinical reports, decision support\n- **ML & AI (14 skills):** PyTorch Lightning, scikit-learn, SHAP, PyMC, TimesFM\n- **Scientific Databases (11 skills, 100+ databases):** Unified database-lookup for PubChem,\n  ChEMBL, UniProt, ClinVar, COSMIC, ClinicalTrials.gov, KEGG, Reactome, and 70+ more\n- **Lab Automation (6 skills):** Opentrons, PyLabRobot, Benchling, Ginkgo Cloud Lab\n- **Scientific Communication (27 skills):** Literature review, Paperclip, scientific writing",
       "tags": [
         "agent-skills",
@@ -12040,7 +12040,7 @@
       "url": "https://github.com/vercel-labs/skills",
       "category": "cli-tool",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "The Skills CLI (npx skills) is a package manager for agent skills — modular SKILL.md packages — providing discovery, installation, update checking, and scaffolding, backed by the skills.sh registry which ranks skills by install count and source reputation",
       "body_summary": "The Skills CLI (`npx skills`) is a package manager for agent skills — modular SKILL.md\npackages that extend AI coding agent capabilities with specialized knowledge, workflows,\nand tools. It provides discovery, installation, update checking, and scaffolding for new\nskills.\n\n- `npx skills find…",
       "tags": [
         "skills",
@@ -12155,7 +12155,7 @@
       "url": "https://smithery.ai/",
       "category": "reference",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "Smithery is a central hub for discovering, installing, and hosting Model Context Protocol servers, with a 7,000+ server registry, a meta-MCP router toolbox, managed OAuth via the agent.pw vault, and both local-install and Smithery-hosted remote deployment",
       "body_summary": "Smithery is a central hub for discovering, installing, and hosting Model Context Protocol\nservers. Developers can search thousands of MCP servers, install them locally via the\nSmithery CLI, or run them as hosted remote endpoints on Smithery's infrastructure with no\nsetup of their own.\n\n- **Registry…",
       "tags": [
         "MCP",
@@ -12731,7 +12731,7 @@
       "url": "https://github.com/lich-uct/syba",
       "category": "cli-tool",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "SYBA classifies organic compounds as easy- or hard-to-synthesize using a Bayesian fragment scoring approach, decomposing each molecule into ECFP4-like fragments scored by their relative frequency in easy- versus hard-to-synthesize reference sets",
       "body_summary": "SYBA classifies organic compounds as easy-to-synthesize (ES) or hard-to-synthesize (HS)\nusing a Bayesian fragment scoring approach. Each molecule is decomposed into ECFP4-like\nfragments, and each fragment receives a pre-computed score based on its relative frequency\nin ES compounds (random ZINC15 selection) versus HS compounds (generated by the Nonpher\napproach). Fragment scores are summed to produce the final SYBA score.\n\n- **Positive score:** easy to synthesize\n- **Negative score:** hard to synthesize\n- Score magnitude reflects classifier confidence, not a direct measure of synthetic difficulty",
       "tags": [
         "synthetic-accessibility",
@@ -12808,7 +12808,7 @@
       "url": "https://github.com/simmzx/SynFrag",
       "category": "cli-tool",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "SynFrag predicts whether a molecule is easy or hard to synthesize using a two-stage AttentiveFP graph neural network — pretrained on 9.18M unlabeled molecules via fragment-assembly generation, then fine-tuned on 800K labeled molecules — with attention-heatmap interpretability",
       "body_summary": "SynFrag predicts whether a molecule is easy or hard to synthesize, mimicking how chemists\nassess synthetic feasibility. The approach uses a two-stage training pipeline:\n\n1. **Pretrain (Stage 1):** An AttentiveFP graph neural network learns fragment assembly\n   patterns via autoregressive generation on 9.18M unlabeled molecules, using a BRICS+2\n   fragmentation vocabulary\n2. **Fine-tune (Stage 2):** The pretrained encoder transfers to binary SA classification\n   on 800K labeled molecules\n\nOutput is a score between 0 and 1 (≥0.5 = easy to synthesize). The model provides\ninterpretability via attention heatmaps that highlight reactive sites and fragment assembly\npatterns corresponding to synthetic difficulty.",
       "tags": [
         "synthetic-accessibility",
@@ -13077,7 +13077,7 @@
       "title": "3-Store Hybrid Memory Architecture for AI Agents",
       "category": "agent-pattern",
       "decision_status": "open",
-      "summary": ">",
+      "summary": "An architecture pattern arguing vector embeddings alone fail for AI agent memory, proposing three parallel stores — a vector store for fuzzy semantic matching, a key-value store for exact fact lookup, and a knowledge graph for multi-hop relationship reasoning — merged by a fusion layer",
       "body_summary": "A concise architecture pattern arguing that vector embeddings alone fail for AI agent memory\nbecause they handle only one of three distinct retrieval needs.\n\n1. **Vector Store** — Fuzzy semantic similarity for broad concept and intent matching.\n   Handles questions like \"what tools are similar to…",
       "tags": [
         "agent-memory",
@@ -13489,7 +13489,7 @@
       "url": "https://www.uber.com/",
       "category": "agent-pattern",
       "decision_status": "open",
-      "summary": ">-",
+      "summary": "An organizational pattern for deploying AI agents at enterprise scale via a 10-day sprint pipeline — shadowing employees, selecting opportunities, building the agent alongside the worker, validating with the team, then shipping — reporting reductions like 2 days to 10 minutes for financial pacing reports",
       "body_summary": "An organizational pattern for deploying AI agents at enterprise scale.\nInstead of relying on written process documents, engineers spend the\nfirst two days shadowing employees to learn how tasks are actually\nperformed.\n\n- **Days 1–2**: shadow employees, observe real workflows\n- **Day 3**: select…",
       "tags": [
         "agent-pattern",
