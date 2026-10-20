@@ -1,0 +1,1998 @@
+{
+  "corpus_commit": "fcd0746f618b3fb3e5384d22a6fa8c0e7ed55532",
+  "calibration_unanimous_rate": 0.88,
+  "queries": {
+    "ocr-name-1": {
+      "id": "ocr-name-1",
+      "topic": "ocr",
+      "type": "name",
+      "lexical_candidates": 3,
+      "metrics": {
+        "old": {
+          "size": 2,
+          "topic_recall": 1.0,
+          "topic_precision": 0.5,
+          "empty": false,
+          "found": true,
+          "found_at_1": true
+        },
+        "lexical": {
+          "size": 3,
+          "topic_recall": 1.0,
+          "topic_precision": 0.3333333333333333,
+          "empty": false,
+          "found": true,
+          "found_at_1": true
+        },
+        "lexical+semantic": {
+          "size": 13,
+          "topic_recall": 1.0,
+          "topic_precision": 0.07692307692307693,
+          "empty": false,
+          "found": true,
+          "found_at_1": true,
+          "found_at_1_match_type": "lexical",
+          "recall_by_channel": {
+            "lexical": 1.0,
+            "semantic": 0.0
+          }
+        }
+      }
+    },
+    "ocr-name-2": {
+      "id": "ocr-name-2",
+      "topic": "ocr",
+      "type": "name",
+      "lexical_candidates": 4,
+      "metrics": {
+        "old": {
+          "size": 2,
+          "topic_recall": 1.0,
+          "topic_precision": 0.5,
+          "empty": false,
+          "found": true,
+          "found_at_1": false
+        },
+        "lexical": {
+          "size": 4,
+          "topic_recall": 1.0,
+          "topic_precision": 0.25,
+          "empty": false,
+          "found": true,
+          "found_at_1": true
+        },
+        "lexical+semantic": {
+          "size": 14,
+          "topic_recall": 1.0,
+          "topic_precision": 0.07142857142857142,
+          "empty": false,
+          "found": true,
+          "found_at_1": true,
+          "found_at_1_match_type": "lexical",
+          "recall_by_channel": {
+            "lexical": 1.0,
+            "semantic": 0.0
+          }
+        }
+      }
+    },
+    "ocr-keyword-1": {
+      "id": "ocr-keyword-1",
+      "topic": "ocr",
+      "type": "keyword",
+      "lexical_candidates": 32,
+      "metrics": {
+        "old": {
+          "size": 20,
+          "topic_recall": 0.47619047619047616,
+          "topic_precision": 0.5,
+          "empty": false
+        },
+        "lexical": {
+          "size": 32,
+          "topic_recall": 0.9523809523809523,
+          "topic_precision": 0.625,
+          "empty": false
+        },
+        "lexical+semantic": {
+          "size": 42,
+          "topic_recall": 0.9523809523809523,
+          "topic_precision": 0.47619047619047616,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.9523809523809523,
+            "semantic": 0.0
+          }
+        }
+      }
+    },
+    "ocr-keyword-2": {
+      "id": "ocr-keyword-2",
+      "topic": "ocr",
+      "type": "keyword",
+      "lexical_candidates": 23,
+      "metrics": {
+        "old": {
+          "size": 5,
+          "topic_recall": 0.19047619047619047,
+          "topic_precision": 0.8,
+          "empty": false
+        },
+        "lexical": {
+          "size": 23,
+          "topic_recall": 0.6666666666666666,
+          "topic_precision": 0.6086956521739131,
+          "empty": false
+        },
+        "lexical+semantic": {
+          "size": 33,
+          "topic_recall": 0.8095238095238095,
+          "topic_precision": 0.5151515151515151,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.6666666666666666,
+            "semantic": 0.14285714285714285
+          }
+        }
+      }
+    },
+    "ocr-description-1": {
+      "id": "ocr-description-1",
+      "topic": "ocr",
+      "type": "description",
+      "lexical_candidates": 0,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical+semantic": {
+          "size": 10,
+          "topic_recall": 0.19047619047619047,
+          "topic_precision": 0.4,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.0,
+            "semantic": 0.19047619047619047
+          }
+        }
+      }
+    },
+    "ocr-description-2": {
+      "id": "ocr-description-2",
+      "topic": "ocr",
+      "type": "description",
+      "lexical_candidates": 0,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical+semantic": {
+          "size": 10,
+          "topic_recall": 0.2857142857142857,
+          "topic_precision": 0.6,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.0,
+            "semantic": 0.2857142857142857
+          }
+        }
+      }
+    },
+    "ocr-keyword-list-1": {
+      "id": "ocr-keyword-list-1",
+      "topic": "ocr",
+      "type": "keyword_list",
+      "lexical_candidates": 2,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 2,
+          "topic_recall": 0.09523809523809523,
+          "topic_precision": 1.0,
+          "empty": false
+        },
+        "lexical+semantic": {
+          "size": 12,
+          "topic_recall": 0.47619047619047616,
+          "topic_precision": 0.8333333333333334,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.09523809523809523,
+            "semantic": 0.38095238095238093
+          }
+        }
+      }
+    },
+    "ocr-keyword-list-2": {
+      "id": "ocr-keyword-list-2",
+      "topic": "ocr",
+      "type": "keyword_list",
+      "lexical_candidates": 0,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical+semantic": {
+          "size": 10,
+          "topic_recall": 0.42857142857142855,
+          "topic_precision": 0.9,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.0,
+            "semantic": 0.42857142857142855
+          }
+        }
+      }
+    },
+    "local-llm-name-1": {
+      "id": "local-llm-name-1",
+      "topic": "local-llm",
+      "type": "name",
+      "lexical_candidates": 11,
+      "metrics": {
+        "old": {
+          "size": 11,
+          "topic_recall": 1.0,
+          "topic_precision": 0.09090909090909091,
+          "empty": false,
+          "found": true,
+          "found_at_1": false
+        },
+        "lexical": {
+          "size": 11,
+          "topic_recall": 1.0,
+          "topic_precision": 0.09090909090909091,
+          "empty": false,
+          "found": true,
+          "found_at_1": false
+        },
+        "lexical+semantic": {
+          "size": 21,
+          "topic_recall": 1.0,
+          "topic_precision": 0.047619047619047616,
+          "empty": false,
+          "found": true,
+          "found_at_1": false,
+          "found_at_1_match_type": null,
+          "recall_by_channel": {
+            "lexical": 1.0,
+            "semantic": 0.0
+          }
+        }
+      }
+    },
+    "local-llm-name-2": {
+      "id": "local-llm-name-2",
+      "topic": "local-llm",
+      "type": "name",
+      "lexical_candidates": 1,
+      "metrics": {
+        "old": {
+          "size": 1,
+          "topic_recall": 1.0,
+          "topic_precision": 1.0,
+          "empty": false,
+          "found": true,
+          "found_at_1": true
+        },
+        "lexical": {
+          "size": 1,
+          "topic_recall": 1.0,
+          "topic_precision": 1.0,
+          "empty": false,
+          "found": true,
+          "found_at_1": true
+        },
+        "lexical+semantic": {
+          "size": 11,
+          "topic_recall": 1.0,
+          "topic_precision": 0.09090909090909091,
+          "empty": false,
+          "found": true,
+          "found_at_1": true,
+          "found_at_1_match_type": "lexical",
+          "recall_by_channel": {
+            "lexical": 1.0,
+            "semantic": 0.0
+          }
+        }
+      }
+    },
+    "local-llm-keyword-1": {
+      "id": "local-llm-keyword-1",
+      "topic": "local-llm",
+      "type": "keyword",
+      "lexical_candidates": 70,
+      "metrics": {
+        "old": {
+          "size": 9,
+          "topic_recall": 0.125,
+          "topic_precision": 0.5555555555555556,
+          "empty": false
+        },
+        "lexical": {
+          "size": 70,
+          "topic_recall": 0.8,
+          "topic_precision": 0.45714285714285713,
+          "empty": false
+        },
+        "lexical+semantic": {
+          "size": 80,
+          "topic_recall": 0.8,
+          "topic_precision": 0.4,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.8,
+            "semantic": 0.0
+          }
+        }
+      }
+    },
+    "local-llm-keyword-2": {
+      "id": "local-llm-keyword-2",
+      "topic": "local-llm",
+      "type": "keyword",
+      "lexical_candidates": 112,
+      "metrics": {
+        "old": {
+          "size": 9,
+          "topic_recall": 0.175,
+          "topic_precision": 0.7777777777777778,
+          "empty": false
+        },
+        "lexical": {
+          "size": 112,
+          "topic_recall": 0.6,
+          "topic_precision": 0.21428571428571427,
+          "empty": false
+        },
+        "lexical+semantic": {
+          "size": 122,
+          "topic_recall": 0.65,
+          "topic_precision": 0.21311475409836064,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.6,
+            "semantic": 0.05
+          }
+        }
+      }
+    },
+    "local-llm-description-1": {
+      "id": "local-llm-description-1",
+      "topic": "local-llm",
+      "type": "description",
+      "lexical_candidates": 0,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical+semantic": {
+          "size": 10,
+          "topic_recall": 0.1,
+          "topic_precision": 0.4,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.0,
+            "semantic": 0.1
+          }
+        }
+      }
+    },
+    "local-llm-description-2": {
+      "id": "local-llm-description-2",
+      "topic": "local-llm",
+      "type": "description",
+      "lexical_candidates": 0,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical+semantic": {
+          "size": 10,
+          "topic_recall": 0.225,
+          "topic_precision": 0.9,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.0,
+            "semantic": 0.225
+          }
+        }
+      }
+    },
+    "local-llm-keyword-list-1": {
+      "id": "local-llm-keyword-list-1",
+      "topic": "local-llm",
+      "type": "keyword_list",
+      "lexical_candidates": 10,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 10,
+          "topic_recall": 0.175,
+          "topic_precision": 0.7,
+          "empty": false
+        },
+        "lexical+semantic": {
+          "size": 20,
+          "topic_recall": 0.325,
+          "topic_precision": 0.65,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.175,
+            "semantic": 0.15
+          }
+        }
+      }
+    },
+    "local-llm-keyword-list-2": {
+      "id": "local-llm-keyword-list-2",
+      "topic": "local-llm",
+      "type": "keyword_list",
+      "lexical_candidates": 0,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical+semantic": {
+          "size": 10,
+          "topic_recall": 0.125,
+          "topic_precision": 0.5,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.0,
+            "semantic": 0.125
+          }
+        }
+      }
+    },
+    "multi-agent-viz-name-1": {
+      "id": "multi-agent-viz-name-1",
+      "topic": "multi-agent-viz",
+      "type": "name",
+      "lexical_candidates": 1,
+      "metrics": {
+        "old": {
+          "size": 1,
+          "topic_recall": 1.0,
+          "topic_precision": 1.0,
+          "empty": false,
+          "found": true,
+          "found_at_1": true
+        },
+        "lexical": {
+          "size": 1,
+          "topic_recall": 1.0,
+          "topic_precision": 1.0,
+          "empty": false,
+          "found": true,
+          "found_at_1": true
+        },
+        "lexical+semantic": {
+          "size": 11,
+          "topic_recall": 1.0,
+          "topic_precision": 0.09090909090909091,
+          "empty": false,
+          "found": true,
+          "found_at_1": true,
+          "found_at_1_match_type": "lexical",
+          "recall_by_channel": {
+            "lexical": 1.0,
+            "semantic": 0.0
+          }
+        }
+      }
+    },
+    "multi-agent-viz-name-2": {
+      "id": "multi-agent-viz-name-2",
+      "topic": "multi-agent-viz",
+      "type": "name",
+      "lexical_candidates": 1,
+      "metrics": {
+        "old": {
+          "size": 1,
+          "topic_recall": 1.0,
+          "topic_precision": 1.0,
+          "empty": false,
+          "found": true,
+          "found_at_1": true
+        },
+        "lexical": {
+          "size": 1,
+          "topic_recall": 1.0,
+          "topic_precision": 1.0,
+          "empty": false,
+          "found": true,
+          "found_at_1": true
+        },
+        "lexical+semantic": {
+          "size": 11,
+          "topic_recall": 1.0,
+          "topic_precision": 0.09090909090909091,
+          "empty": false,
+          "found": true,
+          "found_at_1": true,
+          "found_at_1_match_type": "lexical",
+          "recall_by_channel": {
+            "lexical": 1.0,
+            "semantic": 0.0
+          }
+        }
+      }
+    },
+    "multi-agent-viz-keyword-1": {
+      "id": "multi-agent-viz-keyword-1",
+      "topic": "multi-agent-viz",
+      "type": "keyword",
+      "lexical_candidates": 30,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 30,
+          "topic_recall": 0.1111111111111111,
+          "topic_precision": 0.03333333333333333,
+          "empty": false
+        },
+        "lexical+semantic": {
+          "size": 40,
+          "topic_recall": 0.3333333333333333,
+          "topic_precision": 0.075,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.1111111111111111,
+            "semantic": 0.2222222222222222
+          }
+        }
+      }
+    },
+    "multi-agent-viz-keyword-2": {
+      "id": "multi-agent-viz-keyword-2",
+      "topic": "multi-agent-viz",
+      "type": "keyword",
+      "lexical_candidates": 34,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 34,
+          "topic_recall": 0.1111111111111111,
+          "topic_precision": 0.029411764705882353,
+          "empty": false
+        },
+        "lexical+semantic": {
+          "size": 44,
+          "topic_recall": 0.1111111111111111,
+          "topic_precision": 0.022727272727272728,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.1111111111111111,
+            "semantic": 0.0
+          }
+        }
+      }
+    },
+    "multi-agent-viz-description-1": {
+      "id": "multi-agent-viz-description-1",
+      "topic": "multi-agent-viz",
+      "type": "description",
+      "lexical_candidates": 0,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical+semantic": {
+          "size": 10,
+          "topic_recall": 0.2222222222222222,
+          "topic_precision": 0.2,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.0,
+            "semantic": 0.2222222222222222
+          }
+        }
+      }
+    },
+    "multi-agent-viz-description-2": {
+      "id": "multi-agent-viz-description-2",
+      "topic": "multi-agent-viz",
+      "type": "description",
+      "lexical_candidates": 0,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical+semantic": {
+          "size": 10,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.0,
+            "semantic": 0.0
+          }
+        }
+      }
+    },
+    "multi-agent-viz-keyword-list-1": {
+      "id": "multi-agent-viz-keyword-list-1",
+      "topic": "multi-agent-viz",
+      "type": "keyword_list",
+      "lexical_candidates": 0,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical+semantic": {
+          "size": 10,
+          "topic_recall": 0.2222222222222222,
+          "topic_precision": 0.2,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.0,
+            "semantic": 0.2222222222222222
+          }
+        }
+      }
+    },
+    "multi-agent-viz-keyword-list-2": {
+      "id": "multi-agent-viz-keyword-list-2",
+      "topic": "multi-agent-viz",
+      "type": "keyword_list",
+      "lexical_candidates": 0,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical+semantic": {
+          "size": 10,
+          "topic_recall": 0.1111111111111111,
+          "topic_precision": 0.1,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.0,
+            "semantic": 0.1111111111111111
+          }
+        }
+      }
+    },
+    "agent-memory-name-1": {
+      "id": "agent-memory-name-1",
+      "topic": "agent-memory",
+      "type": "name",
+      "lexical_candidates": 65,
+      "metrics": {
+        "old": {
+          "size": 1,
+          "topic_recall": 1.0,
+          "topic_precision": 1.0,
+          "empty": false,
+          "found": true,
+          "found_at_1": true
+        },
+        "lexical": {
+          "size": 65,
+          "topic_recall": 1.0,
+          "topic_precision": 0.015384615384615385,
+          "empty": false,
+          "found": true,
+          "found_at_1": true
+        },
+        "lexical+semantic": {
+          "size": 75,
+          "topic_recall": 1.0,
+          "topic_precision": 0.013333333333333334,
+          "empty": false,
+          "found": true,
+          "found_at_1": true,
+          "found_at_1_match_type": "lexical",
+          "recall_by_channel": {
+            "lexical": 1.0,
+            "semantic": 0.0
+          }
+        }
+      }
+    },
+    "agent-memory-name-2": {
+      "id": "agent-memory-name-2",
+      "topic": "agent-memory",
+      "type": "name",
+      "lexical_candidates": 1,
+      "metrics": {
+        "old": {
+          "size": 1,
+          "topic_recall": 1.0,
+          "topic_precision": 1.0,
+          "empty": false,
+          "found": true,
+          "found_at_1": true
+        },
+        "lexical": {
+          "size": 1,
+          "topic_recall": 1.0,
+          "topic_precision": 1.0,
+          "empty": false,
+          "found": true,
+          "found_at_1": true
+        },
+        "lexical+semantic": {
+          "size": 11,
+          "topic_recall": 1.0,
+          "topic_precision": 0.09090909090909091,
+          "empty": false,
+          "found": true,
+          "found_at_1": true,
+          "found_at_1_match_type": "lexical",
+          "recall_by_channel": {
+            "lexical": 1.0,
+            "semantic": 0.0
+          }
+        }
+      }
+    },
+    "agent-memory-keyword-1": {
+      "id": "agent-memory-keyword-1",
+      "topic": "agent-memory",
+      "type": "keyword",
+      "lexical_candidates": 89,
+      "metrics": {
+        "old": {
+          "size": 14,
+          "topic_recall": 0.3333333333333333,
+          "topic_precision": 0.6428571428571429,
+          "empty": false
+        },
+        "lexical": {
+          "size": 89,
+          "topic_recall": 0.6296296296296297,
+          "topic_precision": 0.19101123595505617,
+          "empty": false
+        },
+        "lexical+semantic": {
+          "size": 99,
+          "topic_recall": 0.7037037037037037,
+          "topic_precision": 0.1919191919191919,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.6296296296296297,
+            "semantic": 0.07407407407407407
+          }
+        }
+      }
+    },
+    "agent-memory-keyword-2": {
+      "id": "agent-memory-keyword-2",
+      "topic": "agent-memory",
+      "type": "keyword",
+      "lexical_candidates": 11,
+      "metrics": {
+        "old": {
+          "size": 1,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": false
+        },
+        "lexical": {
+          "size": 11,
+          "topic_recall": 0.18518518518518517,
+          "topic_precision": 0.45454545454545453,
+          "empty": false
+        },
+        "lexical+semantic": {
+          "size": 21,
+          "topic_recall": 0.48148148148148145,
+          "topic_precision": 0.6190476190476191,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.18518518518518517,
+            "semantic": 0.2962962962962963
+          }
+        }
+      }
+    },
+    "agent-memory-description-1": {
+      "id": "agent-memory-description-1",
+      "topic": "agent-memory",
+      "type": "description",
+      "lexical_candidates": 0,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical+semantic": {
+          "size": 10,
+          "topic_recall": 0.1111111111111111,
+          "topic_precision": 0.3,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.0,
+            "semantic": 0.1111111111111111
+          }
+        }
+      }
+    },
+    "agent-memory-description-2": {
+      "id": "agent-memory-description-2",
+      "topic": "agent-memory",
+      "type": "description",
+      "lexical_candidates": 0,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical+semantic": {
+          "size": 10,
+          "topic_recall": 0.037037037037037035,
+          "topic_precision": 0.1,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.0,
+            "semantic": 0.037037037037037035
+          }
+        }
+      }
+    },
+    "agent-memory-keyword-list-1": {
+      "id": "agent-memory-keyword-list-1",
+      "topic": "agent-memory",
+      "type": "keyword_list",
+      "lexical_candidates": 0,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical+semantic": {
+          "size": 10,
+          "topic_recall": 0.2962962962962963,
+          "topic_precision": 0.8,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.0,
+            "semantic": 0.2962962962962963
+          }
+        }
+      }
+    },
+    "agent-memory-keyword-list-2": {
+      "id": "agent-memory-keyword-list-2",
+      "topic": "agent-memory",
+      "type": "keyword_list",
+      "lexical_candidates": 0,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical+semantic": {
+          "size": 10,
+          "topic_recall": 0.25925925925925924,
+          "topic_precision": 0.7,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.0,
+            "semantic": 0.25925925925925924
+          }
+        }
+      }
+    },
+    "rag-search-name-1": {
+      "id": "rag-search-name-1",
+      "topic": "rag-search",
+      "type": "name",
+      "lexical_candidates": 12,
+      "metrics": {
+        "old": {
+          "size": 7,
+          "topic_recall": 1.0,
+          "topic_precision": 0.14285714285714285,
+          "empty": false,
+          "found": true,
+          "found_at_1": false
+        },
+        "lexical": {
+          "size": 12,
+          "topic_recall": 1.0,
+          "topic_precision": 0.08333333333333333,
+          "empty": false,
+          "found": true,
+          "found_at_1": true
+        },
+        "lexical+semantic": {
+          "size": 22,
+          "topic_recall": 1.0,
+          "topic_precision": 0.045454545454545456,
+          "empty": false,
+          "found": true,
+          "found_at_1": true,
+          "found_at_1_match_type": "lexical",
+          "recall_by_channel": {
+            "lexical": 1.0,
+            "semantic": 0.0
+          }
+        }
+      }
+    },
+    "rag-search-name-2": {
+      "id": "rag-search-name-2",
+      "topic": "rag-search",
+      "type": "name",
+      "lexical_candidates": 7,
+      "metrics": {
+        "old": {
+          "size": 2,
+          "topic_recall": 1.0,
+          "topic_precision": 0.5,
+          "empty": false,
+          "found": true,
+          "found_at_1": true
+        },
+        "lexical": {
+          "size": 7,
+          "topic_recall": 1.0,
+          "topic_precision": 0.14285714285714285,
+          "empty": false,
+          "found": true,
+          "found_at_1": true
+        },
+        "lexical+semantic": {
+          "size": 17,
+          "topic_recall": 1.0,
+          "topic_precision": 0.058823529411764705,
+          "empty": false,
+          "found": true,
+          "found_at_1": true,
+          "found_at_1_match_type": "lexical",
+          "recall_by_channel": {
+            "lexical": 1.0,
+            "semantic": 0.0
+          }
+        }
+      }
+    },
+    "rag-search-keyword-1": {
+      "id": "rag-search-keyword-1",
+      "topic": "rag-search",
+      "type": "keyword",
+      "lexical_candidates": 66,
+      "metrics": {
+        "old": {
+          "size": 20,
+          "topic_recall": 0.1111111111111111,
+          "topic_precision": 0.25,
+          "empty": false
+        },
+        "lexical": {
+          "size": 66,
+          "topic_recall": 0.6444444444444445,
+          "topic_precision": 0.4393939393939394,
+          "empty": false
+        },
+        "lexical+semantic": {
+          "size": 76,
+          "topic_recall": 0.6888888888888889,
+          "topic_precision": 0.40789473684210525,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.6444444444444445,
+            "semantic": 0.044444444444444446
+          }
+        }
+      }
+    },
+    "rag-search-keyword-2": {
+      "id": "rag-search-keyword-2",
+      "topic": "rag-search",
+      "type": "keyword",
+      "lexical_candidates": 19,
+      "metrics": {
+        "old": {
+          "size": 11,
+          "topic_recall": 0.2222222222222222,
+          "topic_precision": 0.9090909090909091,
+          "empty": false
+        },
+        "lexical": {
+          "size": 19,
+          "topic_recall": 0.3333333333333333,
+          "topic_precision": 0.7894736842105263,
+          "empty": false
+        },
+        "lexical+semantic": {
+          "size": 29,
+          "topic_recall": 0.4888888888888889,
+          "topic_precision": 0.7586206896551724,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.3333333333333333,
+            "semantic": 0.15555555555555556
+          }
+        }
+      }
+    },
+    "rag-search-description-1": {
+      "id": "rag-search-description-1",
+      "topic": "rag-search",
+      "type": "description",
+      "lexical_candidates": 0,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical+semantic": {
+          "size": 10,
+          "topic_recall": 0.1111111111111111,
+          "topic_precision": 0.5,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.0,
+            "semantic": 0.1111111111111111
+          }
+        }
+      }
+    },
+    "rag-search-description-2": {
+      "id": "rag-search-description-2",
+      "topic": "rag-search",
+      "type": "description",
+      "lexical_candidates": 0,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical+semantic": {
+          "size": 10,
+          "topic_recall": 0.1111111111111111,
+          "topic_precision": 0.5,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.0,
+            "semantic": 0.1111111111111111
+          }
+        }
+      }
+    },
+    "rag-search-keyword-list-1": {
+      "id": "rag-search-keyword-list-1",
+      "topic": "rag-search",
+      "type": "keyword_list",
+      "lexical_candidates": 1,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 1,
+          "topic_recall": 0.022222222222222223,
+          "topic_precision": 1.0,
+          "empty": false
+        },
+        "lexical+semantic": {
+          "size": 11,
+          "topic_recall": 0.24444444444444444,
+          "topic_precision": 1.0,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.022222222222222223,
+            "semantic": 0.2222222222222222
+          }
+        }
+      }
+    },
+    "rag-search-keyword-list-2": {
+      "id": "rag-search-keyword-list-2",
+      "topic": "rag-search",
+      "type": "keyword_list",
+      "lexical_candidates": 0,
+      "metrics": {
+        "old": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical": {
+          "size": 0,
+          "topic_recall": 0.0,
+          "topic_precision": 0.0,
+          "empty": true
+        },
+        "lexical+semantic": {
+          "size": 10,
+          "topic_recall": 0.2,
+          "topic_precision": 0.9,
+          "empty": false,
+          "recall_by_channel": {
+            "lexical": 0.0,
+            "semantic": 0.2
+          }
+        }
+      }
+    }
+  },
+  "aggregate_by_type_engine": {
+    "name": {
+      "lexical_candidates_mean": 10.6,
+      "engines": {
+        "old": {
+          "topic_recall_mean": 1.0,
+          "topic_precision_mean": 0.6733766233766234,
+          "size_mean": 2.9,
+          "empty_rate": 0.0,
+          "found_rate": 1.0,
+          "found_at_1_rate": 0.7
+        },
+        "lexical": {
+          "topic_recall_mean": 1.0,
+          "topic_precision_mean": 0.49158175158175155,
+          "size_mean": 10.6,
+          "empty_rate": 0.0,
+          "found_rate": 1.0,
+          "found_at_1_rate": 0.9
+        },
+        "lexical+semantic": {
+          "topic_recall_mean": 1.0,
+          "topic_precision_mean": 0.06772184678067031,
+          "size_mean": 20.6,
+          "empty_rate": 0.0,
+          "found_rate": 1.0,
+          "found_at_1_rate": 0.9,
+          "found_at_1_by_match_type": {
+            "lexical": 0.9,
+            "semantic": 0.0
+          },
+          "recall_by_channel_mean": {
+            "lexical": 1.0,
+            "semantic": 0.0
+          }
+        }
+      }
+    },
+    "keyword": {
+      "lexical_candidates_mean": 48.6,
+      "engines": {
+        "old": {
+          "topic_recall_mean": 0.16333333333333333,
+          "topic_precision_mean": 0.44352813852813855,
+          "size_mean": 8.9,
+          "empty_rate": 0.2
+        },
+        "lexical": {
+          "topic_recall_mean": 0.5033862433862434,
+          "topic_precision_mean": 0.38422936357466764,
+          "size_mean": 48.6,
+          "empty_rate": 0.0
+        },
+        "lexical+semantic": {
+          "topic_recall_mean": 0.6019312169312169,
+          "topic_precision_mean": 0.36796662556317133,
+          "size_mean": 58.6,
+          "empty_rate": 0.0,
+          "recall_by_channel_mean": {
+            "lexical": 0.5033862433862434,
+            "semantic": 0.09854497354497355
+          }
+        }
+      }
+    },
+    "description": {
+      "lexical_candidates_mean": 0.0,
+      "engines": {
+        "old": {
+          "topic_recall_mean": 0.0,
+          "topic_precision_mean": 0.0,
+          "size_mean": 0.0,
+          "empty_rate": 1.0
+        },
+        "lexical": {
+          "topic_recall_mean": 0.0,
+          "topic_precision_mean": 0.0,
+          "size_mean": 0.0,
+          "empty_rate": 1.0
+        },
+        "lexical+semantic": {
+          "topic_recall_mean": 0.13937830687830688,
+          "topic_precision_mean": 0.39,
+          "size_mean": 10.0,
+          "empty_rate": 0.0,
+          "recall_by_channel_mean": {
+            "lexical": 0.0,
+            "semantic": 0.13937830687830688
+          }
+        }
+      }
+    },
+    "keyword_list": {
+      "lexical_candidates_mean": 1.3,
+      "engines": {
+        "old": {
+          "topic_recall_mean": 0.0,
+          "topic_precision_mean": 0.0,
+          "size_mean": 0.0,
+          "empty_rate": 1.0
+        },
+        "lexical": {
+          "topic_recall_mean": 0.029246031746031742,
+          "topic_precision_mean": 0.27,
+          "size_mean": 1.3,
+          "empty_rate": 0.7
+        },
+        "lexical+semantic": {
+          "topic_recall_mean": 0.2688095238095238,
+          "topic_precision_mean": 0.6583333333333333,
+          "size_mean": 11.3,
+          "empty_rate": 0.0,
+          "recall_by_channel_mean": {
+            "lexical": 0.029246031746031742,
+            "semantic": 0.23956349206349206
+          }
+        }
+      }
+    }
+  },
+  "aggregate_by_topic_type_engine": {
+    "agent-memory": {
+      "name": {
+        "lexical_candidates_mean": 33.0,
+        "engines": {
+          "old": {
+            "topic_recall_mean": 1.0,
+            "topic_precision_mean": 1.0,
+            "size_mean": 1.0,
+            "empty_rate": 0.0,
+            "found_rate": 1.0,
+            "found_at_1_rate": 1.0
+          },
+          "lexical": {
+            "topic_recall_mean": 1.0,
+            "topic_precision_mean": 0.5076923076923077,
+            "size_mean": 33.0,
+            "empty_rate": 0.0,
+            "found_rate": 1.0,
+            "found_at_1_rate": 1.0
+          },
+          "lexical+semantic": {
+            "topic_recall_mean": 1.0,
+            "topic_precision_mean": 0.052121212121212124,
+            "size_mean": 43.0,
+            "empty_rate": 0.0,
+            "found_rate": 1.0,
+            "found_at_1_rate": 1.0,
+            "found_at_1_by_match_type": {
+              "lexical": 1.0,
+              "semantic": 0.0
+            },
+            "recall_by_channel_mean": {
+              "lexical": 1.0,
+              "semantic": 0.0
+            }
+          }
+        }
+      },
+      "keyword": {
+        "lexical_candidates_mean": 50.0,
+        "engines": {
+          "old": {
+            "topic_recall_mean": 0.16666666666666666,
+            "topic_precision_mean": 0.32142857142857145,
+            "size_mean": 7.5,
+            "empty_rate": 0.0
+          },
+          "lexical": {
+            "topic_recall_mean": 0.40740740740740744,
+            "topic_precision_mean": 0.32277834525025534,
+            "size_mean": 50.0,
+            "empty_rate": 0.0
+          },
+          "lexical+semantic": {
+            "topic_recall_mean": 0.5925925925925926,
+            "topic_precision_mean": 0.4054834054834055,
+            "size_mean": 60.0,
+            "empty_rate": 0.0,
+            "recall_by_channel_mean": {
+              "lexical": 0.40740740740740744,
+              "semantic": 0.18518518518518517
+            }
+          }
+        }
+      },
+      "description": {
+        "lexical_candidates_mean": 0.0,
+        "engines": {
+          "old": {
+            "topic_recall_mean": 0.0,
+            "topic_precision_mean": 0.0,
+            "size_mean": 0.0,
+            "empty_rate": 1.0
+          },
+          "lexical": {
+            "topic_recall_mean": 0.0,
+            "topic_precision_mean": 0.0,
+            "size_mean": 0.0,
+            "empty_rate": 1.0
+          },
+          "lexical+semantic": {
+            "topic_recall_mean": 0.07407407407407407,
+            "topic_precision_mean": 0.2,
+            "size_mean": 10.0,
+            "empty_rate": 0.0,
+            "recall_by_channel_mean": {
+              "lexical": 0.0,
+              "semantic": 0.07407407407407407
+            }
+          }
+        }
+      },
+      "keyword_list": {
+        "lexical_candidates_mean": 0.0,
+        "engines": {
+          "old": {
+            "topic_recall_mean": 0.0,
+            "topic_precision_mean": 0.0,
+            "size_mean": 0.0,
+            "empty_rate": 1.0
+          },
+          "lexical": {
+            "topic_recall_mean": 0.0,
+            "topic_precision_mean": 0.0,
+            "size_mean": 0.0,
+            "empty_rate": 1.0
+          },
+          "lexical+semantic": {
+            "topic_recall_mean": 0.2777777777777778,
+            "topic_precision_mean": 0.75,
+            "size_mean": 10.0,
+            "empty_rate": 0.0,
+            "recall_by_channel_mean": {
+              "lexical": 0.0,
+              "semantic": 0.2777777777777778
+            }
+          }
+        }
+      }
+    },
+    "local-llm": {
+      "name": {
+        "lexical_candidates_mean": 6.0,
+        "engines": {
+          "old": {
+            "topic_recall_mean": 1.0,
+            "topic_precision_mean": 0.5454545454545454,
+            "size_mean": 6.0,
+            "empty_rate": 0.0,
+            "found_rate": 1.0,
+            "found_at_1_rate": 0.5
+          },
+          "lexical": {
+            "topic_recall_mean": 1.0,
+            "topic_precision_mean": 0.5454545454545454,
+            "size_mean": 6.0,
+            "empty_rate": 0.0,
+            "found_rate": 1.0,
+            "found_at_1_rate": 0.5
+          },
+          "lexical+semantic": {
+            "topic_recall_mean": 1.0,
+            "topic_precision_mean": 0.06926406926406926,
+            "size_mean": 16.0,
+            "empty_rate": 0.0,
+            "found_rate": 1.0,
+            "found_at_1_rate": 0.5,
+            "found_at_1_by_match_type": {
+              "lexical": 0.5,
+              "semantic": 0.0
+            },
+            "recall_by_channel_mean": {
+              "lexical": 1.0,
+              "semantic": 0.0
+            }
+          }
+        }
+      },
+      "keyword": {
+        "lexical_candidates_mean": 91.0,
+        "engines": {
+          "old": {
+            "topic_recall_mean": 0.15,
+            "topic_precision_mean": 0.6666666666666667,
+            "size_mean": 9.0,
+            "empty_rate": 0.0
+          },
+          "lexical": {
+            "topic_recall_mean": 0.7,
+            "topic_precision_mean": 0.3357142857142857,
+            "size_mean": 91.0,
+            "empty_rate": 0.0
+          },
+          "lexical+semantic": {
+            "topic_recall_mean": 0.7250000000000001,
+            "topic_precision_mean": 0.30655737704918035,
+            "size_mean": 101.0,
+            "empty_rate": 0.0,
+            "recall_by_channel_mean": {
+              "lexical": 0.7,
+              "semantic": 0.025
+            }
+          }
+        }
+      },
+      "description": {
+        "lexical_candidates_mean": 0.0,
+        "engines": {
+          "old": {
+            "topic_recall_mean": 0.0,
+            "topic_precision_mean": 0.0,
+            "size_mean": 0.0,
+            "empty_rate": 1.0
+          },
+          "lexical": {
+            "topic_recall_mean": 0.0,
+            "topic_precision_mean": 0.0,
+            "size_mean": 0.0,
+            "empty_rate": 1.0
+          },
+          "lexical+semantic": {
+            "topic_recall_mean": 0.1625,
+            "topic_precision_mean": 0.65,
+            "size_mean": 10.0,
+            "empty_rate": 0.0,
+            "recall_by_channel_mean": {
+              "lexical": 0.0,
+              "semantic": 0.1625
+            }
+          }
+        }
+      },
+      "keyword_list": {
+        "lexical_candidates_mean": 5.0,
+        "engines": {
+          "old": {
+            "topic_recall_mean": 0.0,
+            "topic_precision_mean": 0.0,
+            "size_mean": 0.0,
+            "empty_rate": 1.0
+          },
+          "lexical": {
+            "topic_recall_mean": 0.0875,
+            "topic_precision_mean": 0.35,
+            "size_mean": 5.0,
+            "empty_rate": 0.5
+          },
+          "lexical+semantic": {
+            "topic_recall_mean": 0.225,
+            "topic_precision_mean": 0.575,
+            "size_mean": 15.0,
+            "empty_rate": 0.0,
+            "recall_by_channel_mean": {
+              "lexical": 0.0875,
+              "semantic": 0.1375
+            }
+          }
+        }
+      }
+    },
+    "multi-agent-viz": {
+      "name": {
+        "lexical_candidates_mean": 1.0,
+        "engines": {
+          "old": {
+            "topic_recall_mean": 1.0,
+            "topic_precision_mean": 1.0,
+            "size_mean": 1.0,
+            "empty_rate": 0.0,
+            "found_rate": 1.0,
+            "found_at_1_rate": 1.0
+          },
+          "lexical": {
+            "topic_recall_mean": 1.0,
+            "topic_precision_mean": 1.0,
+            "size_mean": 1.0,
+            "empty_rate": 0.0,
+            "found_rate": 1.0,
+            "found_at_1_rate": 1.0
+          },
+          "lexical+semantic": {
+            "topic_recall_mean": 1.0,
+            "topic_precision_mean": 0.09090909090909091,
+            "size_mean": 11.0,
+            "empty_rate": 0.0,
+            "found_rate": 1.0,
+            "found_at_1_rate": 1.0,
+            "found_at_1_by_match_type": {
+              "lexical": 1.0,
+              "semantic": 0.0
+            },
+            "recall_by_channel_mean": {
+              "lexical": 1.0,
+              "semantic": 0.0
+            }
+          }
+        }
+      },
+      "keyword": {
+        "lexical_candidates_mean": 32.0,
+        "engines": {
+          "old": {
+            "topic_recall_mean": 0.0,
+            "topic_precision_mean": 0.0,
+            "size_mean": 0.0,
+            "empty_rate": 1.0
+          },
+          "lexical": {
+            "topic_recall_mean": 0.1111111111111111,
+            "topic_precision_mean": 0.03137254901960784,
+            "size_mean": 32.0,
+            "empty_rate": 0.0
+          },
+          "lexical+semantic": {
+            "topic_recall_mean": 0.2222222222222222,
+            "topic_precision_mean": 0.04886363636363636,
+            "size_mean": 42.0,
+            "empty_rate": 0.0,
+            "recall_by_channel_mean": {
+              "lexical": 0.1111111111111111,
+              "semantic": 0.1111111111111111
+            }
+          }
+        }
+      },
+      "description": {
+        "lexical_candidates_mean": 0.0,
+        "engines": {
+          "old": {
+            "topic_recall_mean": 0.0,
+            "topic_precision_mean": 0.0,
+            "size_mean": 0.0,
+            "empty_rate": 1.0
+          },
+          "lexical": {
+            "topic_recall_mean": 0.0,
+            "topic_precision_mean": 0.0,
+            "size_mean": 0.0,
+            "empty_rate": 1.0
+          },
+          "lexical+semantic": {
+            "topic_recall_mean": 0.1111111111111111,
+            "topic_precision_mean": 0.1,
+            "size_mean": 10.0,
+            "empty_rate": 0.0,
+            "recall_by_channel_mean": {
+              "lexical": 0.0,
+              "semantic": 0.1111111111111111
+            }
+          }
+        }
+      },
+      "keyword_list": {
+        "lexical_candidates_mean": 0.0,
+        "engines": {
+          "old": {
+            "topic_recall_mean": 0.0,
+            "topic_precision_mean": 0.0,
+            "size_mean": 0.0,
+            "empty_rate": 1.0
+          },
+          "lexical": {
+            "topic_recall_mean": 0.0,
+            "topic_precision_mean": 0.0,
+            "size_mean": 0.0,
+            "empty_rate": 1.0
+          },
+          "lexical+semantic": {
+            "topic_recall_mean": 0.16666666666666666,
+            "topic_precision_mean": 0.15000000000000002,
+            "size_mean": 10.0,
+            "empty_rate": 0.0,
+            "recall_by_channel_mean": {
+              "lexical": 0.0,
+              "semantic": 0.16666666666666666
+            }
+          }
+        }
+      }
+    },
+    "ocr": {
+      "name": {
+        "lexical_candidates_mean": 3.5,
+        "engines": {
+          "old": {
+            "topic_recall_mean": 1.0,
+            "topic_precision_mean": 0.5,
+            "size_mean": 2.0,
+            "empty_rate": 0.0,
+            "found_rate": 1.0,
+            "found_at_1_rate": 0.5
+          },
+          "lexical": {
+            "topic_recall_mean": 1.0,
+            "topic_precision_mean": 0.29166666666666663,
+            "size_mean": 3.5,
+            "empty_rate": 0.0,
+            "found_rate": 1.0,
+            "found_at_1_rate": 1.0
+          },
+          "lexical+semantic": {
+            "topic_recall_mean": 1.0,
+            "topic_precision_mean": 0.07417582417582418,
+            "size_mean": 13.5,
+            "empty_rate": 0.0,
+            "found_rate": 1.0,
+            "found_at_1_rate": 1.0,
+            "found_at_1_by_match_type": {
+              "lexical": 1.0,
+              "semantic": 0.0
+            },
+            "recall_by_channel_mean": {
+              "lexical": 1.0,
+              "semantic": 0.0
+            }
+          }
+        }
+      },
+      "keyword": {
+        "lexical_candidates_mean": 27.5,
+        "engines": {
+          "old": {
+            "topic_recall_mean": 0.3333333333333333,
+            "topic_precision_mean": 0.65,
+            "size_mean": 12.5,
+            "empty_rate": 0.0
+          },
+          "lexical": {
+            "topic_recall_mean": 0.8095238095238095,
+            "topic_precision_mean": 0.6168478260869565,
+            "size_mean": 27.5,
+            "empty_rate": 0.0
+          },
+          "lexical+semantic": {
+            "topic_recall_mean": 0.8809523809523809,
+            "topic_precision_mean": 0.49567099567099565,
+            "size_mean": 37.5,
+            "empty_rate": 0.0,
+            "recall_by_channel_mean": {
+              "lexical": 0.8095238095238095,
+              "semantic": 0.07142857142857142
+            }
+          }
+        }
+      },
+      "description": {
+        "lexical_candidates_mean": 0.0,
+        "engines": {
+          "old": {
+            "topic_recall_mean": 0.0,
+            "topic_precision_mean": 0.0,
+            "size_mean": 0.0,
+            "empty_rate": 1.0
+          },
+          "lexical": {
+            "topic_recall_mean": 0.0,
+            "topic_precision_mean": 0.0,
+            "size_mean": 0.0,
+            "empty_rate": 1.0
+          },
+          "lexical+semantic": {
+            "topic_recall_mean": 0.23809523809523808,
+            "topic_precision_mean": 0.5,
+            "size_mean": 10.0,
+            "empty_rate": 0.0,
+            "recall_by_channel_mean": {
+              "lexical": 0.0,
+              "semantic": 0.23809523809523808
+            }
+          }
+        }
+      },
+      "keyword_list": {
+        "lexical_candidates_mean": 1.0,
+        "engines": {
+          "old": {
+            "topic_recall_mean": 0.0,
+            "topic_precision_mean": 0.0,
+            "size_mean": 0.0,
+            "empty_rate": 1.0
+          },
+          "lexical": {
+            "topic_recall_mean": 0.047619047619047616,
+            "topic_precision_mean": 0.5,
+            "size_mean": 1.0,
+            "empty_rate": 0.5
+          },
+          "lexical+semantic": {
+            "topic_recall_mean": 0.45238095238095233,
+            "topic_precision_mean": 0.8666666666666667,
+            "size_mean": 11.0,
+            "empty_rate": 0.0,
+            "recall_by_channel_mean": {
+              "lexical": 0.047619047619047616,
+              "semantic": 0.40476190476190477
+            }
+          }
+        }
+      }
+    },
+    "rag-search": {
+      "name": {
+        "lexical_candidates_mean": 9.5,
+        "engines": {
+          "old": {
+            "topic_recall_mean": 1.0,
+            "topic_precision_mean": 0.3214285714285714,
+            "size_mean": 4.5,
+            "empty_rate": 0.0,
+            "found_rate": 1.0,
+            "found_at_1_rate": 0.5
+          },
+          "lexical": {
+            "topic_recall_mean": 1.0,
+            "topic_precision_mean": 0.11309523809523808,
+            "size_mean": 9.5,
+            "empty_rate": 0.0,
+            "found_rate": 1.0,
+            "found_at_1_rate": 1.0
+          },
+          "lexical+semantic": {
+            "topic_recall_mean": 1.0,
+            "topic_precision_mean": 0.05213903743315508,
+            "size_mean": 19.5,
+            "empty_rate": 0.0,
+            "found_rate": 1.0,
+            "found_at_1_rate": 1.0,
+            "found_at_1_by_match_type": {
+              "lexical": 1.0,
+              "semantic": 0.0
+            },
+            "recall_by_channel_mean": {
+              "lexical": 1.0,
+              "semantic": 0.0
+            }
+          }
+        }
+      },
+      "keyword": {
+        "lexical_candidates_mean": 42.5,
+        "engines": {
+          "old": {
+            "topic_recall_mean": 0.16666666666666666,
+            "topic_precision_mean": 0.5795454545454546,
+            "size_mean": 15.5,
+            "empty_rate": 0.0
+          },
+          "lexical": {
+            "topic_recall_mean": 0.48888888888888893,
+            "topic_precision_mean": 0.6144338118022329,
+            "size_mean": 42.5,
+            "empty_rate": 0.0
+          },
+          "lexical+semantic": {
+            "topic_recall_mean": 0.5888888888888889,
+            "topic_precision_mean": 0.5832577132486388,
+            "size_mean": 52.5,
+            "empty_rate": 0.0,
+            "recall_by_channel_mean": {
+              "lexical": 0.48888888888888893,
+              "semantic": 0.1
+            }
+          }
+        }
+      },
+      "description": {
+        "lexical_candidates_mean": 0.0,
+        "engines": {
+          "old": {
+            "topic_recall_mean": 0.0,
+            "topic_precision_mean": 0.0,
+            "size_mean": 0.0,
+            "empty_rate": 1.0
+          },
+          "lexical": {
+            "topic_recall_mean": 0.0,
+            "topic_precision_mean": 0.0,
+            "size_mean": 0.0,
+            "empty_rate": 1.0
+          },
+          "lexical+semantic": {
+            "topic_recall_mean": 0.1111111111111111,
+            "topic_precision_mean": 0.5,
+            "size_mean": 10.0,
+            "empty_rate": 0.0,
+            "recall_by_channel_mean": {
+              "lexical": 0.0,
+              "semantic": 0.1111111111111111
+            }
+          }
+        }
+      },
+      "keyword_list": {
+        "lexical_candidates_mean": 0.5,
+        "engines": {
+          "old": {
+            "topic_recall_mean": 0.0,
+            "topic_precision_mean": 0.0,
+            "size_mean": 0.0,
+            "empty_rate": 1.0
+          },
+          "lexical": {
+            "topic_recall_mean": 0.011111111111111112,
+            "topic_precision_mean": 0.5,
+            "size_mean": 0.5,
+            "empty_rate": 0.5
+          },
+          "lexical+semantic": {
+            "topic_recall_mean": 0.2222222222222222,
+            "topic_precision_mean": 0.95,
+            "size_mean": 10.5,
+            "empty_rate": 0.0,
+            "recall_by_channel_mean": {
+              "lexical": 0.011111111111111112,
+              "semantic": 0.2111111111111111
+            }
+          }
+        }
+      }
+    }
+  }
+}
