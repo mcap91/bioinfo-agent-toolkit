@@ -354,12 +354,12 @@ def test_run_pass_reports_cache_hits_and_calls_and_skips_cached_batches():
                 json.dumps({"prompt_sha256": label.sha256_hex(cached_prompt), "response": cached_response}),
                 encoding="utf-8",
             )
-            result, stats, followups = label.run_pass(Path("."), "deadbeef", "pass1", batches, "briefs", set())
+            result, stats, records = label.run_pass(Path("."), "deadbeef", "pass1", batches, "briefs", set())
         finally:
             label.read_entry_text = original_read_entry_text
             label.call_claude = original_call_claude
         assert stats == {"cached": 1, "called": 1}
-        assert followups == []
+        assert records["followup_calls"] == []
         assert call_count["n"] == 1
         assert set(result) == {"a", "b", "c", "d"}
 
@@ -427,7 +427,7 @@ def test_missing_names_triggers_exactly_one_followup_with_only_missing_entries()
 
         label.call_claude = _call
         try:
-            result, stats, followups = label.run_pass(
+            result, stats, records = label.run_pass(
                 Path("."), "deadbeef", "pass1", [["a", "b", "c"]], "briefs", set()
             )
         finally:
@@ -439,7 +439,7 @@ def test_missing_names_triggers_exactly_one_followup_with_only_missing_entries()
         assert calls[1].startswith(label.PROMPT_INSTRUCTION)
         assert "BRIEFS:\n\nbriefs" in calls[1]
         assert stats == {"cached": 0, "called": 2}
-        assert followups == [{"pass": "pass1", "batch": 0, "names": ["b"]}]
+        assert records["followup_calls"] == [{"pass": "pass1", "batch": 0, "names": ["b"]}]
         assert set(result) == {"a", "b", "c"}
 
 
@@ -461,7 +461,7 @@ def test_complete_batch_records_no_followup_call():
 
         label.call_claude = _call
         try:
-            result, stats, followups = label.run_pass(
+            result, stats, records = label.run_pass(
                 Path("."), "deadbeef", "pass2", [["a", "b", "c"]], "briefs", set()
             )
         finally:
@@ -469,72 +469,8 @@ def test_complete_batch_records_no_followup_call():
             label.call_claude = original_call_claude
         assert len(calls) == 1
         assert stats == {"cached": 0, "called": 1}
-        assert followups == []
+        assert records["followup_calls"] == []
         assert set(result) == {"a", "b", "c"}
-
-
-def test_batch_response_with_duplicate_names_aborts_without_followup():
-    with _temp_raw_dir():
-        original_read_entry_text = label.read_entry_text
-        original_call_claude = label.call_claude
-        label.read_entry_text = lambda dir, commit, name: f"text for {name}"
-        call_count = {"n": 0}
-
-        def _call(prompt):
-            call_count["n"] += 1
-            return {
-                "is_error": False,
-                "subtype": "success",
-                "structured_output": {
-                    "labels": [
-                        {"name": "a", "relevant": {}},
-                        {"name": "a", "relevant": {}},
-                        {"name": "c", "relevant": {}},
-                    ]
-                },
-            }
-
-        label.call_claude = _call
-        try:
-            code, stderr = _parse_expecting_exit(
-                label.run_pass, Path("."), "deadbeef", "pass1", [["a", "b", "c"]], "briefs", set()
-            )
-        finally:
-            label.read_entry_text = original_read_entry_text
-            label.call_claude = original_call_claude
-        assert code == 1
-        assert "duplicate" in stderr
-        assert call_count["n"] == 1
-
-
-def test_batch_response_with_extra_names_aborts_without_followup():
-    with _temp_raw_dir():
-        original_read_entry_text = label.read_entry_text
-        original_call_claude = label.call_claude
-        label.read_entry_text = lambda dir, commit, name: f"text for {name}"
-        call_count = {"n": 0}
-
-        def _call(prompt):
-            call_count["n"] += 1
-            names = _names_asked(prompt)
-            returned = names + ["z"]
-            return {
-                "is_error": False,
-                "subtype": "success",
-                "structured_output": {"labels": [{"name": n, "relevant": {}} for n in returned]},
-            }
-
-        label.call_claude = _call
-        try:
-            code, stderr = _parse_expecting_exit(
-                label.run_pass, Path("."), "deadbeef", "pass1", [["a", "b", "c"]], "briefs", set()
-            )
-        finally:
-            label.read_entry_text = original_read_entry_text
-            label.call_claude = original_call_claude
-        assert code == 1
-        assert "name mismatch" in stderr
-        assert call_count["n"] == 1
 
 
 def test_followup_raw_file_written_with_prompt_sha256_before_returning():
@@ -595,7 +531,7 @@ def test_followup_served_from_cache_on_matching_sha_makes_no_second_call():
         )
         label.call_claude = _call
         try:
-            result, stats, followups = label.run_pass(
+            result, stats, records = label.run_pass(
                 Path("."), "deadbeef", "pass1", [["a", "b", "c"]], "briefs", set()
             )
         finally:
@@ -603,7 +539,7 @@ def test_followup_served_from_cache_on_matching_sha_makes_no_second_call():
             label.call_claude = original_call_claude
         assert call_count["n"] == 1
         assert stats == {"cached": 1, "called": 1}
-        assert followups == [{"pass": "pass1", "batch": 0, "names": ["b"]}]
+        assert records["followup_calls"] == [{"pass": "pass1", "batch": 0, "names": ["b"]}]
         assert set(result) == {"a", "b", "c"}
 
 
@@ -659,66 +595,6 @@ def test_still_missing_after_followup_aborts_with_only_one_followup():
         assert call_count["n"] == 2
 
 
-def test_followup_response_with_extra_name_aborts():
-    with _temp_raw_dir():
-        original_read_entry_text = label.read_entry_text
-        original_call_claude = label.call_claude
-        label.read_entry_text = lambda dir, commit, name: f"text for {name}"
-        call_count = {"n": 0}
-
-        def _call(prompt):
-            call_count["n"] += 1
-            names = _names_asked(prompt)
-            returned = [n for n in names if n != "b"] if call_count["n"] == 1 else names + ["z"]
-            return {
-                "is_error": False,
-                "subtype": "success",
-                "structured_output": {"labels": [{"name": n, "relevant": {}} for n in returned]},
-            }
-
-        label.call_claude = _call
-        try:
-            code, stderr = _parse_expecting_exit(
-                label.run_pass, Path("."), "deadbeef", "pass1", [["a", "b", "c"]], "briefs", set()
-            )
-        finally:
-            label.read_entry_text = original_read_entry_text
-            label.call_claude = original_call_claude
-        assert code == 1
-        assert "follow-up name mismatch" in stderr
-        assert call_count["n"] == 2
-
-
-def test_followup_response_with_duplicate_name_aborts():
-    with _temp_raw_dir():
-        original_read_entry_text = label.read_entry_text
-        original_call_claude = label.call_claude
-        label.read_entry_text = lambda dir, commit, name: f"text for {name}"
-        call_count = {"n": 0}
-
-        def _call(prompt):
-            call_count["n"] += 1
-            names = _names_asked(prompt)
-            returned = [n for n in names if n != "b"] if call_count["n"] == 1 else ["b", "b"]
-            return {
-                "is_error": False,
-                "subtype": "success",
-                "structured_output": {"labels": [{"name": n, "relevant": {}} for n in returned]},
-            }
-
-        label.call_claude = _call
-        try:
-            code, stderr = _parse_expecting_exit(
-                label.run_pass, Path("."), "deadbeef", "pass1", [["a", "b", "c"]], "briefs", set()
-            )
-        finally:
-            label.read_entry_text = original_read_entry_text
-            label.call_claude = original_call_claude
-        assert code == 1
-        assert "follow-up returned duplicate names" in stderr
-        assert call_count["n"] == 2
-
-
 def test_tiebreak_missing_names_triggers_followup_and_checks_disputed_pairs():
     with _temp_raw_dir():
         original_read_entry_text = label.read_entry_text
@@ -744,7 +620,7 @@ def test_tiebreak_missing_names_triggers_followup_and_checks_disputed_pairs():
 
         label.call_claude = _call
         try:
-            batches, result, stats, followups = label.run_tiebreak(
+            batches, result, stats, records = label.run_tiebreak(
                 Path("."), "deadbeef", {"a": {"local-llm"}}, "briefs", {"local-llm"}
             )
         finally:
@@ -753,7 +629,7 @@ def test_tiebreak_missing_names_triggers_followup_and_checks_disputed_pairs():
         assert len(calls) == 2
         assert _names_asked(calls[1]) == ["a"]
         assert stats == {"cached": 0, "called": 2}
-        assert followups == [{"pass": "tiebreak", "batch": 0, "names": ["a"]}]
+        assert records["followup_calls"] == [{"pass": "tiebreak", "batch": 0, "names": ["a"]}]
         assert result["a"] == {"local-llm": {"roles": ["use"], "quote": "a phrase for agent viz", "reason": "x"}}
 
 
@@ -780,7 +656,7 @@ def test_capture_missing_label_is_completed_by_followup_and_rechecks_pass():
 
         label.call_claude = _call
         try:
-            result, stats, followups = label.run_pass(
+            result, stats, records = label.run_pass(
                 REPO_ROOT, "unused-commit", "pass1", [batch], "briefs", BRIEF_IDS
             )
         finally:
@@ -788,7 +664,7 @@ def test_capture_missing_label_is_completed_by_followup_and_rechecks_pass():
             label.call_claude = original_call_claude
         assert len(calls) == 2
         assert _names_asked(calls[1]) == [dropped]
-        assert followups == [{"pass": "pass1", "batch": 0, "names": [dropped]}]
+        assert records["followup_calls"] == [{"pass": "pass1", "batch": 0, "names": [dropped]}]
         assert set(result) == set(batch)
         assert result[dropped]["agent-viz"]["roles"] == ["use", "similar"]
 
@@ -831,6 +707,215 @@ def test_answer_key_records_followup_calls_beside_cache_counts():
         assert batches["cache_hits"] == 0
         assert batches["cache_calls"] == 3
         assert batches["followup_calls"] == [{"pass": "pass1", "batch": 0, "names": ["c"]}]
+        assert batches["cleanups"] == []
+        assert batches["retries"] == []
+
+
+def _response(labels: list[dict]) -> dict:
+    return {"is_error": False, "subtype": "success", "structured_output": {"labels": labels}}
+
+
+_LABELED = {"local-llm": {"roles": ["use"], "quote": "text for", "reason": "x"}}
+
+
+def _run_pass_with(responder, batches=None):
+    """run_pass over stubbed entry text with `responder(call_index, names_asked)` as claude."""
+    batches = batches or [["a", "b", "c"]]
+    calls: list[str] = []
+    with _temp_raw_dir():
+        original_read_entry_text = label.read_entry_text
+        original_call_claude = label.call_claude
+        label.read_entry_text = lambda dir, commit, name: f"text for {name}"
+
+        def _call(prompt):
+            calls.append(prompt)
+            return responder(len(calls), _names_asked(prompt))
+
+        label.call_claude = _call
+        out: dict = {}
+
+        def _go():
+            out["value"] = label.run_pass(Path("."), "deadbeef", "pass1", batches, "briefs", {"local-llm"})
+
+        try:
+            code, stderr = _parse_expecting_exit(_go)
+        finally:
+            label.read_entry_text = original_read_entry_text
+            label.call_claude = original_call_claude
+    return code, stderr, out.get("value"), calls
+
+
+def test_extra_name_with_empty_relevant_is_dropped_without_any_recall():
+    code, _, value, calls = _run_pass_with(
+        lambda i, names: _response([{"name": n, "relevant": {}} for n in names + ["a-placeholder-ignore"]])
+    )
+    assert code is None
+    result, stats, records = value
+    assert len(calls) == 1
+    assert set(result) == {"a", "b", "c"}
+    assert records["cleanups"] == [{"pass": "pass1", "batch": 0, "kind": "dropped_extra", "name": "a-placeholder-ignore"}]
+    assert records["retries"] == [] and records["followup_calls"] == []
+
+
+def test_identical_duplicate_is_deduped_without_any_recall():
+    code, _, value, calls = _run_pass_with(
+        lambda i, names: _response([{"name": n, "relevant": {}} for n in names + ["b"]])
+    )
+    assert code is None
+    result, stats, records = value
+    assert len(calls) == 1
+    assert records["cleanups"] == [{"pass": "pass1", "batch": 0, "kind": "deduped", "name": "b"}]
+    assert records["retries"] == []
+
+
+def test_extra_name_carrying_labels_triggers_one_retry_that_replaces_the_response():
+    def responder(i, names):
+        extra = [{"name": "z", "relevant": _LABELED}] if i == 1 else []
+        return _response([{"name": n, "relevant": {}} for n in names] + extra)
+
+    code, _, value, calls = _run_pass_with(responder)
+    assert code is None
+    result, stats, records = value
+    assert len(calls) == 2
+    assert _names_asked(calls[1]) == ["a", "b", "c"]
+    assert calls[0] == calls[1]
+    assert stats == {"cached": 0, "called": 2}
+    assert records["retries"] == [{"pass": "pass1", "batch": 0, "reason": "extra name carrying labels: 'z'"}]
+    assert set(result) == {"a", "b", "c"}
+
+
+def test_retry_is_cached_at_retry_path_with_prompt_sha256():
+    def responder(i, names):
+        if i == 1:
+            return {"is_error": True, "subtype": "error_during_execution"}
+        return _response([{"name": n, "relevant": {}} for n in names])
+
+    with _temp_raw_dir() as raw_dir:
+        original_read_entry_text = label.read_entry_text
+        original_call_claude = label.call_claude
+        label.read_entry_text = lambda dir, commit, name: f"text for {name}"
+        calls = []
+        label.call_claude = lambda prompt: (calls.append(prompt), responder(len(calls), _names_asked(prompt)))[1]
+        try:
+            result, stats, records = label.run_pass(Path("."), "deadbeef", "pass1", [["a", "b"]], "briefs", set())
+        finally:
+            label.read_entry_text = original_read_entry_text
+            label.call_claude = original_call_claude
+        saved = json.loads(label.raw_retry_cache_path("pass1", 0).read_text(encoding="utf-8"))
+        assert saved["prompt_sha256"] == label.sha256_hex(calls[0])
+        assert saved["response"]["structured_output"]["labels"] == [
+            {"name": "a", "relevant": {}},
+            {"name": "b", "relevant": {}},
+        ]
+        assert records["retries"] == [{"pass": "pass1", "batch": 0, "reason": "unexpected is_error: True"}]
+        assert (raw_dir / "pass1-00.json").exists()
+
+
+def test_conflicting_duplicates_after_retry_abort_with_no_second_retry():
+    def responder(i, names):
+        return _response([{"name": n, "relevant": {}} for n in names] + [{"name": "a", "relevant": _LABELED}])
+
+    code, stderr, _, calls = _run_pass_with(responder)
+    assert code == 1
+    assert "retry still structurally invalid: conflicting duplicates: 'a'" in stderr
+    assert len(calls) == 2
+
+
+def test_retry_response_goes_back_through_cleanup_and_followup():
+    def responder(i, names):
+        if i == 1:
+            return {"is_error": False, "subtype": "success"}
+        if i == 2:
+            kept = [n for n in names if n != "c"]
+            return _response([{"name": n, "relevant": {}} for n in kept + ["q-ignore"]])
+        return _response([{"name": n, "relevant": {}} for n in names])
+
+    code, _, value, calls = _run_pass_with(responder)
+    assert code is None
+    result, stats, records = value
+    assert len(calls) == 3
+    assert _names_asked(calls[2]) == ["c"]
+    assert records["retries"] == [{"pass": "pass1", "batch": 0, "reason": "missing field: structured_output.labels"}]
+    assert records["cleanups"] == [{"pass": "pass1", "batch": 0, "kind": "dropped_extra", "name": "q-ignore"}]
+    assert records["followup_calls"] == [{"pass": "pass1", "batch": 0, "names": ["c"]}]
+    assert set(result) == {"a", "b", "c"}
+
+
+def test_followup_gets_cleanup_but_no_retry():
+    def responder(i, names):
+        if i == 1:
+            return _response([{"name": n, "relevant": {}} for n in names if n != "b"])
+        return _response([{"name": "b", "relevant": {}}, {"name": "b", "relevant": {}}, {"name": "y", "relevant": {}}])
+
+    code, _, value, calls = _run_pass_with(responder)
+    assert code is None
+    result, stats, records = value
+    assert len(calls) == 2
+    assert [c["kind"] for c in records["cleanups"]] == ["deduped", "dropped_extra"]
+    assert records["retries"] == []
+
+
+def test_followup_still_invalid_after_cleanup_aborts_without_retry():
+    def responder(i, names):
+        if i == 1:
+            return _response([{"name": n, "relevant": {}} for n in names if n != "b"])
+        return _response([{"name": "b", "relevant": {}}, {"name": "z", "relevant": _LABELED}])
+
+    code, stderr, _, calls = _run_pass_with(responder)
+    assert code == 1
+    assert "follow-up structurally invalid: extra name carrying labels: 'z'" in stderr
+    assert len(calls) == 2
+
+
+def test_quote_not_found_still_aborts_and_is_not_retried():
+    bad = {"local-llm": {"roles": ["use"], "quote": "words absent from the entry", "reason": "x"}}
+    code, stderr, _, calls = _run_pass_with(
+        lambda i, names: _response([{"name": n, "relevant": bad if n == "a" else {}} for n in names])
+    )
+    assert code == 1
+    assert "quote not found in entry text" in stderr
+    assert len(calls) == 1
+
+
+def _real_pass1_batch(index: int) -> tuple[list[str], list[tuple[str, str]], str]:
+    corpus = label.get_corpus(REPO_ROOT, "HEAD")
+    batch = label.make_batches(sorted(corpus))[index]
+    entries = [(name, label.read_entry_text(REPO_ROOT, "HEAD", name)) for name in batch]
+    return batch, entries, label.BRIEFS_PATH.read_text(encoding="utf-8")
+
+
+def _resolve_from_committed_raw(index: int):
+    batch, entries, briefs_text = _real_pass1_batch(index)
+
+    def _boom(*args, **kwargs):
+        raise AssertionError("committed raw responses must satisfy this batch with no new call")
+
+    original = label.call_claude
+    label.call_claude = _boom
+    stats = {"cached": 0, "called": 0}
+    records = label.new_records()
+    try:
+        labels = label.resolve_batch("pass1", index, batch, entries, briefs_text, stats, records)
+    finally:
+        label.call_claude = original
+    return batch, labels, stats, records
+
+
+def test_committed_pass1_07_invented_extra_is_dropped_by_cleanup_with_no_call():
+    batch, labels, stats, records = _resolve_from_committed_raw(7)
+    assert stats == {"cached": 1, "called": 0}
+    assert records["cleanups"] == [
+        {"pass": "pass1", "batch": 7, "kind": "dropped_extra", "name": "karakeep-placeholder-ignore"}
+    ]
+    assert records["retries"] == [] and records["followup_calls"] == []
+    assert sorted(item["name"] for item in labels) == sorted(batch)
+
+
+def test_committed_pass1_06_omission_is_completed_by_cached_followup_with_no_call():
+    batch, labels, stats, records = _resolve_from_committed_raw(6)
+    assert stats == {"cached": 2, "called": 0}
+    assert records["followup_calls"] == [{"pass": "pass1", "batch": 6, "names": ["impeccable"]}]
+    assert sorted(item["name"] for item in labels) == sorted(batch)
 
 
 if __name__ == "__main__":
