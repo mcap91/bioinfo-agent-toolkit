@@ -76,6 +76,33 @@ def test_missing_structured_output_exits_naming_field():
     assert "structured_output" in stderr
 
 
+def test_kept_item_not_object_exits_naming_index():
+    raw = _load_judge_capture()
+    raw["structured_output"]["kept"][0] = {}
+    code, stderr = _parse_expecting_exit(judge.parse_response, raw)
+    assert code == 1
+    assert "kept[0]" in stderr
+    assert "name" in stderr
+
+
+def test_kept_item_name_non_string_exits_naming_index():
+    raw = _load_judge_capture()
+    raw["structured_output"]["kept"][0]["name"] = 123
+    code, stderr = _parse_expecting_exit(judge.parse_response, raw)
+    assert code == 1
+    assert "kept[0]" in stderr
+    assert "name" in stderr
+
+
+def test_kept_item_reason_empty_exits_naming_index():
+    raw = _load_judge_capture()
+    raw["structured_output"]["kept"][0]["reason"] = ""
+    code, stderr = _parse_expecting_exit(judge.parse_response, raw)
+    assert code == 1
+    assert "kept[0]" in stderr
+    assert "reason" in stderr
+
+
 def test_kept_name_not_in_response_exits_naming_brief():
     raw = _load_judge_capture()
     kept = judge.parse_response(raw) + [{"name": "not-a-real-entry", "reason": "fabricated"}]

@@ -117,7 +117,17 @@ def parse_response(raw: dict[str, Any]) -> list[dict[str, Any]]:
     structured_output = raw.get("structured_output")
     if not isinstance(structured_output, dict) or not isinstance(structured_output.get("kept"), list):
         fail("missing field: structured_output.kept")
-    return structured_output["kept"]
+    kept = structured_output["kept"]
+    for index, item in enumerate(kept):
+        if not isinstance(item, dict):
+            fail(f"kept[{index}] is not an object")
+        name = item.get("name")
+        if not isinstance(name, str) or not name:
+            fail(f"kept[{index}].name empty or missing")
+        reason = item.get("reason")
+        if not isinstance(reason, str) or not reason:
+            fail(f"kept[{index}].reason empty or missing")
+    return kept
 
 
 def check_kept(brief_id: str, kept: list[dict[str, Any]], response_names: set[str]) -> None:
