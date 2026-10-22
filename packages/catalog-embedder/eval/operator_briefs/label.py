@@ -156,6 +156,10 @@ def raw_cache_path(pass_name: str, batch_index: int) -> Path:
     return RAW_DIR / f"{pass_name}-{batch_index:02d}.json"
 
 
+def raw_followup_cache_path(pass_name: str, batch_index: int) -> Path:
+    return RAW_DIR / f"{pass_name}-{batch_index:02d}-missing.json"
+
+
 def cached_call_claude(prompt: str, pass_name: str, batch_index: int) -> tuple[dict[str, Any], bool]:
     """Call claude once per (pass, batch), persisting the raw response keyed by prompt sha256.
 
@@ -163,8 +167,20 @@ def cached_call_claude(prompt: str, pass_name: str, batch_index: int) -> tuple[d
     contents changed since the cache was written; that is a stale cache (operator decides),
     not something to silently re-pay or silently reuse.
     """
+    return _cached_call_claude_at(prompt, raw_cache_path(pass_name, batch_index))
+
+
+def cached_missing_call_claude(prompt: str, pass_name: str, batch_index: int) -> tuple[dict[str, Any], bool]:
+    """The missing-names follow-up of a batch, cached at raw/<pass>-<batch>-missing.json
+    under the same prompt_sha256 rules as batch files: written right after the call and
+    before parse/check, a matching sha reuses without calling, a mismatched sha fails loud
+    naming the file (never overwritten, never reused).
+    """
+    return _cached_call_claude_at(prompt, raw_followup_cache_path(pass_name, batch_index))
+
+
+def _cached_call_claude_at(prompt: str, path: Path) -> tuple[dict[str, Any], bool]:
     prompt_sha256 = sha256_hex(prompt)
-    path = raw_cache_path(pass_name, batch_index)
     if path.exists():
         cached = json.loads(path.read_text(encoding="utf-8"))
         if cached.get("prompt_sha256") != prompt_sha256:
@@ -203,6 +219,60 @@ def check_batch_names(labels: list[dict[str, Any]], batch_names: list[str]) -> N
     extra = sorted(set(returned_names) - set(batch_names))
     if missing or extra:
         fail(f"batch name mismatch: missing={missing} extra={extra}")
+
+
+def maybe_label_followup(
+    pass_name: str,
+    batch_index: int,
+    batch: list[str],
+    batch_entries: list[tuple[str, str]],
+    labels: list[dict[str, Any]],
+    briefs_text: str,
+    cache_stats: dict[str, int],
+    followup_calls: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Resolve a batch response that is missing names with at most ONE follow-up call.
+
+    The follow-up sends only the missing entries, in batch order, built with the same
+    build_prompt (same INSTRUCTION, briefs, schema); its raw stdout is cached at
+    raw/<pass>-<batch>-missing.json under the same prompt_sha256 rules as batch files
+    (before parse/check). The follow-up labels are merged with the batch's and the merged
+    set runs the normal name and per-label checks. Any extra or duplicate name in either
+    call, or a name still missing after the follow-up, aborts loud with no retry.
+    """
+    returned_names = [label["name"] for label in labels]
+    counts = Counter(returned_names)
+    duplicates = sorted(name for name, count in counts.items() if count > 1)
+    if duplicates:
+        fail(f"batch returned duplicate names: {duplicates}")
+    missing = sorted(set(batch) - set(returned_names))
+    extra = sorted(set(returned_names) - set(batch))
+    if extra:
+        fail(f"batch name mismatch: missing={missing} extra={extra}")
+    if not missing:
+        return labels
+
+    missing_set = set(missing)
+    missing_entries = [(name, text) for name, text in batch_entries if name in missing_set]
+    followup_prompt = build_prompt(briefs_text, missing_entries)
+    followup_raw, from_cache = cached_missing_call_claude(followup_prompt, pass_name, batch_index)
+    cache_stats["cached" if from_cache else "called"] += 1
+    followup_calls.append({"pass": pass_name, "batch": batch_index, "names": missing})
+
+    followup_labels = parse_response(followup_raw)
+    followup_names = [flabel["name"] for flabel in followup_labels]
+    counts = Counter(followup_names)
+    duplicates = sorted(name for name, count in counts.items() if count > 1)
+    if duplicates:
+        fail(f"follow-up returned duplicate names: {duplicates}")
+    still_missing = sorted(missing_set - set(followup_names))
+    extra = sorted(set(followup_names) - missing_set)
+    if extra or still_missing:
+        fail(f"follow-up name mismatch: missing={still_missing} extra={extra}")
+
+    merged = labels + followup_labels
+    check_batch_names(merged, batch)
+    return merged
 
 
 _CURLY_QUOTES = {0x2018: ord("'"), 0x2019: ord("'"), 0x201C: ord('"'), 0x201D: ord('"')}
@@ -259,25 +329,30 @@ def check_label_entry(name: str, relevant: Any, brief_ids: set[str], entry_text:
 
 def run_pass(
     dir: Path, commit: str, pass_name: str, batches: list[list[str]], briefs_text: str, brief_ids: set[str]
-) -> tuple[dict[str, dict[str, Any]], dict[str, int]]:
+) -> tuple[dict[str, dict[str, Any]], dict[str, int], list[dict[str, Any]]]:
     """Run every batch of one pass; returns {name: relevant} over the batched names, plus
-    {"cached": n, "called": n} counting batches read from the raw cache vs sent to claude."""
+    {"cached": n, "called": n} counting responses read from the raw cache vs sent to
+    claude (follow-up calls included), plus the follow-up call records."""
     pass_result: dict[str, dict[str, Any]] = {}
     cache_stats = {"cached": 0, "called": 0}
+    followup_calls: list[dict[str, Any]] = []
     for batch_index, batch in enumerate(batches):
         batch_entries = [(name, read_entry_text(dir, commit, name)) for name in batch]
         prompt = build_prompt(briefs_text, batch_entries)
         raw, from_cache = cached_call_claude(prompt, pass_name, batch_index)
         cache_stats["cached" if from_cache else "called"] += 1
         labels = parse_response(raw)
-        check_batch_names(labels, batch)
+        labels = maybe_label_followup(
+            pass_name, batch_index, batch, batch_entries, labels, briefs_text, cache_stats,
+            followup_calls,
+        )
         entry_text_by_name = dict(batch_entries)
         by_name = {label["name"]: label.get("relevant") for label in labels}
         for name in batch:
             relevant = by_name[name]
             check_label_entry(name, relevant, brief_ids, entry_text_by_name[name])
             pass_result[name] = relevant
-    return pass_result, cache_stats
+    return pass_result, cache_stats, followup_calls
 
 
 def run_tiebreak(
@@ -286,18 +361,22 @@ def run_tiebreak(
     disputed_by_name: dict[str, set[str]],
     briefs_text: str,
     brief_ids: set[str],
-) -> tuple[list[list[str]], dict[str, dict[str, Any]], dict[str, int]]:
+) -> tuple[list[list[str]], dict[str, dict[str, Any]], dict[str, int], list[dict[str, Any]]]:
     """Batch the disputed names; only the disputed (name, brief) pairs are read back."""
     batches = make_batches(sorted(disputed_by_name))
     tiebreak_result: dict[str, dict[str, Any]] = {}
     cache_stats = {"cached": 0, "called": 0}
+    followup_calls: list[dict[str, Any]] = []
     for batch_index, batch in enumerate(batches):
         batch_entries = [(name, read_entry_text(dir, commit, name)) for name in batch]
         prompt = build_prompt(briefs_text, batch_entries)
         raw, from_cache = cached_call_claude(prompt, "tiebreak", batch_index)
         cache_stats["cached" if from_cache else "called"] += 1
         labels = parse_response(raw)
-        check_batch_names(labels, batch)
+        labels = maybe_label_followup(
+            "tiebreak", batch_index, batch, batch_entries, labels, briefs_text, cache_stats,
+            followup_calls,
+        )
         entry_text_by_name = dict(batch_entries)
         by_name = {label["name"]: label.get("relevant") for label in labels}
         for name in batch:
@@ -311,7 +390,7 @@ def run_tiebreak(
                     check_relevant_value(name, brief_id, value, brief_ids, entry_text_by_name[name])
                     disputed_relevant[brief_id] = value
             tiebreak_result[name] = disputed_relevant
-    return batches, tiebreak_result, cache_stats
+    return batches, tiebreak_result, cache_stats, followup_calls
 
 
 def build_answer_key(dir: Path) -> dict[str, Any]:
@@ -329,8 +408,12 @@ def build_answer_key(dir: Path) -> dict[str, Any]:
     pass1_batches = make_batches(pass1_order)
     pass2_batches = make_batches(pass2_order)
 
-    pass1_result, pass1_cache = run_pass(dir, corpus_commit, "pass1", pass1_batches, briefs_text, brief_ids)
-    pass2_result, pass2_cache = run_pass(dir, corpus_commit, "pass2", pass2_batches, briefs_text, brief_ids)
+    pass1_result, pass1_cache, pass1_followups = run_pass(
+        dir, corpus_commit, "pass1", pass1_batches, briefs_text, brief_ids
+    )
+    pass2_result, pass2_cache, pass2_followups = run_pass(
+        dir, corpus_commit, "pass2", pass2_batches, briefs_text, brief_ids
+    )
 
     disputed_by_name: dict[str, set[str]] = {}
     for name in corpus:
@@ -340,7 +423,7 @@ def build_answer_key(dir: Path) -> dict[str, Any]:
             if p1 != p2:
                 disputed_by_name.setdefault(name, set()).add(brief_id)
 
-    tiebreak_batches, tiebreak_result, tiebreak_cache = run_tiebreak(
+    tiebreak_batches, tiebreak_result, tiebreak_cache, tiebreak_followups = run_tiebreak(
         dir, corpus_commit, disputed_by_name, briefs_text, brief_ids
     )
 
@@ -408,6 +491,7 @@ def build_answer_key(dir: Path) -> dict[str, Any]:
             "tiebreak": len(tiebreak_batches),
             "cache_hits": pass1_cache["cached"] + pass2_cache["cached"] + tiebreak_cache["cached"],
             "cache_calls": pass1_cache["called"] + pass2_cache["called"] + tiebreak_cache["called"],
+            "followup_calls": pass1_followups + pass2_followups + tiebreak_followups,
         },
     }
 

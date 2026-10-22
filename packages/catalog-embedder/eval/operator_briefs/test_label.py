@@ -149,7 +149,7 @@ def test_markdown_link_text_quote_passes_check():
 
 
 def test_unmatched_bracket_does_not_swallow_text_up_to_next_real_link():
-    """Root cause of the HO-0052 block: line 28's `t∈[0,1)` has no closing `]`, so the
+    """Root cause of a review block: line 28's `t∈[0,1)` has no closing `]`, so the
     old regex's cross-line negated classes started a 'link' there that ran through the
     real link on line 51, erasing everything in between. Normalizing the whole entry
     must leave the line-28 fragment and the span between it and line 51 intact, while
@@ -246,6 +246,20 @@ def test_duplicate_batch_name_exits_naming_duplicates():
     assert "duplicate" in stderr
 
 
+def _names_asked(prompt: str) -> list[str]:
+    """Entry names a built prompt asks about, in order.
+
+    The real briefs.json text ends with a newline, so the first ENTRY block in the
+    joined prompt starts on a line of its own ("\nENTRY name=...") after the split —
+    strip before matching so the parser sees every entry.
+    """
+    return [
+        part.lstrip().split("ENTRY name=", 1)[1].split(":", 1)[0]
+        for part in prompt.split("\n\n")
+        if part.lstrip().startswith("ENTRY name=")
+    ]
+
+
 @contextlib.contextmanager
 def _temp_raw_dir():
     with tempfile.TemporaryDirectory() as tmp:
@@ -340,11 +354,12 @@ def test_run_pass_reports_cache_hits_and_calls_and_skips_cached_batches():
                 json.dumps({"prompt_sha256": label.sha256_hex(cached_prompt), "response": cached_response}),
                 encoding="utf-8",
             )
-            result, stats = label.run_pass(Path("."), "deadbeef", "pass1", batches, "briefs", set())
+            result, stats, followups = label.run_pass(Path("."), "deadbeef", "pass1", batches, "briefs", set())
         finally:
             label.read_entry_text = original_read_entry_text
             label.call_claude = original_call_claude
         assert stats == {"cached": 1, "called": 1}
+        assert followups == []
         assert call_count["n"] == 1
         assert set(result) == {"a", "b", "c", "d"}
 
@@ -391,6 +406,431 @@ def test_call_claude_sends_prompt_on_stdin_not_argv():
 
     assert recorded["kwargs"].get("input") == prompt
     assert prompt not in recorded["args"]
+
+
+def test_missing_names_triggers_exactly_one_followup_with_only_missing_entries():
+    with _temp_raw_dir():
+        original_read_entry_text = label.read_entry_text
+        original_call_claude = label.call_claude
+        label.read_entry_text = lambda dir, commit, name: f"text for {name}"
+        calls = []
+
+        def _call(prompt):
+            calls.append(prompt)
+            names = _names_asked(prompt)
+            returned = [n for n in names if n != "b"] if len(calls) == 1 else names
+            return {
+                "is_error": False,
+                "subtype": "success",
+                "structured_output": {"labels": [{"name": n, "relevant": {}} for n in returned]},
+            }
+
+        label.call_claude = _call
+        try:
+            result, stats, followups = label.run_pass(
+                Path("."), "deadbeef", "pass1", [["a", "b", "c"]], "briefs", set()
+            )
+        finally:
+            label.read_entry_text = original_read_entry_text
+            label.call_claude = original_call_claude
+        assert len(calls) == 2
+        assert _names_asked(calls[0]) == ["a", "b", "c"]
+        assert _names_asked(calls[1]) == ["b"]
+        assert calls[1].startswith(label.PROMPT_INSTRUCTION)
+        assert "BRIEFS:\n\nbriefs" in calls[1]
+        assert stats == {"cached": 0, "called": 2}
+        assert followups == [{"pass": "pass1", "batch": 0, "names": ["b"]}]
+        assert set(result) == {"a", "b", "c"}
+
+
+def test_complete_batch_records_no_followup_call():
+    with _temp_raw_dir():
+        original_read_entry_text = label.read_entry_text
+        original_call_claude = label.call_claude
+        label.read_entry_text = lambda dir, commit, name: f"text for {name}"
+        calls = []
+
+        def _call(prompt):
+            calls.append(prompt)
+            names = _names_asked(prompt)
+            return {
+                "is_error": False,
+                "subtype": "success",
+                "structured_output": {"labels": [{"name": n, "relevant": {}} for n in names]},
+            }
+
+        label.call_claude = _call
+        try:
+            result, stats, followups = label.run_pass(
+                Path("."), "deadbeef", "pass2", [["a", "b", "c"]], "briefs", set()
+            )
+        finally:
+            label.read_entry_text = original_read_entry_text
+            label.call_claude = original_call_claude
+        assert len(calls) == 1
+        assert stats == {"cached": 0, "called": 1}
+        assert followups == []
+        assert set(result) == {"a", "b", "c"}
+
+
+def test_batch_response_with_duplicate_names_aborts_without_followup():
+    with _temp_raw_dir():
+        original_read_entry_text = label.read_entry_text
+        original_call_claude = label.call_claude
+        label.read_entry_text = lambda dir, commit, name: f"text for {name}"
+        call_count = {"n": 0}
+
+        def _call(prompt):
+            call_count["n"] += 1
+            return {
+                "is_error": False,
+                "subtype": "success",
+                "structured_output": {
+                    "labels": [
+                        {"name": "a", "relevant": {}},
+                        {"name": "a", "relevant": {}},
+                        {"name": "c", "relevant": {}},
+                    ]
+                },
+            }
+
+        label.call_claude = _call
+        try:
+            code, stderr = _parse_expecting_exit(
+                label.run_pass, Path("."), "deadbeef", "pass1", [["a", "b", "c"]], "briefs", set()
+            )
+        finally:
+            label.read_entry_text = original_read_entry_text
+            label.call_claude = original_call_claude
+        assert code == 1
+        assert "duplicate" in stderr
+        assert call_count["n"] == 1
+
+
+def test_batch_response_with_extra_names_aborts_without_followup():
+    with _temp_raw_dir():
+        original_read_entry_text = label.read_entry_text
+        original_call_claude = label.call_claude
+        label.read_entry_text = lambda dir, commit, name: f"text for {name}"
+        call_count = {"n": 0}
+
+        def _call(prompt):
+            call_count["n"] += 1
+            names = _names_asked(prompt)
+            returned = names + ["z"]
+            return {
+                "is_error": False,
+                "subtype": "success",
+                "structured_output": {"labels": [{"name": n, "relevant": {}} for n in returned]},
+            }
+
+        label.call_claude = _call
+        try:
+            code, stderr = _parse_expecting_exit(
+                label.run_pass, Path("."), "deadbeef", "pass1", [["a", "b", "c"]], "briefs", set()
+            )
+        finally:
+            label.read_entry_text = original_read_entry_text
+            label.call_claude = original_call_claude
+        assert code == 1
+        assert "name mismatch" in stderr
+        assert call_count["n"] == 1
+
+
+def test_followup_raw_file_written_with_prompt_sha256_before_returning():
+    with _temp_raw_dir():
+        original_read_entry_text = label.read_entry_text
+        original_call_claude = label.call_claude
+        label.read_entry_text = lambda dir, commit, name: f"text for {name}"
+        calls = []
+
+        def _call(prompt):
+            calls.append(prompt)
+            names = _names_asked(prompt)
+            returned = [n for n in names if n != "b"] if len(calls) == 1 else names
+            return {
+                "is_error": False,
+                "subtype": "success",
+                "structured_output": {"labels": [{"name": n, "relevant": {}} for n in returned]},
+            }
+
+        label.call_claude = _call
+        try:
+            label.run_pass(Path("."), "deadbeef", "pass1", [["a", "b", "c"]], "briefs", set())
+        finally:
+            label.read_entry_text = original_read_entry_text
+            label.call_claude = original_call_claude
+        saved = json.loads(label.raw_followup_cache_path("pass1", 0).read_text(encoding="utf-8"))
+        followup_prompt = label.build_prompt("briefs", [("b", "text for b")])
+        assert saved["prompt_sha256"] == label.sha256_hex(followup_prompt)
+        assert saved["response"]["structured_output"]["labels"] == [{"name": "b", "relevant": {}}]
+
+
+def test_followup_served_from_cache_on_matching_sha_makes_no_second_call():
+    with _temp_raw_dir():
+        original_read_entry_text = label.read_entry_text
+        original_call_claude = label.call_claude
+        label.read_entry_text = lambda dir, commit, name: f"text for {name}"
+        call_count = {"n": 0}
+
+        def _call(prompt):
+            call_count["n"] += 1
+            names = _names_asked(prompt)
+            returned = [n for n in names if n != "b"] if call_count["n"] == 1 else names
+            return {
+                "is_error": False,
+                "subtype": "success",
+                "structured_output": {"labels": [{"name": n, "relevant": {}} for n in returned]},
+            }
+
+        followup_prompt = label.build_prompt("briefs", [("b", "text for b")])
+        followup_response = {
+            "is_error": False,
+            "subtype": "success",
+            "structured_output": {"labels": [{"name": "b", "relevant": {}}]},
+        }
+        label.raw_followup_cache_path("pass1", 0).write_text(
+            json.dumps({"prompt_sha256": label.sha256_hex(followup_prompt), "response": followup_response}),
+            encoding="utf-8",
+        )
+        label.call_claude = _call
+        try:
+            result, stats, followups = label.run_pass(
+                Path("."), "deadbeef", "pass1", [["a", "b", "c"]], "briefs", set()
+            )
+        finally:
+            label.read_entry_text = original_read_entry_text
+            label.call_claude = original_call_claude
+        assert call_count["n"] == 1
+        assert stats == {"cached": 1, "called": 1}
+        assert followups == [{"pass": "pass1", "batch": 0, "names": ["b"]}]
+        assert set(result) == {"a", "b", "c"}
+
+
+def test_followup_cache_mismatched_sha_fails_named_and_never_overwritten():
+    with _temp_raw_dir():
+        path = label.raw_followup_cache_path("pass1", 0)
+        payload = json.dumps({"prompt_sha256": "deadbeef", "response": {}})
+        path.write_text(payload, encoding="utf-8")
+
+        def _boom(*args, **kwargs):
+            raise AssertionError("call_claude must not run on a stale follow-up cache")
+
+        original_call = label.call_claude
+        label.call_claude = _boom
+        try:
+            code, stderr = _parse_expecting_exit(
+                label.cached_missing_call_claude, "a different prompt", "pass1", 0
+            )
+        finally:
+            label.call_claude = original_call
+        assert code == 1
+        assert str(path) in stderr
+        assert path.read_text(encoding="utf-8") == payload
+
+
+def test_still_missing_after_followup_aborts_with_only_one_followup():
+    with _temp_raw_dir():
+        original_read_entry_text = label.read_entry_text
+        original_call_claude = label.call_claude
+        label.read_entry_text = lambda dir, commit, name: f"text for {name}"
+        call_count = {"n": 0}
+
+        def _call(prompt):
+            call_count["n"] += 1
+            names = _names_asked(prompt)
+            returned = [n for n in names if n != "b"]
+            return {
+                "is_error": False,
+                "subtype": "success",
+                "structured_output": {"labels": [{"name": n, "relevant": {}} for n in returned]},
+            }
+
+        label.call_claude = _call
+        try:
+            code, stderr = _parse_expecting_exit(
+                label.run_pass, Path("."), "deadbeef", "pass1", [["a", "b", "c"]], "briefs", set()
+            )
+        finally:
+            label.read_entry_text = original_read_entry_text
+            label.call_claude = original_call_claude
+        assert code == 1
+        assert "follow-up name mismatch" in stderr
+        assert call_count["n"] == 2
+
+
+def test_followup_response_with_extra_name_aborts():
+    with _temp_raw_dir():
+        original_read_entry_text = label.read_entry_text
+        original_call_claude = label.call_claude
+        label.read_entry_text = lambda dir, commit, name: f"text for {name}"
+        call_count = {"n": 0}
+
+        def _call(prompt):
+            call_count["n"] += 1
+            names = _names_asked(prompt)
+            returned = [n for n in names if n != "b"] if call_count["n"] == 1 else names + ["z"]
+            return {
+                "is_error": False,
+                "subtype": "success",
+                "structured_output": {"labels": [{"name": n, "relevant": {}} for n in returned]},
+            }
+
+        label.call_claude = _call
+        try:
+            code, stderr = _parse_expecting_exit(
+                label.run_pass, Path("."), "deadbeef", "pass1", [["a", "b", "c"]], "briefs", set()
+            )
+        finally:
+            label.read_entry_text = original_read_entry_text
+            label.call_claude = original_call_claude
+        assert code == 1
+        assert "follow-up name mismatch" in stderr
+        assert call_count["n"] == 2
+
+
+def test_followup_response_with_duplicate_name_aborts():
+    with _temp_raw_dir():
+        original_read_entry_text = label.read_entry_text
+        original_call_claude = label.call_claude
+        label.read_entry_text = lambda dir, commit, name: f"text for {name}"
+        call_count = {"n": 0}
+
+        def _call(prompt):
+            call_count["n"] += 1
+            names = _names_asked(prompt)
+            returned = [n for n in names if n != "b"] if call_count["n"] == 1 else ["b", "b"]
+            return {
+                "is_error": False,
+                "subtype": "success",
+                "structured_output": {"labels": [{"name": n, "relevant": {}} for n in returned]},
+            }
+
+        label.call_claude = _call
+        try:
+            code, stderr = _parse_expecting_exit(
+                label.run_pass, Path("."), "deadbeef", "pass1", [["a", "b", "c"]], "briefs", set()
+            )
+        finally:
+            label.read_entry_text = original_read_entry_text
+            label.call_claude = original_call_claude
+        assert code == 1
+        assert "follow-up returned duplicate names" in stderr
+        assert call_count["n"] == 2
+
+
+def test_tiebreak_missing_names_triggers_followup_and_checks_disputed_pairs():
+    with _temp_raw_dir():
+        original_read_entry_text = label.read_entry_text
+        original_call_claude = label.call_claude
+        label.read_entry_text = lambda dir, commit, name: "entry text with a phrase for agent viz"
+        calls = []
+
+        def _call(prompt):
+            calls.append(prompt)
+            names = _names_asked(prompt)
+            if len(calls) == 1:
+                returned = []
+            else:
+                returned = names
+            relevant = {"local-llm": {"roles": ["use"], "quote": "a phrase for agent viz", "reason": "x"}}
+            return {
+                "is_error": False,
+                "subtype": "success",
+                "structured_output": {
+                    "labels": [{"name": n, "relevant": relevant if n == "a" else {}} for n in returned]
+                },
+            }
+
+        label.call_claude = _call
+        try:
+            batches, result, stats, followups = label.run_tiebreak(
+                Path("."), "deadbeef", {"a": {"local-llm"}}, "briefs", {"local-llm"}
+            )
+        finally:
+            label.read_entry_text = original_read_entry_text
+            label.call_claude = original_call_claude
+        assert len(calls) == 2
+        assert _names_asked(calls[1]) == ["a"]
+        assert stats == {"cached": 0, "called": 2}
+        assert followups == [{"pass": "tiebreak", "batch": 0, "names": ["a"]}]
+        assert result["a"] == {"local-llm": {"roles": ["use"], "quote": "a phrase for agent viz", "reason": "x"}}
+
+
+def test_capture_missing_label_is_completed_by_followup_and_rechecks_pass():
+    meta = _load_meta()
+    labels = label.parse_response(_load_capture())
+    by_name = {entry["name"]: entry for entry in labels}
+    batch = list(meta["names"])
+    dropped = "zoetrope"
+    assert dropped in by_name
+    remaining = [by_name[n] for n in batch if n != dropped]
+
+    with _temp_raw_dir():
+        original_read_entry_text = label.read_entry_text
+        original_call_claude = label.call_claude
+        label.read_entry_text = lambda dir, commit, name: _read_entry_text(name)
+        calls = []
+
+        def _call(prompt):
+            calls.append(prompt)
+            asked = _names_asked(prompt)
+            returned = remaining if len(calls) == 1 else [by_name[n] for n in asked]
+            return {"is_error": False, "subtype": "success", "structured_output": {"labels": returned}}
+
+        label.call_claude = _call
+        try:
+            result, stats, followups = label.run_pass(
+                REPO_ROOT, "unused-commit", "pass1", [batch], "briefs", BRIEF_IDS
+            )
+        finally:
+            label.read_entry_text = original_read_entry_text
+            label.call_claude = original_call_claude
+        assert len(calls) == 2
+        assert _names_asked(calls[1]) == [dropped]
+        assert followups == [{"pass": "pass1", "batch": 0, "names": [dropped]}]
+        assert set(result) == set(batch)
+        assert result[dropped]["agent-viz"]["roles"] == ["use", "similar"]
+
+
+def test_answer_key_records_followup_calls_beside_cache_counts():
+    with _temp_raw_dir():
+        originals = {
+            "get_corpus_commit": label.get_corpus_commit,
+            "get_corpus": label.get_corpus,
+            "read_entry_text": label.read_entry_text,
+            "get_cli_version": label.get_cli_version,
+            "call_claude": label.call_claude,
+        }
+        label.get_corpus_commit = lambda dir: "deadbeef"
+        label.get_corpus = lambda dir, commit: ["a", "b", "c"]
+        label.read_entry_text = lambda dir, commit, name: f"text for {name}"
+        label.get_cli_version = lambda: "test-cli"
+        call_count = {"n": 0}
+
+        def _call(prompt):
+            call_count["n"] += 1
+            names = _names_asked(prompt)
+            returned = [n for n in names if n != "c"] if call_count["n"] == 1 else names
+            return {
+                "is_error": False,
+                "subtype": "success",
+                "structured_output": {"labels": [{"name": n, "relevant": {}} for n in returned]},
+            }
+
+        label.call_claude = _call
+        try:
+            key = label.build_answer_key(Path("."))
+        finally:
+            for fn_name, fn in originals.items():
+                setattr(label, fn_name, fn)
+        batches = key["batches"]
+        assert batches["pass1"] == 1
+        assert batches["pass2"] == 1
+        assert batches["tiebreak"] == 0
+        assert batches["cache_hits"] == 0
+        assert batches["cache_calls"] == 3
+        assert batches["followup_calls"] == [{"pass": "pass1", "batch": 0, "names": ["c"]}]
 
 
 if __name__ == "__main__":
