@@ -139,6 +139,26 @@ def test_same_quote_with_one_word_changed_fails_named_fail():
     assert "quote not found in entry text" in stderr
 
 
+CAPITALIZED_QUOTE = "No tooling, plugin, or vector store"
+
+
+def test_real_capitalized_mid_sentence_quote_passes_check():
+    """The entry's summary reads `... — no tooling, plugin, or vector store.`; the model
+    started its quote mid-sentence and capitalized `No`. Root cause of the run 4 abort."""
+    entry_text = _read_entry_text_at_head("mistakes-md-log")
+    relevant = {"hybrid-memory": {"roles": ["guide"], "quote": CAPITALIZED_QUOTE, "reason": "x"}}
+    label.check_label_entry("mistakes-md-log", relevant, BRIEF_IDS, entry_text)
+
+
+def test_capitalized_quote_with_one_word_changed_still_fails():
+    entry_text = _read_entry_text_at_head("mistakes-md-log")
+    mutated_quote = CAPITALIZED_QUOTE.replace("plugin", "framework")
+    relevant = {"hybrid-memory": {"roles": ["guide"], "quote": mutated_quote, "reason": "x"}}
+    code, stderr = _parse_expecting_exit(label.check_label_entry, "mistakes-md-log", relevant, BRIEF_IDS, entry_text)
+    assert code == 1
+    assert "quote not found in entry text" in stderr
+
+
 def test_markdown_link_text_quote_passes_check():
     """Entry has `[Guidelines ... (facebookresearch/faiss)](https://...)`; the model
     quoted the rendered link text without the `[...]()` wrapper."""
@@ -158,8 +178,8 @@ def test_unmatched_bracket_does_not_swallow_text_up_to_next_real_link():
     normalized = label.normalize_quote_text(entry_text)
     assert "a threshold t∈[0,1))" in normalized
     assert "direct computation is already fast enough and exact" in normalized
-    assert "Guidelines to choose an index — FAISS wiki (facebookresearch/faiss)" in normalized
-    assert "[Guidelines to choose an index" not in normalized
+    assert "Guidelines to choose an index — FAISS wiki (facebookresearch/faiss)".casefold() in normalized
+    assert "[Guidelines to choose an index".casefold() not in normalized
 
 
 def test_nested_bracket_in_link_text_is_not_treated_as_link():
@@ -181,7 +201,7 @@ def test_nested_bracket_in_link_text_is_not_treated_as_link():
     mutated_text = entry_text.replace(real_line, mutated_line)
     normalized = label.normalize_quote_text(mutated_text)
     assert "[facebookresearch]/faiss" in normalized
-    assert "https://github.com/facebookresearch/faiss/wiki/Guidelines-to-choose-an-index" in normalized
+    assert "https://github.com/facebookresearch/faiss/wiki/Guidelines-to-choose-an-index".casefold() in normalized
 
 
 def test_backtick_code_span_quote_passes_check():

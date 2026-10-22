@@ -376,13 +376,14 @@ def normalize_quote_text(text: str) -> str:
 
     Markdown markup is cosmetic to what the model is quoting: it may copy the rendered
     words without the `[text](url)` link wrapper, the `*`/`_`/backtick emphasis marks, or
-    with curly quotes swapped in for straight ones. Nothing else is normalized (no case
-    folding, no fuzzy match).
+    with curly quotes swapped in for straight ones. Case is folded too: a quote that starts
+    mid-sentence gets capitalized, and case never changes which words appear. Nothing else
+    is normalized (no fuzzy match).
     """
     text = _LINK_RE.sub(r"\1", text)
     text = re.sub(r"[*_`]", "", text)
     text = text.translate(_CURLY_QUOTES)
-    return re.sub(r"\s+", " ", text).strip()
+    return re.sub(r"\s+", " ", text).strip().casefold()
 
 
 def check_relevant_value(name: str, brief_id: str, value: Any, brief_ids: set[str], entry_text: str) -> None:
