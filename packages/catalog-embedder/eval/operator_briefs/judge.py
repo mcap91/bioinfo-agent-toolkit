@@ -18,6 +18,8 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
+from score import agreed_key_names
+
 EVAL_DIR = Path(__file__).parent
 ANSWER_KEY_PATH = EVAL_DIR / "answer_key.json"
 BRIEFS_PATH = EVAL_DIR / "briefs.json"
@@ -140,25 +142,39 @@ def stage3_recall(kept_names: set[str], key_names: set[str]) -> float:
     return (len(kept_names & key_names) / len(key_names)) if key_names else 0.0
 
 
-def judge_brief(brief_id: str, question: str, raw_response_text: str) -> dict[str, Any]:
+def judge_brief(brief_id: str, question: str, raw_response_text: str, raw_path: Path) -> dict[str, Any]:
+    """One judge call. The raw response is written to `raw_path` as soon as it returns,
+    before any check, so a later failure never loses a paid call (evidence only — it is
+    not read back)."""
     response = json.loads(raw_response_text)
     response_names = {r["name"] for r in response["results"]}
     prompt = build_prompt(question, raw_response_text)
     raw = call_claude(prompt)
+    raw_path.write_text(json.dumps(raw, indent=2) + "\n", encoding="utf-8")
     kept = parse_response(raw)
     check_kept(brief_id, kept, response_names)
 
     answer_key = json.loads(ANSWER_KEY_PATH.read_text(encoding="utf-8"))
     key_names = set(answer_key["relevant"].get(brief_id, {}).keys())
+    agreed_names = agreed_key_names(answer_key, brief_id)
     kept_names = {item["name"] for item in kept}
-    recall = stage3_recall(kept_names, key_names)
-    return {"kept": kept, "stage3_recall": recall}
+    return {
+        "kept": kept,
+        "kept_count": len(kept_names),
+        "n": len(key_names),
+        "stage3_recall": stage3_recall(kept_names, key_names),
+        "agreed_n": len(agreed_names),
+        "stage3_agreed_recall": stage3_recall(kept_names, agreed_names),
+        "prompt_bytes": len(prompt.encode("utf-8")),
+        "cost_usd": raw.get("total_cost_usd"),
+    }
 
 
-def run_judging(score_results: dict[str, Any], briefs: dict[str, str]) -> dict[str, Any]:
+def run_judging(score_results: dict[str, Any], briefs: dict[str, str], raw_prefix: Path) -> dict[str, Any]:
     out_briefs: dict[str, Any] = {}
     for brief_id, brief_result in score_results["briefs"].items():
-        out_briefs[brief_id] = judge_brief(brief_id, briefs[brief_id], brief_result["raw_response"])
+        raw_path = raw_prefix.with_name(f"{raw_prefix.name}-{brief_id}.json")
+        out_briefs[brief_id] = judge_brief(brief_id, briefs[brief_id], brief_result["raw_response"], raw_path)
     return {
         "expansion": score_results["expansion"],
         "model": MODEL,
@@ -191,7 +207,13 @@ def main() -> None:
     if output_path.exists():
         fail(f"refusing to overwrite existing {output_path}")
 
-    results = run_judging(score_results, briefs)
+    raw_dir = EVAL_DIR / "raw"
+    raw_dir.mkdir(exist_ok=True)
+    raw_prefix = raw_dir / output_path.stem
+    existing_raw = sorted(raw_dir.glob(f"{raw_prefix.name}-*.json"))
+    if existing_raw:
+        fail(f"refusing to overwrite existing judge raw responses: {[str(p) for p in existing_raw]}")
+    results = run_judging(score_results, briefs, raw_prefix)
 
     output_path.write_text(json.dumps(results, indent=2) + "\n", encoding="utf-8")
     print(f"wrote {output_path}")

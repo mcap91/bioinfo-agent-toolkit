@@ -8,6 +8,7 @@ import json
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 sys.path.insert(0, str(Path(__file__).parent))
 import judge  # noqa: E402
 
@@ -111,6 +112,35 @@ def test_kept_name_not_in_response_exits_naming_brief():
     assert code == 1
     assert "agent-viz" in stderr
     assert "not-a-real-entry" in stderr
+
+
+def test_judge_brief_on_golden_capture_reports_counts_cost_prompt_size_and_both_recalls():
+    """Stage 3 reporting per the baseline ruling: kept count, full-key and agreed-subset
+    recall, prompt size, and cost — and the raw response is on disk before any check."""
+    import tempfile
+
+    capture = _load_judge_capture()
+    search_text = SEARCH_CAPTURE_PATH.read_text(encoding="utf-8")
+    question = next(b["question"] for b in json.loads(BRIEFS_PATH.read_text(encoding="utf-8"))["briefs"] if b["id"] == "agent-viz")
+    original = judge.call_claude
+    judge.call_claude = lambda prompt: capture
+    try:
+        with tempfile.TemporaryDirectory() as tmp:
+            raw_path = Path(tmp) / "judge-agent-viz.json"
+            result = judge.judge_brief("agent-viz", question, search_text, raw_path)
+            assert json.loads(raw_path.read_text(encoding="utf-8")) == capture
+    finally:
+        judge.call_claude = original
+    answer_key = json.loads(judge.ANSWER_KEY_PATH.read_text(encoding="utf-8"))
+    kept_names = {item["name"] for item in capture["structured_output"]["kept"]}
+    key = set(answer_key["relevant"]["agent-viz"])
+    agreed = judge.agreed_key_names(answer_key, "agent-viz")
+    assert result["kept_count"] == 20
+    assert result["prompt_bytes"] == 232820
+    assert result["cost_usd"] == capture["total_cost_usd"]
+    assert result["n"] == len(key) and result["agreed_n"] == len(agreed)
+    assert result["stage3_recall"] == len(kept_names & key) / len(key)
+    assert result["stage3_agreed_recall"] == len(kept_names & agreed) / len(agreed)
 
 
 def test_stage3_recall_pure():
