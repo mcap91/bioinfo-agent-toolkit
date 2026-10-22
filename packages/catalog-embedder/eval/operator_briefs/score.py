@@ -107,10 +107,21 @@ def validate_response_shape(brief_id: str, response: Any) -> list[dict[str, Any]
     return results
 
 
+def agreed_key_names(answer_key: dict[str, Any], brief_id: str) -> set[str]:
+    """Key entries both labeling passes marked relevant: the brief's key minus the pairs
+    settled by tie-break (agreement.disagreements). Recall on this subset keeps a claim
+    from resting on the contested edge of the key."""
+    key_names = set(answer_key["relevant"].get(brief_id, {}))
+    contested = {d["name"] for d in answer_key["agreement"]["disagreements"] if d["brief"] == brief_id}
+    return key_names - contested
+
+
 def score_brief(
-    brief_id: str, response: dict[str, Any], key_names: set[str], corpus: set[str]
+    brief_id: str, response: dict[str, Any], key_names: set[str], agreed_names: set[str], corpus: set[str]
 ) -> dict[str, Any]:
-    """Pure: depends only on the search response and the answer key, no fastembed."""
+    """Pure: depends only on the search response and the answer key, no fastembed.
+
+    Recall is reported on the full key (headline) and on the agreed subset."""
     results = validate_response_shape(brief_id, response)
     result_names = {r["name"] for r in results}
     bad = sorted(result_names - corpus)
@@ -125,6 +136,9 @@ def score_brief(
     lexical_relevant = len(lexical_names & key_names)
     semantic_relevant = len(semantic_names & key_names)
     combined_relevant = len(result_names & key_names)
+    agreed_n = len(agreed_names)
+    agreed_lexical_relevant = len(lexical_names & agreed_names)
+    agreed_combined_relevant = len(result_names & agreed_names)
 
     return {
         "n": n,
@@ -137,6 +151,11 @@ def score_brief(
         "surfaced_recall": (combined_relevant / n) if n else 0.0,
         "lexical_recall": (lexical_relevant / n) if n else 0.0,
         "random_pick_recall": (returned / len(corpus)) if corpus else 0.0,
+        "agreed_n": agreed_n,
+        "agreed_lexical_relevant": agreed_lexical_relevant,
+        "agreed_combined_relevant": agreed_combined_relevant,
+        "agreed_surfaced_recall": (agreed_combined_relevant / agreed_n) if agreed_n else 0.0,
+        "agreed_lexical_recall": (agreed_lexical_relevant / agreed_n) if agreed_n else 0.0,
     }
 
 
@@ -154,7 +173,7 @@ def run_scoring(dir: Path, expansion_path: Path, expansion_name: str, semantic_n
         )
         response = json.loads(response_text)
         key_names = set(answer_key["relevant"].get(brief_id, {}).keys())
-        metrics = score_brief(brief_id, response, key_names, corpus)
+        metrics = score_brief(brief_id, response, key_names, agreed_key_names(answer_key, brief_id), corpus)
         briefs[brief_id] = {"metrics": metrics, "raw_response": response_text}
 
     return {

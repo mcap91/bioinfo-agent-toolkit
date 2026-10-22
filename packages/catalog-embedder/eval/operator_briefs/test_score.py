@@ -46,7 +46,7 @@ def _parse_expecting_exit(func, *args) -> tuple[int | None, str]:
 def test_golden_capture_combined_lexical_semantic_and_random_pick_counts():
     response = _load_response()
     corpus = _corpus()
-    metrics = score.score_brief("agent-viz", response, {"zoetrope"}, corpus)
+    metrics = score.score_brief("agent-viz", response, {"zoetrope"}, {"zoetrope"}, corpus)
     assert metrics["returned"] == 326
     assert metrics["lexical_returned"] == 316
     assert metrics["semantic_returned"] == 10
@@ -55,6 +55,33 @@ def test_golden_capture_combined_lexical_semantic_and_random_pick_counts():
     assert metrics["combined_relevant"] == 1
     assert metrics["lexical_relevant"] == 1
     assert metrics["semantic_relevant"] == 0
+
+
+def test_agreed_subset_is_key_minus_tiebroken_pairs_on_the_real_answer_key():
+    """Agreed = pairs both labeling passes marked relevant. In the committed key, a pair
+    in agreement.disagreements reached the key only through the tie-break."""
+    answer_key = json.loads(score.ANSWER_KEY_PATH.read_text(encoding="utf-8"))
+    differs = 0
+    for brief_id, entries in answer_key["relevant"].items():
+        key_names = set(entries)
+        contested = {
+            d["name"] for d in answer_key["agreement"]["disagreements"] if d["brief"] == brief_id
+        }
+        agreed = score.agreed_key_names(answer_key, brief_id)
+        assert agreed == key_names - contested
+        assert agreed <= key_names
+        differs += key_names != agreed
+    assert differs > 0
+
+
+def test_agreed_recall_is_reported_separately_from_full_key_recall():
+    response = _load_response()
+    corpus = _corpus()
+    unreturned = sorted(corpus - {r["name"] for r in response["results"]})[0]
+    metrics = score.score_brief("agent-viz", response, {"zoetrope", unreturned}, {"zoetrope"}, corpus)
+    assert metrics["n"] == 2 and metrics["surfaced_recall"] == 0.5
+    assert metrics["agreed_n"] == 1 and metrics["agreed_surfaced_recall"] == 1.0
+    assert metrics["agreed_lexical_recall"] == 1.0
 
 
 def test_result_name_not_in_corpus_exits_naming_brief():
@@ -72,7 +99,7 @@ def test_result_name_not_in_corpus_exits_naming_brief():
         }
     )
     corpus = _corpus()
-    code, stderr = _parse_expecting_exit(score.score_brief, "agent-viz", mutated, set(), corpus)
+    code, stderr = _parse_expecting_exit(score.score_brief, "agent-viz", mutated, set(), set(), corpus)
     assert code == 1
     assert "agent-viz" in stderr
     assert "not-a-real-entry" in stderr
@@ -81,7 +108,7 @@ def test_result_name_not_in_corpus_exits_naming_brief():
 def test_empty_key_gives_zero_recall():
     response = _load_response()
     corpus = _corpus()
-    metrics = score.score_brief("agent-viz", response, set(), corpus)
+    metrics = score.score_brief("agent-viz", response, set(), set(), corpus)
     assert metrics["surfaced_recall"] == 0.0
     assert metrics["lexical_recall"] == 0.0
 
@@ -90,7 +117,7 @@ def test_unknown_match_type_exits_naming_reason():
     response = _load_response()
     mutated = json.loads(json.dumps(response))
     mutated["results"][0]["match"]["type"] = "fuzzy"
-    code, stderr = _parse_expecting_exit(score.score_brief, "agent-viz", mutated, {"zoetrope"}, _corpus())
+    code, stderr = _parse_expecting_exit(score.score_brief, "agent-viz", mutated, {"zoetrope"}, {"zoetrope"}, _corpus())
     assert code == 1
     assert "agent-viz" in stderr
     assert "match.type" in stderr
@@ -101,7 +128,7 @@ def test_missing_results_key_exits_naming_reason():
     response = _load_response()
     mutated = json.loads(json.dumps(response))
     del mutated["results"]
-    code, stderr = _parse_expecting_exit(score.score_brief, "agent-viz", mutated, {"zoetrope"}, _corpus())
+    code, stderr = _parse_expecting_exit(score.score_brief, "agent-viz", mutated, {"zoetrope"}, {"zoetrope"}, _corpus())
     assert code == 1
     assert "agent-viz" in stderr
     assert "results" in stderr
