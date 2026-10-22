@@ -47,6 +47,10 @@ def _read_entry_text(name: str) -> str:
     return label.run_git(["show", f"{meta['corpus_commit']}:catalog/entries/{name}.md"], REPO_ROOT)
 
 
+def _read_entry_text_at_head(name: str) -> str:
+    return label.run_git(["show", f"HEAD:catalog/entries/{name}.md"], REPO_ROOT)
+
+
 def _parse_expecting_exit(func, *args) -> tuple[int | None, str]:
     buf = io.StringIO()
     try:
@@ -113,6 +117,75 @@ def test_quote_not_in_entry_exits_naming_quote():
     assert "quote" in stderr
 
 
+FAILING_QUOTE = "Forgetting is a feature — context graphs must know when things have changed"
+
+
+def test_real_asterisk_emphasis_quote_passes_check():
+    """The entry's real line is `**Forgetting is a feature** — ...`; the model's quote
+    dropped the `**`. Root cause of the step 4 abort this fix addresses."""
+    entry_text = _read_entry_text_at_head("context-graphs-trillion-dollar-elephant")
+    relevant = {"hybrid-memory": {"roles": ["guide"], "quote": FAILING_QUOTE, "reason": "x"}}
+    label.check_label_entry("context-graphs-trillion-dollar-elephant", relevant, BRIEF_IDS, entry_text)
+
+
+def test_same_quote_with_one_word_changed_fails_named_fail():
+    entry_text = _read_entry_text_at_head("context-graphs-trillion-dollar-elephant")
+    mutated_quote = FAILING_QUOTE.replace("Forgetting", "Remembering")
+    relevant = {"hybrid-memory": {"roles": ["guide"], "quote": mutated_quote, "reason": "x"}}
+    code, stderr = _parse_expecting_exit(
+        label.check_label_entry, "context-graphs-trillion-dollar-elephant", relevant, BRIEF_IDS, entry_text
+    )
+    assert code == 1
+    assert "quote not found in entry text" in stderr
+
+
+def test_markdown_link_text_quote_passes_check():
+    """Entry has `[Guidelines ... (facebookresearch/faiss)](https://...)`; the model
+    quoted the rendered link text without the `[...]()` wrapper."""
+    entry_text = _read_entry_text_at_head("ann-index-methods")
+    quote = "Guidelines to choose an index — FAISS wiki (facebookresearch/faiss)"
+    relevant = {"local-llm": {"roles": ["guide"], "quote": quote, "reason": "x"}}
+    label.check_label_entry("ann-index-methods", relevant, BRIEF_IDS, entry_text)
+
+
+def test_backtick_code_span_quote_passes_check():
+    """Entry has `` `claude --print` `` inline; the model quoted the plain words."""
+    entry_text = _read_entry_text_at_head("adeptly")
+    quote = "it uses the local claude --print CLI to draft a structured plan"
+    relevant = {"local-llm": {"roles": ["use"], "quote": quote, "reason": "x"}}
+    label.check_label_entry("adeptly", relevant, BRIEF_IDS, entry_text)
+
+
+def test_curly_apostrophe_quote_passes_check():
+    """Entry has a straight apostrophe ('session's own timestamps'); the model wrote a
+    curly apostrophe when quoting it."""
+    entry_text = _read_entry_text_at_head("zoetrope")
+    quote = "paced by the session’s own timestamps"
+    relevant = {"agent-viz": {"roles": ["use"], "quote": quote, "reason": "x"}}
+    label.check_label_entry("zoetrope", relevant, BRIEF_IDS, entry_text)
+
+
+def test_underscore_emphasis_quote_passes_check():
+    """Real entry text with a plausible underscore-emphasized word injected (no catalog
+    entry currently uses `_word_` emphasis); the model quoted the plain word."""
+    base_entry_text = _read_entry_text_at_head("zoetrope")
+    entry_text = base_entry_text.replace(
+        "indexed by event (not wall-clock)", "indexed by event (not _wall-clock_)"
+    )
+    assert entry_text != base_entry_text
+    quote = "Scrubbable timeline indexed by event (not wall-clock)"
+    relevant = {"agent-viz": {"roles": ["use"], "quote": quote, "reason": "x"}}
+    label.check_label_entry("zoetrope", relevant, BRIEF_IDS, entry_text)
+
+
+def test_whitespace_run_in_quote_collapses_to_match_check():
+    """The model inserted a line break where the real entry text has a single space."""
+    entry_text = _read_entry_text_at_head("zoetrope")
+    quote = "paced   by the session's\nown timestamps"
+    relevant = {"agent-viz": {"roles": ["use"], "quote": quote, "reason": "x"}}
+    label.check_label_entry("zoetrope", relevant, BRIEF_IDS, entry_text)
+
+
 def test_unknown_role_exits_naming_roles():
     raw = _load_capture()
     labels = label.parse_response(raw)
@@ -135,6 +208,109 @@ def test_duplicate_batch_name_exits_naming_duplicates():
     code, stderr = _parse_expecting_exit(label.check_batch_names, duped, batch_names)
     assert code == 1
     assert "duplicate" in stderr
+
+
+@contextlib.contextmanager
+def _temp_raw_dir():
+    with tempfile.TemporaryDirectory() as tmp:
+        original = label.RAW_DIR
+        label.RAW_DIR = Path(tmp)
+        try:
+            yield Path(tmp)
+        finally:
+            label.RAW_DIR = original
+
+
+def test_cached_call_claude_hits_cache_and_makes_zero_calls_on_sha256_match():
+    with _temp_raw_dir():
+        prompt = "same prompt"
+        cached_response = {"is_error": False, "subtype": "success", "structured_output": {"labels": []}}
+        path = label.raw_cache_path("pass1", 0)
+        path.write_text(
+            json.dumps({"prompt_sha256": label.sha256_hex(prompt), "response": cached_response}),
+            encoding="utf-8",
+        )
+
+        def _boom(*args, **kwargs):
+            raise AssertionError("call_claude must not run on a cache hit")
+
+        original_call = label.call_claude
+        label.call_claude = _boom
+        try:
+            raw, from_cache = label.cached_call_claude(prompt, "pass1", 0)
+        finally:
+            label.call_claude = original_call
+        assert from_cache is True
+        assert raw == cached_response
+
+
+def test_cached_call_claude_fails_loud_on_sha256_mismatch_naming_file():
+    with _temp_raw_dir():
+        path = label.raw_cache_path("pass1", 0)
+        path.write_text(json.dumps({"prompt_sha256": "deadbeef", "response": {}}), encoding="utf-8")
+        code, stderr = _parse_expecting_exit(label.cached_call_claude, "a different prompt", "pass1", 0)
+        assert code == 1
+        assert str(path) in stderr
+
+
+def test_cached_call_claude_writes_raw_file_with_prompt_sha256_before_returning():
+    with _temp_raw_dir():
+        prompt = "fresh prompt"
+        response = {"is_error": False, "subtype": "success", "structured_output": {"labels": []}}
+        original_call = label.call_claude
+        label.call_claude = lambda p: response
+        try:
+            raw, from_cache = label.cached_call_claude(prompt, "pass2", 3)
+        finally:
+            label.call_claude = original_call
+        assert from_cache is False
+        assert raw == response
+        saved = json.loads(label.raw_cache_path("pass2", 3).read_text(encoding="utf-8"))
+        assert saved["prompt_sha256"] == label.sha256_hex(prompt)
+        assert saved["response"] == response
+
+
+def test_run_pass_reports_cache_hits_and_calls_and_skips_cached_batches():
+    with _temp_raw_dir():
+        original_read_entry_text = label.read_entry_text
+        original_call_claude = label.call_claude
+        label.read_entry_text = lambda dir, commit, name: f"text for {name}"
+        call_count = {"n": 0}
+
+        def _call(prompt):
+            call_count["n"] += 1
+            names = [
+                part.split("ENTRY name=", 1)[1].split(":", 1)[0]
+                for part in prompt.split("\n\n")
+                if part.startswith("ENTRY name=")
+            ]
+            return {
+                "is_error": False,
+                "subtype": "success",
+                "structured_output": {"labels": [{"name": n, "relevant": {}} for n in names]},
+            }
+
+        label.call_claude = _call
+        try:
+            batches = [["a", "b"], ["c", "d"]]
+            cached_batch_entries = [(name, f"text for {name}") for name in batches[0]]
+            cached_prompt = label.build_prompt("briefs", cached_batch_entries)
+            cached_response = {
+                "is_error": False,
+                "subtype": "success",
+                "structured_output": {"labels": [{"name": n, "relevant": {}} for n in batches[0]]},
+            }
+            label.raw_cache_path("pass1", 0).write_text(
+                json.dumps({"prompt_sha256": label.sha256_hex(cached_prompt), "response": cached_response}),
+                encoding="utf-8",
+            )
+            result, stats = label.run_pass(Path("."), "deadbeef", "pass1", batches, "briefs", set())
+        finally:
+            label.read_entry_text = original_read_entry_text
+            label.call_claude = original_call_claude
+        assert stats == {"cached": 1, "called": 1}
+        assert call_count["n"] == 1
+        assert set(result) == {"a", "b", "c", "d"}
 
 
 def test_refuses_to_overwrite_existing_answer_key_before_any_claude_call():
