@@ -1,4 +1,4 @@
-"""WK-0076 step 2b(d): capture what fastembed 0.9.0 does with jina-embeddings-v2-small-en.
+"""capture what fastembed 0.9.0 does with jina-embeddings-v2-small-en.
 
 Run: `.venv/bin/python eval/operator_briefs/captures/probe_jina.py --dir <repo>` (from
 packages/catalog-embedder). Writes probe_jina.json beside this file. Probe only — not used by
