@@ -148,6 +148,42 @@ def test_markdown_link_text_quote_passes_check():
     label.check_label_entry("ann-index-methods", relevant, BRIEF_IDS, entry_text)
 
 
+def test_unmatched_bracket_does_not_swallow_text_up_to_next_real_link():
+    """Root cause of the HO-0052 block: line 28's `t∈[0,1)` has no closing `]`, so the
+    old regex's cross-line negated classes started a 'link' there that ran through the
+    real link on line 51, erasing everything in between. Normalizing the whole entry
+    must leave the line-28 fragment and the span between it and line 51 intact, while
+    the real line-51 link still reduces to its text."""
+    entry_text = _read_entry_text_at_head("ann-index-methods")
+    normalized = label.normalize_quote_text(entry_text)
+    assert "a threshold t∈[0,1))" in normalized
+    assert "direct computation is already fast enough and exact" in normalized
+    assert "Guidelines to choose an index — FAISS wiki (facebookresearch/faiss)" in normalized
+    assert "[Guidelines to choose an index" not in normalized
+
+
+def test_nested_bracket_in_link_text_is_not_treated_as_link():
+    """Mutate the real line-51 link so its text contains a nested `[...]` that isn't
+    itself immediately followed by `(`. Per the ruled definition (link text has no `[`
+    or `]`), this no longer matches as a link from either bracket, so the markup must
+    pass through untouched rather than being partially or fully stripped."""
+    entry_text = _read_entry_text_at_head("ann-index-methods")
+    real_line = (
+        "- [Guidelines to choose an index — FAISS wiki (facebookresearch/faiss)]"
+        "(https://github.com/facebookresearch/faiss/wiki/Guidelines-to-choose-an-index)"
+        " — memory formulas, scale brackets, nlist/training-sample guidance (fetched directly)."
+    )
+    assert real_line in entry_text
+    mutated_line = real_line.replace(
+        "(facebookresearch/faiss)", "([facebookresearch]/faiss)"
+    )
+    assert mutated_line != real_line
+    mutated_text = entry_text.replace(real_line, mutated_line)
+    normalized = label.normalize_quote_text(mutated_text)
+    assert "[facebookresearch]/faiss" in normalized
+    assert "https://github.com/facebookresearch/faiss/wiki/Guidelines-to-choose-an-index" in normalized
+
+
 def test_backtick_code_span_quote_passes_check():
     """Entry has `` `claude --print` `` inline; the model quoted the plain words."""
     entry_text = _read_entry_text_at_head("adeptly")

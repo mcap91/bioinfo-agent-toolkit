@@ -207,6 +207,11 @@ def check_batch_names(labels: list[dict[str, Any]], batch_names: list[str]) -> N
 
 _CURLY_QUOTES = {0x2018: ord("'"), 0x2019: ord("'"), 0x201C: ord('"'), 0x201D: ord('"')}
 
+# A real single-line markdown link: text has no `[`, `]`, or newline; url has no `)`,
+# whitespace, or newline. Excluding `\n` from both classes keeps this from spanning lines
+# (character classes match newline by default, unlike `.`).
+_LINK_RE = re.compile(r"\[([^\[\]\n]*)\]\([^)\s]*\)")
+
 
 def normalize_quote_text(text: str) -> str:
     """Normalize a quote and the entry text identically before the substring check.
@@ -216,7 +221,7 @@ def normalize_quote_text(text: str) -> str:
     with curly quotes swapped in for straight ones. Nothing else is normalized (no case
     folding, no fuzzy match).
     """
-    text = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", text)
+    text = _LINK_RE.sub(r"\1", text)
     text = re.sub(r"[*_`]", "", text)
     text = text.translate(_CURLY_QUOTES)
     return re.sub(r"\s+", " ", text).strip()
