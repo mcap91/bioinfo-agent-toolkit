@@ -23,6 +23,8 @@ TOOLS_TS_PATH = "packages/catalog-mcp/src/tools.ts"
 
 MODEL = "claude-opus-5-5"
 
+ARTIFACT_NAME_RE = re.compile(r"^[A-Za-z0-9_-]+$")
+
 EXPAND = (
     "You are about to call the catalog search tool described below to answer the brief. "
     "Write the query and terms you would send."
@@ -48,6 +50,18 @@ SEARCH_TOOL_RE = re.compile(r"name:\s*'search',\s*description:\s*'((?:[^'\\]|\\.
 def fail(reason: str) -> None:
     print(f"FAIL: {reason}", file=sys.stderr)
     sys.exit(1)
+
+
+def validate_bare_name(value: str, arg_name: str) -> None:
+    if not ARTIFACT_NAME_RE.match(value):
+        fail(f"{arg_name} {value!r} must be a bare name matching [A-Za-z0-9_-]+")
+
+
+def resolve_under_eval_dir(path: Path, arg_name: str) -> Path:
+    resolved = path.resolve()
+    if resolved.parent != EVAL_DIR.resolve():
+        fail(f"{arg_name} resolves outside operator_briefs/: {path}")
+    return resolved
 
 
 def run_git(args: list[str], cwd: Path) -> str:
@@ -171,7 +185,8 @@ def main() -> None:
     args = parser.parse_args()
     dir = args.dir.resolve()
 
-    output_path = EVAL_DIR / f"{args.out}.json"
+    validate_bare_name(args.out, "--out")
+    output_path = resolve_under_eval_dir(EVAL_DIR / f"{args.out}.json", "--out")
     if output_path.exists():
         fail(f"refusing to overwrite existing {output_path}")
 

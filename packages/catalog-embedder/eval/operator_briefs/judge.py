@@ -2,14 +2,16 @@
 see, judged from the search response exactly as returned. One call per brief.
 
 Run: `.venv/bin/python eval/operator_briefs/judge.py --score-results
-score_expansion_v1_baseline.json`. Any shape drift or re-check failure prints a named
-reason and exits 1.
+score_expansion_v1_baseline.json`. The search response is inserted into the prompt as
+the exact text score.py saved (the search CLI's stdout, never re-serialized). Any
+shape drift or re-check failure prints a named reason and exits 1.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import re
 import subprocess
 import sys
 import tempfile
@@ -21,6 +23,9 @@ ANSWER_KEY_PATH = EVAL_DIR / "answer_key.json"
 BRIEFS_PATH = EVAL_DIR / "briefs.json"
 
 MODEL = "claude-opus-5-5"
+
+ARTIFACT_NAME_RE = re.compile(r"^[A-Za-z0-9_-]+$")
+SCORE_RESULTS_SUFFIX = ".json"
 
 JUDGE = (
     "The search response below was returned for the brief. Keep every result that someone doing "
@@ -53,13 +58,25 @@ def fail(reason: str) -> None:
     sys.exit(1)
 
 
+def validate_bare_name(value: str, arg_name: str) -> None:
+    if not ARTIFACT_NAME_RE.match(value):
+        fail(f"{arg_name} {value!r} must be a bare name matching [A-Za-z0-9_-]+")
+
+
+def resolve_under_eval_dir(path: Path, arg_name: str) -> Path:
+    resolved = path.resolve()
+    if resolved.parent != EVAL_DIR.resolve():
+        fail(f"{arg_name} resolves outside operator_briefs/: {path}")
+    return resolved
+
+
 def get_cli_version() -> str:
     result = subprocess.run(["claude", "--version"], capture_output=True, text=True, check=True)
     return result.stdout.strip()
 
 
-def build_prompt(question: str, raw_response: dict[str, Any]) -> str:
-    return "\n\n".join([JUDGE, "BRIEF:", question, "SEARCH RESPONSE:", json.dumps(raw_response)])
+def build_prompt(question: str, raw_response_text: str) -> str:
+    return "\n\n".join([JUDGE, "BRIEF:", question, "SEARCH RESPONSE:", raw_response_text])
 
 
 def build_command() -> list[str]:
@@ -113,9 +130,10 @@ def stage3_recall(kept_names: set[str], key_names: set[str]) -> float:
     return (len(kept_names & key_names) / len(key_names)) if key_names else 0.0
 
 
-def judge_brief(brief_id: str, question: str, raw_response: dict[str, Any]) -> dict[str, Any]:
-    response_names = {r["name"] for r in raw_response["results"]}
-    prompt = build_prompt(question, raw_response)
+def judge_brief(brief_id: str, question: str, raw_response_text: str) -> dict[str, Any]:
+    response = json.loads(raw_response_text)
+    response_names = {r["name"] for r in response["results"]}
+    prompt = build_prompt(question, raw_response_text)
     raw = call_claude(prompt)
     kept = parse_response(raw)
     check_kept(brief_id, kept, response_names)
@@ -146,7 +164,12 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    score_results_path = EVAL_DIR / args.score_results
+    raw_name = args.score_results
+    if not raw_name.endswith(SCORE_RESULTS_SUFFIX):
+        fail(f"--score-results {raw_name!r} must end with {SCORE_RESULTS_SUFFIX!r}")
+    validate_bare_name(raw_name[: -len(SCORE_RESULTS_SUFFIX)], "--score-results")
+    score_results_path = resolve_under_eval_dir(EVAL_DIR / raw_name, "--score-results")
+
     score_results = json.loads(score_results_path.read_text(encoding="utf-8"))
 
     briefs_data = json.loads(BRIEFS_PATH.read_text(encoding="utf-8"))["briefs"]

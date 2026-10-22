@@ -107,6 +107,18 @@ def test_tool_description_extraction_fails_on_multiple_matches():
     assert "found 2" in stderr
 
 
+def test_out_name_escaping_dir_exits_before_any_call():
+    original_argv = sys.argv
+    sys.argv = ["expand.py", "--dir", str(REPO_ROOT), "--out", "../x"]
+    try:
+        code, stderr = _parse_expecting_exit(expand.main)
+    finally:
+        sys.argv = original_argv
+    assert code == 1
+    assert "../x" in stderr
+    assert "--out" in stderr
+
+
 if __name__ == "__main__":
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     for test in tests:

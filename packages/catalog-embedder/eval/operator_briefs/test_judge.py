@@ -11,9 +11,14 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 import judge  # noqa: E402
 
-CAPTURE_DIR = Path(__file__).parent / "captures"
+EVAL_DIR = Path(__file__).parent
+CAPTURE_DIR = EVAL_DIR / "captures"
 JUDGE_CAPTURE_PATH = CAPTURE_DIR / "judge_agent-viz.json"
+JUDGE_META_PATH = CAPTURE_DIR / "judge_agent-viz.meta.json"
 SEARCH_CAPTURE_PATH = CAPTURE_DIR / "search_agent-viz.json"
+BRIEFS_PATH = EVAL_DIR / "briefs.json"
+
+REPO_ROOT = Path(__file__).resolve().parents[4]
 
 
 def _load_judge_capture() -> dict:
@@ -41,6 +46,18 @@ def test_golden_capture_twenty_kept_all_in_response():
     assert len(kept) == 20
     response_names = _response_names()
     judge.check_kept("agent-viz", kept, response_names)
+
+
+def test_golden_prompt_from_unedited_search_capture_matches_captured_byte_count():
+    """The judge prompt must be built from the raw search stdout text byte-for-byte,
+    never a re-parsed/re-serialized copy, or the byte count drifts from the capture.
+    """
+    meta = json.loads(JUDGE_META_PATH.read_text(encoding="utf-8"))
+    raw_response_text = SEARCH_CAPTURE_PATH.read_text(encoding="utf-8")
+    briefs = json.loads(BRIEFS_PATH.read_text(encoding="utf-8"))["briefs"]
+    question = next(b["question"] for b in briefs if b["id"] == "agent-viz")
+    prompt = judge.build_prompt(question, raw_response_text)
+    assert len(prompt.encode("utf-8")) == meta["prompt_bytes"] == 232820
 
 
 def test_is_error_true_exits_naming_field():
@@ -72,6 +89,18 @@ def test_kept_name_not_in_response_exits_naming_brief():
 def test_stage3_recall_pure():
     assert judge.stage3_recall({"zoetrope", "pixel-agents"}, {"zoetrope", "herdr"}) == 0.5
     assert judge.stage3_recall(set(), set()) == 0.0
+
+
+def test_score_results_name_escaping_dir_exits_before_any_read():
+    original_argv = sys.argv
+    sys.argv = ["judge.py", "--score-results", "../x.json"]
+    try:
+        code, stderr = _parse_expecting_exit(judge.main)
+    finally:
+        sys.argv = original_argv
+    assert code == 1
+    assert "../x" in stderr
+    assert "--score-results" in stderr
 
 
 if __name__ == "__main__":

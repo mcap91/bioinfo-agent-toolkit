@@ -11,6 +11,7 @@ import contextlib
 import io
 import json
 import sys
+import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -134,6 +135,25 @@ def test_duplicate_batch_name_exits_naming_duplicates():
     code, stderr = _parse_expecting_exit(label.check_batch_names, duped, batch_names)
     assert code == 1
     assert "duplicate" in stderr
+
+
+def test_refuses_to_overwrite_existing_answer_key_before_any_claude_call():
+    with tempfile.TemporaryDirectory() as tmp:
+        existing = Path(tmp) / "answer_key.json"
+        existing.write_text("{}", encoding="utf-8")
+
+        def _boom(*args, **kwargs):
+            raise AssertionError("build_answer_key must not run when the answer key already exists")
+
+        original = label.build_answer_key
+        label.build_answer_key = _boom
+        try:
+            code, stderr = _parse_expecting_exit(label.run_label, REPO_ROOT, existing)
+        finally:
+            label.build_answer_key = original
+        assert code == 1
+        assert "refusing to overwrite" in stderr
+        assert str(existing) in stderr
 
 
 def test_call_claude_sends_prompt_on_stdin_not_argv():

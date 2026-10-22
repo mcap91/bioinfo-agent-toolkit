@@ -355,15 +355,22 @@ def build_answer_key(dir: Path) -> dict[str, Any]:
     }
 
 
+def run_label(dir: Path, output_path: Path) -> dict[str, Any]:
+    """Refuse to overwrite an existing answer key before any Claude call."""
+    if output_path.exists():
+        fail(f"refusing to overwrite existing {output_path}")
+    return build_answer_key(dir)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--dir", type=Path, required=True)
     args = parser.parse_args()
     dir = args.dir.resolve()
 
-    answer_key = build_answer_key(dir)
-
     output_path = EVAL_DIR / "answer_key.json"
+    answer_key = run_label(dir, output_path)
+
     output_path.write_text(json.dumps(answer_key, indent=2) + "\n", encoding="utf-8")
     print(f"wrote {output_path}")
 
