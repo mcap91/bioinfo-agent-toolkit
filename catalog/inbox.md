@@ -82,3 +82,14 @@ https://github.com/weaviate/weaviate
 ⚠ needs-link https://www.instagram.com/reel/DeIm-UyIzbz/
 ⚠ needs-link https://www.instagram.com/reel/DeJyswKCtCY/
 ⚠ needs-link https://www.instagram.com/reel/DeIV3Tam24w/
+
+## kb session drop 2026-10-26
+
+https://www.reddit.com/r/ClaudeCode/comments/1xbxoza/my_claude_code_setup_it_runs_like_a_small/ — practitioner setup post: hooks over prose, GitLab state machine, model-tier routing, Jev typed-judgment tier with measured break-even, typed/dated memory (full text in kb SRC-0028)
+https://github.com/JustVugg/colibri — pure-C MoE inference streaming experts from SSD (read-only); Apache-2.0
+https://huggingface.co/Contrastive-LM/CLM-v0.1-8B — Stanford + NVIDIA contrastive "System One" scorer on frozen Qwen3-8B; Apache-2.0
+https://github.com/yt-dlp/yt-dlp — media/metadata downloader; anonymous Instagram reel capture proven 2026-10-26 (bioinfo WK-0079)
+https://github.com/instaloader/instaloader — Instagram posts/metadata downloader
+https://github.com/imageio/imageio-ffmpeg — pip-installable ffmpeg binary (used for keyframes/audio decode)
+Jev (TypeSafe AI) — typed-judgment model (choice/score/probability only); find the official URL before draining
+strata — annotate existing entry: PolyStrata adds four more MoE models (see the needs-link Reddit item "PolyStrata"); entry acquired 2026-09-29, likely stale
