@@ -148,6 +148,14 @@ suggestions, and requires this Python environment to be set up. See
 [docs/semantic-search.md](docs/semantic-search.md) for the full setup guide, matching
 semantics, and auto-rebuild behavior.
 
+Capturing Reddit links during intake (the capture step in
+[`skills/catalog-intake/SKILL.md`](skills/catalog-intake/SKILL.md)) uses headless Chromium via
+[`packages/catalog-capture/`](packages/catalog-capture/). One-time setup:
+
+```bash
+cd packages/catalog-capture && uv sync --extra dev && uv run playwright install chromium
+```
+
 ## Structure
 
 ```
@@ -155,6 +163,7 @@ skills/<name>/         Skills (just a SKILL.md)
 statusline/            Context window status bar tool
 catalog/               External tool/skill catalog (data + derived artifacts)
 packages/catalog-mcp/  Catalog MCP tool server (17 tools)
+packages/catalog-capture/  Headless-browser capture for links a plain fetch cannot read (Reddit)
 docs/                  Public documentation
 docs/output-styles/    Claude Code output styles (e.g. direct.md)
 ```
