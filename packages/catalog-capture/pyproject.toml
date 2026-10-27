@@ -1,10 +1,16 @@
 [project]
 name = "catalog-capture"
 version = "0.1.0"
-description = "Reddit /s/ share-link capture: resolves inbox needs-link items to catalog-ready text (WK-0080 Reddit slice)"
+description = "Reddit /s/ share-link + Instagram reel capture: resolves inbox needs-link items to catalog-ready text (WK-0080)"
 requires-python = ">=3.13"
 dependencies = [
+    "faster-whisper>=1.2.1",
+    "imageio-ffmpeg>=0.6.0",
+    "numpy>=2.5.4",
+    "pillow>=13.0.0",
     "playwright>=1.64.1",
+    "soundfile>=0.14.0",
+    "yt-dlp[curl-cffi,default]>=2026.10.26",
 ]
 
 [project.optional-dependencies]

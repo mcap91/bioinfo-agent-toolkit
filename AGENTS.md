@@ -56,8 +56,9 @@ The catalog tracks external tools, skills, and frameworks. The full operator flo
 `skills/catalog-intake/SKILL.md`. Quick reference:
 
 1. **Intake:** pull links from Gmail or paste into `catalog/inbox.md`, then drain with the
-   `drain` MCP tool, capture Reddit needs-link items (`catalog-capture`), and drain again.
-   Unfetchable items (Instagram) stay in inbox marked `⚠ needs-link`.
+   `drain` MCP tool, capture Reddit and Instagram reel needs-link items (`catalog-capture`), and
+   drain again. Instagram reels are captured by `catalog-capture`; Instagram carousels (`/p/`)
+   still stay in inbox marked `⚠ needs-link`.
 2. **Processing:** run `npm run -w @catalog/mcp catalog:process` in the background. It processes
    every pending queue item headless and writes entries to `catalog/entries/`.
 3. **After processing:** check `catalog/queue.json` for parked/errored items, commit new entries.

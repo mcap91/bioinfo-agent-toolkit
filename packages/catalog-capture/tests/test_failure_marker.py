@@ -123,6 +123,54 @@ def test_blank_body_marks_capture_failed(golden_capture, tmp_path: Path):
     assert out_text.startswith(f"⚠ capture-failed {URL} — ")
 
 
+def test_source_write_failure_becomes_capture_failed_marker_and_batch_continues(
+    golden_capture, tmp_path: Path, monkeypatch
+):
+    # Why: write_source_file does real file I/O (OSError is possible — disk
+    # full, permissions) and used to run outside the capture try/except, so
+    # one bad write propagated out of `repl()` through `re.sub` and aborted
+    # the whole batch, silently dropping every other item in the same run.
+    # One bad write must not cost the rest of the batch.
+    import catalog_capture.rewrite as rewrite_mod
+
+    _, body_text = golden_capture
+    url_a = "https://www.reddit.com/r/LocalLLaMA/s/JNjEe87YeN"
+    url_b = "https://www.reddit.com/r/LocalLLaMA/s/other00id"
+
+    def fake_capture(url: str) -> CaptureResult:
+        share_id = url.rsplit("/", 1)[-1]
+        return CaptureResult(
+            final_url=f"https://www.reddit.com/r/LocalLLaMA/comments/post{share_id}/t/",
+            title="t",
+            body_text=body_text,
+            playwright_version="1.64.1",
+            chromium_version="156.0.8078.4",
+        )
+
+    real_write = rewrite_mod.write_source_file
+    calls = {"n": 0}
+
+    def flaky_write(sources_dir, post_id, content):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            raise OSError("disk full (simulated)")
+        return real_write(sources_dir, post_id, content)
+
+    monkeypatch.setattr(rewrite_mod, "write_source_file", flaky_write)
+
+    inbox = f"⚠ needs-link {url_a}\n⚠ needs-link {url_b}\n"
+    out_text, results = process_needs_link(
+        inbox, sources_dir=tmp_path / "sources", capture_fn=fake_capture, delay_s=0
+    )
+
+    assert [r.status for r in results] == ["failed", "ok"]
+    out_lines = out_text.splitlines()
+    assert out_lines[0] == f"⚠ capture-failed {url_a} — write: disk full (simulated)"
+    assert out_lines[1] == "```text"  # the second item still becomes a fenced block
+    written = sorted(p.name for p in (tmp_path / "sources" / "reddit").glob("*.md"))
+    assert len(written) == 1  # only the second item's source file survives
+
+
 def test_missing_post_id_marks_capture_failed(golden_capture, tmp_path: Path):
     _, body_text = golden_capture
 

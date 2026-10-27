@@ -19,12 +19,12 @@ description: Full catalog pipeline — Gmail pull, inbox curation, drain, and he
 3. **Update cursor:** call `config { action: "set-state", key: "gmail_last_pull_iso", value: "<now ISO>" }`
    with the current UTC timestamp. Do this **after** successfully appending to inbox, not before.
 4. **Curate** `catalog/inbox.md` with the user: delete junk; for any `⚠ needs-link` item
-   (Instagram, LinkedIn posts, X, paywalled), replace with the real fetchable URL or paste the
-   relevant prose as a ```text block. Reddit post/share links need no manual link — the capture
-   step (step 6) resolves them.
+   (Instagram carousels, LinkedIn posts, X, paywalled), replace with the real fetchable URL or
+   paste the relevant prose as a ```text block. Reddit post/share links and Instagram reel links
+   need no manual link — the capture steps (steps 6-7) resolve them.
 5. **Drain:** call the `drain {}` MCP tool. It ingests ready items into the queue and marks
    unfetchable items `⚠ needs-link` (blocked domains, Reddit post/share links). Those stay in
-   inbox until the user resolves them or the capture step (step 6) does.
+   inbox until the user resolves them or the capture steps (steps 6-7) do.
 6. **Capture Reddit:** one-time setup if Chromium isn't already available to Playwright:
    `uv run --project packages/catalog-capture playwright install chromium`. Then, from the repo
    root, with nothing else writing the inbox concurrently:
@@ -35,9 +35,18 @@ description: Full catalog pipeline — Gmail pull, inbox curation, drain, and he
    or `⚠ pdf <url>`. A `capture-failed`/`pdf` line needs a manual reset (edit it back to
    `⚠ needs-link <url>`) before it will retry; same for a Reddit item returned from processing as
    `⚠ empty-fetch`/`⚠ fetch-error` — reset it to `⚠ needs-link <url>` to have this step recapture it.
-7. **Drain again:** call `drain {}` once more — the only items still ready are the fenced blocks
-   the capture step just wrote.
-8. Report what was ingested, blocked, captured, and skipped.
+7. **Capture Instagram:** with nothing else writing the inbox concurrently:
+   ```
+   cd packages/catalog-capture && uv run python -m catalog_capture instagram-needs-link --inbox ../../catalog/inbox.md --sources ../../catalog/sources
+   ```
+   Each `⚠ needs-link` Instagram reel line becomes one captured ```text block per reel (caption,
+   transcript, on-screen text, and unverified tool/URL hints) or `⚠ capture-failed <url> —
+   <reason>` (same manual-reset rule as step 6). Carousels (`/p/`) are left untouched and stay
+   `⚠ needs-link` for manual resolution. The processing agent decides what each reel's block
+   becomes — one entry, several, or annotations.
+8. **Drain again:** call `drain {}` once more — the only items still ready are the fenced blocks
+   the capture steps just wrote.
+9. Report what was ingested, blocked, captured, and skipped.
 
 ## Stage 2 — Processing (headless)
 

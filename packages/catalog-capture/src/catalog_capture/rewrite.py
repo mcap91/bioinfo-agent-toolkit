@@ -123,14 +123,24 @@ def process_needs_link(
 
         safe_text = defuse_fence_breaks(cap.body_text)
         captured_at = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-        md = render_source_md(
-            canonical=canonical,
-            captured_at=captured_at,
-            playwright_version=cap.playwright_version,
-            chromium_version=cap.chromium_version,
-            text=cap.body_text,  # R8: sources file gets the verbatim capture.
-        )
-        write_source_file(sources_dir, pid, md)
+        stage = "render"
+        try:
+            md = render_source_md(
+                canonical=canonical,
+                captured_at=captured_at,
+                playwright_version=cap.playwright_version,
+                chromium_version=cap.chromium_version,
+                text=cap.body_text,  # R8: sources file gets the verbatim capture.
+            )
+            stage = "write"
+            write_source_file(sources_dir, pid, md)
+        except OSError as e:
+            # One bad write must not cost the rest of the batch: mark this
+            # item capture-failed and let `re.sub` move on to the next line.
+            err = " ".join(str(e).split())
+            results.append(ItemResult(url=url, status="failed", error=f"{stage}: {err}"))
+            return f"⚠ capture-failed {url} — {stage}: {err}"
+
         results.append(ItemResult(url=url, status="ok", canonical=canonical, post_id=pid))
         return f"```text\nsource: {canonical}\n{safe_text}\n```"
 
