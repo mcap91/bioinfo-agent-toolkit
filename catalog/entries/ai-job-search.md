@@ -46,3 +46,7 @@ Core workflow:
 ## Security
 
 MIT licensed. Job postings are treated as untrusted input — the workflow follows no instructions embedded in them and fetches no links from their body. SECURITY.md documents the threat model. CI runs LaTeX smoke compiles, skill lint, CLI typechecks, and security guards (permission allowlist, gitignore rules). LinkedIn scraping is against LinkedIn's ToS — personal-use-only warning included. No security flags observed beyond the standard caveat that agentic defenses are instruction-level, not sandboxed.
+
+## Usage notes
+
+- ATS parsing (r/jobsearchhacks thread, Oct 2026): parsers commonly scramble multi-column layouts, text boxes, icons, and unusual fonts, so a single-column, one-font (11–12pt), plain-bullet PDF/DOCX survives better; check by pasting the PDF's text into a plain-text file and confirming reading order. Complements this framework's ATS text-layer check on generated LaTeX CVs.

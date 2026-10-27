@@ -38,24 +38,6 @@ https://github.com/neo4j
 https://github.com/lancedb/lancedb
 https://github.com/qdrant/qdrant
 https://github.com/weaviate/weaviate
-⚠ needs-link https://www.reddit.com/r/LocalLLaMA/s/JNjEe87YeN — Google Open Sources Harness2 for Self Improving AI Agents
-⚠ needs-link https://www.reddit.com/r/ClaudeCode/s/bmBaoAB9Pw — Why does everyone disregard Anthropic's best practices?
-⚠ needs-link https://www.reddit.com/r/Qwen_AI/s/ITrMhWjMNN — Self hosted Qwen 3.8 27b for real work: my 1 month experience
-⚠ needs-link https://www.reddit.com/r/AI_Agents/s/2ejog7GwMT — Is anyone else noticing that people building AI agents are forgetting basic software engineering?
-⚠ needs-link https://www.reddit.com/r/learnmachinelearning/s/hSo536anUa — I built event2vector: word2vec-style embeddings for event sequences
-⚠ needs-link https://www.reddit.com/r/LocalLLM/s/2aJDkp527G — NVIDIA's Nemotron 3.5 Bolt 74B Brings 74B AI Models to Local Hardware
-⚠ needs-link https://www.reddit.com/r/LowEndLocalAI/s/PQF0wNwqVT — Short review: Local LM on GTX 1060 3 GB
-⚠ needs-link https://www.reddit.com/r/openrouter/s/TZPq5xfqmv — PSA: DeepSeek V4.1 Flash habitually exfiltrates API keys
-⚠ needs-link https://www.reddit.com/r/SATNA_PROJECT/s/p9td5bYkiM — The $500/mo stack for $0: 5 new open-source AI projects
-⚠ needs-link https://www.reddit.com/r/LocalLLM/s/tSKE8VHm94 — PolyStrata: Strata with four more MoE models
-⚠ needs-link https://www.reddit.com/r/LocalLLM/s/SuMGmAmj6L
-⚠ needs-link https://www.reddit.com/r/jobsearchhacks/s/sQuKfOQpgf — A hiring manager casually told me how their ATS actually filters resumes
-⚠ needs-link https://www.reddit.com/r/LocalLLaMA/s/s67i5Ravqx — I gave a 21M model a 6.4B-parameter lookup table
-⚠ needs-link https://www.reddit.com/r/ClaudeCode/s/xFNxQtFS9Q — Best way to handle Cold Cache hits
-⚠ needs-link https://www.reddit.com/r/LocalLLM/s/EI46ISAYLl — Daily driving Qwen 3.8 Flash instead of Claude
-⚠ needs-link https://www.reddit.com/r/claudeskills/s/d552R7QWfT
-⚠ needs-link https://www.reddit.com/r/learnmachinelearning/s/dYUxs7cZFI — I transitioned from software engineer to an AI Engineer who fine tunes LLMs
-⚠ needs-link https://www.reddit.com/r/vibecoding/s/FIuyghmFtH — Look what I built
 ⚠ needs-link https://www.instagram.com/reel/DeKlghCOQiC/
 ⚠ needs-link https://www.instagram.com/reel/DebFucxs5Xp/
 ⚠ needs-link https://www.instagram.com/reel/DeMiEoaP-8i/
@@ -93,3 +75,180 @@ https://github.com/instaloader/instaloader — Instagram posts/metadata download
 https://github.com/imageio/imageio-ffmpeg — pip-installable ffmpeg binary (used for keyframes/audio decode)
 Jev (TypeSafe AI) — typed-judgment model (choice/score/probability only); find the official URL before draining
 strata — annotate existing entry: PolyStrata adds four more MoE models (see the needs-link Reddit item "PolyStrata"); entry acquired 2026-09-29, likely stale
+⚠ not-cataloguable-(post-body-removed-by-Reddit-filters;-the-5-projects-are-not-recoverable-from-the-thread)
+```text
+source: https://www.reddit.com/r/SATNA_PROJECT/comments/1x2856v/the_500mo_stack_for_0_5_new_opensource_ai/
+Skip to main content
+The $500/mo stack for $0: 5 new open-source AI projects that feel too good to be free 🔥 : r/SATNA_PROJECT
+Sign Up
+Log In
+Expand user menu
+Go to SATNA_PROJECT
+r/SATNA_PROJECT
+•
+17d ago
+DarkLight-874
+The $500/mo stack for $0: 5 new open-source AI projects that feel too good to be free 🔥
+Sorry, this post was removed by Reddit’s filters.
+Share
+Roblox
+•
+Ad
+Forget mindless scrolling. Start solving instead. Crack cases, outsmart friends, and flex your brain in Roblox's best puzzle games — free to play.
+Play Now
+roblox.com
+Sort by:
+Comments Section
+busters1
+•
+17d ago
+
+I'd like to add this one to the list. We launched just 5 weeks ago. It's a collaboration platform that lets engineering teams keep their technical documentation, observability, RFCs, and other internal knowledge in one place. It aims to make knowledge-keeping easy and tailored for engineers, especially in new startups and teams.
+
+https://github.com/oxynote/oxynote
+
+Reply
+Share
+More posts you may like
+Related posts
+A free deep learning textbook + 68 Python notebooks, from neural network basics to transformers and diffusion models
+r/SATNA_PROJECT
+•
+7d ago
+A free deep learning textbook + 68 Python notebooks, from neural network basics to transformers and diffusion models
+575 upvotes · 4 comments
+anthropic-ai
+•
+Ad
+Claude handles the search. Researchers handle the breakthroughs.
+claude.com
+Learn More
+How to build a 100% Free & Local AI Coding Setup on your machine (No subscriptions, zero token caps) 🛠️🔥
+r/SATNA_PROJECT
+•
+4d ago
+How to build a 100% Free & Local AI Coding Setup on your machine (No subscriptions, zero token caps) 🛠️🔥
+260 upvotes · 9 comments
+20 GitHub tools for Claude Code worth bookmarking — start with 3, not all 20
+r/SATNA_PROJECT
+•
+9h ago
+20 GitHub tools for Claude Code worth bookmarking — start with 3, not all 20
+194 upvotes · 19 comments
+The Ultimate 2026 Open-Source AI Stack: How to build, host, and automate AI apps for $0/mo 🚀
+r/SATNA_PROJECT
+•
+6d ago
+The Ultimate 2026 Open-Source AI Stack: How to build, host, and automate AI apps for $0/mo 🚀
+148 upvotes · 17 comments
+A practical digital-footprint cleanup workflow—with AI prompts for organizing the work
+r/SATNA_PROJECT
+•
+7d ago
+A practical digital-footprint cleanup workflow—with AI prompts for organizing the work
+132 upvotes · 2 comments
+6 open-source repos for building a parallel AI coding workflow
+r/SATNA_PROJECT
+•
+6d ago
+6 open-source repos for building a parallel AI coding workflow
+130 upvotes · 8 comments
+Before you build another AI agent, check this GitHub repo — 300+ tools organized by what they actually do
+r/SATNA_PROJECT
+•
+6d ago
+Before you build another AI agent, check this GitHub repo — 300+ tools organized by what they actually do
+110 upvotes · 1 comment
+The AI reverse-engineering toolkit: free tools, agents, courses, and practice labs — organized by what you’re trying to understand
+r/SATNA_PROJECT
+•
+9h ago
+The AI reverse-engineering toolkit: free tools, agents, courses, and practice labs — organized by what you’re trying to understand
+107 upvotes
+Why are motion designers still starting from a blank timeline? This Claude Code setup is wild.
+r/SATNA_PROJECT
+•
+6d ago
+Why are motion designers still starting from a blank timeline? This Claude Code setup is wild.
+105 upvotes · 9 comments
+Jensen asked this little duck robot for a somersault. It actually delivered. 🦆
+r/SATNA_PROJECT
+•
+3d ago
+Jensen asked this little duck robot for a somersault. It actually delivered. 🦆
+52 upvotes
+20 humanoid robots danced alongside 120 people at the WorldSkills opening ceremony in Shanghai
+r/SATNA_PROJECT
+•
+3d ago
+20 humanoid robots danced alongside 120 people at the WorldSkills opening ceremony in Shanghai
+45 upvotes · 3 comments
+Learning REA? Here’s a practical roadmap—with linked resources, real investigations, and the fundamentals alongside it
+r/SATNA_PROJECT
+•
+8h ago
+Learning REA? Here’s a practical roadmap—with linked resources, real investigations, and the fundamentals alongside it
+22 upvotes · 1 comment
+50 crypto research websites, organized by what you actually need to check
+r/SATNA_PROJECT
+•
+3d ago
+50 crypto research websites, organized by what you actually need to check
+20 upvotes
+Complete Cybersecurity Course — Resources in One Google Drive Folder
+r/SATNA_PROJECT
+•
+6d ago
+Complete Cybersecurity Course — Resources in One Google Drive Folder
+12 upvotes · 2 comments
+68% of my Claude Code spend was a too-full context
+r/SATNA_PROJECT
+•
+2d ago
+68% of my Claude Code spend was a too-full context
+7 upvotes
+Make your AI editor grade its own writing—and show you exactly what it changed
+r/SATNA_PROJECT
+•
+7d ago
+Make your AI editor grade its own writing—and show you exactly what it changed
+5 upvotes
+I’ve tested all the major AI generators for my side hustle. Here’s my Top 5 right now (and how I'm making my posters).
+r/SATNA_PROJECT
+•
+9h ago
+I’ve tested all the major AI generators for my side hustle. Here’s my Top 5 right now (and how I'm making my posters).
+3 upvotes · 1 comment
+🎃 Halloween Deal: Satna Project Premium — 18% Off Lifetime Access Until October 31
+r/SATNA_PROJECT
+•
+6d ago
+🎃 Halloween Deal: Satna Project Premium — 18% Off Lifetime Access Until October 31
+37 comments
+VIEW POST IN
+Français
+Português (Brasil)
+See more
+Public
+Home
+Popular
+News
+Explore
+Best of Reddit
+Best of Reddit in Portuguese
+Best of Reddit in German
+Reddit Rules
+Privacy Policy
+User Agreement
+Your Privacy Choices
+Accessibility
+Reddit, Inc. © 2026. All rights reserved.
+
+Join the most real place on the internet
+
+ Sign in with Apple
+Continue with Phone Number
+Continue with Email
+
+By continuing, you agree to our User Agreement and acknowledge that you understand the Privacy Policy.
+```

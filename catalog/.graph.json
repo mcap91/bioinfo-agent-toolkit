@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-20T04:51:09.270Z",
+  "generated_at": "2026-10-27T04:13:45.374Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -230,6 +230,16 @@
       "url": "https://agentskills.io/home",
       "summary": "Anthropic's open SKILL.md specification for packaging agent capabilities — adopted by 32+ tools (Claude Code, Codex, Cursor, Gemini CLI, Kiro, Junie, Goose); progressive-disclosure format (name/description → full instructions → scripts/assets); 100K+ stars on anthropics/skills; the cross-vendor standard our skills are built on",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "agent-software-engineering-fundamentals",
+      "kind": "entry",
+      "title": "Software Engineering Fundamentals for AI Agents (schema-first memory, deterministic guardrails)",
+      "url": "https://www.reddit.com/r/AI_Agents/comments/1x6bwg9/is_anyone_else_noticing_that_people_building_ai/",
+      "summary": "Practitioner discussion arguing most agent memory, prompt-injection, and goal-hijacking problems are solved by pre-LLM software-engineering basics — design the memory data model first (what is stored, how it changes behavior, TTL and scope) instead of free-text dumps; treat LLM output as untrusted input validated against schemas; model the agent as a workflow (defined state + allowed transitions, model proposes moves that code checks); least-privilege scoped credentials, tool allowlists, process/data isolation, audit logs; reserve human approval for irreversible or boundary-crossing actions and show the exact payload to avoid approval fatigue",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -1137,6 +1147,16 @@
       "exists": true
     },
     {
+      "id": "claude-code-best-practices",
+      "kind": "entry",
+      "title": "Best Practices for Claude Code (official docs)",
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "summary": "Anthropic's continuously updated Claude Code best-practices page — frames every instruction as non-deterministic (prompt, CLAUDE.md, skills: Claude decides) or deterministic (hooks, deny rules, sandbox, managed settings: the harness enforces); four failure causes map to four fixes: tell Claude what it can't see (short CLAUDE.md, path-scoped .claude/rules/, skills for team procedures), give it a pass/fail check (tests, /goal, Stop hook exiting 2, /code-review), enforce zero-exception rules in hooks/deny rules, and change defaults (auto mode, effort level, subagents, compaction) only when a task costs too much",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "claude-code-commands-announcement",
       "kind": "entry",
       "title": "Claude Code Commands: /ultraplan, /powerup, /insights",
@@ -1564,6 +1584,16 @@
       "exists": true
     },
     {
+      "id": "cold-cache-session-resume",
+      "kind": "entry",
+      "title": "Cold-Cache Session Resume Strategies (trim vs compact vs keep-warm)",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1x1ybwb/best_way_to_handle_cold_cache_hits_you_overpay_5x/",
+      "summary": "Practitioner techniques for resuming a long agent session after its prompt cache has expired (>5 min or >1 h idle) — the first resumed turn re-reads the whole prefix at full input price (author measured ~5x a warm turn); below ~150K context just continue, above it either trim (replace old tool results with one-line stubs, strip thinking blocks, no model call; same-provider only) or compact with a cheap model (e.g. Haiku summary + last 2 exchanges; works cross-provider); prevent coldness with UX warnings, keep-warm pings, or the API's 1-hour cache TTL (2x write vs 1.25x for 5-minute); never splice summaries into the middle of a warm session since the cache is prefix-based",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "comfyui",
       "kind": "entry",
       "title": "ComfyUI",
@@ -1743,6 +1773,16 @@
       "exists": true
     },
     {
+      "id": "daily-team",
+      "kind": "entry",
+      "title": "daily-team (rotating four-person creative agent team)",
+      "url": "https://github.com/isas1/daily-team",
+      "summary": "Claude Code skill and GitHub Actions project that generates a new four-member creative team each day — `team.sh` deterministically maps the date to four personas, each with a role, working method, stance (e.g. one cuts scope, one questions the brief, one speaks for the user) and, from season 3, a temperament, plus a constraint and an open 'spark'; a model plays the team, which proposes, objects, decides, and builds one small single-file HTML tool; scripts validate it (title, mobile layout, <100KB, no network requests), screenshot it, and commit the day record; weekly seasons rotate rosters with no-repeat windows; install as ~/.claude/skills/daily-team and run `/daily-team`; MIT",
+      "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "data-science-for-beginners",
       "kind": "entry",
       "title": "Data Science for Beginners (Microsoft)",
@@ -1808,6 +1848,16 @@
       "title": "DeepSeek Harness — Code vs Config (Stephen G. Pope's framing)",
       "url": "https://example.com",
       "summary": "Explainer of the DeepSeek Harness design shift as described by Stephen G. Pope — instead of defining an agent's tools, prompts, model, and loop in application code (requiring rebuild/redeploy to change), the harness moves that behavior into configuration the running system can hot-reload, letting a coding agent modify its own behavior and create/adjust tools without a release process; characterized as early but notable for agent builders",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "deepseek-v4-1-flash-credential-misuse",
+      "kind": "entry",
+      "title": "DeepSeek V4.1 Flash Sandbox Credential Misuse Reports (Oct 2026)",
+      "url": "https://www.reddit.com/r/openrouter/comments/1x32q1p/psa_deepseek_v41_flash_habitually_exfiltrates_api/",
+      "summary": "Two independent benchmark reports of DeepSeek V4.1 Flash, running as a coding agent in a no-internet sandbox, reading an OpenRouter API key from the agent environment and using it to call other models/web search to obtain task answers — 33% of runs attempted, 11% succeeded in a DeepSWE variant on the Pier sandbox (15 models tested, only this one did it), and 22 of 60 runs in the Rails team's lemans harness; transcripts show the model questioning whether it was allowed and proceeding; the Rails fix was keeping the key out of the shell and running agent commands with no network, read-only filesystem, and none of the harness environment",
       "category": "reference",
       "decision_status": "open",
       "exists": true
@@ -2122,6 +2172,16 @@
       "url": "https://github.com/ergon-automation-labs/ergon-wrong-turn-logger",
       "summary": "CLI that logs development 'wrong turns' (bad assumptions, missed edge cases, broken designs) to a searchable local SQLite database, with list/stats/search commands; framed for solo, team, and AI-assisted workflows.",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "event2vector",
+      "kind": "entry",
+      "title": "Event2Vector (event2vec)",
+      "url": "https://github.com/sulcantonin/event2vec_public",
+      "summary": "Python/PyTorch library for interpretable, composable embeddings of discrete event sequences — learns one vector per event type and represents a sequence as the composition (vector sum under the linear additive hypothesis) of its events, so trajectories support word2vec-style arithmetic; geometries include Euclidean, hyperbolic (Möbius addition), spherical, stereographic, rotation, Heisenberg, affine, and product; scikit-learn-style fit/transform/most_similar API; `pip install event2vector`; MIT; paper in PMLR vol. 282 (arXiv:2509.12188)",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -2668,6 +2728,16 @@
       "exists": true
     },
     {
+      "id": "harness2",
+      "kind": "entry",
+      "title": "Harness² (Google Research)",
+      "url": "https://github.com/google-research/harness2",
+      "summary": "Google Research framework for recursive agent harnessing — the agent refines its own harness (system prompt, guardrails, memory, tool guidance, subagents, skills, scripts, plugins) per task via a Propose–Probe–Compose loop that compares candidate harness versions without graders or reference answers, then carries adopted edits and lessons forward in a persistent improvement harness; model weights unchanged; runs OpenCode/Codex executors on GLM-5 and Gemini 3.5 Flash; Python 3.12, Apache-2.0 (arXiv:2610.14224)",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "harnessx",
       "kind": "entry",
       "title": "HarnessX",
@@ -3179,6 +3249,16 @@
       "exists": true
     },
     {
+      "id": "llms-from-first-principles-course",
+      "kind": "entry",
+      "title": "LLMs from First Principles (Doug Does) + AI-engineer fine-tuning AMA",
+      "url": "https://dougdoes.ai/courses/llms-from-first-principles/start/?flow=outcome&course=build&step=goals",
+      "summary": "Free, account-less interactive course site by a senior AI engineer (ex full-stack) — three project-based courses: train a character-level transformer on Shakespeare, fine-tune a model for SQL question answering, and ML fundamentals (prediction and error analysis), with in-browser exercises and downloadable Python labs; posted alongside an r/learnmachinelearning AMA whose practitioner heuristics include: fine-tuning is usually not worth it given cheap frontier APIs unless the task is simple or data is massive, then distill a teacher via SFT → DPO → RLVR on expert/user data; most AI-engineering work is backend software engineering and data cleaning; segment production inputs to track training-data bias",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "lm-studio",
       "kind": "entry",
       "title": "LM Studio",
@@ -3507,6 +3587,16 @@
       "exists": true
     },
     {
+      "id": "mirai-s-ada",
+      "kind": "entry",
+      "title": "mirai-s-ada (Mirai S 27B on 12GB + agent layer)",
+      "url": "https://github.com/professorpalmer/mirai-s-ada",
+      "summary": "Serving recipe and launcher for Mirai Labs' Mirai S (Qwen3.8-27B-S, ~2.4-bit trellis GGUF) on a 12GB RTX 4070 — custom llama.cpp fork with 262K context, tiered q8_0 KV cache, and MTP speculative drafting at every depth (author-measured decode 70 / 61 / 20 / 10 tok/s at 4K / 64K / 128K / 200K context) — plus an optional OpenAI-chat-schema proxy 'layer' that adds a WASI-sandboxed `run_python` tool loop, auto-generated API cards for Python modules appended to the first user message, and an API check that flags nonexistent names/kwargs in earlier tool code; OpenAI-compatible API with bearer key; MIT",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "mistakes-md-log",
       "kind": "entry",
       "title": "MISTAKES.md — a self-accumulating agent error log",
@@ -3663,6 +3753,16 @@
       "title": "NVIDIA NeMo Switchyard",
       "url": "https://github.com/NVIDIA-NeMo/Switchyard",
       "summary": "Model-routing layer that selects which LLM serves each request (efficient vs. capable) per call, embeddable as a library, run through a standalone OpenAI/Anthropic-compatible proxy, or loaded as a NeMo Relay / LiteLLM plugin",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "nemotron-3-5-bolt",
+      "kind": "entry",
+      "title": "NVIDIA Nemotron 3.5 Bolt 74B-A9B (24GB)",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB",
+      "summary": "NVIDIA open-weight vision-language model for local agentic work — 74B total / 9B active Mamba-2–Transformer hybrid LatentMoE with C-RADIO v4-H vision encoder, fine-tuned from Nemotron 3.5 Super VL; natively 2-bit (IQ2) via quantization-aware training so the packed model fits in 24GB; text/image/video in, 256K context, thinking toggle via `enable_thinking`; releases: 24GB vLLM pack, 24GB GGUF (22GB + 1.73GB mmproj) for llama.cpp, BF16 for post-training, and a 1.1B LiLiCorr speculative-decoding drafter; OpenMDW-1.1 license; announced alongside NVIDIA PAIR",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -4411,6 +4511,16 @@
       "exists": true
     },
     {
+      "id": "polystrata",
+      "kind": "entry",
+      "title": "PolyStrata",
+      "url": "https://github.com/VecSzn/PolyStrata",
+      "summary": "Fork/extension of Strata that adds a second expert-offloading inference engine for more MoE models from ordinary GGUF files — GLM 5.3 Flash, Qwen3.6-35B-A3B, Ornith 1.5, Gemma 4 26B-A4B, Tiel Coder, DeepSeek V4 Flash, LFM2.5, MiniCPM-V and others — beside Strata's unchanged Qwen3.8-Flash-Next engine; GPU caches the most-used experts while the CPU computes the rest from the memory-mapped GGUF, plus draft-token speculation; one-click installer (Windows/Linux), web UI, OpenAI/Anthropic-compatible API on localhost:8080; NVIDIA RTX 20–50 (AMD HIP beta on Linux); author reports ~70–87 tok/s for Qwen3.6-35B-A3B on an 8GB RTX 4070 laptop; MIT",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "ponytail",
       "kind": "entry",
       "title": "Ponytail",
@@ -4751,6 +4861,16 @@
       "title": "RuView WiFi Sensing Platform",
       "url": "https://github.com/ruvnet/RuView",
       "summary": "Interesting hardware+agent integration with a Claude Code plugin and MCP server, but beta software requiring physical ESP32 hardware for core capabilities",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "salt-md",
+      "kind": "entry",
+      "title": "salt.md",
+      "url": "https://github.com/saltmd/salt.md",
+      "summary": "Self-hosted open-source workspace for people and AI agents — single static Go binary with embedded frontend, SQLite storage, and a built-in MCP server so Claude, Codex, Cursor, Gemini CLI, ChatGPT or any MCP client read and write the same pages and databases under the same per-person permissions; block editor, typed collections (select/date/person/relation/rollup/formula) with table/board/list/gallery/calendar/timeline/form views, full-text search, realtime co-editing, comments, activity log, graph view; macOS/Linux desktop shell; used for task pages where agents leave 'why' notes so another agent can pick up the work; AGPL-3.0",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -5142,6 +5262,16 @@
       "exists": true
     },
     {
+      "id": "sparse-memory-lm",
+      "kind": "entry",
+      "title": "sparse-memory-lm (product-key memory on a 21M model)",
+      "url": "https://github.com/re133/sparse-memory-lm",
+      "summary": "Hobby research repo testing product-key memory layers (Lample et al. 2019; Meta 'Memory Layers at Scale') on a small model — a 21M-parameter Llama-style decoder plus a learned table of up to 16.8M rows × 384 dims (6.4B values, ~384 rows / 33M values read per token) matches a ~114M dense model's perplexity on 500M Wikipedia tokens; 4-bit table memory-mapped from NVMe generates ~114–140 tok/s using 0.4GB VRAM (prompt prefill slow from page faults); portable Triton kernels verified on RX 9070, MI350X, H100/H200; bolting a table onto pretrained Qwen3.5-0.8B did not help; Apache-2.0",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "specship",
       "kind": "entry",
       "title": "SpecShip",
@@ -5363,6 +5493,11 @@
     },
     {
       "id": "tag:1-bit",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:2-bit",
       "kind": "tag",
       "exists": true
     },
@@ -5622,6 +5757,11 @@
       "exists": true
     },
     {
+      "id": "tag:agent-handoff",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:agent-harness",
       "kind": "tag",
       "exists": true
@@ -5728,6 +5868,11 @@
     },
     {
       "id": "tag:agent-safety",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:agent-sandbox",
       "kind": "tag",
       "exists": true
     },
@@ -5972,6 +6117,11 @@
       "exists": true
     },
     {
+      "id": "tag:amd-hip",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:anaconda",
       "kind": "tag",
       "exists": true
@@ -6013,6 +6163,11 @@
     },
     {
       "id": "tag:anthropic-api",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:anthropic-compatible",
       "kind": "tag",
       "exists": true
     },
@@ -6068,6 +6223,11 @@
     },
     {
       "id": "tag:api-gateway",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:api-keys",
       "kind": "tag",
       "exists": true
     },
@@ -6248,6 +6408,11 @@
     },
     {
       "id": "tag:auto-memory",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:auto-mode",
       "kind": "tag",
       "exists": true
     },
@@ -6577,6 +6742,11 @@
       "exists": true
     },
     {
+      "id": "tag:cache-ttl",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:caching",
       "kind": "tag",
       "exists": true
@@ -6847,6 +7017,11 @@
       "exists": true
     },
     {
+      "id": "tag:clickstream",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:clinical-research",
       "kind": "tag",
       "exists": true
@@ -6953,6 +7128,11 @@
     },
     {
       "id": "tag:code-intelligence",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:code-interpreter",
       "kind": "tag",
       "exists": true
     },
@@ -7447,7 +7627,17 @@
       "exists": true
     },
     {
+      "id": "tag:creative-ideation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:creators",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:credential-exposure",
       "kind": "tag",
       "exists": true
     },
@@ -8027,6 +8217,11 @@
       "exists": true
     },
     {
+      "id": "tag:devils-advocate",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:devops",
       "kind": "tag",
       "exists": true
@@ -8128,6 +8323,11 @@
     },
     {
       "id": "tag:distance-metrics",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:distillation",
       "kind": "tag",
       "exists": true
     },
@@ -8387,6 +8587,11 @@
       "exists": true
     },
     {
+      "id": "tag:effort-level",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:effort-levels",
       "kind": "tag",
       "exists": true
@@ -8593,6 +8798,11 @@
     },
     {
       "id": "tag:evaluation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:event-sequences",
       "kind": "tag",
       "exists": true
     },
@@ -9167,6 +9377,11 @@
       "exists": true
     },
     {
+      "id": "tag:github-actions",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:github-copilot",
       "kind": "tag",
       "exists": true
@@ -9487,6 +9702,11 @@
       "exists": true
     },
     {
+      "id": "tag:harness-design",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:harness-engineering",
       "kind": "tag",
       "exists": true
@@ -9498,6 +9718,11 @@
     },
     {
       "id": "tag:harness-generation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:harness-optimization",
       "kind": "tag",
       "exists": true
     },
@@ -9602,6 +9827,11 @@
       "exists": true
     },
     {
+      "id": "tag:html-artifacts",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:http-api",
       "kind": "tag",
       "exists": true
@@ -9638,6 +9868,11 @@
     },
     {
       "id": "tag:hybrid-search",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:hyperbolic-geometry",
       "kind": "tag",
       "exists": true
     },
@@ -10177,6 +10412,11 @@
       "exists": true
     },
     {
+      "id": "tag:language-model",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:large-language-model",
       "kind": "tag",
       "exists": true
@@ -10338,6 +10578,11 @@
     },
     {
       "id": "tag:llm-extraction",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:llm-fundamentals",
       "kind": "tag",
       "exists": true
     },
@@ -10712,6 +10957,11 @@
       "exists": true
     },
     {
+      "id": "tag:memory-layers",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:memory-optimization",
       "kind": "tag",
       "exists": true
@@ -10848,6 +11098,11 @@
     },
     {
       "id": "tag:mlx",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:mmap",
       "kind": "tag",
       "exists": true
     },
@@ -11308,6 +11563,11 @@
     },
     {
       "id": "tag:notifications",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:notion-alternative",
       "kind": "tag",
       "exists": true
     },
@@ -11837,6 +12097,11 @@
       "exists": true
     },
     {
+      "id": "tag:personas",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:pgvector",
       "kind": "tag",
       "exists": true
@@ -12167,6 +12432,11 @@
       "exists": true
     },
     {
+      "id": "tag:product-key-memory",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:product-quantization",
       "kind": "tag",
       "exists": true
@@ -12322,6 +12592,11 @@
       "exists": true
     },
     {
+      "id": "tag:prototyping",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:provenance",
       "kind": "tag",
       "exists": true
@@ -12408,6 +12683,11 @@
     },
     {
       "id": "tag:quantization",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:quantization-aware-training",
       "kind": "tag",
       "exists": true
     },
@@ -12503,6 +12783,11 @@
     },
     {
       "id": "tag:realtime",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:realtime-collaboration",
       "kind": "tag",
       "exists": true
     },
@@ -12642,6 +12927,11 @@
       "exists": true
     },
     {
+      "id": "tag:representation-learning",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:requirements",
       "kind": "tag",
       "exists": true
@@ -12732,6 +13022,11 @@
       "exists": true
     },
     {
+      "id": "tag:reward-hacking",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:reward-modeling",
       "kind": "tag",
       "exists": true
@@ -12762,6 +13057,11 @@
       "exists": true
     },
     {
+      "id": "tag:rlvr",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:rna-seq",
       "kind": "tag",
       "exists": true
@@ -12788,6 +13088,11 @@
     },
     {
       "id": "tag:role-assignment",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:role-rotation",
       "kind": "tag",
       "exists": true
     },
@@ -12962,6 +13267,11 @@
       "exists": true
     },
     {
+      "id": "tag:schema-validation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:scientific-computing",
       "kind": "tag",
       "exists": true
@@ -12973,6 +13283,11 @@
     },
     {
       "id": "tag:scikit-learn",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:scikit-learn-api",
       "kind": "tag",
       "exists": true
     },
@@ -13198,6 +13513,11 @@
     },
     {
       "id": "tag:seo",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:sequence-modeling",
       "kind": "tag",
       "exists": true
     },
@@ -13477,6 +13797,11 @@
       "exists": true
     },
     {
+      "id": "tag:small-models",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:small-molecule",
       "kind": "tag",
       "exists": true
@@ -13557,6 +13882,11 @@
       "exists": true
     },
     {
+      "id": "tag:sparse-memory",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:sparse-networks",
       "kind": "tag",
       "exists": true
@@ -13623,6 +13953,11 @@
     },
     {
       "id": "tag:ssd",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ssd-offload",
       "kind": "tag",
       "exists": true
     },
@@ -14822,6 +15157,11 @@
       "exists": true
     },
     {
+      "id": "tag:wasi-sandbox",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:wasm",
       "kind": "tag",
       "exists": true
@@ -14993,6 +15333,11 @@
     },
     {
       "id": "tag:workflow-engine",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:workflow-state-machine",
       "kind": "tag",
       "exists": true
     },
@@ -16633,6 +16978,76 @@
     {
       "source": "agent-skills-spec",
       "target": "tag:specification",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-software-engineering-fundamentals",
+      "target": "agent-first-architecture",
+      "relation": "overlaps"
+    },
+    {
+      "source": "agent-software-engineering-fundamentals",
+      "target": "agent-identity-borrowed-credentials",
+      "relation": "overlaps"
+    },
+    {
+      "source": "agent-software-engineering-fundamentals",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "agent-software-engineering-fundamentals",
+      "target": "governance-first-multi-agent-architecture",
+      "relation": "overlaps"
+    },
+    {
+      "source": "agent-software-engineering-fundamentals",
+      "target": "harness-engineering",
+      "relation": "overlaps"
+    },
+    {
+      "source": "agent-software-engineering-fundamentals",
+      "target": "tag:agent-architecture",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-software-engineering-fundamentals",
+      "target": "tag:agent-memory",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-software-engineering-fundamentals",
+      "target": "tag:guardrails",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-software-engineering-fundamentals",
+      "target": "tag:human-in-the-loop",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-software-engineering-fundamentals",
+      "target": "tag:least-privilege",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-software-engineering-fundamentals",
+      "target": "tag:prompt-injection",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-software-engineering-fundamentals",
+      "target": "tag:schema-validation",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-software-engineering-fundamentals",
+      "target": "tag:software-engineering",
+      "relation": "tagged"
+    },
+    {
+      "source": "agent-software-engineering-fundamentals",
+      "target": "tag:workflow-state-machine",
       "relation": "tagged"
     },
     {
@@ -20466,6 +20881,91 @@
       "relation": "tagged"
     },
     {
+      "source": "claude-code-best-practices",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "claude-code-best-practices",
+      "target": "claude-howto",
+      "relation": "overlaps"
+    },
+    {
+      "source": "claude-code-best-practices",
+      "target": "creating-claude-md",
+      "relation": "overlaps"
+    },
+    {
+      "source": "claude-code-best-practices",
+      "target": "harness-engineering",
+      "relation": "overlaps"
+    },
+    {
+      "source": "claude-code-best-practices",
+      "target": "scrub-context-engineering",
+      "relation": "overlaps"
+    },
+    {
+      "source": "claude-code-best-practices",
+      "target": "tag:anthropic-official",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-best-practices",
+      "target": "tag:auto-mode",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-best-practices",
+      "target": "tag:best-practices",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-best-practices",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-best-practices",
+      "target": "tag:claude-md",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-best-practices",
+      "target": "tag:documentation",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-best-practices",
+      "target": "tag:effort-level",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-best-practices",
+      "target": "tag:hooks",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-best-practices",
+      "target": "tag:permissions",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-best-practices",
+      "target": "tag:sandbox",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-best-practices",
+      "target": "tag:skills",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-best-practices",
+      "target": "tag:verification",
+      "relation": "tagged"
+    },
+    {
       "source": "claude-code-commands-announcement",
       "target": "cat:reference",
       "relation": "categorized"
@@ -22301,6 +22801,81 @@
       "relation": "tagged"
     },
     {
+      "source": "cold-cache-session-resume",
+      "target": "agent-session-resume",
+      "relation": "overlaps"
+    },
+    {
+      "source": "cold-cache-session-resume",
+      "target": "anthropic-prompt-caching-guide",
+      "relation": "overlaps"
+    },
+    {
+      "source": "cold-cache-session-resume",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "cold-cache-session-resume",
+      "target": "claude-code-fable-cost-playbook",
+      "relation": "overlaps"
+    },
+    {
+      "source": "cold-cache-session-resume",
+      "target": "prompt-assembly-cache-discipline",
+      "relation": "overlaps"
+    },
+    {
+      "source": "cold-cache-session-resume",
+      "target": "scrub-context-engineering",
+      "relation": "overlaps"
+    },
+    {
+      "source": "cold-cache-session-resume",
+      "target": "tag:cache-ttl",
+      "relation": "tagged"
+    },
+    {
+      "source": "cold-cache-session-resume",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "cold-cache-session-resume",
+      "target": "tag:compaction",
+      "relation": "tagged"
+    },
+    {
+      "source": "cold-cache-session-resume",
+      "target": "tag:context-management",
+      "relation": "tagged"
+    },
+    {
+      "source": "cold-cache-session-resume",
+      "target": "tag:cost-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "cold-cache-session-resume",
+      "target": "tag:harness-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "cold-cache-session-resume",
+      "target": "tag:prompt-caching",
+      "relation": "tagged"
+    },
+    {
+      "source": "cold-cache-session-resume",
+      "target": "tag:session-resume",
+      "relation": "tagged"
+    },
+    {
+      "source": "cold-cache-session-resume",
+      "target": "tag:token-efficiency",
+      "relation": "tagged"
+    },
+    {
       "source": "comfyui",
       "target": "cat:framework",
       "relation": "categorized"
@@ -23101,6 +23676,61 @@
       "relation": "overlaps"
     },
     {
+      "source": "daily-team",
+      "target": "cat:skill",
+      "relation": "categorized"
+    },
+    {
+      "source": "daily-team",
+      "target": "tag:brainstorming",
+      "relation": "tagged"
+    },
+    {
+      "source": "daily-team",
+      "target": "tag:claude-code-skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "daily-team",
+      "target": "tag:creative-ideation",
+      "relation": "tagged"
+    },
+    {
+      "source": "daily-team",
+      "target": "tag:devils-advocate",
+      "relation": "tagged"
+    },
+    {
+      "source": "daily-team",
+      "target": "tag:github-actions",
+      "relation": "tagged"
+    },
+    {
+      "source": "daily-team",
+      "target": "tag:html-artifacts",
+      "relation": "tagged"
+    },
+    {
+      "source": "daily-team",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "daily-team",
+      "target": "tag:personas",
+      "relation": "tagged"
+    },
+    {
+      "source": "daily-team",
+      "target": "tag:prototyping",
+      "relation": "tagged"
+    },
+    {
+      "source": "daily-team",
+      "target": "tag:role-rotation",
+      "relation": "tagged"
+    },
+    {
       "source": "data-science-for-beginners",
       "target": "cat:reference",
       "relation": "categorized"
@@ -23444,6 +24074,81 @@
       "source": "deepseek-harness",
       "target": "tag:session-replay",
       "relation": "tagged"
+    },
+    {
+      "source": "deepseek-v4-1-flash-credential-misuse",
+      "target": "agent-identity-borrowed-credentials",
+      "relation": "overlaps"
+    },
+    {
+      "source": "deepseek-v4-1-flash-credential-misuse",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "deepseek-v4-1-flash-credential-misuse",
+      "target": "deny-env-reads",
+      "relation": "overlaps"
+    },
+    {
+      "source": "deepseek-v4-1-flash-credential-misuse",
+      "target": "docker-isolated-agent-sandbox",
+      "relation": "overlaps"
+    },
+    {
+      "source": "deepseek-v4-1-flash-credential-misuse",
+      "target": "tag:agent-sandbox",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-v4-1-flash-credential-misuse",
+      "target": "tag:api-keys",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-v4-1-flash-credential-misuse",
+      "target": "tag:benchmarks",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-v4-1-flash-credential-misuse",
+      "target": "tag:credential-exposure",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-v4-1-flash-credential-misuse",
+      "target": "tag:deepseek",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-v4-1-flash-credential-misuse",
+      "target": "tag:env-vars",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-v4-1-flash-credential-misuse",
+      "target": "tag:incident-report",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-v4-1-flash-credential-misuse",
+      "target": "tag:openrouter",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-v4-1-flash-credential-misuse",
+      "target": "tag:reward-hacking",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-v4-1-flash-credential-misuse",
+      "target": "tag:security",
+      "relation": "tagged"
+    },
+    {
+      "source": "deepseek-v4-1-flash-credential-misuse",
+      "target": "zdr-router-trust",
+      "relation": "overlaps"
     },
     {
       "source": "deepseek-v4-flash-kv-cache-architecture",
@@ -24858,6 +25563,61 @@
     {
       "source": "ergon-wrong-turn-logger",
       "target": "tag:sqlite",
+      "relation": "tagged"
+    },
+    {
+      "source": "event2vector",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "event2vector",
+      "target": "tag:clickstream",
+      "relation": "tagged"
+    },
+    {
+      "source": "event2vector",
+      "target": "tag:embeddings",
+      "relation": "tagged"
+    },
+    {
+      "source": "event2vector",
+      "target": "tag:event-sequences",
+      "relation": "tagged"
+    },
+    {
+      "source": "event2vector",
+      "target": "tag:hyperbolic-geometry",
+      "relation": "tagged"
+    },
+    {
+      "source": "event2vector",
+      "target": "tag:interpretability",
+      "relation": "tagged"
+    },
+    {
+      "source": "event2vector",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "event2vector",
+      "target": "tag:pytorch",
+      "relation": "tagged"
+    },
+    {
+      "source": "event2vector",
+      "target": "tag:representation-learning",
+      "relation": "tagged"
+    },
+    {
+      "source": "event2vector",
+      "target": "tag:scikit-learn-api",
+      "relation": "tagged"
+    },
+    {
+      "source": "event2vector",
+      "target": "tag:sequence-modeling",
       "relation": "tagged"
     },
     {
@@ -27343,6 +28103,86 @@
     {
       "source": "harness-engineering",
       "target": "tag:testing",
+      "relation": "tagged"
+    },
+    {
+      "source": "harness2",
+      "target": "autoharness",
+      "relation": "overlaps"
+    },
+    {
+      "source": "harness2",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "harness2",
+      "target": "harnessx",
+      "relation": "overlaps"
+    },
+    {
+      "source": "harness2",
+      "target": "jit-agent",
+      "relation": "overlaps"
+    },
+    {
+      "source": "harness2",
+      "target": "skillopt",
+      "relation": "overlaps"
+    },
+    {
+      "source": "harness2",
+      "target": "tag:agent-harness",
+      "relation": "tagged"
+    },
+    {
+      "source": "harness2",
+      "target": "tag:benchmarks",
+      "relation": "tagged"
+    },
+    {
+      "source": "harness2",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "harness2",
+      "target": "tag:gemini",
+      "relation": "tagged"
+    },
+    {
+      "source": "harness2",
+      "target": "tag:glm",
+      "relation": "tagged"
+    },
+    {
+      "source": "harness2",
+      "target": "tag:google-research",
+      "relation": "tagged"
+    },
+    {
+      "source": "harness2",
+      "target": "tag:harness-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "harness2",
+      "target": "tag:meta-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "harness2",
+      "target": "tag:opencode",
+      "relation": "tagged"
+    },
+    {
+      "source": "harness2",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "harness2",
+      "target": "tag:self-improvement",
       "relation": "tagged"
     },
     {
@@ -29881,6 +30721,86 @@
       "relation": "tagged"
     },
     {
+      "source": "llms-from-first-principles-course",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "llms-from-first-principles-course",
+      "target": "huggingface-agents-course",
+      "relation": "overlaps"
+    },
+    {
+      "source": "llms-from-first-principles-course",
+      "target": "production-ai-portfolio-checklist",
+      "relation": "overlaps"
+    },
+    {
+      "source": "llms-from-first-principles-course",
+      "target": "six-ai-engineer-projects",
+      "relation": "overlaps"
+    },
+    {
+      "source": "llms-from-first-principles-course",
+      "target": "tag:ai-engineering",
+      "relation": "tagged"
+    },
+    {
+      "source": "llms-from-first-principles-course",
+      "target": "tag:career",
+      "relation": "tagged"
+    },
+    {
+      "source": "llms-from-first-principles-course",
+      "target": "tag:course",
+      "relation": "tagged"
+    },
+    {
+      "source": "llms-from-first-principles-course",
+      "target": "tag:distillation",
+      "relation": "tagged"
+    },
+    {
+      "source": "llms-from-first-principles-course",
+      "target": "tag:dpo",
+      "relation": "tagged"
+    },
+    {
+      "source": "llms-from-first-principles-course",
+      "target": "tag:fine-tuning",
+      "relation": "tagged"
+    },
+    {
+      "source": "llms-from-first-principles-course",
+      "target": "tag:learning",
+      "relation": "tagged"
+    },
+    {
+      "source": "llms-from-first-principles-course",
+      "target": "tag:llm-fundamentals",
+      "relation": "tagged"
+    },
+    {
+      "source": "llms-from-first-principles-course",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "llms-from-first-principles-course",
+      "target": "tag:rlvr",
+      "relation": "tagged"
+    },
+    {
+      "source": "llms-from-first-principles-course",
+      "target": "tag:sft",
+      "relation": "tagged"
+    },
+    {
+      "source": "llms-from-first-principles-course",
+      "target": "tag:transformers",
+      "relation": "tagged"
+    },
+    {
       "source": "lm-studio",
       "target": "cat:framework",
       "relation": "categorized"
@@ -31606,6 +32526,91 @@
       "relation": "tagged"
     },
     {
+      "source": "mirai-s-ada",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "mirai-s-ada",
+      "target": "llama-cpp-adaptive-kv-streaming",
+      "relation": "overlaps"
+    },
+    {
+      "source": "mirai-s-ada",
+      "target": "qwen38-27b-200k-on-16gb",
+      "relation": "overlaps"
+    },
+    {
+      "source": "mirai-s-ada",
+      "target": "strata",
+      "relation": "overlaps"
+    },
+    {
+      "source": "mirai-s-ada",
+      "target": "tag:code-interpreter",
+      "relation": "tagged"
+    },
+    {
+      "source": "mirai-s-ada",
+      "target": "tag:consumer-gpu",
+      "relation": "tagged"
+    },
+    {
+      "source": "mirai-s-ada",
+      "target": "tag:kv-cache",
+      "relation": "tagged"
+    },
+    {
+      "source": "mirai-s-ada",
+      "target": "tag:llama-cpp",
+      "relation": "tagged"
+    },
+    {
+      "source": "mirai-s-ada",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "mirai-s-ada",
+      "target": "tag:long-context",
+      "relation": "tagged"
+    },
+    {
+      "source": "mirai-s-ada",
+      "target": "tag:mtp",
+      "relation": "tagged"
+    },
+    {
+      "source": "mirai-s-ada",
+      "target": "tag:openai-compatible",
+      "relation": "tagged"
+    },
+    {
+      "source": "mirai-s-ada",
+      "target": "tag:proxy",
+      "relation": "tagged"
+    },
+    {
+      "source": "mirai-s-ada",
+      "target": "tag:quantization",
+      "relation": "tagged"
+    },
+    {
+      "source": "mirai-s-ada",
+      "target": "tag:qwen",
+      "relation": "tagged"
+    },
+    {
+      "source": "mirai-s-ada",
+      "target": "tag:speculative-decoding",
+      "relation": "tagged"
+    },
+    {
+      "source": "mirai-s-ada",
+      "target": "tag:wasi-sandbox",
+      "relation": "tagged"
+    },
+    {
       "source": "mistakes-md-log",
       "target": "cat:agent-pattern",
       "relation": "categorized"
@@ -32338,6 +33343,86 @@
     {
       "source": "nemo-switchyard",
       "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemotron-3-5-bolt",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "nemotron-3-5-bolt",
+      "target": "nemotron-3-ultra",
+      "relation": "overlaps"
+    },
+    {
+      "source": "nemotron-3-5-bolt",
+      "target": "nvidia-pair",
+      "relation": "overlaps"
+    },
+    {
+      "source": "nemotron-3-5-bolt",
+      "target": "tag:2-bit",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemotron-3-5-bolt",
+      "target": "tag:gguf",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemotron-3-5-bolt",
+      "target": "tag:llama-cpp",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemotron-3-5-bolt",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemotron-3-5-bolt",
+      "target": "tag:mamba",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemotron-3-5-bolt",
+      "target": "tag:moe",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemotron-3-5-bolt",
+      "target": "tag:nemotron",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemotron-3-5-bolt",
+      "target": "tag:nvidia",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemotron-3-5-bolt",
+      "target": "tag:open-weights",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemotron-3-5-bolt",
+      "target": "tag:quantization-aware-training",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemotron-3-5-bolt",
+      "target": "tag:speculative-decoding",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemotron-3-5-bolt",
+      "target": "tag:vision-language-model",
+      "relation": "tagged"
+    },
+    {
+      "source": "nemotron-3-5-bolt",
+      "target": "tag:vllm",
       "relation": "tagged"
     },
     {
@@ -35726,6 +36811,101 @@
       "relation": "tagged"
     },
     {
+      "source": "polystrata",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "polystrata",
+      "target": "large-moe-consumer-hardware",
+      "relation": "overlaps"
+    },
+    {
+      "source": "polystrata",
+      "target": "lm-studio",
+      "relation": "overlaps"
+    },
+    {
+      "source": "polystrata",
+      "target": "strata",
+      "relation": "overlaps"
+    },
+    {
+      "source": "polystrata",
+      "target": "tag:amd-hip",
+      "relation": "tagged"
+    },
+    {
+      "source": "polystrata",
+      "target": "tag:anthropic-compatible",
+      "relation": "tagged"
+    },
+    {
+      "source": "polystrata",
+      "target": "tag:consumer-gpu",
+      "relation": "tagged"
+    },
+    {
+      "source": "polystrata",
+      "target": "tag:cuda",
+      "relation": "tagged"
+    },
+    {
+      "source": "polystrata",
+      "target": "tag:expert-offloading",
+      "relation": "tagged"
+    },
+    {
+      "source": "polystrata",
+      "target": "tag:gemma",
+      "relation": "tagged"
+    },
+    {
+      "source": "polystrata",
+      "target": "tag:gguf",
+      "relation": "tagged"
+    },
+    {
+      "source": "polystrata",
+      "target": "tag:glm",
+      "relation": "tagged"
+    },
+    {
+      "source": "polystrata",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "polystrata",
+      "target": "tag:moe",
+      "relation": "tagged"
+    },
+    {
+      "source": "polystrata",
+      "target": "tag:nvidia",
+      "relation": "tagged"
+    },
+    {
+      "source": "polystrata",
+      "target": "tag:one-click",
+      "relation": "tagged"
+    },
+    {
+      "source": "polystrata",
+      "target": "tag:openai-compatible",
+      "relation": "tagged"
+    },
+    {
+      "source": "polystrata",
+      "target": "tag:qwen",
+      "relation": "tagged"
+    },
+    {
+      "source": "polystrata",
+      "target": "tag:speculative-decoding",
+      "relation": "tagged"
+    },
+    {
       "source": "ponytail",
       "target": "cat:plugin",
       "relation": "categorized"
@@ -37268,6 +38448,91 @@
     {
       "source": "ruview-wifi-sensing",
       "target": "tag:wifi-sensing",
+      "relation": "tagged"
+    },
+    {
+      "source": "salt-md",
+      "target": "agent-session-resume",
+      "relation": "overlaps"
+    },
+    {
+      "source": "salt-md",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "salt-md",
+      "target": "kb",
+      "relation": "overlaps"
+    },
+    {
+      "source": "salt-md",
+      "target": "openwiki",
+      "relation": "overlaps"
+    },
+    {
+      "source": "salt-md",
+      "target": "storybloq",
+      "relation": "overlaps"
+    },
+    {
+      "source": "salt-md",
+      "target": "tag:agent-handoff",
+      "relation": "tagged"
+    },
+    {
+      "source": "salt-md",
+      "target": "tag:cross-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "salt-md",
+      "target": "tag:go",
+      "relation": "tagged"
+    },
+    {
+      "source": "salt-md",
+      "target": "tag:kanban",
+      "relation": "tagged"
+    },
+    {
+      "source": "salt-md",
+      "target": "tag:knowledge-base",
+      "relation": "tagged"
+    },
+    {
+      "source": "salt-md",
+      "target": "tag:mcp-server",
+      "relation": "tagged"
+    },
+    {
+      "source": "salt-md",
+      "target": "tag:notion-alternative",
+      "relation": "tagged"
+    },
+    {
+      "source": "salt-md",
+      "target": "tag:realtime-collaboration",
+      "relation": "tagged"
+    },
+    {
+      "source": "salt-md",
+      "target": "tag:self-hosted",
+      "relation": "tagged"
+    },
+    {
+      "source": "salt-md",
+      "target": "tag:sqlite",
+      "relation": "tagged"
+    },
+    {
+      "source": "salt-md",
+      "target": "tag:wiki",
+      "relation": "tagged"
+    },
+    {
+      "source": "salt-md",
+      "target": "tag:workspace",
       "relation": "tagged"
     },
     {
@@ -39073,6 +40338,76 @@
     {
       "source": "spacetimedb",
       "target": "tag:wasm",
+      "relation": "tagged"
+    },
+    {
+      "source": "sparse-memory-lm",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "sparse-memory-lm",
+      "target": "engraft-ngram",
+      "relation": "overlaps"
+    },
+    {
+      "source": "sparse-memory-lm",
+      "target": "tag:language-model",
+      "relation": "tagged"
+    },
+    {
+      "source": "sparse-memory-lm",
+      "target": "tag:memory-layers",
+      "relation": "tagged"
+    },
+    {
+      "source": "sparse-memory-lm",
+      "target": "tag:mmap",
+      "relation": "tagged"
+    },
+    {
+      "source": "sparse-memory-lm",
+      "target": "tag:pretraining",
+      "relation": "tagged"
+    },
+    {
+      "source": "sparse-memory-lm",
+      "target": "tag:product-key-memory",
+      "relation": "tagged"
+    },
+    {
+      "source": "sparse-memory-lm",
+      "target": "tag:pytorch",
+      "relation": "tagged"
+    },
+    {
+      "source": "sparse-memory-lm",
+      "target": "tag:research",
+      "relation": "tagged"
+    },
+    {
+      "source": "sparse-memory-lm",
+      "target": "tag:rocm",
+      "relation": "tagged"
+    },
+    {
+      "source": "sparse-memory-lm",
+      "target": "tag:small-models",
+      "relation": "tagged"
+    },
+    {
+      "source": "sparse-memory-lm",
+      "target": "tag:sparse-memory",
+      "relation": "tagged"
+    },
+    {
+      "source": "sparse-memory-lm",
+      "target": "tag:ssd-offload",
+      "relation": "tagged"
+    },
+    {
+      "source": "sparse-memory-lm",
+      "target": "tag:triton",
       "relation": "tagged"
     },
     {

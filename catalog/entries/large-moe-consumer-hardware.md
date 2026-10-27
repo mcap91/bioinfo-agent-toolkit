@@ -60,3 +60,7 @@ Use a fast NVMe SSD — SATA SSDs will likely be too slow for benefit.
 ## Security
 
 N/A — reference content, not software.
+
+## Usage notes
+
+- Daily-driver report (r/LocalLLM, Oct 2026): Qwen 3.8 Flash Next (plus some 27B) on an Asus ROG Flow Z13 Strix Halo laptop (128GB unified memory), full 256K context, ~1,200+ tok/s prefill and ~40 tok/s decode; the author's merged PRs on a Rust repo (github.com/llamastash/llamastash, PRs labeled "Qwen") were produced this way and the setup prompt is published as a gist (gist.github.com/deepu105/d0b321f3256edf67ebd85e747c0010b9). Commenters on Strix Halo report 50 tok/s decode / 1,200–1,700 tok/s prefill with gufo and up to ~2,000 tok/s prefill on recent halogen builds; one OpenCode Go user reported loops and poor quality from Flash, attributed in-thread to harness/inference config; an M5 Max 128GB user noted Flash Next's ~6B active parameters suit unified-memory Macs but sometimes produces less-batched implementations than Opus.

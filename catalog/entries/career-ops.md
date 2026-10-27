@@ -48,3 +48,7 @@ Claude Code, Codex, OpenCode, Gemini (Antigravity CLI), Qwen, Grok Build CLI, ag
 
 - GitHub: https://github.com/santifer/career-ops
 - Author portfolio: https://santifer.io
+
+## Usage notes
+
+- ATS parsing (r/jobsearchhacks thread, Oct 2026; hiring-manager anecdote corroborated by commenters who worked on resume parsers and a career advisor who tested ATS software): multi-column layouts, text boxes, custom icons, and unusual fonts often come out of resume parsers scrambled or out of order (e.g. Canva exports with reversed fields, job title glued to phone number), so the resume ranks low or is rejected before a human sees it. Template rule of thumb from the thread: single column, standard black text, one common font (Arial/Calibri/Times New Roman/Garamond) at 11–12pt, no inserted lines or fancy bullets, clean PDF or DOCX. Quick self-check: copy all text from the PDF into a plain-text file — if it reads in the right order, a parser probably can too.
