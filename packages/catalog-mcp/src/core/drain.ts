@@ -4,7 +4,13 @@ import path from 'node:path';
 import { loadConfig } from './config.js';
 import { parseInbox, type InboxItem } from './inbox.js';
 import { ingest } from './ingest.js';
-import type { BlockedDomain } from './schema.js';
+import { queueItemSchema, type BlockedDomain } from './schema.js';
+
+// Same validation the queue schema applies to `url` (R4 + S1): a source string
+// that merely starts with `http(s)://` (e.g. a bare `https://` with no host) can
+// still fail `z.string().url()`. Validating here means drain never writes a url
+// that readQueue would later reject.
+const isValidQueueUrl = (s: string): boolean => queueItemSchema.shape.url.safeParse(s).success;
 
 interface DrainResult {
   ingested: number;
@@ -25,14 +31,29 @@ function hostBlocked(url: string, blocked: BlockedDomain[]): boolean {
   return false;
 }
 
-function urlUnfetchable(url: string): boolean {
+// Reddit post/share hosts (G1/WK-0080): www/old/new/np/m.reddit.com and bare
+// reddit.com all 302 through fetch-url's old.reddit.com rewrite to a login page
+// (verified 2026-10-26: real fetchUrl() against a canonical post URL returned a
+// 200 "success" whose content is the /login page skeleton). redd.it is excluded
+// — no capture evidence. This must stay mirrored with NEEDS_LINK_RE in
+// packages/catalog-capture/src/catalog_capture/rewrite.py, or a line one side
+// blocks and the other can't resolve stays `⚠ needs-link` forever.
+const REDDIT_HOST_RE = /^(?:(?:www|old|new|np|m)\.)?reddit\.com$/;
+// A URL that names a specific post: /r/<sub>/s/<id>, /r/<sub>/comments/<id>(/...),
+// /user/<u>/comments/<id>(/...), or bare /comments/<id>(/...). A subreddit home
+// or wiki page (no post id) is left unblocked — capture needs a post id, and it
+// surfaces as empty-fetch instead.
+const REDDIT_POST_PATH_RE =
+  /^\/(?:r\/[^/]+\/s\/[^/]+|r\/[^/]+\/comments\/[^/]+|user\/[^/]+\/comments\/[^/]+|comments\/[^/]+)(?:\/.*)?$/;
+
+// Exported so the catalog-capture parity test (G1/WK-0080 review) can call the
+// real rule instead of reimplementing it — see packages/catalog-capture/tests/
+// check_unfetchable.ts and test_parity.py.
+export function urlUnfetchable(url: string): boolean {
   let parsed: URL;
   try { parsed = new URL(url); } catch { return false; }
-  const host = parsed.hostname.replace(/^www\./, '');
-  if ((host === 'reddit.com' || host === 'old.reddit.com') && /^\/r\/[^/]+\/s\//.test(parsed.pathname)) {
-    return true;
-  }
-  return false;
+  if (!REDDIT_HOST_RE.test(parsed.hostname)) return false;
+  return REDDIT_POST_PATH_RE.test(parsed.pathname);
 }
 
 /** Parse inbox.md, ingest ready items, keep/mark blocked items, rewrite the file (LF). */
@@ -78,11 +99,18 @@ export async function drainInbox(dir: string): Promise<DrainResult> {
       continue;
     }
 
+    const sourceUrl = item.kind === 'text' && item.source && isValidQueueUrl(item.source) ? item.source : undefined;
+
     const r = await ingest({
       dir,
       items: [item.kind === 'url'
         ? { url: item.url, source: 'manual' as const, notes: item.note }
-        : { content: item.content, source: 'manual' as const, context: item.source ? { source: item.source } : undefined }],
+        : {
+            url: sourceUrl,
+            content: item.content,
+            source: 'manual' as const,
+            context: item.source ? { source: item.source } : undefined,
+          }],
     });
 
     const success = r.count > 0;

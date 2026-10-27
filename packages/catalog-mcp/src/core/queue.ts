@@ -20,14 +20,20 @@ interface AddItem {
   context?: Record<string, unknown>;
 }
 
+/** Read and validate queue.json. A missing file is an empty queue (first run).
+ * Any other failure (malformed JSON, schema violation) throws — silently
+ * returning `{items:[]}` for an existing-but-broken file would make the next
+ * write permanently drop every queued item. */
 export async function readQueue(dir: string): Promise<QueueData> {
   const paths = catalogPaths(dir);
+  let raw: string;
   try {
-    const raw = await readFile(paths.queue, 'utf-8');
-    return queueSchema.parse(JSON.parse(raw));
-  } catch {
-    return { items: [] };
+    raw = await readFile(paths.queue, 'utf-8');
+  } catch (err) {
+    if ((err as NodeJS.ErrnoException).code === 'ENOENT') return { items: [] };
+    throw err;
   }
+  return queueSchema.parse(JSON.parse(raw));
 }
 
 export async function addToQueue(dir: string, items: AddItem[]): Promise<QueueItem[]> {
@@ -94,9 +100,17 @@ export async function returnToInbox(dir: string, key: string, reason: string): P
 }
 
 function formatInboxWriteback(item: QueueItem, token: string): string {
+  // An item with content (R4: including a captured text item whose dedup key is a
+  // URL) must keep that content — the bare `⚠ token url` line would drop it, and
+  // needs-link capture tools match only `/s/` share links, so it could never be
+  // recaptured. Only a true url-only item (no content) gets the bare line.
+  if (item.content) {
+    const sourceValue = item.url ?? (item.context?.['source'] as string | undefined);
+    const src = sourceValue ? `source: ${sourceValue}\n` : '';
+    return `⚠ ${token}\n\`\`\`text\n${src}${item.content}\n\`\`\``;
+  }
   if (item.url) return `⚠ ${token} ${item.url}`;
-  const src = item.context?.['source'] ? `source: ${item.context['source']}\n` : '';
-  return `⚠ ${token}\n\`\`\`text\n${src}${item.content ?? ''}\n\`\`\``;
+  return `⚠ ${token}`;
 }
 
 async function writeQueueAtomic(dir: string, data: QueueData): Promise<void> {

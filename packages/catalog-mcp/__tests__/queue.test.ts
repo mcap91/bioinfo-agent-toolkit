@@ -3,7 +3,19 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { mkdtemp, rm, mkdir, writeFile, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
+import { fileURLToPath } from 'node:url';
 import { readQueue, addToQueue, removeFromQueue, clearQueue, returnToInbox } from '../src/core/queue.js';
+import { parseInbox } from '../src/core/inbox.js';
+
+// Real WK-0054 own-engine capture (golden fixture, shared with packages/catalog-capture).
+const GOLDEN_FIXTURE = path.join(
+  path.dirname(fileURLToPath(import.meta.url)),
+  '..', '..', 'catalog-capture', 'tests', 'fixtures', 'JNjEe87YeN.txt',
+);
+async function goldenCaptureText(): Promise<string> {
+  const raw = await readFile(GOLDEN_FIXTURE, 'utf-8');
+  return raw.split('\n').slice(4).join('\n'); // drop the `final/title/shreddit-post/body text:` header lines
+}
 
 describe('queue', () => {
   let tmpDir: string;
@@ -65,6 +77,28 @@ describe('queue', () => {
     expect(queue.items[0].added).toBeDefined();
     expect(new Date(queue.items[0].added).getTime()).not.toBeNaN();
   });
+
+  it('readQueue returns an empty queue when queue.json is missing (first run, S1)', async () => {
+    await rm(path.join(tmpDir, 'catalog', 'queue.json'));
+    const queue = await readQueue(tmpDir);
+    expect(queue.items).toEqual([]);
+  });
+
+  it('readQueue throws (never silently empties) on malformed JSON in an existing file (S1)', async () => {
+    await writeFile(path.join(tmpDir, 'catalog', 'queue.json'), '{not valid json', 'utf-8');
+    await expect(readQueue(tmpDir)).rejects.toThrow();
+  });
+
+  it('readQueue throws (never silently empties) on a schema-violating queue.json (S1)', async () => {
+    // A bare `https://` fails z.string().url() — the exact S1 shape (a bad url
+    // slipping past a naive check and landing in queue.json).
+    await writeFile(
+      path.join(tmpDir, 'catalog', 'queue.json'),
+      JSON.stringify({ items: [{ key: 'x', url: 'https://', source: 'manual', added: new Date().toISOString() }] }),
+      'utf-8',
+    );
+    await expect(readQueue(tmpDir)).rejects.toThrow();
+  });
 });
 
 describe('queue phase 2', () => {
@@ -110,5 +144,45 @@ describe('queue phase 2', () => {
   it('returnToInbox returns false for an unknown key', async () => {
     await writeInbox('# inbox\n');
     expect(await returnToInbox(dir, 'nope', 'x')).toBe(false);
+  });
+
+  it('returnToInbox keeps captured content for a url+content item (R4 root cause)', async () => {
+    const text = await goldenCaptureText();
+    const url = 'https://www.reddit.com/r/LocalLLaMA/comments/1x9gfnb/google_open_sources_harness2_for_self_improving/';
+    await addToQueue(dir, [{ key: url, url, content: text, source: 'manual' }]);
+    await writeInbox('# inbox\n');
+    expect(await returnToInbox(dir, url, 'empty-fetch')).toBe(true);
+    const inboxText = await readInbox();
+
+    // Fenced block, not a bare `⚠ token url` line — the content must survive.
+    expect(inboxText).toContain(`source: ${url}`);
+    expect(inboxText).toContain('Google Open Sources Harness2 for Self Improving AI Agents');
+
+    // Round trip: parseInbox recovers the same source and content, still blocked.
+    const items = parseInbox(inboxText);
+    const item = items.find((i) => i.kind === 'text');
+    expect(item).toBeDefined();
+    expect(item?.blocked).toBe(true);
+    expect(item?.reason).toBe('empty-fetch');
+    expect(item?.source).toBe(url);
+    expect(item?.content).toBe(text.trim());
+  });
+
+  it('returnToInbox leaves a url-only item (no content) as a bare marked line', async () => {
+    await addToQueue(dir, [{ key: 'https://x/url-only', url: 'https://x/url-only', source: 'manual' }]);
+    await writeInbox('# inbox\n');
+    await returnToInbox(dir, 'https://x/url-only', 'fetch-error');
+    const inboxText = await readInbox();
+    expect(inboxText).toContain('⚠ fetch-error https://x/url-only');
+    expect(inboxText).not.toContain('```text');
+  });
+
+  it('returnToInbox leaves a content-only item (no url) as an unsourced fenced block', async () => {
+    await addToQueue(dir, [{ key: 'content:1', content: 'a tip', source: 'manual' }]);
+    await writeInbox('# inbox\n');
+    await returnToInbox(dir, 'content:1', 'not-cataloguable');
+    const inboxText = await readInbox();
+    expect(inboxText).toContain('⚠ not-cataloguable\n```text\na tip\n```');
+    expect(inboxText).not.toContain('source:');
   });
 });

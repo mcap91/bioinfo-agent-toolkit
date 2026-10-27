@@ -54,8 +54,9 @@ The full flow is documented in `skills/catalog-intake/SKILL.md`. Summary:
 1. **Intake (interactive).** Run the `/catalog-intake` skill or follow it manually. It pulls from
    Gmail (`from:me subject:catalog after:<cursor>`), appends URLs/prose to `catalog/inbox.md`,
    updates the cursor in `catalog/state.json` via `config { action: "set-state" }`, curates with
-   the user, then drains. Blocked/unfetchable items (Instagram, Reddit `/s/` share links, X,
-   LinkedIn posts) stay in inbox marked `⚠ needs-link` until resolved.
+   the user, drains, captures Reddit needs-link items (`catalog-capture`), then drains again.
+   Blocked/unfetchable items (Instagram, X, LinkedIn posts) stay in inbox marked `⚠ needs-link`
+   until resolved; Reddit post/share links resolve via the capture step instead of a manual link.
 2. **Processing (headless).** Run in the background:
    ```
    npm run -w @catalog/mcp catalog:process

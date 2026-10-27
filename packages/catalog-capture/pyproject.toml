@@ -1,0 +1,20 @@
+[project]
+name = "catalog-capture"
+version = "0.1.0"
+description = "Reddit /s/ share-link capture: resolves inbox needs-link items to catalog-ready text (WK-0080 Reddit slice)"
+requires-python = ">=3.13"
+dependencies = [
+    "playwright>=1.64.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/catalog_capture"]

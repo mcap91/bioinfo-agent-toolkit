@@ -91,18 +91,40 @@ describe('drainInbox', () => {
     expect(out).toContain('a scratch note');
   });
 
-  it('blocks Reddit /s/ share links as unfetchable', async () => {
-    await writeInbox('https://www.reddit.com/r/AI_Agents/s/kClxACXOyp\n');
+  // G1/WK-0080: one blocking rule must cover every Reddit post/share host+path
+  // shape catalog-capture's NEEDS_LINK_RE can resolve (rewrite.py) — a line
+  // blocked here but unmatched there would stay `⚠ needs-link` forever. URLs
+  // are real (toolkit-workbench/web-capture/results.csv), with host/scheme
+  // variants derived from them; the /user/ and bare /comments/ cases keep the
+  // same real post id in the other path shapes the unified rule documents.
+  it.each([
+    ['share link', 'https://www.reddit.com/r/AI_Agents/s/kClxACXOyp'],
+    ['canonical post, www.reddit.com', 'https://www.reddit.com/r/LocalLLaMA/comments/1x9gfnb/google_open_sources_harness2_for_self_improving/'],
+    ['canonical post, old.reddit.com', 'https://old.reddit.com/r/LocalLLaMA/comments/1x9gfnb/google_open_sources_harness2_for_self_improving/'],
+    ['canonical post, new.reddit.com', 'https://new.reddit.com/r/LocalLLaMA/comments/1x9gfnb/google_open_sources_harness2_for_self_improving/'],
+    ['canonical post, np.reddit.com', 'https://np.reddit.com/r/LocalLLaMA/comments/1x9gfnb/google_open_sources_harness2_for_self_improving/'],
+    ['canonical post, m.reddit.com', 'https://m.reddit.com/r/LocalLLaMA/comments/1x9gfnb/google_open_sources_harness2_for_self_improving/'],
+    ['canonical post, bare reddit.com', 'https://reddit.com/r/LocalLLaMA/comments/1x9gfnb/google_open_sources_harness2_for_self_improving/'],
+    ['canonical post, scheme-less', 'www.reddit.com/r/LocalLLaMA/comments/1x9gfnb/google_open_sources_harness2_for_self_improving/'],
+    ['comment-target canonical', 'https://www.reddit.com/r/LocalLLM/comments/1x1rv5k/comment/pew7oqh/'],
+    ['/user/<u>/comments/ shape', 'https://www.reddit.com/user/someuser/comments/1x9gfnb/google_open_sources_harness2_for_self_improving/'],
+    ['bare /comments/ shorthand', 'https://www.reddit.com/comments/1x9gfnb/google_open_sources_harness2_for_self_improving/'],
+  ])('blocks a Reddit post/share url as needs-link: %s', async (_label, url) => {
+    await writeInbox(`${url}\n`);
     const r = await drainInbox(dir);
     expect(r.ingested).toBe(0);
     expect(r.blocked).toBe(1);
-    const inbox = await readInbox();
-    expect(inbox).toContain('reddit.com/r/AI_Agents/s/kClxACXOyp');
-    expect(inbox).toContain('⚠ needs-link');
+    expect(await readInbox()).toContain('⚠ needs-link');
   });
 
-  it('allows normal Reddit /comments/ urls through', async () => {
-    await writeInbox('https://www.reddit.com/r/AI_Agents/comments/abc123/some_title\n');
+  it('leaves a subreddit home page unblocked (no post id to capture)', async () => {
+    await writeInbox('https://www.reddit.com/r/LocalLLaMA/\n');
+    const r = await drainInbox(dir);
+    expect(r.ingested).toBe(1);
+  });
+
+  it('leaves a subreddit wiki page unblocked (no post id to capture)', async () => {
+    await writeInbox('https://www.reddit.com/r/LocalLLaMA/wiki/index\n');
     const r = await drainInbox(dir);
     expect(r.ingested).toBe(1);
   });
@@ -121,6 +143,53 @@ describe('drainInbox', () => {
     await writeInbox('⚠ fetch-error https://github.com/o/r\n');
     await drainInbox(dir);
     expect(await readInbox()).toContain('⚠ fetch-error https://github.com/o/r');
+  });
+
+  it('ingests a text block whose source is an http(s) URL using that URL as the queue key (R4)', async () => {
+    await writeInbox('```text\nsource: https://www.reddit.com/r/AI_Agents/comments/abc123/some_title/\ncaptured reddit post text\n```\n');
+    const r = await drainInbox(dir);
+    expect(r.ingested).toBe(1);
+    const items = (await readQueue(dir)).items;
+    expect(items).toHaveLength(1);
+    expect(items[0].key).toBe('https://www.reddit.com/r/AI_Agents/comments/abc123/some_title/');
+    expect(items[0].url).toBe('https://www.reddit.com/r/AI_Agents/comments/abc123/some_title/');
+    expect(items[0].content).toContain('captured reddit post text');
+  });
+
+  it('skips a text block whose source URL is already cataloged (R4)', async () => {
+    await writeFile(
+      path.join(dir, 'catalog', 'entries', 'existing.md'),
+      '---\nname: existing\ntitle: Existing\nurl: https://www.reddit.com/r/AI_Agents/comments/abc123/some_title/\ncategory: skill\nverdict: adopt\nverdict_reason: good\ntags: [test]\nreviewed: 2026-06-03\n---\n',
+      'utf-8',
+    );
+    await writeInbox('```text\nsource: https://www.reddit.com/r/AI_Agents/comments/abc123/some_title/\ncaptured reddit post text\n```\n');
+    const r = await drainInbox(dir);
+    expect(r.ingested).toBe(0);
+    expect(r.skipped).toHaveLength(1);
+    expect(r.skipped[0].reason).toMatch(/already cataloged/);
+  });
+
+  it('leaves a sourceless text block ingested by content key, unaffected by R4', async () => {
+    await writeInbox('```text\nprose here with no source line\n```\n');
+    const r = await drainInbox(dir);
+    expect(r.ingested).toBe(1);
+    const items = (await readQueue(dir)).items;
+    expect(items[0].url).toBeUndefined();
+    expect(items[0].key).toMatch(/^content:[0-9a-f]{16}$/);
+    expect(items[0].content).toContain('prose here with no source line');
+  });
+
+  it('falls back to content-only when source looks like a url but fails URL validation (S1)', async () => {
+    // "https://" starts with http(s):// but fails z.string().url() — the queue
+    // schema's own check, not just a prefix test. Must never reach addToQueue
+    // as `url`, or a later readQueue would throw on this file (S1).
+    await writeInbox('```text\nsource: https://\nsome captured text\n```\n');
+    const r = await drainInbox(dir);
+    expect(r.ingested).toBe(1);
+    const items = (await readQueue(dir)).items; // throws if the written file is invalid
+    expect(items[0].url).toBeUndefined();
+    expect(items[0].key).toMatch(/^content:[0-9a-f]{16}$/);
+    expect(items[0].content).toContain('some captured text');
   });
 
   it('preserves header prose and scratch notes; removes processed urls; keeps+marks blocked', async () => {

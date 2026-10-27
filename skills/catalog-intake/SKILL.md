@@ -19,12 +19,25 @@ description: Full catalog pipeline — Gmail pull, inbox curation, drain, and he
 3. **Update cursor:** call `config { action: "set-state", key: "gmail_last_pull_iso", value: "<now ISO>" }`
    with the current UTC timestamp. Do this **after** successfully appending to inbox, not before.
 4. **Curate** `catalog/inbox.md` with the user: delete junk; for any `⚠ needs-link` item
-   (Instagram, Reddit `/s/` share links, LinkedIn posts, X, paywalled), replace with the real
-   fetchable URL or paste the relevant prose as a ```text block.
+   (Instagram, LinkedIn posts, X, paywalled), replace with the real fetchable URL or paste the
+   relevant prose as a ```text block. Reddit post/share links need no manual link — the capture
+   step (step 6) resolves them.
 5. **Drain:** call the `drain {}` MCP tool. It ingests ready items into the queue and marks
-   unfetchable items `⚠ needs-link` (blocked domains, Reddit `/s/` share links). Those stay in
-   inbox until the user resolves them.
-6. Report what was ingested, blocked, and skipped.
+   unfetchable items `⚠ needs-link` (blocked domains, Reddit post/share links). Those stay in
+   inbox until the user resolves them or the capture step (step 6) does.
+6. **Capture Reddit:** one-time setup if Chromium isn't already available to Playwright:
+   `uv run --project packages/catalog-capture playwright install chromium`. Then, from the repo
+   root, with nothing else writing the inbox concurrently:
+   ```
+   uv run --project packages/catalog-capture python -m catalog_capture needs-link --inbox catalog/inbox.md --sources catalog/sources
+   ```
+   Each `⚠ needs-link` Reddit line becomes a captured ```text block, `⚠ capture-failed <url> — <reason>`,
+   or `⚠ pdf <url>`. A `capture-failed`/`pdf` line needs a manual reset (edit it back to
+   `⚠ needs-link <url>`) before it will retry; same for a Reddit item returned from processing as
+   `⚠ empty-fetch`/`⚠ fetch-error` — reset it to `⚠ needs-link <url>` to have this step recapture it.
+7. **Drain again:** call `drain {}` once more — the only items still ready are the fenced blocks
+   the capture step just wrote.
+8. Report what was ingested, blocked, captured, and skipped.
 
 ## Stage 2 — Processing (headless)
 
