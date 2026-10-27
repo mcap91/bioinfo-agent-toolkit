@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Headless browser capture: a three-engine comparison</title>
+<style>
+:root {
+  color-scheme: light;
+  --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --grid: #e1e0d9; --axis: #c3c2b7; --code-bg: #f3f2ee; --border: rgba(11,11,11,0.10);
+  --s-own: #2a78d6; --s-crawl4ai: #eb6834; --s-pwcli: #1baf7a;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --code-bg: #232322; --border: rgba(255,255,255,0.10);
+    --s-own: #3987e5; --s-crawl4ai: #d95926; --s-pwcli: #199e70;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--surface); color: var(--ink); margin: 0; padding: 2rem 1rem;
+  font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  line-height: 1.55;
+}
+main { max-width: 58rem; margin: 0 auto; }
+h1 { margin-bottom: 0.25rem; font-size: 1.75rem; }
+h2 { border-bottom: 1px solid var(--grid); padding-bottom: 0.3rem; margin-top: 2.5rem; font-size: 1.3rem; }
+h3 { margin-bottom: 0.3rem; font-size: 1.05rem; }
+.meta, figcaption, footer { color: var(--ink-2); }
+.meta { margin-top: 0; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.92rem; }
+th, td { border-bottom: 1px solid var(--grid); padding: 0.45rem 0.6rem; text-align: left; vertical-align: top; }
+thead th { border-bottom: 1px solid var(--axis); font-weight: 600; }
+thead th small { display: block; font-weight: 400; color: var(--ink-2); }
+td.num { font-variant-numeric: tabular-nums; }
+.table-wrap { overflow-x: auto; }
+.nowrap { white-space: nowrap; }
+code, pre { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; font-size: 0.85em; }
+pre {
+  background: var(--code-bg); border: 1px solid var(--border); border-radius: 4px;
+  padding: 0.6rem 0.8rem; overflow-x: auto; white-space: pre-wrap; word-break: break-word;
+}
+li { margin-bottom: 0.45rem; }
+.swatch { display: inline-block; width: 0.75rem; height: 0.75rem; border-radius: 2px; margin-right: 0.4rem; vertical-align: -0.05rem; }
+.legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; margin: 1rem 0 0.5rem; font-size: 0.92rem; }
+.figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(25rem, 100%), 1fr)); gap: 1.5rem 2rem; }
+@media (min-width: 54rem) { .figs > figure:first-child { grid-row: span 2; } }
+figure { margin: 0.5rem 0 0; }
+figure svg { width: 100%; height: auto; display: block; }
+figcaption { font-size: 0.85rem; margin-top: 0.4rem; }
+figcaption strong { color: var(--ink); }
+.engine { margin-bottom: 1.6rem; }
+footer { font-size: 0.85em; margin-top: 3rem; border-top: 1px solid var(--grid); padding-top: 0.8rem; }
+svg text { font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+svg .lbl { fill: var(--ink); font-size: 13px; }
+svg .val { fill: var(--ink); font-size: 12px; font-variant-numeric: tabular-nums; }
+svg .sub { fill: var(--ink-2); font-size: 12px; }
+svg .axis { stroke: var(--axis); stroke-width: 1; }
+svg .grid { stroke: var(--grid); stroke-width: 1; }
+svg .tick { fill: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+svg .m-own { fill: var(--s-own); stroke: var(--s-own); }
+svg .m-crawl4ai { fill: var(--s-crawl4ai); stroke: var(--s-crawl4ai); }
+svg .m-pwcli { fill: var(--s-pwcli); stroke: var(--s-pwcli); }
+svg .bar { stroke: none; }
+svg .whisker { fill: none; stroke-width: 2; stroke-linecap: round; }
+svg .dot { stroke: var(--surface); stroke-width: 2; }
+svg .hit { fill: #000; fill-opacity: 0; }
+svg .row:hover .bar, svg .row:hover .whisker, svg .row:hover .dot { opacity: 0.75; }
+</style>
+</head>
+<body>
+<main>
+
+<h1>Headless browser capture: a three-engine comparison</h1>
+<p class="meta">2026-10-26</p>
+
+<h2>Summary</h2>
+<p>This note asks which headless-browser engine an agent-tool catalog should reuse for pages that need a real browser to capture. Three engines (a custom Playwright script, crawl4ai, and playwright-cli) were run on the same corpus: 18 Reddit share links plus 4 non-Reddit pages. All three resolved every share link and captured every post title and body; they differed on comment-section capture (crawl4ai 15/18), on non-Reddit pages with an unchanged configuration (crawl4ai 0/4), median wall time (1.94&ndash;11.87 s per page) and median tokens per page (5,574&ndash;11,416). The custom Playwright script was selected: it captured every comment section and non-Reddit page, as playwright-cli did, at a median 3.72 s per page against 11.87 s, and used about half of crawl4ai's tokens (5,652 against 11,416).</p>
+
+<h2>Results</h2>
+
+<div class="legend" aria-label="Engine colors">
+<span><span class="swatch" style="background:var(--s-own)"></span>Custom script</span><span><span class="swatch" style="background:var(--s-crawl4ai)"></span>crawl4ai</span><span><span class="swatch" style="background:var(--s-pwcli)"></span>playwright-cli</span>
+</div>
+<div class="figs">
+<figure><svg viewBox="0 0 460 248" role="img" aria-label="Capture completeness by engine" xmlns="http://www.w3.org/2000/svg"><line class="axis" x1="112" y1="30.0" x2="112" y2="120.0"/><line class="axis" x1="112" y1="152.0" x2="112" y2="242.0"/><text class="sub" x="0" y="18.0">Comment section captured (n = 18 Reddit links)</text><g class="row"><title>Custom script: comment section captured, 18 of 18</title><rect class="hit" x="0" y="30.0" width="460" height="30"/><text class="lbl" x="104" y="49.5" text-anchor="end">Custom script</text><path class="bar m-own" d="M112.0,36.0 h196.0 a4,4 0 0 1 4,4 v10.0 a4,4 0 0 1 -4,4 h-196.0 z"/><text class="val" x="318.0" y="49.0">18/18</text></g><g class="row"><title>crawl4ai: comment section captured, 15 of 18</title><rect class="hit" x="0" y="60.0" width="460" height="30"/><text class="lbl" x="104" y="79.5" text-anchor="end">crawl4ai</text><path class="bar m-crawl4ai" d="M112.0,66.0 h162.7 a4,4 0 0 1 4,4 v10.0 a4,4 0 0 1 -4,4 h-162.7 z"/><text class="val" x="284.7" y="79.0">15/18</text></g><g class="row"><title>playwright-cli: comment section captured, 18 of 18</title><rect class="hit" x="0" y="90.0" width="460" height="30"/><text class="lbl" x="104" y="109.5" text-anchor="end">playwright-cli</text><path class="bar m-pwcli" d="M112.0,96.0 h196.0 a4,4 0 0 1 4,4 v10.0 a4,4 0 0 1 -4,4 h-196.0 z"/><text class="val" x="318.0" y="109.0">18/18</text></g><text class="sub" x="0" y="140.0">Captured with unchanged configuration (n = 4 non-Reddit pages)</text><g class="row"><title>Custom script: non-Reddit pages captured with unchanged configuration, 4 of 4</title><rect class="hit" x="0" y="152.0" width="460" height="30"/><text class="lbl" x="104" y="171.5" text-anchor="end">Custom script</text><path class="bar m-own" d="M112.0,158.0 h196.0 a4,4 0 0 1 4,4 v10.0 a4,4 0 0 1 -4,4 h-196.0 z"/><text class="val" x="318.0" y="171.0">4/4</text></g><g class="row"><title>crawl4ai: non-Reddit pages captured with unchanged configuration, 0 of 4</title><rect class="hit" x="0" y="182.0" width="460" height="30"/><text class="lbl" x="104" y="201.5" text-anchor="end">crawl4ai</text><text class="val" x="118.0" y="201.0">0/4</text></g><g class="row"><title>playwright-cli: non-Reddit pages captured with unchanged configuration, 4 of 4</title><rect class="hit" x="0" y="212.0" width="460" height="30"/><text class="lbl" x="104" y="231.5" text-anchor="end">playwright-cli</text><path class="bar m-pwcli" d="M112.0,218.0 h196.0 a4,4 0 0 1 4,4 v10.0 a4,4 0 0 1 -4,4 h-196.0 z"/><text class="val" x="318.0" y="231.0">4/4</text></g></svg>
+<figcaption><strong>Figure 1. Capture completeness.</strong> Top: first-run captures containing the
+Reddit comment section. Bottom: the 3 configuration-reuse pages plus the JS-rendered
+pricing page, captured with each engine's Reddit configuration unchanged.</figcaption></figure>
+<figure><svg viewBox="0 0 460 100" role="img" aria-label="Median wall time per page with 90th percentile" xmlns="http://www.w3.org/2000/svg"><line class="axis" x1="112" y1="4.0" x2="112" y2="94.0"/><g class="row"><title>Custom script: median 3.72 s, p90 3.95 s, n = 18 first-run pages</title><rect class="hit" x="0" y="4.0" width="460" height="30"/><text class="lbl" x="104" y="23.5" text-anchor="end">Custom script</text><path class="bar m-own" d="M112.0,10.0 h54.6 a4,4 0 0 1 4,4 v10.0 a4,4 0 0 1 -4,4 h-54.6 z"/><line class="whisker m-own" x1="170.6" y1="19.0" x2="174.3" y2="19.0"/><circle class="dot m-own" cx="174.3" cy="19.0" r="4"/><text class="val" x="184.3" y="23.0">3.72 s (p90 3.95)</text></g><g class="row"><title>crawl4ai: median 1.94 s, p90 2.09 s, n = 18 first-run pages</title><rect class="hit" x="0" y="34.0" width="460" height="30"/><text class="lbl" x="104" y="53.5" text-anchor="end">crawl4ai</text><path class="bar m-crawl4ai" d="M112.0,40.0 h26.6 a4,4 0 0 1 4,4 v10.0 a4,4 0 0 1 -4,4 h-26.6 z"/><line class="whisker m-crawl4ai" x1="142.6" y1="49.0" x2="144.9" y2="49.0"/><circle class="dot m-crawl4ai" cx="144.9" cy="49.0" r="4"/><text class="val" x="154.9" y="53.0">1.94 s (p90 2.09)</text></g><g class="row"><title>playwright-cli: median 11.87 s, p90 12.69 s, n = 18 first-run pages</title><rect class="hit" x="0" y="64.0" width="460" height="30"/><text class="lbl" x="104" y="83.5" text-anchor="end">playwright-cli</text><path class="bar m-pwcli" d="M112.0,70.0 h183.1 a4,4 0 0 1 4,4 v10.0 a4,4 0 0 1 -4,4 h-183.1 z"/><line class="whisker m-pwcli" x1="299.1" y1="79.0" x2="312.0" y2="79.0"/><circle class="dot m-pwcli" cx="312.0" cy="79.0" r="4"/><text class="val" x="322.0" y="83.0">11.87 s (p90 12.69)</text></g></svg>
+<figcaption><strong>Figure 2. Wall time per page.</strong> Bar: median; line and dot: 90th
+percentile. First run, n = 18 Reddit links per engine.</figcaption></figure>
+<figure><svg viewBox="0 0 460 100" role="img" aria-label="Median tokens per page" xmlns="http://www.w3.org/2000/svg"><line class="axis" x1="112" y1="4.0" x2="112" y2="94.0"/><g class="row"><title>Custom script: median 5,652 tokens per page, n = 18</title><rect class="hit" x="0" y="4.0" width="460" height="30"/><text class="lbl" x="104" y="23.5" text-anchor="end">Custom script</text><path class="bar m-own" d="M112.0,10.0 h95.0 a4,4 0 0 1 4,4 v10.0 a4,4 0 0 1 -4,4 h-95.0 z"/><text class="val" x="217.0" y="23.0">5,652</text></g><g class="row"><title>crawl4ai: median 11,416 tokens per page, n = 18</title><rect class="hit" x="0" y="34.0" width="460" height="30"/><text class="lbl" x="104" y="53.5" text-anchor="end">crawl4ai</text><path class="bar m-crawl4ai" d="M112.0,40.0 h196.0 a4,4 0 0 1 4,4 v10.0 a4,4 0 0 1 -4,4 h-196.0 z"/><text class="val" x="318.0" y="53.0">11,416</text></g><g class="row"><title>playwright-cli: median 5,574 tokens per page, n = 18</title><rect class="hit" x="0" y="64.0" width="460" height="30"/><text class="lbl" x="104" y="83.5" text-anchor="end">playwright-cli</text><path class="bar m-pwcli" d="M112.0,70.0 h93.7 a4,4 0 0 1 4,4 v10.0 a4,4 0 0 1 -4,4 h-93.7 z"/><text class="val" x="215.7" y="83.0">5,574</text></g></svg>
+<figcaption><strong>Figure 3. Median tokens per page.</strong> Measured input tokens for the
+captured text, first run, n = 18 Reddit links per engine.</figcaption></figure>
+<figure><svg viewBox="0 0 460 100" role="img" aria-label="Environment size in megabytes, excluding the browser download" xmlns="http://www.w3.org/2000/svg"><line class="axis" x1="112" y1="4.0" x2="112" y2="94.0"/><g class="row"><title>Custom script: 142 MB environment, 5 packages</title><rect class="hit" x="0" y="4.0" width="460" height="30"/><text class="lbl" x="104" y="23.5" text-anchor="end">Custom script</text><path class="bar m-own" d="M112.0,10.0 h36.4 a4,4 0 0 1 4,4 v10.0 a4,4 0 0 1 -4,4 h-36.4 z"/><text class="val" x="158.4" y="23.0">142 MB, 5 packages</text></g><g class="row"><title>crawl4ai: 703 MB environment, 98 packages</title><rect class="hit" x="0" y="34.0" width="460" height="30"/><text class="lbl" x="104" y="53.5" text-anchor="end">crawl4ai</text><path class="bar m-crawl4ai" d="M112.0,40.0 h196.0 a4,4 0 0 1 4,4 v10.0 a4,4 0 0 1 -4,4 h-196.0 z"/><text class="val" x="318.0" y="53.0">703 MB, 98 packages</text></g><g class="row"><title>playwright-cli: 19 MB environment, 4 packages</title><rect class="hit" x="0" y="64.0" width="460" height="30"/><text class="lbl" x="104" y="83.5" text-anchor="end">playwright-cli</text><path class="bar m-pwcli" d="M112.0,70.0 h2.7 a2.7027027027027026,2.7027027027027026 0 0 1 2.7027027027027026,2.7027027027027026 v12.6 a2.7027027027027026,2.7027027027027026 0 0 1 -2.7027027027027026,2.7027027027027026 h-2.7 z"/><text class="val" x="123.4" y="83.0">19 MB, 4 packages</text></g></svg>
+<figcaption><strong>Figure 4. Environment size.</strong> Installed Python environment or
+<code>node_modules</code>. The browser download (674&ndash;681 MB on a clean
+host) is about the same for all three engines and is excluded from the bars.</figcaption></figure>
+</div>
+
+
+<h3>Full results</h3>
+<p>First run, n = 18 Reddit links per engine unless stated otherwise. This table holds every
+value plotted above.</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Measure</th><th><span class="nowrap"><span class="swatch" style="background:var(--s-own)"></span>Custom script</span><small>Playwright 1.64.1 (Python)</small></th><th><span class="nowrap"><span class="swatch" style="background:var(--s-crawl4ai)"></span>crawl4ai</span><small>crawl4ai 0.9.5</small></th><th><span class="nowrap"><span class="swatch" style="background:var(--s-pwcli)"></span>playwright-cli</span><small>@playwright/cli 0.1.22</small></th></tr></thead>
+<tbody>
+<tr><td>Share link resolved to the post URL</td><td class="num">18/18</td><td class="num">18/18</td><td class="num">18/18</td></tr>
+<tr><td>Post title and body captured</td><td class="num">18/18</td><td class="num">18/18</td><td class="num">18/18</td></tr>
+<tr><td>Targeted comment captured (2 links)</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td></tr>
+<tr><td>Comment section captured</td><td class="num">18/18</td><td class="num">15/18</td><td class="num">18/18</td></tr>
+<tr><td>Wall time per page (s), median / p90</td><td class="num">3.72 / 3.95</td><td class="num">1.94 / 2.09</td><td class="num">11.87 / 12.69</td></tr>
+<tr><td>Characters per page, median</td><td class="num">13,540</td><td class="num">24,258 (raw markdown)</td><td class="num">13,482</td></tr>
+<tr><td>Tokens per page, median</td><td class="num">5,652</td><td class="num">11,416</td><td class="num">5,574</td></tr>
+<tr><td>Reddit-specific code or configuration</td><td class="num">7 lines (Chrome user agent, poll loop, comment-count selector)</td><td class="num">2 configuration lines (<code>wait_for</code>, <code>user_agent</code>)</td><td class="num">The CLI has no wait-for-selector command at all; a polling loop is hand-written</td></tr>
+<tr><td>Reuse pages captured, unchanged configuration (3)</td><td class="num">3/3</td><td class="num">0/3</td><td class="num">3/3</td></tr>
+<tr><td>Non-Reddit pages captured, unchanged configuration (3 + pricing page)</td><td class="num">4/4</td><td class="num">0/4</td><td class="num">4/4</td></tr>
+<tr><td>Environment size</td><td class="num">142 MB, 5 packages</td><td class="num">703 MB, 98 packages</td><td class="num">19 MB <code>node_modules</code>, 4 packages</td></tr>
+<tr><td>Browser download on a clean host</td><td class="num">~681 MB (Chromium build 1248)</td><td class="num">~681 MB (same build as the custom script)</td><td class="num">~674 MB (Chromium build 1247)</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Engines and configurations</h2>
+<p>Each engine ran with one fixed configuration for every page. Excerpts below are copied from the
+files that ran.</p>
+
+<div class="engine">
+<h3>Custom script &mdash; Playwright 1.64.1 (Python)</h3>
+<p>Headless Chromium with a Chrome user agent. Polls for the post element
+(<code>shreddit-post</code>), then saves <code>document.body.innerText</code>.</p>
+<pre><code>uv run --project own python own/capture.py &lt;url&gt; 1 &lt;out_path&gt;</code></pre><pre><code>ctx = b.new_context(user_agent=&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36&quot;, viewport={&quot;width&quot;:1280,&quot;height&quot;:900})</code></pre><pre><code>n = 0
+for i in range(10):
+    time.sleep(2)
+    n = pg.evaluate(&quot;document.querySelectorAll(&#x27;shreddit-post&#x27;).length&quot;)
+    if n: break</code></pre><pre><code>comments = pg.evaluate(&quot;document.querySelectorAll(&#x27;shreddit-comment&#x27;).length&quot;)</code></pre>
+</div>
+
+<div class="engine">
+<h3>crawl4ai &mdash; crawl4ai 0.9.5</h3>
+<p>Library mode. Playwright underneath, with built-in HTML-to-markdown conversion and a
+<code>wait_for</code> CSS selector in place of a polling loop. The counted output is
+<code>raw_markdown</code>.</p>
+<pre><code>CRAWL4AI_NO_CLOUD_NOTICE=1 uv run --project crawl4ai python crawl4ai/capture.py &lt;url&gt; &lt;out_path&gt;</code></pre><pre><code>browser_cfg = BrowserConfig(headless=True, user_agent=CHROME_UA)
+run_cfg = CrawlerRunConfig(
+    wait_for=&quot;css:shreddit-post&quot;,
+    wait_for_timeout=20000,
+    page_timeout=45000,
+    markdown_generator=DefaultMarkdownGenerator(content_filter=PruningContentFilter()),
+)</code></pre>
+</div>
+
+<div class="engine">
+<h3>playwright-cli &mdash; @playwright/cli 0.1.22</h3>
+<p>The CLI has no text-dump command and no wait-for-selector command; both are implemented with
+<code>eval</code> calls. A custom user agent can be set only through a configuration file.</p>
+<pre><code>node pwcli/capture.mjs &lt;url&gt; &lt;out_path&gt;</code></pre><pre><code>playwright-cli --config pwcli/.playwright/cli.config.json open &lt;url&gt;
+playwright-cli eval &quot;async () =&gt; { let n = 0; for (let i = 0; i &lt; 10; i++) { await new Promise(r =&gt; setTimeout(r, 2000)); n = document.querySelectorAll(&#x27;shreddit-post&#x27;).length; if (n) break; } return n; }&quot; --raw
+playwright-cli eval &quot;() =&gt; ({url: location.href, title: document.title, posts: document.querySelectorAll(&#x27;shreddit-post&#x27;).length, comments: document.querySelectorAll(&#x27;shreddit-comment&#x27;).length})&quot; --raw
+playwright-cli eval &quot;() =&gt; document.body ? document.body.innerText : &#x27;&#x27;&quot; --raw --filename &lt;tmp.json&gt;
+playwright-cli close</code></pre><pre><code>{
+  &quot;browser&quot;: {
+    &quot;browserName&quot;: &quot;chromium&quot;,
+    &quot;launchOptions&quot;: { &quot;headless&quot;: true },
+    &quot;contextOptions&quot;: {
+      &quot;userAgent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36&quot;,
+      &quot;viewport&quot;: { &quot;width&quot;: 1280, &quot;height&quot;: 900 }
+    }
+  }
+}</code></pre>
+</div>
+
+<h2>Method</h2>
+<p><strong>Corpus.</strong> 18 Reddit share links (<code>reddit.com/r/&lt;sub&gt;/s/&lt;id&gt;</code>)
+saved for later review; a plain HTTP fetch cannot resolve them. 2 of the links point to a
+specific comment. Three non-Reddit pages tested configuration reuse: a static product page, a
+JS-heavy GitHub repository page, and an Instagram reel behind a login prompt. A JS-rendered pricing
+page, run as a probe (below), is counted as the fourth non-Reddit page.</p>
+<p><strong>Runs.</strong> Each Reddit link was loaded twice per engine, back to back (first and
+repeat); all reported results use the first run. Non-Reddit pages ran once. Engines ran
+sequentially, never in parallel, with a fixed 5-second delay between page loads.</p>
+<p><strong>Capture checks.</strong> Each check scored 1 or 0 per capture.</p>
+<ul>
+<li><em>Share link resolved</em>: the final URL matches the post pattern <code>/r/&lt;sub&gt;/comments/&lt;id&gt;/</code>.</li>
+<li><em>Title and body</em>: the captured title equals the custom script's first-run title for that link,
+and the captured content is at least 500 characters. Non-Reddit pages have no reference title, so they
+pass with a non-empty title and at least 500 characters.</li>
+<li><em>Targeted comment</em> (2 links only): the first 100 characters of the comment's text,
+whitespace-normalized and taken from an independent reference load of the page, appear in the capture.</li>
+<li><em>Comment section</em>: the capture contains the marker "Comments Section" or "Sort by"
+(case-insensitive), the interface text Reddit renders around the comment list.</li>
+</ul>
+<p><strong>Tokens.</strong> Each capture was sent through <code>claude --print --output-format json</code>
+on a Claude subscription, model <code>claude-sonnet-5</code>, with a fixed one-word-reply instruction.
+The input-side token total of that call minus the total for the same instruction with empty text
+(baseline 8,653 tokens) is the capture's token count. The 60 counting
+calls cost about $1.89 at list price.</p>
+<p><strong>Install footprint.</strong> Package counts come from each engine's lockfile. Environment
+size is <code>du -sh</code> of the Python virtual environment or <code>node_modules</code>. The browser
+download is the size of the Chromium, headless shell, and ffmpeg builds each engine pins, measured in
+the Playwright browser cache.</p>
+
+<h2>Out-of-corpus probes</h2>
+<p>Two further pages were captured once with each engine's unchanged configuration.</p>
+<ul>
+<li><strong>JS-rendered pricing page</strong> (<code>deepinfra.com/gpu-instances</code>): the custom
+script captured 3,154 characters and playwright-cli 3,153, both including
+the GPU price rows (for example <code>$4.89/hour</code>) after a cookie banner and
+navigation. crawl4ai returned no content: <code>Timeout after 20000ms waiting for selector &#x27;shreddit-post&#x27;</code>.</li>
+<li><strong>PDF</strong> (<code>arxiv.org/pdf/1706.03762</code>): every engine received a file download
+instead of a rendered page. The custom script raised <code>Page.goto: Download is starting</code> and
+exited with status 1, writing no output. crawl4ai hit the same error, caught it,
+and returned an empty capture. playwright-cli returned an empty capture with no error. PDFs were outside
+the scope of this comparison.</li>
+</ul>
+
+<h2>Limitations</h2>
+<ul>
+<li>The pass rule for non-Reddit pages (non-empty title and at least 500 characters) is weak and cannot
+distinguish a correct page from a loaded but wrong one.</li>
+<li>The Instagram page tests configuration reuse only, not Instagram capture: it passed with the title
+"Instagram" on a login prompt, although the reel caption appeared in the captured text.</li>
+<li>Non-Reddit pages ran once, so they carry no repeat measurement.</li>
+<li>An earlier version of the targeted-comment check searched for the comment ID, which appears only in
+link targets and never in page text; it was replaced by a match against independently captured
+reference text.</li>
+<li>No qualitative scoring of clutter or output usability was performed.</li>
+</ul>
+
+<h2>Selected engine and rationale</h2>
+<p>The custom script, built on Playwright 1.64.1 (Python), was selected. The choice rests on these
+measured results: comment section 18/18 (crawl4ai 15/18);
+4/4 non-Reddit pages captured with an unchanged configuration (crawl4ai
+0/4); median 5,652 tokens per page (crawl4ai
+11,416); 5 packages and 142 MB (crawl4ai
+98 packages and 703 MB); median 3.72 s per
+page (playwright-cli 11.87 s). On a PDF it fails with an explicit error that
+can be caught, so PDFs can be routed to a document-conversion pipeline instead of the browser. It is
+used as one shared script with a per-site wait condition (by default a short fixed wait), not a
+separate script per site.</p>
+
+<footer>
+2026-10-26. Generated by <code>report.py</code> from the run data; every number is computed from the
+results files and cross-checked before the page is written. Tooling: <code>uv 0.12.10</code>, <code>node v22.23.2</code>, <code>npm 10.9.8</code>, <code>claude 2.1.281 (Claude Code)</code>.
+Raw captures are not published because they contain third-party content.
+</footer>
+
+</main>
+</body>
+</html>
