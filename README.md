@@ -22,6 +22,7 @@ cp -r skills/<name> <your-project>/.claude/skills/<name>
 | [/explain-me-this](skills/explain-me-this/) | Discuss-and-explain persona — explains, researches, and helps you decide; no code or plans. Manual-only. |
 | [/verticalizing-plans](skills/verticalizing-plans/) | Convert phase-shaped plans into thin vertical slices that prove the whole flow early |
 | [/spec-check](skills/spec-check/) | Surface open design decisions in a doc before handing work off for autonomous execution |
+| [/resolve](skills/resolve/) | Re-orient an agent that asked a question evidence could answer: search, choose, cold-check, record, continue |
 
 ## Output style
 
