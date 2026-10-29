@@ -1,9 +1,9 @@
 ---
-name: writing-style
-description: House style for any prose an agent writes for a human reader, including docs, READMEs, emails, PR bodies, commit messages, reports, resumes, and cover letters. Plain hyphens only, no AI tells, active voice, short sentences adapted from ASD-STE100 Simplified Technical English. Use when drafting or editing prose, or when the user says "/writing-style", "clean this up", or "make this sound less like AI".
+name: write-plain
+description: House style for any prose an agent writes for a human reader, including docs, READMEs, emails, PR bodies, commit messages, reports, resumes, and cover letters. Plain hyphens only, no AI tells, active voice, short sentences adapted from ASD-STE100 Simplified Technical English. Use when drafting or editing prose, or when the user says "/write-plain", "clean this up", or "make this sound less like AI".
 ---
 
-# Writing Style
+# Write Plain
 
 Write so a busy reader understands on the first pass. Apply every rule below to all prose you produce. Code, quoted text, and captured output are exempt.
 

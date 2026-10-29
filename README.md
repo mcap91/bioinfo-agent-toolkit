@@ -23,7 +23,7 @@ cp -r skills/<name> <your-project>/.claude/skills/<name>
 | [/verticalizing-plans](skills/verticalizing-plans/) | Convert phase-shaped plans into thin vertical slices that prove the whole flow early |
 | [/spec-check](skills/spec-check/) | Surface open design decisions in a doc before handing work off for autonomous execution |
 | [/resolve](skills/resolve/) | Re-orient an agent that asked a question evidence could answer: search, choose, cold-check, record, continue |
-| [/writing-style](skills/writing-style/) | House style for all prose: no dashes, no AI tells, active voice, ASD-STE100 sentence limits |
+| [/write-plain](skills/write-plain/) | House style for all prose: no dashes, no AI tells, active voice, ASD-STE100 sentence limits |
 
 ## Output style
 
