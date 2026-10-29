@@ -1,6 +1,6 @@
 # direct-output-style
 
-A Claude Code [output style](https://code.claude.com/docs/en/output-styles.md) in one Markdown file. It sets the voice and shape of every reply: answer first, short turns, plain words (ASD-STE100 as a guide), a fixed reply order (action items, decisions, recommendations, explanation), no `path:line` citations, and one closing question. It also carries the coding-discipline rules. No installer and no hooks.
+A Claude Code [output style](https://code.claude.com/docs/en/output-styles.md) in one Markdown file. It sets the voice and shape of every reply: answer first, short turns, plain words (ASD-STE100 as a guide), a fixed reply order (action items, decisions, recommendations, explanation), no `path:line` citations, and one closing question. It also carries the coding-discipline and evidence rules. One hook ships with it: `hooks/reply-length.py`, a Stop hook that logs the word count of every reply.
 
 ## Install (symlink)
 
@@ -8,7 +8,7 @@ Symlink the style from this repo, so a `git pull` updates it. Do not copy it; a 
 
 ```bash
 mkdir -p ~/.claude/output-styles
-ln -sfn ~/bioinfo-agent-toolkit/docs/output-styles/direct.md ~/.claude/output-styles/direct.md
+ln -sfn ~/projects/bioinfo-agent-toolkit/docs/output-styles/direct.md ~/.claude/output-styles/direct.md
 ```
 
 Activate it for all projects in `~/.claude/settings.json`:
@@ -20,6 +20,31 @@ Activate it for all projects in `~/.claude/settings.json`:
 ```
 
 Or run `/output-style direct` in a session. Note: `/output-style` and `/config` save the choice to the current project's `.claude/settings.local.json`, not to the global file.
+
+## Install the reply-length hook (symlink)
+
+The style asks for 200-300 word replies. The hook measures what you actually get. It only logs; it never blocks.
+
+```bash
+mkdir -p ~/.claude/hooks
+ln -sfn ~/projects/bioinfo-agent-toolkit/docs/output-styles/hooks/reply-length.py ~/.claude/hooks/reply-length.py
+```
+
+Add it to `~/.claude/settings.json`:
+
+```json
+{
+  "hooks": {
+    "Stop": [
+      { "hooks": [ { "type": "command", "command": "python3 ~/.claude/hooks/reply-length.py" } ] }
+    ]
+  }
+}
+```
+
+Output goes to `~/.claude/reply-length/`: `log.jsonl` (one line per reply), `capture-stop-input.json` (the first raw hook input, kept as evidence of its shape), and `errors.log`. After about a week, read the log and decide whether a blocking ceiling is worth its cost. A blocking Stop hook makes Claude rewrite the whole reply, which costs a full turn.
+
+`agent-lockdown checkup` verifies that the style and the hook are symlinks into this repo.
 
 ## Things to know
 

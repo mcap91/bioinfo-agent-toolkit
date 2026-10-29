@@ -320,6 +320,23 @@ no deny rules at all, report as MISSING and offer to create them.
 
 Run `claude --version` and compare to `2.1.281`. Report OK or DRIFTED.
 
+### Step 4a — Check the output style and hook install
+
+The `direct` output style and its `reply-length` hook must be symlinks into the
+toolkit checkout. A plain copy goes stale without warning. Check:
+
+| Path | Expected |
+|------|----------|
+| `~/.claude/output-styles/direct.md` | symlink to `<toolkit>/docs/output-styles/direct.md` |
+| `~/.claude/hooks/reply-length.py` | symlink to `<toolkit>/docs/output-styles/hooks/reply-length.py` |
+| `outputStyle` in `~/.claude/settings.json` | `"direct"` |
+| `hooks.Stop` in `~/.claude/settings.json` | a command that runs `~/.claude/hooks/reply-length.py` |
+
+Run `readlink -f` on each path. Report OK, COPY (a real file, not a link), or
+MISSING. For COPY, offer to replace the file with the symlink (with user
+confirmation; never silently fix). Also flag any project `.claude/settings*.json`
+that sets `outputStyle`, because it overrides the user-level value.
+
 ### Step 5 — Flag unexpected entries (user-level)
 
 This is the injection and mutation detection pass. Categorize every key in the
@@ -381,6 +398,7 @@ Present to the user:
 === Agent Lockdown Checkup ===
 
 CLI version:  2.1.281  ✓
+Output style: direct.md (symlink) ✓   reply-length hook (symlink) ✓
 
 --- User-level settings ---
 
