@@ -12,6 +12,7 @@ license: AGPL-3.0-or-later
 security_flags: [curl-pipe-sh-installer, dual-license-commercial-required, windows-beta]
 supersedes: []
 overlaps: []
+source: unknown
 ---
 
 ## What it is

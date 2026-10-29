@@ -12,6 +12,7 @@ license: NOASSERTION
 security_flags: []
 supersedes: []
 overlaps: [agent-skills-spec]
+source: unknown
 ---
 
 ## What it does

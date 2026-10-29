@@ -12,6 +12,7 @@ license: GPL-3.0
 security_flags: [cleartext-storage, no-encryption-at-rest, curl-pipe-bash-install]
 supersedes: []
 overlaps: []
+source: unknown
 ---
 
 ## What it does

@@ -12,6 +12,7 @@ supersedes: []
 overlaps: [claude-spellbook]
 license: MIT
 security_flags: []
+source: unknown
 ---
 
 ## What it does

@@ -12,6 +12,7 @@ license: AGPL-3.0-or-later
 security_flags: [unsandboxed-shell, new-project]
 supersedes: []
 overlaps: [open-webui, headroom]
+source: unknown
 ---
 
 ## What it does

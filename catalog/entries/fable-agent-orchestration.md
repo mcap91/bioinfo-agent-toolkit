@@ -12,6 +12,7 @@ license: Apache-2.0
 security_flags: []
 supersedes: []
 overlaps: [architect-loop, agent-skills-addy-osmani, dotclaude]
+source: unknown
 ---
 
 ## What it does

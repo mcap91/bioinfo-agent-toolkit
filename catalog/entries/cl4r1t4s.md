@@ -12,6 +12,7 @@ license: NOASSERTION
 security_flags: [prompt-injection-in-readme, no-license-file]
 supersedes: []
 overlaps: [claude-code-remote-prompt-hardening]
+source: unknown
 ---
 
 ## What it does

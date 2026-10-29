@@ -12,6 +12,7 @@ license: MIT
 security_flags: []
 supersedes: []
 overlaps: [data-science-for-beginners, huggingface-llm-course, huggingface-agents-course]
+source: unknown
 ---
 
 ## What it does

@@ -12,6 +12,7 @@ license: MIT
 security_flags: []
 supersedes: []
 overlaps: [claude-spellbook, ecc-everything-claude-code]
+source: unknown
 ---
 
 ## What it does

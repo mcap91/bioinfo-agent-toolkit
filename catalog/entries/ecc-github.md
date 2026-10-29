@@ -12,6 +12,7 @@ license: MIT
 security_flags: [hook-system-broad-scope, third-party-install-scripts, pro-tier-upsell]
 supersedes: []
 overlaps: [ecc-plugin]
+source: unknown
 ---
 
 ## What it does

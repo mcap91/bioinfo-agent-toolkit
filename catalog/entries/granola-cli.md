@@ -7,6 +7,7 @@ tags: [meeting-notes, export, backup, markdown, transcripts, granola, data-porta
 reviewed: 2026-07-21
 summary: "A Go CLI that exports data from the Granola meeting note-taking app to local files for backup, migration, or offline access, covering both API-based notes export (ProseMirror JSON to Markdown) and cache-based transcript export with speaker labels"
 acquired: 2026-07-22
+source: unknown
 ---
 
 ## What it does

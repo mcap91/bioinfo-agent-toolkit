@@ -12,6 +12,7 @@ license: Apache-2.0
 security_flags: []
 supersedes: []
 overlaps: [qdrant, weaviate, milvus, pgvector, lancedb]
+source: unknown
 ---
 
 ## What it does

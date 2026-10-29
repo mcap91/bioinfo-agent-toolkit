@@ -12,6 +12,7 @@ license: Proprietary
 security_flags: [closed-source]
 supersedes: []
 overlaps: [n8n-mcp-server]
+source: unknown
 ---
 
 ## What it does

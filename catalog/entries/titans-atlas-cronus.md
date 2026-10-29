@@ -12,6 +12,7 @@ license: LicenseRef-proprietary
 security_flags: [closed-source, single-maintainer, curl-pipe-sh-installer]
 supersedes: []
 overlaps: [claude-mem, memstack, mempalace]
+source: unknown
 ---
 
 ## What it says

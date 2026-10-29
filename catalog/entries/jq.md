@@ -12,6 +12,7 @@ overlaps: []
 license: MIT
 security_flags: []
 workflows: []
+source: unknown
 ---
 
 ## What it does
@@ -33,3 +34,7 @@ Build from source: `autoreconf -i && ./configure --with-oniguruma=builtin && mak
 ## Security
 
 MIT licensed (documentation CC BY 3.0). Zero runtime dependencies. Single static binary. No network calls.
+
+## Usage notes
+
+- Also installable via Homebrew (`brew install jq`), in addition to the release binaries and source build recorded above (source: https://www.instagram.com/reel/DeIm-UyIzbz/)

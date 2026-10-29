@@ -12,6 +12,7 @@ license: unlicensed
 security_flags: []
 supersedes: []
 overlaps: [openrouter, local-model-picks-2026]
+source: unknown
 ---
 
 ## What it says

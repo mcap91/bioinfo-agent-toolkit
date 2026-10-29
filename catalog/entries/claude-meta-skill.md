@@ -12,6 +12,7 @@ license: Unlicense
 security_flags: [no-tests, no-ci, no-license-file]
 supersedes: []
 overlaps: [bmad-skill-forge, obsidian-skills-kepano, one-skill-to-rule-them-all, creating-claude-md]
+source: unknown
 ---
 
 ## What it does

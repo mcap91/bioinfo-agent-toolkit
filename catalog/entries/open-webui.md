@@ -12,6 +12,7 @@ license: LicenseRef-OpenWebUI
 security_flags: [custom-license, byof-code-execution, pipeline-code-execution]
 supersedes: []
 overlaps: [onyx-ai-platform]
+source: unknown
 ---
 
 ## What it does

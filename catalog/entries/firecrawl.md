@@ -12,6 +12,7 @@ license: AGPL-3.0-only
 security_flags: []
 supersedes: []
 overlaps: [crawl4ai, browser-use]
+source: unknown
 ---
 
 ## What it does

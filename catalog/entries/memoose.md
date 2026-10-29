@@ -12,6 +12,7 @@ license: Apache-2.0
 security_flags: [unverified-vendor-claims]
 supersedes: []
 overlaps: [ai-memory-comparison, okf-agent-memory, mempalace, claude-mem]
+source: unknown
 ---
 
 ## What it does

@@ -12,6 +12,7 @@ license: Apache-2.0
 security_flags: []
 supersedes: []
 overlaps: [qdrant, weaviate, pgvector, chroma, lancedb]
+source: unknown
 ---
 
 ## What it does
@@ -39,3 +40,7 @@ Deploy via Docker, Kubernetes (Helm), or Milvus Lite (pip). Version 3.0 GA as of
 ## Security
 
 Apache-2.0 licensed, LF AI and Data Foundation governance. Mandatory user authentication, TLS encryption, RBAC with fine-grained permissions. SOC 2 compliance available on Zilliz Cloud. Published SIGMOD/VLDB papers on architecture.
+
+## Usage notes
+
+- Zilliz Cloud (the managed Milvus offering) bills on compute units plus storage, with a free tier then dedicated-capacity pricing; compute-unit sizing requires tuning (source: https://mixpeek.com/guides/vector-database-cost-comparison)

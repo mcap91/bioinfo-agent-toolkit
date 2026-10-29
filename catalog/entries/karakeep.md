@@ -12,6 +12,7 @@ license: AGPL-3.0
 security_flags: [puppeteer-in-production, agpl-copyleft, heavy-development]
 supersedes: []
 overlaps: []
+source: unknown
 ---
 
 ## What it does

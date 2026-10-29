@@ -8,6 +8,7 @@ reviewed: 2026-07-03
 security_flags: []
 summary: "CodeAct proposes executable Python code as a unified action space for LLM agents, replacing constrained JSON/text action formats, and includes the CodeActInstruct dataset, fine-tuned CodeActAgent models, and the M3ToolEval benchmark"
 acquired: 2026-07-03
+source: unknown
 ---
 
 ## What It Does

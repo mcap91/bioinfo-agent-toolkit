@@ -7,6 +7,7 @@ tags: [prompt-caching, anthropic-api, optimization, cost-reduction, claude-api-s
 reviewed: 2026-07-21
 summary: "The official Anthropic reference for designing prompt-building code that maximizes cache hit rates, covering placement patterns, silent cache invalidators, and key technical limits for the prompt caching prefix-match mechanism"
 acquired: 2026-07-22
+source: unknown
 ---
 
 ## What it covers

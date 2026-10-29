@@ -12,6 +12,7 @@ license: PostgreSQL
 security_flags: []
 supersedes: []
 overlaps: [qdrant, weaviate, milvus, chroma, lancedb]
+source: unknown
 ---
 
 ## What it does
@@ -38,3 +39,7 @@ Install from source (C, `make && make install`), Docker, Homebrew, PGXN, apt, yu
 ## Security
 
 PostgreSQL License (liberal open-source). Inherits all PostgreSQL security — authentication, TLS, row-level security, audit logging. No additional attack surface beyond the extension's C code. No telemetry. Widely deployed on managed platforms with SOC 2/HIPAA compliance inherited from the provider.
+
+## Usage notes
+
+- Self-hosted pgvector trades vendor fees for infrastructure cost and ops time; a realistic self-hosted floor is cited at ~$50+/month in instance cost alone, with operational time as "the real bill" (source: https://mixpeek.com/guides/vector-database-cost-comparison)

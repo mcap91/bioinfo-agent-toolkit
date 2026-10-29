@@ -11,6 +11,7 @@ acquired: 2026-08-09
 security_flags: []
 supersedes: []
 overlaps: [claude-code-commands-announcement, claude-howto, awesome-claude-code]
+source: unknown
 ---
 
 ## What it says

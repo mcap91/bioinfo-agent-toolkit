@@ -12,6 +12,7 @@ license: Apache-2.0
 security_flags: []
 supersedes: []
 overlaps: [karpathy-llm-wiki-pattern]
+source: unknown
 ---
 
 ## What it does

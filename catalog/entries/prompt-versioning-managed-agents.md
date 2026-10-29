@@ -8,6 +8,7 @@ summary: "Demonstrates prompt lifecycle management using Claude Managed Agents' 
 security_flags: [needs-api-key]
 reviewed: 2026-06-25
 acquired: 2026-06-26
+source: unknown
 ---
 
 ## What it does

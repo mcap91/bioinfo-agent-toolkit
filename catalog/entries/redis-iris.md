@@ -12,6 +12,7 @@ license: proprietary
 security_flags: ["Commercial Redis product; the fetched redis.io/iris/ marketing page itself renders mostly as navigation chrome with minimal on-page prose — most factual detail in this entry comes from third-party reporting and Redis's own docs.redis.io context-engine page rather than the linked landing page directly", No independent security/privacy audit of the Agent Memory data-retention or multi-tenant isolation model found during this review]
 supersedes: []
 overlaps: []
+source: unknown
 ---
 
 ## What it says

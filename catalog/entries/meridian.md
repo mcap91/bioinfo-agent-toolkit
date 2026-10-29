@@ -12,6 +12,7 @@ license: Apache-2.0
 security_flags: []
 supersedes: []
 overlaps: [unstructured, docling-mcp]
+source: unknown
 ---
 
 ## What it does

@@ -12,6 +12,7 @@ overlaps: []
 license: MIT
 security_flags: []
 workflows: []
+source: unknown
 ---
 
 ## What it does
@@ -41,3 +42,7 @@ Alias recommendation: `alias lg='lazygit'`. Supports changing directory on exit.
 ## Security
 
 MIT licensed. No network calls beyond git operations. No telemetry.
+
+## Usage notes
+
+- Default keybindings beyond staging: `c` opens the commit prompt, Shift+P pushes the current branch (source: https://www.instagram.com/reel/DeIm-UyIzbz/)

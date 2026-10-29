@@ -12,6 +12,7 @@ license: NOASSERTION
 security_flags: []
 supersedes: []
 overlaps: [claude-code-remote-prompt-hardening]
+source: unknown
 ---
 
 ## What it says

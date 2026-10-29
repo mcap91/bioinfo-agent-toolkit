@@ -15,6 +15,7 @@ security_flags:
   - 'No LICENSE file found at the repository''s raw content path checked (githubusercontent.com/htdt/godogen/main/LICENSE returned 404); license is asserted via the GitHub repository metadata API (license.spdx_id: MIT) rather than confirmed from an in-repo LICENSE file'
 supersedes: []
 overlaps: []
+source: unknown
 ---
 
 ## What it does

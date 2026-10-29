@@ -13,6 +13,7 @@ overlaps: [skills-cli, agent-skills-spec, community-skills-stack-2026]
 license: Unknown
 security_flags: [license-unclear]
 workflows: []
+source: unknown
 ---
 
 ## What it does

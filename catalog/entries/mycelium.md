@@ -12,6 +12,7 @@ license: Apache-2.0
 security_flags: [readme-prompt-injection]
 supersedes: []
 overlaps: [repowire, scheduled-multi-agent-coordinator]
+source: unknown
 ---
 
 ## What it does

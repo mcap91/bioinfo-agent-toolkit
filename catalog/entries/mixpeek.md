@@ -12,6 +12,7 @@ license: NOASSERTION
 security_flags: [hosted-service-data-flow]
 supersedes: []
 overlaps: []
+source: unknown
 ---
 ## What it does
 
@@ -29,3 +30,7 @@ Mixpeek is multimodal search/retrieval infrastructure that its materials positio
 - **License:** none stated on the fetched page (commercial product; recorded as NOASSERTION).
 - **Hosted-service data flow:** as a managed multimodal warehouse, media/features are processed and stored in Mixpeek's infrastructure — review data-handling terms before sending sensitive media.
 - Claims (latency, "extract once") come from vendor materials and are not independently verified here.
+
+## Usage notes
+
+- Mixpeek MVS (its object-storage-first vector store) prices at $1.56 per 1M vectors stored + $0.023/GB-month + $2 per 1M queries/writes, plans starting at $25/month plus usage; a worked example puts 20M 768-dim vectors (~100GB) at roughly $33/month in usage at rest versus a few hundred dollars/month on a RAM-provisioned cluster (source: https://mixpeek.com/guides/vector-database-cost-comparison)

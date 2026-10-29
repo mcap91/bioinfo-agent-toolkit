@@ -7,6 +7,7 @@ tags: [prompt-caching, anthropic-api, mcp, token-optimization, cost-reduction, c
 reviewed: 2026-07-21
 summary: "An MCP server that helps developers building Anthropic SDK applications optimize prompt caching by automatically placing cache_control breakpoints on stable content blocks, with tools to analyze cacheability and track cumulative token savings"
 acquired: 2026-07-22
+source: unknown
 ---
 
 ## What it does

@@ -12,6 +12,7 @@ license: GPL-3.0
 security_flags: [custom-node-supply-chain, workflow-json-code-execution-history]
 supersedes: []
 overlaps: []
+source: unknown
 ---
 
 ## What it does

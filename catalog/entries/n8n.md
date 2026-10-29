@@ -12,6 +12,7 @@ license: LicenseRef-SUL-fair-code
 security_flags: [fair-code-license-restrictions, workflow-credential-store]
 supersedes: []
 overlaps: [n8n-mcp, langflow]
+source: unknown
 ---
 
 ## What it does

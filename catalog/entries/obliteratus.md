@@ -12,6 +12,7 @@ license: AGPL-3.0
 security_flags: [safety-bypass-tool, telemetry-opt-out-required, adversarial-prompting-content, trust-remote-code, dual-license-commercial-required]
 supersedes: []
 overlaps: []
+source: unknown
 ---
 
 ## What it does

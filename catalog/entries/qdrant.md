@@ -12,6 +12,7 @@ license: Apache-2.0
 security_flags: []
 supersedes: []
 overlaps: [weaviate, milvus, pgvector, chroma, lancedb]
+source: unknown
 ---
 
 ## What it does
@@ -37,3 +38,7 @@ Install via Docker (`qdrant/qdrant`), binary download, or Rust crate. REST API o
 ## Security
 
 Apache-2.0 licensed. API key authentication, TLS encryption. Qdrant Cloud offers SOC 2 Type II and HIPAA compliance. Built-in audit logging (cloud). No telemetry in self-hosted by default. Standard Docker deployment trust model.
+
+## Usage notes
+
+- Qdrant Cloud bills on provisioned cluster size (RAM/CPU/disk) rather than usage, with a free 1GB cluster tier — capacity is provisioned up front, not metered per query (source: https://mixpeek.com/guides/vector-database-cost-comparison)

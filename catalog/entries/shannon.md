@@ -12,6 +12,7 @@ license: AGPL-3.0-only
 security_flags: [executes-exploits, mutates-target-state, agpl-copyleft, llm-cost-significant]
 supersedes: []
 overlaps: []
+source: unknown
 ---
 
 ## What it does

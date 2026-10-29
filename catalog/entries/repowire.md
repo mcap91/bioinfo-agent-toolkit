@@ -12,6 +12,7 @@ license: MIT
 security_flags: [spawn-ships-dangerously-skip-permissions, optional-external-relay, curl-pipe-sh-installer, macos-linux-only]
 supersedes: []
 overlaps: [claude-peers-mcp]
+source: unknown
 ---
 
 ## What it does

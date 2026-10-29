@@ -12,6 +12,7 @@ license: unlicensed
 security_flags: []
 supersedes: []
 overlaps: [qwen3-6-27b]
+source: unknown
 ---
 
 ## What it does

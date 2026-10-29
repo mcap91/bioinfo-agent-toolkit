@@ -12,6 +12,7 @@ overlaps: [paddleocr]
 license: Apache-2.0
 security_flags: [requires-cloud-credentials]
 workflows: []
+source: unknown
 ---
 
 ## What it does

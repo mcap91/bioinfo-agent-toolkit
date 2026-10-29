@@ -12,6 +12,7 @@ license: ""
 security_flags: []
 supersedes: []
 overlaps: []
+source: unknown
 ---
 
 ## What it does
@@ -40,3 +41,8 @@ Reported performance: up to 200x faster inference and 400x lower cost compared t
 
 - **Skeptic case (r/LocalLLaMA, Sep 2026):** Core claim is that Jev's "System One model" framing repackages known zero-shot/NLI classifier behavior with modern capabilities. BTZSC benchmark (ICLR 2026, 22 datasets) evaluates dozens of zero-shot classifiers; Jev not yet benchmarked against that landscape. One Banking77 experiment: BGE-small + logistic regression scored 93.3% vs 83.2% for Jev at ~9ms locally. "Can't hallucinate" framing acknowledged by TypeSafe to mean schema-constrained output, not empirically zero error. Counter: Jev's instruction-conditioned decision orientation (state + typed question + bounded options → probability distribution) differs from plain input → fixed label classification — the same model answers many different bounded questions without retraining.
 - **Architecture clarification (r/AI_Agents):** Jev is closer to a Neural Decision Fabric than a classifier: `runtime state → deterministic eligibility/safety → Jev decision → deterministic validation → action → observe result`. Can operate throughout the agent loop (context admission, model routing, tool-result judgment, retry decisions, evidence ranking, completion assessment). Implementation may use one general decision model plus specialist models (e.g., one for abstaining when evidence is insufficient, another for forms/computer-use). Deterministic routing chooses which model to call — most decisions need zero or one neural inference.
+
+## Usage notes
+
+- Measured cost break-even against reading directly with a large model: each Jev round-trip resends 60-75k tokens of context to the calling orchestrator, so on small piles Jev costs *more* tokens than having the large model read the items itself. One operator's break-even came out around 45-60 issues (roughly 15-20k tokens of issue bodies); above that the gap widens fast. On a 267-issue/~1MB-text run: 1.7M Opus tokens with Jev vs. 9.5M without (5.7x fewer raw tokens, ~4x cost-weighted); Jev's own bill was 223 calls for $0.014. Verdicts agreed on 208/223; Jev was the stricter of the two and never passed something the large model failed. Measured accuracy on other question sets: 16/16 (second-opinion acceptance gate), 92/97 (backlog pre-sort), 18/18 (memory dedupe), 6/6 (MR-vs-diff match) (source: https://www.reddit.com/r/ClaudeCode/comments/1xbxoza/my_claude_code_setup_it_runs_like_a_small/)
+- Safety lesson from production use: content sent to Jev leaves the machine, and a generic "screen for client content" did not catch a LAN credential embedded in a memory file during a bulk run, because it wasn't looking for secrets specifically. Fix was adding a dedicated credential screen in addition to the content-type screen; on one 267-issue run the combined screens held back 16% of items, and the tool reports what it held back rather than dropping it silently (source: https://www.reddit.com/r/ClaudeCode/comments/1xbxoza/my_claude_code_setup_it_runs_like_a_small/)

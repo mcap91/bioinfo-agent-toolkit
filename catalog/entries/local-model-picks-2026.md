@@ -12,6 +12,7 @@ license: unlicensed
 security_flags: []
 supersedes: []
 overlaps: [qwen3-6-27b, qwen2-5-coder-32b-instruct, bitnet]
+source: unknown
 ---
 
 ## What it says

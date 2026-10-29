@@ -8,6 +8,7 @@ reviewed: 2026-07-03
 security_flags: []
 summary: "Dify provides a visual drag-and-drop interface for building AI applications, combining workflow orchestration, RAG document ingestion/retrieval, agent tool use with 50+ built-in tools, model management, and production observability (LLMOps) into a single self-hostable platform"
 acquired: 2026-07-04
+source: unknown
 ---
 
 ## What It Does

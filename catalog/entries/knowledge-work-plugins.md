@@ -8,6 +8,7 @@ summary: "A marketplace of 11 open-source Claude plugins that turn Claude into a
 security_flags: []
 reviewed: 2026-06-25
 acquired: 2026-06-26
+source: unknown
 ---
 
 ## What it does

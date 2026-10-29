@@ -12,6 +12,7 @@ license: unlicensed
 security_flags: [implicit-trust-mcp-install, no-provenance-verification, spec-status-ambiguous]
 supersedes: []
 overlaps: [agent-skills-spec]
+source: unknown
 ---
 
 ## What it says

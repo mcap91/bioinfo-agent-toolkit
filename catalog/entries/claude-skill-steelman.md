@@ -12,6 +12,7 @@ license: MIT
 security_flags: []
 supersedes: []
 overlaps: [agent-skills-osmani]
+source: unknown
 ---
 
 ## What it does

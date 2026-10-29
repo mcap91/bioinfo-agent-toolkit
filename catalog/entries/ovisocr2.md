@@ -15,6 +15,7 @@ security_flags:
   - "Publisher's own disclaimer: due to real-world document diversity/complexity, the model may still produce incorrect or incomplete outputs (repeated text, invalid table/formula structures, reading-order errors); manual verification recommended for critical applications"
 supersedes: []
 overlaps: [olmocr, opendataloader-pdf, locate-anything]
+source: unknown
 ---
 
 ## What it does

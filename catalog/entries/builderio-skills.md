@@ -12,6 +12,7 @@ license: MIT
 security_flags: [hosted-service-default, screen-capture-integration]
 supersedes: []
 overlaps: [agent-skills-osmani, awesome-claude-code]
+source: unknown
 ---
 
 ## What it does

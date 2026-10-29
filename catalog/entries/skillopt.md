@@ -12,6 +12,7 @@ license: MIT
 security_flags: []
 supersedes: []
 overlaps: [bmad-skill-forge, one-skill-to-rule-them-all]
+source: unknown
 ---
 
 ## What it does

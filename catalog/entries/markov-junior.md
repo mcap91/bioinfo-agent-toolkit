@@ -12,6 +12,7 @@ overlaps: []
 license: MIT
 security_flags: []
 workflows: []
+source: unknown
 ---
 
 ## What it does
@@ -32,3 +33,7 @@ C# console application, .NET Core, no dependencies beyond standard library. Runs
 ## Security
 
 MIT licensed. No security flags. Standalone offline tool, no network calls, no credentials. Standard .NET build-from-source trust model.
+
+## Usage notes
+
+- Name origin and theory: named after Andrei Markov Jr. (son of the Markov-chains Markov), whose 1951 string-rewriting "normal algorithms" (find the first matching rule, replace, repeat) were proved Turing-complete; MarkovJunior lifts this to grids, where a rule can match in many places at once, so the interpreter picks one match at random. Illustrated: at one step the maze rule `WBB → WAW` matches in 38 places and the maze finishes after 284 replacements with no match left; with two ordered rules the first digs forward and the second backtracks only when the first no longer matches (MazeBacktracker); the same program runs unchanged in 3D; ModernHouse emerges from ~500 lines of rules in 764 steps (recorded at commit 42aaf24, examples MazeGrowth, MazeBacktracker, ModernHouse) (source: https://www.instagram.com/reel/DebFucxs5Xp/)

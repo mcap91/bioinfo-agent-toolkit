@@ -13,6 +13,7 @@ overlaps: [fable-agent-orchestration, agent-skills-osmani]
 license: MIT
 security_flags: []
 workflows: []
+source: unknown
 ---
 
 ## What it does

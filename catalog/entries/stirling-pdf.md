@@ -12,6 +12,7 @@ license: MIT
 security_flags: [open-core-commercial-features]
 supersedes: []
 overlaps: [open-data-loader-pdf, markitdown]
+source: unknown
 ---
 
 ## What it does

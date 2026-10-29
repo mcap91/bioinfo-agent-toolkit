@@ -12,6 +12,7 @@ license: MIT
 security_flags: [single-contributor, settings-json-modification]
 supersedes: []
 overlaps: [karpathys-12-rules-for-claudemd, rtk]
+source: unknown
 ---
 
 ## What it does

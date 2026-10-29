@@ -12,6 +12,7 @@ license: LicenseRef-forum-content
 security_flags: []
 supersedes: []
 overlaps: [local-model-adversarial-workflow, deepseek-and-destroy, single-agent-synchronous-workflow]
+source: unknown
 ---
 
 ## What it says

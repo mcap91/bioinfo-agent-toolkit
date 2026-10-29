@@ -12,6 +12,7 @@ license: Apache-2.0
 security_flags: []
 supersedes: []
 overlaps: [autoharness, claude-peers-mcp]
+source: unknown
 ---
 
 ## What it does

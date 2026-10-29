@@ -12,6 +12,7 @@ overlaps: [mcp-2026-07-28-spec]
 license: ""
 security_flags: [third-party-api-proxy, credential-exposure, data-exposure, unverified-vendor-claims]
 workflows: []
+source: unknown
 ---
 
 ## What it does

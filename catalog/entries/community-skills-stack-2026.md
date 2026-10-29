@@ -11,6 +11,7 @@ overlaps: [agent-skills-osmani, obsidian-skills, agent-browser, skills-cli]
 license: N/A
 security_flags: []
 workflows: []
+source: unknown
 ---
 
 ## What it does

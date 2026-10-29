@@ -12,6 +12,7 @@ license: MIT
 security_flags: [macos-only, hooks-modify-settings]
 supersedes: []
 overlaps: [mempalace, claude-mem]
+source: unknown
 ---
 
 ## What it does

@@ -12,6 +12,7 @@ license: MIT
 security_flags: [curl-pipe-install, large-attack-surface, code-execution-sandbox]
 supersedes: []
 overlaps: []
+source: unknown
 ---
 
 ## What it does

@@ -12,6 +12,7 @@ license: MIT
 security_flags: [writes-to-user-home]
 workflows: [code-generation, code-review, agent-orchestration]
 overlaps: [claude-code-fable-cost-playbook, advisor-strategy, native-subagents]
+source: unknown
 ---
 
 ## What it is

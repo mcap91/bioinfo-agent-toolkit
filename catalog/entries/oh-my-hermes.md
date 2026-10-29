@@ -13,6 +13,7 @@ overlaps: [agent-skills-addy-osmani, superpowers-brainstorming]
 license: UNLICENSED
 security_flags: [curl-pipe-sh-install]
 workflows: []
+source: unknown
 ---
 
 ## What it does

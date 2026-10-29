@@ -12,6 +12,7 @@ license: MIT
 security_flags: [install-script-curl-pipe, self-reported-benchmarks, early-stage-v0.1-beta]
 supersedes: []
 overlaps: [deepseek-harness, harness-engineering]
+source: unknown
 ---
 ## What it does
 

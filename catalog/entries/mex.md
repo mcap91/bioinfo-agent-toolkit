@@ -12,6 +12,7 @@ license: MIT
 security_flags: [telemetry-default-on, single-contributor]
 supersedes: []
 overlaps: [claude-mem, mempalace, gbrain]
+source: unknown
 ---
 
 ## What it does

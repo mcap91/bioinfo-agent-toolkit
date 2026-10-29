@@ -12,6 +12,7 @@ license: LicenseRef-unknown
 security_flags: [no-license-stated, early-prototype, single-author, requires-anthropic-api-key, no-tests-evident]
 supersedes: []
 overlaps: [claude-mem, gbrain, memstack, mempalace, ai-memory-comparison]
+source: unknown
 ---
 
 ## What it does

@@ -12,6 +12,7 @@ license: NOASSERTION
 security_flags: [curl-pipe-bash-install, self-dev-mode]
 supersedes: []
 overlaps: [claw-code, openclaw]
+source: unknown
 ---
 
 ## What it does

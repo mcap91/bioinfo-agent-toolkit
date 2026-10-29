@@ -8,6 +8,7 @@ reviewed: 2026-07-21
 summary: "OmniRoute is a self-hosted AI gateway exposing a single OpenAI-compatible endpoint that routes requests across 271+ LLM providers using 18 routing strategies, an 11-engine token-compression pipeline, quota-sharing across API keys, and MCP/A2A protocol support"
 security_flags: [transparent MITM/TPROXY capture of CLI traffic that ignores proxy env vars, TLS fingerprint stealth (JA3/JA4 spoofing via wreq-js) to evade provider detection, loopback-only restriction on process-spawning routes]
 acquired: 2026-07-22
+source: unknown
 ---
 
 ## What it does

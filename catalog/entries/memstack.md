@@ -12,6 +12,7 @@ license: MIT
 security_flags: [no-tests-evident, license-check-network-call, credential-stored-by-process, single-org-contributor, opaque-pypi-loader, freemium-gating]
 supersedes: []
 overlaps: [claude-spellbook, one-skill-to-rule-them-all, bmad-skill-forge]
+source: unknown
 ---
 
 ## What it does

@@ -12,6 +12,7 @@ license: ""
 security_flags: [curl-pipe-sh-installer, license-not-stated-in-readme, degraded-windows-sandbox, runs-multiple-coding-agents]
 supersedes: []
 overlaps: [frontier]
+source: unknown
 ---
 
 ## What it is

@@ -12,6 +12,7 @@ license: MIT
 security_flags: [always-on-session-hooks, tool-call-interception, npx-or-plugin-install, ephemeral-db-migration-command]
 supersedes: []
 overlaps: [autoresearch, andrej-karpathy-skills]
+source: unknown
 ---
 
 ## What it is

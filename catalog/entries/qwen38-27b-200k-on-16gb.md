@@ -12,6 +12,7 @@ license: LicenseRef-forum-content
 security_flags: [community-modified-weights]
 supersedes: []
 overlaps: [kv-cache-vram-sizing, qwen3-8-27b-uncensored-hauhaucs-aggressive-gguf]
+source: unknown
 ---
 
 ## What it says

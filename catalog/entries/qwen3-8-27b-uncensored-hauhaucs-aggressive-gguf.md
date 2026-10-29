@@ -16,6 +16,7 @@ security_flags:
   - "Running the bundled HauhauCS FastMTP acceleration sidecar requires downloading and applying a third-party patch file to a llama.cpp source checkout and compiling it (git apply of HauhauCS-FastMTP-llama.cpp.patch) — review the patch before applying, as with any third-party build patch"
 supersedes: []
 overlaps: []
+source: unknown
 ---
 
 ## What it does

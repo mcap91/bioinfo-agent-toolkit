@@ -12,6 +12,7 @@ license: UNLICENSED
 security_flags: [single-contributor, no-tests, no-license, vibe-coded]
 supersedes: []
 overlaps: [faster-whisper, whisperx]
+source: unknown
 ---
 
 ## What it does

@@ -12,6 +12,7 @@ license: Apache-2.0
 security_flags: []
 supersedes: []
 overlaps: [qwen36-27b]
+source: unknown
 ---
 
 ## What it does

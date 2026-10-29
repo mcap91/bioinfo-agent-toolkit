@@ -12,6 +12,7 @@ license: AGPL-3.0
 security_flags: [self-hosted, requires-database]
 workflows: [project-planning, task-management, time-tracking]
 overlaps: []
+source: unknown
 ---
 
 ## What it is

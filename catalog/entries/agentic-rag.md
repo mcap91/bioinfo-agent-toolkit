@@ -8,6 +8,7 @@ reviewed: 2026-07-03
 security_flags: []
 summary: "Agentic RAG wraps a vector-database retriever as a tool for an LLM agent, which reformulates queries, critiques retrieved snippets, and iterates through multiple retrieval rounds before synthesizing an answer"
 acquired: 2026-07-03
+source: unknown
 ---
 
 ## What It Does

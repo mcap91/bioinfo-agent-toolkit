@@ -12,6 +12,7 @@ overlaps: []
 license: MIT
 security_flags: []
 workflows: []
+source: unknown
 ---
 
 ## What it does
@@ -38,3 +39,7 @@ Self-hosted server available. Community forum at forum.atuin.sh. Discord and IRC
 ## Security
 
 MIT licensed. End-to-end encrypted sync — server operator cannot access command history. Local database stored in SQLite.
+
+## Usage notes
+
+- Also installable via Homebrew (`brew install atuin`), alongside the curl installer recorded above (source: https://www.instagram.com/reel/DeIm-UyIzbz/)

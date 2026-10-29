@@ -8,6 +8,7 @@ summary: "An end-to-end pipeline for constructing knowledge graphs from unstruct
 security_flags: [needs-api-key]
 reviewed: 2026-06-25
 acquired: 2026-06-26
+source: unknown
 ---
 
 ## What it does

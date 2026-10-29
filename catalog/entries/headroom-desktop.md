@@ -12,6 +12,7 @@ license: MIT
 security_flags: [modifies-claude-settings, anthropic-base-url-redirect, telemetry-aptabase, telemetry-sentry, single-contributor, private-backend-repo, 2gb-runtime-download]
 supersedes: []
 overlaps: []
+source: unknown
 ---
 
 ## What it does

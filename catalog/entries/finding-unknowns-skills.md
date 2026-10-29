@@ -12,6 +12,7 @@ license: MIT
 security_flags: [single-maintainer, community-distillation]
 supersedes: []
 overlaps: [agent-skills-spec, skills-cli]
+source: unknown
 ---
 
 ## What it is

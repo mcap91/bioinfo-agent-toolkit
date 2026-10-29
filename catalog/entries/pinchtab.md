@@ -13,6 +13,7 @@ supersedes: []
 overlaps: [browser-use]
 security_flags: [privileged-control-surface, curl-pipe-sh-install, network-exposure-if-misconfigured]
 workflows: []
+source: unknown
 ---
 
 ## What it does

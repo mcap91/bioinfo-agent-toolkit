@@ -11,6 +11,7 @@ license: ""
 security_flags: []
 supersedes: []
 overlaps: [qwen38-27b-200k-on-16gb]
+source: unknown
 ---
 
 ## What it does

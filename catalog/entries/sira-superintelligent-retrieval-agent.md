@@ -12,6 +12,7 @@ license: unlicensed
 security_flags: [no-code-release]
 supersedes: []
 overlaps: [contextual-retrieval-anthropic, rag-retrieval-recipe]
+source: unknown
 ---
 
 ## What it does

@@ -8,6 +8,7 @@ reviewed: 2026-07-03
 security_flags: []
 summary: "Smithery is a central hub for discovering, installing, and hosting Model Context Protocol servers, with a 7,000+ server registry, a meta-MCP router toolbox, managed OAuth via the agent.pw vault, and both local-install and Smithery-hosted remote deployment"
 acquired: 2026-07-03
+source: unknown
 ---
 
 ## What It Does

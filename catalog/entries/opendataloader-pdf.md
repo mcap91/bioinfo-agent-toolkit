@@ -12,6 +12,7 @@ license: Apache-2.0
 security_flags: [java-runtime-required, self-reported-benchmarks, pii-sanitization-opt-in, local-server-process]
 supersedes: []
 overlaps: [markitdown]
+source: unknown
 ---
 
 ## What it does

@@ -12,6 +12,7 @@ license: EUPL-1.2
 security_flags: [curl-pipe-bash-install]
 supersedes: []
 overlaps: []
+source: unknown
 ---
 
 ## What it does

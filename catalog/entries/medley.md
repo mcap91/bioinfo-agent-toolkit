@@ -12,6 +12,7 @@ license: proprietary
 security_flags: [requires-api-keys, cloud-service, waitlist]
 workflows: [agent-orchestration, task-decomposition, gtm]
 overlaps: [pilotfish, scheduled-multi-agent-coordinator]
+source: unknown
 ---
 
 ## What it is

@@ -12,6 +12,7 @@ license: BSD-3-Clause
 security_flags: []
 supersedes: []
 overlaps: [qdrant, milvus, pgvector, chroma, lancedb]
+source: unknown
 ---
 
 ## What it does
@@ -38,3 +39,7 @@ Install via Docker, Kubernetes, or Weaviate Cloud (managed). Version 1.39 stable
 ## Security
 
 BSD-3-Clause licensed. RBAC authorization with fine-grained permissions. TLS encryption. Multi-tenancy isolation. Weaviate Cloud offers enterprise-grade security. No telemetry concerns noted in open-source deployment.
+
+## Usage notes
+
+- Weaviate Cloud bills on stored dimensions plus an SLA tier, with a free sandbox then usage-based pricing; dimension-based billing rewards smaller embedding sizes (source: https://mixpeek.com/guides/vector-database-cost-comparison)

@@ -12,6 +12,7 @@ license: MIT
 security_flags: [writes-to-user-home, api-key-required, self-reported-benchmarks, single-maintainer]
 supersedes: []
 overlaps: [codex-workflow, deepseek-and-destroy, pilotfish]
+source: unknown
 ---
 
 ## What it does

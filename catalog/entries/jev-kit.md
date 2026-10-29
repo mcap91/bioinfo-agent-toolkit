@@ -12,6 +12,7 @@ license: MIT
 security_flags: []
 supersedes: []
 overlaps: [jev, browser-use, agent-browser, playwright-cli]
+source: unknown
 ---
 
 ## What it does

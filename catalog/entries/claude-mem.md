@@ -12,6 +12,7 @@ reviewed: 2026-05-25
 acquired: 2026-05-25
 supersedes: []
 overlaps: [gbrain, third-brain-v5-wiki]
+source: unknown
 ---
 
 ## What it does

@@ -12,6 +12,7 @@ license: MIT
 security_flags: [agent-self-install, cookie-handling, vibe-coded, pip-install-from-git]
 supersedes: []
 overlaps: [crawl4ai, firecrawl]
+source: unknown
 ---
 
 ## What it does

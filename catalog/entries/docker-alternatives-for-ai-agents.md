@@ -12,6 +12,7 @@ license: LicenseRef-blog-content
 security_flags: []
 supersedes: []
 overlaps: [firejail, bubblewrap-containers]
+source: unknown
 ---
 
 ## What it says

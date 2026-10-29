@@ -12,6 +12,7 @@ overlaps: [qwen38-27b-200k-on-16gb]
 license: MIT
 security_flags: [experimental, single-config-qualified]
 workflows: []
+source: unknown
 ---
 
 ## What it does

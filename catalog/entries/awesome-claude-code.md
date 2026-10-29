@@ -12,6 +12,7 @@ reviewed: 2026-05-25
 acquired: 2026-05-25
 supersedes: []
 overlaps: [claude-spellbook]
+source: unknown
 ---
 
 ## What it says

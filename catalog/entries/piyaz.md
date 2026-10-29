@@ -12,6 +12,7 @@ license: AGPL-3.0-only
 security_flags: [copyleft-license, cloud-hosted-default, oauth-required]
 supersedes: []
 overlaps: [openclaw]
+source: unknown
 ---
 
 ## What it does

@@ -8,6 +8,7 @@ summary: "Walks through the structure of offline LLM evaluations (prompt, output
 security_flags: []
 reviewed: 2026-06-25
 acquired: 2026-06-26
+source: unknown
 ---
 
 ## What it does

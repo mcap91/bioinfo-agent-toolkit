@@ -12,6 +12,7 @@ license: Apache-2.0
 security_flags: [telemetry-default-on]
 supersedes: []
 overlaps: [docling-mcp]
+source: unknown
 ---
 
 ## What it does

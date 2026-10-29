@@ -12,6 +12,7 @@ license: MIT
 security_flags: [install-script-curl-pipe]
 supersedes: []
 overlaps: []
+source: unknown
 ---
 
 ## What it does

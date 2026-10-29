@@ -7,6 +7,7 @@ tags: [claude-code, safety-classifier, false-positive, troubleshooting, api, con
 reviewed: 2026-07-21
 summary: "A field-tested diagnosis and fix recipe for Claude Code sessions blocked by the API pre-filter pattern-matching bio- or security-adjacent language, covering the four trigger surfaces, transcript-based diagnosis, and quick/deep fix protocols"
 acquired: 2026-07-22
+source: unknown
 ---
 
 ## What it covers

@@ -8,6 +8,7 @@ reviewed: 2026-07-03
 security_flags: []
 summary: "Glama indexes the Model Context Protocol ecosystem — submitted GitHub repos are indexed with every tool, schema, and annotation — and provides a registry of 50,000+ servers with verification tiers, an in-browser inspector for live JSON-RPC calls, a gateway with access control and OAuth, and pre-configured connectors with managed credentials for hosted MCP servers"
 acquired: 2026-07-03
+source: unknown
 ---
 
 ## What It Does

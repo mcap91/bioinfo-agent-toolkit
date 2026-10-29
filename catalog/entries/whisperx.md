@@ -12,6 +12,7 @@ license: BSD-4-Clause
 security_flags: [hf-token-required-for-diarization]
 supersedes: []
 overlaps: [faster-whisper]
+source: unknown
 ---
 
 ## What it does

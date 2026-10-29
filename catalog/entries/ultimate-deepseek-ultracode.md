@@ -12,6 +12,7 @@ license: unlicensed
 security_flags: [no-stated-license, hook-injection, subagent-policy-override]
 supersedes: []
 overlaps: [frontier]
+source: unknown
 ---
 
 ## What it does

@@ -12,6 +12,7 @@ license: MIT
 security_flags: [curl-install-pattern, cloud-data-sharing-risk]
 supersedes: []
 overlaps: []
+source: unknown
 ---
 
 ## What it does

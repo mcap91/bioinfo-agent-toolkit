@@ -12,6 +12,7 @@ license: MIT
 security_flags: []
 supersedes: []
 overlaps: [claude-mem, memstack, ai-memory-comparison]
+source: unknown
 ---
 
 ## What it does

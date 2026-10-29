@@ -12,6 +12,7 @@ license: AGPL-3.0
 security_flags: [requires-oauth-credentials, processes-email-content, cloud-or-self-hosted]
 supersedes: []
 overlaps: []
+source: unknown
 ---
 
 ## What it does

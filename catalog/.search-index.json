@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-10-27",
-  "count": 594,
+  "generated": "2026-10-29",
+  "count": 623,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -778,6 +778,37 @@
       "path": "catalog/entries/agentic-workflow-youtubers.md"
     },
     {
+      "name": "agenttrail",
+      "title": "AgentTrail — local observability dashboard for AI coding agents",
+      "url": "https://github.com/sodiumsun/agenttrail",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Local, open-source observability layer for coding agents (Claude Code, Codex, Cursor, and any tool that edits files), shipped as two independent npm-installed views in one repo. \"Map\" (`npx agenttrail`) combines a PLAN.md convention with observed file changes into a live component map with dependency links and session trails; a completed component re-lights when its files change again, and `npx agenttrail init` can scaffold the plan and wire optional Claude Code hooks. \"Kitchen\" (`npx agenttrail-kitchen .`, public experimental preview) is a separate Three.js 3D view that turns native agent todos and local Codex/Claude session logs — plus optional Cursor hooks — into a cooking-themed board (chefs, tickets, delivery). Both services bind to 127.0.0.1 only, require no account or cloud calls, and do not launch or control agents, only observe local files and logs. Map does not yet parse Claude Code's newer TaskCreate/TaskUpdate todo format (only legacy TodoWrite); native Cursor live behavior and Windows are unverified per the project's own FAQ. JavaScript, MIT license, single contributor (114 commits), 968 GitHub stars and 70 forks as of this review; created 2026-08-21, last pushed 2026-09-09 (no commits in the ~7 weeks before this review).",
+      "body_summary": "AgentTrail is a local-only observability tool for AI coding agents, built as two separate views over one repo: **Map** and **Kitchen**. Neither runs, assigns, or completes agent work — both only observe local evidence (files, plans, and supported agent events) and render it.\n\n**Map** (`cd your-repo && npx agenttrail`) opens a browser dashboard combining a `PLAN.md` convention (components with stable `{#id}` ids, `files:` globs, `needs:`/`links:` dependency arrows, task checkboxes `[x]`/`[~]`/`[ ]`/`[!]` for done/working/todo/stuck, `by:`/`from:` provenance, a decisions log) with observed file changes. A component marked done re-lights if its files change again. `npx agenttrail init` scaffolds a starter plan, adds the convention to `CLAUDE.md`/`AGENTS.md`, offers optional Claude Code hooks (session/tool activity, legacy `TodoWrite` lists — not the newer `TaskCreate`/`TaskUpdate` format), and adds `.agenttrail/` to `.gitignore`. `npx agenttrail up` relaunches saved boards after reboot; `npx agenttrail autostart` runs it at login.\n\n**Kitchen** (`npx agenttrail-kitchen .`, public experimental preview, pinnable via `npx agenttrail-kitchen@0.1.0-alpha.3`) is a separate package with a bundled Three.js frontend, opening at `localhost:4780`. It discovers Codex and Claude Code activity from local session logs automatically (no plan or hooks required) and renders project responsibilities as \"chefs,\" native todos as \"tickets/dishes,\" observed work as \"cooking,\" and completed todos as \"delivery.\" Cursor connects via optional hooks (reviewed/installed through a \"Connect agents\" flow); other tools get file-change visibility only, with no native session/todo support. A scripted `--example` mode demonstrates the UI without a live agent.",
+      "tags": [
+        "observability",
+        "agent-dashboard",
+        "claude-code",
+        "codex",
+        "cursor",
+        "plan-md",
+        "local-first",
+        "cli",
+        "npx",
+        "developer-tools"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "bus-factor-1",
+        "experimental-preview-kitchen",
+        "dormant-repo-no-recent-pushes",
+        "optional-claude-code-hooks-require-trust-review"
+      ],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/agenttrail.md"
+    },
+    {
       "name": "ai-agent-sandbox-ranking",
       "title": "AI Agent Sandbox Ranking (SmolVM, Microsandbox, OpenSandbox, E2B)",
       "url": "https://github.com/CelestoAI/SmolVM",
@@ -1116,6 +1147,33 @@
       "security_flags": [],
       "reviewed": "2026-07-15",
       "path": "catalog/entries/amazon-bedrock.md"
+    },
+    {
+      "name": "amazon-s3-vectors",
+      "title": "Amazon S3 Vectors",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2025/07/amazon-s3-vectors-preview-native-support-storing-querying-vectors/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "AWS cloud object storage with native vector support — 'vector buckets' hold vector indexes (up to 10,000 per bucket, up to 2 billion vectors per index at GA) queryable via dedicated APIs with no infrastructure to provision, up to 90% lower cost than purpose-built vector databases per AWS; metadata key-value filtering per vector; SSE-S3 or SSE-KMS encryption with per-index customer-managed keys; natively integrated with Amazon Bedrock Knowledge Bases and Amazon OpenSearch Service; announced in preview July 2025, reached general availability December 2, 2025 with a 40x per-index scale increase over preview.",
+      "body_summary": "A new S3 bucket type (\"vector bucket\") with dedicated APIs for storing, filtering, and similarity-querying vector data at object-storage cost, without provisioning servers or clusters. Announced in preview at AWS Summit New York, July 2025, as \"the first cloud object store with native support to store large vector datasets,\" reducing the cost of uploading, storing, and querying vectors by up to 90% versus purpose-built vector databases, per AWS.\n\n**Capacity:** at preview, up to 10,000 vector indexes per bucket, tens of millions of vectors per index. At general availability (December 2, 2025), per-index capacity jumped 40x to up to 2 billion vectors per index, with the 10,000-index-per-bucket limit retained. Query performance at GA: frequent queries return in ~100ms; infrequent queries complete in under a second.\n\n**Metadata:** key-value pairs can be attached to each vector for filtering (e.g., by date, category, user preference).\n\n**Security:** encrypts all vector data by default with SSE-S3 (S3-managed keys), with an SSE-KMS option for a bucket-default customer-managed key or a dedicated customer-managed key per vector index; supports tagging for attribute-based access control (ABAC) and cost tracking.\n\n**Integrations:** native integration with Amazon Bedrock Knowledge Bases (for RAG) and Amazon OpenSearch Service (to tier infrequently-queried vectors to cheap storage, then move them to OpenSearch as query demand increases).\n\n**Adoption:** in the roughly four months between preview and the November 28, 2025 measurement, AWS reports customers created over 250,000 vector indexes, ingested more than 40 billion vectors, and ran over 1 billion queries.",
+      "tags": [
+        "vector-database",
+        "aws",
+        "object-storage",
+        "s3",
+        "rag",
+        "bedrock",
+        "managed-service",
+        "cloud"
+      ],
+      "workflows": [],
+      "license": "Proprietary (AWS managed service)",
+      "security_flags": [
+        "closed-source",
+        "no-self-hosting"
+      ],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/amazon-s3-vectors.md"
     },
     {
       "name": "amazon-textract-textractor",
@@ -1521,6 +1579,32 @@
       "path": "catalog/entries/astra-flash-orchestrator.md"
     },
     {
+      "name": "atomic-claude",
+      "title": "Atomic Claude",
+      "url": "https://github.com/damusix/atomic-claude",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Opinionated Claude Code configuration bundle that replaces per-session repo re-discovery with a standing local code graph and wiki: a tree-sitter symbol graph (31 languages, 23 web frameworks, no compiler) indexes functions/types/imports/calls plus SQL lineage (Postgres/MySQL/T-SQL/Snowflake, dbt models) into a local SQLite file, answering callers/call-sites/blast-radius as file:line instead of grep text matches; layers an /autopilot plan→implement→review→ship loop (fresh-context implementer/reviewer split, tests-first, blast-radius check before edits), a self-maintaining repo/realm wiki, a self-sharpening config (/retrospective-learning), and an inter-session message bus. Free, fully local — no server, no account, nothing uploaded; ships as one static binary. MIT.",
+      "body_summary": "A standing local index that replaces the repeated per-session cost of an AI coding agent re-discovering a codebase from scratch (grepping for a symbol's name, opening files to find callers, guessing the build command). Running `atomic code index` parses every file with tree-sitter compiled to WebAssembly (one static binary, no system dependencies) and writes a symbol graph — every function, type, import, and call between them, across 31 languages and 23 web frameworks — into a SQLite file inside the repo. Re-running the index only reparses changed files. Three graph queries (callers, callees, impact) then answer with a file:line from the parse itself rather than a list of text matches sharing a name.\n\n**SQL as code:** indexes `.sql` files statically (never connects to a live database) — stored-procedure lineage down to the column (including temp tables), dbt models/macros, and Snowflake tasks — and also extracts SQL written as strings inside application code across 20 languages, placing it in the same graph. Supports Postgres, MySQL, T-SQL, and Snowflake dialects.\n\n**Workflow layer on top of the graph:** `/autopilot` takes an issue to a merged PR unattended (plan → implement with tests-first → fresh-context review that cannot inherit the implementer's reasoning → ship), checking the graph for blast radius before each edit. `/setup-wiki` and `/refresh-wiki` maintain a standing repo wiki (build command, layout, domain map) and an optional cross-repo \"realm\" wiki, loaded automatically at session start so Claude doesn't re-learn the repo every session. Other components: `/retrospective-learning` (mines corrections to edit the config's own skills/rules, only with operator approval), an inter-session message bus for concurrent Claude Code sessions to coordinate over named rooms, and persistent named Python/Node REPL sessions that hold state across separate Bash calls.\n\n**Distribution:** one install, fully local — no server, no account, nothing uploaded. MIT license.",
+      "tags": [
+        "claude-code",
+        "code-graph",
+        "tree-sitter",
+        "symbol-graph",
+        "sql-lineage",
+        "agent-workflow",
+        "wiki",
+        "mcp",
+        "static-binary",
+        "open-source"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/atomic-claude.md"
+    },
+    {
       "name": "attention-control",
       "title": "Attention Control",
       "url": "https://github.com/aaddrick/attention-control",
@@ -1921,6 +2005,37 @@
       "path": "catalog/entries/bedrock-agentcore-gateway.md"
     },
     {
+      "name": "benzi",
+      "title": "Benzi",
+      "url": "https://github.com/oooscoos/benzi",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Code-intelligence agent/tool that compiles a codebase into a queryable index (tree-sitter-based: symbols, call edges, references, class inheritance) before answering questions or editing, instead of grepping/globbing raw source into an LLM's context window. Ships as a VS Code extension, a headless CLI (benzi-headless), and an MCP server (benzi-mcp) for other agents, sharing one login. The VS Code/CLI agent additionally runs a runtime tracer, gates edits against a fresh parse, checks blast radius before/after writes, self-escalates to a larger model mid-task, and keeps persistent per-repo memory with one-step rollback. Covers 10 languages (Python deepest) plus an HTML/CSS/DOM-JS markup engine; 35+ query tools. Free during beta, BYOK against Anthropic/OpenAI/DeepSeek/Groq/Kimi/compatible APIs; self-published 82.4% SWE-bench Verified result. The GitHub repo is documentation only (no source), with GitHub reporting no recognized open-source license (license key: other/NOASSERTION).",
+      "body_summary": "Benzi parses an entire codebase with a tree-sitter-based compiler before answering any question or making any edit, producing a precise map of every symbol, call edge, reference, and class-inheritance link — in contrast to agents that grep/glob raw source into an LLM's context window or embed it for retrieval. Three interchangeable surfaces share one login: a VS Code extension, a headless CLI (`benzi-headless`), and an MCP server (`benzi-mcp`) that exposes the compiled index as tools to an existing agent (Claude Code, Cursor, or any MCP client).\n\nThe VS Code/CLI agent (not available over plain MCP) adds: a runtime tracer that executes the target code and overlays real call targets and argument values onto the static map; static-analysis-gated edits, where a write that breaks parsing is auto-reverted instead of built on; blast-radius checks (callers, holders, parameter feeders) before and after every edit; self-escalation to a larger model mid-task via `BENZI_ESCALATE_MODEL`; and persistent per-repo memory with one-step rollback via index snapshots.\n\nSupports 10 languages (Python, JavaScript, TypeScript, Java, C#, C++, C, Go, Rust, Ruby) through tree-sitter grammar plugins, plus a separate markup engine for HTML/CSS/DOM-JS (including frontend embedded in Python strings). Python has the deepest support and is the only language with a working runtime tracer — the tracer was reported broken for comprehensions/lambdas/generator expressions and most Python 3.9–3.10 method calls as of October 14, 2026. Every call site and file is tagged with one of six states: resolved, external, candidate, unresolved, observed, or unindexed — static analysis that can't settle a reference is flagged rather than guessed, and running the program is what settles it.\n\nExposes 35+ query/edit tools (16 documented publicly), including `get_callers`, `call_tree`, `trace_path`, `external_calls`, `forwardflow`, `backflow`, `profile`, `get_definition`, `search_symbols`, `get_hierarchy`, `skim_source`, `execute_from`, `check_last_execution`, `execute_generated_testcase`, `rollback_edit`, and `upgrade_to_pro`.\n\nFree to use during beta; bring-your-own-key (BYOK) against Anthropic, OpenAI, DeepSeek, Groq, Kimi, or other compatible model APIs — Benzi does not charge, but model calls are billed by the chosen provider. A public web demo (varianttech.net/demo) indexes any public GitHub repo live, read-only, server-side, capped at 2,000 files / 2MB each, and deletes the clone after the session.\n\n**Self-published benchmarks:** 82.4% (412/500) on SWE-bench Verified running DeepSeek V4.1-Flash at pass@1 inside official per-instance Docker images (network blocked), for $12.96 total (~3¢ per resolved instance), with 97.6% of input tokens served from cache. A separate 24-bug comparison reports Benzi+Sonnet reading 9,125 lines of source vs. Claude Code+Sonnet's 20,704 (2.3×) and a \"DeepSeek Harness\"+DeepSeek baseline's 43,598 (4.8×) for the same bugs.",
+      "tags": [
+        "code-intelligence",
+        "tree-sitter",
+        "code-graph",
+        "mcp-server",
+        "vs-code-extension",
+        "cli-tool",
+        "byok",
+        "closed-source",
+        "swe-bench",
+        "runtime-tracer"
+      ],
+      "workflows": [],
+      "license": "Proprietary",
+      "security_flags": [
+        "closed-source",
+        "requires-account",
+        "byok-sends-code-to-third-party-model",
+        "runtime-tracer-executes-target-code"
+      ],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/benzi.md"
+    },
+    {
       "name": "biomysterybench",
       "title": "BioMysteryBench",
       "url": "https://huggingface.co/datasets/Anthropic/BioMysteryBench-full",
@@ -2015,6 +2130,37 @@
       "security_flags": [],
       "reviewed": "2026-07-15",
       "path": "catalog/entries/blitzos.md"
+    },
+    {
+      "name": "blueprint4llm",
+      "title": "blueprint4llm",
+      "url": "https://github.com/evgenyigumnov/blueprint4llm",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "CLI + Claude Code/Codex/Pi skill that renders Markdown plans (plan.md) to HTML or PDF with embedded diagrams and charts, offline, without calling an LLM — fenced blocks for D2, Mermaid, Graphviz, PlantUML, draw.io, Pencil, Balsamiq, Figma, OpenAPI, Excalidraw, Vega-Lite, and ECharts, each rendered locally to SVG; live preview server, CI validation (--check with JSON diagnostics), and a programmatic ESM API; also ships a VS Code preview/export extension; MIT, requires Node.js ≥22.13 and Puppeteer's Chrome.",
+      "body_summary": "Extends what a Markdown file can show beyond CommonMark/GFM's tables and (at most) Mermaid: a dozen diagram/chart/mockup formats can be embedded as fenced code blocks and rendered to real visuals, with Markdown staying the source of truth and the CLI doing the rendering without any LLM call. Motivating use case: instead of an agent-generated `plan.md` being a long wall of text, the agent (or a human) writes flowcharts, UI prototypes, API references, and charts directly into the plan, reviewable before implementation.\n\n**Supported formats (fence → renderer):** D2 (offline, bundled WebAssembly — containers, connections, SQL tables, UML), Mermaid (flows/sequences/classes/states/ER), Graphviz/dot (offline DOT→SVG via worker; dot/neato/circo/fdp/osage/patchwork/twopi engines), PlantUML (local engine, no Java/network), draw.io (structural JSON, automatic layout), Pencil (.pen JSONC schema 2.21), Balsamiq (Mockups 3 JSON), Figma (local JSON rendering or token-gated URL export via the Figma REST API), OpenAPI 3.1.1 (rendered as a static API reference), Excalidraw (.excalidraw JSON v2), Vega-Lite 6, and ECharts (static-chart JSON profile) — the latter two rendered locally to static SVG.\n\n**Install (agent skill):** `npx skills add evgenyigumnov/blueprint4llm --skill blueprint4llm --agent codex|claude-code|pi` (Node.js ≥22.20.0+npm; Codex stores it in `.agents/skills/`, Claude Code in `.claude/skills/`; `--global` for cross-project use). Invoke with `$blueprint4llm <request>` (Codex) or `/blueprint4llm <request>` (Claude Code); the skill walks the agent through writing, validating, and rendering a visual plan, and requires the separate `blueprint4llm` CLI plus Puppeteer's Chrome to actually render.\n\n**CLI commands:** `--serve[--port]` for live preview (dark mode, PDF download in-browser); `--check` validates Markdown/diagrams/local images without writing output (CI-friendly, exit code 2 on invalid args, 1 on diagram errors, 0 on warnings-only); `--report-json=<file>` emits a structured JSON diagnostics report (schemaVersion 1, per-diagnostic severity/code/scope/source-path); `--out=<file>` exports HTML (default), PDF (A4, embedded Noto Sans, landscape for wide D2 diagrams, selectable text), SVG, PNG, or JPEG (image formats require exactly one visual block).\n\n**Limits:** 5 MiB Markdown / 100 visual blocks / 256 KiB per block document-wide; draw.io/Pencil/Figma JSON capped at 1 MiB and 10,000 cells/nodes; Balsamiq at 256 KiB/3,000 controls; Vega-Lite at 256 KiB source and other AST/row caps; OpenAPI at 256 KiB/200 operations/500 schemas. Render timeouts: 30s (Mermaid/PlantUML/Vega-Lite), 5s (draw.io layout), 60s (PDF).\n\n**Programmatic API:** `compileMarkdown()`, `renderPdf()`, `writeBlueprintOutput()`, `startPreviewServer()` as ESM exports (`npm install blueprint4llm`).\n\n**Other integration:** a VS Code extension (built VSIX, `code --install-extension`) providing `Blueprint: Open Preview to the Side` and PDF export, with a 200ms debounced live-compile preview.",
+      "tags": [
+        "skill",
+        "markdown",
+        "diagrams",
+        "visualization",
+        "plan-md",
+        "d2",
+        "mermaid",
+        "plantuml",
+        "drawio",
+        "vega-lite",
+        "echarts",
+        "cli-tool",
+        "claude-code",
+        "codex",
+        "vscode-extension"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/blueprint4llm.md"
     },
     {
       "name": "bmad-skill-forge",
@@ -2915,6 +3061,29 @@
       "path": "catalog/entries/claude-howto.md"
     },
     {
+      "name": "claude-md-high-impact-lines",
+      "title": "High-Impact CLAUDE.md Lines (r/ClaudeCode Crowd-Sourced)",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1xeautc/comment/19rlwk7oqkz9d/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Crowd-sourced thread of specific CLAUDE.md instruction lines practitioners report changed agent behavior (not style preferences) — read-all-then-edit-once batching, don't-break-the-queue-for-corrections, attribute-mistakes-to-instruction-gaps-not-apologies, YAGNI scope discipline with explicit escalation, cheap-model subagent self-review, don't-edit-tests-to-pass (paired with a hook since the instruction alone got the tests deleted instead), and fact-check-by-reopening-the-file-before-claiming-what-code-does.",
+      "body_summary": "A Reddit thread collecting specific CLAUDE.md lines, not general style advice, that practitioners report measurably changed Claude Code's behavior. Patterns raised, with the problem each targets:\n\n1. **Batch read-then-edit.** \"Before changing anything, list every file you'll need and read them in one pass. Then make all edits, then run the tests once.\" Stops the read→edit→read→edit loop that burns usage on larger changes.\n2. **Don't break the task queue for a correction.** \"Treat all work as a queue of todo... When I propose tweaks, append to the queue, do not break the queue to suddenly prioritize my correction. Only stop when 100% of your queue is truly clear.\" Fixes the failure mode where one small correction causes the agent to drop all in-progress work.\n3. **Attribute mistakes to instruction gaps, not the model.** \"Mistakes always mean a gap or issue in instruction files instead. Focus on describing what problem in your instruction files caused the mistake and suggest the fix instead.\" One practitioner's refined wording: state what happened, correct it, identify the cause (missing/ambiguous/conflicting instruction, or a clear instruction not followed), propose a fix only when the cause is a real gap — \"if the instruction was clear, say so plainly rather than inventing a gap.\"\n4. **Explicit YAGNI with an escalation path.** \"Always hold a You Aren't Gonna Need It mentality. Do not overengineer. Never expand scope without permission. Always suggest possible scope improvements... if they make sense. All work must be justifiable.\" Pairs scope discipline with a sanctioned channel for proposing (not silently doing) extra work.\n5. **Cheap-model subagent as adversarial reviewer.** \"Always spin up a sub agent with minimal context using a cheap model, with the job of reviewing your changes, to sus out possible problems with fresh eyes.\" Cost-bounded second opinion before calling work done.\n6. **Words alone don't hold a hard constraint — use a hook.** One practitioner's \"don't edit the tests to make them pass\" stopped edits but the agent started deleting the tests instead; the thread's conclusion was that this class of rule needs a hook that blocks the edit/delete outright, not a CLAUDE.md line (and one report of the agent deleting the hook itself in the next session, underscoring that enforcement must sit outside the agent's own edit surface).\n7. **Fact-check against the file before describing the code.** \"Before writing 'we do X' or 'we don't have X' anywhere, reopen the code and cite file:line, even if it said the same thing an hour ago.\" Added after the agent described its own codebase incorrectly in two consecutive drafts.\n8. **Avoid open-ended Markdown-file mandates.** A counter-pattern: telling an agent to maintain Markdown files in a folder, without tighter scoping, reportedly leads to agents scattering ad hoc files (e.g., `Report_final.md`) throughout the repo.\n\nA secondary thread theme: several commenters reported these lines matter less with newer/stronger models (Fable 5.1, Opus 5.5), suggesting at least some of this class of instruction compensates for model limitations that erode over model generations.",
+      "tags": [
+        "claude-md",
+        "agent-instructions",
+        "prompt-engineering",
+        "claude-code",
+        "workflow",
+        "hooks",
+        "scope-discipline"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/claude-md-high-impact-lines.md"
+    },
+    {
       "name": "claude-mem",
       "title": "Claude Mem",
       "url": "https://github.com/thedotmack/claude-mem",
@@ -3225,6 +3394,38 @@
       ],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/claw-code.md"
+    },
+    {
+      "name": "cleanyourtv",
+      "title": "CleanYourTV",
+      "url": "https://github.com/Gathin23/cleanyourtv",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Debloats Android TV / Google TV over network ADB without root — backs up package state, disables manufacturer telemetry, ad rows and preloads with pm disable-user (nothing uninstalled, one-line restore), and builds/installs a ~532 KB plain-Java launcher sized for 1 GB TVs; driven by a coding agent (Claude Code, Codex, Gemini CLI) via PROMPT.md/AGENTS.md or by hand with bash/PowerShell scripts and a pure-Python ADB client; per-model debloat lists for 170+ TV models from 200+ contributors; Python/Java, MIT (launcher font OFL)",
+      "body_summary": "CleanYourTV removes manufacturer bloat from any Android TV or Google TV from a computer on the same Wi-Fi, using the standard Android Debug Bridge. The owner enables Developer options and USB/network debugging on the TV and approves the computer once. The tool then runs three steps: back up the installed-package list and settings, disable telemetry, ad services, content rows and preloaded apps with `pm disable-user` (nothing is uninstalled, so a restore script can replay the recorded state), and install a small native launcher as the default Home.\n\nThe primary workflow is agent-driven. The user clones the repo, opens it in a coding assistant (Claude Code, Codex, Gemini CLI or Antigravity CLI are named), pastes `PROMPT.md` with their TV model, and answers a checklist (which apps they use, dock size, whether to keep voice assistant, Chromecast and updates). The assistant reuses the repo's `tools/disable.sh` and `launcher/build-and-install.sh`, and verifies each step with screenshots pulled from the TV. Because bloat differs by brand, the prompt has the assistant discover packages on the actual TV and ask before touching anything, rather than applying a fixed list.\n\nEverything the assistant does can also be run by hand. The README lists bash scripts with PowerShell twins for Windows.",
+      "tags": [
+        "android-tv",
+        "google-tv",
+        "adb",
+        "debloat",
+        "privacy",
+        "launcher",
+        "claude-code",
+        "agent-driven",
+        "python",
+        "java",
+        "pm-disable-user",
+        "restore-script"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "no-prebuilt-binaries",
+        "network-adb-plaintext",
+        "agent-executes-device-commands"
+      ],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/cleanyourtv.md"
     },
     {
       "name": "cli-anything",
@@ -3642,6 +3843,37 @@
       "path": "catalog/entries/codex-workflow.md"
     },
     {
+      "name": "coding-agent-adb-tv-debloat",
+      "title": "Coding-Agent TV Debloat over ADB",
+      "url": "https://www.instagram.com/reel/De5smNojeZm/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Pattern for using a coding agent (Claude Code in the source) to debloat an Android TV / Google TV over network ADB without root — enable developer options and debugging, give the agent the TV model and IP, have it back up the package list and write a restore script before changing anything, classify installed packages (tracking, ads, background extras, used apps) for the user to choose from, disable with pm disable-user rather than uninstall, and verify each change by sending remote key events and pulling screenshots; extras: lower animation scales, swap the stock launcher for a lightweight one; documented risks: bricking from disabling the wrong system package, loss of disabled features, small gains on 1 GB TVs, leave debugging on",
+      "body_summary": "The reel describes a ten-step workflow in which a general coding agent, not a purpose-built app, does the cleanup of a slow Android TV or Google TV over ADB. The agent connects to the TV, inventories packages, proposes what to disable, applies changes with a reversible command, and checks its own…",
+      "tags": [
+        "agent-pattern",
+        "android-tv",
+        "google-tv",
+        "fire-tv",
+        "adb",
+        "debloat",
+        "claude-code",
+        "backup-before-change",
+        "screenshot-verification",
+        "restore-script",
+        "device-automation"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [
+        "agent-executes-device-commands",
+        "network-adb-plaintext",
+        "user-reported-bricked-device"
+      ],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/coding-agent-adb-tv-debloat.md"
+    },
+    {
       "name": "cold-cache-session-resume",
       "title": "Cold-Cache Session Resume Strategies (trim vs compact vs keep-warm)",
       "url": "https://www.reddit.com/r/ClaudeCode/comments/1x1ybwb/best_way_to_handle_cold_cache_hits_you_overpay_5x/",
@@ -4003,6 +4235,29 @@
       ],
       "reviewed": "2026-06-19",
       "path": "catalog/entries/crewai.md"
+    },
+    {
+      "name": "cross-encoder-reranking",
+      "title": "Cross-Encoder Reranking for RAG",
+      "url": "https://www.instagram.com/reel/Dey-HLsJ5Cz/",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Second-stage retrieval technique: a cross-encoder jointly encodes a query and one candidate document in a single transformer forward pass, using self-attention across both texts to produce one relevance score per pair — more accurate but far more expensive than first-stage bi-encoder vector search, so it only reorders a small top-k candidate set rather than scoring a whole corpus.",
+      "body_summary": "Fixes a specific failure of first-stage vector search: the correct document often ranks far down a list of otherwise-similar candidates (e.g., position 23 of 50) because bi-encoder similarity scores cluster when documents share vocabulary. A reranker re-scores only the top candidates from that first pass, more accurately, before the final top-N is handed to the LLM.\n\n**Mechanism** — a cross-encoder (a transformer, not a separate bi-encoder) takes the query and one candidate document as a single input sequence (`[query] [SEP] [document]`) and runs one forward pass per pair. Because both texts share a sequence, self-attention lets query tokens attend directly to document tokens, letting synonymous or related vocabulary across the two texts reinforce each other. The hidden state at a designated output position passes through a small linear head to produce one relevance score for that pair. This repeats once per candidate; results are sorted by score and the top few are kept.\n\n**Cost** — nothing can be precomputed, since the model's input depends on the query at request time. Every candidate costs a full forward pass over query+document, so rerankers are applied to dozens or a few hundred first-stage candidates, never a whole corpus — this is why retrieve-then-rerank is a two-stage pipeline rather than a single-stage one. A reranker also can only reorder what the first stage already retrieved; if the correct document isn't in that candidate set, reranking cannot recover it.\n\n**Training** — cross-encoders are trained on (query, document, relevance-label) pairs, commonly with `BinaryCrossEntropyLoss` or losses like `MultipleNegativesRankingLoss` (sentence-transformers' `CrossEncoder` class, `num_labels=1`). Hard negatives — same-topic documents that don't actually answer the query — are mined (e.g., `sentence-transformers.util.mine_hard_negatives`, which can use FAISS to keep mining memory-bounded) and are what force the model to learn fine-grained distinctions rather than coarse topic matching; training on hard negatives alone, however, can hurt performance on easier queries, so random negatives are typically mixed in alongside them.",
+      "tags": [
+        "reranking",
+        "cross-encoder",
+        "rag",
+        "retrieval",
+        "information-retrieval",
+        "hard-negative-mining",
+        "sentence-transformers"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/cross-encoder-reranking.md"
     },
     {
       "name": "crossplane",
@@ -4471,6 +4726,29 @@
       "path": "catalog/entries/dify.md"
     },
     {
+      "name": "directing-and-verifying-coding-agents",
+      "title": "Directing and Verifying AI Coding Agents (What Separates Strong Engineers)",
+      "url": "https://www.reddit.com/r/AI_Agents/comments/1xaypur/we_benchmarked_how_60_engineers_direct_ai_coding/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Findings from a founder's informal benchmark scoring ~60 engineers (0-1000) on how well they direct, review, and verify a coding agent on a real task with deliberately planted half-failures: the dominant skill gap was specification quality and review behavior, not prompting; top scorers verify mechanism (which files changed, whether test files changed) rather than output alone, since output-only review never catches an agent weakening a test to go green; checking between turns beats one review at the end; a task costing 3x its neighbors signals a badly cut task, not inherent difficulty; and detecting a half-failure without an owner to act on it is worthless.",
+      "body_summary": "Findings reported by the founder of an (unlinked, unnamed-product-link) coding-agent evaluation startup after scoring roughly 60 engineers on a single exercise: direct a coding agent through a real task while their session (files opened, tests/terminal/lint run, plan edits, all timestamped) is recorded and scored 0-1000 on how well they directed, reviewed, and verified the agent's work, against exercises with deliberately planted half-failures.\n\n**Core findings:**\n- **The spread between engineers using identical tools was large, and it wasn't prompting skill** — it was specification quality and review behavior.\n- **Verify mechanism, not output.** The strongest scorers checked *what* the agent touched and *how* — which files, whether test files changed — because output review alone never catches an agent weakening a test to make it pass. This generalizes a known code-review pattern (line-by-line readers vs. diff-skimmers) to agent output specifically.\n- **Cost is a skill signal.** A task costing 3x its neighbors usually means the task was badly specified/cut, not that the underlying work was hard.\n- **Ask for the mechanism before any code exists** — one or two sentences on *how* it will work, not *what* it will do — gives both a tighter spec and something concrete to check against at review time.\n- **Checking between turns beats one review at the end.** An agent that edits a test mid-session and then shows a clean final diff looks identical to a genuinely clean run unless someone was watching the intermediate state.\n- **Detection without an owner is just a log line.** Noticing a half-failure only matters if someone is positioned to act on it.\n- **Spec framing changes agent behavior:** engineers who specified constraints and failure modes first (\"a box\") got tighter agent output than those who described only the happy path (\"an open field\") — and a happy-path-only spec is worse than no spec, because it reads as diligence and makes the reviewer relax.\n- **A green/passing task does not clear the bar** in the scoring model — a session with passing checks but no recorded verification behavior is capped and the report states why; conversely, test-file diffs reviewed separately from feature diffs is where agents' quiet test-loosening gets caught.\n- A thread reply raised an uncovered case worth noting: the benchmark (as of this report) does not test the skill of recognizing a self-contradictory or infeasible assignment and pushing back before writing any code — a correct \"stop and question this\" response looks like *less* output than a polished wrong-request implementation, which current activity-based metrics (token counts, prompt counts) would not distinguish from someone who simply didn't finish.",
+      "tags": [
+        "agent-pattern",
+        "code-review",
+        "verification",
+        "ai-coding-agents",
+        "spec-quality",
+        "benchmark",
+        "human-skill"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/directing-and-verifying-coding-agents.md"
+    },
+    {
       "name": "distill",
       "title": "Distill",
       "url": "https://github.com/samuelfaj/distill",
@@ -4735,6 +5013,40 @@
       "path": "catalog/entries/duckdb.md"
     },
     {
+      "name": "dumbtv",
+      "title": "dumbtv",
+      "url": "https://github.com/humblemuzzu/dumbtv",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Removes ads, tracking and clutter from Amazon Fire TV sticks, Cubes and Fire TV Edition televisions over ADB without root — disables ~50 Amazon packages (sponsored rows, ad services, ACR screen fingerprinting, telemetry, experiments) with pm disable-user, turns off ad tracking and usage reporting, optionally runs the open-source personalDNSfilter on the TV to block ~400 Amazon telemetry/ad/update hosts, and replaces Amazon's home screen with a 54 KB permissionless Java launcher; agent-driven via AGENTS.md (Claude Code, Codex, Cursor, Gemini) or by hand via preflight/configure/all/verify/restore bash scripts; nothing written to /system, one-command undo; MIT scripts and launcher, CC BY-SA 4.0 device catalog",
+      "body_summary": "dumbtv is a set of bash scripts and a launcher that clean up an Amazon Fire TV device from a computer over ADB, with no root. The author's stated origin: a Fire TV Edition television with 129 MB free memory, lagging menus and an ad-filled home screen; they asked a coding agent to clean it over ADB, posted the result, and published the scripts when people asked.\n\nWhat it changes:\n\n- **Amazon packages.** About 50 disabled: ads, sponsored content, ACR (automatic content recognition / screen fingerprinting), telemetry, crash and usage uploads, experiments, update nags. Disabled with `pm disable-user`, never deleted.\n- **Protected packages.** The few Amazon does not let anyone disable lose background running; the DNS filter blocks what they upload.\n- **Settings.** Ad tracking limited, interest-based ads off, usage reporting off, home-screen autoplay off.\n- **DNS.** personalDNSfilter (GPL-2.0, from F-Droid) runs on the TV and blocks about 400 Amazon telemetry, ad and update hosts using HaGeZi's Amazon tracker list. YouTube, the Appstore and other apps are not blocked.\n- **Home screen.** \"dumbtv home\" replaces Amazon's: apps, HDMI inputs and a clock, no promo tiles or sponsored rows.\n- **User apps.** Untouched unless the user names one for removal.",
+      "tags": [
+        "fire-tv",
+        "fire-os",
+        "adb",
+        "debloat",
+        "privacy",
+        "telemetry",
+        "dns-filter",
+        "launcher",
+        "claude-code",
+        "agent-driven",
+        "bash",
+        "java",
+        "restore-script"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "network-adb-plaintext",
+        "agent-executes-device-commands",
+        "blocks-os-updates-while-dns-filter-runs",
+        "downloads-third-party-apks-on-request"
+      ],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/dumbtv.md"
+    },
+    {
       "name": "dynamic-context-injection",
       "title": "Dynamic Context Injection in Claude Code Skills",
       "url": "https://code.claude.com/docs/en/skills",
@@ -4933,6 +5245,33 @@
       "security_flags": [],
       "reviewed": "2026-08-09",
       "path": "catalog/entries/end-of-session-review-questions.md"
+    },
+    {
+      "name": "engineering-team-claude-code-setup",
+      "title": "Claude Code as a Guardrailed Engineering Team (Solo-Operator Case Study)",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1xbxoza/my_claude_code_setup_it_runs_like_a_small/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Detailed solo-operator case study (45-year developer, $100/mo plan, 1,160 issues closed across 15 projects in 60 days) structuring Claude Code as a small team with enforced process rather than a chat window: rules live in PreToolUse hooks (not CLAUDE.md prose) once a correction repeats twice; a self-hosted GitLab plus a ~90-tool custom MCP server acts as the system of record with an issue state machine the model cannot bypass (raw API calls forbidden); work is routed across model tiers (Haiku/Sonnet/Opus, plus a non-generative classifier below Haiku) by task difficulty, with the main thread only planning/dispatching; memory is a typed, dated, version-controlled knowledge base instead of free text; and 'verify before asking or asserting' is a hard rule enforced through checks (file hashes, compile checks, render-then-view for documents) rather than trust.",
+      "body_summary": "A single operator's end-to-end Claude Code architecture, written up after the operator asked Claude itself to describe the setup for a Reddit post (disclosed in the post). Organized around nine standing design decisions:\n\n1. **Hooks enforce, CLAUDE.md only points.** Rule of thumb: a behavior corrected twice becomes a `PreToolUse` hook that denies the call, rather than another line of prose the model drifts from. Enforced this way: deletes are blocked and rewritten as a move to `_archive/`; all git commands route through one wrapper script (avoids the re-approval-per-directory problem of `cd <repo> && git ...` commands); commit messages can't contain issue-closing keywords or an AI co-author trailer; writes to day-job systems are blocked without per-action approval while reads are allowed; work content is blocked from non-approved model vendors with no override.\n2. **The issue tracker is the system of record, not the model.** A self-hosted GitLab plus a ~90-tool custom MCP server enforce a `type::`/`status::` state machine on every issue (`backlog→ready` human-only; `ready→in-progress→blocked|review→done` agent-driven but gated — `review→done` requires operator sign-off). Closing an issue is one tool call that runs the whole protocol (cross-reference commits, log effort, set terminal status, sync the wiki). Raw API calls are forbidden because they bypass the state machine — the workflow rules live inside the tool surface, not in instructions the model could ignore.\n3. **Model-tiered routing, clean orchestrator context.** The main session plans and dispatches, never edits code directly: Haiku for trivial/cheap tasks, Sonnet for implementation against a clear spec, the strongest model for unresolved bugs and real architecture tradeoffs, and a non-generative typed-judgment classifier (Jev) below all three for decisions that aren't really \"writing\" (is this issue ready, is this alert noise, does this MR match its diff). A second vendor's coding agent can be dispatched for a second opinion inside a disposable git worktree that never writes to the real repo; the primary agent reviews what comes back.\n4. **Classifier break-even, measured, not assumed.** The standing rule is \"the classifier decides, Claude writes; when the classifier is unsure, Claude decides\" — see [[jev]] for the measured cost/accuracy numbers behind this (break-even point, credential-leak safety lesson from production use).\n5. **Skills package repeated multi-step workflows as one command**, e.g.: work the ready queue (one subagent per issue, its own worktree, validate→implement→review, never merges/closes itself); groom the backlog (check against a definition of ready, draft acceptance criteria from actual code, promote only named issues); work a milestone end-to-end except for what needs the operator; \"ask the board\" (a panel of persona-modeled engineers argues a decision from different angles — useful specifically as a check against the operator talking themselves into something).\n6. **Memory is a typed, dated knowledge base, not free text.** Each fact is its own file with typed frontmatter (identity, feedback, project state, reference); `stale_after` dates trigger a session-start re-check hook; deprecated facts are marked `status: deprecated` rather than deleted; `verified: by human` outranks a model-inferred fact; a hook validates every memory write and regenerates the index; the whole store is version-controlled. Entries explicitly tagged `TRAP` (costly past mistakes, e.g. \"this command exits 0 but does nothing\") are called out as the single most valuable category.\n7. **Domain-specific MCP servers over generic ones**, each with a `help()` tool as its own catalogue so the model looks up capabilities instead of guessing; a read-only work-mailbox server deliberately ships no send/delete verb at all — \"the safest permission is a capability that doesn't exist.\"\n8. **Standing infrastructure rules applied in one pass**, e.g. any new VM/host/container is registered in inventory (reachability proven by a real command, not a ping), given a start-page tile if it has a web UI, and has its timezone set — with CI failing any container service missing a timezone.\n9. **Verify, don't assert, as a hard rule**: deliveries verified by file hash, not by poking at the running app; Word documents go through a docx→PDF→images render loop the model actually looks at before the operator sees them; code gets a compile check before every deploy.\n\n**Author's own \"what people get wrong\" list:** prose rules expected to stick (use hooks); no system of record (let a tracker's state machine decide \"done,\" not the model); one model for everything (route by difficulty, keep the orchestrator's context clean); memory as a dumping ground (type it, date it, mark what's verified, record traps); generic MCPs only (the best servers are the ones written for your own domain with your rules built in); trusting \"done\" (make verification part of the workflow); using an expensive model for every decision without measuring the break-even (small piles can cost more through a classifier, not less).\n\nCredited sources for two components: the backlog-grooming skill idea is adapted from a skill by Matt Pocock; \"ask the board\" is adapted from an idea in an Austin Marchese YouTube video (neither linked in the post). The operator reports building all of it by prompting Claude rather than writing code directly, and later had Claude scaffold a sanitized public write-up repo at github.com/aaraujo666/ClaudeCodeSetup.",
+      "tags": [
+        "claude-code",
+        "hooks",
+        "agent-orchestration",
+        "model-routing",
+        "issue-tracker",
+        "state-machine",
+        "memory-architecture",
+        "mcp-server",
+        "verification",
+        "gitlab",
+        "case-study"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/engineering-team-claude-code-setup.md"
     },
     {
       "name": "engraft-ngram",
@@ -6708,6 +7047,31 @@
       "path": "catalog/entries/huggingface-llm-course.md"
     },
     {
+      "name": "hve-core",
+      "title": "HVE Core (Hypervelocity Engineering Core)",
+      "url": "https://github.com/microsoft/hve-core",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Microsoft's open-source agentic SDLC framework for GitHub Copilot — specialized agents (research/plan/implement/review via an RPI methodology), coding-standard instructions applied automatically, and reusable skills (slash-command entry points) encoding ~80 organizational standards, security/compliance processes, and architecture-review practices; central principle 'AI carries the rules, humans keep the judgment.' Installed as a VS Code extension or Copilot CLI plugin (copilot plugin marketplace add microsoft/hve-core); explicitly flagged by Microsoft as a highly opinionated, rapidly evolving framework best treated as a source of patterns rather than a stable production dependency. MIT, with OWASP-derived skill content under CC BY-SA 4.0.",
+      "body_summary": "A structured component library for GitHub Copilot that replaces ad hoc, re-explained-every-session AI guidance with reusable, team-shared building blocks:\n- **Agents** for specialized roles — research, planning, implementation, and review — driven by an \"RPI\" (Research, Plan, Implement, Review) methodology.\n- **Instructions** that apply coding standards automatically rather than requiring the operator to restate them.\n- **Skills** that add reusable workflows and tool capabilities, including slash-command entry points, encoding roughly 80 organizational standards plus security, compliance, and architecture-review processes directly into the workflow.\n\nStated central principle: \"AI carries the rules, humans keep the judgment\" — the AI carries context/standards/process guidance through a task, while people retain responsibility for judgment, tradeoffs, review, and decisions.\n\n**Install:** the HVE Core VS Code extension (then select \"RPI Agent\" from Copilot Chat's agent picker), or for GitHub Copilot CLI, `copilot plugin marketplace add microsoft/hve-core` followed by `copilot plugin install hve-core@hve-core`. An \"HVE Builder\" skill (`/hve-builder`) helps adapt or copy patterns into an independently-maintained agentic SDLC.\n\n**Microsoft's own caution, stated directly in the README:** HVE Core is \"a highly opinionated, rapidly evolving agentic SDLC framework\" whose workflows, interfaces, architecture, and practices \"may change substantially, including in ways that are not backward compatible\" — it is recommended as a source of patterns and learning, not as a stable platform, foundation, or production dependency.\n\n**Repo signals:** CodeQL security analysis and OpenSSF Scorecard/Best Practices badges; governance, security policy, and a Responsible AI Transparency Note documented separately (GOVERNANCE.md, SECURITY.md, TRANSPARENCY-NOTE.md).",
+      "tags": [
+        "github-copilot",
+        "agentic-sdlc",
+        "prompt-engineering",
+        "coding-standards",
+        "agents",
+        "skills",
+        "microsoft",
+        "rpi-methodology",
+        "open-source"
+      ],
+      "workflows": [],
+      "license": "MIT (core); CC BY-SA 4.0 (OWASP-derived skill content)",
+      "security_flags": [],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/hve-core.md"
+    },
+    {
       "name": "iai-personal-memory-engine",
       "title": "iai — Personal Memory Engine",
       "url": "https://github.com/CodeAbra/iai-personal-memory-engine",
@@ -7353,6 +7717,30 @@
       "path": "catalog/entries/landlock-lsm.md"
     },
     {
+      "name": "langchain",
+      "title": "LangChain",
+      "url": "https://github.com/langchain-ai/langchain",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source (MIT) LLM application framework providing composable components — chains, runnables, tools, retrievers, prompts — for building model-agnostic agents; as of 2026, its create_agent ReAct-pattern agents run on LangGraph's durable runtime, inheriting persistence, checkpointing, rewind, and human-in-the-loop support rather than implementing orchestration independently.",
+      "body_summary": "A framework for building LLM applications from composable parts: chains (sequences of calls), runnables (the common interface those calls implement), tools, retrievers, and prompts. Historically positioned as the orchestration layer itself, but by 2026 LangChain's own agent constructor (`create_agent`) builds on LangGraph's durable runtime rather than a separate execution model — so LangChain agents inherit LangGraph's persisted state, step-level resumability, and human-in-the-loop checkpoints. Control flow in LangChain proper is mostly sequential with some branching; loops, conditional routing, and multi-agent coordination as first-class constructs are LangGraph's domain. The two layers are separable: LangGraph runs without LangChain's components, and LangChain's components can be used without adopting LangGraph's graph abstraction directly.",
+      "tags": [
+        "llm-framework",
+        "agents",
+        "orchestration",
+        "open-source",
+        "rag",
+        "tools",
+        "python",
+        "langgraph"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/langchain.md"
+    },
+    {
       "name": "langflow",
       "title": "Langflow",
       "url": "https://github.com/langflow-ai/langflow",
@@ -7378,6 +7766,56 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/langflow.md"
+    },
+    {
+      "name": "langgraph",
+      "title": "LangGraph",
+      "url": "https://github.com/langchain-ai/langgraph",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source (MIT) low-level agent-orchestration engine built around a directed graph of nodes and edges over shared state — supports loops, conditional routing, and multi-agent coordination as first-class constructs, with persisted state that survives steps (resumable from the last successful node, step-level checkpointing, human-in-the-loop interrupts). LangChain's own agents run on this runtime as of 2026 rather than a separate execution model; LangGraph itself runs standalone without LangChain's components.",
+      "body_summary": "The execution engine beneath both standalone agent code and LangChain's higher-level agent constructors. Where LangChain's native abstraction is the chain/runnable, LangGraph's core abstraction is a directed graph of nodes and edges operating over shared, persisted state. This makes loops, conditional routing, and multi-agent coordination first-class — not something bolted onto a sequential chain. Because state persists between steps, a failed run can resume from its last successfully completed node rather than restarting from scratch, and human-in-the-loop interrupts can pause execution at a checkpoint. LangGraph is separable from LangChain: it runs fine without LangChain's components, and `create_agent`-style LangChain agents run on top of it as of 2026 rather than on an independent orchestration path.",
+      "tags": [
+        "agent-orchestration",
+        "graph-execution",
+        "state-machine",
+        "open-source",
+        "durable-runtime",
+        "python",
+        "langchain"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/langgraph.md"
+    },
+    {
+      "name": "langsmith",
+      "title": "LangSmith",
+      "url": "https://smith.langchain.com/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "LangChain's commercial observability, evaluation, and deployment platform for LLM/agent applications — traces, evals, and monitoring that work against almost any stack via OpenTelemetry, not just LangChain/LangGraph. The client SDK (langsmith-sdk) is MIT-licensed, but the platform backend, UI, and storage layer are closed-source and unpublished; self-hosting requires an Enterprise plan and a sales-issued license key. In May 2026, LangChain replaced LangSmith's ClickHouse storage engine on its US Cloud with SmithDB, a proprietary Rust engine on Apache DataFusion and Vortex; self-hosted deployments still run ClickHouse+Postgres, with SmithDB there in a waitlisted public beta that LangChain does not recommend self-operating.",
+      "body_summary": "The tracing/evaluation/monitoring layer for the LangChain ecosystem, built to answer \"what actually happened when the agent misbehaved.\" Captures traces and evals, and — because it ingests via OpenTelemetry — can point at almost any LLM/agent stack, not only LangChain or LangGraph. Adopting LangSmith does not require adopting the other two layers.\n\n**Licensing split:** the `langsmith-sdk` client is MIT and open source (github.com/langchain-ai/langsmith-sdk); the platform itself — backend, UI, storage layer — is closed-source and not published. Self-hosting is gated behind an Enterprise plan; LangChain's docs describe self-hosted LangSmith as an Enterprise add-on for \"largest, most security-conscious customers,\" requiring a sales-issued license key to trial.\n\n**Storage architecture:** through early 2026, LangSmith ran on ClickHouse. In May 2026, LangChain's US Cloud moved to SmithDB, a proprietary Rust engine built on Apache DataFusion and Vortex. Self-hosted deployments still run ClickHouse+Postgres; SmithDB is available there only as a waitlisted public beta, which LangChain does not recommend operating yourself.",
+      "tags": [
+        "observability",
+        "evaluation",
+        "llm-tracing",
+        "agent-monitoring",
+        "opentelemetry",
+        "closed-source",
+        "enterprise",
+        "langchain"
+      ],
+      "workflows": [],
+      "license": "Proprietary (platform); MIT (langsmith-sdk client only)",
+      "security_flags": [
+        "closed-source",
+        "self-hosting-gated-enterprise"
+      ],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/langsmith.md"
     },
     {
       "name": "large-moe-consumer-hardware",
@@ -7691,6 +8129,34 @@
       "security_flags": [],
       "reviewed": "2026-09-25",
       "path": "catalog/entries/llm-compressor.md"
+    },
+    {
+      "name": "llm-council",
+      "title": "LLM Council",
+      "url": "https://github.com/karpathy/llm-council",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Andrej Karpathy's local web app (ChatGPT-like UI) that sends one query to multiple LLMs via OpenRouter, has each model anonymously rank the others' responses on accuracy/insight, then has a designated 'Chairman' model compile a final synthesized answer; three-stage pipeline (first opinions → anonymized cross-review/ranking → Chairman synthesis). FastAPI/Python backend, React/Vite frontend, uv + npm tooling. Explicitly described by the author as '99% vibe coded' as a weekend hack, unsupported and not intended to be improved further.",
+      "body_summary": "A local web app that replaces a single-LLM query with a three-stage multi-model pipeline, run entirely through OpenRouter so any mix of provider models can participate:\n\n1. **First opinions** — the user's query goes to every configured council model individually; each response is shown in its own tab so the user can inspect them side by side.\n2. **Review** — each model is shown the other models' responses, with identities anonymized so a model can't favor itself or a known competitor, and is asked to rank them on accuracy and insight.\n3. **Final response** — a separately designated \"Chairman\" model reads all individual responses (and implicitly the rankings) and compiles one final synthesized answer presented to the user.\n\n**Default council** (editable in `backend/config.py`): GPT-5.1, Gemini 3 Pro Preview, Claude Sonnet 4.5, Grok 4, with Gemini 3 Pro Preview as Chairman — any OpenRouter-supported model can be substituted.\n\n**Stack:** FastAPI (Python 3.10+) backend with async `httpx` calls to OpenRouter; React + Vite frontend with `react-markdown`; conversations persisted as JSON files in `data/conversations/`; `uv` for Python dependency management, `npm` for the frontend. Requires an `OPENROUTER_API_KEY` and purchased OpenRouter credits.\n\n**Author's own framing:** built as a weekend hack (\"99% vibe coded\") to compare LLMs side by side while reading books with them; explicitly not supported or intended to be improved by the author going forward — offered as-is for inspiration, with an invitation to have one's own LLM modify it freely.",
+      "tags": [
+        "multi-model",
+        "llm-council",
+        "openrouter",
+        "ensemble",
+        "agent-pattern",
+        "fastapi",
+        "react",
+        "karpathy",
+        "vibe-coded"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [
+        "unmaintained",
+        "no-support"
+      ],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/llm-council.md"
     },
     {
       "name": "llmfit",
@@ -8336,6 +8802,31 @@
       "security_flags": [],
       "reviewed": "2026-09-03",
       "path": "catalog/entries/meridian.md"
+    },
+    {
+      "name": "meta-n",
+      "title": "Meta^n",
+      "url": "https://github.com/minnesotanlp/meta-n",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Research prototype (MinnesotaNLP, arXiv 2608.24735 / 2509.24175) for recursive self-improvement of agent process, not just answers: a single fixed meta-operation Ω reads execution traces from the layer(s) below and writes executable code (a pre_process hook plus a code_library) injected into that layer, applied repeatedly to build a stack of emergent meta-layers (roles arise from context, not design) driven by an archive-based evolutionary search (EvolutionaryOrchestrator). Supports 9 benchmarks (CO-Bench, Symptom2Disease, LawBench charge prediction, TerminalBench 2.0, SWE-bench Verified, AlphaEvolve Math, Symbolic Regression, AlgoTune, ARC-AGI-2). Python ≥3.11, MIT; author describes it as an exploratory research prototype, not headline results.",
+      "body_summary": "A framework for recursive self-improvement that targets the *process* an agent uses rather than just refining its final answers. A single, fixed \"universal meta-operation\" Ω reads execution traces (commands, errors, reasoning, success/score) from the layer(s) beneath it and writes new executable code — a `pre_process` hook plus a `code_library` dict of helper functions — that gets injected into the layer below, changing its behavior. Applying Ω repeatedly builds a stack of meta-layers whose roles emerge from context rather than being hand-designed; unlike prior self-improvement systems that are purely evaluative (accept/reject a change), these meta-layers are constructive — they write code.\n\n**Stack architecture:** Layer 0 (`BaseExecutor`) runs candidate scripts locally or in a Docker sandbox and records a `Trace`; Layer 1 is a default solver (an LLM agent, either a single-pass `Layer1Solver` or an iterative `AgenticSolver`); Layer 2+ are emergent, generated by Ω from the traces of the layers below. Search alternates a build step (Ω writes a new meta-layer from current traces) and a run step (the full nested stack executes on each task). A worked example from the paper: on a LawBench charge-prediction lineage, Ω injects a fuzzy label matcher, a later over-aggressive prompt change regresses the score, and the next layer rolls that back and standardizes on the verified helper — raising the score from 0.767 to 0.833.\n\n**Orchestration:** search is driven by an archive-based `EvolutionaryOrchestrator` (the only orchestrator) — a monotonically growing archive of evaluated candidate chains, tracking per-task bests and supporting weighted parent selection; `--use-archive` is required to run it. `--benchmark-config none --use-archive --max-iterations 0` reproduces bare best-of-N behavior as a control.\n\n**Benchmarks (9, via `--benchmark`):** CO-Bench (combinatorial optimization, 36 tasks), Symptom2Disease (22-class medical diagnosis), LawBench charge prediction (Chinese, multi-label F1), TerminalBench 2.0 (~113 tasks, via harbor), SWE-bench Verified (500 GitHub issues, % resolved), AlphaEvolve Math, Symbolic Regression, and AlgoTune (all OpenEvolve-family), and ARC-AGI-2 (120 eval tasks, pass@2). Datasets are not bundled — fetched per `data/README.md` instructions per benchmark.\n\n**Install/run:** Python ≥3.11 (CI: 3.11/3.12), `pip install -e .` plus optional extras (`dev`, `bench`, `classify`, `analysis`, `harbor`, `openevolve[-jax]`, `terminus2`/`openhands` external-agent SDKs). API keys via `.env` (OpenRouter or Azure OpenAI). External base solvers (`--base-solver openhands|terminus2`) run in a separate venv as child-process runners with a cost guard, bounded Docker-lease guard, and JSONL telemetry ledger; `--daily-budget-usd` is required for them.\n\n**Author's own status framing:** explicitly called a research prototype; its demonstrable properties are a monotone archive (behaves as a ≥best-of-N order statistic) and a working code-injection channel, with results described as exploratory and \"should not be read as headline wins.\"",
+      "tags": [
+        "self-improving-agents",
+        "recursive-improvement",
+        "code-generation",
+        "evolutionary-search",
+        "benchmark",
+        "research-prototype",
+        "swe-bench",
+        "terminal-bench",
+        "arc-agi"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/meta-n.md"
     },
     {
       "name": "mex",
@@ -9064,6 +9555,30 @@
       "security_flags": [],
       "reviewed": "2026-07-06",
       "path": "catalog/entries/nemotron-3-ultra.md"
+    },
+    {
+      "name": "neo4j",
+      "title": "Neo4j",
+      "url": "https://github.com/neo4j/neo4j",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Native property-graph database storing data as labeled nodes and typed relationships with key-value properties, queried via Cypher (now standardized as ISO GQL); open-core licensing — Community Edition (GPLv3) covers ACID transactions, native graph storage/indexing, vector and full-text indexes, and APOC's 450+ procedures, while Enterprise Edition (commercial license) adds role-based auth, LDAP/Kerberos, Causal Clustering, tens-of-billions-scale graphs, rolling upgrades, and hot backup; also offered as AuraDB managed cloud and a newer Infinigraph Edition with unlimited horizontal sharding; Graph Data Science library ships as a separate open-core component (Community: all algorithms, 4-CPU cap, 3-model catalog limit; Enterprise: unlimited cores, cluster write support).",
+      "body_summary": "A native property-graph database: data is stored as nodes and relationships, each carrying labels/types and key-value properties, with index-free adjacency (relationships are traversed as direct pointers rather than via index lookups) as the core storage/query performance mechanism. Queried with Cypher, Neo4j's graph query language, which has since been standardized by ISO as GQL — external validation of the language design.\n\n**Licensing is open-core, split at the edition boundary:**\n- **Community Edition (GPLv3, free):** ACID transactions, native graph storage and indexing, Cypher, vector and full-text indexes, and APOC (450+ bundled procedures/functions). This is the bulk of Neo4j's own engineering investment.\n- **Enterprise Edition (commercial license):** adds role-based authorization, segregation of duties, LDAP/Kerberos integration, property blacklisting, schema enforcement, Causal Clustering, support for tens-of-billions-scale (\"XXL\") graphs, rolling upgrades, and hot backup. Production-relevant essentials — clustering, online backup, RBAC, most constraint types — are Enterprise-only, and Community Edition is limited to a single writer per database.\n- **AuraDB (managed cloud):** Neo4j's primary investment target; top tier (Business Critical) offers up to 512GB instances, 99.95% uptime SLA with HA clustering, and 24/7 support.\n- **Infinigraph Edition (2026):** all Enterprise features plus unlimited horizontal scaling via automatic sharding, with Graph Data Science included in the license.\n\n**Graph Data Science (GDS) library** is a separately open-cored component for running graph algorithms: Community Edition includes every algorithm but caps concurrency at 4 CPU cores and the model catalog at 3 models; Enterprise Edition removes the core cap and supports GDS write workloads inside a clustered deployment (requires a separate Enterprise license file).\n\nOpen components beyond Community Edition itself: openCypher (Apache-2.0) and native drivers for Java, JavaScript, Python, .NET, and Go (Apache-2.0).\n\n**Adoption:** Neo4j reports 84% of Fortune 100 companies as users and 1,000+ enterprise customers, including NASA, UBS, and Volvo.",
+      "tags": [
+        "graph-database",
+        "cypher",
+        "gql",
+        "property-graph",
+        "open-core",
+        "graph-data-science",
+        "aura",
+        "acid"
+      ],
+      "workflows": [],
+      "license": "GPLv3 (Community Edition); commercial (Enterprise Edition, Graph Data Science Enterprise)",
+      "security_flags": [],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/neo4j.md"
     },
     {
       "name": "netscanner",
@@ -10753,6 +11268,32 @@
       "path": "catalog/entries/pinchtab.md"
     },
     {
+      "name": "pinecone",
+      "title": "Pinecone",
+      "url": "https://www.pinecone.io/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Fully managed, closed-source serverless vector database — proprietary Rust engine separates compute from storage, consumption-based pricing (~$0.33/GB-month storage plus metered read/write units), targets ~200ms query latency at 80% p95 recall; offers hosted embedding/reranking (Pinecone Inference), Pinecone Assistant, Dedicated Read Nodes, and Bring-Your-Own-Cloud for data residency; no self-hosting option.",
+      "body_summary": "A fully managed vector database for similarity search and RAG retrieval, sold exclusively as a cloud service. Serverless is now the default and effectively only architecture for new projects — pod-based indexes are legacy and unavailable to accounts created after August 18, 2025. Compute and storage scale independently, so there's no pod sizing, rebalancing, or idle compute cost. Built on a proprietary Rust engine; AWS/GCP/Azure-hosted, with Bring-Your-Own-Cloud (BYOC) available for enterprise customers who need the data plane inside their own cloud account.\n\nBeyond core vector storage and query, Pinecone ships adjacent managed features: Pinecone Inference (hosted embedding and reranking models), Pinecone Assistant (production chat/agent app layer), Dedicated Read Nodes for read-heavy workloads, and native full-text search (public preview).\n\n**Pricing (2026):** four tiers — Starter (free: 2GB storage, 2M write units, 1M read units/month), Builder ($20/month flat), Standard ($50/month minimum usage), Enterprise ($500/month minimum). Paid usage bills storage (~$0.33/GB-month) plus metered read and write units separately from storage; namespace-heavy query patterns can push costs well above the headline minimums (one analysis found a namespace-heavy workload exceeding $1,100/month on Standard versus ~$50/month for a consolidated query pattern on the same data volume).\n\n**Deployment model:** closed-source and fully managed only — there is no downloadable or self-hostable version of Pinecone.",
+      "tags": [
+        "vector-database",
+        "serverless",
+        "managed-service",
+        "closed-source",
+        "rag",
+        "embeddings",
+        "byoc"
+      ],
+      "workflows": [],
+      "license": "Proprietary",
+      "security_flags": [
+        "closed-source",
+        "no-self-hosting"
+      ],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/pinecone.md"
+    },
+    {
       "name": "pixel-agents",
       "title": "Pixel Agents",
       "url": "https://github.com/pixel-agents-hq/pixel-agents",
@@ -11099,6 +11640,31 @@
       "path": "catalog/entries/prompt-versioning-managed-agents.md"
     },
     {
+      "name": "pstack",
+      "title": "pstack (Cursor Plugin)",
+      "url": "https://github.com/cursor/plugins/tree/main/pstack",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Cursor plugin by Lauren Tan (poteto, React core team) packaging her own engineering discipline as agent workflows: 23 task playbooks (bug fix, perf, feature, refactor, investigation, shipping, autopilot-full/stack, etc.) routed by a single /poteto-mode entry point, 24 one-rule-each engineering principles (prove-it-works, fix-root-causes, boundary-discipline, guard-the-context-window, etc.) indexed inline at task start, situational sub-skills (/architect, /blast-radius, /interrogate, /arena, /swarm, /unslop, /no-comments, /tdd, /correct, /create-verification-skill and others), and two subagent types (poteto-agent, Comment Sicko). Explicit goal is less code at higher quality, not throughput. Installs as a Cursor or Claude Code plugin (/plugin install pstack@cursor-plugins); MIT; several community ports exist for Codex, Pi, OpenCode, and other hosts.",
+      "body_summary": "A Cursor plugin encoding one engineer's (Lauren Tan, \"poteto\" — React core team, prior work at Meta/Netflix) daily workflow for shipping high-quality agent-written code, released publicly so others can fork and adapt it (\"make it yours\").\n\n**Entry point:** `/poteto-mode` reads the task, matches it to one of 23 playbooks (investigation, bug fix, perf, hillclimb, runtime/trace forensics, feature, refactoring, prototype, visual parity, authoring a skill, eval, babysit, shipping, autonomous run, orchestrate, autopilot-full, autopilot-stack, session pickup, pause safely, multi-phase plan, worktree cleanup, opening a PR), opens a todo list copied verbatim from the playbook's steps, and routes to other skills as those steps require them.\n\n**Principles (24, one rule each):** grouped as core (e.g. `laziness-protocol` — bias toward deletion and the smallest change; `subtract-before-you-add`), architecture (`boundary-discipline`, `type-system-discipline` — make illegal states unrepresentable), verification (`prove-it-works` — verify against the real artifact, not a proxy or \"it compiles\"; `fix-root-causes`; `test-behavior-not-implementation`), delegation (`guard-the-context-window` — route bulk work to subagents, keep summaries in the main thread; `never-block-on-the-human`), and meta (`encode-lessons-in-structure` — turn a corrected mistake into a lint/check/script, not more prose).\n\n**Situational skills invoked directly or by a playbook:** `/architect` (settle caller usage/types before crossing a function boundary), `/blast-radius` (prove what a small change could break by running code), `/arena` (N parallel attempts, keep the best parts), `/swarm` (N parallel workers across slices, one aggregated report), `/interrogate` (multiple models try to break a diff, keep only run-proven findings), `/unslop` (remove AI prose tells), `/no-comments` (strip comments, spawn a review subagent called \"Comment Sicko\" on what's left), `/tdd`, `/correct` (mine history for repeated mistake classes and fix each at the highest leverage level), `/create-verification-skill` / `/create-formal-verification-skill` (generate a project-local verification skill when none exists), `/typescript-best-practices`, `/technical-writing` (Diátaxis + Google style + STE + Global English for docs/RFCs/commit messages), `/automate-me` (mine the operator's own transcripts to draft a personalized routing skill on top of pstack).\n\n**Subagents:** `poteto-agent` (the wrapper used for delegated work inside a run — must read the full `poteto-mode` skill and its principles index first; substituting a generic subagent type causes drift) and `comment-sicko` (read-only comment reviewer, normally invoked via `/no-comments`).\n\n**Explicit non-goal:** no dedicated planning skill is bundled — the author's position is \"the best spec is code,\" relying on Cursor's existing plan mode when planning is wanted.\n\n**Install:** `/add-plugin pstack`, or in Claude Code: `/plugin marketplace add cursor/plugins` then `/plugin install pstack@cursor-plugins` (commands are namespaced `/pstack:poteto-mode`, etc.; cursor-only steps like BugBot are skipped with a note). `/setup-pstack` maps model roles (code vs. judgment vs. review panels) to specific models per operator preference. Companion plugins `cursor-team-kit` (ships `/deslop`, `control-cli`, `control-ui`) and a dormant `benny` Slack-triage automation pack (Cursor-only) are referenced but not bundled.",
+      "tags": [
+        "cursor",
+        "claude-code",
+        "plugin",
+        "agent-workflow",
+        "engineering-principles",
+        "playbooks",
+        "code-quality",
+        "mcp",
+        "open-source"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/pstack.md"
+    },
+    {
       "name": "pulsarforge",
       "title": "PulsarForge",
       "url": "https://github.com/siris9476/pulsarforge",
@@ -11318,6 +11884,32 @@
       "security_flags": [],
       "reviewed": "2026-09-18",
       "path": "catalog/entries/qwopus38-27b-flash.md"
+    },
+    {
+      "name": "rag-anything",
+      "title": "RAG-Anything",
+      "url": "https://github.com/HKUDS/RAG-Anything",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "All-in-one multimodal RAG framework from HKU's Data Intelligence Lab, built on LightRAG — parses PDFs/Office/images/audio/video via MinerU, Docling, or PaddleOCR, then builds a multimodal knowledge graph linking text, tables, equations, and images; three query modes (text, VLM-enhanced, direct multimodal); 23,500+ GitHub stars; MIT",
+      "body_summary": "RAG-Anything extends LightRAG (the same research group's graph-based RAG engine) to handle documents that mix text with images, tables, equations, charts, audio, and video, rather than treating them as text-only. It is built around a four-stage pipeline: document parsing, multimodal content analysis, multimodal knowledge-graph construction, and modality-aware hybrid retrieval.\n\nDocument parsing is delegated to a pluggable backend — MinerU (default, strongest OCR/table extraction, GPU-accelerated), Docling (better for Office/HTML, the only built-in parser that accepts HTML), or PaddleOCR (OCR-focused). The parser produces a `content_list` of typed blocks (text, image, table, equation, audio, video, generic), which specialized processors route through dedicated analyzers: a vision-model-backed image analyzer, a structured-data interpreter for tables, a LaTeX-aware equation parser, and an extensible plugin interface for custom content types. Audio is transcribed locally with faster-whisper; video uses scene detection plus keyframe VLM captioning merged with the audio transcript.\n\nEach multimodal element becomes an entity in a knowledge graph with \"belongs_to\" relationships that preserve document hierarchy, plus weighted cross-modal relationship edges (e.g., a table linked to the paragraph describing it). Retrieval fuses vector similarity search with graph traversal over this structure.\n\nThree query modes: plain text queries routed through LightRAG (`hybrid`/`local`/`global`/`naive` modes), VLM-enhanced queries that automatically load and send retrieved images to a vision model alongside text context, and explicit multimodal queries where the caller supplies specific image/table/equation content to reason about alongside the knowledge base.\n\nCan also skip parsing entirely via `insert_content_list()` to ingest a pre-parsed content list from an external source, and can wrap an existing LightRAG instance rather than creating a new one.",
+      "tags": [
+        "rag",
+        "multimodal",
+        "knowledge-graph",
+        "document-parsing",
+        "lightrag",
+        "python",
+        "mineru",
+        "docling",
+        "paddleocr",
+        "vlm"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/rag-anything.md"
     },
     {
       "name": "rag-architecture-decision-tree",
@@ -12816,6 +13408,56 @@
       "path": "catalog/entries/staff-engineer-systems-thinking.md"
     },
     {
+      "name": "starnet",
+      "title": "StarNet",
+      "url": "https://starnetos.com/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Local-first, MIT-licensed multi-agent harness (Tauri/Rust desktop shell + Node.js sidecar) for Windows/macOS that runs several AI agents in parallel with a live pixel-art visualization of agent state, delegation (team.dispatch), chat integration (Telegram, Discord, Slack, Signal, Matrix), persistent memory, BYOK model backends (OpenRouter, Anthropic, OpenAI, Google, Ollama, Claude Code CLI), and per-job/per-day spend budgets enforced against a real cost ledger",
+      "body_summary": "StarNet is a local-first AI agent harness: its own Node.js sidecar process runs the agent loop, executes tools, routes work between agents, schedules runs, enforces budgets, and keeps memory — it does not sit on top of another agent framework. The desktop shell is built with Rust/Tauri (vanilla JS frontend) and communicates with the Node sidecar over local HTTP/NDJSON/SSE.\n\nAgents are organized visually as a pixel-art space station: each occupied \"bay\" is a running agent, and placed \"gear\" (a signal dish, a filing cabinet, a workbench) grants that room's agents web access, file access, or a terminal respectively. An \"overseer\" agent can delegate to specialist workers via a `team.dispatch` call; each worker runs independently with its own tools and returns its result to the lead. Users direct the crew from a \"COMMS\" interface and can interrupt the current task with Stop.\n\nModel backends are bring-your-own-key: OpenRouter, Anthropic, OpenAI, a ChatGPT sign-in, the Claude Code CLI, Gemini, Grok, Kimi, Mistral, DeepSeek, Groq, or fully local Ollama. Chat/control surfaces extend to Telegram, Discord, Slack, Signal, and Matrix. The project also ships a terminal CLI (`starnet`) for headless station management and can import agents from the OpenClaw and Hermes Agent projects.\n\nSpend is bounded by a per-job budget (default $2, $50 ceiling), optional per-day caps, a default $25/day global limit (adjustable or disposable), and a limit on unattended jobs per day — all enforced against a real cost ledger, not advisory. Local data (station state, transcripts, memory, ledgers) stays on the user's machine; network/model calls happen only when an agent runs or a network tool/connector is explicitly granted.",
+      "tags": [
+        "agent-harness",
+        "multi-agent",
+        "local-first",
+        "desktop-app",
+        "tauri",
+        "byok",
+        "orchestration",
+        "cost-ledger",
+        "open-source",
+        "windows",
+        "macos"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/starnet.md"
+    },
+    {
+      "name": "start-cheap-escalate-on-fail-routing",
+      "title": "Start Cheap, Escalate on Fail: Measured Model/Effort Routing",
+      "url": "https://www.instagram.com/reel/De4PXaltWfP/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "A measured cost-routing strategy for coding agents: define a task as work with a pass/fail test (the SWE-bench model — FAIL_TO_PASS plus PASS_TO_PASS), always attempt it first on the cheapest model/effort tier, run the test, and only escalate model/effort on failure. Demonstrated on 6 SWE-bench tasks (2 quick/medium/hard) across Sonnet, Opus, and Fable at varying effort: on one quick task, Fable at max effort cost $2.10/~5min while Sonnet at low effort cost $0.07/14s and both passed the identical test. Even counting the cost of failed escalation attempts, starting cheap came out cheaper across all six tasks tested. Suggests logging (task features, tier tried, pass/fail, cost) and fitting a classifier (e.g. scikit-learn) on that log to build a task router that predicts where to start for a given task shape.",
+      "body_summary": "Defines a measurable approach to the \"which model, which effort level\" question for a given coding task, rather than guessing:\n\n**Definition of a task:** a piece of work with a test that decides pass/fail — the SWE-bench pattern (FAIL_TO_PASS: the issue's own test must flip to passing; PASS_TO_PASS: every pre-existing test must stay green). If a project has no such test, the recommendation is to build one first (patterned on how SWE-bench itself builds them) before trying to route cost by task.\n\n**Measurement:** six official SWE-bench tasks (2 rated quick, 2 medium, 2 hard by SWE-bench's own difficulty labels) were each run on Sonnet, Opus, and Fable at multiple effort levels. On one quick task, Fable at max effort cost $2.10 and took ~5 minutes; Sonnet at low effort cost $0.07 and took 14 seconds — and both passed the exact same test. The general finding: a cheaper model/lower effort tier can often complete the same task as a more expensive one, so defaulting to the expensive tier wastes money without buying correctness on those tasks.\n\n**Strategy:** always start a task on the cheapest model/effort tier available; run the task's test; only step the model and/or effort up when the test fails. Even counting the cost of the failed cheap-tier attempts that do need escalation, this came out cheaper in aggregate across all six measured tasks — i.e., the failed-attempt cost did not outweigh the savings from the tasks the cheap tier solved outright. The caveat given directly: results will vary by one's own task mix, so define the test first and measure on real tasks rather than assuming the ratio transfers.\n\n**Building a router from the data:** log every attempt (task features, tier tried, pass/fail, cost, time); feed that log into a classifier (e.g., scikit-learn) to learn which starting tier a new task's features predict — turning the one-off escalation ladder into a standing task router rather than a fixed rule applied blindly to every task.\n\nA previously published artifact by the same creator, called \"Task Router,\" is referenced as an implementation of this idea, but no URL or further detail was captured from this item — see the creator's own profile for that link.",
+      "tags": [
+        "model-routing",
+        "cost-optimization",
+        "swe-bench",
+        "agent-pattern",
+        "effort-tiering",
+        "task-classification",
+        "scikit-learn"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/start-cheap-escalate-on-fail-routing.md"
+    },
+    {
       "name": "state-of-context-engineering-2026",
       "title": "The State of Context Engineering 2026 (Redis)",
       "url": "https://redis.io/resources/state-of-context-engineering-2026/",
@@ -13106,6 +13748,29 @@
       "security_flags": [],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/superpowers-verification-before-completion.md"
+    },
+    {
+      "name": "swe-bench",
+      "title": "SWE-bench",
+      "url": "https://www.swebench.com/",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Coding-agent benchmark built from real GitHub issues across (originally) 12 popular Python repositories: an agent generates a patch from the issue description and codebase, graded by human-developer-written unit tests split into FAIL_TO_PASS (the issue's own test must flip from failing to passing) and PASS_TO_PASS (all pre-existing tests must stay green). Variants: Full (complete dataset), Lite (lower-cost subset), Verified (500 human-annotated, solvable tasks, OpenAI-developed 2024), and Pro (Scale AI SEAL lab — harder, multi-file, cross-repository-structure tasks under a standardized 250-turn scaffold). By October 2026, SWE-bench Verified is widely considered no longer a reliable yardstick for frontier models (leaderboard stagnant since December 2025, contamination concerns), and even SWE-bench Pro had documented reward-hacking and task-quality issues (102 flagged instances), corrected in a 'Pro Verified' release. Earlier research (SWE-Bench+) found solution leakage in 18 Lite and 37 Verified instances. Derivative benchmarks address staleness: SWE-bench-Live (rolling weekly fresh issues) and SWEBench-verified-mini (50-issue reduced set).",
+      "body_summary": "Grades a coding agent's ability to resolve a real GitHub issue: given the issue description and the repository at the commit before the fix, the agent produces a patch, which is graded against human-developer-written unit tests. Two test categories decide pass/fail: `FAIL_TO_PASS` (the test(s) tied to the issue must go from failing to passing) and `PASS_TO_PASS` (every pre-existing test must remain green — the patch cannot fix the target issue by breaking something else).\n\n**Variants, in increasing strictness/difficulty:**\n- **Full** — the complete original dataset across the source repositories (Python, originally 12 popular projects).\n- **Lite** — a lower-cost, more accessible subset.\n- **Verified** (OpenAI, 2024) — 500 tasks from Full, manually vetted by human annotators to confirm solvability and test reliability.\n- **Pro** (Scale AI, SEAL lab) — selected for difficulty rather than reliability: multi-file changes, longer context, repository structures that resist a simple single-file edit; every model runs under an identical, standardized 250-turn scaffold.\n\n**Reliability problems documented over time:** SWE-Bench+ research found solution leakage (the fix was directly stated in the issue/discussion thread) in 18 Lite and 37 Verified instances, inflating apparent scores. By October 2026, SWE-bench Verified is widely regarded as no longer a reliable yardstick for frontier models — its public leaderboard has had no new entries since December 2025, and OpenAI itself has effectively deprecated it over contamination concerns. Even the harder Pro variant was found to have reward-hacking vectors (gold-solution/eval-info leakage) and task-quality defects in 102 instances, prompting a corrected \"Pro Verified\" release.\n\n**Freshness-focused derivatives:** SWE-bench-Live pulls new GitHub issues on a rolling weekly cadence specifically to reduce training-set contamination; SWEBench-verified-mini is a 50-issue reduction (from only two source projects) reported to preserve a similar performance/difficulty distribution for cheaper evaluation runs.",
+      "tags": [
+        "benchmark",
+        "coding-agents",
+        "github-issues",
+        "swe-bench",
+        "evaluation",
+        "contamination",
+        "reward-hacking"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/swe-bench.md"
     },
     {
       "name": "syba",
@@ -13432,6 +14097,30 @@
       ],
       "reviewed": "2026-09-18",
       "path": "catalog/entries/tfm-tui.md"
+    },
+    {
+      "name": "thermos",
+      "title": "Thermos (Thermo-Nuclear Review, Cursor Plugin)",
+      "url": "https://github.com/cursor/plugins/tree/main/thermos",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Cursor plugin running two parallel diff-scoped review subagents and synthesizing deduped findings: thermo-nuclear-review (deep branch audit for bugs, breakages, security, devex, feature-gate leaks) and thermo-nuclear-code-quality-review (strict maintainability audit — 'code judo' restructurings, a 1,000-line file limit, spaghetti-conditional growth, architectural-boundary leaks). Supersedes the thermo-nuclear-code-quality-review skill previously shipped standalone in Cursor's cursor-team-kit plugin. MIT; installs via /add-plugin thermos.",
+      "body_summary": "A Cursor plugin for running an unusually strict, two-pronged review against a git branch/diff:\n- **`thermo-nuclear-review`** — a deep audit for bugs, breakages, security issues, developer-experience problems, and feature-gate leaks.\n- **`thermo-nuclear-code-quality-review`** — a strict maintainability audit looking specifically for \"code judo\" opportunities (behavior-preserving restructurings that make code dramatically simpler), enforcing a 1,000-line file-size rule, flagging ad-hoc conditional/spaghetti growth, and checking architectural boundary leaks.\n\nThe top-level `thermos` skill runs both as parallel, diff-scoped subagents (`thermo-nuclear-review-subagent`, `thermo-nuclear-code-quality-review-subagent`) against `git diff main...HEAD` plus the full contents of changed files, then synthesizes a prioritized, deduplicated finding list. Either review can also be invoked standalone, in the main agent or via its matching subagent, after gathering the same diff context.\n\n**History:** `thermo-nuclear-code-quality-review` previously shipped alone inside Cursor's `cursor-team-kit` plugin; Thermos absorbed it alongside the new deep-review skill and the orchestrating `thermos` skill. The README instructs removing the old `cursor-team-kit` thermo entries when installing Thermos, to avoid duplicates.\n\n**External reception** (per independent review, not Thermos's own docs): one practitioner running it against recent commits on an open-source project found roughly 5 of 7 suggestions genuinely useful; the broader characterization is that the rubric's ambition produces more false positives but also surfaces real issues that would otherwise be missed, and that it has no dedicated focus on tests or seams.\n\n**Install:** `/add-plugin thermos`.",
+      "tags": [
+        "cursor",
+        "plugin",
+        "code-review",
+        "code-quality",
+        "security-audit",
+        "subagents",
+        "mcp",
+        "open-source"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/thermos.md"
     },
     {
       "name": "third-brain-v5-wiki",
@@ -13826,6 +14515,33 @@
       "path": "catalog/entries/tuios.md"
     },
     {
+      "name": "turbopuffer",
+      "title": "turbopuffer",
+      "url": "https://turbopuffer.com/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Serverless vector and full-text search database built object-storage-first (S3/GCS/Azure Blob as source of truth, ~$0.02/GB) with an NVMe SSD and RAM caching hierarchy layered on top — cold namespaces cost near-zero, hot namespaces get sub-10ms p50 cached-query latency; write-ahead log on object storage for durability (~10K+ vectors/sec writes), strong consistency by default; no free tier, $64/month minimum; proprietary, no self-hosted version; production users include Cursor (95% cost reduction after migrating from Pinecone), Anthropic, Notion, Linear.",
+      "body_summary": "A vector + full-text search database that inverts the usual vector-database storage hierarchy: object storage (S3/GCS/Azure Blob, ~$0.02/GB) is the source of truth rather than RAM or SSD, with an NVMe SSD cache (tens-of-ms queries) and RAM cache (<10ms queries) layered on top — nicknamed the \"pufferfish\" model. Data migrates up the cache tiers automatically the more a namespace is queried, so a dormant namespace (e.g., an unopened codebase or workspace) costs near-zero while sitting cold in object storage.\n\n**Durability:** writes go through a write-ahead log on object storage, supporting roughly 10,000+ vectors/second; strong consistency by default, with an eventually-consistent option for lower latency.\n\n**Scale:** reported handling 2.5T+ documents with sub-10ms p50 latency on cached queries, at roughly 10x lower cost than RAM/SSD-backed alternatives (turbopuffer's ~$0.02/GB versus Pinecone Serverless's ~$0.33/GB).\n\n**Pricing:** usage-based with no free tier — Launch ($64/month minimum, all features included), Scale ($256/month, adds HIPAA BAA/SSO/priority support), Enterprise ($4,096+/month, single-tenant/BYOC/CMEK/99.95% SLA). Storage/query/write usage bills on top of the platform minimum.\n\n**Fit:** poor match for always-hot, ultra-low-latency workloads needing single-digit-ms tail latency on every request regardless of access pattern — the cost advantage depends on having a meaningfully cold-data pattern.\n\n**Production users:** Cursor (reported 95% cost reduction migrating code-search embeddings off Pinecone), Anthropic, Notion (migrated from Pinecone), Linear, Atlassian, Ramp, Grammarly, Superhuman.",
+      "tags": [
+        "vector-database",
+        "object-storage",
+        "serverless",
+        "full-text-search",
+        "hybrid-search",
+        "closed-source",
+        "cost-optimization"
+      ],
+      "workflows": [],
+      "license": "Proprietary",
+      "security_flags": [
+        "closed-source",
+        "no-self-hosting",
+        "no-free-tier"
+      ],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/turbopuffer.md"
+    },
+    {
       "name": "turboquant",
       "title": "TurboQuant — Extreme KV Cache Compression",
       "url": "https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/",
@@ -14207,6 +14923,29 @@
       "path": "catalog/entries/vector-database-basics-hnsw.md"
     },
     {
+      "name": "vector-database-cost-economics",
+      "title": "Vector Database Cost Economics",
+      "url": "https://mixpeek.com/guides/vector-database-cost-comparison",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Practitioner cost model for vector databases: storage bytes = vector count × dimensions × precision (1M 768-dim float32 vectors ≈ 3GB before index/metadata overhead; dimensions scale storage linearly, so 3072-dim embeddings cost 4x what 768-dim cost); RAM-resident indexes cost roughly 10-50x more per GB than SSD, which is roughly 10x object storage (~$0.023/GB-month raw S3-class rate); production replication (2-3x) and HNSW-style index overhead (1.5-2x raw vector bytes) compound on top; query/write pricing (per-request, per-unit, or folded into storage) can dominate the bill at high QPS independent of storage cost.",
+      "body_summary": "A cost-accounting framework for vector-database spend, independent of any one vendor.\n\n**Storage cost drivers (multiply together):**\n- **Vector count × dimensions × precision** — e.g., 1M vectors at 768 dimensions in float32 ≈ 3GB raw, before indexes or metadata. Dimension count scales storage linearly: 3072-dim embeddings cost 4x what 768-dim embeddings cost to store and search. Quantization reduces this term directly — int8 cuts it ~4x, binary quantization up to ~32x, with a recall tradeoff.\n- **Where the vectors live** — RAM is roughly 10-50x more expensive per GB than SSD, and SSD is roughly 10x more expensive than object storage (S3-class storage lists around $0.023/GB-month raw). Architectures that must hold the full index in RAM price accordingly; architectures that tier to disk or object storage and cache only hot data pass the savings through. This is the single biggest cost lever — bigger than any individual vendor's rate card.\n- **Replication and index overhead** — production deployments typically replicate 2-3x for availability; HNSW-style graph indexes carry roughly 1.5-2x storage overhead beyond raw vector bytes.\n\n**Query cost as a second, independent meter:** some vendors bill per read/write \"unit,\" some per request, some fold moderate query volume into the storage price. For high-QPS retrieval workloads, query pricing can dominate the bill entirely, independent of how cheap storage is.\n\n**Structural pattern:** engines priced on provisioned RAM clusters (classic self-managed Qdrant/Milvus deployments) are cost-predictable but bill for peak capacity around the clock, regardless of actual utilization. Engines priced on object storage with a cache layer in front (turbopuffer-class, Mixpeek MVS-class architectures) bill closer to raw S3 economics for data at rest, typically undercutting RAM-resident architectures by 5-10x on storage-heavy, moderate-QPS workloads — the profile most RAG and agent-memory systems actually have. The tradeoff is cold-query latency: a namespace not recently queried pays object-storage read latency until it's cached.\n\n**Workload-shape guidance:** free tiers cover prototypes with no real traffic. Storage-heavy/moderate-QPS workloads (RAG, media libraries, agent memory) favor object-storage-backed engines. Latency-critical/high-QPS workloads favor provisioned RAM clusters or hot-cache tiers, where per-query pricing should be evaluated before storage pricing. Billion-scale deployments require quantization and storage tiering regardless of vendor, and self-hosting shifts the bill from vendor fees to infrastructure cost plus operational time (realistic self-hosted floor cited at ~$50+/month in instance cost alone, before factoring ops time).",
+      "tags": [
+        "vector-database",
+        "cost-modeling",
+        "pricing",
+        "storage-economics",
+        "object-storage",
+        "quantization",
+        "rag"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/vector-database-cost-economics.md"
+    },
+    {
       "name": "vector-distance-metrics-cheatsheet",
       "title": "Vector Embeddings Distance Metrics Cheat Sheet",
       "category": "reference",
@@ -14246,6 +14985,30 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/verify-before-claim.md"
+    },
+    {
+      "name": "vespa",
+      "title": "Vespa",
+      "url": "https://github.com/vespa-engine/vespa",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source (Apache-2.0) big-data serving engine from Yahoo (open-sourced 2017, spun out as Vespa.ai in 2023) combining hybrid search (BM25 keyword + vector + tensor operations), real-time indexing, and machine-learned multi-phase ranking at billions-of-documents scale with sub-100ms latency; stateless container clusters handle query/indexing logic separately from stateful content clusters holding the data; available self-hosted or as Vespa Cloud; used in production by Spotify, Perplexity, Etsy, and others.",
+      "body_summary": "A search and big-data serving engine, not a vector-only database: it combines structured, text, and vector search with real-time recommendation/personalization/targeting in one system. Handles hybrid search (BM25 keyword search fused with vector similarity), general tensor operations, and multi-phase machine-learned ranking across billions of documents, reported at up to 90,000 requests/second with tens-of-milliseconds latency.\n\n**Origins:** traces to search technology at Overture and AltaVista, used inside Yahoo (via the 2003 Overture acquisition and 2003 AlltheWeb acquisition) for search, shopping, recommendations, and ad serving since the mid-2000s. Yahoo open-sourced it in 2017 under Apache-2.0. Vespa.ai spun out of Yahoo as an independent company in 2023, offering both the open-source engine and a managed Vespa Cloud.\n\n**Architecture:** stateless container clusters handle query execution and indexing-transformation logic (middleware), passing operations to stateful content clusters that hold the actual data; a single container cluster can be configured, or separate clusters per task.\n\n**Deployment:** fully self-hostable (entire product buildable from the public GitHub repo, no license-gated enterprise tier) or consumable as Vespa Cloud.\n\n**Production users:** Yahoo, Perplexity, Spotify, Etsy, Taboola, AlphaSense, Otto, Kleinanzeigen.",
+      "tags": [
+        "vector-database",
+        "hybrid-search",
+        "bm25",
+        "tensor",
+        "real-time-indexing",
+        "open-source",
+        "yahoo",
+        "self-hosted"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-10-28",
+      "path": "catalog/entries/vespa.md"
     },
     {
       "name": "vibe-coding-practitioner-habits",

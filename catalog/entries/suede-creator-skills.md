@@ -12,6 +12,7 @@ license: MIT
 security_flags: []
 supersedes: []
 overlaps: [get-shit-done, native-subagents]
+source: unknown
 ---
 
 ## What it says

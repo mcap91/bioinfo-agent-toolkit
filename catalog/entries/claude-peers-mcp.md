@@ -12,6 +12,7 @@ license: LicenseRef-unknown
 security_flags: [dangerously-skip-permissions-required, dangerously-load-development-channels-required, no-tests-observed, no-ci-observed, single-contributor, optional-openai-key-exfil-risk]
 supersedes: []
 overlaps: []
+source: unknown
 ---
 
 ## What it does

@@ -8,6 +8,7 @@ reviewed: 2026-07-03
 security_flags: []
 summary: "OpenHands provides an Agent Canvas UI and Agent Server for running coding agents — its own built-in agent, Claude Code, Codex, Gemini, or any ACP-compatible agent — as a self-hosted, always-on engineering team with local, Docker, VM, or cloud backends"
 acquired: 2026-07-04
+source: unknown
 ---
 
 ## What It Does

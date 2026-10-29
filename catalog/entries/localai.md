@@ -12,6 +12,7 @@ license: MIT
 security_flags: []
 supersedes: []
 overlaps: [ollama, open-webui]
+source: unknown
 ---
 
 ## What it does

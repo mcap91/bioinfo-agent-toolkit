@@ -12,6 +12,7 @@ license: LicenseRef-forum-content
 security_flags: [unsourced-claims]
 supersedes: []
 overlaps: [internal-agent-permission-sprawl]
+source: unknown
 ---
 
 ## What it says

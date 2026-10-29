@@ -12,6 +12,7 @@ license: MIT
 security_flags: []
 supersedes: []
 overlaps: [claude-agent-teams, scheduled-multi-agent-coordinator]
+source: unknown
 ---
 
 ## What it does

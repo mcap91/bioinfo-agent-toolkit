@@ -12,6 +12,7 @@ license: unlicensed
 security_flags: []
 supersedes: []
 overlaps: [smolagents, huggingface-llm-course]
+source: unknown
 ---
 
 ## What it says
