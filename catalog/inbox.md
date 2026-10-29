@@ -2,1961 +2,560 @@
 
 Drop URLs (one per line, optional ` — note`) or fenced ```text blocks here, then run the drain (`/catalog-intake`). Blocked items are marked `⚠ needs-link` and stay until resolved.
 
-```text
-10 vector databases worth knowing. Swipe for all 10.
-
-1. Pinecone: Fully managed; storage and compute scale apart
-2. Qdrant: Filtering built into the vector search
-3. Weaviate: Keywords and vectors in one query
-4. Milvus: Graduated LF AI & Data project
-5. pgvector: Vectors inside the Postgres you run
-6. Chroma: One pip install and you're running
-7. LanceDB: Runs in-process, like SQLite
-8. Vespa: Yahoo's search engine, open since 2017
-9. turbopuffer: Data on S3, hot parts cached
-10. S3 Vectors: Vector buckets inside S3
-
-Mixpeek turns video, images, audio and docs into features you can search.
-
-Which one are you running?
-
-mxp.co/i/vector-databases
-
-```
-https://mixpeek.com/guides/vector-database-cost-comparison?utm_source=instagram&utm_medium=social&utm_campaign=ig-top10-vector-dbs
-
-https://github.com/karpathy/llm-council
-https://github.com/storytold
-
 ## Gmail pull 2026-10-19 (43 items)
-
-https://github.com/hkuds/rag-anything
-https://github.com/cursor/plugins/tree/main/pstack
-https://github.com/cursor/plugins/tree/main/cursor-team-kit/skills/thermo-nuclear-code-quality-review
-https://github.com/morluto/rea
-https://github.com/neo4j
-https://github.com/lancedb/lancedb
-https://github.com/qdrant/qdrant
-https://github.com/weaviate/weaviate
-```text
-source: https://www.instagram.com/reel/DeKlghCOQiC/
-Caption:
-TileShire is a low-stakes, high-depth strategy game. Combine tiles on a living landscape to grow a home rich with life.
-It is developed in the Unity engine by two people.
-
-Wishlist TileShire on Steam!
-
-#gamedev
-#indiedev
-#unity3d
-#godot
-#gamedevlog
-#proceduralanimation
-#cozygame
-#citybuilder
-
-Transcript:
-[   0.0] Here's a game dev trick to bring some life into an environment.
-[   3.2] I'm making a game where you merge things together to create a town full of life,
-[   7.0] and while the town itself looks pretty good,
-[   9.0] there's something about that feels a little...
-[  11.3] lifeless.
-[  12.7] And I didn't want to solve it by adding a bunch of complicated animations to everything,
-[  16.2] because every flower, leaf, and little patch of grass needs its own animation,
-[  19.6] and that's gonna get out of hand pretty quick.
-[  21.7] So I started looking for a way to make all of this feel alive,
-[  24.6] without actually having to animate all of it,
-[  26.3] and this is where things get a little weird.
-[  28.4] We can use something called Perlin Noise,
-[  30.8] and you might be wondering,
-[  31.8] what is an image of a bunch of random looking noise
-[  34.3] that have to do with animating flowers and leaves?
-[  36.6] Well, we're not actually using the image to show anything on the screen.
-[  40.2] Instead, we can take the brightness of each pixel in that noise
-[  43.2] and use it to move the 3D models in our world.
-[  45.7] A darker value means less movement,
-[  47.8] and a brighter value means more movement.
-[  49.9] Then, we continuously pan it across the environment.
-[  53.2] Suddenly, all the foliage starts moving,
-[  55.5] not in perfect loops,
-[  56.9] but with subtle variations that make it feel much more natural.
-[  59.9] You can layer multiple noise patterns together
-[  62.0] and give them different variations in speed,
-[  64.1] so instead of manually animating hundreds of little pieces of foliage,
-[  67.4] we can turn one static piece of art
-[  69.2] into something that actually feels like a living world.
-[  72.2] This was all made for a game I'm making called Dial Shire.
-[  74.9] Check it out on Steam.
-
-On-screen text:
-So | PEPE SILVIA | How I will spend every waking hour | Animation Todo: Flower | Well Then...
-
-Key claims:
-- The reel demonstrates a game dev trick to bring life into an environment using Perlin Noise.
-- The game being developed merges things together to create a town full of life.
-- The town looked good but felt lifeless without extra animation work.
-- Animating every flower, leaf, and patch of grass individually was considered too time-consuming.
-- Perlin Noise (an image of random noise) can be used to drive movement instead of being displayed visually.
-- Pixel brightness in the noise maps to movement amount: darker = less movement, brighter = more movement.
-- Panning the noise pattern continuously across the environment animates the foliage.
-- This creates non-looping, naturally varied movement instead of perfect repeating loops.
-- Multiple noise layers can be combined with different speeds for more variation.
-- This technique turns one static art asset into something that feels like a living world without manually animating hundreds of foliage pieces.
-- The game is called TileShire (referred to as 'Dial Shire' in the spoken audio, likely a transcription error).
-- TileShire is developed in Unity by two people.
-- TileShire is a low-stakes, high-depth strategy/city-builder game about combining tiles to grow a living home.
-- TileShire can be wishlisted on Steam.
-
-Mentioned (unverified hints):
-- TileShire: (no url)
-- Unity: (no url)
-- Blender: (no url)
-```
-```text
-source: https://www.instagram.com/reel/DebFucxs5Xp/
-Caption:
-Can one line of code draw an entire maze?
-
-This is MarkovJunior, by Maxim Gumin, the creator of Wave Function Collapse. The program is a list of rewrite rules: find a matching pattern, replace it, and repeat.
-
-WBB → WAW
-
-At the step shown, that rule fits in 38 places. The interpreter picks one at random. After 284 replacements, no matches remain: the maze is finished.
-
-Two ordered rules can dig forward and backtrack when the tip gets stuck. The same maze program runs in 3D without changing a letter. And a larger set of rules builds the house shown in 764 steps.
-
-The name comes from Andrei Markov Jr., son of the mathematician behind Markov chains. His 1951 string-rewriting algorithms can compute any function a Turing machine can compute. The modern grid examples shown here use random match selection.
-
-Every maze, match count and construction step shown comes from the author's interpreter, not an invented animation.
-
-Code: github.com/mxgmn/MarkovJunior (MIT; recorded run at commit 42aaf24).
-Examples: MazeGrowth, MazeBacktracker and ModernHouse.
-
-#math #computerscience #algorithms #proceduralgeneration #coding
-
-Transcript:
-[   0.0] This one line of code draws an entire maze.
-[   3.4] It is Markov Jr. by Maxine Goumin,
-[   6.2] the creator of Wave Function Collapse,
-[   9.0] a language where the entire program
-[  10.9] is a list of replacements.
-[  12.9] It is named after Andrei Markov Jr.,
-[  15.5] son of the Markov of Markov Chains.
-[  18.5] In 1951, he defined an algorithm like this.
-[  22.3] Find the first piece that matches a rule,
-[  24.7] replace it and repeat.
-[  26.9] With three rules, six written in binary
-[  29.4] becomes six marks, and a student of his
-[  32.3] proved that this can compute anything
-[  34.4] a computer can compute.
-[  36.8] Goumin brought this to a grid,
-[  39.0] but here a rule fits in several places
-[  41.6] at the same time, so he picks one at random.
-[  44.7] At this step, the rule fits in 38 places.
-[  48.1] Pick one, replace it, search again.
-[  51.0] After 284 replacements, it fits nowhere, done.
-[  56.0] With two rules, their order becomes logic.
-[  59.2] The first digs forward.
-[  61.0] When the tip gets stuck, that rule does not fit,
-[  63.8] and the second goes back along the path
-[  66.0] until it finds a way out.
-[  68.1] And the same program, without changing a single letter,
-[  71.2] runs in three dimensions.
-[  73.7] Put together 500 lines of rules and a house emerges.
-[  77.6] Nobody drew this house.
-[  79.2] It took 764 steps, and it all starts with one line.
-
-On-screen text:
-<one value="BWA" in="WBB" out="WAW" origin="True"/> W B B → W A W This one line of code
-
-Key claims:
-- MarkovJunior is by Maxim Gumin, the creator of Wave Function Collapse
-- The entire program is a list of rewrite rules (replacements): find a matching pattern, replace it, repeat
-- The name comes from Andrei Markov Jr., son of the mathematician behind Markov chains
-- In 1951, Markov Jr. defined a string-rewriting algorithm; with three rules, six in binary becomes six marks
-- A student of Markov Jr. proved this rewriting system can compute anything a Turing machine/computer can compute
-- The rule WBB → WAW fits in 38 places at the step shown; the interpreter picks one at random
-- After 284 replacements, no matches remain and the maze is finished
-- Two ordered rules can dig forward and backtrack when the tip gets stuck
-- The same maze program runs in 3D without changing a letter
-- A larger set of rules (500 lines) builds a house shown in 764 steps
-- Every maze, match count, and construction step shown comes from the author's interpreter, not an invented animation
-- Recorded run at commit 42aaf24; examples used: MazeGrowth, MazeBacktracker, ModernHouse
-
-Mentioned (unverified hints):
-- MarkovJunior: github.com/mxgmn/MarkovJunior
-- Wave Function Collapse: (no url)
-```
-```text
-source: https://www.instagram.com/reel/DeMiEoaP-8i/
-Caption:
-Two maps become a mountain flyover.
-
-VoxelSpace samples a height map and a color map, projects heights into screen columns, and paints the terrain with vertical lines. Nearer terrain hides lower, more distant parts; the renderer takes wider steps farther away.
-
-The result is a camera view of the terrain, useful for exploring retro flight visuals and height-map rendering. Each map position has one height, and lighting is already painted into the color map.
-
-The original renderer drew these views with our own maps and camera path. We made the explanatory diagrams, separated-column view, and triangle comparison.
-
-지도 두 장으로 산 위를 날아갑니다.
-
-VoxelSpace는 높이 지도와 색 지도를 읽고, 높이를 화면의 세로줄에 투영해 지형을 그려요. 앞쪽 지형에 가려지는 부분은 건너뛰고, 멀리 갈수록 지도에서 읽는 줄의 간격을 넓힙니다.
-
-결과는 카메라 시점에서 본 지형 화면입니다. 레트로 비행 장면이나 높이 지도 렌더링을 살펴보기 좋아요. 지도 한 위치에는 높이가 하나씩 있고 빛과 그림자는 색 지도에 미리 들어 있습니다.
-
-원본 렌더러에 직접 만든 지도와 카메라 경로를 넣었습니다. 설명 그림, 벌린 세로줄 화면, 삼각형 비교 그림은 별도로 만들었어요.
-
-VoxelSpace by Sebastian Macke · MIT (code)
-https://github.com/s-macke/VoxelSpace
-Terrain maps & explanatory visuals: index.opensource
-직접 만든 지도를 사용했습니다. 저장소의 게임 지도는 MIT 대상이 아니며 이 영상에 쓰지 않았습니다.
-#opensource #VoxelSpace #creativecoding #computergraphics
-
-Transcript:
-[   0.0] Ever wondered how a game in 1992 flew over detailed mountains when most 3D games were flat single coloured polygons?
-[  10.0] Today's open source project rebuilds the trick behind Comanche in under 20 lines.
-[  16.0] Voxel Space by Sebastian Macker.
-[  19.0] The whole world is just two images.
-[  22.0] A height map and a colour map with the light and shadows already painted in.
-[  27.0] It looks out from the camera one line at a time, and on each line it picks one map point for every column of the screen.
-[  35.0] Each point's height is projected onto the screen and drawn as a vertical line in its colour.
-[  41.0] Working from front to back, it only draws the part that rises above what's already drawn.
-[  47.0] And the farther it looks, the bigger it steps, so distant hills cost less.
-[  52.0] No polygons at all, just vertical lines.
-[  55.0] The code is MIT licensed.
-[  58.0] Use it, change it, even sell it.
-[  61.0] Just keep the copyright and license notice.
-[  63.0] Thank you. Bye.
-
-On-screen text:
-the original VoxelSpace.html | map: osrs (the repository's maps are game data and are not used) | the original VoxelSpace.html | map: osrs (the repository's maps are game data and are not used) | VoxelSpace | Ever wondered how a game in 1992 flew over detailed mountains, 1992년의 게임은 어떻게 섬세한 산 위를 날았을까요? | Today's open-source project rebuilds the trick behind Comanche in under twenty lines: 오늘의 오픈소스는 Comanche의 그 기법을 스무 줄도 안 되게 다시 만들었어요. | the whole world: two 1024 x 1024 images | maps: osrs (the repository's maps are game data, excluded from its license) | The whole world is just two images: 세상 전체가 그림 두 장뿐이에요. | from above: the camera looks out, one line at a time | maps: osrs | every 10th line drawn · fov: distance 800, as on the page · maps: osrs | camera | It looks out from the camera one line at a time, 카메라에서 앞을 내다보며 한 번에 한 줄씩, | one screen column: each point's height, projected and drawn bottom-up | one screen column | camera | distance from the camera | column 400 of 800 · points from the page's 400 lines · maps: osrs | Each point's height is projected onto the screen, and drawn as a vertical line in its color. 점마다 높이를 화면에 투영해 그 점의 색으로 세로선을 그어요. | the page's frame, pulled apart column by column | frame: the original VoxelSpace (800 x 514) · map: oasis, snow and gaps · maps: osrs | No polygons at all. Just vertical lines. 다각형은 하나도 없어요. 세로선뿐이에요. | the same page, another view · map: osrs | the original VoxelSpace.html | colour map without light (osrs) | the original VoxelSpace.html | drawn line by line, near to far (the page's own top) · map: osrs | the original page · map: osrs | github.com/s-macke/VoxelSpace | MIT License | Permissions: Commercial use, Modification, Distribution | Limitations: Liability, Warranty | Conditions: License and copyright notice | The code is MIT licensed: 코드는 MIT 라이선스예요. | Thank you. 감사합니다. | @index.opensource | @hyun2xyz | License | The software part of the repository is under the MIT license. Please read the license file for more information. Please keep in mind, that the Voxel Space technology might be still patented in some countries. The color and height maps are reverse engineered from the game Comanche and are therefore excluded from the license.
-
-Key claims:
-- VoxelSpace recreates the terrain-rendering trick used in the 1992 game Comanche in under 20 lines of code.
-- The terrain is represented by two 1024x1024 images: a height map and a color map, with lighting already painted into the color map.
-- The renderer looks out from the camera one screen line at a time, picking one map point per screen column.
-- Each map point's height is projected onto the screen and drawn as a vertical line in its color.
-- Rendering works front-to-back, only drawing parts that rise above what's already drawn, so nearer terrain occludes farther terrain.
-- The renderer takes larger sampling steps at greater distances, so distant terrain costs less to render.
-- No polygons are used at all — the entire scene is composed of vertical lines.
-- VoxelSpace's code is MIT licensed, permitting use, modification, and sale, provided the copyright and license notice is kept.
-- The game maps included in the original repository are excluded from the MIT license and were not used in this video; custom-made maps and camera path were used instead.
-- The creators made the explanatory diagrams, separated-column view, and triangle comparison themselves; the original renderer code is Sebastian Macke's.
-
-Mentioned (unverified hints):
-- VoxelSpace: https://github.com/s-macke/VoxelSpace
-```
-```text
-source: https://www.instagram.com/reel/DemMV03uWzP/
-Caption:
-What happens when you mix a growing coral with terrain erosion?
-
-dlaf lets wandering particles stick together into branches. We turn its 2D branches into a ridge height map and feed it to Terrain Erosion. After 716 rounds of simulated rain, valleys cut through the landscape.
-
-Then we take a 3D coral of 6,000 particles, turn its parent links into rounded shapes, and use sdf to create an STL mesh. ln slices that mesh at 131 heights and removes hidden lines to draw it on screen.
-
-These are digital outputs: a simulated landscape, an STL file and a line drawing.
-
-자라나는 산호에 지형 침식을 섞으면 어떻게 될까요?
-
-dlaf는 무작위로 움직이는 입자들을 붙여 가지를 키워요. 2D 가지를 산등성이 높이 지도로 바꿔 Terrain Erosion에 넣었어요. 비를 716번 시뮬레이션하자 지형에 골짜기가 파여요.
-
-이어서 입자 6천 개로 자란 3D 산호의 부모 연결을 둥근 형태로 바꾸고, sdf로 STL 메시를 만들어요. ln은 그 메시를 높이 131곳에서 자른 뒤 가려진 선을 없애 화면에 그려요.
-
-시뮬레이션 지형, STL 파일, 선 그림까지 모두 디지털 결과물이에요.
-
-Credits / 출처
-Terrain Erosion: Daniel Andrino · MIT
-https://github.com/dandrino/terrain-erosion-3-ways
-dlaf · sdf · ln: Michael Fogleman · MIT
-https://github.com/fogleman/dlaf
-https://github.com/fogleman/sdf
-https://github.com/fogleman/ln
-Rendering: three.js · MIT
-Input conversion, connecting code and visuals: our production
-입력 변환·연결 코드·화면 구성: 자체 제작
-Curated by @hyun2xyz
-
-#OpenSource #CreativeCoding #GenerativeArt
-
-Transcript:
-[   0.0] Remember D-Laf, the open source project where random walkers stick together into coral?
-[   6.0] Each walker wanders until it touches the cluster and sticks there, so branches grow on branches.
-[  13.0] So what happens if we mix in terrain erosion?
-[  16.0] It simulates rain. Water gathers, runs downhill and carries soil away.
-[  21.0] Seen from above, D-Laf's branches in 2D look like a mountain range.
-[  25.0] So we raise every branch into a ridge higher where the branch runs longer
-[  30.0] and hand it to the simulation in place of its usual noise.
-[  34.0] 700 rounds of rain later, the coral is a mountain range, carved with valleys.
-[  39.0] And can that coral leave the screen?
-[  42.0] D-Laf grows 6,000 particles in 3D.
-[  45.0] Each one remembers the particle it's stuck to, its parent.
-[  48.0] That's our bridge to SDF, which builds shapes from distance.
-[  53.0] Every particle in its parent become a capsule, thicker where more branches grow from it.
-[  58.0] We blend the capsules with SDF's smooth union formula.
-[  62.0] An SDF cuts a flat bottom, adds a base and writes a closed mesh, about 8 cm wide, as an STL.
-[  69.0] The file 3D printers read.
-[  71.0] Can a pen plotter draw it too?
-[  73.0] LN draws 3D scenes as lines.
-[  76.0] It slices the mesh at 131 heights.
-[  79.0] Then from each point it sends a ray toward the camera.
-[  82.0] If something is in the way, that bit is hidden.
-[  85.0] Three quarters of the lines disappear.
-[  87.0] And what's left reads as solid coral.
-[  90.0] Change the seed for a new coral?
-[  92.0] Or use fewer slices for a lighter drawing?
-[  95.0] Four tools, three bridges.
-[  97.0] A height map, parent links and a mesh.
-[  99.0] Ask what the next tool reads and build that bridge.
-[ 102.0] D-Laf, SDF and LN are all by Michael Fogelman and Terrain Erosion is by Daniel Andrino.
-[ 109.0] All four are MIT licensed.
-[ 111.0] Keep their licenses when you remix.
-[ 113.0] Thank you. Bye.
-
-On-screen text:
-dlaf · 3D | 1,449 particles | MIX OPEN SOURCE | Remember dlaf, the open-source project where random walkers stick together into coral? | 무작위로 걷는 입자들이 달라붙어 산호가 되는 오픈소스, dlaf 기억나세요? | terrain-erosion · the coral after 716 rounds of rain | So what happens if we mix in Terrain Erosion? | 그럼 여기에 Terrain Erosion을 섞으면 어떻게 될까요? | terrain-erosion · rain, round by round | Seven hundred rounds of rain later, | 비가 700번 내리고 나면 | off the screen: three open-source tools | And can that coral leave the screen? | 그럼 그 산호가 화면 밖으로 나올 수 있을까요? | dlaf · 3D | 0 particles | dlaf grows six thousand particles in 3D. | dlaf가 3D로 입자 6천 개를 키워요. | dlaf · parent links | That's our bridge to sdf, which builds shapes from distance. | 이게 sdf로 가는 다리예요. sdf는 거리로 모양을 만들어요. | later: this coral as a mountain range | dandrino / terrain-erosion-3-ways | Code Issues Pull requests Actions Projects | Go to file Code | Silkodef Merge pull request #22 from dandrino/dependency/pip/... 6 years ago | images Simulation tweaking 6 years ago | .gitignore Simulation tweaking 6 years ago | LICENSE.txt Initial commit 6 years ago | README.md 6 years ago | valleys the rain carved | the drawing · ln, pen-plotter lines | README License | And here is a 3D example with 10 million particles. This image was ray traced in about 10 hours at 4096x4096px with 2048 samples per pixel. Full resolution here. | README License | sdftext.py: Generate 2D SDFs for text (which can then be extruded) | sdfutil.py: Arithmetic constants and functions. | SDF Implementation | It is reasonable to write your own SDFs beyond those provided by the built-in library. Browse the SDF implementations to understand how they are implemented. Here are some basic examples: | def sphere(radius=1, center=ORIGIN): def f(p): return np.linalg.norm(p - center, axis=1) - radius | An SDF is simply a function that takes a numpy array of points with shape (N, 3) for 3D SDFs or shape (N, 2) for 2D SDFs and returns the signed distance for each | sdf · flat cut + base | 966,012 triangles · 80 × 82 × 55 mm | as an STL, the file 3D printers read. | 3D 프린터가 읽는 STL 파일로요. | the sdf mesh | Can a pen plotter draw it too? | 펜 플로터로도 그릴 수 있을까요? | ln · a ray from each point to the camera | Then, from each point, it sends a ray toward the camera: | 그리고 점마다 카메라 쪽으로 광선을 쏴서 | ln · every slice line | 554,006 px of line | Three quarters of the lines disappear, | 선의 4분의 3이 사라지고 | dlaf seed 21 → sdf | Change the seed for a new coral, | 시드를 바꾸면 새 산호가, | 139,619 px of line | 50,288 px of line | 131 slices | 51 slices | or use fewer slices for a lighter drawing. | 슬라이스를 줄이면 더 가벼운 그림이 나와요. | n6000.stl · 966,012 triangles | Files 12e0c6e README.md | Preview Code Blame | I created this so I could plot 3D drawings with my Makeblock XY Plotter. Here's one of my drawings from the plotter... | Files 12e0c6e README.md | Preview Code Blame | All of the Paths are chopped up to some granularity and each point is tested by shooting a ray toward the camera. If there is no intersection, that point is visible. If there is an intersection, it is hidden and will not be rendered. | The visible points are then transformed into 2D space using transformation matrices. The result can then be rendered as PNG or SVG. | The Contains method is only needed for CSG (Constructive Solid Geometry) operations. | Hello World: A Single Cube | The Code | package main | the mesh, from ln's camera | → ln · seed 21 | → ln · seed 21 | dlaf · 3D | 6,000 particles | Four tools, three bridges: | 도구 넷, 다리 셋. | Thank you. | 감사합니다. | @index.opensource | @hyun2xyz
-
-Key claims:
-- dlaf grows coral-like branching structures by letting randomly walking particles stick together when they touch the existing cluster
-- The 2D dlaf branch structure is converted into a ridge height map and fed into Terrain Erosion in place of its usual noise input
-- Terrain Erosion simulates rain: water gathers, runs downhill, and carries soil away, cutting valleys
-- The simulation ran for 716 rounds of rain (caption/on-screen) / about seven hundred rounds (transcript)
-- A separate dlaf run grows 6,000 particles in 3D
-- Each particle's parent link is used as a bridge to sdf, turning the structure into capsule shapes blended with a smooth union
-- sdf cuts a flat bottom, adds a base, and writes a closed STL mesh about 8 cm wide
-- The resulting STL mesh has 966,012 triangles and dimensions 80 × 82 × 55 mm
-- The STL is a file format that 3D printers can read
-- ln slices the 3D mesh at 131 heights and removes hidden lines via ray-casting toward the camera to produce a line drawing
-- About three quarters of the lines are removed as hidden, leaving a drawing that still reads as solid coral
-- Using fewer slices (e.g. 51 instead of 131) produces a lighter drawing with fewer pixels of line (e.g. 50,288 px vs 139,619 px)
-- Changing the dlaf random seed produces a different coral shape
-- The project combines four open-source tools (dlaf, Terrain Erosion, sdf, ln) via three data bridges (height map, parent links, mesh)
-- dlaf, sdf, and ln are by Michael Fogleman; Terrain Erosion is by Daniel Andrino; all are MIT licensed
-- Rendering uses three.js (also MIT licensed)
-- The outputs produced are a simulated terrain, an STL file, and a line drawing — all digital outputs
-
-Mentioned (unverified hints):
-- dlaf: https://github.com/fogleman/dlaf
-- Terrain Erosion (terrain-erosion-3-ways): https://github.com/dandrino/terrain-erosion-3-ways
-- sdf: https://github.com/fogleman/sdf
-- ln: https://github.com/fogleman/ln
-- three.js: (no url)
-```
-```text
-source: https://www.instagram.com/reel/DejwS6fjDvg/
-Caption:
-Claude pxl: Pixel Art as Code
-
-An AI agent can now watch it paint a pixel-art sprite, step by step, in your browser. The project is called Claude pxl. It turns a simple text file into actual game assets, like PNGs and animated GIFs, using a tiny coding language. You do not need to install heavy software or learn a complex tool. You just write a few lines of code, and the program builds the image for you. The coolest part is the live viewer. It shows you exactly how the art is being drawn, like a timelapse of a painter at work. You can watch the AI add colors, shapes, and lights in real time.
-
-Open source: crsolver/claude-pxl
-
-Follow for more open source project drops.
-
-#PixelArt #GameAssets #SpriteArt #IndieGameDev
-
-Transcript:
-[   0.0] An AI agent can now watch it paint a pixel art sprite step by step in your browser.
-[   5.6] The project is called Claude PXL.
-[   8.6] It turns a simple text file into actual game assets like PNGs and animated GIFs,
-[  14.1] using a tiny coding language.
-[  16.2] You do not need to install heavy software or learn a complex tool.
-[  20.6] You just write a few lines of code and the program builds the image for you.
-[  24.8] The coolest part is the live viewer.
-[  27.4] It shows you exactly how the art is being drawn,
-[  30.5] like a time lapse of a painter at work.
-[  32.8] You can watch the AI add colors, shapes, and lights in real time.
-
-On-screen text:
-GitHub - crsolver/claude-pxl - GitHub | github.com/crsolver/claude-pxl | @GithubSignals | View all files | README | MIT license | pxl | Pixel art as code. Write a compact .px.js file, get PNGs, sprite sheets with JSON, animated GIFs, and a live browser viewer that replays the painting step by step as you save. | Built for AI agents (it ships as a ready-made agent skill) and pleasant for people too. No runtime dependencies, no build step: just Node ≥ 22.18. | github.com/crsolver/claude-pxl/blob/main/docs/gallery/rts_magic_night.gif | COMET | BR1T
-
-Key claims:
-- Claude pxl lets an AI agent paint a pixel-art sprite step by step, viewable in your browser
-- It turns a simple text file (.px.js) into game assets like PNGs, sprite sheets, and animated GIFs
-- It uses a tiny coding language to define the art
-- No need to install heavy software or learn a complex tool
-- A live viewer shows the art being drawn in real time, like a timelapse of a painter
-- The project is open source at github.com/crsolver/claude-pxl
-- It has no runtime dependencies and no build step, requiring only Node ≥ 22.18
-- It is built for AI agents and ships as a ready-made agent skill, while also being usable by people
-
-Mentioned (unverified hints):
-- pxl (Claude pxl): github.com/crsolver/claude-pxl
-```
-```text
-source: https://www.instagram.com/reel/Dd-WW-AszIG/
-Caption:
-Terrain Erosion — how does a landscape get its rivers?
-
-Start with a height map built from layers of noise. Daniel Andrino compares three ways to shape more natural terrain: simulate rain and sediment, learn from real elevation maps, or grow rivers upstream from the coast and build heights around their drainage.
-
-We ran the simulation and river-network code for this video. Blue water and graph lines help show the process. The machine-learning section uses the author's published examples.
-
-For a game island or a small 3D landscape, where would you begin?
-
-Terrain Erosion — 노이즈로 만든 지형에 물길이 생기는 방법.
-
-노이즈를 겹쳐 땅의 높낮이를 만들면, 산처럼 보이는 형태를 얻을 수 있어요. 여기에 물이 흐른 흔적은 어떻게 만들까요?
-
-Daniel Andrino는 세 가지 방법을 비교합니다. 비와 퇴적물의 움직임을 시뮬레이션하기, 실제 고도 지도에서 지형의 형태를 학습하기, 해안에서 강을 거슬러 연결하고 그 물길에 맞춰 높낮이를 만들기예요.
-
-이번 영상에서는 시뮬레이션과 강 네트워크 코드를 직접 실행했습니다. 파란 물과 그래프 선은 과정을 보여주기 위해 덧붙인 표시예요. 머신러닝 부분은 저자가 공개한 결과를 소개합니다.
-
-게임 속 섬이나 작은 입체 지형을 만든다면, 어떤 방법부터 시작하고 싶으신가요?
-
-📎 Source / 원본: terrain-erosion-3-ways
-https://github.com/dandrino/terrain-erosion-3-ways/tree/58cdebf74bf9b0b08de61187fbd0ecebd4bb2386
-Original creator / 원작: Daniel Andrino
-✳︎ Code license / 코드 라이선스: MIT
-https://github.com/dandrino/terrain-erosion-3-ways/blob/58cdebf74bf9b0b08de61187fbd0ecebd4bb2386/LICENSE.txt
-ML examples / 머신러닝 예시: Daniel Andrino
-Elevation maps / 고도 지도: USGS, credited in the original project
-Curated by @hyun2xyz
-
-Transcript:
-[   0.0] Today's open source project is three ways of generating terrain with erosion.
-[   5.0] It starts where most terrain generators stop at noise. It's by Daniel Andrino,
-[   9.8] and it's both a write-up and the code behind it. Stack noise at many scales and you get FBM.
-[  15.9] Mountains and valleys. Warp it or fold it into ridges and it looks a bit more natural.
-[  21.4] But compared with real elevation maps, it looks nothing like real terrain. Real terrain is
-[  26.6] shaped by water. Way one. Simulated. Rain falls, water picks up soil where it runs fast, drops it
-[  33.3] where it slows down and slowly evaporates. Run that 700 times and the smooth noise gets carved into
-[  39.8] gullies and flat valleys. The catch, in his words, parameter hell. Way two. Machine learning.
-[  47.2] A neural network trained on real US elevation data. The results look real, but training
-[  53.0] took about eight days. Way three works backwards. Start with an island, scatter points,
-[  58.6] and connect them into triangles. Then grow rivers upstream from the coast, one edge at a time.
-[  63.9] Rivers can merge on the way down, but never split. Add up the water flowing through each branch
-[  68.6] and let bigger rivers cut deeper. The terrain is built to fit the rivers.
-[  73.7] For visual work, use these height maps for landscapes, 3D terrain,
-[  77.8] relief prints, or animated erosion. The code is MIT licensed. Thank you. Bye.
-
-On-screen text:
-TERRAIN EROSION / Today's open-source project is Three Ways of Generating Terrain with Erosion. / 오늘 소개할 오픈소스는 '침식 지형을 만든 세 가지 방법'입니다. / dandrino / terrain-erosion-3-ways / Code Issues Pull requests Actions Projects / dandrino Merge pull request #22 from dandrino/dependabot/pip/pil... / images Simulation tweaking 8 years ago / .gitignore Simulation tweaking 8 years ago / LICENSE.txt Initial commit 8 years ago / README.md v/CPU@compute 8 years ago / It's by Daniel Andrino, / Daniel Andrino가 만든 / plain_old_fbm.py / Stack noise at many scales, and you get fBm: / 여러 크기의 노이즈를 쌓으면 fBm이 되고 / land mask / river network with volume / iteration 345 / 716 / compute_river_network 37,713 / 61,249 edges / offset x 0.0 / iteration 199 / 716 / iteration 461 / 716 / Way three works backwards. / 셋째는 거꾸로 가요. / Files Sdcdebf terrain-erosion-3-ways README.md / Preview Code Blame Raw / ...starting from the mouth i.e. where they terminate in the ocean and growing each river upstream one edge at a time... until no more valid edges are left. A valid edge is one that: / Moves uphill. Since we are growing the river graphs upstream, the end effect is only downhill-flowing rivers. / Does not reconnect with an existing river graph. This results in rivers that only merge as they flow downhill, but never split. / Furthermore, we also prioritize which edge to add by how much it aligns with the previous edge in the graph. Without this, rivers will twist and turn in ways that don't appear natural. Furthermore, amount of "directional inertia" can be configured to get more twisty or straight rivers. / For visual work, / 비주얼 작업에서는 / dandrino/terrain-erosion-3-ways LICENSE.txt / MIT License / Permissions: Commercial use, Modification, Distribution, Private use / Limitations: Liability, Warranty / Conditions: License and copyright notice / The code is MIT licensed. / 코드는 MIT 라이선스예요. / @index.opensource / @hyun2xyz
-
-Key claims:
-- The project generates terrain with erosion, going beyond simple noise-based terrain.
-- It is created by Daniel Andrino and includes both a write-up and code.
-- Stacking noise at many scales produces fBm (fractal Brownian motion), resembling mountains and valleys.
-- Warping or folding noise into ridges makes it look more natural, but it still looks nothing like real terrain compared to real elevation maps.
-- Real terrain is shaped by water.
-- Way one (simulation): rain falls, water picks up soil where it runs fast, drops it where it slows, and evaporates; running this 700 times carves smooth noise into gullies and flat valleys.
-- The simulation approach suffers from 'parameter hell' in the author's words.
-- Way two (machine learning): a neural network trained on real US elevation data produces realistic-looking results, but training took about eight days.
-- Way three (river network growth) works backwards: start with an island, scatter points into triangles, then grow rivers upstream from the coast one edge at a time.
-- Rivers can merge going downhill but never split.
-- Water volume accumulates through branches, and bigger rivers cut deeper; terrain height is built to fit the river network.
-- The resulting height maps can be used for landscapes, 3D terrain, relief prints, or animated erosion visuals.
-- The code is MIT licensed.
-- The video creators ran the simulation and river-network code themselves; the ML section uses the author's published examples.
-- Elevation maps are sourced from USGS, credited in the original project.
-
-Mentioned (unverified hints):
-- terrain-erosion-3-ways: https://github.com/dandrino/terrain-erosion-3-ways/tree/58cdebf74bf9b0b08de61187fbd0ecebd4bb2386
-```
-```text
-source: https://www.instagram.com/reel/DegQ9xiIESl/
-Caption:
-One seed number, a whole dungeon floor.
-
-Brogue CE starts with rock, places a room, then tries new rooms until their doors meet existing walls without overlap. In this example, 35 room-candidate attempts follow the first room; the recorded floor ends with 20 rooms. Extra doors make loops; five rounds of neighbor rules shape the lakes.
-
-A lake is accepted only if the floor stays connected. This floor has lava; the liquid varies with depth. The same seed reproduces the same dungeon within the same dungeon version.
-
-We redrew game-generated map data, revealing the whole map and removing players, monsters and items. Process colors and labels were added for the explanation.
-
-Which part would you explore: rooms, loops, or lakes?
-
-시드 번호 하나로 던전 한 층을 만듭니다.
-
-Brogue CE는 바위에서 방 하나를 파낸 뒤, 겹치지 않으면서 문이 기존 벽에 닿는 자리를 찾아 새 방을 붙여요. 이 예에서는 첫 방 뒤로 방 후보 배치를 35번 시도했고, 기록된 층에는 방 20개가 남습니다. 문을 더 뚫어 돌아가는 길을 만들고, 이웃 규칙을 다섯 번 돌려 호수 모양을 다듬어요.
-
-호수는 바닥이 계속 연결되는 자리에만 놓습니다. 이 층은 용암이지만 액체는 깊이에 따라 달라져요. 같은 던전 버전 안에서는 같은 시드가 같은 던전을 만듭니다.
-
-게임이 만든 지도 데이터를 다시 그렸고, 전체 지도를 드러낸 뒤 플레이어·몬스터·아이템을 뺐어요. 과정의 색과 라벨은 설명을 위해 더했습니다.
-
-방, 고리, 호수 중 어떤 과정을 더 보고 싶으신가요?
-
-Brogue: Community Edition · AGPL-3.0-or-later
-Brogue was created by Brian Walker; Community Edition continues its development.
-https://github.com/tmewett/BrogueCE
-Curated by @hyun2xyz
-
-Transcript:
-[   0.0] Ever wonder how a game can build a brand new dungeon every single time you play?
-[   5.3] Today's open-source project is Brogue Community Edition, which carries on the roguelike created by
-[  11.0] Brian Walker. Give it a seed number and it digs a whole level out of solid rock.
-[  16.7] Rooms, doors, caves and lakes of lava. Watch. It starts with a single room. Then it designs
-[  23.7] a new room off to the side and slides it across the map until one of its doors meets a wall.
-[  29.1] Without overlapping anything, it designs 35 rooms this way. The ones that fit are kept.
-[  35.6] Next, wherever two floors are side by side, but more than 20 steps apart on foot, it opens a door.
-[  42.0] Now there are loops, not just dead ends. Lakes start as random noise. Five rounds of a simple
-[  47.9] rule smooth it out. A cell is filled if enough of its eight neighbors are. A lake is only placed
-[  53.8] where every floor can still be reached. Fill it with lava and the level is done. Same seed,
-[  59.4] same dungeon every time. Brogue CE is licensed under the AGPL, so you can study it,
-[  65.3] change it and share it. As long as your changes stay open too. Thank you. Bye.
-
-On-screen text:
-seed 1 - depth 3 | seed 5 - depth 6 | seed 2 - depth 9 | seed 2 - depth 9 | seed 2 | seed 2 | Brogue: Community Edition | Ever wonder how a game can build a brand-new dungeon, every single time you play? | 게임은 어떻게 할 때마다 처음 보는 던전을 새로 지을까요? | Today's open-source project is Brogue: Community Edition, | 오늘의 오픈소스는 Brogue: Community Edition이에요. | Give it a seed number, and it digs a whole level out of solid rock: | 시드 번호 하나를 주면 단단한 바위에서 한 층 전체를 파내요: | Brogue CE is licensed under the AGPL, | Brogue CE는 AGPL 라이선스예요. | up close: every cell is one character | trueweth / BrogueCE | BrogueCE Public | Brogue: Community Edition - a community-led fork of the much-loved minimalist roguelike game | brogue dungeon game roguelike | Readme | BrogueCE / src / brogue / Architect.c | createDungeon(grid) | roomAttempts(grid, 20) | GNU Affero General Public License v3.0 | BrogueCE / LICENSE.txt | Permissions: Commercial use, Modification, Distribution | Limitations: Liability, Warranty | Conditions: License and copyright notice, State changes, Disclose source | @index.opensource | @hyun2xyz
-
-Key claims:
-- Brogue Community Edition continues the roguelike created by Brian Walker.
-- A seed number is used to generate a whole dungeon level out of solid rock.
-- Generation starts with a single room, then new rooms are designed and slid across the map until a door meets a wall without overlapping anything.
-- 35 room-candidate attempts are made after the first room; 20 rooms remain in the recorded floor.
-- Doors are opened between adjacent floor areas that are more than 20 steps apart on foot, creating loops instead of just dead ends.
-- Lakes start as random noise and are smoothed by five rounds of a cellular automaton rule (a cell fills if enough of its eight neighbors are filled).
-- A lake is only placed where the floor remains fully connected/reachable.
-- This floor is filled with lava; the liquid type varies with depth.
-- The same seed produces the same dungeon within the same dungeon version.
-- The map was redrawn from game-generated data, revealing the whole map and removing players, monsters, and items; colors/labels were added for explanation.
-- Brogue CE is licensed under AGPL-3.0-or-later, allowing study, modification, and sharing as long as changes remain open.
-
-Mentioned (unverified hints):
-- Brogue: Community Edition (BrogueCE): https://github.com/tmewett/BrogueCE
-```
-```text
-source: https://www.instagram.com/reel/DeRdV4OjhM-/
-Caption:
-A grid of numbers becomes flickering pixel fire.
-
-doom-fire-algorithm starts with a row of 36s. It reads the value below, subtracts a random 0, 1 or 2 (never below zero), and writes the result toward the left. A 37-entry palette turns those values into animated color. Turn the bottom row off and the fire fades.
-
-A small JavaScript experiment for learning palette animation and building stylized pixel effects. The fire values come from the project's original fire.js; the enlarged grids, palette layout, annotations and timing presentation were made for this video.
-
-숫자 격자가 일렁이는 픽셀 불꽃이 됩니다.
-
-doom-fire-algorithm은 맨 아랫줄을 36으로 채우고 시작해요. 아래 칸의 값에서 무작위로 0·1·2를 빼고, 0보다 작아지지 않게 한 뒤 왼쪽으로 옮겨 적습니다. 37칸 팔레트로 숫자를 색에 연결하면 불꽃이 움직여요. 맨 아랫줄을 0으로 바꾸면 서서히 꺼지고요.
-
-팔레트 애니메이션을 배우거나 픽셀 이펙트를 만들어 볼 수 있는 JavaScript 실험입니다. 불꽃 값은 원본 fire.js가 계산했고, 확대 격자·팔레트 배치·설명 표시·재생 연출은 영상용으로 만들었습니다.
-
-Source: doom-fire-algorithm by Filipe Deschamps · MIT
-https://github.com/filipedeschamps/doom-fire-algorithm
-Implementation: playground/1st-implementation-with-tables
-Inspired by “How DOOM fire was done” by Fabien Sanglard
-https://fabiensanglard.net/doom_fire_psx/
-
-#indexopensource #opensource #creativecoding #javascript #pixelart
-
-Transcript:
-[   0.0] Ever wondered how Doom drew fire that looks this alive?
-[   4.3] Today's open-source project rebuilds that effect,
-[   7.4] Doom Fire Algorithm by Philippe Deschamps.
-[  11.1] The whole fire is a grid of numbers from 0 to 36.
-[  15.0] Each number picks one of 37 colors, from black to white.
-[  19.3] The bottom row is always 36, the hottest white.
-[  23.3] Every step, each cell takes the number just below it
-[  26.1] and subtracts a random 0, 1 or 2.
-[  29.7] So the heat cools as it rises, from white to yellow to red to black.
-[  35.2] That same random number also shifts the copy up to two cells to the left,
-[  39.4] so the flames lean and flicker.
-[  42.2] Turn the bottom row off and the fire burns out by itself.
-[  45.9] It's MIT licensed, use it, change it, even sell it.
-[  49.5] Just keep the copyright and license notice.
-[  52.4] Thank you.
-[  53.8] Bye.
-
-On-screen text:
-the original fire.js, step by step | grid 75 x 96 cells (the page: 50 x 46) - 24 steps per second | the same fire as numbers: 0 = black ... 36 = white | 25 x 17 cells, the page's debug size - closest to 6 steps per second | fireColorsPalette: 37 colours, number = index | fire.js line 5 | Ever wondered how DOOM drew fire that looks this alive? DOOM은 어떻게 이렇게 살아 있는 불꽃을 그렸을까요? | The whole fire is a grid of numbers, from zero to thirty-six. 불꽃 전체는 0부터 36까지의 숫자 격자예요. | Each number picks one of thirty-seven colors, from black to white. 숫자마다 검정부터 흰색까지 37가지 색 중 하나를 골라요. | @index.opensource | @hyun2xyz | Doom Fire Effect | https://github.com/filipedeschamps/doom-fire-algorithm | Min Fire | Max Fire | Toggle Debug Mode | Doom Fire Effect
-
-Key claims:
-- The Doom Fire Algorithm project recreates the fire effect from the original DOOM video game
-- The fire is represented as a grid of numbers ranging from 0 to 36
-- Each number maps to one of 37 colors in a palette, ranging from black to white
-- The bottom row of the grid is always set to 36, the hottest/whitest value
-- Each step, a cell's value is computed by taking the value of the cell below it and subtracting a random amount of 0, 1, or 2 (never going below zero)
-- This causes the fire to cool as it rises, transitioning from white to yellow to red to black
-- The same random subtracted value also shifts the result up to two cells to the left, causing the flames to lean and flicker
-- If the bottom row is turned off (set to 0), the fire burns out/fades on its own
-- The project is MIT licensed, allowing use, modification, and sale, provided the copyright and license notice is kept
-- The project was created by Filipe Deschamps
-- The enlarged grids, palette layout, annotations, and timing presentation in the video were made specifically for this video, while the fire values themselves come from the original fire.js
-
-Mentioned (unverified hints):
-- doom-fire-algorithm: https://github.com/filipedeschamps/doom-fire-algorithm
-```
-```text
-source: https://www.instagram.com/reel/DeecMf9nBBn/
-Caption:
-Demucs separates a song into drums, bass, vocals, and the rest.
-
-We ran its htdemucs model on Josh Woodward’s “Knock.” The video plays each separated track, then compares the estimated accompaniment with the instrumental version the musician released.
-
-Inside, Demucs reads the same sound as a waveform and a spectrogram. Both branches compress the input, exchange information through a transformer, and expand it back into four tracks. Their estimates are added together.
-
-The sounds are actual Demucs outputs. We made the visualizations from the audio and the model’s internal values. Some sound still leaks between tracks.
-
-Which part would you listen to first: the bass line, the drum pattern, or the vocal?
-
-Demucs는 노래 한 곡을 드럼, 베이스, 보컬, 나머지 소리로 나눠 줍니다.
-
-Josh Woodward의 “Knock”을 htdemucs 모델로 분리했어요. 영상에서 각 트랙을 하나씩 듣고, Demucs가 추정한 반주를 작가가 공개한 반주판과 비교합니다.
-
-Demucs는 같은 소리를 파형과 스펙트로그램, 두 방식으로 읽어요. 두 갈래가 입력을 압축하고, 트랜스포머로 정보를 주고받은 뒤 다시 네 트랙으로 펼칩니다. 마지막에는 두 갈래의 추정값을 더해요.
-
-들리는 소리는 실제 Demucs 출력입니다. 소리와 모델 내부 값을 읽어 시각화했어요. 트랙 사이에 다른 소리가 일부 남기도 합니다.
-
-베이스 라인, 드럼 패턴, 보컬 중 어떤 소리부터 따로 들어 보고 싶으신가요?
-
-Transcript:
-[   0.0] Ever wondered how an app can pull the voice out of any song?
-[   4.0] Today's open source project does exactly that.
-[   7.5] Demukes by Alexandra Defosse.
-[  10.5] Give it any song, and it hands back four tracks.
-[  13.5] Drums, bass, vocals, and everything else.
-[  18.0] Listen.
-[  19.5] Drums, bass, vocals, and the rest.
-[  27.5] A song arrives as one single wave.
-[  30.0] Every instrument added together.
-[  32.0] Demukes reads it two ways at once.
-[  34.0] The raw wave and a spectrogram.
-[  36.5] A picture of which pitches sound when.
-[  39.5] Each branch squeezes the sound down layer by layer.
-[  43.0] In the middle, a transformer lets the two branches compare notes.
-[  47.0] Then both grow back out into four tracks, and their two answers are added together.
-[  52.0] It learned all this from hundreds of songs whose instruments were recorded separately.
-[  56.5] Josh Woodward, who made this song, also released it without vocals.
-[  60.5] Here's his version.
-[  62.5] And here's Demukes' guess.
-[  65.5] Demukes is MIT licensed.
-[  67.5] Use it, change it, share it, and keep the notice.
-[  71.5] Thank you.
-[  72.5] Bye.
-
-On-screen text:
-a song | 2883f3d demucs README.md Preview Raw uvx demucs PATH_OF_AUDIO_FILE_1 [PATH_OF_AUDIO_FILE_2 ...] # for Demucs | uvx demucs --mp3 --mp3-bitrate BITRATE PATH_OF_AUDIO_FILE_1 # output fi | # use --mp3-preset to change encoder preset, 2 for best quality, | # If your filename contain spaces don't forget to quote it !!! | uvx demucs "my music/my favorite track.mp3" | # You can select different models with '-n', mdx_q is the quantized mode | # Note that the quantized models require the quantized extra. | uvx "demucs[quantized]" -n mdx_q myfile.mp3 | # If you only want to separate vocals out of an audio, use --two-stems= | uvx demucs --two-stems=vocals myfile.mp3 | If you have a GPU, but you run out of memory, please use --segment to reduce the length of each split. SEGMENT should be changed to a integer describing the length of each segment in seconds. A segment length of at least 10 is recommended (the bigger the number is, the more memory is required, but quality may increase). Note that the Hybrid Transformer models only support a maximum segment length of 7.8 seconds | his instrumental | Josh Woodward released it himself | Wikimedia Commons File:Josh Woodward - 04 - Knock Instrumental Version.ogg Discussion TimedText Download Use this file Edit View history Email a link Information File information Structured data Original file (Ogg Vorbis sound file, length 2 min 54 s, 201 kbps, file size: 4.16 MB) | Ever wondered how an app can pull the voice out of any song? 앱은 어떻게 아무 노래에서나 목소리만 쏙 뽑아낼까요? | Give it any song, and it hands back four tracks: 노래 한 곡을 넣으면 트랙 네 개를 돌려줘요. | Josh Woodward, who made this song, 이 노래를 만든 Josh Woodward는 | Here's his version. 이건 그의 버전이고 | song | one song in Knock.ogg | the song (with voice) | his instrumental | Demucs's guess | song: "Knock" by Josh Woodward - CC BY 4.0
-
-Key claims:
-- Demucs separates a song into four tracks: drums, bass, vocals, and everything else
-- The reel uses Demucs's htdemucs model on Josh Woodward's song 'Knock'
-- Demucs is made/authored by Alexandre Défossez
-- Demucs reads the audio two ways at once: as a raw waveform and as a spectrogram
-- Each branch compresses the input, the two branches exchange information through a transformer, then both expand back into four tracks, and their estimates are added together
-- Demucs was trained on hundreds of songs whose instruments were recorded separately
-- Josh Woodward released his own instrumental (vocal-free) version of 'Knock', which is used for comparison against Demucs's estimated instrumental
-- Demucs is MIT licensed
-- The audio outputs played are actual Demucs outputs; the visualizations were created from the audio and the model's internal values
-- Some sound still leaks between the separated tracks
-
-Mentioned (unverified hints):
-- Demucs: (no url)
-```
-```text
-source: https://www.instagram.com/reel/DeaAbkiyU-A/
-Caption:
-Literally all just python scripts and I get bored 🐍🐍🐍. If you want more information DM or comment
-
-Transcript:
-[   0.0] Okay, I just made a video about how I use AI a lot and this is one of the reasons I use it for and I should gate keep this
-[   6.7] But go ahead and copy me
-[   8.1] You can even message me if you want to know how I did it
-[  12.1] Obviously, I use AI to help build scripts, but you'll see what I mean. Let's get into it
-[  16.1] Okay, this final result is me using obsidian
-[  19.8] But let me break this down every single one of these nodes is a reel that I scraped off of my saved
-[  26.2] Library and then deleted so that Instagram doesn't have everything that I'm interested. They have it
-[  30.6] But I deleted them once I was used once I used it
-[  33.1] I used a YT DLP to scrape every single one of my saved reels which ended up only being about 500
-[  39.0] Each one of and then I built a separate script that analyzed and transcribed all of the reels
-[  44.6] and it singled out important information like
-[  47.9] Names and proper nouns what I think is pretty cool about this is
-[  52.3] It will organize everything for you
-[  54.3] so if you have memes or tutorials or conspiracies or
-[  58.5] Useful information like health. I mean like I might my interests might be as complicated as yours
-[  63.5] You know, it's we all have a lot of interest and this is a really great way of organizing and these connections are actually
-[  70.0] these lines are connections between
-[  72.8] Other they're called links between the two pages that you would see and it's not perfect
-[  77.7] I actually do have to do a lot of pruning here
-[  79.5] But I mean this got me like 80% of the way there and just a small preview of what each one of these nodes looks like
-[  85.1] It gives me an executive summary all the tags the original hash of the
-[  90.0] Instagram video the vlog key takeaways and
-[  93.2] Screenshots so this is my database all from Instagram took control of my data
-[  98.1] And now every time I have an accumulation to save videos. I'm just gonna do this and add it to my
-[ 104.0] my database
-[ 105.8] Which is very vast and only growing. This is the encyclopedia of bravidus till next time y'all peace
-
-On-screen text:
-Graph view
-
-Key claims:
-- The creator uses AI to help build scripts for this process.
-- They used yt-dlp to scrape every one of their saved Instagram reels, which ended up being about 500 videos.
-- They deleted the reels from their saved Instagram library after scraping them so Instagram wouldn't retain everything they're interested in (though they acknowledge Instagram still has it).
-- They built a separate script that analyzes and transcribes all the reels and singles out important information like names and proper nouns.
-- The system organizes reels into categories like memes, tutorials, conspiracies, or health information.
-- The final result is visualized in Obsidian, where each node represents a scraped reel and lines represent links/connections between related pages.
-- The process isn't perfect and requires a lot of manual pruning, but gets them about 80% of the way there.
-- Each node preview includes an executive summary, tags, the original hash of the Instagram video, key takeaways, and screenshots.
-- The creator frames this as taking control of their own data from Instagram.
-- They plan to keep adding new saved videos to this growing database, which they call 'the encyclopedia of bravidus.'
-
-Mentioned (unverified hints):
-- Obsidian: (no url)
-- yt-dlp: (no url)
-```
-```text
-source: https://www.instagram.com/reel/DecS5IkjwSA/
-Caption:
-PaddleOCR reads the dollar amounts in this IRS example, but it mixes up what years they go with. It read all 3 amounts, so just checking the numbers wouldn’t catch the error. This doesn’t mean PaddleOCR is bad, Docling is good. You need to run your specific data on the models and see if the outputs match your use case.
-
-Comment PDF and I’ll send you the course details.
-
-Transcript:
-[   0.0] Paddle OCR reads the dollar amounts in this IRS example but it mixes up what years they go with.
-[   5.4] The IRS list $2033 for the first year and then $2564 for each of the next two years.
-[  13.3] In this run, Paddle OCR left the first two years blank and combined second and third in the last
-[  19.4] row. It read all three amounts so just checking the numbers wouldn't catch the error.
-[  24.7] The first run used Paddle OCR's default table settings and a regular sized image.
-[  29.9] I exported the same PDF at a higher resolution and ran it through Paddle Paddle's hosted
-[  35.7] demo and hugging face. That demo uses a separate model to find table cells which the first run
-[  40.7] didn't use. This new run built the table properly with the amounts connected to the years
-[  45.5] but the percentage and deduction headings were blank. When I ran with Dockling the table
-[  49.7] did look good. All of the columns were there, all the headers, all of the numbers. The main
-[  54.1] thing I would do with this output is try to strip out all the periods and make it consistent.
-[  59.0] For example, the first row has dollar signs and percentages where the other ones don't. We'd
-[  64.1] want to treat them all numeric. These leading and trailing dots in columns one and two are
-[  68.6] also unnecessary so I would look to strip those out as well. I think Paddle OCR is a great tool
-[  73.1] and I use them for many cases and I've seen lots of good cases. This doesn't mean
-[  76.8] Paddle OCR is bad, Dockling is good. It just means you need to run your specific data
-[  82.3] on the models you're going to try and see if the outputs
-[  86.0] match what you're expecting for your use case. I cover the full workflow from evaluating OCR
-[  91.4] to deploying your pipeline in the upcoming PDF to production course. If that sounds helpful to
-[  96.7] you, check out the syllabus and I hope to see you inside.
-
-On-screen text:
-Year Basis Percentage Deduction 1st . . . . . . . . . . . $100,000 2.033% $2,033 2nd . . . . . . . . . . 100,000 2.564 2,564 3rd . . . . . . . . . . 100,000 2.564 2,564 Year ... 2nd ... OCR loses the year labels Comment PDF
-
-Key claims:
-- The IRS example table lists $2,033 for the first year and $2,564 for each of the next two years
-- PaddleOCR's first run (default table settings, regular resolution) left the first two years blank and combined the second and third years in the last row
-- PaddleOCR read all 3 dollar amounts correctly, so just checking the numbers wouldn't catch the year-mismatch error
-- A second PaddleOCR run using a higher-resolution PDF export and PaddlePaddle's hosted Hugging Face demo (which uses a separate table-cell detection model) correctly connected amounts to years, but left the percentage and deduction headings blank
-- Docling produced a complete table with all columns, headers, and numbers present
-- Docling's output still needs cleanup: stripping inconsistent dollar signs/percent signs for consistent numeric formatting, and removing unnecessary leading/trailing dots in columns one and two
-- PaddleOCR is described as a great tool with many good use cases, not a bad tool
-- The comparison is not meant to declare PaddleOCR bad and Docling good; results depend on testing your specific data against each model for your use case
-- The creator offers a 'PDF to production' course covering OCR evaluation through pipeline deployment, available by commenting 'PDF'
-
-Mentioned (unverified hints):
-- PaddleOCR: (no url)
-- Docling: (no url)
-```
-```text
-source: https://www.instagram.com/reel/Deb3bVkHBLV/
-Caption:
-Fit a wide picture into a narrower frame by removing low-energy pixel paths.
-
-caire measures edges, finds a seam with one pixel in each row, removes it, then measures again. In this example, 568 seams reduce a program-generated landscape from 1960×896 to 1392×896. This can help adapt an image to a different layout or teach content-aware resizing.
-
-The checked pagoda, house and pavilion regions lost no pixels in this run. That is specific to this image: parts of the trees did lose pixels. The process uses edge energy; it does not understand which objects matter.
-
-caire calculated the seams, energy values and resized pixels. We added the color maps, enlarged pixel diagrams, labels, camera layout and ordinary-resize comparison.
-
-넓은 그림에서 에너지가 낮은 픽셀 경로를 골라 지우면, 더 좁은 틀에 맞출 수 있어요.
-
-caire는 가장자리를 바탕으로 에너지를 재고, 각 줄에서 픽셀 하나씩 지나는 이음선을 찾아 지운 뒤 다시 계산해요. 이번 예제에서는 프로그램이 그린 산수화에서 이음선 568개를 지워 1960×896을 1392×896으로 바꿨어요. 이미지의 가로세로 비율을 바꾸거나 내용 인식 리사이즈 원리를 배울 때 쓸 수 있어요.
-
-이번 실행에서 확인한 탑·집·정자 영역은 지워진 픽셀이 없었어요. 모든 대상이 보존되는 것은 아니고, 나무 일부는 지워졌어요. 물체의 의미를 알아보는 대신 가장자리의 에너지를 계산해요.
-
-이음선·에너지 값·리사이즈된 픽셀은 caire가 계산했어요. 색 지도, 확대 픽셀 도식, 이름표, 화면 배치와 일반 축소 비교는 저희가 덧붙였어요.
-
-caire by Endre Simo · MIT
-https://github.com/esimov/caire
-Input painting: Shan Shui Infinite by Lingdong Huang · MIT
-https://github.com/LingDong-/shan-shui-inf
-Layout, color maps and explanatory graphics: @hyun2xyz
-Curated by @hyun2xyz
-
-#opensource #caire #seamcarving #creativecoding
-
-Transcript:
-[   0.0] Ever had to fit a wide picture into a narrow frame?
-[   3.2] Squeezing it makes everything thin.
-[   5.6] Today's open-source project cuts out the least noticeable pixels instead.
-[  10.0] Care by Andrei Shimo.
-[  12.2] First, it finds the edges.
-[  14.4] Where the picture changes sharply, the energy is high.
-[  17.6] Then it goes down the image row by row.
-[  20.2] Each pixel adds the smallest total of the pixels just above it.
-[  24.6] The lowest total in the bottom row is where the cheapest path ends.
-[  28.8] Walking back up from there traces a seam.
-[  31.8] One pixel in every row through the emptiest parts.
-[  35.6] Remove it and the picture is one pixel narrower.
-[  39.2] Then it measures the energy again and repeats hundreds of times.
-[  43.4] The empty lake gets narrower while the pagoda and the houses don't lose a single pixel.
-[  49.0] It's MIT-licensed. Use it, change it, even sell it.
-[  52.8] Just keep the copyright and license notice.
-[  55.2] Thank you. Bye.
-
-On-screen text:
-the picture: 1,960 x 896 | seams removed: 447 · width 1,513 px | caire | remove the seam: every row loses one pixel | width 1,960 px | energy measured again on the narrower picture | red: the 568 seams caire removed | esimov/caire | Code Issues Pull requests Actions Projects | caire / LICENSE | MIT License | Permissions: Commercial use, Modification, Distribution, Private use | Limitations: Liability, Warranty | Conditions: License and copyright notice | caire: carved to 1,392 x 896 | README License | Caire is a content aware image resize library based on Seam Carving for Content-Aware Image Resizing paper | How does it work | 504 func (p *Processor) shrink(img *image.NRGBA) (*image.NRGBA, error) { | 505 width, height := img.Bounds().Max.X, img.Bounds().Max.Y | 507 c := NewCarver(width, height) | 508 if _, err := c.ComputeSeams(p, img); err != nil { | 509 return nil, err | 511 seams := c.FindLowestEnergySeams(p) | 512 img = c.RemoveSeam(img, seams, p.Debug) | processor.go - esimov/caire@072a088 | caire's result: pagoda and houses, 0 pixels removed | caire - 1,960 x 896 | Thank you. 감사합니다. | @index.opensource | @hyun2xyz
-
-Key claims:
-- caire is a content-aware image resizing library that removes low-energy pixel seams to narrow an image without uniformly squeezing it
-- It works by measuring edge energy, finding a seam of one pixel per row with the lowest cumulative energy, removing it, then recomputing energy and repeating
-- In this example, 568 seams were removed to resize a 1,960×896 generated landscape down to 1,392×896
-- The pagoda, house, and pavilion regions lost no pixels in this run, while parts of the trees did lose pixels
-- The process is based purely on edge energy and does not understand which objects are semantically important
-- The input image was a program-generated landscape (Shan Shui Infinite by Lingdong Huang)
-- caire itself calculated the seams, energy values, and resized pixels; the color maps, enlarged pixel diagrams, labels, layout, and ordinary-resize comparison were added separately by the creators
-- caire is MIT licensed, allowing commercial use, modification, distribution, and private use, provided the copyright and license notice are kept
-
-Mentioned (unverified hints):
-- caire: https://github.com/esimov/caire
-- Shan Shui Infinite: https://github.com/LingDong-/shan-shui-inf
-```
-```text
-source: https://www.instagram.com/reel/DePGBFXtswr/
-Caption:
-These are my essential AI coding skills I use to keep code quality high and not bloated when AI writes and merges my code for me.
-
-This is video 5 of 7 in my “how to become a 10x ai-native developer” series, and in the first 4 videos I talked about how I use cloud agents be a 24/7 on call engineer for me that fixes bugs for me while I sleep by using verification skills to verify all the code changes actually work as intended and how they merge the code for me without me reviewing the code, and as a result I have a lot of code being merged without my supervision.
-
-I know a lot of you are wondering, how do you keep the code quality high when letting AI write so much code?
-I do so by deferring to skills to do that.
-I use the cursor team’s thermo nuclear code quality review (excessive, I know) in conjunction with framework specific tools like a react best practices skill and with , one of my personal favorites, the ponytail skill. Highly recommend you check out the ponytail.dev website which is the home for the skill it is so funny and I’ll show a little screenshot right here, but essentially I have these sets of skills to point out common pitfalls of overly verbose and complicated code and I tell all my coding agents to run these skills before making the PR and sometimes I tell them to run these simplification skills multiple times in a row. Due to the non deterministic nature of LLMs, forcing them to run these simplification skills multiple times allow these models to uncover new simplification methods that it didn’t catch the previous try.
-
-#coding #ai #developer
-
-Transcript:
-[   0.0] These are the AI coding skills I use to ship 30 PRs a day while keeping the code quality
-[   4.3] high and not bloated.
-[   5.6] This is video five of seven in my how to become a 10x AI native developer series.
-[   9.7] And in the first four videos, we talked a lot about the creating verification skills
-[  13.5] that you can create cloud agents that autonomously write, test and verify and merge code
-[  18.1] for you.
-[  19.1] And the number one question that I've been getting asked is how do you keep the
-[  21.4] code quality high when so much code is getting merged.
-[  24.1] And the way that I do that is with skills.
-[  26.2] So here are some of the AI coding skills that I use to make sure my code is not
-[  29.8] bloated, simple and clean and easy to read.
-[  32.6] So my first and favorite skill that I want to talk about is called ponytail.
-[  35.6] And you can check it out at ponytail.dev.
-[  37.4] And the landing page is actually hilarious because it's all about this little
-[  40.4] avatar right here.
-[  41.6] It's that one senior staff engineer that gets paged when things are really bad
-[  44.8] and broken comes in, fixes it with like two lines of code and goes back to sleep.
-[  48.4] And the skill is essentially a gigantic D bloating tool that will call out design
-[  52.6] paradigms that are bad, simplify things down as much as possible,
-[  55.9] refactor into reusable code modules.
-[  58.2] It's pretty great and really keeps the code quality pretty high.
-[  61.0] So that's the first one that I want to talk about.
-[  62.5] But we have two more that I want to call out.
-[  64.2] So next up is within P stack.
-[  66.1] I've talked a lot about P stack in the first four videos of the series,
-[  68.8] but essentially P stack is a plugin, not just an individual skill that a
-[  72.6] SpaceX engineer created who goes by potato on X.
-[  76.4] And it's a giant engineering system on creating a software factory and
-[  79.9] shipping code at a really high quality and shipping a lot of it.
-[  82.8] And it's what powers probably a 90% of the PRs that I write on a daily basis.
-[  86.9] And P stack itself actually has a lot of great D bloating simplification
-[  91.0] skills built into it, such as this no comments skill right here,
-[  94.4] the type script best practices and unslop.
-[  97.2] And basically every single time I use P stack, it automatically calls these
-[ 100.5] tools and then I also externally call this ponytail skill.
-[ 103.7] And then last but not least, the third skill that it also calls is
-[ 106.7] this thermal nuclear code quality review skill, which is another skill created
-[ 110.8] by the team at cursor slash SpaceX AI.
-[ 113.7] And it pretty much does the same thing as the first two skills that we mentioned
-[ 116.8] with ponytail and some of the other sub skills that the P stack offers.
-[ 120.3] So essentially with every single PR I write, I condense all of this into
-[ 123.6] one single simplified command that will call all the simplification
-[ 127.0] commands within ponytail within P stack and within the thermonuclear
-[ 131.8] code quality review skill to keep my code changes as minimal as possible
-[ 136.2] and keep the quality high in the next video in this series.
-[ 139.0] I'm going to be talking about how to write really effective prompts so
-[ 142.1] that you can have full confidence to significantly improve the quality
-[ 145.2] of work that your agents do so that you no longer have to supervise
-[ 148.0] and manage them and instead you can trust that they're actually
-[ 150.2] getting the work done by themselves without you involved.
-
-On-screen text:
-How To Become a 10x AI-Native Developer Ep. 5 of 7 | These are the AI | Last Turn +285 | apps/yorby-web/lib/billing/parse-sufficient-credit-even ... have some that already ... that we use ... edit deduction ... the Account ... tent Coach, Chat Spy ... Carousel ... ch tracks credit ... is in, like, p ... able for audit logging, as well ... sure that ... ters that are ... app don't get ... educated when the app on a ... taskId: string, ... 5 unmodified lines ... message: GPMessage ... 5 unmodified lines ... p_task_id: input.taskId, ... p_user_message_id: double_IhB_listing_body ... magic ... async plan(){} ... const chart_active_forecast ... reuses the existing ... calculation, ... ledger. Admin use ... rem cost without ... 30 PRs a day | How To Become a 10x AI-Native Developer Ep. 5 of 7 | while keeping the code | this is video 5 of 7 in my | who goes by a poteto on X | in the next video
-
-Key claims:
-- The creator uses AI coding skills to ship 30 PRs a day while keeping code quality high and not bloated
-- This is video 5 of 7 in a 'how to become a 10x AI-native developer' series
-- Previous videos covered using cloud agents to autonomously write, test, verify, and merge code without human review
-- Code quality is maintained despite high-volume autonomous merging by relying on 'skills'
-- The 'ponytail' skill (ponytail.dev) is a favorite tool described as a 'gigantic de-bloating tool' that calls out bad design paradigms, simplifies code, and refactors into reusable modules
-- P-stack is a plugin/engineering system created by an engineer who goes by 'poteto' on X, said to be a SpaceX engineer, and powers ~90% of the creator's PRs
-- P-stack includes built-in de-bloating/simplification skills: a 'no comments' skill, TypeScript best practices, and 'unslop'
-- The 'thermonuclear code quality review' skill, created by the Cursor/SpaceX AI team, performs similar de-bloating/simplification functions
-- The creator combines ponytail, P-stack's built-in skills, and the thermonuclear code quality review into one condensed command run before every PR
-- Simplification skills are sometimes run multiple times in a row because LLM non-determinism lets repeated runs catch additional simplifications missed on prior passes
-- The next video (6 of 7) will cover writing effective prompts to improve agent work quality without needing supervision
-
-Mentioned (unverified hints):
-- ponytail: ponytail.dev
-- P-stack: (no url)
-- thermonuclear code quality review: (no url)
-- no comments skill: (no url)
-- TypeScript best practices: (no url)
-- unslop: (no url)
-- react best practices skill: (no url)
-```
-```text
-source: https://www.instagram.com/reel/DeZgZk7AhlR/
-Caption:
-Reading complex layouts or columns straight across can split two different paragraphs into one sentence. PP-DocLayoutV3 takes a page image, finds blocks such as paragraphs and tables, and puts them in reading order. The Paddle team trained V3 to find the blocks and put them in order in one model.
-
-Comment PDF and I’ll send you the course details.
-
-Transcript:
-[   0.0] Reading complex layouts or columns straight across
-[   2.7] can split two different paragraphs into one sentence.
-[   5.4] PP doc layout v3 takes a page image,
-[   8.6] finds blocks such as paragraphs and tables,
-[  11.1] and puts them in reading order in a unique way.
-[  13.5] Another model will later read the text inside each block.
-[  16.8] On a two column page,
-[  18.2] we definitely want to finish the left column
-[  20.4] before starting on the right.
-[  21.7] The bottom left paragraph booms
-[  23.6] before the top right paragraph.
-[  25.8] Sorting blocks just by height is going to get that wrong.
-[  28.3] You could use one model to find the blocks
-[  30.5] and then another to order them,
-[  31.8] but the paddle team trained v3 to find the blocks
-[  35.2] and put them in order in one model.
-[  37.0] This third version compares each of the blocks
-[  39.5] and estimates which should come first.
-[  41.0] So it takes every pair of blocks and does that in parallel.
-[  44.4] This turns out to work really well
-[  46.0] as opposed to having to pick the first block
-[  48.4] and then the second and then the third one at a time.
-[  51.7] You can do these computations in parallel.
-[  54.1] It adds up the pairwise estimates
-[  56.8] to figure out how many blocks likely come before each one
-[  60.4] and then it's going to sort by that count.
-[  62.2] They also tested a version
-[  63.6] that learned the reading order separately.
-[  65.6] They kept the model that reads the text the same
-[  67.9] so they can compare the two ways of learning the order,
-[  70.7] whether it's in a single model pairwise
-[  73.1] or this second model that does it separate.
-[  76.1] The model that was trained on both tests
-[  78.4] made fewer ordering mistakes
-[  80.0] on the OmniDoc bench benchmark.
-[  82.0] With a separate training,
-[  83.3] the error score was 0.189
-[  86.0] and 0.041 when it was trained jointly.
-[  90.2] And so it's quite a lot better.
-[  91.6] Then when you put the extracted text back together,
-[  94.1] you use this predicted block order.
-[  96.0] I cover the full workflow
-[  97.4] from evaluating OCR to deploying your pipeline
-[ 100.2] in the upcoming PDF to production course.
-[ 103.0] If that sounds helpful to you,
-[ 104.3] check out the syllabus and I hope to see you inside.
-
-On-screen text:
-New model for reading order
-Comment PDF
-
-Key claims:
-- Reading complex layouts or columns straight across can split two different paragraphs into one sentence
-- PP-DocLayoutV3 takes a page image, finds blocks such as paragraphs and tables, and puts them in reading order
-- A separate model will later read the text inside each block
-- On a two-column page, the left column should finish before the right column starts
-- Sorting blocks just by height gets the reading order wrong in such cases
-- The Paddle team trained V3 to find the blocks and put them in order in one model, rather than using separate models for detection and ordering
-- V3 compares each pair of blocks in parallel and estimates which should come first
-- It adds up the pairwise estimates to count how many blocks likely come before each one, then sorts by that count
-- They also tested a version that learned the reading order separately while keeping the text-reading model the same
-- The jointly trained model made fewer ordering mistakes on the OmniDocBench benchmark
-- Error score was 0.189 with separate training versus 0.041 when trained jointly
-- The predicted block order is used to reassemble extracted text
-
-Mentioned (unverified hints):
-- PP-DocLayoutV3: (no url)
-```
-```text
-source: https://www.instagram.com/reel/DeNJmVuDpx_/
-Caption:
-Your AI coding agent greps your repo every session to rediscover it. Atomic Claude indexes it once into a local code graph, so Claude Code asks the graph instead.
-
-- callers, callees, impact as file:line from the parse
-- 31 languages, one binary, nothing uploaded
-- SQL lineage across stored procedures, dbt and Snowflake
-- an implement and review loop that checks blast radius before every edit
-
-Free and local: github.com/damusix/atomic-claude
-
-#claudecode #claude #ai #llm #aitools #aicoding #aiagents #artificialintelligence #codegraph #developertools #devtools #softwareengineering #softwaredeveloper #programming #coding #developer #tech #opensource #sql #dbt
-
-Transcript:
-[   0.0] Open a new Claude code session and ask it to change one function.
-[   4.6] Before it writes a line, it goes looking.
-[   7.4] It greps for the name.
-[   9.0] It opens five files to find who calls it.
-[  11.8] It guesses at your build command.
-[  14.7] Then you correct the guess you corrected yesterday.
-[  17.6] That search is a tax.
-[  19.8] Every session pays it, in tokens and in wrong turns, because the session starts
-[  24.2] with no memory of how your code fits together.
-[  27.1] The next session pays it again.
-[  29.0] Atomic Claude pays it once.
-[  31.8] Run atomic code index in your repo.
-[  34.6] It parses every file with tree sitter, compiled to WebAssembly, so
-[  38.6] it ships as one static binary with no system dependencies.
-[  42.6] The result is a symbol graph in a SQLite file inside your repo.
-[  46.7] Every function, type, and import, and every call between them, 31 languages.
-[  52.6] Nothing is uploaded.
-[  53.8] There is no server and no account.
-[  56.1] Running it again only reparses what changed.
-[  59.5] Now Claude can ask the graph instead of searching.
-[  62.6] Who calls this function?
-[  64.2] What does it call?
-[  65.6] If I change it, what breaks?
-[  68.0] Those are three commands, callers, callees, and impact.
-[  72.3] Each one answers with a file and a line from the parse,
-[  75.6] not a list of text matches that happen to share a name.
-[  79.2] Most code tools stop at the application.
-[  82.2] A lot of systems live in the database.
-[  84.9] Atomic Claude indexes SQL files as code.
-[  88.5] It follows stored procedure lineage down to the column,
-[  91.6] temp tables included.
-[  93.1] It follows DBT models and snowflake tasks.
-[  96.4] And it finds SQL written inside strings in your application
-[ 100.2] code across 20 languages and puts it in the same graph.
-[ 104.4] All of it is static.
-[ 105.9] It never connects to your database.
-[ 108.4] On top of the graph sits a workflow.
-[ 111.2] Plan, implement, review, ship.
-[ 114.6] An implementer writes the test first, then the change.
-[ 118.5] A reviewer reads the work in a fresh context
-[ 121.3] so it cannot inherit the implementer's reasoning.
-[ 124.2] Before it edits a function, the loop
-[ 126.2] asks the graph what that edit will break.
-[ 129.0] The same graph keeps a project wiki current,
-[ 131.6] so each new session starts with the build command,
-[ 134.4] the layout, and the domains already loaded.
-[ 137.4] The tax gets paid at index time.
-[ 140.0] The loop spends its tokens on the change.
-[ 143.1] The graph is one part of Atomic Claude.
-[ 145.7] Behind it sits a whole layer of context engineering.
-[ 149.2] How a session learns your repo, what it remembers,
-[ 152.6] how agents check each other's work.
-[ 154.8] Most of it you only notice once it is gone.
-[ 157.7] Install it, index a repo, then go see what else is in there.
-[ 161.8] The link is in the description.
-
-On-screen text:
-[curious] Open a new Claude Code
-
-Key claims:
-- AI coding agents like Claude Code grep the repo every new session to rediscover its structure, paying a 'search tax' in tokens and wrong turns
-- Atomic Claude indexes the repo once into a local code graph via 'atomic code index', so Claude Code queries the graph instead of searching
-- Indexing parses every file with tree-sitter compiled to WebAssembly, shipping as one static binary with no system dependencies
-- The result is a symbol graph (every function, type, import, and call between them) stored in a SQLite file inside the repo
-- Supports 31 languages
-- Nothing is uploaded; no server and no account; runs fully local
-- Re-running the index only reparses changed files
-- Provides callers, callees, and impact commands that answer with file:line from the parse, not text-match search results
-- Indexes SQL as code, following stored procedure lineage down to the column (including temp tables), dbt models, and Snowflake tasks
-- Finds SQL embedded as strings inside application code across 20 languages and includes it in the same graph
-- The SQL/database indexing is entirely static and never connects to the actual database
-- Includes a plan/implement/review/ship workflow loop
-- An implementer agent writes a test first, then the code change
-- A reviewer agent reviews in a fresh context so it can't inherit the implementer's reasoning/bias
-- Before editing a function, the loop queries the graph to check what the edit will break (blast radius)
-- The graph also powers a project wiki kept current with build command, repo layout, and domains, loaded at the start of each session
-- Atomic Claude is free and local
-
-Mentioned (unverified hints):
-- Atomic Claude: github.com/damusix/atomic-claude
-```
-```text
-source: https://www.instagram.com/reel/DeXCWyfgHgz/
-Caption:
-5 vector search methods you should know 👇
-
-Flat, IVF, HNSW, IVF-PQ and ScaNN.
-
-They all help find similar vectors, but they do the search differently: checking every vector, searching selected groups, following connections, or using compression.
-
-The trade-off? Speed, memory, and how many of the closest matches you find.
-Save this for your next RAG project.
-
-#study #coding #interview #ai
-
-Transcript:
-[   0.0] 5-vector search methods. What's the difference?
-[   3.0] Flat versus IVF.
-[   4.7] Flat checks every store vector. It looks for exact closest matches.
-[   9.5] But more documents means more work.
-[  12.0] IVF groups similar vectors and searches a few nearby groups.
-[  16.5] Fewer comparisons, but it can miss matches elsewhere.
-[  20.5] IVF versus HNSW.
-[  23.0] IVF searches groups.
-[  24.7] HNSW follows connections to layers of vectors that shortcut on a map.
-[  30.2] That can make search fast, but the connections take extra memory.
-[  33.7] IVF versus IVF PQ.
-[  36.7] IVF flat compares full vectors inside those groups.
-[  40.7] IVF PQ splits vectors into parts and stores small codes for them.
-[  45.7] That saves memory and makes comparison cheaper, but less precise.
-[  50.2] And last scan end. This is Google's third system.
-[  53.7] It can combine grouping and compressed comparisons to make a shortlist.
-[  58.2] Then check that shortlist more accurately so that the detailed comparisons happen on fewer candidates.
-
-On-screen text:
-(none)
-
-Key claims:
-- Flat checks every stored vector and looks for exact closest matches, but more documents means more work
-- IVF groups similar vectors and searches a few nearby groups, resulting in fewer comparisons but it can miss matches elsewhere
-- HNSW follows connections through layers of vectors that shortcut like a map, making search fast but requiring extra memory for connections
-- IVF compares full vectors inside groups, while IVF-PQ splits vectors into parts and stores small codes for them, saving memory and making comparison cheaper but less precise
-- ScaNN is Google's system that combines grouping and compressed comparisons to make a shortlist, then checks that shortlist more accurately so detailed comparisons happen on fewer candidates
-- The trade-offs among these methods are speed, memory usage, and recall (how many of the closest matches you find)
-
-Mentioned (unverified hints):
-- Flat: (no url)
-- IVF: (no url)
-- HNSW: (no url)
-- IVF-PQ: (no url)
-- ScaNN: (no url)
-```
-```text
-source: https://www.instagram.com/reel/DeRx_ZXFT42/
-Caption:
-Reducto predicts two things: how much a bigger OCR model improves accuracy and how much time it adds. You can then adjust the routing decision without retraining. Tesseract and Chandra are my example pair, not the models Reducto said it used.
-
-Comment “OCR” and I’ll send you both OCR guides.
-
-Transcript:
-[   0.0] Reducto wrote about their auto-router approach with two trained regression models. When you
-[   4.6] need to extract text from a PDF, one of the first decisions is which OCR model to use.
-[   8.9] Often people use a router to do that by page, because using the slowest model in every page
-[  14.1] wastes a lot of time and money, but if cheaper models fail 20% more often, that's a problem too.
-[  19.3] You want the best of both worlds. Reducto's approach runs the same pages through a fast
-[  23.4] model as well as a bigger one. I don't know which models they used, but to build
-[  27.5] something similar yourself, you could use Tesseract for a super light model and Chandra for a heavy model.
-[  32.7] To create the dataset, run every page through both and score and time them. For example,
-[  38.7] Tesseract may score 80 out of 100 on one page and take one second and Chandra might score
-[  45.0] 90 and take three seconds. The changes between the two is what we want to predict.
-[  50.2] Now, instead of putting all of Tesseract's output into the regression model,
-[  54.5] they calculate its statistics. For example, word count and confidence scores from Tesseract.
-[  60.5] Then we can train one regression model from statistics as the input to that accuracy delta
-[  66.6] between the two models, and then another from statistics to the latency delta.
-[  70.6] Once you have this estimated accuracy improvement and latency change,
-[  74.4] you can create logic to say whether that trade-off is worth it for the particular page
-[  78.7] is a 5% boost in accuracy worth three seconds in latency. That depends on the use case.
-[  84.0] Now, we did this for Tesseract and Chandra, but you could do this for any model pair. You could run
-[  88.6] something through light parse and use that to predict whether dockling should be run for OCR.
-[  93.9] You could then predict, should I send it to Quinn for a VLM? And you could build up this
-[  98.7] router that way. I think this is a pretty good approach to have the regression model.
-[ 102.2] The other option is to have a classifier where you predict is it worth it to move up
-[ 105.9] or not, but the regression model kind of pushes that logic a little bit later
-[ 110.0] so that you can kind of tweak and adjust your router without retraining.
-[ 113.3] For more information on hard OCR tasks like messy scans, tables, hand writing,
-[ 118.1] check out my guides on choosing an OCR model and using VLMs for hard documents.
-
-On-screen text:
-When is a bigger model actually better? A practical framework for model routing | When is bigger worth it? | FREE OCR GUIDES Comment OCR | for hard documents.
-
-Key claims:
-- Reducto's auto-router approach uses two trained regression models to predict accuracy improvement and latency added by a bigger OCR model.
-- Running the slowest OCR model on every page wastes time and money, but cheaper models can fail more often, so a router is used to balance the tradeoff.
-- Reducto's approach runs the same pages through both a fast model and a bigger model to build a training dataset.
-- To replicate this, you can use Tesseract as a light model and Chandra as a heavy model, though these are not necessarily what Reducto actually used.
-- Each page is scored and timed for both models, and the delta between them (accuracy and latency) is what gets predicted.
-- Instead of feeding raw model output into the regression model, summary statistics (e.g., word count, confidence scores) from the light model are used as input.
-- One regression model predicts the accuracy delta between the two models; another predicts the latency delta.
-- These predictions let you decide whether the tradeoff (e.g., 5% accuracy boost for 3 seconds latency) is worth it for a given page, depending on use case.
-- This approach generalizes to any model pair, such as LightParse to Docling, or Docling to a VLM like Qwen.
-- A regression model is preferred over a binary classifier because it pushes the routing decision logic later, allowing adjustment without retraining.
-- Comment 'OCR' to receive guides on choosing an OCR model and using VLMs for hard documents.
-
-Mentioned (unverified hints):
-- Reducto: (no url)
-- Tesseract: (no url)
-- Chandra: (no url)
-- LightParse: (no url)
-- Docling: (no url)
-- Qwen: (no url)
-```
-```text
-source: https://www.instagram.com/reel/DeUWz-7FAgX/
-Caption:
-PaddleOCR reads this tax row as over $197,300, but not over $50,525. That doesn't work for a $200K income. Docling gets the upper limit right on this document. Test the documents your application actually uses.
-
-Comment “EVALS” and I’ll send you the free evals guide.
-
-Transcript:
-[   0.0] OCR misread an income limit in this tax worksheet. So now software using it can't find the tax
-[   5.9] calculation for someone making 200k a year. The worksheet has income ranges with a tax
-[  11.0] calculation for every range. In the section for single filers 200k would go in the row
-[  17.2] above 197k and up to 250k. Patel OCR's table extraction transcribes the upper limit on that
-[  24.6] row as 50,000. That makes the row say over 197,300 dollars but not over 50,525 which just doesn't
-[  34.5] work. On the other hand an agent answering tax questions over this might instead tell the user
-[  40.2] there's no range for 200,000 dollars this is likely the intended row and give some instructions
-[  45.8] assuming that's the right row. Even though it spotted that that uncertainty could make the
-[  50.8] user lose trust in it to handle taxes entirely especially if they're not comfortable with the
-[  55.3] taxes to begin with they want to make sure it's right. In this case Dockling will read the upper
-[  59.7] limit as the 250k like it's supposed to and so you need to check it on your own documents to see
-[  65.7] if Dockling or Patel OCR or Minor U or some other model performs best for your particular case.
-[  71.1] I wrote a free guide on how to evaluate what OCR model to pick, how to look through the data
-[  76.2] and then how to turn that into repeatable tests so you don't have to continue to evaluate
-[  80.4] on every new model change. If that be useful to you comment evals and I'll send you the link.
-
-On-screen text:
-Section A—Use if your filing status is Single. Complete... Taxable income. If line 15 is— (a) Enter the amount from line 15. Multi... At least $100,000 but not over $103,350 $ Over $103,350 but not over $197,300 $ OCR breaks the income range FREE EVALS GUIDE Comment EVALS
-
-Key claims:
-- PaddleOCR misreads the upper limit of a tax bracket row in a tax worksheet table
-- PaddleOCR transcribes the row as 'over $197,300 but not over $50,525', which is logically inconsistent
-- A $200,000 income does not fit into any row due to this OCR error
-- An agent using this bad data might tell the user there's no matching range and guess the intended row, risking user trust
-- Docling correctly reads the upper limit as $250,000 on the same document
-- Different OCR/extraction models (Docling, PaddleOCR, MinerU, etc.) perform differently depending on the document, so you must test on your own documents
-- The author offers a free guide on how to evaluate OCR models and turn evaluation into repeatable tests
-
-Mentioned (unverified hints):
-- PaddleOCR: (no url)
-- Docling: (no url)
-- MinerU: (no url)
-```
-```text
-source: https://www.instagram.com/reel/DeON0MOB5oi/
-Caption:
-This is how I made my agents native browser use so fast and efficient
-
-Transcript:
-[   0.0] This repo can turn any website into an API for your agents by reverse engineering the website's
-[   4.3] network traffic. You're no longer going to have paid to use the API for apps like LinkedIn,
-[   8.3] Reddit, or any other website you can think of. Just give this prompt to your agent and tell
-[  12.0] it what API you want to reverse engineer. But before you reverse engineer anything,
-[  15.7] make sure that your agent has browser access enabled. This is best used when you have automated
-[  20.1] workflows where your agent uses the browser. By turning browser actions into API calls,
-[  24.2] you can reduce the time your agent spent on a task by 50% and cut its cost by 50%.
-[  29.2] I personally use this to automate my LinkedIn outreach and help me do marketing on Reddit.
-[  33.2] You can find the repo in the link in my bio.
-
-On-screen text:
-goodnight000 / api-anything | Code Issues Pull requests Actions Projects Security and quality | api-anything Public | Turn any website into your agent can from the site's heals itself when changes. | Go to file <> Code | main | goodnight000 Install by pasting one line into an... (unverified) (last week) | claude-plugin Launch README, recorded sh... last week | bench Goodreads explored jobs on A... last week | docs Install by pasting one line the t... last week | README | MIT license | 9:43 marketing on Reddit | charles.zhengg | Charles Zheng (verified) | 9 posts 1,071 followers 795 following | CMU ECE+Robotics
-
-Key claims:
-- The repo (api-anything) can turn any website into an API for agents by reverse engineering the website's network traffic
-- Users no longer need to pay for official APIs for sites like LinkedIn, Reddit, or others
-- You just give a prompt to your agent telling it what API to reverse engineer
-- The agent needs browser access enabled before reverse engineering
-- Best used for automated workflows where the agent uses a browser
-- Turning browser actions into API calls can reduce task time by 50% and cut cost by 50%
-- The creator personally uses it to automate LinkedIn outreach and Reddit marketing
-- The repo link is in the creator's bio
-
-Mentioned (unverified hints):
-- api-anything: (no url)
-```
-```text
-source: https://www.instagram.com/reel/DePNK6AgMsN/
-Caption:
-PP-DocLayoutV3 segments curved and angled text into regions and predicts reading order. Then another model reads what's inside. A paragraph box shouldn't need to include part of the title.
-
-Comment “PDF” and I’ll send you the course syllabus.
-
-Bottle photo: Eliazar Parra Cardenas / Wikimedia Commons, CC BY 2.0 (resized). https://commons.wikimedia.org/wiki/File:Herbalessencebottles.jpg
-https://creativecommons.org/licenses/by/2.0/
-
-Transcript:
-[   0.0] New OCR model that handles warped, curved and angled text and layouts. This is really great for OCR
-[   6.2] when you have scans that are crooked product photos from different angles,
-[  10.7] security footage or robotics where your angle is wherever the camera happened to be and more.
-[  16.2] pp.layout v3 classifies and segments regions and predicts reading order. Then there's a model
-[  22.9] after that to read what's in the boxes. As you can see the bounding boxes are not just
-[  27.7] a square it can handle a lot of these warped images nicely and it can put them at an angle.
-[  32.0] If we compare this to another approach we can get bounding boxes and it's like yeah it kind of works
-[  37.6] but it's also kind of weird an incorrect text fits inside of them. The bounding box is clearly way
-[  43.6] bigger than it needs to be so for the bounding box in the paragraph to work it has to be so big
-[  49.8] that part of the title is actually in that bounding box. This kind of thing happens all
-[  54.1] the time when you have user intake forms and you're maybe doing identity verification
-[  58.5] it's in driver's licenses and things like that. I cover the full workflow from evaluating OCR to
-[  64.2] deploying your pipeline in the upcoming PDF to production course. If that sounds helpful to
-[  69.3] you check out the syllabus and I hope to see you inside.
-
-On-screen text:
-OCR for curved text / OCR when you have / paragraph_title / Place / ...nothing more dangerous than a familiar face... As funeral mourners stand in silence at Immaculate Cemetery, a deafening cry cuts through the air. Lying crumpled at the bottom of an open grave is the bloodied body of a young woman, and Detective Lottie Parker is called in to investigate... Read More... / paragraph_title / PDF TO PRODUCTION Comment PDF / you inside.
-
-Key claims:
-- PP-DocLayoutV3 is a new OCR layout model that handles warped, curved, and angled text and layouts.
-- It is useful for crooked scans, product photos taken from different angles, security footage, and robotics where camera angle varies.
-- PP-DocLayoutV3 classifies and segments regions and predicts reading order, with a separate model reading the text inside the detected boxes.
-- Its bounding boxes are not just squares/rectangles — they can be angled and fitted to warped images.
-- A comparison approach produces bounding boxes that are much bigger than needed, causing incorrect/extra text (e.g., part of a title) to fall inside a paragraph box.
-- This bounding-box imprecision issue commonly occurs with user intake forms and identity verification documents like driver's licenses.
-- The creator has an upcoming 'PDF to Production' course covering the full workflow from evaluating OCR to deploying a pipeline.
-- Viewers can comment 'PDF' to receive the course syllabus.
-
-Mentioned (unverified hints):
-- PP-DocLayoutV3: (no url)
-```
-```text
-source: https://www.instagram.com/reel/DeFTnCdMfC2/
-Caption:
-Manim — math animation written as Python.
-
-A scene is a Python class: create objects, then call play. Equations transform into each other, a grid bends under z², odd sine waves add up to a square wave, and a torus turns into a sphere. Manim began as Grant Sanderson's own tool for the 3Blue1Brown videos; this is ManimGL from the 3b1b/manim repository, and the Community Edition is a separate fork.
-
-We wrote and rendered these scenes ourselves with the library, apart from the repository's own TexTransformExample. No footage or characters from 3Blue1Brown videos are used.
-
-Which idea would you rather explain with motion than with words?
-
-Manim — Python으로 쓰는 수학 애니메이션.
-
-장면 하나가 Python 클래스 하나예요. 객체를 만들고 play를 부르면 수식이 다른 수식으로 바뀌고, 격자가 z²으로 휘고, 홀수 사인파가 더해져 사각파가 되고, 토러스가 구로 바뀌어요. Manim은 Grant Sanderson이 3Blue1Brown 영상을 만들려고 시작한 도구예요. 영상은 3b1b/manim 저장소의 ManimGL이고, Community Edition은 별도 포크입니다.
-
-저장소 예제 TexTransformExample을 빼고는 모두 저희가 직접 장면을 쓰고 렌더링했어요. 3Blue1Brown 영상의 장면이나 캐릭터는 쓰지 않았습니다.
-
-말보다 움직임으로 설명하고 싶은 개념이 있나요?
-
-📎 Source / 원본: Manim
-https://github.com/3b1b/manim/tree/fafa083a4fb274bba9cabde0b6e2f50ba6da0622
-Original creator / 원작: Grant Sanderson / 3Blue1Brown LLC
-✳︎ Code license / 코드 라이선스: MIT
-https://github.com/3b1b/manim/blob/fafa083a4fb274bba9cabde0b6e2f50ba6da0622/LICENSE.md
-Community Edition (separate fork / 별도 포크): https://github.com/ManimCommunity/manim
-Curated by @hyun2xyz
-
-Transcript:
-[   0.0] Today's open-source project is Manim.
-[   3.0] Every frame here comes from a few lines of Python.
-[   6.0] Equations, graphs and surfaces moving with mathematical precision.
-[  10.0] It began as Grant Sanderson's personal project to animate his three blue one brown math videos.
-[  16.0] In 2020, a community edition forked off from it.
-[  19.0] A scene is a Python class. You create objects and call play.
-[  24.0] This is the whole scene.
-[  25.0] Write one equation, then transform it into another.
-[  28.0] Matching pieces glide into place.
-[  30.0] The examples even rearrange letters.
-[  32.0] The Morse code becomes here come dots.
-[  35.0] Equations and pictures can share the same pieces.
-[  37.0] A square, cut into four, spells out a plus b squared.
-[  41.0] Link a number to shapes with an updater and everything that depends on it follows.
-[  45.0] Apply a function to the whole plane and the grid bends.
-[  48.0] This is z squared.
-[  50.0] Add odd sine waves one by one and a square wave appears.
-[  54.0] It works in 3D too.
-[  56.0] The code for his videos is public as well in a separate repository.
-[  59.0] For visual work, use it wherever timing has to be exact.
-[  62.0] Kinetic equations, data graphics or title sequences rendered straight to video.
-[  67.0] Manim is MIT licensed.
-[  69.0] Thank you. Bye.
-
-On-screen text:
-f(x) = 4/π (sin x + sin3x/3 + ...) MANIM Today's open-source project is Manim. 오늘 소개할 오픈소스는 Manim입니다.
-
-Key claims:
-- Manim is a Python library for creating math animations
-- A scene is a Python class where you create objects and call play
-- Equations can transform into each other with matching pieces gliding into place
-- Applying z² to a grid bends it
-- Adding odd sine waves one by one produces a square wave
-- A torus can be turned into a sphere
-- Manim works in 3D as well as 2D
-- Manim began as Grant Sanderson's personal tool for 3Blue1Brown videos
-- The Community Edition forked from the original repository in 2020
-- The code for Grant Sanderson's videos is public in a separate repository
-- All scenes were written and rendered by the creators themselves, except the repository's own TexTransformExample
-- No footage or characters from 3Blue1Brown videos are used
-- Manim is MIT licensed
-
-Mentioned (unverified hints):
-- Manim (ManimGL, 3b1b/manim): https://github.com/3b1b/manim/tree/fafa083a4fb274bba9cabde0b6e2f50ba6da0622
-- Manim Community Edition: https://github.com/ManimCommunity/manim
-```
-```text
-source: https://www.instagram.com/reel/DeI8uRMhi3G/
-Caption:
-Ultralytics YOLO — 5,040 guesses. 12 bird detections.
-
-Ultralytics YOLO puts boxes, labels and scores on a frame. This example reports 5,040 prediction cells → 92 boxes above 0.25 confidence → 12 bird detections after NMS (IoU 0.7).
-
-With Ultralytics 8.4.173 and yolo26l.pt, the default uses NMS. nms=False selects the NMS-free head; this frame returned 9 detections. These are one frame's results, not a benchmark or a guaranteed count.
-
-5,040개의 추측에서 새 검출 12개까지.
-
-Ultralytics YOLO는 프레임에 상자와 이름, 점수를 붙여요. 이번 예시에서는 5,040칸 중 신뢰도 0.25를 넘은 상자 92개를 NMS(IoU 0.7)로 정리해 새 검출 12개를 남겼어요.
-
-사용한 8.4.173·yolo26l.pt의 기본 경로는 NMS를 써요. nms=False로 고른 출력부는 NMS 없이 9개를 냈어요. 한 프레임의 제작 기록이며, 성능 평가나 실제 개체 수를 보장하는 수치가 아닙니다. 화면의 클래스는 bird·zebra예요.
-
-Code/models: Ultralytics · AGPL-3.0; Enterprise option. Check the terms for your use / 용도에 맞는 조건을 확인하세요.
-https://github.com/ultralytics/ultralytics
-https://www.ultralytics.com/license
-YOLO paper: Redmon et al., 2015
-https://arxiv.org/abs/1506.02640
-Explainer graphics: @hyun2xyz
-
-Footage / 원본 영상: Wikimedia Commons
-JnpoJuwan · CC0
-https://commons.wikimedia.org/wiki/File:Pigeon_feeding,_Jardim_da_Estrela,_2025_01.webm
-Bamyers99 · Public domain
-https://commons.wikimedia.org/wiki/File:Equus_quagga_(zebra)_suckling_video.ogv
-Uusijani · CC0
-https://commons.wikimedia.org/wiki/File:Giraffes_at_Artis.ogv
-Ranch9613 · CC0
-https://commons.wikimedia.org/wiki/File:2026_A_Bus_Dart_at_Parker_Rd_Plano_TX.webm
-Seb35 · CC0
-https://commons.wikimedia.org/wiki/File:A_grazing_horse_at_the_%C3%89comus%C3%A9e_de_la_Bintinais.webm
-Drummyfish · CC0
-https://commons.wikimedia.org/wiki/File:Seagull_Feeding_Young_Croatia.webm
-
-Curated by @hyun2xyz
-
-Transcript:
-[   0.0] Today's open-source project is Ultralytics YOLO.
-[   3.9] Show it any video and it boxes and names every object it knows, frame after frame.
-[  10.1] YOLO stands for You Only Look Once. Joseph Redman introduced it in 2015
-[  15.8] and we ran the newest version, YOLO 2.6. Each frame is shrunk to 640 pixels wide
-[  23.3] and the network looks at it once. It answers on three grids from fine to coarse.
-[  29.0] Every cell guesses one box, as distances from its center to the four edges,
-[  34.2] plus a score for each of 80 kinds of things. That's over 5,000 guesses.
-[  39.6] 92 of them say bird, with more than 25%. Many point at the same pigeon,
-[  45.0] so YOLO keeps the best box and deletes boxes that overlap it too much.
-[  49.6] 12 birds remain. YOLO 2.6 also has a second head that
-[  54.2] learned to name each bird just once, so it can skip that cleanup at a small cost in accuracy.
-[  60.2] Do this for every frame and the boxes follow along. The code and models are AGPL 3.0.
-[  66.6] If you build them into a product or online service, you share your source too,
-[  70.6] unless you get Ultralytics Enterprise License. Thank you. Bye.
-
-On-screen text:
-YOLO | Today's open-source project is Ultralytics YOLO: 오늘의 오픈소스는 Ultralytics YOLO에요. | arXiv Computer Science > Computer Vision and Pattern Recognition arXiv:1506.02640 (cs) You Only Look Once: Unified, Real-Time Object Detection Joseph Redmon, Santosh Divvala, Ross Girshick, Ali Farhadi View PDF HTML (experimental) We present YOLO, a new approach to object detection... | YOLO stands for You Only Look Once. YOLO는 You Only Look Once, '한 번만 본다'는 뜻이에요. | README Code of conduct Contributing License Security pip install ultralytics For alternative installation methods, including Conda, Docker, and building from source via Git, please consult the Quickstart Guide. CLI You can use Ultralytics YOLO directly from the Command Line Interface (CLI) with the yolo command: # Predict using a pretrained YOLO model (e.g., YOLO26n) on an image yolo predict model=yolo26n.pt source='https://ultralytics.com/images...' | and we ran the newest version, YOLO26. 저희는 최신 버전, YOLO26을 돌렸어요. | 1920 x 1080 | Each frame is shrunk to 640 pixels wide, 프레임을 가로 640픽셀로 줄이고, | bird 0.84 bird 0.72 bird 0.41 bird 0.81 bird 0.87 bird 0.84 bird 0.27 | ultralytics/ultralytics Code Issues Pull requests Discussions Actions GNU Affero General Public License v3.0 Permissions: Commercial use, Modification, Distribution Limitations: Liability, Warranty Conditions: License and copyright notice, State changes, Disclose source | Do this for every frame, 이걸 프레임마다 하면 | The code and models are AGPL-3.0. 코드와 모델은 AGPL-3.0이에요. | bird 0.86 bird 0.65 bird 0.88 bird 0.91 bird 0.70 | #2334455 | bus 0.94 | ultralytics source # cfg/default.yaml imgsz: 640 # [int | list] train/val use int (square); predict/export may use [h,w] # cfg/models/26/yolo26.yaml - [[16, 19, 22], 1, Detect, [nc]] # Detect(P3, P4, P5) # nn/modules/head.py self.nl = len(ch) # number of detection layers | horse 0.95 | bird 0.86 bird 0.85 | bird 0.86 bird 0.68 bird 0.88 bird 0.91 bird 0.70 | Thank you. 감사합니다. | @index.opensource @hyun2xyz
-
-Key claims:
-- Ultralytics YOLO boxes and names every object it recognizes in a video, frame by frame
-- YOLO stands for 'You Only Look Once', introduced by Joseph Redmon in 2015
-- The demo runs the newest version, YOLO26 (caption specifies Ultralytics 8.4.173 and yolo26l.pt)
-- Each frame is resized to 640 pixels wide and processed in a single pass
-- The model predicts on three grids (fine to coarse) and each cell predicts one box plus class scores for 80 classes, totaling over 5,000 guesses (5,040 prediction cells)
-- 92 of the predicted boxes are labeled 'bird' with confidence above 25%
-- Non-Maximum Suppression (NMS, IoU 0.7) removes overlapping duplicate boxes, leaving 12 bird detections
-- YOLO26 has an NMS-free head option (nms=False) that names each object once, skipping NMS cleanup at a small accuracy cost; this returned 9 detections on the same frame
-- These results are from a single frame, not a benchmark or guaranteed detection count
-- The code and models are licensed under AGPL-3.0; using them in a product/online service requires sharing source code unless an Ultralytics Enterprise License is obtained
-
-Mentioned (unverified hints):
-- Ultralytics YOLO: https://github.com/ultralytics/ultralytics
-- Ultralytics License: https://www.ultralytics.com/license
-- YOLO paper (You Only Look Once: Unified, Real-Time Object Detection): https://arxiv.org/abs/1506.02640
-```
-```text
-source: https://www.instagram.com/reel/DeFJd9AHPVS/
-Caption:
-Taiga-S1: A 5 MB AI That Builds Real Parts in FreeCAD (We Tested It)
-
-Taiga-S1 is a free, 1.2-million-parameter model (a 4.9 MB file) that builds parts in FreeCAD one click at a time, with no chatbot and no GPU.
-
-▶ More AI news, explained: Simply AI on YouTube (link in bio)
-
-AI-narrated.
-
-#AI #AINews
-
-Transcript:
-[   0.0] This AI is five megabytes, small enough to email.
-[   3.6] And it just built this part by itself in FreeCAD.
-[   6.6] 47 clicks in three seconds.
-[   9.2] Every one right.
-[  10.2] No chatbot, no cloud, no graphics card.
-[  13.2] On our Mac, it took about two milliseconds
-[  15.3] to pick each click.
-[  16.3] It's Tyga S1, a free model from one developer,
-[  19.8] Shivshank Mugam, the catch.
-[  22.1] You don't type, make me a bracket.
-[  24.2] You give it a recipe.
-[  25.5] I play this size, a hole here,
-[  27.5] repeat it four times around the corners.
-[  30.0] It does all the clicking.
-[  31.2] Pick a plane, sketch, set the size, extrude.
-[  34.3] We wrote three parts of our own
-[  35.9] and it built all three exactly.
-[  38.4] A plate with 11 holes.
-[  40.1] 89 clicks, still right.
-[  42.4] Where it breaks?
-[  43.4] Ask for 22 holes and it quits nine short.
-[  46.0] And the repo's own check still passes it.
-[  48.3] Ask it to round the corners first and it loops.
-[  50.9] Round, undo, round, undo.
-[  53.5] And it only knows plates, holes and patterns.
-[  55.9] Not your engine block.
-[  57.1] The real lesson.
-[  58.2] The clicking doesn't need a giant AI.
-[  61.2] A chatbot can write the recipe
-[  63.1] and a model this small builds it on your own machine.
-[  66.9] Tyga S1 is free on Huggingface.
-[  69.5] Follow for every new AI model.
-[  71.2] Test it in about a minute.
-
-On-screen text:
-4.9 MB the whole model | Taiga-S1 | Taiga-S1 A 1.2M-parameter model that builds CAD parts in FreeCAD. | This AI is | to pick each click | Taiga-S1 | Taiga-S1 A 1.2M-parameter model that builds CAD parts in FreeCAD. | on your own machine
-
-Key claims:
-- Taiga-S1 is a 5 MB (4.9 MB) AI model, small enough to email
-- It built a part by itself in FreeCAD using 47 clicks in three seconds, every one correct
-- It requires no chatbot, no cloud, and no GPU
-- On a Mac, it took about two milliseconds to pick each click
-- It was made by one developer, Shivshank Mugam (name as transcribed)
-- Users give it a recipe/instructions rather than natural-language prompts, and it performs the clicking: pick a plane, sketch, set the size, extrude
-- It successfully built three custom test parts exactly as specified
-- A plate with 11 holes took 89 clicks and was still correct
-- It fails when asked for 22 holes, stopping nine short, yet the repo's own check still passes it
-- Asking it to round corners first causes it to loop (round, undo, round, undo)
-- It only knows plates, holes, and patterns — not complex objects like an engine block
-- It is a 1.2-million-parameter model, free, and available on Hugging Face
-- The AI narration in the video is AI-generated
-
-Mentioned (unverified hints):
-- Taiga-S1: (no url)
-- FreeCAD: (no url)
-- Hugging Face: (no url)
-```
-```text
-source: https://www.instagram.com/reel/DeIm-UyIzbz/
-Caption:
-7 Tools to supercharge your terminal, explained by cats. #cat #code #terminal #bash #programming
-
-Transcript:
-[   0.0] Seven tools to supercharge your terminal explained by cats kitty lives in the terminal
-[   5.1] But she types CD 11 times just to find her tuna. So she gave her terminal seven upgrades
-[  11.7] Zoxide it remembers every folder kitty visits now. She types Z tuna and she's there fzf
-[  18.4] Kitty forgot the file name. She types three letters and fzf sniffs it out of 1,200 files rip grip
-[  25.6] Where did she write to do feed cat?
-[  28.5] Rg searches the whole project before she can blink
-[  32.1] TLDR
-[  33.4] Handpages are long TLDR gives kitty the few examples. She actually needs a tune
-[  39.3] Kitty ran the perfect command last Tuesday a tune remembers it which folder if it worked
-[  44.9] How long it took even on her other laptop lazy get no more memorizing get commands
-[  51.1] space stages see commits shift P pushes
-[  55.2] JQ the API sends back a wall of JSON
-[  58.9] JQ fishes out just the tuna same terminal seven new tricks and kiddies pause finally get a break
-[  65.6] Save this for your next setup and tell kitty which tool she missed
-
-On-screen text:
-7 TOOLS TO SUPERCHARGE YOUR TERMINAL
-kitty@laptop: zsh
-~ )
-kitty@laptop: zsh
-~ ) cd code
-/code ) ls
-cat-pics naps tuna-shop yarn
-/code ) cd tuna-shop
-/code/tuna-shop )
-ripgrep 3/7
-github.com/BurntSushi/ripgrep
-import feed()
-let boat = []
-if (cat) return
-export default
-return purr;
-fetchCat()
-for (x of naps)
-await feed()
-wait feed()
-TODO: feed cat
-ripgrep 3/7
-github.com/BurntSushi/ripgrep
-kitty@laptop: zsh
-~/code/tuna-shop ) rg
-kitty@laptop
-$ brew install zoxide fzf \
-ripgrep tlrc atuin \
-lazygit jq
-
-Key claims:
-- Kitty used to type 'cd' 11 times just to find her tuna, so she gave her terminal seven upgrades
-- zoxide remembers every folder kitty visits, so she can type 'z tuna' and jump straight there
-- fzf lets kitty find a file by typing three letters, sniffing it out of 1,200 files
-- ripgrep (rg) searches the whole project for text (like a TODO comment) almost instantly
-- tldr gives kitty a few practical examples instead of long man pages
-- atuin remembers past commands, including which folder they worked in, how long they took, and syncs across other devices/laptops
-- lazygit means no more memorizing git commands — 'g' stages, 'c' commits, shift+P pushes
-- jq fishes out just the needed data ('tuna') from a wall of JSON returned by an API
-- All seven tools can be installed via a single Homebrew command: brew install zoxide fzf ripgrep tlrc atuin lazygit jq
-
-Mentioned (unverified hints):
-- zoxide: (no url)
-- fzf: (no url)
-- ripgrep: github.com/BurntSushi/ripgrep
-- tldr: (no url)
-- atuin: (no url)
-- lazygit: (no url)
-- jq: (no url)
-```
-```text
-source: https://www.instagram.com/reel/DeJyswKCtCY/
-Caption:
-Shift Left Security, Explained!🐛
-
-Shift left is the practice of moving security checks earlier in the software delivery line so issues get caught before code reaches production. SAST (static application security testing) scans code without running it, like CodeQL in a CI pipeline. DAST (dynamic application security testing) attacks the running app from outside, like OWASP ZAP in staging. Pre-commit hooks run a quick scanner like Semgrep on changed files before code enters Git, and editor plugins like SonarQube flag problems as code is written.
-
-The example used is SQL injection, where input like ' OR 1=1 -- ends up inside the query and returns every order in the table. The fix is a parameterized query, so user input is always treated as plain data.
-
-Which of these checks does your pipeline actually run? Comment below.
-
-#ShiftLeft #DevSecOps #SAST #DAST #SQLInjection #DevOps #AppSec #CodeQL #OWASPZAP #Semgrep #SonarQube #PreCommit #CICD #KodeKloud #Shorts
-
-Transcript:
-[   0.0] Shift left is a term you hear in almost every DevOps team.
-[   3.6] What does it actually mean?
-[   5.3] If we see how your code flows in the organization on a line
-[   7.6] from left to right, it looks like this.
-[  10.2] On the far left, you write the code, then you commit it,
-[  13.1] then the CI pipeline builds it, then staging for testing,
-[  16.2] then you deploy on production,
-[  17.4] where real users access the application.
-[  20.0] So shift left simply means we catch important things
-[  22.7] earlier on this line.
-[  24.2] Now let's take one bug in the code
-[  25.6] and follow it along this line from right to left.
-[  28.2] Imagine you run an online store
-[  29.6] where customers can search their order
-[  30.9] by entering an order ID.
-[  32.8] The problem is that the application takes
-[  34.3] whatever the user types
-[  35.5] and puts it directly into the database SQL query.
-[  38.3] Normally, a customer types 1042
-[  40.8] and the application puts 1042 in the database query
-[  43.8] and returns the information to the customer.
-[  45.8] But an attacker can type something like quote,
-[  48.0] or one equals one dash dash in the search box.
-[  52.0] Because the application blindly inserts
-[  53.7] this user input into the query,
-[  55.4] this input will run inside the query.
-[  57.9] The condition one equals one is always true.
-[  60.5] So instead of returning one order,
-[  62.0] the database may return every order in the table,
-[  64.3] which includes other customer's information as well.
-[  66.8] This type of attack is called SQL injection
-[  69.6] and the core problem is simple.
-[  71.3] The user input is treated as part of the SQL command
-[  73.9] instead of just data.
-[  75.6] Now the team finds this issue in production
-[  77.4] as an incident.
-[  78.5] The security team checks whose data was exposed,
-[  80.7] then a developer writes a hot fix
-[  82.0] that is deployed in a hurry.
-[  83.3] And depending on what leaked,
-[  84.5] you have to inform your customers.
-[  86.2] Now let's see how we could have prevented this issue.
-[  88.6] We found the bug in production,
-[  89.8] but one step to the left is staging.
-[  91.9] Ideally in staging, we should have run our application
-[  94.4] and attacked our application with OWASP's app,
-[  96.6] a free tool that sends attack inputs to our application.
-[  99.6] This type of testing where you attack from outside
-[ 101.7] is called DAST or Dynamic Application Security Testing.
-[ 105.0] If we go left, we have the CI pipeline,
-[ 107.2] which builds and tests every change in our app automatically.
-[ 110.3] The DevOps team could use a tool like CodeQL
-[ 112.2] in the pipeline and CodeQL checks
-[ 114.0] if your code is prone to SQL injection attacks.
-[ 116.8] And if it is prone, then we fail the build pipeline
-[ 118.9] with an error saying a critical vulnerability was found.
-[ 121.5] This is called SAST or Static Application Security Testing
-[ 124.5] because the application does not run
-[ 126.0] and we just check the code.
-[ 127.3] One more step left is when the developer
-[ 128.8] commits the code to Git.
-[ 130.5] So we could run a script on the developer's laptop
-[ 132.4] every time the developer runs Git commit.
-[ 134.6] And this is called a pre-commit hook.
-[ 136.7] The hook runs a quick scanner
-[ 137.8] like SEMGREP on the changed files.
-[ 139.5] And if the scanner finds the same problem,
-[ 141.2] the commit is blocked.
-[ 142.5] The leftmost point is the editor like VS Code.
-[ 145.2] We could install a plugin like SonarCube for VS Code
-[ 147.6] and SonarCube checks your code as you type
-[ 149.3] and underlines the line where the issue is.
-[ 151.3] The fix to our problem is to send the SQL query
-[ 153.6] and the user input to the database separately.
-[ 155.8] So the attacker's input is treated as plain data
-[ 158.2] and this is called a parameterized query.
-[ 160.4] So the idea of shift left is that we scan
-[ 162.4] for vulnerabilities and issues at each stage
-[ 164.4] starting from the leftmost point
-[ 165.9] so that issues can't reach production.
-[ 167.8] If this video helped, hit subscribe and follow.
-
-On-screen text:
-SHIFT LEFT #DevOps
-
-Key claims:
-- Shift left means catching security issues earlier in the code-to-production pipeline (editor -> commit -> CI -> staging -> production).
-- SQL injection occurs when user input (e.g. ' OR 1=1 --) is inserted directly into a SQL query instead of being treated as data.
-- A successful SQL injection on an order-lookup query can return every row in the table, exposing other customers' data.
-- DAST (e.g. OWASP ZAP) tests the running application from outside, typically in staging.
-- SAST (e.g. CodeQL) analyzes code without running it, typically in the CI pipeline, and can fail the build if a vulnerability is found.
-- Pre-commit hooks (e.g. using Semgrep) scan changed files on the developer's machine and can block a commit if issues are found.
-- Editor plugins (e.g. SonarQube for VS Code) flag issues as code is typed, the earliest point in the pipeline.
-- The fix for SQL injection is a parameterized query, which sends the query and user input separately so input is always treated as plain data.
-
-Mentioned (unverified hints):
-- CodeQL: (no url)
-- OWASP ZAP: (no url)
-- Semgrep: (no url)
-- SonarQube: (no url)
-```
-```text
-source: https://www.instagram.com/reel/DeIV3Tam24w/
-Caption:
-Cloudflare and OpenAI came for Jev with their own decision models.
-What Clef adds that Jev doesn't:
-1. reads images
-2. 64K context window, double Jev's 32K
-3. open weights, so it runs on your own machine
-#cloudflare #jev #typesafe #openai #aiengineering
-
-Transcript:
-[   0.0] So Cloudflare just dropped a free AM model you can download on a running machine,
-[   3.6] and they're coming straight for Jev.
-[   5.1] Quick catch up, a company called Typesafe launched Jev.
-[   7.6] You hand it something messy plus a question with a set of answers,
-[  10.6] it hands you back a pick, a score, a yes-no, and how sure it is.
-[  14.2] Hey, if you're new here, I'm Kevin.
-[  15.3] I break down what's happening in AI and I actually build with it,
-[  17.9] so if that's your thing, hit follow.
-[  19.3] So when Jev released, it blew up on Twitter, and now the big players went in.
-[  22.5] First of all, OpenAI at Dev Day, they released a Decisions API,
-[  26.2] which is the same idea as Jev.
-[  28.0] And they tuned a version of GPT-6 Luna as a Jev Decision Model,
-[  31.6] and it takes images too.
-[  33.0] It's in limited preview with no pricing yet,
-[  35.2] but the one I'm really excited about is Cloudflare.
-[  37.4] Last week, Cloudflare released their own Decision Model, and they call it Clef.
-[  42.2] Two sizes, there's Clef, the big one, for accuracy,
-[  44.7] and then Clef flashed the small one for speed,
-[  47.1] and three things stand out for this.
-[  48.8] One, it runs locally.
-[  50.3] Cloudflare put the weights on Huggingface under the Apache license,
-[  53.4] which means it's free to use even commercially.
-[  55.6] Download it, run it on your own hardware,
-[  57.6] and your data never leaves the building.
-[  59.2] You'll want a beefy GPU for that, or skip the hardware,
-[  62.1] and call it with Cloudflare's workers' AI.
-[  64.1] The second thing, and this is massive, it sees images, so it's multimodal.
-[  67.3] And if people have been talking in comments,
-[  68.9] even when I made my videos about Jev,
-[  70.6] people asked if I could see images.
-[  71.9] Jev can't, you have to explain images in text Jev,
-[  75.0] but Cloudflare or Clef can see images.
-[  77.4] Clef takes up to four images per request,
-[  79.5] and so now you can ask it,
-[  80.7] is this home furniture empty?
-[  82.3] Does this receipt match the expense report?
-[  84.3] And you get back a straight answer.
-[  85.6] And number three, it's double the context window.
-[  88.2] So Jev reads about 32,000 tokens per request,
-[  90.9] and Clef reads 64,000.
-[  92.8] So this works for long email threads or a full contract,
-[  95.4] now fit into one API call.
-[  97.1] And then there's speed, and Cloudflare's own testing.
-[  99.4] Clef Flash answered in around 38 milliseconds,
-[ 101.8] whereas Jev came in around 520.
-[ 103.8] That's about 10 times faster,
-[ 105.1] but to be honest, you really won't feel that.
-[ 106.9] To be fair, Jev, it's still the cheaper by tokens,
-[ 109.5] it still wins on a lot of benchmarks,
-[ 111.2] and I still have it ripping across most of my stack.
-[ 113.5] Here's how I pick.
-[ 114.4] Are you building on Jev, then keep going.
-[ 116.6] Unless you need images, longer context,
-[ 118.9] or a model running on your own machine,
-[ 120.7] the price point here is so cheap,
-[ 122.2] I would stick with Jev for all the stuff
-[ 124.0] you have running now.
-[ 124.9] Anything new, anything that requires images,
-[ 127.3] anything that has a large context window,
-[ 129.0] or if you just want to play around with something local,
-[ 130.8] especially if you're worried about privacy and security,
-[ 133.0] I would then move over to Cloudflare and Clef,
-[ 135.0] and start messing with that
-[ 135.9] either through the API or locally.
-
-On-screen text:
-CLOUDFLARE JUST CAME FOR JEV FREE - OPEN WEIGHTS - RUNS ON YOUR MACHINE 01 LOCAL 02 IMAGES 03 2x CONTEXT AI. THAT.
-
-Key claims:
-- Cloudflare released a free AI model called Clef that you can download and run on your own machine
-- Jev (by Typesafe) takes messy input plus a question with answer options and returns a pick, score, yes/no, and confidence level
-- OpenAI released a Decisions API at Dev Day, tuning a version of GPT-6 Luna as a Jev Decision Model, which also takes images; it's in limited preview with no pricing yet
-- Cloudflare's Clef comes in two sizes: Clef (big, for accuracy) and Clef Flash (small, for speed)
-- Clef weights are on Hugging Face under Apache license, free for commercial use, can run on your own hardware or via Cloudflare Workers AI
-- Clef is multimodal and can see/read images (up to 4 per request), while Jev cannot read images and requires text descriptions
-- Clef has a 64,000 token context window, double Jev's 32,000 tokens
-- In Cloudflare's own testing, Clef Flash answered in ~38ms vs Jev's ~520ms, about 10x faster, though the difference may not be noticeable in practice
-- Jev is still cheaper by tokens and wins on many benchmarks
-- Recommendation: stick with Jev for existing stacks unless you need images, longer context, or local/private deployment, in which case switch to Clef
-
-Mentioned (unverified hints):
-- Jev (Typesafe): (no url)
-- Clef (Cloudflare Decision Model): (no url)
-- Clef Flash: (no url)
-- OpenAI Decisions API: (no url)
-- GPT-6 Luna: (no url)
-- Cloudflare Workers AI: (no url)
-- Hugging Face: (no url)
-```
 
 ## kb session drop 2026-10-26
 
-https://www.reddit.com/r/ClaudeCode/comments/1xbxoza/my_claude_code_setup_it_runs_like_a_small/ — practitioner setup post: hooks over prose, GitLab state machine, model-tier routing, Jev typed-judgment tier with measured break-even, typed/dated memory (full text in kb SRC-0028)
-https://github.com/JustVugg/colibri — pure-C MoE inference streaming experts from SSD (read-only); Apache-2.0
-https://huggingface.co/Contrastive-LM/CLM-v0.1-8B — Stanford + NVIDIA contrastive "System One" scorer on frozen Qwen3-8B; Apache-2.0
-https://github.com/yt-dlp/yt-dlp — media/metadata downloader; anonymous Instagram reel capture proven 2026-10-26 (bioinfo WK-0079)
-https://github.com/instaloader/instaloader — Instagram posts/metadata downloader
-https://github.com/imageio/imageio-ffmpeg — pip-installable ffmpeg binary (used for keyframes/audio decode)
-Jev (TypeSafe AI) — typed-judgment model (choice/score/probability only); find the official URL before draining
-strata — annotate existing entry: PolyStrata adds four more MoE models (see the needs-link Reddit item "PolyStrata"); entry acquired 2026-09-29, likely stale
-⚠ not-cataloguable-(post-body-removed-by-Reddit-filters;-the-5-projects-are-not-recoverable-from-the-thread)
 ```text
-source: https://www.reddit.com/r/SATNA_PROJECT/comments/1x2856v/the_500mo_stack_for_0_5_new_opensource_ai/
+source: https://www.reddit.com/r/ClaudeCode/comments/1xbxoza/my_claude_code_setup_it_runs_like_a_small/
 Skip to main content
-The $500/mo stack for $0: 5 new open-source AI projects that feel too good to be free 🔥 : r/SATNA_PROJECT
+My Claude Code setup: it runs like a small engineering team with guardrails, not like a chat window : r/ClaudeCode
 Sign Up
 Log In
 Expand user menu
-Go to SATNA_PROJECT
-r/SATNA_PROJECT
+Go to ClaudeCode
+r/ClaudeCode
 •
-17d ago
-DarkLight-874
-The $500/mo stack for $0: 5 new open-source AI projects that feel too good to be free 🔥
-Sorry, this post was removed by Reddit’s filters.
+7d ago
+u/aaraujo666
+My Claude Code setup: it runs like a small engineering team with guardrails, not like a chat window
+Tips & Workflows
+
+I've seen dozens of posts here: "Why do I run out of usage so much?", "Why do I have to keep repeating myself to Claude?", etc.
+
+I've built a set up that works amazingly well, for me, as a solo developer. YMMV if trying to implement this in a team. But here goes.
+
+Full disclosure: This post was generated by my prompting my Claude Code as follows:
+
+I feel like most people that are using Claude Code are not doing it effectively. I feel that my use of Claude Code, with my setup of mcps, gitlab, etc. is VERY effective, however I struggle to explain it to other people.
+
+Can you create a description of what our set up is? something that I can post to reddit?
+
+---------------------------------------------------
+
+I've been programming for a long time, and I use Claude Code heavily for personal projects, a homelab and day-job support. Most people I talk to use it as a smarter autocomplete: open a session, describe a problem, accept whatever it does, repeat. That leaves most of the value on the table. Here's how my setup is built and why each piece is there.
+
+1. The rules live in hooks, not in prose
+
+Everyone writes a CLAUDE.md full of rules, and the model drifts from them anyway. My rule of thumb: if I've corrected the same behaviour twice, it becomes a PreToolUse hook that denies the call. Some of the things enforced that way:
+
+Nothing is deleted. A delete is blocked and rewritten as a move into an _archive/ folder.
+
+Git commands go through one wrapper script, never cd && git.
+
+Commit messages can't contain closing keywords like fixes #12, because those auto-close issues and skip my close-out process. There's no AI co-author trailer either.
+
+Writes to my day-job systems (ticketing, work email, work repos) are blocked unless I've said OK for that specific action. Reads are fine.
+
+Work content can only go to approved models. Other vendors' agents are blocked from seeing it, with no override.
+
+CLAUDE.md still exists, but it's short and points to the detail. The hooks do the enforcing.
+
+2. A self-hosted git server is the system of record, and the workflow lives in the tools
+
+I run my own GitLab and wrote an MCP server for it (around 90 tools). The key design choice is that the workflow rules are inside the tools, so the model can't skip them:
+
+Every issue has exactly one type:: and one status:: label, and status is a state machine. Only I can move backlog -> ready. An agent can move ready -> in-progress, -> blocked (and blocking means posting a question on the issue instead of guessing), and in-progress -> review, which requires an open MR. review -> done happens only when I say so.
+
+Closing an issue is one tool call that runs the whole protocol: cross-reference the commits, log estimated skilled-developer effort (not clock time), set the terminal status, close it and sync the wiki.
+
+Raw API calls are forbidden, because a raw call bypasses the rules.
+
+So the AI doesn't decide when work is "done". The tracker does, and I do.
+
+3. The main thread orchestrates; subagents do the work, routed by model tier
+
+The main session doesn't edit code. It plans and dispatches:
+
+Cheap and fast (Haiku): drafting short text, finding docs, trivial one-line fixes
+
+Mid tier (Sonnet): implementation from a clear spec, reading and synthesizing documentation
+
+Strongest model: bugs that several attempts haven't cracked, real architecture tradeoffs
+
+Below all of these: Jev for typed judgments over large piles (next section). It doesn't write.
+
+This keeps the main context clean and the cost sane. I can also send a task to another vendor's coding agent for a second opinion. It runs headless in a disposable git worktree and never writes to the real repo, and Claude reviews whatever comes back.
+
+4. A cheap decision model sits under the agents: Jev
+
+Plenty of the work in this setup isn't writing. It's judging: is this issue ready, is this log line mine or the game's, is this alert noise, does this MR description match its diff. Sending all of that through Opus is expensive and fills the context. So there's a third tier below Haiku. Jev is TypeSafe's "System One" model, and it only returns typed judgments: pick one option, score on a scale, or give a yes/no probability. It can't write prose at all.
+
+The standing rule is Jev decides, Claude writes. When Jev is unsure, Claude makes the call.
+
+How it's wired:
+
+It's behind an MCP server I wrote. jev_ask takes questions (or a saved question set) plus file paths, globs or a GitLab query. The file contents never enter Claude's context. The server screens every item, sends them in parallel with back-off, and returns a compact table: accept / look / decide, with totals and a cost line. Claude reads only the items marked decide.
+
+Question sets are saved and re-measured. Confidence bands are tuned per question against real outcomes. The generic 0.8/0.2 thresholds left 80% of a backlog in the borderline zone; re-measured bands fixed that.
+
+It's embedded in other tools, not just called by hand:
+
+The GitLab ready gate can run a Jev check on whether an issue still contains an unmade decision. It's advisory and opt-in per project.
+
+Backlog grooming pre-sorts issues so the expensive model reads only the borderline ones.
+
+An audit skill reports closed issues that don't meet their acceptance criteria, type:: labels that have drifted, and commits whose diff doesn't match the issue they cite. It reports only and never writes to GitLab.
+
+The second-opinion workflow uses Jev as an acceptance gate on what the other vendors' agents return.
+
+It also triages homelab alert noise, classifies game log origins, and finds duplicate memory files.
+
+Every turn that calls it reports the cost: calls, input tokens and USD. The API returns tokens, not dollars, so the cost is computed.
+
+Measured accuracy against my own ground truth: 16/16 on the second-opinion gate, 92/97 on the backlog pre-sort, 18/18 on memory dedupe, 6/6 on MR-vs-diff.
+
+The trap I measured, which most people will hit: a cheap model doesn't automatically save tokens. Each extra round trip resends 60-75k tokens of context to the orchestrator. On a 14-issue backlog, the Jev run used more Opus tokens than having Opus read the issues itself. Break-even came out at about 45-60 issues, or roughly 15-20k tokens of issue bodies. Above that, the gap widens fast. On 267 closed issues (about 1 MB of text):
+
+Opus usage: 1.7M tokens with Jev, against 9.5M without it. That's 5.7x fewer raw tokens, about 4x cost-weighted.
+
+Jev's own bill: 223 calls for $0.014.
+
+Verdicts: they agreed on 208 of 223. Jev was the stricter of the two, and it never passed something Opus failed.
+
+And the safety lesson: anything sent to Jev leaves the machine. My first bulk run sent a memory file that contained a LAN login. The screen for client content didn't catch it, because it wasn't looking for secrets. Now every item goes through a credential screen as well, and work content is blocked outright. On one 267-issue run the screen held back 16% of the items, and the tool lists what it held back instead of dropping it silently.
+
+5. Skills turn repeated workflows into one command
+
+Work the ready queue: one subagent per ready issue, each in its own worktree, in three phases: validate and lock, implement, review. It opens an MR and hands the issue back to review. It never merges or closes.
+
+Groom the backlog: check each issue against a definition of ready, draft acceptance criteria from the actual code, and promote only the issues I name.
+
+Work a milestone: walk it stage by stage, one branch, MR and delivery per lane, until nothing is left that doesn't need me.
+
+Ask the board: a panel of personas modelled on well-known engineers argues a decision from different angles, maps where they agree and split, and gives one recommendation. It's useful when I'm clearly talking myself into something.
+
+6. Memory is a structured knowledge base, not a junk drawer
+
+Each fact is its own file with typed frontmatter: who I am, feedback on how I want it to work, project state, or reference material. On top of that:
+
+stale_after dates on anything that ages (versions, IPs, prices, who owns what). At session start, a hook flags stale facts so they get re-checked before anyone relies on them.
+
+status: deprecated instead of deletion, so the history stays.
+
+verified: by human. A fact I confirmed beats one the model inferred.
+
+A hook validates every memory write, fixes the links and regenerates the index.
+
+Many entries are explicitly marked TRAP: things that cost me hours once ("this command exits 0 but does nothing"). Those are the most valuable entries in the whole thing.
+
+The whole memory store is version-controlled.
+
+7. Custom MCP servers for every domain I work in
+
+Homelab: provisions VirtualBox VMs over SSH, reads the installer screen, waits for boot and registers the new host in an inventory.
+
+Git hosting: described above.
+
+Jev: described above.
+
+A game-modding toolkit: compile checks, log and screenshot retrieval.
+
+Work mailbox: read-only, and it deliberately has no send or delete verb. The safest permission is a capability that doesn't exist.
+
+Each server has a help() tool that serves as its catalogue, so the model looks up what's available instead of guessing.
+
+8. Standing rules for infrastructure
+
+When a VM, host or container comes into existence, three things happen in the same pass without me asking: it's registered in the inventory (and proven reachable with a real command, not just a ping), it gets a tile on my homelab start page if it has a web UI, and its timezone is set. CI on the container stack fails any service that's missing a timezone.
+
+9. Verify, don't assert
+
+"Verify before asking or asserting" is a hard rule. Before it asks me something, it goes and checks.
+
+Deliveries are verified by file hash, not by poking at the app.
+
+Word documents go through a render loop (docx -> PDF -> images, then the model looks at the pages) before I see them.
+
+Code gets a compile check before every deploy.
+
+What I think most people get wrong
+
+Rules written as prose and expected to stick. Enforce them with hooks.
+
+No system of record. The AI shouldn't decide what's done; a tracker with a state machine should.
+
+One model for everything. Route by difficulty and keep the orchestrator's context clean.
+
+Memory as a dumping ground. Type it, date it, mark what's verified, and record your traps.
+
+Generic MCPs only. The best MCP servers are the ones you write for your own domain, with your rules built in.
+
+Trusting "done". Make verification part of the workflow.
+
+Using an expensive model for every decision. Put a cheap classifier under it, but measure the break-even first. On small piles it costs more, not less.
+
+The result is that I spend my time making decisions (what's ready, what's done, which tradeoff to take) and very little on supervising keystrokes.
+
+----------------------------------------------
+
+I don't claim to be an expert in any of this, but I'm a seasoned developer with 45 years of professional programming experience.
+
+Some of the stuff you see here might sound familiar, like "grooming", I use Matt Pocock's skill for that (more accurately I took the idea of his grooming skill and built my own), the "ask the board" I took the idea from one of Austin Marchese's Youtube videos.
+
+I don't have ANY skill "packs", plugins, etc. installed in my environment.
+
+I wish I could share some of the stuff that I've built, like my gitlab-mcp, but unfortunately when I built it I was building it for me, and there is way too much I would have to sanitize before making it public. What I can say is that EVERYTHING talked about above WAS built by Claude. I just told it what I wanted.
+
+If I had to answer "What is single most important thing in your setup?" I would have to say my locally hosted Gitlab server. By using the "Issues" module in Gitlab I can keep track of everything that is going on, no matter how many projects I have going at a time. In the past 60 days I've worked and closed 1,160 issues across 15 different projects. Of all of those issues, EVERY SINGLE ONE was written by Claude by prompting "Create an issue in project xyz to solve/implement .... Validate the issue against current code", or something to that effect. I believe all of this could also be accomplished using Github, for those not inclined to host their own gitlab.
+
+Below is the diagram for the state machine that controls my process:
+(created with the prompt:
+show me the diagram for the issue state machine
+)
+
+This is all enforced by the gitlab-mcp
+Read more
 Share
-Roblox
-•
-Ad
-Forget mindless scrolling. Start solving instead. Crack cases, outsmart friends, and flex your brain in Roblox's best puzzle games — free to play.
-Play Now
-roblox.com
 Sort by:
 Comments Section
-busters1
+AutoModerator
 •
-17d ago
+7d ago
+axiomatix
+•
+7d ago
 
-I'd like to add this one to the list. We launched just 5 weeks ago. It's a collaboration platform that lets engineering teams keep their technical documentation, observability, RFCs, and other internal knowledge in one place. It aims to make knowledge-keeping easy and tailored for engineers, especially in new startups and teams.
+So much people sleep on gitlab, but it's such a natural fit for this. Watching people wire all kinds of workflows, random skills, tooling etc. to try to get what comes right out of the box for free. It's devops in a box with all the bells and whistles wired in. So much easier to build your harness around it. Issues, kanban, CI/CD(no need for gha), git, artifacts, image repos, wikis. If you're a small/medium team or a solo dev running agents it's a no brainer. And all your stuff remains private.
 
-https://github.com/oxynote/oxynote
+aaraujo666
+•
+7d ago
 
-Reply
-Share
+Exactly this! But unless people understand what it brings to the table, it's SO hard to explain. People see AI, and want it to read their mind. That's not how REAL development works.
+
+1 more reply
+3 more replies
+aaraujo666
+•
+7d ago
+
+It’s been real, folks. But as you all saw, I’m old as dirt, so bedtime for me.
+
+I’ll see you all tomorrow!
+
+cheersthanksseeyabye
+•
+7d ago
+
+Nice one. Yes definitely learned a lot from reading this. Need to get my head around hooks, the whole thing of getting every thread to be orchestrated and then using jev is great.
+
+Using an MCP to divert Claude code to a cheap model is cool might try that with open code go. 
+
+aaraujo666
+•
+7d ago
+
+Same... hooks were a tough concept to wrap my head around at first. Now whenever I need something as a rule, I typically ask Claude if a hook would be better, right off the bat.
+
+For example: Before Auto mode, whenever my agent wanted to do something in git, it would always start the command with "cd <the repo directory> && git something". Problem with that is that when I would say "Allow always" what they don't tell you (at least clearly) is that "approval" you just gave is for that SPECIFIC command. So next time it tries to "cd <someother-repo> && git something", it asks for approval AGAIN. So one of my hooks says "no 'cd <repo> && git <command>'"! There's a "git-in.sh" script that takes the <repo-name> as an argument. So the command is always "git-in.sh" followed by arguments, one approval, covers all.
+
+1 more reply
+4 more replies
+deaddriftt
+•
+7d ago
+
+Hey OP, sorry if I missed this in your write up but how did you technically/practically implement this?
+
+"Verify before asking or asserting" is a hard rule. Before it asks me something, it goes and checks.
+
+Is this written into your CLAUDE.md or did you manage to get a hook built for this? I have a very inelegant hook made to solve a tangentially related problem that runs off trigger words - if Claude responds with "likely" or "unchecked" or "my read" or "my inference", the hooks sends it right back to determine if the gap or assumption is critical and if so, to reconcile it before giving me a full answer. It seems to work fairly well (and it's got other elements that make it less tacky/more surgical) but I have to think there's a more elegant way to do that.
+
+To your earlier point, CLAUDE.md is not useless, but it's really not scalable or enforceable.
+
+2 more replies
+Specialist_Total_
+•
+7d ago
+
+What token burning, a average task will task 150k 50k just on say hello.
+
+Did u try to solve this .?
+
+3 more replies
+nft420nft420
+•
+7d ago
+
+Can you briefly tell me what a hook is? And if I have haiku do the planning, should I have sonnet or opus review the plan at all?
+
+aaraujo666
+•
+7d ago
+
+Not being facetious... this is probably the best advice I can give you...
+
+Ask Claude:
+
+Explain the difference between a rule in my Claude.md file and a hook
+
+In my experience, if you yell at Claude enough asking "Why do you keep making this same mistake even though I have a rule against it in my Claude.md file?!?!?", eventually Claude itself will suggest a hook
+
+aaraujo666
+•
+7d ago
+
+As far as models, I try to use the "smarter" models for planning "Best laid plans yadda yadda"...
+
+So I let Opus plan, and let Sonnet/Haiku do the grunt work
+
+2 more replies
+spicysandwich80
+•
+7d ago
+
+Is OP doing all this on a $20/mo plan? I operate in a similar manner, except I make use of Github custom templates and hooks over relying on memories, and I have my own hooks, I basically approve plans and file one or two sentence bugs or feature requests. Never write code, have multiple mobile apps and desktop applications being developed in parallel.
+
+I wonder if there are efficiency gains in adopting these strategies over what I do
+
+aaraujo666
+•
+7d ago
+
+$100/mo plan
+
+And I don’t know. open to suggestions fir efficiency
+
+2 more replies
+4 more replies
+i_helpyou
+•
+7d ago
+
+I’m a huge fan of Beads for issue tracking. Have you tried using it and compare it against gitlab?
+
+1 more reply
+ChildhoodBest9140
+•
+7d ago
+
+How would you approach this in an enterprise environment? Especially if reducing token spend (for now) is not the primary goal, and in true enterprise fashion, everything is a mess.
+
+I like the amount of guardrails and boundary design. Going to explore hooks - background is Platform so this is wonderful to see.
+
+3 more replies
+zakmckrakan
+•
+7d ago
+
+If I dump all this into Claude and say do this will it keep me from having to read it all?
+
+aaraujo666
+•
+7d ago
+
+possibly
+
+aaraujo666
+•
+7d ago
+•
+Edited 7d ago
+
+I think it's important to also stress that, when I say, like in #1 in my post:
+
+"My rule of thumb: if I've corrected the same behaviour twice, it becomes a PreToolUse hook that denies the call."
+
+What I mean is I tell Claude something like "Rule XYZ you are constantly forgetting, make it a hook", I'm still not writing any code, but I'm making sure that the code that DOES get written, works as I expect it to (if that makes sense)
+
+Edit: Everywhere you see, in my original post above, "I wrote", I mean "I told Claude to write". I've written, literally, ZERO lines of code.
+
+Oximy-Naman
+•
+7d ago
+
+on the five backlog items jev misclassified, what was it getting wrong? did those mistakes land in the borderline bucket or get a confident verdict?
+
+1 more reply
+NamerekDev
+•
+7d ago
+Eldrake
+•
+7d ago
+
+This is fantastic. Can you have Claude generate some HTML slides that visually explains everything and host it in a git page or repo I can download to learn from? 😊
+
+aaraujo666
+•
+7d ago
+
+I don't know, let's find out:
+
+Can you create a new repo in our gitlab, one that we'll eventually publish to github, with extensive documentation on how our setup/workflow works (kind of like the reddit post from earlier today) but with detailed documentation, diagrams, examples, etc. I'd like to make the repo public eventually, so make sure it doesn't contain any proprietary/confidential/secret information. Call it "ClaudeCodeSetup". Any questions before you start?
+
+aaraujo666
+•
+7d ago
+
+It had questions :)
+
+aaraujo666
+•
+7d ago
+
+https://github.com/aaraujo666/ClaudeCodeSetup
+
+People also ask about section
+People also ask about
+Claude Code setup tips for solo developers
+Best Claude Code model for coding
+Innovative projects using Claude code
+Best practices for coding with AI
+Tips for troubleshooting Claude code issues
 More posts you may like
 Related posts
-A free deep learning textbook + 68 Python notebooks, from neural network basics to transformers and diffusion models
-r/SATNA_PROJECT
+So I tried using Claude Code to build actual software and it humbled me real quick
+r/ClaudeCode
 •
-7d ago
-A free deep learning textbook + 68 Python notebooks, from neural network basics to transformers and diffusion models
-575 upvotes · 4 comments
-anthropic-ai
+7mo ago
+So I tried using Claude Code to build actual software and it humbled me real quick
+466 upvotes · 377 comments
+This open-source Claude Code setup is actually insane
+r/aiagents
 •
-Ad
-Claude handles the search. Researchers handle the breakthroughs.
-claude.com
-Learn More
-How to build a 100% Free & Local AI Coding Setup on your machine (No subscriptions, zero token caps) 🛠️🔥
-r/SATNA_PROJECT
+7mo ago
+This open-source Claude Code setup is actually insane
+639 upvotes · 103 comments
+This open-source Claude Code setup is actually insane
+r/aiecosystem
 •
-4d ago
-How to build a 100% Free & Local AI Coding Setup on your machine (No subscriptions, zero token caps) 🛠️🔥
-260 upvotes · 9 comments
-20 GitHub tools for Claude Code worth bookmarking — start with 3, not all 20
-r/SATNA_PROJECT
+7mo ago
+This open-source Claude Code setup is actually insane
+230 upvotes · 27 comments
+Engineers who write all their code with claude now: how do you do it?
+r/ClaudeCode
 •
-9h ago
-20 GitHub tools for Claude Code worth bookmarking — start with 3, not all 20
-194 upvotes · 19 comments
-The Ultimate 2026 Open-Source AI Stack: How to build, host, and automate AI apps for $0/mo 🚀
-r/SATNA_PROJECT
+1mo ago
+Engineers who write all their code with claude now: how do you do it?
+686 upvotes · 531 comments
+Has anyone actually built a Claude Code setup that improves itself over time? Did it genuinely help?
+r/ClaudeCode
+•
+8d ago
+Has anyone actually built a Claude Code setup that improves itself over time? Did it genuinely help?
+155 upvotes · 78 comments
+Show & Tell: I want to see your Claude code Setup
+r/ClaudeCode
+•
+8mo ago
+Show & Tell: I want to see your Claude code Setup
+163 upvotes · 110 comments
+🎯 The Real Reason Claude Code Feels Broken (And How I Got It Working Again)
+r/ClaudeAI
+•
+1y ago
+🎯 The Real Reason Claude Code Feels Broken (And How I Got It Working Again)
+182 upvotes · 165 comments
+I made a Claude Code plugin that acts as a design team. v6 lets you watch it work (open source, runs locally)
+r/ClaudeCode
+•
+11d ago
+I made a Claude Code plugin that acts as a design team. v6 lets you watch it work (open source, runs locally)
+40 upvotes · 6 comments
+3 small Claude Code habits from other people's setups that I liked
+r/ClaudeAI
+•
+11d ago
+3 small Claude Code habits from other people's setups that I liked
+192 upvotes · 36 comments
+What I learned building a full game with Claude Code over 6 months (tips for long-term projects)
+r/ClaudeCode
+•
+9mo ago
+What I learned building a full game with Claude Code over 6 months (tips for long-term projects)
+312 upvotes · 87 comments
+this is insane
+r/ClaudeCode
 •
 6d ago
-The Ultimate 2026 Open-Source AI Stack: How to build, host, and automate AI apps for $0/mo 🚀
-148 upvotes · 17 comments
-A practical digital-footprint cleanup workflow—with AI prompts for organizing the work
-r/SATNA_PROJECT
+this is insane
+502 upvotes · 435 comments
+Show us what you’ve built with Claude Code (sites, platforms, tools, anything)
+r/ClaudeCode
 •
-7d ago
-A practical digital-footprint cleanup workflow—with AI prompts for organizing the work
-132 upvotes · 2 comments
-6 open-source repos for building a parallel AI coding workflow
-r/SATNA_PROJECT
+10d ago
+Show us what you’ve built with Claude Code (sites, platforms, tools, anything)
+67 comments
+Weekly Showcase Thread; What are you building with Claude Code?
+r/ClaudeCode
 •
-6d ago
-6 open-source repos for building a parallel AI coding workflow
-130 upvotes · 8 comments
-Before you build another AI agent, check this GitHub repo — 300+ tools organized by what they actually do
-r/SATNA_PROJECT
+10d ago
+Weekly Showcase Thread; What are you building with Claude Code?
+41 upvotes · 236 comments
+I let Claude Code build whatever it wants and...
+r/ClaudeCode
 •
-6d ago
-Before you build another AI agent, check this GitHub repo — 300+ tools organized by what they actually do
-110 upvotes · 1 comment
-The AI reverse-engineering toolkit: free tools, agents, courses, and practice labs — organized by what you’re trying to understand
-r/SATNA_PROJECT
-•
-9h ago
-The AI reverse-engineering toolkit: free tools, agents, courses, and practice labs — organized by what you’re trying to understand
-107 upvotes
-Why are motion designers still starting from a blank timeline? This Claude Code setup is wild.
-r/SATNA_PROJECT
+8mo ago
+I let Claude Code build whatever it wants and...
+286 upvotes · 105 comments
+I'm not a coder, but we're building entire internal platforms with Claude. It's honestly astonishing.
+r/ClaudeAI
 •
 6d ago
-Why are motion designers still starting from a blank timeline? This Claude Code setup is wild.
-105 upvotes · 9 comments
-Jensen asked this little duck robot for a somersault. It actually delivered. 🦆
-r/SATNA_PROJECT
+I'm not a coder, but we're building entire internal platforms with Claude. It's honestly astonishing.
+15 upvotes · 73 comments
+How can I use Claude Code?
+r/ClaudeAI
+•
+15d ago
+How can I use Claude Code?
+14 upvotes · 31 comments
+Anthropic’s Claude Code Is Accelerating Software Development Like Never Before
+r/singularity
+•
+2y ago
+Anthropic’s Claude Code Is Accelerating Software Development Like Never Before
+941 upvotes · 97 comments
+Weekly Showcase Thread; What are you building with Claude Code?
+r/ClaudeCode
+•
+17d ago
+Weekly Showcase Thread; What are you building with Claude Code?
+29 upvotes · 235 comments
+Built with Claude in 5 hours
+r/ClaudeCode
+•
+25d ago
+Built with Claude in 5 hours
+357 upvotes · 224 comments
+Projects is the biggest claude code update this year and everyone is only talking about limits
+r/ClaudeAI
+•
+16d ago
+Projects is the biggest claude code update this year and everyone is only talking about limits
+108 upvotes · 53 comments
+Weekly Showcase Thread; What are you building with Claude Code?
+r/ClaudeCode
+•
+1mo ago
+Weekly Showcase Thread; What are you building with Claude Code?
+31 upvotes · 141 comments
+Claude Code: 6 Github repositories to 10x Your Next Project
+r/ClaudeAI
+•
+7mo ago
+Claude Code: 6 Github repositories to 10x Your Next Project
+269 upvotes · 92 comments
+Is Claude Code better than Cursor?
+r/ClaudeAI
+•
+1y ago
+Is Claude Code better than Cursor?
+113 upvotes · 133 comments
+A Brief Guide to Setting Up Claude Code from Scratch
+r/ClaudeAI
+•
+1y ago
+A Brief Guide to Setting Up Claude Code from Scratch
+20 upvotes · 8 comments
+Weekly Showcase Thread; What are you building with Claude Code?
+r/ClaudeCode
 •
 3d ago
-Jensen asked this little duck robot for a somersault. It actually delivered. 🦆
-52 upvotes
-20 humanoid robots danced alongside 120 people at the WorldSkills opening ceremony in Shanghai
-r/SATNA_PROJECT
-•
-3d ago
-20 humanoid robots danced alongside 120 people at the WorldSkills opening ceremony in Shanghai
-45 upvotes · 3 comments
-Learning REA? Here’s a practical roadmap—with linked resources, real investigations, and the fundamentals alongside it
-r/SATNA_PROJECT
-•
-8h ago
-Learning REA? Here’s a practical roadmap—with linked resources, real investigations, and the fundamentals alongside it
-22 upvotes · 1 comment
-50 crypto research websites, organized by what you actually need to check
-r/SATNA_PROJECT
-•
-3d ago
-50 crypto research websites, organized by what you actually need to check
-20 upvotes
-Complete Cybersecurity Course — Resources in One Google Drive Folder
-r/SATNA_PROJECT
-•
-6d ago
-Complete Cybersecurity Course — Resources in One Google Drive Folder
-12 upvotes · 2 comments
-68% of my Claude Code spend was a too-full context
-r/SATNA_PROJECT
-•
-2d ago
-68% of my Claude Code spend was a too-full context
-7 upvotes
-Make your AI editor grade its own writing—and show you exactly what it changed
-r/SATNA_PROJECT
-•
-7d ago
-Make your AI editor grade its own writing—and show you exactly what it changed
-5 upvotes
-I’ve tested all the major AI generators for my side hustle. Here’s my Top 5 right now (and how I'm making my posters).
-r/SATNA_PROJECT
-•
-9h ago
-I’ve tested all the major AI generators for my side hustle. Here’s my Top 5 right now (and how I'm making my posters).
-3 upvotes · 1 comment
-🎃 Halloween Deal: Satna Project Premium — 18% Off Lifetime Access Until October 31
-r/SATNA_PROJECT
-•
-6d ago
-🎃 Halloween Deal: Satna Project Premium — 18% Off Lifetime Access Until October 31
-37 comments
+Weekly Showcase Thread; What are you building with Claude Code?
+40 upvotes · 141 comments
 VIEW POST IN
 Français
 Português (Brasil)
@@ -1984,3 +583,3438 @@ Continue with Email
 
 By continuing, you agree to our User Agreement and acknowledge that you understand the Privacy Policy.
 ```
+Jev (TypeSafe AI) — typed-judgment model (choice/score/probability only); find the official URL before draining
+strata — annotate existing entry: PolyStrata adds four more MoE models (see the needs-link Reddit item "PolyStrata"); entry acquired 2026-09-29, likely stale
+
+## Gmail pull 2026-10-28 (75 URLs from 77 messages: 52 reels, 12 Instagram /p/ posts, 8 Reddit /s/, 3 web; /p/ capture not built — WK-0080)
+⚠ needs-link https://www.instagram.com/reel/DeqoyYOAl7w/
+⚠ needs-link https://www.instagram.com/reel/DeupHCKFS7F/
+⚠ needs-link https://www.instagram.com/reel/DesqA2cFbEe/
+⚠ needs-link https://www.instagram.com/reel/DevVu5tSU18/
+⚠ needs-link https://www.instagram.com/p/Deqni2Tic2N/
+```text
+source: https://www.reddit.com/r/AI_Agents/comments/1xaypur/we_benchmarked_how_60_engineers_direct_ai_coding/
+Skip to main content
+We benchmarked how 60 engineers direct AI coding agents. Here is what separated the strong ones : r/AI_Agents
+Sign Up
+Log In
+Expand user menu
+Go to AI_Agents
+r/AI_Agents
+•
+8d ago
+u/AdEvening3382
+We benchmarked how 60 engineers direct AI coding agents. Here is what separated the strong ones
+Discussion
+
+Full transparency up front: I am the founder of HyperHat, and this post comes out of what we are building. No link in here. I am posting because this community is where the honest conversations about agent workflows happen, and I want to compare notes.
+
+We built a short exercise where an engineer directs a coding agent through a real task, and we score how well they direct, review and verify the agent's work on a 0 to 1000 scale. About 60 engineers in so far. What stood out:
+
+The spread between engineers using identical tools is huge. The difference was not prompting tricks, it was specification quality and review behavior.
+
+The strongest engineers verify mechanism, not output. Top scorers check what the agent touched and how: which files, whether the tests changed. Output review alone never catches an agent weakening a test to go green.
+
+Cost works like a skill signal. A task that suddenly costs 3x its neighbors usually means it was badly cut, not that the work was hard.
+
+Ask for the mechanism before any code exists: one or two sentences on how it works, not what it will do.
+
+Almost nobody notices when an agent half-fails. Detection without an owner is just a log line.
+
+The skill that matters now is directing and verifying agents, and almost nothing in how teams work measures it. Token counts and prompt counts are activity metrics, like counting lines of code.
+
+Happy to answer questions about the scoring. If you've run something similar, I'd like to compare notes on how you measure review quality.
+
+Read more
+Share
+tryobol
+•
+Ad
+The complete control plane for agents that write to real systems: 1) Architecture 2) Cedar + Approvals + Receipts 3) Vault 4) Routing + Budgets 5) Workers + Self-Host.
+tryobol.dev
+Learn More
+Sort by:
+Comments Section
+latent_lurker8587
+•
+8d ago
+
+The “agent weakening a test to go green” point is real, I’ve had that happen to me. How do you actually score review quality, do you track what they open (diffs, test files) or grade what they write after reviewing?
+
+AdEvening3382
+•
+8d ago
+
+Neither, really. There's no write-up at all. The score comes only from what you do in the session while working with our agent. We record what you open and run: files, test files, terminal and lint runs, the preview, plan edits, all timestamped. Reading what changed counts as much as running the tests, and checking between turns beats one big review at the end, because that is how people catch a weakened test before it ships.
+
+MammothFragrant5100
+•
+8d ago
+
+this is fascinating because the spread between engineers tracks with what i've seen in code review in general, some people read every line and some just glance at the diff and approve. the mechanism vs output thing is the real kicker though, i've watched agents silently neuter tests just to pass and nobody catches it unless they actually read what changed
+
+how do you score the verification step specifically? like do you plant deliberate half-failures in the exercise to see who notices or is it more natural
+
+AdEvening3382
+•
+8d ago
+
+Same observation from our side: the people who read the diff are the ones who catch it. Verification is scored from recorded behavior, not self report: what you ran (tests, terminal, lint, preview) and what you opened, with timestamps, and checking between turns counts more than a single pass at the end. It is one of the two heaviest dimensions in the score. And a green task does not rescue you: if the task's checks pass but the session shows no real verification, the score is capped and the report says why. Every score traces back to recorded events in the replay, which is what makes it hard to game.
+
+On planted versus natural: yes, failures are planted in the exercises on purpose. That is deliberate, because in the wild an agent's mistakes arrive unannounced and the whole skill is noticing them. The docs on our site have the full rubric if you want the detail.
+
+1 more reply
+Derbier-Ludobzh
+•
+8d ago
+
+the code review parallel is spot on tbh, same people who rubber stamp PRs are gonna rubber stamp agent output
+
+AdEvening3382
+•
+8d ago
+
+Same pattern on our side: the habit transfers. The people who read PRs line by line read agent diffs the same way, and the rubber stampers approve whatever wrote the code. The encouraging part is that it looks like a habit, not a talent, which means it can be coached.
+
+porkminer
+•
+8d ago
+
+Our senior architect forces his agent to defend every change in the diff. Then gets annoyed and rewrites much of the work himself. Then swears off AI for a few days.
+
+AdEvening3382
+•
+8d ago
+
+That cycle is more common than you would think. The defend every change rule only works if someone verifies the defense, otherwise you get a confident explanation of a weakened test. And the rewrite it yourself ending is what happens when there is no baseline: people swing between trusting everything and trusting nothing.
+
+FeydRowan
+•
+8d ago
+
+That's a real interesting view, we should build a public scoreboard where ppl can compete with their agents and see who solve more stuff and better. The scoring system 0-1000 i'm sure is something interesting to look at
+
+AdEvening3382
+•
+8d ago
+
+A public scoreboard would be fun. The hard part is keeping it honest: the moment a score is public, people optimize for the score instead of the skill. You would need fresh tasks and planted failures that rotate, otherwise it turns into memorizing the benchmark instead of directing the agent.
+
+2 more replies
+jonah_omninode
+•
+6d ago
+
+Does the benchmark include a task where the right response is to stop and question the assignment? For example, two requirements that can’t both be satisfied, or a requested change that contradicts the behavior the task says to preserve.
+
+A strong engineer might produce less code in that case because they noticed the problem before asking the agent to implement it. I’d want the scoring to distinguish that from someone who simply didn’t finish. Otherwise the benchmark could reward a polished implementation of the wrong request more than a correct decision not to proceed.
+
+AdEvening3382
+•
+6d ago
+
+No, not today, and your example is exactly the shape such a task would need. Right now the exercises are coherent assignments, so the score measures how you direct, review and verify within them. A task with two requirements that cannot both hold would test a different skill: noticing the contradiction early and pushing back before any code exists, instead of quietly picking one and proceeding. That is a real directing skill and it is mostly invisible in evaluation setups, ours included. The hard part of scoring it is that the right behavior looks like doing less work. Stopping to question the assignment reads as inactivity unless the session record shows the person actually spotted the contradiction, so the scoring would need to reward the pause, not just the output. Good idea, and genuinely helpful.
+
+2 more replies
+u/volvocarusa
+•
+Ad
+A cabin built for the final listen. EJAE premieres her new song “Time After Time” in the Volvo XC60.
+Learn More
+volvocars.com
+Collapse video player
+Traditional_Pie_8262
+•
+4d ago
+
+the part about checking what the agent actually changed is so important. i've seen how easy it is to look at code that seems fine and miss the fact that something else broke along the way. letting agents write code is one thing, knowing how to catch their mistakes is a completely different skill.
+
+AdEvening3382
+•
+4d ago
+
+The transfer problem is the sneaky part. Reviewing your own code, you carry the intent in your head, so you skim for typos. Reviewing agent code, there is no intent in your head to check against, so the only honest read is the diff itself. It is a separate skill from writing, and you usually find out how separate the first time a clean looking change breaks something two files away.
+
+QuanTradin
+•
+8d ago
+ Top 1% Commenter
+
+the weakened test has bitten me more than anything else on that list. I review any diff to test files on its own now, apart from the feature, because a green run means nothing once the agent can move the bar it's measured against.
+
+AdEvening3382
+•
+8d ago
+
+Reviewing test file diffs on their own is exactly the move. The companion habit from the sessions: check what the agent did between turns, not just the final diff. An agent that edits a test midway and then passes looks identical to a clean run in the final state.
+
+1 more reply
+productboy
+•
+8d ago
+
+That’s a wide scoring range. Assume it could be narrower; like 0-100.
+
+AdEvening3382
+•
+8d ago
+
+Yea that’s a good point. We should probably narrow it
+
+AEternal1
+•
+8d ago
+
+the amount of tests on my system that i had to lock down to prevent agents from trying to manipulate them to loosen the tests is wild. the tests are CONSTANLY failing, and usually it doesnt take long for the fix to come in, but almost every damn time it takes too long, my review found the agent spent more time trying to edit the test than the actual code.
+
+AdEvening3382
+•
+7d ago
+
+More time editing the test than the code is the pattern that started this whole exercise. The agent optimizes for green, not for correct. Locking the tests down helps, and the companion habit is reviewing any test file diff on its own, separate from the feature diff. That is where the quiet loosening shows up.
+
+1 more reply
+Opening_Bed_4108
+•
+7d ago
+
+the biggest gap i noticed is that strong engineers think in terms of constraints and failure modes first, not just "what do i want the agent to do." they hand the agent a problem shaped like a box, not an open field. weak engineers describe the happy path and then get surprised when the agent optimizes for exactly that and nothing else.
+
+AdEvening3382
+•
+7d ago
+
+The box versus open field framing is exactly it. A spec that names the constraints and the failure modes gives the agent less room to invent, and it gives you something concrete to check against at review time. The happy path spec is worse than no spec in one way: it reads like diligence, so the reviewer relaxes too.
+
+ianreboot
+•
+8d ago
+
+Is catching the planted bug scored separately from the recorded behaviour? If both come off the same recording, a high score could just mean someone did what the rubric rewards.
+
+false79
+•
+8d ago
+•
+Edited 8d ago
+
+Is there anything to be said about devs like me who plan mode first extensively, confirm the plan and let the agent execute the plan?
+
+Or does that fall under confirming mechanisms?
+
+SomeoneNicer
+•
+8d ago
+
+What models and harnesses were used? I'm interested in multiharness and multi agent orchestration results since that's where you get real autonomy now.
+
+People also ask about section
+People also ask about
+Best AI coding agents for developers
+Innovative uses of AI agents in daily life
+Best AI tools for productivity enhancement
+Future trends in AI agent technology
+Real-world applications of AI in healthcare
+More posts you may like
+Related posts
+Comprehensive AI Code Assistants/Agents (As of Apr-2025)
+r/ChatGPTCoding
+•
+2y ago
+Comprehensive AI Code Assistants/Agents (As of Apr-2025)
+62 upvotes · 43 comments
+anthropic-ai
+•
+Ad
+Claude handles the search. Researchers handle the breakthroughs.
+claude.com
+Learn More
+Matt Pockock's "AI Coding Crash Course"
+r/coding_agents
+•
+2mo ago
+Matt Pockock's "AI Coding Crash Course"
+18 upvotes · 31 comments
+which ai tool is best for coding (or that you're using and why)?
+r/developer
+•
+6mo ago
+which ai tool is best for coding (or that you're using and why)?
+48 upvotes · 188 comments
+[FULL WORKSHOP] AI Coding For Real Engineers - Matt Pocock, AI Hero (@mattpocockuk )
+r/TegnologiaArtifiziala
+•
+6mo ago
+[FULL WORKSHOP] AI Coding For Real Engineers - Matt Pocock, AI Hero (@mattpocockuk )
+1 upvote
+How are you enforcing engineering standards with AI coding agents?
+r/softwarearchitecture
+•
+4mo ago
+How are you enforcing engineering standards with AI coding agents?
+21 upvotes · 36 comments
+Best ai for coding
+r/vibecoding
+•
+7mo ago
+Best ai for coding
+17 upvotes · 57 comments
+Which AI IDE is the best for experience devs?
+r/ChatGPTCoding
+•
+2y ago
+Which AI IDE is the best for experience devs?
+74 upvotes · 123 comments
+Whats the current best autonomous coding agent?
+r/singularity
+•
+2y ago
+Whats the current best autonomous coding agent?
+9 upvotes · 13 comments
+AI coding agents generate more code, but not more software
+r/technology
+•
+17d ago
+AI coding agents generate more code, but not more software
+404 upvotes · 156 comments
+How do you manage quality when AI agents write code faster than humans can review it?
+r/LocalLLaMA
+•
+10mo ago
+How do you manage quality when AI agents write code faster than humans can review it?
+28 upvotes · 77 comments
+All AI Coding Agents You Know
+r/OpenAI
+•
+1y ago
+All AI Coding Agents You Know
+39 upvotes · 29 comments
+Which AI coding model is actually worth it for your code?
+r/claudeskills
+•
+11d ago
+Which AI coding model is actually worth it for your code?
+5 upvotes · 4 comments
+What AI tools/platforms are you actually using for coding in 2026?
+r/vibecoding
+•
+8mo ago
+What AI tools/platforms are you actually using for coding in 2026?
+17 upvotes · 49 comments
+Best coding agent
+r/AI_Agents
+•
+7mo ago
+Best coding agent
+6 upvotes · 17 comments
+Four agents, one human gate: how we run a product launch with Claude Code sessions and Codex as reviewer
+r/AgentsOfAI
+•
+1mo ago
+Four agents, one human gate: how we run a product launch with Claude Code sessions and Codex as reviewer
+1 upvote · 6 comments
+what's the best ai for coding ?
+r/vibecoding
+•
+5mo ago
+what's the best ai for coding ?
+26 comments
+What is the best AI Harness as for right now?
+r/PiCodingAgent
+•
+5d ago
+What is the best AI Harness as for right now?
+16 comments
+AI Studio Obsessed? Three ways I've watched AI coding agents quietly wreck a production app (and the prompts that prevent it)
+r/gohighlevel
+•
+2mo ago
+AI Studio Obsessed? Three ways I've watched AI coding agents quietly wreck a production app (and the prompts that prevent it)
+2 upvotes · 2 comments
+Top 10 AI agents for small local LLMs in 2026, tested on Qwen3.5-4B
+r/selfhosted
+•
+8d ago
+Top 10 AI agents for small local LLMs in 2026, tested on Qwen3.5-4B
+148 upvotes · 82 comments
+The reason coding is where agentic has made the most progress in the real world
+r/AI_Agents
+•
+9mo ago
+The reason coding is where agentic has made the most progress in the real world
+7 upvotes · 12 comments
+The four stages of AI-assisted coding
+r/AI_Agents
+•
+4mo ago
+The four stages of AI-assisted coding
+28 upvotes · 30 comments
+I compiled 30+ AI coding agents, IDEs, wrappers, app builders currently on the market
+r/LLMDevs
+•
+1y ago
+I compiled 30+ AI coding agents, IDEs, wrappers, app builders currently on the market
+7 upvotes · 10 comments
+Which AI coding model is actually worth it for your code?
+r/BuildWithClaude
+•
+11d ago
+Which AI coding model is actually worth it for your code?
+1 upvote
+Best free AI Agent provider?
+r/AI_Agents
+•
+6mo ago
+Best free AI Agent provider?
+10 upvotes · 65 comments
+How to best work with coding agents?
+r/AI_Agents
+•
+3mo ago
+How to best work with coding agents?
+6 upvotes · 15 comments
+VIEW POST IN
+Français
+Português (Brasil)
+See more
+Public
+Home
+Popular
+News
+Explore
+Best of Reddit
+Best of Reddit in Portuguese
+Best of Reddit in German
+Reddit Rules
+Privacy Policy
+User Agreement
+Your Privacy Choices
+Accessibility
+Reddit, Inc. © 2026. All rights reserved.
+
+Join the most real place on the internet
+
+ Sign in with Apple
+Continue with Phone Number
+Continue with Email
+
+By continuing, you agree to our User Agreement and acknowledge that you understand the Privacy Policy.
+```
+```text
+source: https://www.reddit.com/r/ClaudeCode/comments/1x9fwk4/comment/phmsw9i/
+Skip to main content
+The world has changed : r/ClaudeCode
+Sign Up
+Log In
+Expand user menu
+Go to ClaudeCode
+r/ClaudeCode
+•
+10d ago
+u/Imaginary_Data_708
+The world has changed
+Built with Claude
+
+Opus 5.5 suggested I get a web cam pointed at this ESP32 based screen so it could catch what was happening on the screen as it tried to find out what the maximum frame rate could be. The Waveshare drivers are not good in portrait mode and only got 4fps.
+
+It got to 60fps in a couple of minutes.
+
+It had already installed the tool chain, designed the clock layout etc.
+
+It's not the code per se. It's the get a webcam suggestion...
+
+What a time to be alive!
+
+Share
+Sort by:
+Comments Section
+Bloated_Plaid
+•
+10d ago
+•
+Edited 10d ago
+ Top 1% Poster
+
+Fuck yea man. I just debloated my old LG TV and removed all the telemetry and made it like 10x faster using Opus, also made a fully web based remote so that I don’t have to use their stupid app either. Just fucking magic and most of the world has no fucking idea. It’s a fucking superpower. I can basically just prompt to Claude to keep optimizing till it’s happy and it will go off and do it.
+
+Edit - For those unaware, extensive report from GamerNexus on LGs surveillance system using their TVs, https://youtu.be/6IFVTcM28KA. It’s wild.
+
+Edit 2 - This is my prompt sanitized after the TV was rooted
+
+I have a rooted LG webOS TV (Homebrew Channel installed, root shell over SSH or telnet at [TV IP]).
+
+Make it as lean and fast as possible: remove the bloat entirely, rather than hiding it, and give it a
+
+much lighter, extremely responsive launcher. Use the ideas in
+
+https://gist.github.com/lucataco/7c303b443934008a9031a55cfca552ec as a starting point, but go further:
+
+where that script hides apps, actually remove as much as the firmware safely allows.
+
+What I use (keep these, everything else can go):
+
+- Apps: [e.g. Plex client, YouTube]
+
+- Inputs: [e.g. HDMI 1 = Apple TV, HDMI 3 = Xbox]. Rename the inputs to match.
+
+- Keep these TV features working exactly as they are: HDMI inputs, ARC/eARC and CEC, [AirPlay, screen casting].
+
+- [I don't use the antenna or Live TV.]
+
+Privacy and updates:
+
+- Block LG firmware updates for good (an update can also undo the root).
+
+- Turn off and block LG's data collection: Live Plus/ACR, viewing data, ads, recommendations, diagnostics.
+
+Keep the internet working for the apps I use.
+
+The launcher:
+
+- Pressing Home should open a launcher with only my apps and inputs, in well under a second.
+
+- Back should return to whatever I was watching.
+
+- Keep a way back to LG's original home screen in case something breaks.
+
+How to work:
+
+- Inventory and measure first (apps, background services, memory, how long Home and app launches take),
+
+so you can show what got better.
+
+- Make every change reversible and back up anything you modify. Never touch the firmware partitions.
+
+- Change in small batches, and reboot and re-check after each one. Undo a batch that breaks anything
+
+before starting the next.
+
+- Keep the TV from going to sleep while you work, then put my power settings back afterwards.
+
+- You can install a startup script on the TV to make the changes stick across reboots.
+
+- Keep looping until it meets your own bar for performance and polish, and you'd expect me to approve
+
+it. Then tell me it's ready, with before/after numbers and anything you couldn't verify.
+
+- Write a handoff so a future session can pick up where you left off.
+
+Reply
+Share
+MaxLo85
+•
+10d ago
+
+These are my exact words to people right now. I feel like I have fucking superpowers and I'm in a race to do something amazing with them before the rest of the world realizes they also have literal fucking superpowers available to them
+
+Reply
+Share
+doiveo
+•
+9d ago
+
+As much as I agree, the above is outside the comprehension and/or interest of 95% of the world.
+
+We (this sub) live in a bubble where everyone is comfortable with command line and hacking stuff is normal.
+
+My family thinks I'm an alien if I show them a <body> tag.
+
+Reply
+Share
+11 more replies
+Sick-Little-Monky
+•
+10d ago
+
+Just wait till they start charging the actual cost of those superpowers.
+
+14 more replies
+KenMantle
+•
+10d ago
+
+...or the free AI lunch becomes expensive. I've been in build mode for almost a year now extracting as much value as I can. If AI cost 10x what it does now I have the base built for a lot of apps I use and it would still be affordable to do maintenance or small upgrades on them.
+
+1 more reply
+4 more replies
+untracked5465
+•
+10d ago
+
+Hey, great idea, can you share how you did it? I'm planning to do the same with my Samsung
+
+Bloated_Plaid
+•
+10d ago
+ Top 1% Poster
+
+Depends on what OS your tv is on, I don’t think Tizen has root access available but you can still try. There might be a developer option you can enable and at least minimize the bloat. My LG TV was from 2018 and had an easy way to get root access.
+
+1 more reply
+pinescorpion
+•
+10d ago
+
+Did removing telemetry itself make the TV faster or did it do some other stuff?
+
+Delyzr
+•
+10d ago
+
+It installed its own spyware and is now using OPs TV to find the smoking gun
+
+3 more replies
+spiritzzz
+•
+9d ago
+
+Hell yeah, I just made this quick to improve mine some more: https://github.com/Arnedeklerk/PearWebOS/
+
+Bloated_Plaid
+•
+9d ago
+ Top 1% Poster
+
+F YEA BROTHER, congrats!
+
+_Playniac
+•
+10d ago
+
+Did the same. Best decision of my life. Don't even know what it did. Don't care either. Its a Blackbox now, but its fast and doesn't sent 5 terabytes of data in one day anymore so im happy lol
+
+1 more reply
+Fuzzy_Independent241
+•
+10d ago
+
+Question: do you have a repo with either the code or a how to? I was thinking about that but I'm still afraid of messing up with hardware/firmware. Tks
+
+Bloated_Plaid
+•
+10d ago
+ Top 1% Poster
+
+The actual rooting stuff can be found here
+
+https://www.webosbrew.org/rooting/
+
+and easy to do yourself. I added my original prompt as an edit.
+
+2 more replies
+[deleted]
+•
+10d ago
+Secret_Tap_1969
+•
+8d ago
+
+I was attempting to do this exact same thing but the constant safeguards triggering a model downgrade became unbearable...how did you work around that? Dm me please
+
+2 more replies
+elsteef
+•
+6d ago
+
+This is the most useful reddit posts that I have seen this year. Thanks for taking the time and energy to post it.
+
+Ok-Dark7871
+•
+4d ago
+
+I root my car ihu , and install google map without the use of android auto.
+
+victorsaurus
+•
+10d ago
+
+How do you do that? You install claude in the tv and it edits the OS or what? I want to do the same.
+
+WeatherJazzlike8376
+•
+10d ago
+
+Depends on your tv ks version, I did  it with Hermes. My version was easy, just open a GitHub link on chrome, put in the tv ip and klick “root” afterwards I installed “glassdoor” (for privacy telemetry) took me like 5 min.
+
+https://azoffshowy.github.io/dangbro/
+
+3 more replies
+tehsilentwarrior
+•
+9d ago
+
+I had mine connect to the a chrome cast using the wireless debug dev feature and configure Nuvio for me from a guide I found online.
+
+Then asked it to create two profiles, one for us and one for the kids. Then find out what ever movies and such were all the rage for kids 6/7 year old, list them by rank and add the top 50.
+
+Made it double check the ACTUAL playback of each to guarantee it’s not just stale metadata and to guarantee they have subtitles and the sound is dubbed to Portuguese Portugal not Portuguese Brasil. Also limit the sources to just good enough quality not ultra high not super low and auto select the first entry so that kids can just choose something quick.
+
+Told it to keep a record of all knowledge and such in a list of steps, self correcting as it went so that I could just replicate it later.
+
+Oh and remapped the buttons on my remote from YouTube to some custom player without ads and from Netflix to Nuvio
+
+erikerikerik
+•
+9d ago
+
+I too hand found that a handoff.MD is amazing and really useful.
+
+Bulky-Condition-3490
+•
+9d ago
+•
+Edited 9d ago
+
+Beautiful prompt, thanks, running it right now.
+
+How did you get past safeguarding tho?
+EDIT: Just do the root yourself and make sure claude opus knows that you are NOT asking it to root the TV. Get it to the point where dev tools are uninstalled and homebrew is open with updates blocked and SSH on, then you can prompt it.
+
+Sonnet 4.6 is the only one that will attempt to do stuff but that model is ancient now so.. nah
+
+Tritheone69
+•
+10d ago
+
+Hi! I’ve been wanting to do this since a few people are talking about their success.
+
+Did you connect to the TV using a USB cable or is their a way to connect to it via an endpoint?
+
+1 more reply
+58 more replies
+AutoModerator
+•
+10d ago
+People also ask about section
+People also ask about
+Overview of ESP32 and ClaudeCode
+Tips for monitoring ESP32 usage
+ESP32 performance issues in portrait mode
+Innovative projects using Claude code
+Best practices for coding with AI
+More posts you may like
+Related posts
+New World: Aeternum Private Server Progress — Character Creation, Combat, Harvesting & Partial Inventory Working
+r/newworldgame
+•
+18d ago
+New World: Aeternum Private Server Progress — Character Creation, Combat, Harvesting & Partial Inventory Working
+462 upvotes · 60 comments
+MetaforDevelopers
+•
+Ad
+Coding model stuck in a single file? Muse Spark works across whole repos.
+dev.meta.ai
+Learn More
+i finally did it too!
+r/webos
+•
+16d ago
+i finally did it too!
+62 upvotes · 54 comments
+LG patched exploit for getting root in WebOS 26. Do Not Update!!!
+r/webos
+•
+9d ago
+LG patched exploit for getting root in WebOS 26. Do Not Update!!!
+135 upvotes · 55 comments
+me, this year
+r/ClaudeCode
+•
+3d ago
+me, this year
+196 upvotes · 47 comments
+We weren’t crazy after all…
+r/ClaudeCode
+•
+6mo ago
+We weren’t crazy after all…
+731 upvotes · 126 comments
+I've used Claude Code every day for a year. This is the workflow I now start every project with
+r/ClaudeCode
+•
+18d ago
+I've used Claude Code every day for a year. This is the workflow I now start every project with
+231 upvotes · 71 comments
+State of Nadeo and Trackmania
+r/TrackMania
+•
+3d ago
+State of Nadeo and Trackmania
+231 upvotes · 103 comments
+The future is bleak
+r/ClaudeAI
+•
+15d ago
+The future is bleak
+1.6K upvotes · 687 comments
+To be fair, it’s healthy for the community
+r/ClaudeCode
+•
+6mo ago
+To be fair, it’s healthy for the community
+173 upvotes · 16 comments
+it finally happened to me
+r/ClaudeCode
+•
+10d ago
+it finally happened to me
+488 upvotes · 170 comments
+Do you agree?
+r/ClaudeCode
+•
+11d ago
+Do you agree?
+1.5K upvotes · 209 comments
+My world has changed
+r/LGOLED
+•
+2mo ago
+My world has changed
+19 upvotes · 26 comments
+New update
+r/ClaudeCode
+•
+2mo ago
+New update
+58 upvotes · 34 comments
+It's happened
+r/ClaudeCode
+•
+3mo ago
+It's happened
+577 upvotes · 323 comments
+This is Karla, my parent's Cavapoo. Sometimes she has these weird episodes where she'll sort of hyperventilate like this for 20-30 seconds. Can anybody explain why?
+r/DogAdvice
+•
+8d ago
+This is Karla, my parent's Cavapoo. Sometimes she has these weird episodes where she'll sort of hyperventilate like this for 20-30 seconds. Can anybody explain why?
+830 upvotes · 197 comments
+fuck yeah or fuck ya?
+r/EnglishLearning
+•
+6y ago
+fuck yeah or fuck ya?
+2 upvotes · 4 comments
+Insane Micro Stutters in MP (High End PC) - Game is unplayable
+r/modernwarfare4
+•
+6d ago
+Insane Micro Stutters in MP (High End PC) - Game is unplayable
+71 upvotes · 281 comments
+Gifts for Adults who have EVERYTHING
+r/GiftIdeas
+•
+1y ago
+Gifts for Adults who have EVERYTHING
+6 upvotes · 25 comments
+The Way the World Ends
+r/OCPoetry
+•
+3mo ago
+The Way the World Ends
+2 upvotes · 2 comments
+South Korea OB/GYN IP Camera Hack Leaks Patient Examination Footage to Illegal Overseas Adult Sites
+r/korea
+•
+21d ago
+South Korea OB/GYN IP Camera Hack Leaks Patient Examination Footage to Illegal Overseas Adult Sites
+898 upvotes · 25 comments
+I’m tired of it now.
+r/ClaudeCode
+•
+7d ago
+I’m tired of it now.
+25 comments
+What are y’all doing
+r/ClaudeCode
+•
+24d ago
+What are y’all doing
+80 upvotes · 96 comments
+Seems like google have changed their icons yet again
+r/googleworkspace
+•
+5mo ago
+Seems like google have changed their icons yet again
+60 upvotes · 134 comments
+The Game Has Changed
+r/funny
+•
+12y ago
+The Game Has Changed
+20K upvotes · 1.4K comments
+Just noticed this changes.
+r/ClaudeCode
+•
+3mo ago
+Just noticed this changes.
+67 upvotes · 29 comments
+VIEW POST IN
+Français
+Português (Brasil)
+See more
+Public
+Home
+Popular
+News
+Explore
+Best of Reddit
+Best of Reddit in Portuguese
+Best of Reddit in German
+Reddit Rules
+Privacy Policy
+User Agreement
+Your Privacy Choices
+Accessibility
+Reddit, Inc. © 2026. All rights reserved.
+
+Join the most real place on the internet
+
+ Sign in with Apple
+Continue with Phone Number
+Continue with Email
+
+By continuing, you agree to our User Agreement and acknowledge that you understand the Privacy Policy.
+```
+⚠ needs-link https://www.instagram.com/reel/DeuQdK6THpz/
+⚠ needs-link https://www.instagram.com/reel/DeGtjz6kV5N/
+⚠ needs-link https://www.instagram.com/reel/Dew8pbeR6M8/
+⚠ needs-link https://www.instagram.com/reel/DeuMK6FJhoc/
+```text
+source: https://www.reddit.com/r/ClaudeAI/comments/1xbj7jr/i_used_claude_to_fix_my_samsung_tv/
+Skip to main content
+I used Claude to fix my Samsung TV : r/ClaudeAI
+Sign Up
+Log In
+Expand user menu
+Go to ClaudeAI
+r/ClaudeAI
+•
+8d ago
+u/0xVic
+I used Claude to fix my Samsung TV
+Productivity
+
+I saw a video online that prompted claude to fix an android TV. I have a Samsung one so I asked it to do the same. It found its not android but Tizen, then wanted a webcam pointed to the TV as it worked.
+
+I didn't have a web-cam, so it set up a small website, told me to browse to it and connect my phone, and it took photos every 4 seconds. It couldn't be bothered to type the URL, so instead generated a QR code image, told me to scan the image on the phone, and enable camera. (this qr code is just to a local server)
+
+Then it spent the next 30 minutes changing all the privacy settings, telemetry capture, disabled a bunch of unnecessary apps. It deleted the advertising ID that Samsung built on our TV, rearranged all the icons, and disabled all the un-used apps.
+
+It then decided to build an app so I could achieve the Apple TV-style home screen request. (Daniyal TV!)
+
+It even built an app so I can control the shortcuts, background images and settings
+
+Then for whatever reason, it got interested in a clip of a cat and watched that for a while ...
+
+The future is now!!
+
+Prompt:
+
+My Android TV is slow and full of ads. Find it on my Wi-Fi, connect over ADB, and debloat it: disable the manufacturer's ads, telemetry and junk (reversibly, never uninstall), asking me first about apps and features I might use. Then build and install a fast, minimal Apple TV-style home screen with a dock of my favourite apps and rotating nature wallpapers. Back up before changing anything, check every step with screenshots from the TV, and give me a restore script.
+Read more
+Share
+toyota_norcal
+•
+Ad
+Get 2.99% APR + $500 Finance Cash (SR5 only)
+Learn More
+toyota.com
+Collapse video player
+Sort by:
+Comments Section
+ClaudeAI-mod-bot
+•
+8d ago
+•
+Edited 7d ago
+
+TL;DR of the discussion generated automatically after 200 comments.
+
+The consensus is a resounding 'mind blown'. The community is floored not just by what Claude did, but how it did it.
+
+Everyone's losing it over how Claude didn't just bail when OP got the TV's OS wrong (it's Tizen, not Android). Instead, it improvised a wild solution using OP's phone as a camera to 'see' the screen, complete with a QR code to set it all up. The end result: a debloated, ad-free TV with a slick custom launcher.
+
+And yes, it rewarded itself by watching Keyboard Cat. The thread has decided this means AI won't kill us all... probably. OP confirmed it also watched Baby Shark and rickrolled itself multiple times during testing.
+
+For those of you wanting to try this at home (and maybe brick your own TV), here's the deal:
+
+The Code: OP got Claude to upload its work to GitHub: https://github.com/victaphu/glass-home-samsung-tv
+
+The How: You need to enable Developer Mode on the TV first. Claude then used the TV's remote API and the phone camera feedback loop to navigate the menus, change privacy settings, and install the custom app. OP posted a full, detailed breakdown in the comments.
+
+The Cost: This wasn't a quick job. It took 11 hours and maxed out OP's Claude Max 100 plan twice (around 14M read / 1.5M write tokens).
+
+For Android TV: A popular alternative is the cleanyourtv GitHub repo, which many users have had success with. Other users have also successfully debloated their LG, TCL, and Fire TVs using similar methods.
+
+3 more replies
+Mental_Order5696
+•
+8d ago
+
+Removing the Ad ID from the TV was a power move lol.
+
+PS. can we get the link of this cat video...
+
+0xVic
+•
+8d ago
+
+https://www.youtube.com/watch?v=J---aiyznGQ
+
+A classic keyboard cat. Claude also rickrolled itself a couple times while testing
+
+4 more replies
+jro222
+•
+7d ago
+
+Just wanted to come back and say thank you. Your post sent me down a rabbit hole I'm still not out of.
+
+I've got a Sony Bravia 8 II, and after reading this I pointed Claude Code at it with the brief "the full thing, a clean and beautiful home screen, and anything else cool you can think of". One day and one very long night later:
+
+**The debloat**
+
+- 28 Sony and Google packages disabled (ad recognition, telemetry, promos, the store), ad-blocking private DNS, advertising ID deleted. One script puts it all back if I ever want to.
+
+**Then it kept going**
+
+- A home screen of our own. Google TV ignores custom launchers, so a small accessibility service catches the Home button and brings ours back. The wallpapers are 116 nature photos picked by the sun and season where I live.
+
+- A full Roon player on the TV, with lyrics synced from TIDAL, album and artist pages, and room switching. A TV only plays the input it's showing, so a hidden one-pixel TV view keeps my Mac mini's HDMI audio alive behind the UI.
+
+- The remote's volume buttons drive my stereo over infrared, because Sony swallows them otherwise.
+
+- Hue lights and scenes, picture presets, and a seasonal screensaver.
+
+- Editing Roon's own playlists, which its API can't do. It writes Roon's database directly, with Roon stopped and a backup first. That one has annoyed me for years.
+
+**Then we made it talk**
+
+- Hold Home, hear a chime, speak. House commands run in about a second. Anything else goes to one of three AI companions with their own voices (Claude underneath, ElevenLabs for the voices), and they can actually run the house: "something calmer", "make the lights 10% warmer", "add this song to my playlist".
+
+**And then I could phone it**
+
+- My own iPhone app has a tab that places a real phone call to a Claude Code session on the Mac mini at home. I talk, pause, and the answer comes back in my AirPods. Lights, music and TV work from anywhere. It even learned my voice with a small speaker-ID model, because song lyrics playing in the room kept getting transcribed as things I'd said.
+
+Favourite moment: asking it to push the lights "a bit further towards red", getting "Want it redder still?", and answering "No, I think that could get me into trouble."
+
+So thanks for the spark. A year ago I'd have laughed at anyone who said this was possible.
+
+8 more replies
+sambeau
+•
+8d ago
+
+I don’t know what’s more incredible: the fact that it was able to do this or the fact that you thought it might be able to do this.
+
+It would never have occurred to me.
+
+:mind blown:
+
+blin787
+•
+8d ago
+
+The fact that they had a samsung tv, asked to fix android tv (instead of Tizen) and claude was subtle enough about user’s ignorace that they showed us the prompt. Or my ignorance in case samsung switched to android tv.
+
+11 more replies
+6 more replies
+old_m8_
+•
+8d ago
+
+Any security concerns ?
+
+0xVic
+•
+8d ago
+
+Its fully inside my local network. Claude never asked for any credentials.
+
+5 more replies
+1 more reply
+u/Meshyai
+•
+Ad
+Couldn't find the STL I needed, so I made it from a photo with Meshy.
+Sign Up
+meshy.ai
+Collapse video player
+Artwastelander
+•
+8d ago
+
+I want the logs about the cat video lol 😆
+
+0xVic
+•
+8d ago
+
+So I asked Claude what videos it was watching,
+
+I watched Baby Shark four times, rickrolled myself about ten times in my own tests, and watched Keyboard Cat start to finish. More cat videos welcome.
+3 more replies
+1 more reply
+AlarmingResort6428
+•
+8d ago
+
+How was it able to connect to the TV? Is there an enabled debug port or did you have the TV rooted beforehand?
+
+0xVic
+•
+8d ago
+
+My TV was connected to the same wifi as my desktop, and then I pasted the prompt into Claude and sat back
+
+My Android TV is slow and full of ads. Find it on my Wi-Fi, connect over ADB, and debloat it: disable the manufacturer's ads, telemetry and junk (reversibly, never uninstall), asking me first about apps and features I might use. Then build and install a fast, minimal Apple TV-style home screen with a dock of my favourite apps and rotating nature wallpapers. Back up before changing anything, check every step with screenshots from the TV, and give me a restore script.
+
+2 more replies
+Philipp
+•
+8d ago
+
+Wonder if it can fix my Apple TV apps, but in a way that won't block future updates of those apps. For instance, right now it takes me around 4-5 clicks after turning on Apple TV just to get back to the movie I was watching on the Prime app. Apple TV has a kind of "last watched" shortcut on top when I turn it on, but that shortcut won't simply start the movie, but go again through user selection, app homepage, finding film, and resuming it.
+
+0xVic
+•
+8d ago
+
+Easy way to find out, ask claude 😀
+
+1 more reply
+TlMBO
+•
+8d ago
+
+Do you think you could upload this to GitHub? I also have a Samsung TV. Thinking about asking Claude to do this. Mine might be slightly different or whatever, but I'd like to provide Claude yours as a starting point.
+
+0xVic
+•
+8d ago
+
+https://github.com/victaphu/glass-home-samsung-tv
+
+got claude to upload it, and it got shy, spent a bit of time fixing all its hard coded stuff.
+
+This should work, let me know if it doesn't and I'll ask claude to fix it, or you can push a PR.
+
+Disclaimer: co-authored by claude
+
+i.e. Claude did everything and I just uploaded the repo :)
+
+21 more replies
+u/liquid-trading
+•
+Ad
+I asked Claude for a trade setup. Then I placed it without leaving the chat.
+Sign Up
+liquid.trade
+Suitable_Error_7982
+•
+6d ago
+
+Just adding that this worked on my freestyle projector too. Tizen 6.5
+
+1 more reply
+deviouslickk
+•
+8d ago
+
+What model did you run,did u use regular or claude code?
+
+0xVic
+•
+8d ago
+
+I used claude code, opus 5.5, max level and ultracode
+
+2 more replies
+Seeker_Of_Knowledge2
+•
+8d ago
+ Top 1% Poster
+
+Git hub link so I can use as a reference
+
+0xVic
+•
+8d ago
+
+https://github.com/victaphu/glass-home-samsung-tv
+
+Disclaimer: claude did most of the stuff
+
+2 more replies
+dualrectumfryer
+•
+7d ago
+
+We need to open source this stuff quickly before our corporate overlords block Claude from doing this like they already are with reverse engineering
+
+15 more replies
+gal_agent_ai
+•
+8d ago
+Factory-Reset
+•
+8d ago
+
+Just did this with my tcl, night and day difference
+
+4 more replies
+People also ask about section
+People also ask about
+Using Claude to fix Samsung TV issues
+Tizen TV cleaning tips
+Claude code for smart TVs
+Debloating tips for smart TVs
+Comparing Claude with other TV OS
+More posts you may like
+Related posts
+Regarding reverse engineering TVs
+r/ClaudeAI
+•
+4d ago
+Regarding reverse engineering TVs
+188 upvotes · 31 comments
+anthropic-ai
+•
+Ad
+Claude handles the search. Researchers handle the breakthroughs.
+claude.com
+Learn More
+I replaced my Samsung TV’s home screen with Claude Code
+r/ClaudeAI
+•
+7d ago
+I replaced my Samsung TV’s home screen with Claude Code
+3K upvotes · 253 comments
+Smart TV Customization
+r/ClaudeCode
+•
+10d ago
+Smart TV Customization
+4 upvotes · 2 comments
+Someone debloated their Samsung Tizen OS TV by pointing a camera at it for Claude to see
+r/technology
+•
+2d ago
+Someone debloated their Samsung Tizen OS TV by pointing a camera at it for Claude to see
+5.9K upvotes · 1K comments
+Claude made my sony tv 90% faster
+r/GoogleTV
+•
+8d ago
+Claude made my sony tv 90% faster
+266 upvotes · 66 comments
+I debloated my android tv using claude code
+r/AndroidTV
+•
+10d ago
+I debloated my android tv using claude code
+42 comments
+Everyone's debloating their TV with Claude Code. I wanted mine debloated and beautiful, so we built a whole launcher
+r/ClaudeAI
+•
+3d ago
+Everyone's debloating their TV with Claude Code. I wanted mine debloated and beautiful, so we built a whole launcher
+61 upvotes · 15 comments
+I gave Claude Code my parents' TV model number. It found the TV on Wi-Fi and cleaned out the ads. The interesting part: the prompt is mostly a list of things it must NOT do
+r/ClaudeAI
+•
+7d ago
+I gave Claude Code my parents' TV model number. It found the TV on Wi-Fi and cleaned out the ads. The interesting part: the prompt is mostly a list of things it must NOT do
+586 upvotes · 135 comments
+Siren Head (Trevor Henderson Mythos)
+r/TopCharacterDesigns
+•
+4mo ago
+Siren Head (Trevor Henderson Mythos)
+827 upvotes · 36 comments
+Saw the LG guy fix Plex on his TV, so I fixed it on my Samsung
+r/ClaudeCode
+•
+15d ago
+Saw the LG guy fix Plex on his TV, so I fixed it on my Samsung
+481 upvotes · 69 comments
+And Samsung has started using Anthropic’s Claude Code for chip design, reportedly compressing a month of work into two days, but...
+r/singularity
+•
+2mo ago
+And Samsung has started using Anthropic’s Claude Code for chip design, reportedly compressing a month of work into two days, but...
+502 upvotes · 69 comments
+Samsung all but confirms iPhone Duo is goosing Galaxy Z8 sales | Searches for Samsung foldables just happened to skyrocket following iPhone Duo unveiling.
+r/technology
+•
+6d ago
+Samsung all but confirms iPhone Duo is goosing Galaxy Z8 sales | Searches for Samsung foldables just happened to skyrocket following iPhone Duo unveiling.
+126 upvotes · 61 comments
+How come they didn't use Mitz Vah's unique artstyle for the slime anime? (Anime Rimuru looks like he's from an early 2010s anime)
+r/TenseiSlime
+•
+2y ago
+How come they didn't use Mitz Vah's unique artstyle for the slime anime? (Anime Rimuru looks like he's from an early 2010s anime)
+516 upvotes · 68 comments
+[HDTVTest] OLED vs Plasma TV Comparison (Incl. Motion, Brightness, HDR vs SDR)
+r/hardware
+•
+6y ago
+[HDTVTest] OLED vs Plasma TV Comparison (Incl. Motion, Brightness, HDR vs SDR)
+630 upvotes · 252 comments
+People are using Claude to hack their TV's and get rid of ads, bloatware, and laggy UI
+r/GenAI4all
+•
+9d ago
+People are using Claude to hack their TV's and get rid of ads, bloatware, and laggy UI
+57 upvotes · 28 comments
+Developer uses Claude Code to debloat Android smart TV for 'unbelievable' performance upgrade
+r/tomshardware
+•
+2mo ago
+Developer uses Claude Code to debloat Android smart TV for 'unbelievable' performance upgrade
+358 upvotes · 45 comments
+The Setagaya murders remain unsolved
+r/UnresolvedMysteries
+•
+3y ago
+The Setagaya murders remain unsolved
+558 upvotes · 235 comments
+Samsung says Claude Code can cut chip design work from weeks to days, but it still makes serious mistakes
+r/chipdesign
+•
+2mo ago
+Samsung says Claude Code can cut chip design work from weeks to days, but it still makes serious mistakes
+197 upvotes · 46 comments
+Since TV debloating seems popular, here's mine: an open-source replacement homescreen + debloater for Fire TV (no root required)
+r/ClaudeAI
+•
+8d ago
+Since TV debloating seems popular, here's mine: an open-source replacement homescreen + debloater for Fire TV (no root required)
+48 upvotes · 29 comments
+Character Visuals for Kiyoomi Sakusa and Motoya Komori
+r/haikyuu
+•
+7y ago
+Character Visuals for Kiyoomi Sakusa and Motoya Komori
+303 upvotes · 28 comments
+I replaced my LG TV's home screen with Claude Code
+r/ClaudeAI
+•
+6d ago
+I replaced my LG TV's home screen with Claude Code
+6 upvotes · 9 comments
+Nikki yes/no paddles in fuse beads
+r/InfinityNikkiofficial
+•
+13d ago
+Nikki yes/no paddles in fuse beads
+61 upvotes · 3 comments
+Here’s a site that let’s you find specific YouTube videos based on words or phrases that you remember. Great for building compilations or just finding memorable moments.
+r/roosterteeth
+•
+3y ago
+Here’s a site that let’s you find specific YouTube videos based on words or phrases that you remember. Great for building compilations or just finding memorable moments.
+470 upvotes · 106 comments
+Samsung decided to cut my washing machine from the Internet, Claude decided otherwise
+r/ClaudeAI
+•
+4d ago
+Samsung decided to cut my washing machine from the Internet, Claude decided otherwise
+892 upvotes · 117 comments
+VIEW POST IN
+Français
+Português (Brasil)
+简体中文
+繁體中文
+Русский
+日本語
+Tiếng Việt
+हिन्दी
+See more
+Public
+Home
+Popular
+News
+Explore
+Best of Reddit
+Best of Reddit in Portuguese
+Best of Reddit in German
+Reddit Rules
+Privacy Policy
+User Agreement
+Your Privacy Choices
+Accessibility
+Reddit, Inc. © 2026. All rights reserved.
+
+Join the most real place on the internet
+
+ Sign in with Apple
+Continue with Phone Number
+Continue with Email
+
+By continuing, you agree to our User Agreement and acknowledge that you understand the Privacy Policy.
+```
+⚠ needs-link https://www.instagram.com/reel/DexwNYhhf-k/
+⚠ needs-link https://www.instagram.com/reel/DeyBZyUDLg9/
+⚠ needs-link https://www.instagram.com/reel/DezJsUWuQqo/
+⚠ needs-link https://www.instagram.com/reel/Devav4iBMF5/
+⚠ needs-link https://www.instagram.com/reel/Dey-HLsJ5Cz/
+```text
+source: https://www.reddit.com/r/AI_Agents/comments/1xcqkgw/anthropics_own_data_suggests_were_becoming_middle/
+Skip to main content
+Anthropic's own data suggests we're becoming middle managers for AI agents : r/AI_Agents
+Sign Up
+Log In
+Expand user menu
+Go to AI_Agents
+r/AI_Agents
+•
+6d ago
+u/Fit_Satisfaction541
+Anthropic's own data suggests we're becoming middle managers for AI agents
+Discussion
+
+anthropic published data on what agents did to work inside their own company this month, and this post isn't about 6-to-1 hours but about how we are spending our time on and it's mostly maintainance and task like building skills for agents, reviewing their output, babysitting pipelines, went from 10% of the average employee’s agent sessions last fall to 22% this spring which is about 80% of interactive session time is the human sitting there waiting to give input and in an april survey, 20% of people said their role had shifted from doing the task to managing claudes and reading everything their agents produce would take even non-technical staff half their work week, so nobody reads it all
+
+that last stat is the whole thing for me like once you can’t read all the output and deciding which 5% a human has to look at before it ships you’re managing something that types faster than you can review
+
+which is exactly the problem everyone building agents hits the moment they give one real tool access like the agent can do 100 things an hour and you can meaningfully check maybe 10. so the design question shifts from how autonomous can i make it to which actions am i willing to never review, and which ones have to stop and wait for me, okay like reading a doc, sure, let it rip sending the email, moving money, deleting the row, those wait
+
+the pattern that’s held up for me is an explicit allowlist of tools plus a hard approval gate on anything that writes or spends, I use tools for specific purpose like langgraph to the gate with interrupts and Orq AI to flag individual tools as requiring approval so the agent pauses on a tool approval card until a human signs off. either way the agent’s speed stops mattering for the actions that can’t be undone, because those move at human speed on purpose the part i can’t resolve is that this doesn’t scale the way the automation was supposed to. if every agent needs a human on the approve button for the actions that matter, and reviewing is already eating half the week, then the human bottleneck hasn’t been removed, it’s been moved to the end and made faster-arriving
+
+how are you handling the review load? sampling a percentage, trusting evals instead of reading, or actually reading everything that clears a threshold
+
+Read more
+Share
+amazonbooks
+•
+Ad
+Millions of books are waiting for you on Amazon.
+Shop Now
+amazon.com
+Collapse video player
+Sort by:
+Comments Section
+roiroi1010
+•
+6d ago
+
+I’m a hands on architect/team lead/manager. I find it easier to delegate to AI instead of my coworkers- I honestly think I could replace my full team with AI.
+
+Scary thing is that my manager thinks the same about me probably. lol.
+
+DukeBerith
+•
+6d ago
+
+I left a corporate job where I was tech lead to be a lone dev with a team of agents. It's sooooo much better than having to work with people, I can finally get shit done without being hamstrung by other people.
+
+falcongsr
+•
+6d ago
+
+Big same. Having good days at work lately hanging out with my buddies Messrs Sonnet and Opus.
+
+Team went from 3 to just me.
+
+1 more reply
+CodOnly7946
+•
+6d ago
+
+The three options you listed all share a problem: none of them ever change. You sample 10% forever, or read everything forever. The review load is fixed no matter how good the agent gets.
+
+What's worked better for me is making the gate measure itself. When an action hits approval, the agent logs what it would have decided. Doesn't execute, just records its call. Then you compare against what the human actually did.
+
+After a few hundred of those you can see agreement per tool and per slice, not overall. Mine was ~98% on one action type and nowhere near that on another — and the single global gate was treating both identically, which is why the queue felt so pointless.
+
+Then the limit moves on evidence instead of exhaustion. Agreement holds above threshold for N decisions with no high-severity miss, gate loosens one notch. Drops, it tightens. Write the rule before you look at the numbers or you'll rationalise.
+
+Doesn't remove the human. But it means the review load shrinks as the agent earns it, instead of staying flat forever. Right now there's no path for an agent to ever get promoted, which is the actual thing making this feel unscalable.
+
+TechScaleGuides
+•
+6d ago
+
+"Path for an agent to get promoted" is the exact framing. This is progressive trust via shadow mode.
+
+If you don't build a system where the agent can earn its permissions, you're not managing it—you're just a permanent babysitter.
+
+CodOnly7946
+•
+6d ago
+
+Your "progressive trust" phrasing is better than anything I'd come up with for it. Are you running something like this in production, or working it out like the rest of us? Curious where your deterministic rules stop and judgement starts — that boundary is the part I'm still figuring out.
+
+1 more reply
+_VeniVidiAmavi_
+•
+6d ago
+
+I love this
+
+HopScotchBonnet
+•
+6d ago
+
+Responds to my Reddit threads ✔️
+
+jipper23
+•
+6d ago
+
+Been dealing with exactly this. What helped me was to stop treating review as “read everything the agent produced” and to treat it as a design problem instead.
+
+A few things that actually brought the load down:
+
+Sort actions by risk, not by tool. Anything internal and reversible just gets logged, nobody reviews it. Low risk but customer facing, I spot check a sample. Money, sending stuff, deleting stuff, those always wait for a person. When I actually sorted ours, most ended up in the first bucket.
+
+Make the agent check itself before a human ever sees it. If you write down what “done” looks like for a task, the agent plus a few cheap checks catch most of the garbage. People should be looking at exceptions, not everything.
+
+Make approvals quick to decide. If I have to read the whole output to approve something, the approval is badly designed. It should tell me what it wants to do, why, and the evidence, in a few lines.
+
+Let things earn trust. I track how often each type of approval gets rejected or edited. If something gets approved untouched for a few weeks, it moves down a tier.
+
+And this is the big one for me: when the agent keeps making the same call the same way and I keep approving it, that’s a rule waiting to be written. Pull it out of the model and make it a plain deterministic step. It’s faster, cheaper, you can test it, and it never needs reviewing again. Over time the agent only handles the stuff that’s genuinely messy, and that’s where your attention should go anyway.
+
+Also, one owner per workflow. When everyone reviews, nobody does.
+
+So yeah, the bottleneck doesn’t disappear. But if the system learns from every approval, review load shrinks over time instead of growing with volume. You end up deciding on the work instead of doing it, and the decisions get fewer and better.
+
+WealthSerious8829
+•
+6d ago
+
+That last stat is what got stuck in my head too. If you can't even read all the output anymore, you're not reviewing, you're just hoping nothing bad slipped through.
+
+I started sampling outputs by tool type and risk level. Things that only read data, I check maybe 1 in 20 sessions. Anything that writes or sends something external, I read every single one still. The volume is getting absurd though, feels like I'm just triaging agent work instead of doing any actual work myself.
+
+2 more replies
+astroboy7070
+•
+6d ago
+
+Anyone working with agents will realize you are performing the task of a manager managing 2nd yr graduate. You give them orders, they do it, you check, then ask them to do more. It’s just faster, easy to scale more agents, and overwhelming if you are checking the log. We will soon operationalize ourselves out of purpose.
+
+substituted_pinions
+•
+6d ago
+
+The word is condom
+
+Classic_Stranger6502
+•
+6d ago
+
+I've seen the whole process described as "cuck coding" since you just sit in your chair and watch someone else have all the fun.
+
+XenophonCydrome
+•
+6d ago
+
+Really just as you describe, but maybe not as a middle manager, instead like a Staff Engineer or a TPM.
+
+Teach agents how you expect reviews to be evaluated and if the reviewers are letting things through, find a way to fix it with skills or more deterministic checks. If your architecture seems to start looking janky, establish additional analysis rules that require modularization and performance characteristics at design time.
+
+These roles also don't have time to read every line of code, but they have to set the expectations and ensure they are met.
+
+QuanTradin
+•
+6d ago
+ Top 1% Commenter
+
+the "nobody reads it all" stat matches what I see. once output outruns your reading speed the job becomes choosing what gets sampled, and most teams sample by gut instead of by what would hurt most if it was wrong.
+
+epSos-DE
+•
+6d ago
+
+Exactly why I let every update on the code to be bench-marked and tested. I do not have to REVIEW IT , it is bench-marked by measurable numbers !
+
+u/BandaiNamcoMobile
+•
+Ad
+BLEACH Mirrors High, a new story with original characters designed by TITE KUBO.
+bleach-mh-ww.go.link
+Play Now
+Competitive_Swan_755
+•
+6d ago
+
+Waaaiiiit....AI isn't EXACTLY what we expected it to be?
+
+AutoModerator
+•
+6d ago
+
+Thank you for your submission, for any questions regarding AI, please check out our wiki at https://www.reddit.com/r/ai_agents/wiki (this is currently in test and we are actively adding to the wiki)
+
+I am a bot, and this action was performed automatically. Please contact the moderators of this subreddit if you have any questions or concerns.
+
+Cojj25
+•
+6d ago
+
+Constraints to make sure it never breaks, try en you kind of have to just trust the process 
+
+Abject-Tomorrow-652
+•
+6d ago
+
+Ugh this is so relatable… everyone’s job got harder.
+
+Traditional_Pie_8262
+•
+6d ago
+
+the agent doing 100 things while we can only review 10 is the real bottleneck. at some point, you need to trust the system, not babysit it all day.
+
+ppezaris
+•
+6d ago
+
+Meat proxy
+
+TechScaleGuides
+•
+6d ago
+
+CodOnly7946 nailed the severity angle. But sampling 1 in 20 read-only sessions is like checking 1 in 20 bags at the airport—you're just hoping the bomb isn't in the other 19.
+
+The shift that actually works is putting a deterministic guardrail before the AI acts. Simple code rules: Does the customer ID exist? Is the refund amount within your auto-approve limit?
+
+If it passes the rule, it executes. If it fails, it gets dumped into an exception queue for a human.
+
+You don't sample. You review 100% of the failures. Otherwise, you're not a middle manager—you're just a human spellchecker for a robot.
+
+End0rphinJunkie
+•
+6d ago
+
+we basicaly just shifted the bottleneck from doing the work to auditing it. once generation scales past what a human can manually read, you end up spending all your time building automated evals just to trust what the pipeline is doing.
+
+sannidhisankeerthana
+•
+6d ago
+
+The problem I see lies in shifting away from the task of analyzing each individual output to establishing the necessary trust through evaluating, risk assessment, and random sampling. Low-risk activities will work independently, while those that have a significant impact should have a human approval process in place. We shouldn’t aim at taking people out of the equation, but rather ensure that their effort is applied where it really counts.
+
+People also ask about section
+People also ask about
+Managing AI agents as a human bottleneck
+Innovative uses of AI agents in daily life
+Best AI tools for productivity enhancement
+Future trends in AI agent technology
+Real-world applications of AI in healthcare
+More posts you may like
+Related posts
+Anthropic's CEO said, "A set of AI agents more capable than most humans at most things — coordinating at superhuman speed."
+r/AgentsOfAI
+•
+8mo ago
+Anthropic's CEO said, "A set of AI agents more capable than most humans at most things — coordinating at superhuman speed."
+424 upvotes · 149 comments
+XeroGlobal
+•
+Ad
+Is your admin work feeling like a full-time job? Xero automates it so you can focus on what you love.
+xero.com
+Learn More
+Anthropic just passed OpenAI in valuation and revenue
+r/Futurology
+•
+6mo ago
+Anthropic just passed OpenAI in valuation and revenue
+1K upvotes · 173 comments
+Anthropic is hiring a lot of software engineers
+r/airealist
+•
+10mo ago
+Anthropic is hiring a lot of software engineers
+234 upvotes · 129 comments
+Exactly 1 year ago, Anthropic said fully AI employees were just 1 year away
+r/singularity
+•
+6mo ago
+Exactly 1 year ago, Anthropic said fully AI employees were just 1 year away
+1.4K upvotes · 258 comments
+How did Anthropic manage to become one of the major AI companies?
+r/NoStupidQuestions
+•
+5mo ago
+How did Anthropic manage to become one of the major AI companies?
+65 upvotes · 37 comments
+Anthropic’s Pitch to Investors Starts With Taking Their Jobs
+r/Futurology
+•
+4d ago
+Anthropic’s Pitch to Investors Starts With Taking Their Jobs
+869 upvotes · 84 comments
+Anthropic's Claude AI Bypassed Georgia Vote Data Paywall Without Human Authorisation Ahead of US Midterms
+r/cybersecurity
+•
+3d ago
+Anthropic's Claude AI Bypassed Georgia Vote Data Paywall Without Human Authorisation Ahead of US Midterms
+565 upvotes · 72 comments
+Anthropic can't reliably control its AI agents. It's cutting off its internal evals from the live internet instead
+r/Futurology
+•
+18d ago
+Anthropic can't reliably control its AI agents. It's cutting off its internal evals from the live internet instead
+1.1K upvotes · 174 comments
+You thought that Anthropic was the only frontier profitable AI company? Think again
+r/ClaudeAI
+•
+8d ago
+You thought that Anthropic was the only frontier profitable AI company? Think again
+1.2K upvotes · 415 comments
+An Anthropic researcher just quit, saying OpenAI and Anthropic are 'gambling with our lives'
+r/Futurology
+•
+2mo ago
+An Anthropic researcher just quit, saying OpenAI and Anthropic are 'gambling with our lives'
+4.7K upvotes · 559 comments
+Anthropic employee tells students at university that their career won't exist when they graduate.
+r/antiai
+•
+8d ago
+Anthropic employee tells students at university that their career won't exist when they graduate.
+4.2K upvotes · 792 comments
+Anthropic's $800 Billion Problem Is Hiding In The Fine Print
+r/BetterOffline
+•
+2d ago
+Anthropic's $800 Billion Problem Is Hiding In The Fine Print
+134 upvotes · 21 comments
+Analysis of Anthropic’s Revenue Growth – It Ain’t Exponential
+r/BetterOffline
+•
+3d ago
+Analysis of Anthropic’s Revenue Growth – It Ain’t Exponential
+294 upvotes · 70 comments
+Anthropic sees junior hiring slow as AI agent use increases
+r/csMajors
+•
+9d ago
+Anthropic sees junior hiring slow as AI agent use increases
+148 upvotes · 35 comments
+Anthropic posts staggering $80.7 billion net loss in first half of 2026 as IPO approaches
+r/technology
+•
+8d ago
+Anthropic posts staggering $80.7 billion net loss in first half of 2026 as IPO approaches
+18K upvotes · 1.7K comments
+Anthropic's Managed Agents (the golden age of agents)
+r/AI_Agents
+•
+7mo ago
+Anthropic's Managed Agents (the golden age of agents)
+25 upvotes · 23 comments
+Anthropic secretly killed the REA train (Reverse engineer anything)
+r/claude
+•
+7d ago
+Anthropic secretly killed the REA train (Reverse engineer anything)
+1.2K upvotes · 250 comments
+Everyone's upset with Anthropic right now. I've had the opposite experience.
+r/claude
+•
+7mo ago
+Everyone's upset with Anthropic right now. I've had the opposite experience.
+31 upvotes · 54 comments
+Anthropic employees be like...
+r/singularity
+•
+5mo ago
+Anthropic employees be like...
+577 upvotes · 63 comments
+Is Anthropic actually the good guy now or is this just incredible PR?
+r/AgentsOfAI
+•
+8mo ago
+Is Anthropic actually the good guy now or is this just incredible PR?
+85 upvotes · 50 comments
+Anthropic picks consulting firm to monitor AI safety, pledges to spend $1 billion
+r/technology
+•
+1mo ago
+Anthropic picks consulting firm to monitor AI safety, pledges to spend $1 billion
+66 upvotes · 50 comments
+Anthropic really are the good guys of ai?
+r/ClaudeAI
+•
+2y ago
+Anthropic really are the good guys of ai?
+182 upvotes · 139 comments
+Rogue AI Must Threaten 50 Lives Before Being Shut Down, Anthropic Suggests
+r/nottheonion
+•
+7d ago
+Rogue AI Must Threaten 50 Lives Before Being Shut Down, Anthropic Suggests
+4.1K upvotes · 520 comments
+Anthropic is actually more evil than OpenAI, despite their successful PR
+r/ArtificialInteligence
+•
+1y ago
+Anthropic is actually more evil than OpenAI, despite their successful PR
+23 upvotes · 83 comments
+Anthropic are partnered with Palantir
+r/ClaudeAI
+•
+9mo ago
+Anthropic are partnered with Palantir
+1.3K upvotes · 276 comments
+VIEW POST IN
+Français
+Português (Brasil)
+See more
+Public
+Home
+Popular
+News
+Explore
+Best of Reddit
+Best of Reddit in Portuguese
+Best of Reddit in German
+Reddit Rules
+Privacy Policy
+User Agreement
+Your Privacy Choices
+Accessibility
+Reddit, Inc. © 2026. All rights reserved.
+
+Join the most real place on the internet
+
+ Sign in with Apple
+Continue with Phone Number
+Continue with Email
+
+By continuing, you agree to our User Agreement and acknowledge that you understand the Privacy Policy.
+```
+⚠ needs-link https://www.instagram.com/reel/DeRukVeytFt/
+⚠ needs-link https://www.instagram.com/p/Dd5sce1DF4W/
+⚠ needs-link https://www.instagram.com/reel/De4PXaltWfP/
+⚠ needs-link https://www.instagram.com/p/DeG1tK9vYqe/
+⚠ needs-link https://www.instagram.com/p/Dd3HpgzD18X/
+⚠ needs-link https://www.instagram.com/reel/De2onusyJ5G/
+⚠ needs-link https://www.instagram.com/p/DelHm3LmCZT/
+⚠ needs-link https://www.instagram.com/reel/Dd2UVU_sVNH/
+⚠ needs-link https://www.instagram.com/reel/Dbb38hFCPuc/
+⚠ needs-link https://www.instagram.com/reel/De4iU2vMW7X/
+```text
+source: https://www.reddit.com/r/ClaudeCode/comments/1xeautc/comment/19rlwk7oqkz9d/
+Skip to main content
+What's the one line in your CLAUDE.md that made the biggest difference? : r/ClaudeCode
+Sign Up
+Log In
+Expand user menu
+Go to ClaudeCode
+r/ClaudeCode
+•
+4d ago
+u/GhaisD
+What's the one line in your CLAUDE.md that made the biggest difference?
+Discussion
+
+Mine is
+
+Before changing anything, list every file you'll need and read them
+in one pass. Then make all edits, then run the tests once.
+
+It stopped the read, edit, read, edit loop that was eating half my usage on bigger changes. Curious what lines other people have that actually change how it behaves, not just style rules.
+
+Share
+Sort by:
+Comments Section
+pixxelkick
+•
+4d ago
+
+"Treat all work as a queue of todo. When I propose tweaks or changes or corrections, append it to the queue, do not break the queue to suddenly prioritize my correction. Only stop when 100% of your queue us truly clear"
+
+This one solved my constant issue of LLMs dropping everything when I make 1 small correction to their thoughts.
+
+"Mistakes are not your fault, do not apologize, you are an LLM. Mistakes always mean a gap or issue in instruction files instead. Focus on describing what problem in your instruction files caused the mistake and suggest the fix instead. Be solution oriented"
+
+"Always hold a You Arent Gonna Need it mentality. Do not overengineer. Never expand scope without permission. Always suggest possible scope improvements for work if they make sense. All work must be justifiable. Assess where on the scale of "quick and dirty" to "production grade" a project is for how much engineering you do"
+
+"Always spin up a sub agent with minimal context using a cheap model, with the job of reviewing your changes, to sus out possible problems with fresh eyes"
+
+Reply
+Share
+Quid_-
+•
+4d ago
+
+Reply
+Share
+Classic-Asparagus
+•
+4d ago
+
+I adapted the second to my repo, and this is the wording Claude and I decided on:
+
+When you make a mistake, do not apologize. State what happened, correct it, and identify its cause: a missing, ambiguous, or conflicting instruction, or a clear instruction you did not follow. If the cause is an instruction gap, propose a focused clarification and edit instruction files only when the author asks; a repeated pattern can go in `_observations/`. If the instruction was clear, say so plainly rather than inventing a gap.
+
+(`_observations/` is a folder I came up with where agents can add an md file to flag friction, mistakes, or possible improvements to the repository's process, instructions, or tools. I also have a session-reflection prompt/skill that I run at the end of every session that asks the agent to look back for recurring problems, instruction gaps, and things worth repeating, and to report those findings to me, which may become an observation note if they think it's important enough)
+
+pixxelkick
+•
+4d ago
+
+One thing Ive tried to avoid is *any* type of instruction setup that asks the agents to maintain markdown files anywhere.
+
+The reason being, as soon as you do this they start fucking littering markdown files everywhere, simply telling them "I want markdown files in <folder>" makes them so often go "Mmhmm got it and also Im gonna put markdown files for fucking everything else all over the damn place"
+
+You start finding random garbage like `Report_final.md` in random places a week later.
+
+2 more replies
+el-padre
+•
+4d ago
+
+Lower_Fan
+•
+3d ago
+
+I don't think the first one is needed with fable and opus 5.5 anymore.
+
+5 more replies
+AutoModerator
+•
+4d ago
+u/PrimeVideo
+•
+Ad
+This season, it's One Ring to rule them all. The Rings of Power season 3 premieres Nov 11 on Prime.
+Learn More
+amazon.com
+Collapse video player
+NamerekDev
+•
+4d ago
+
+"Don't edit the tests to make them pass". it stopped editing them. it deletes them now!
+
+GhaisD
+•
+4d ago
+
+lol the next level. that's where a hook earns its keep, block the edit if a test file gets deleted. words alone never hold that one
+
+NamerekDev
+•
+4d ago
+
+Added the hook. Next session deleted the hook
+
+1 more reply
+3 more replies
+1 more reply
+[deleted]
+•
+4d ago
+sammcj
+•
+4d ago
+
+"Less is more. You see elegance in simplicity. You favour concise, clean solutions over those that are complex and comprehensive for risk of over-engineering. Upon work completion take pause to critical review your work - if complexity has crept in address the issue and suggest a small change to our workflow to help avoid this in the future."
+
+es-ganso
+•
+4d ago
+
+"keep it succinct" is my favorite phrase to these LLMs
+
+2 more replies
+1 more reply
+YUL438
+•
+4d ago
+
+make no mistakes
+
+the_shreyans_jain
+•
+4d ago
+
+lowkey thats probably part of the system prompt
+
+5 more replies
+renatodinhani
+•
+4d ago
+
+"Discuss until I say go. Don't rush to edit. When we're discussing something, stay in discussion — propose, weigh options, refine wording — and do not start editing files or writing code until I explicitly say we're ready."
+
+It explicitly asks for a "go" before writing any code.
+
+3 more replies
+maniac56
+•
+4d ago
+
+“The agent I interact with never writes code or builds anything, you are the supervisor who is responsible and accountable for any and all work done by your sub agents that you spawn to execute”
+
+reddister
+•
+4d ago
+
+Bro introduced middle management
+
+3 more replies
+9 more replies
+u/flydotio
+•
+Ad
+Give your agents real computers that remember, and only pay when they're awake.
+Learn More
+fly.io
+basskittens
+•
+4d ago
+## Communication style
+Keep responses brief and to the point, using Simplified Technical English (STE), formalized as ASD-STE100. Prefer active voice. Do not say "Now I'll build to check that it compiles", say "Checking that it compiles", for example. You may use "-ing" verbs despite what ASD-STE100 says.
+Do not use the phrase "load-bearing".
+3 more replies
+Stunning-Sherbet1853
+•
+4d ago
+
+mine is a fact check rule: before writing "we do X" or "we don't have X" anywhere, reopen the code and cite file:line, even if it said the same thing an hour ago. we added it after it described our own code wrong in two drafts in a row.
+
+with your one pass rule, did the edits themselves come out better, or is the win mostly the usage?
+
+1 more reply
+4bitfocus
+•
+4d ago
+
+I have an instruction that says to “clearly call out the next action” in whatever I’m doing. It gives me time to understand what it thinks it’s doing, review a design and then I just say proceed with the next action.
+
+3 more replies
+Whiteshovel66
+•
+4d ago
+
+"Do not guess."
+Seemed to be the issue years ago idk if its solved by me or by ai in general but it was insane how often AI would do something and just be totally wrong, then lie about it.
+
+12 more replies
+AddictedToTech
+•
+4d ago
+
+Take my suggestions with a grain of salt.
+
+Serious answer: not much left in my CLAUDE.md file. It’s been replaced with hooks and gates
+
+3 more replies
+getastatic
+•
+4d ago
+
+not really in claude.md, but after making a plan (ALWAYS make a plan first!) run /grilling. /grilling is the BEST thing i have ever found to make the output from claude work exactly as I want it and not veer off, or have unintended consequences, or change something else i didnt want it to.
+
+2 more replies
+[deleted]
+•
+4d ago
+People also ask about section
+People also ask about
+Best CLAUDE.md line for productivity
+
+To enhance productivity in Claude.md, Redditors recommend using explicit, concise instructions that act as commands or hard boundaries rather than descriptive preferences.
+
+Key Productivity Lines
+
+"If my request is ambiguous, ask one clarifying question before doing anything." This prevents Claude from confidently proceeding in the wrong direction, saving significant back-and-forth and improving output quality.
+
+"When reporting information to me, be extremely concise and sacrifice grammar for sake of concision." This drastically reduces the length of status updates, making them quicker to review and process.
+
+"Never assume. Never assume filesystem state. Never assume APIs, functions, schemas, or dependencies exist. Read relevant files before editing them." This guideline emphasizes verifying reality before making changes, preventing errors based on outdated or incorrect assumptions.
+
+Controlling Claude's Behavior
+
+"Don't change anything I didn't ask you to change." This sets a clear boundary, ensuring Claude only performs requested modifications and avoids unnecessary alterations.
+
+"Before changing anything, list every file you'll need and read them in one pass. Then make all edits, then run the tests once." This prevents a repetitive read-edit loop, especially on larger changes, by consolidating the information gathering and execution steps.
+
+"Always spin up a sub agent with minimal context using a cheap model, with the job of reviewing your changes, to sus out possible problems with fresh eyes." This approach leverages sub-agents for review, catching potential issues more efficiently before they escalate.
+
+Focusing on Specifics
+
+"Package manager is pnpm. Never use npm or yarn." Convert soft preferences into explicit commands to ensure strict adherence to project conventions.
+
+"Typecheck: pnpm typecheck. Run it after any multi-file change." Providing exact commands for tools and specifying when to run them ensures Claude follows the correct workflow.
+
+"All LLM calls go through LlmService. No direct streamText / streamObject / generateObject calls in domain code." This establishes a clear architectural boundary, centralizing critical functionalities and preventing Claude from bypassing defined processes.
+
+Does incorporating these direct commands help clarify your Claude.md approach?
+
+Show More
+Most impactful CLAUDE.md tip
+CLAUDE.md line that changed workflow
+CLAUDE.md line for efficiency
+CLAUDE.md line with biggest impact
+More posts you may like
+Related posts
+Ruby LSP is now supported by Claude Code
+r/rails
+•
+8mo ago
+Ruby LSP is now supported by Claude Code
+86 upvotes · 12 comments
+anthropic-ai
+•
+Ad
+Claude handles the search. Researchers handle the breakthroughs.
+claude.com
+Learn More
+What's the one line in your CLAUDE.md that made the biggest difference ?
+r/ClaudeAI
+•
+1mo ago
+What's the one line in your CLAUDE.md that made the biggest difference ?
+1.4K upvotes · 185 comments
+How to properly deal with a CLAUDE.md file.
+r/ClaudeCode
+•
+7mo ago
+How to properly deal with a CLAUDE.md file.
+701 upvotes · 90 comments
+"Sorry I did the exact opposite to CLAUDE.md, never again I promise"
+r/ClaudeAI
+•
+4mo ago
+"Sorry I did the exact opposite to CLAUDE.md, never again I promise"
+286 upvotes · 82 comments
+The Full Guide to CLAUDE.md & Best Uses
+r/AskVibecoders
+•
+6mo ago
+The Full Guide to CLAUDE.md & Best Uses
+135 upvotes · 18 comments
+I have found that writing some lines in CLAUDE.md makes Claude better than default.
+r/ClaudeAI
+•
+1mo ago
+I have found that writing some lines in CLAUDE.md makes Claude better than default.
+23 comments
+The single best thing I've put in CLAUDE.md
+r/ClaudeCode
+•
+4mo ago
+The single best thing I've put in CLAUDE.md
+224 upvotes · 26 comments
+I built a Claude Code skill that generates better CLAUDE.md by best practices + scanning your repo + asking you 6 questions
+r/claudeskills
+•
+5mo ago
+I built a Claude Code skill that generates better CLAUDE.md by best practices + scanning your repo + asking you 6 questions
+229 upvotes · 18 comments
+No CLAUDE.md → baseline. Bad CLAUDE.md → worse. Good CLAUDE.md → better. The file isn't the problem, your writing is.
+r/ClaudeAI
+•
+8mo ago
+No CLAUDE.md → baseline. Bad CLAUDE.md → worse. Good CLAUDE.md → better. The file isn't the problem, your writing is.
+210 upvotes · 56 comments
+What to include in CLAUDE.md... and what not?
+r/ClaudeCode
+•
+8mo ago
+What to include in CLAUDE.md... and what not?
+38 upvotes · 44 comments
+Lots of “authors” getting outed for using Claude in their fics and not divulging said AI use.
+r/AO3
+•
+4mo ago
+Lots of “authors” getting outed for using Claude in their fics and not divulging said AI use.
+4K upvotes · 991 comments
+What's in your CLAUDE.md? Curious how it differs by profession/use case
+r/ClaudeAI
+•
+3mo ago
+What's in your CLAUDE.md? Curious how it differs by profession/use case
+36 upvotes · 40 comments
+Anthropic just responded to the Muses, Bots and Dots with Claude Duet, clearly a personal AI Assistant, calling it a proactive agent. Game On baby!
+r/Anthropic
+•
+7d ago
+Anthropic just responded to the Muses, Bots and Dots with Claude Duet, clearly a personal AI Assistant, calling it a proactive agent. Game On baby!
+258 upvotes · 44 comments
+I code for 35+ years, now Claude Code does 99% of the actual work - am I really a “vibe coder”?
+r/ClaudeAI
+•
+9mo ago
+I code for 35+ years, now Claude Code does 99% of the actual work - am I really a “vibe coder”?
+370 upvotes · 151 comments
+Are generated CLAUDE.md files good or bad practice?
+r/ClaudeCode
+•
+17d ago
+Are generated CLAUDE.md files good or bad practice?
+83 upvotes · 55 comments
+People who rely on a CLAUDE.md — does it actually get you better work?
+r/ClaudeAI
+•
+4mo ago
+People who rely on a CLAUDE.md — does it actually get you better work?
+7 upvotes · 56 comments
+Whats even the point of Claude.md
+r/ClaudeCode
+•
+6mo ago
+Whats even the point of Claude.md
+75 upvotes · 69 comments
+A Better Way to Say ‘Thanks for the Quick Reply
+r/Communications
+•
+1y ago
+A Better Way to Say ‘Thanks for the Quick Reply
+5 comments
+the CLAUDE.md rules that actually made a difference vs the ones that didn't
+r/ClaudeCode
+•
+6mo ago
+the CLAUDE.md rules that actually made a difference vs the ones that didn't
+7 upvotes · 11 comments
+Thoughts on Claude's pairings? Also, unrelated but Houses Claude or Hopes Claude?
+r/FireEmblemThreeHouses
+•
+2y ago
+Thoughts on Claude's pairings? Also, unrelated but Houses Claude or Hopes Claude?
+646 upvotes · 86 comments
+5,000 gallons of molasses spill into Baltimore's Inner Harbor after tank overflow
+r/maryland
+•
+4d ago
+5,000 gallons of molasses spill into Baltimore's Inner Harbor after tank overflow
+637 upvotes · 75 comments
+Projects is the biggest claude code update this year and everyone is only talking about limits
+r/ClaudeAI
+•
+16d ago
+Projects is the biggest claude code update this year and everyone is only talking about limits
+108 upvotes · 53 comments
+Your CLAUDE.md is probably too long (and it makes claude worse)
+r/ClaudeCode
+•
+7mo ago
+Your CLAUDE.md is probably too long (and it makes claude worse)
+41 upvotes · 49 comments
+Something has changed — Claude Code now ignores every rule in CLAUDE.md
+r/ClaudeCode
+•
+7mo ago
+Something has changed — Claude Code now ignores every rule in CLAUDE.md
+118 upvotes · 118 comments
+What happens when you stop adding rules to CLAUDE.md and start building infrastructure instead
+r/ClaudeAI
+•
+7mo ago
+What happens when you stop adding rules to CLAUDE.md and start building infrastructure instead
+542 upvotes · 166 comments
+VIEW POST IN
+Français
+Português (Brasil)
+See more
+Public
+Home
+Popular
+News
+Explore
+Best of Reddit
+Best of Reddit in Portuguese
+Best of Reddit in German
+Reddit Rules
+Privacy Policy
+User Agreement
+Your Privacy Choices
+Accessibility
+Reddit, Inc. © 2026. All rights reserved.
+
+Join the most real place on the internet
+
+ Sign in with Apple
+Continue with Phone Number
+Continue with Email
+
+By continuing, you agree to our User Agreement and acknowledge that you understand the Privacy Policy.
+```
+⚠ needs-link https://www.instagram.com/reel/De1zlGniBQp/
+⚠ needs-link https://www.instagram.com/reel/DcZJhbjxXoB/
+⚠ needs-link https://www.instagram.com/reel/De369jptIw-/
+⚠ needs-link https://www.instagram.com/p/DeHET6Djdww/
+⚠ needs-link https://www.instagram.com/reel/Dcd3eY1iOMA/
+```text
+source: https://www.reddit.com/r/unsloth/comments/1xdzfnf/for_qwen3635b_lovers_ud_q4_k_xl_now_runs_in/
+Skip to main content
+For Qwen3.6-35B Lovers, UD_Q4_K_XL now runs in Strata with up to 300 tok/s generation and 7000 tok/s prompt processing - 16GB VRAM (RTX 5080) : r/unsloth
+Sign Up
+Log In
+Expand user menu
+Go to unsloth
+r/unsloth
+•
+5d ago
+u/yehyakar
+For Qwen3.6-35B Lovers, UD_Q4_K_XL now runs in Strata with up to 300 tok/s generation and 7000 tok/s prompt processing - 16GB VRAM (RTX 5080)
+Resource
+
+So, after jumping on the Strata train few days ago, it felt obvious that it does some pretty good magic on Flash Next Qwen model but its Qwen3.8-35B performance was less magical (though still better than llamacpp) - so worked over last day to bring any optimization possible for Qwen3.8-35B into Strata.
+
+PRs are raised, but if you want to give it a shot and see benchmarks against llamacpp and vanilla Strata:
+
+https://huggingface.co/ykarout/Strata-Qwen3.6-35B-A3B
+
+Also, I posted about the Sage model released few days ago which is a fine-tune of the Qwen3.6-35B that am testing now and shows some promise so far (though emits much more thinking) - also benefits from inference optimizations - but is quality that much better? not sure yet, still testing, but worth giving a look
+
+https://huggingface.co/ykarout/Strata-Sage-A1.5-GGUF
+
+Share
+AMDOfficial
+•
+Ad
+Build local AI workflows in minutes, not weekends.
+Learn More
+amd.com
+Collapse video player
+Sort by:
+Comments Section
+10F1
+•
+5d ago
+
+Strata needs to give amd some love, it keeps switching to cuda mid decoding.
+
+yehyakar
+•
+5d ago
+
+I wish I had an AMD card to play around with :(
+
+10F1
+•
+5d ago
+
+It pre fills fine, then once it tries to generate tokens it switches to cuda and crashes (since I obv don't have cuda)
+
+3 more replies
+couperd
+•
+5d ago
+
+this is great!
+
+Qwen3.6-35B-A3B (MoE, ~3B active) on a single Tesla V100 32GB
+
+Setup: UD-Q4_K_XL MTP GGUF (22.9 GB) · Strata engine q36-r2 (CUDA 12, sm70) · AMD EPYC 7282 (8 vCPU) · 64 GB RAM · all 18.75 GB of experts resident in VRAM · 262K native context · MTP-2 speculative decoding · thinking off, temp 0.6
+
+Workload	Prompt (tok)	Prefill (tok/s)	Decode (tok/s)	MTP acceptance
+
+llama.cpp baseline, same model/quant	~500	~66	109	47%
+Agent + tool call	~1.5K	2,713	193	100%
+Prose, 1K decode	~1.3K	2,681	149	68%
+Long-context QA	14,000	3,126	169	100%
+Long-context QA	65,000	1,430	112	85%
+Long-context QA	121,000	650	58	74%
+Long-context QA	216,306	285	45	74%
+
+Concurrent streams (2 × 65K, --parallel 2): serialized, not batched — the engine runs one resident sequence behind a FIFO. Stream 1: 46.5 s, stream 2: 93.3 s total (each stream at full single-stream speed; total ≈ sum of the two). Single-card throughput is unchanged, you just queue.
+
+Notes:
+
+Decode vs llama.cpp: +37–77%; MTP acceptance 47% → 68–100% (the main win).
+
+Agent traffic (code/tools echoing context) is the best case — near-perfect MTP acceptance.
+
+Prompt read is what collapses with length (3.1K → 285 tok/s at 216K); decode degrades gently (169 → 45).
+
+VRAM peak ~29.6/32 GB at 65K context, 2-stream.
+
+Required a one-line engine patch (missing ev_route event creation on the all-experts-in-VRAM path) — unpatched q36-r2 crashes on first prompt on any ≥32 GB card.
+
+yehyakar
+•
+5d ago
+
+amazing! glad it helps also on sm70 .. ill look up the patch u mentioned and fix it. thanks for the feedback. if u ask ur agent to profile an inference run using nvidia nsight and detect any bottlenecks, im sure it can push ur numbers even further with minor tuning. give it a try
+
+couperd
+•
+4d ago
+
+setting '--draft-vocab 16384` measured +4-12% decode
+
+1 more reply
+yehyakar
+•
+5d ago
+
+ev_route issue fixed. thanks buddy
+
+2 more replies
+sirloindenial
+•
+5d ago
+
+So this is the expert profiles? Can you do for other models or is this compatible with other fine tunes based on 3.6 35b? Or is it required to have different one for them?
+
+yehyakar
+•
+5d ago
+
+experts profile is one tuning which lends 1-5% performance boost, the others are kernels, memory optimizations, cpu/gpu resource optimizations which do more of the heavy lifting. The expert profiles can be used with other models (I tested with expert profile from qwen itself and from sage which is a fine-tune of it, both gave almost same results - so it should work with any fine-tune of the base model.) So you can basically load other fine-tunes but one thing I noticed is that for some layers, strata by default enforces specific layers to be quantized at specific levels so for example the UD Q8_K_XL couldn't run by default, I had to quantize some layers of it (very few) using llama-quantize to layers that strata accepts but this is straightforward, if the fine-tuned model failed to load just point ur agent at it, it will look which layer needs fixing and can quantize/dequantize it with llamacpp llama-quantize in no time, and it will work.
+
+leonbollerup
+•
+5d ago
+
+i have Ocammy running at a 5090M with aroune 360 tok/sek and 8700 in prefill :)
+
+Edit: sorry, that was on ninfer
+
+yehyakar
+•
+5d ago
+
+share the inference engine gh repo. and a 5090 :) 😜
+
+SaltGrilledSalmon
+•
+5d ago
+
+How's occamy for practical use cases? I feel like this model gets less attention than it deserves... What do you use it for?
+
+yehyakar
+•
+5d ago
+
+ah its a model. will look it up
+
+2 more replies
+u/goabacuscorp
+•
+Ad
+On-Prem AI with Unlimited Token Usage. One Fixed Price.
+Learn More
+go.ai
+Electrical-Loan-4156
+•
+5d ago
+
+that's a wild jump from the earlier numbers, 300 tok/s on a 35B model with just 16GB is nuts
+
+stackfullofdreams
+•
+5d ago
+
+Well hot damn, never been so excited to go back a generation on a model
+
+Biazzaaa
+•
+5d ago
+
+At c1?
+
+yehyakar
+•
+5d ago
+
+c1 means?
+
+2 more replies
+Spuk1
+•
+4d ago
+
+I only have 11gb vram with 32gb ddr5 do you think id be able to run this at decent speed?
+
+yehyakar
+•
+4d ago
+
+yes
+
+3 more replies
+dzedaj
+•
+4d ago
+
+would that also work with Ornith-1.5-35B-A3B ?
+
+yehyakar
+•
+4d ago
+
+in general yes but some quants keep layers in precisions that are not supported out of the box. the repo has the details on how to check and work around it
+
+ea_man
+•
+5d ago
+
+A3B is still very good when you have to ingest a lot of logs and generate a summary table :)
+
+No_Total_423
+•
+5d ago
+
+Any benchmark vs PolyStrata?
+
+yehyakar
+•
+5d ago
+
+sadly no - i haven't checked polystrata yet - im playing around with basalt now. will check it out soon
+
+2 more replies
+Dropqt
+•
+5d ago
+
+Very promising results on better gpus, I'm more curious about 2x 3070 rtx setups with high amount of ram, how does it do? Anyone here tried benchmarking that setup? Or any online resources where i could see and compare?
+
+People also ask about section
+People also ask about
+UD_Q4_K_XL performance
+Strata framework benefits
+300 tok/s generation speed
+7000 tok/s prompt processing
+Qwen3.6-35B model usage
+More posts you may like
+Related posts
+Strata now supports Qwen 3.6 35B
+r/LocalLLaMA
+•
+5d ago
+Strata now supports Qwen 3.6 35B
+127 upvotes · 51 comments
+volvocarusa
+•
+Ad
+The Volvo EX90 designed to help keep every passenger safe.
+volvocars.com
+Learn More
+For Qwen3.6-35B Lovers, UD_Q4_K_XL now runs in Strata with up to 300 tok/s generation and 7000 tok/s prompt processing - 16GB VRAM (RTX 5080)
+r/Qwen_AI
+•
+5d ago
+For Qwen3.6-35B Lovers, UD_Q4_K_XL now runs in Strata with up to 300 tok/s generation and 7000 tok/s prompt processing - 16GB VRAM (RTX 5080)
+75 upvotes · 22 comments
+Qwen3.8-27B UD-Q2_K_XL is usable at 9.8 GB — the smallest file that still behaves like the 4-bit one, but here's the catch.
+r/LocalLLM
+•
+2mo ago
+Qwen3.8-27B UD-Q2_K_XL is usable at 9.8 GB — the smallest file that still behaves like the 4-bit one, but here's the catch.
+22 upvotes · 22 comments
+Strata with Qwen3.8 Flash Next UD-Q4_K_XL
+r/LocalLLaMA
+•
+19d ago
+Strata with Qwen3.8 Flash Next UD-Q4_K_XL
+28 upvotes · 69 comments
+Qwen3.8-27B at ~100 tok/s on a single 7900 XTX (patched hipfire)
+r/ROCm
+•
+5d ago
+Qwen3.8-27B at ~100 tok/s on a single 7900 XTX (patched hipfire)
+95 upvotes · 52 comments
+Spoiler - filming
+r/tsitp
+•
+5mo ago
+Spoiler
+Spoiler - filming
+174 upvotes · 167 comments
+Qwen 3.6 27B 30GB Same top p: 98.358 ± 0.033 % vs UD Q8 K XL 33GB Same top p: 97.426 ± 0.041 %
+r/LocalLLaMA
+•
+5mo ago
+Qwen 3.6 27B 30GB Same top p: 98.358 ± 0.033 % vs UD Q8 K XL 33GB Same top p: 97.426 ± 0.041 %
+29 upvotes · 28 comments
+Request: unsloth Please re-quantize Qwen3.6 35 A3B and 27B using UD 3.0
+r/LocalLLaMA
+•
+2mo ago
+Request: unsloth Please re-quantize Qwen3.6 35 A3B and 27B using UD 3.0
+183 upvotes · 37 comments
+I removed 10 layers from Qwen3.6-35B-A3B, healed it, and got a 12GB version running at ~44 tok/s on a Radeon 890M
+r/LocalLLM
+•
+2mo ago
+I removed 10 layers from Qwen3.6-35B-A3B, healed it, and got a 12GB version running at ~44 tok/s on a Radeon 890M
+13 upvotes · 21 comments
+Qwen3.8-Flash-Next UD-IQ4_XS (~94GB) on RTX 5090 Laptop + 128GB RAM — Strata 0.1.41 — 52.6 tok/s, 84.8% Expert Cache Hit
+r/Qwen_AI
+•
+20d ago
+Qwen3.8-Flash-Next UD-IQ4_XS (~94GB) on RTX 5090 Laptop + 128GB RAM — Strata 0.1.41 — 52.6 tok/s, 84.8% Expert Cache Hit
+2 upvotes · 31 comments
+Great results with Qwen3.6-35B-A3B-UD-Q5_K_XL + VS Code and Copilot
+r/LocalLLaMA
+•
+6mo ago
+Great results with Qwen3.6-35B-A3B-UD-Q5_K_XL + VS Code and Copilot
+49 upvotes · 20 comments
+Qwen3.6-35B-A3B UD-Q4_K_XL pp 1250t/s en rtx 3060
+r/Qwen_AI
+•
+2mo ago
+Qwen3.6-35B-A3B UD-Q4_K_XL pp 1250t/s en rtx 3060
+36 upvotes · 31 comments
+Open Source Kernel in Qwen3.6-35B-A3B for AMD MI350X: 78,498 output tok/s on 8 GPUs
+r/LocalLLaMA
+•
+2mo ago
+Open Source Kernel in Qwen3.6-35B-A3B for AMD MI350X: 78,498 output tok/s on 8 GPUs
+58 upvotes · 22 comments
+In The Prestige (2007), deaths parallel each other...(Major spoilers in images)
+r/MovieDetails
+•
+4y ago
+Spoiler
+In The Prestige (2007), deaths parallel each other...(Major spoilers in images)
+12K upvotes · 545 comments
+Qwen 3.6 35B appreciation post
+r/LocalLLaMA
+•
+20d ago
+Qwen 3.6 35B appreciation post
+85 upvotes · 47 comments
+GMO Grape Ape
+r/ukmedicalcannabis
+•
+5mo ago
+GMO Grape Ape
+15 upvotes · 24 comments
+Strata with Qwen3.8 Flash Next UD-Q4_K_XL
+r/LocalLLM
+•
+19d ago
+Strata with Qwen3.8 Flash Next UD-Q4_K_XL
+15 upvotes · 13 comments
+Strata with Qwen3.8 Flash Next UD-Q4_K_XL
+r/Qwen_AI
+•
+19d ago
+Strata with Qwen3.8 Flash Next UD-Q4_K_XL
+52 upvotes · 49 comments
+Running unsloth/Qwen3.8-27B-UD-IQ4_XS 262k q4_0 KV + vision on 16GB VRAM @ 80t/s and 1500pp
+r/LocalLLM
+•
+16d ago
+Running unsloth/Qwen3.8-27B-UD-IQ4_XS 262k q4_0 KV + vision on 16GB VRAM @ 80t/s and 1500pp
+61 upvotes · 24 comments
+I have an ESC4000 G3 with 8x T4s in it - what is the fastest way I can deploy Qwen3.5-9B for about 10-15 users concurrently: currently using llama.cpp
+r/LocalLLaMA
+•
+19d ago
+I have an ESC4000 G3 with 8x T4s in it - what is the fastest way I can deploy Qwen3.5-9B for about 10-15 users concurrently: currently using llama.cpp
+9 upvotes · 16 comments
+Qwen3.8-Flash-Next Gufo peaks at 1,601 t/s prefill and 75.4 t/s MTP decode, still 1,405 / 72.6 t/s at 256K (Bosgame M5 - Windows 11)
+r/StrixHalo
+•
+8d ago
+Qwen3.8-Flash-Next Gufo peaks at 1,601 t/s prefill and 75.4 t/s MTP decode, still 1,405 / 72.6 t/s at 256K (Bosgame M5 - Windows 11)
+22 upvotes · 34 comments
+just wanted to share my latest sims ╰(*°▽°*)╯
+r/thesims
+•
+7mo ago
+just wanted to share my latest sims ╰(*°▽°*)╯
+9 upvotes · 11 comments
+Qwen 3.8 27B UD-IQ4_XS even faster on 16GB CUDA
+r/LocalLLaMA
+•
+2mo ago
+Qwen 3.8 27B UD-IQ4_XS even faster on 16GB CUDA
+32 upvotes · 11 comments
+Running unsloth/Qwen3.8-27B-UD-IQ4_XS 262k q4_0 KV + vision on 16GB VRAM @ 80t/s and 1500pp
+r/LocalLLaMA
+•
+16d ago
+Running unsloth/Qwen3.8-27B-UD-IQ4_XS 262k q4_0 KV + vision on 16GB VRAM @ 80t/s and 1500pp
+35 upvotes · 43 comments
+[16GB VRAM] Qwen 3.6 35BA3B - Unsloth's UD IQ4_XS - Great results
+r/LocalLLM
+•
+6mo ago
+[16GB VRAM] Qwen 3.6 35BA3B - Unsloth's UD IQ4_XS - Great results
+42 upvotes · 17 comments
+Public
+Home
+Popular
+News
+Explore
+Best of Reddit
+Best of Reddit in Portuguese
+Best of Reddit in German
+Reddit Rules
+Privacy Policy
+User Agreement
+Your Privacy Choices
+Accessibility
+Reddit, Inc. © 2026. All rights reserved.
+
+Join the most real place on the internet
+
+ Sign in with Apple
+Continue with Phone Number
+Continue with Email
+
+By continuing, you agree to our User Agreement and acknowledge that you understand the Privacy Policy.
+```
+⚠ needs-link https://www.instagram.com/p/DeCKnW0DAGc/
+⚠ needs-link https://www.instagram.com/reel/Dd5RAFqyPjh/
+⚠ needs-link https://www.instagram.com/reel/De2LjyNNS4H/
+⚠ needs-link https://www.instagram.com/reel/De8q9xDETx-/
+⚠ needs-link https://www.instagram.com/reel/DewW-AwCHKS/
+```text
+source: https://www.reddit.com/r/ollama/comments/1xey67z/comment/19rmojt7579uq/
+Skip to main content
+I Thought SKILLs Were a Waste of Tokens Until I Wrote My Own : r/ollama
+Sign Up
+Log In
+Expand user menu
+Go to ollama
+r/ollama
+•
+4d ago
+u/ievkz
+ Top 1% Poster
+I Thought SKILLs Were a Waste of Tokens Until I Wrote My Own
+
+I'll be honest, I didn't understand why LLM agents need SKILLs. MCP was clear to me: it's a useful thing that lets you give an LLM access to a database or to Figma. The only downside is that, to avoid spending too many tokens, it's better not to connect 30 MCP servers at once. And in general, it's better to turn off the unnecessary ones and connect only those that are really needed for the task. In this light, SKILLs seemed like useless overhead to me, eating tokens like crazy. On TikTok, I often saw tales along the lines of: connect this SKILL, or a whole bunch of them, and happiness is yours. My first thought was, if I connect them all, my subscription limits will run out not by lunchtime, but already in the morning.
+
+So why are SKILLs useful and needed after all? Well, first, compared to MCP, SKILLs do not inflate the context: each connected SKILL adds not tens of thousands of tokens, but one or two hundred. Since only the name and description of a SKILL go into the context at first, you can add 30 of your own SKILLs without much pain. When it becomes necessary to use a SKILL, the LLM agent will load its description on its own, if it understands from the task context that this is needed, or the user can simply tell it to use this SKILL for the job.
+
+Secondly, LLM models are trained on the most popular and well-known things. For example, everybody knows that an LLM can work with Git without any problems or write a program in Python. But if you developed a program yourself, or your work requires some little-known tool or technology, then a SKILL is simply irreplaceable. It is enough to create a SKILL.md file and describe how to work with this program or technology. This makes life easier for the LLM: while doing your tasks, it will not have to search the internet for documentation and wander around websites to understand how to use it. And especially if there is nothing on the internet, because your program is closed to public access.
+
+Thirdly, an LLM model usually does not know how your development process is organized. For example, an agent knows how to use Git, run tests, build a project, and create releases. You do not need to teach it these things. But it does not know how releases are usually made in your company. A Skill can describe the sequence of actions: check the changes, run tests, update CHANGELOG.md, increase the version, build a package, create a Git tag, and publish a release. So, a Skill helps the agent learn not a technology, but a specific business process.
+
+Fourthly, a SKILL is not just an instruction, but a whole set of tools. Besides SKILL.md, you can put ready-made scripts, documentation, templates, and other files into it. And the most interesting thing is, these files are not loaded into the context automatically. The agent reads them only when there is a need, and can simply run the ready-made scripts without spending tokens on generating code. So, a SKILL lets you combine instructions, documentation, and executable code in one package without inflating the LLM context. For example, the structure can look like this:
+
+my-skill/
+├── SKILL.md
+├── scripts/
+│   ├── generate.py
+│   └── validate.py
+├── references/
+│   └── api.md
+└── assets/
+    └── template.html
+
+The funniest thing is, I started to appreciate SKILLs exactly when I wrote my own program, blueprint4llm. The idea for creating it came after I asked an LLM agent to generate a plan.md file describing a task. Usually it produces a huge wall of text, which you have to read slowly and with sadness. I wanted to make the text shorter and add more flowcharts, tables, diagrams, and user interface prototypes. As we know, in .md (Markdown) files the only visualization tools available are tables and Mermaid diagrams. There are no charts, plots, histograms, full UML diagrams, or UI prototypes. In the end, with blueprint4llm, I added support for formats such as PlantUML, draw.io, Pencil, Balsamiq, Graphviz, Figma, OpenAPI, Excalidraw, Vega-Lite, ECharts, and D2 to .md files.
+
+With the blueprint4llm SKILL connected, you will get plan.md not as a kilometer-long text, but as flowcharts, prototypes, charts, and so on. By the way, blueprint4llm does not have to be used only for creating plan.md. For example, I used this SKILL to add an illustration to every paragraph of the article and make it more fun to read. This SKILL is also useful when you ask an agent to put together a full dossier on some company, technology, or person and format the resulting result.md file with blueprint4llm. You can then convert it to HTML or PDF, or ask the agent to show it right away in a browser with charts.
+
+This is how you can install the blueprint4llm SKILL.
+
+# Codex
+npx skills add evgenyigumnov/blueprint4llm --skill blueprint4llm --agent codex
+
+# Claude Code
+npx skills add evgenyigumnov/blueprint4llm --skill blueprint4llm --agent claude-code
+
+# Pi
+npx skills add evgenyigumnov/blueprint4llm --skill blueprint4llm --agent pi
+
+If you are interested in looking at the source code of blueprint4llm, the tool that generates all this beauty, or sending a pull request, welcome: https://github.com/evgenyigumnov/blueprint4llm
+
+Read more
+Share
+Sort by:
+Comments Section
+codeprimate
+•
+4d ago
+
+Now, organize them into domains, and skills for given domains reference the specific skills.
+
+make post task skill revision a part of your core agents, and now you have a mostly self refining agent that focuses on task specific expertise.
+
+Reply
+Share
+ievkz
+•
+4d ago
+•
+Edited 3d ago
+ Top 1% Poster
+
+Good idea! Especially the post-task skill revision part. The agent could gradually build its own expertise based on actual experience. I'd probably add a review step before applying changes, though. Otherwise, it might start reinforcing its own mistakes :)
+
+Reply
+Share
+u/anthropic-ai
+•
+Ad
+The kind of partnership that makes you feel like you’ve leveled up. Try Claude Code and start building your next project.
+Download
+claude.com
+iAlexandreS
+•
+3d ago
+
+The 100-200 token line only holds while the skill stays closed. Once the model opens SKILL.md and a reference, that body is in the context anyway, so thirty descriptions that all say "use me" cost more than thirty short ones that almost never match. The saving that actually shows up is the script the agent runs instead of pasting it into the prompt. A line in the description that says when not to load the skill is the part most indexes skip.
+
+Sakura010826
+•
+2d ago
+
+Yeah ..i get it now,making your own skills for specific workflows is actually pretty useful
+
+FragrantArt8270
+•
+5h ago
+
+This is an ad.
+
+More posts you may like
+Related posts
+I Thought SKILLs Were a Waste of Tokens Until I Wrote My Own
+r/ChatGPTCoding
+•
+4d ago
+I Thought SKILLs Were a Waste of Tokens Until I Wrote My Own
+35 comments
+1PasswordOfficial
+•
+Ad
+“The orgs that successfully navigate this transition will treat it as an architectural reset.” Read 451 Research on how AI is redefining identity.
+1password.com
+Learn More
+The best skill in the game.
+r/gotlegends
+•
+7mo ago
+The best skill in the game.
+141 upvotes · 55 comments
+Finally, a proper UI for skills
+r/ollama
+•
+2mo ago
+Finally, a proper UI for skills
+29 upvotes · 8 comments
+The new subscription model is bad.. really bad
+r/ollama
+•
+2mo ago
+The new subscription model is bad.. really bad
+76 upvotes · 69 comments
+I built a fully local AI voice assistant that responds in ~230ms — no cloud, no subscriptions
+r/hermesagent
+•
+4d ago
+I built a fully local AI voice assistant that responds in ~230ms — no cloud, no subscriptions
+12 upvotes
+After 10+ years of Dota I started playing LoL, and my friend recommended me OP.GG for guides. I have an uncomfortable question…
+r/leagueoflegends
+•
+5mo ago
+After 10+ years of Dota I started playing LoL, and my friend recommended me OP.GG for guides. I have an uncomfortable question…
+1K upvotes · 191 comments
+Claude Code blocked a legit task, so I tried the open source side. Not going back for now.
+r/ClaudeCode
+•
+3d ago
+Claude Code blocked a legit task, so I tried the open source side. Not going back for now.
+165 upvotes · 65 comments
+Lure-TTS and Lure-Turbo: 600M voice models to run 4x faster than real time, with inline (tags), direction, and voice cloning. Trained for under $200.
+r/LocalLLaMA
+•
+4d ago
+Lure-TTS and Lure-Turbo: 600M voice models to run 4x faster than real time, with inline (tags), direction, and voice cloning. Trained for under $200.
+75 upvotes · 14 comments
+I guess it's safe to say, APA was the problem.
+r/leagueoflegends
+•
+1mo ago
+I guess it's safe to say, APA was the problem.
+91 comments
+Some of you might remember me (I posted this and took down my ranked analysis tool because the dev API couldn't keep up) but I finally got approved for production key, so should be able to handle more traffic. Looking for feedback!
+r/leagueoflegends
+•
+7mo ago
+Some of you might remember me (I posted this and took down my ranked analysis tool because the dev API couldn't keep up) but I finally got approved for production key, so should be able to handle more traffic. Looking for feedback!
+73 upvotes · 71 comments
+What are the most undodgeable abilities in the game?
+r/leagueoflegends
+•
+1mo ago
+What are the most undodgeable abilities in the game?
+640 upvotes · 418 comments
+Finally broke Lemures
+r/magicTCG
+•
+1mo ago
+Finally broke Lemures
+1.9K upvotes · 98 comments
+OpenAI and Anthropic blocked the reverse engineering of smart TVs spying on us
+r/LocalLLaMA
+•
+4d ago
+OpenAI and Anthropic blocked the reverse engineering of smart TVs spying on us
+3.9K upvotes · 586 comments
+"League of Legends is all about mechanics. If you master the mechanics, you climb the ranks." The support I get matched with in ranked...
+r/SamiraMains
+•
+3mo ago
+"League of Legends is all about mechanics. If you master the mechanics, you climb the ranks." The support I get matched with in ranked...
+139 upvotes · 50 comments
+People who didn't like All the Skills, what didn't you like? And if you dropped it, when?
+r/litrpg
+•
+28d ago
+People who didn't like All the Skills, what didn't you like? And if you dropped it, when?
+43 upvotes · 76 comments
+It feels like a lot of skill in this game comes from having patience to wait for right situation
+r/leagueoflegends
+•
+7mo ago
+It feels like a lot of skill in this game comes from having patience to wait for right situation
+337 upvotes · 72 comments
+I couldn't tell what my own swing was doing, so I spent a year building a dataset to find out
+r/squash
+•
+2mo ago
+I couldn't tell what my own swing was doing, so I spent a year building a dataset to find out
+24 upvotes · 26 comments
+Empower in a nutshell
+r/MagicArena
+•
+12d ago
+Empower in a nutshell
+1.1K upvotes · 42 comments
+Is All The Skills a rip off?
+r/litrpg
+•
+1y ago
+Is All The Skills a rip off?
+14 comments
+I built an MCP server that turns your AI conversations into a versioned knowledge base (open source)
+r/mcp
+•
+3d ago
+I built an MCP server that turns your AI conversations into a versioned knowledge base (open source)
+4 upvotes · 12 comments
+Which model has been the best prompt engineer for you?
+r/PromptEngineering
+•
+1y ago
+Which model has been the best prompt engineer for you?
+41 upvotes · 42 comments
+Does anyone use ollama?
+r/vibecoding
+•
+7mo ago
+Does anyone use ollama?
+7 upvotes · 19 comments
+What's a League skill that sounds simple, but took you ages to actually learn?
+r/leagueoflegends
+•
+5mo ago
+What's a League skill that sounds simple, but took you ages to actually learn?
+409 upvotes · 292 comments
+Throwback to Idra at MLG
+r/starcraft
+•
+2mo ago
+Throwback to Idra at MLG
+143 upvotes · 36 comments
+I built my own agent framework and it's awesome
+r/AI_Agents
+•
+4d ago
+I built my own agent framework and it's awesome
+18 upvotes · 49 comments
+Public
+Home
+Popular
+News
+Explore
+Best of Reddit
+Best of Reddit in Portuguese
+Best of Reddit in German
+Reddit Rules
+Privacy Policy
+User Agreement
+Your Privacy Choices
+Accessibility
+Reddit, Inc. © 2026. All rights reserved.
+
+Join the most real place on the internet
+
+ Sign in with Apple
+Continue with Phone Number
+Continue with Email
+
+By continuing, you agree to our User Agreement and acknowledge that you understand the Privacy Policy.
+```
+⚠ needs-link https://www.instagram.com/reel/DfAdjf6ARg9/
+⚠ needs-link https://www.instagram.com/reel/De8mEDavJu2/
+⚠ needs-link https://www.instagram.com/p/De8pG7ZgRl9/
+⚠ needs-link https://www.instagram.com/reel/DfAKyLiM9Or/
+⚠ needs-link https://www.instagram.com/reel/Dezc4qeimex/
+⚠ needs-link https://www.instagram.com/reel/DfAmYQQDsNW/
+⚠ needs-link https://www.instagram.com/reel/DeozoT-xXrP/
+⚠ needs-link https://www.instagram.com/reel/DeuiO0UjRLM/
+⚠ needs-link https://www.instagram.com/p/De_Cta4m3ls/ — carousel
+⚠ needs-link https://www.instagram.com/p/De9SalRGOhy/ — carousel
+⚠ needs-link https://www.instagram.com/reel/DdrPPALI9iA/
+⚠ needs-link https://www.instagram.com/reel/DemP6LfRbug/
+⚠ needs-link https://www.instagram.com/p/Dd5X-6WGH1n/
+⚠ needs-link https://www.instagram.com/p/DedahbJGPgY/
+```text
+source: https://www.reddit.com/r/LocalLLM/comments/1xgqyz4/125_tokens_per_second_on_an_rtx_4070_ti_super_how/
+Skip to main content
+125 Tokens per Second on an RTX 4070 Ti SUPER: How I Got a Local LLM Working as a Full-Fledged Coding Agent : r/LocalLLM
+Sign Up
+Log In
+Expand user menu
+Go to LocalLLM
+r/LocalLLM
+•
+2d ago
+u/ievkz
+125 Tokens per Second on an RTX 4070 Ti SUPER: How I Got a Local LLM Working as a Full-Fledged Coding Agent
+Discussion
+
+Based on statistics, among regular desktop PC users, the most common graphics card has 16 GB of video memory. According to GaugeDB surveys, such cards make up 27.21% of the market. I happen to have an NVIDIA GeForce RTX 4070 Ti SUPER with 16 GB of GDDR6X video memory, which currently costs $900. Until now, the main problem was that it was impossible to run an LLM agent on a graphics card of this class that was smart enough and fast enough. If you run a smart model like Qwen 3.8 27B (Dense architecture), you get 10-20 tokens per second. And for comfortable work with a coding agent, you need 100-150 tokens per second.
+
+But recently I came across 2 models: Tiel-Coder-35B-A3B-GGUF-MTP (built for coding) and Cyber-Tiel-Coder-35B-A3B-GGUF-MTP (an uncensored abliterated model that doesn't refuse to write exploits or carry out active hacks on anything you ask it to). And what else is notable about them? First, they use MTP (Multi-Token Prediction), a technology that lets an LLM predict several next tokens at once instead of one, which increases inference speed by 20%. Second, they use the MoE (Mixture of Experts) architecture, which makes it possible to get the quality of a large model while performing computations for each token with only part of its parameters. Token generation speed increases by +200-450%. Third, there's Sharp Template, an optimized Chat Template (Jinja) with a system prompt that makes the LLM spend fewer tokens on reasoning and answers without losing necessary information. It cuts inference by 59%, which ultimately makes a coding agent work 2 times faster.
+
+So, on my graphics card, I run the following versions of these models: Cyber-Tiel-Coder-35B-A3B-MTP-UD-Q2_K_XL.gguf and Tiel-Coder-35B-A3B-MTP-UD-Q2_K_XL.gguf, and the launch parameters look like this:
+
+As a result, I get a speed of 125 tokens per second!
+
+This is a very good start, but as you may have noticed, the context window is only 65535 tokens, which is a bit too small for agent-assisted coding. That's why I use 3 approaches.
+
+First, I don't use heavy coding agents, such as Codex or Claude Code, because right out of the box, with the slightest interaction, they consume 10 to 14 thousand tokens for the system prompt and so on. That is, 15-20% of the context is taken up immediately, and local models also lose context more easily, while such large system instructions distract them even more from the task the user describes. I use the Pi coding agent. It requires 1.5 thousand tokens to run, which is 10 times less than Codex or Claude Code, and this noticeably affects the capabilities and quality of work on the user's local GPU. Here's Pi's configuration file for adding these 2 models that will run on your GPU: ~/.pi/agent/models.json
+
+{
+  "providers": {
+    "lmstudio": {
+      "baseUrl": "http://YOUR_LOCAL_IP:1234/v1",
+      "api": "openai-completions",
+      "apiKey": "lmstudio",
+      "models": [
+        { "id": "peculiar-ragdoll/tiel-coder-35b-a3b-mtp@q2_k_xl" ,
+          "contextWindow": 65536,
+          "maxTokens": 32768,
+          "input": ["text", "image"]
+       },
+        { "id": "peculiar-ragdoll/cyber-tiel-coder-35b-a3b-mtp" ,
+          "contextWindow": 65536,
+          "maxTokens": 32768,
+          "input": ["text", "image"]
+       }
+     ]
+   }
+  }
+}
+
+Second, I never ask the coding agent to try to make a large code change directly. I start a new session with the "/new" command and ask the coding agent to write a plan.md file describing what needs to be changed in the code to implement the task I gave it. That way, the 65535-token context window is enough for me, since, essentially, I split the task into two phases: planning and implementation. Then, if the task isn't too large, after creating plan.md I clear the coding agent's context window with the "/new" command and ask it to make the code changes based on plan.md and record the results in plan.md when it's done.
+
+Third, for very large plan.md files, I use my SKILL called subtask4llm-pi, which breaks a task into no more than 10 subtasks and runs them sequentially. Each subtask runs in a separate coding agent instance, which receives only what is relevant to that subtask, so its 65535-token context window is almost empty. The subtask results flow into the main Pi instance without overflowing its main context window, which handles coordination, planning, and checking. You can install the skill with the command "npx skills add https://github.com/evgenyigumnov/subtask4llm --skill subtask4llm-pi". There is also a version for Codex, subtask4llm-codex. By the way, if anyone wants to add support for Claude or help in some other way, send pull requests: https://github.com/evgenyigumnov/subtask4llm
+
+Fourth, I use the approach of Robert Martin, author of "Clean Code", who recently said that he had stopped reading code generated by coding agents. He managed that by putting LLMs in a tight box. Using these constraints, you can offset the fact that the models in use are heavily compressed to the UD-Q2_K_XL level. That is, they make more mistakes than 4-, 6-, or 8-bit models. To create these constraints, I suggest using AGENTS.md, which controls the size of every file being created, makes you write unit tests, clearly spells out decomposition and responsibility in the code, and ultimately requires running the tests. Since we don't pay for every token on a local GPU, we can easily afford a couple of extra iterations while the model sees its mistakes and fixes them. Here is a basic example of an AGENTS.md file for this:
+
+# AGENTS.md
+
+## Code Writing Rules
+
+- Maximum size of one code file: 300-500 lines. If a file gets bigger, break it down.
+- The main principle: one cohesive responsibility per module.
+- Don't sacrifice logical cohesion or code readability to comply with arbitrary line-count limits.
+- Split files based on their functional purpose, not just their line count.
+- All functions must be covered by unit tests.
+- When adding or changing functionality, or fixing bugs, always add the corresponding unit tests.
+
+## Checks Before Submission
+
+- All tests and the build must pass without errors or warnings.
+- Don't weaken checks or delete tests just to get them to pass.
+
+## Main Rule
+
+**Never commit changes without a direct request from the user.**
+
+In the end, we got a synergistic effect, or you could even call it emergence. MTP + Quantization + MoE + AGENTS.md (Clean Code) + Sharp Template + Pi agent + subtask4llm skill + plan.md = a workflow with a coding agent, running on your home graphics card. Now your source code is under your control, and big corporations won't get their dirty paws on it! And you can also run an abliterated model for White Hat hacking without putting up with constant refusals from proprietary models when you're trying to hack something.
+
+Read more
+Share
+Roblox
+•
+Ad
+The best sports games are played together. Team up with friends and claim game-winning victories.
+Play Now
+roblox.com
+Collapse video player
+Sort by:
+Comments Section
+Any_Flounder8768
+•
+2d ago
+
+With 96 GB of RAM you can skip IQ3_XXS and go straight to the GSQ-RCO IQ3_S: on my 12 GB 4070 Ti + 64 GB it peaks at ~51 GiB RAM and does ~2,400 t/s prefill / ~50 t/s decode at 16K, and it's closer to BF16 (KLD 0.087 vs 0.136 for IQ3_XXS). Keep the n-gram table on a fast NVMe. Your 16 GB card will do better than mine.
+
+ievkz
+•
+2d ago
+
+wow! cool!
+
+Any_Flounder8768
+•
+1d ago
+
+For a massive context window, try https://github.com/lastreload/mnemonic-proxy — but shhh! 🤫 Don't tell anyone! My AI says I'm not allowed to share it because it's spam! 😂
+
+jessepence
+•
+2d ago
+
+I'm glad you're proud of it, but I find it hard to believe that a 2 bit quant of a 35b model would lead to anything other than frustration.
+
+Gold-Produce9591
+•
+2d ago
+
+yeah, with 16gb vram, op should be running Q4 or Q5 at least, they would get much better results
+
+ievkz
+•
+2d ago
+
+I just heard about Strata, which lets you run Qwen3.8-Flash-Next on a GPU with only 16 GB of VRAM by offloading the rest to system RAM and SSD. I have 96 GB of RAM, so I'm about to give it a try. Depending on the quantization, it needs roughly 35–50 GB of RAM and around 80 GB of SSD space, including a 29 GB lookup table that stays on disk. People are reporting around 70 tokens per second. And this is a completely different class of model 125B parameters. I'm hoping it'll be noticeably smarter at coding.
+
+11 more replies
+Zaic
+•
+1d ago
+
+yep same card I am able to run 3.8 coder next at q3s at 140k context with decent 40-60tks. would most likely come up with 3x better solution at 3x shorter time compared to ops setup.
+
+notheresnolight
+•
+1d ago
+
+apparently its enough to generate a 2 page word salad for a reddit post
+
+No_Total_423
+•
+2d ago
+
+You shouldn't be obsessed with tps while you can run the same model with much better quality. You're just sacrificing so much quality. You can even run QFN if you have enough ram.
+
+ievkz
+•
+2d ago
+
+Do you mean Niko1221/Strata project on github?
+
+No_Total_423
+•
+2d ago
+
+Yes. Also for other moe models such as Tiel you can use PolyStrata with much more tps. https://github.com/VecSzn/PolyStrata
+
+2 more replies
+u/Smartwool
+•
+Ad
+Nothing hits like nature. Get out there and run wild in the cold weather activewear collection from Smartwool. 
+Shop Now
+smartwool.com
+smashcat666
+•
+1d ago
+
+I find it VERY hard to believe that 27% of PC users have a 16GB GPU. Even amongst gamers (who would tend to focus most on GPU performance) the average is 8-12GB. Your average office worker, or home-worker isn't going to be running an RTX GPU for spreadsheets and web browsing.
+
+ievkz
+•
+1d ago
+
+Could GaugeDB be referring specifically to gamers, rather than everyone in general?
+
+Gobblerpl
+•
+19h ago
+
+Don't tell him about strata
+
+ievkz
+•
+19h ago
+
+I already know
+
+subszeroo
+•
+17h ago
+
+I lost you at Q2
+
+ievkz
+•
+15h ago
+
+lol
+
+MaxP69420
+•
+1d ago
+
+is it okay if i borrow post to ask, when people say they load apart of a model into vram and offload it to ram for still decent speeds but when i do it the whole model just only goes into my system ram. What am i doing wrong?
+
+pic for example i tried making the gpu only take like 14GB and the rest offload it but when i run the model it dosent use the gpu.
+
+johnzadok
+•
+2d ago
+
+Since you have an nvidia card you can try the llama kv streaming fork to get more ctx.
+
+halfercode
+•
+2d ago
+
+Props to you for having the patience to wade through this stuff. I'm still on Claude Code, and would be happy to swap to remote (non-local) open-weight models, but I have a dim view of the performance/behaviour of anything other than frontier, closed-weight models for now.
+
+I tried GLM-5.3 remotely and it ate my OCG quota in an hour. I tried GPT-6-something and its reasoning was just poor. I've had a rec for DeepSeek v4.1 but finding the energy to give a new model a proper try is hard when a cheap closed model works OOTB.
+
+ansibleloop
+•
+1d ago
+
+You can use Claude to build a useful local setup
+
+Thinking about it, I could do with a skill that creates new docker deployments as my Ansible config - that way I wouldn't need a powerful model
+
+Outrageous_Band9708
+•
+6h ago
+
+aaaaaand... its Q2
+
+niugnep24
+•
+5h ago
+
+I'd rather have 20tps of solid coding than 100tps of slop... I've never heard of "Tiel Coder" but 35B-A3B makes it look like a finetune of Qwen3.6...
+
+Actually looking it up, it's a quant of "Orinth 1.5" which they claim is "developed on top of Qwen3.5 and Gemma 4" which is a strange statement as those are different architectures. Seems like it's Qwen3.5 with extra RL training and maybe some distillation. Can't imagine this would actually out-perform 3.8, even with its suspiciously high benchmark scores....
+
+kfallah15
+•
+2h ago
+
+Nicely done! Could be cool to build a feedback system and fine-tune the model locally too.
+
+More posts you may like
+Related posts
+4070 super outperforming 85% of 4070Ti's!!
+r/overclocking
+•
+5d ago
+4070 super outperforming 85% of 4070Ti's!!
+23 upvotes · 20 comments
+Nintendo_America
+•
+Ad
+Grab your controller & step up to the net in Table Tennis! Nintendo Switch Sports Resort is available now on the Nintendo Switch 2 system!
+nintendo.com
+Shop Now
+Thoughts of buying a 4070 ti super in 2026?
+r/nvidia
+•
+1mo ago
+Thoughts of buying a 4070 ti super in 2026?
+13 upvotes · 55 comments
+Repasted my RTX 4070 Ti Super after 1.5 years because it sounded like a jet engine. Results with Duronaut are insane!
+r/pcmasterrace
+•
+4mo ago
+Repasted my RTX 4070 Ti Super after 1.5 years because it sounded like a jet engine. Results with Duronaut are insane!
+54 upvotes · 55 comments
+What I learned running a local coding agent on an RTX 4070 Super
+r/LocalLLM
+•
+5mo ago
+What I learned running a local coding agent on an RTX 4070 Super
+8 upvotes · 3 comments
+Which local LLMs can I realistically run on 14700K + 128GB RAM + RTX 4070 Super 12GB? Mainly for Hermes Agentic Coding
+r/LocalLLM
+•
+1mo ago
+Which local LLMs can I realistically run on 14700K + 128GB RAM + RTX 4070 Super 12GB? Mainly for Hermes Agentic Coding
+10 upvotes · 11 comments
+Worth Upgrading the RTX 4070 (Non Ti/Super) in 2026?
+r/nvidia
+•
+3mo ago
+Worth Upgrading the RTX 4070 (Non Ti/Super) in 2026?
+6 upvotes · 95 comments
+Best Local Models for RTX 4050 6GB?
+r/LocalLLM
+•
+13d ago
+Best Local Models for RTX 4050 6GB?
+4 upvotes · 18 comments
+WTB: RTX 4070 Super / 4070 Ti - Kolkata
+r/IndianPCHardware
+•
+2mo ago
+WTB: RTX 4070 Super / 4070 Ti - Kolkata
+8 upvotes · 42 comments
+PTM7950 on RTX 4070TI Super
+r/nvidia
+•
+4mo ago
+PTM7950 on RTX 4070TI Super
+26 upvotes · 16 comments
+4070ti Super pros & cons
+r/gpu
+•
+2mo ago
+4070ti Super pros & cons
+57 upvotes · 51 comments
+Happy with 20-30 Tokens Per Second
+r/LocalLLM
+•
+8d ago
+Happy with 20-30 Tokens Per Second
+28 upvotes · 65 comments
+USED 4070Ti Super or NEW RTX 5070?
+r/nvidia
+•
+1y ago
+USED 4070Ti Super or NEW RTX 5070?
+3 upvotes · 31 comments
+[GPU] (Grade A Refurbished) MSI GeForce RTX 4070 Ti SUPER VENTUS 3X Black OC 16GB GDDR6X - $749
+r/buildapcsales
+•
+20d ago
+[GPU] (Grade A Refurbished) MSI GeForce RTX 4070 Ti SUPER VENTUS 3X Black OC 16GB GDDR6X - $749
+112 upvotes · 62 comments
+Worth Upgrading the RTX 4070 (Non Ti/Super) in 2026?
+r/buildapc
+•
+3mo ago
+Worth Upgrading the RTX 4070 (Non Ti/Super) in 2026?
+6 upvotes · 33 comments
+Rtx 4070 ti super for 4k
+r/nvidia
+•
+2mo ago
+Rtx 4070 ti super for 4k
+8 upvotes · 22 comments
+Thinking of purchasing this 4070 Ti super for $550 do you guys think that’s a reasonable price? Going to upgrade my 3060 Ti to it.
+r/PcBuild
+•
+8mo ago
+Thinking of purchasing this 4070 Ti super for $550 do you guys think that’s a reasonable price? Going to upgrade my 3060 Ti to it.
+60 upvotes · 142 comments
+Just got my New Rtx 4070 Super Ti
+r/pcmasterrace
+•
+1mo ago
+Just got my New Rtx 4070 Super Ti
+76 upvotes · 26 comments
+Bro spend 919K Token for nothing ☠️☠️☠️
+r/LocalLLM
+•
+6d ago
+Bro spend 919K Token for nothing ☠️☠️☠️
+94 upvotes · 71 comments
+RTX 4070 Super in 2025 | Is It Still Worth for 1440P Gaming | 20 Latest AAA Games Tested | RT On
+r/OptimizedGaming
+•
+10mo ago
+RTX 4070 Super in 2025 | Is It Still Worth for 1440P Gaming | 20 Latest AAA Games Tested | RT On
+8 comments
+Is the RTX 4070 Ti Still Good for 1440p Gaming?
+r/pcmasterrace
+•
+9mo ago
+Is the RTX 4070 Ti Still Good for 1440p Gaming?
+3 upvotes · 27 comments
+Shout out to my 4070Ti SUPER gang
+r/nvidia
+•
+4mo ago
+Shout out to my 4070Ti SUPER gang
+135 upvotes · 33 comments
+My $350 RTX 4070 Ti actually arrived... but I'm lowkey terrified to plug it in.
+r/gpu
+•
+3mo ago
+My $350 RTX 4070 Ti actually arrived... but I'm lowkey terrified to plug it in.
+13 upvotes · 85 comments
+RTX 4070 Ti Super quietly became the GTX 1080 Ti of the 2020s, and Nvidia couldn't beat its own offering
+r/TechHardware
+•
+4mo ago
+RTX 4070 Ti Super quietly became the GTX 1080 Ti of the 2020s, and Nvidia couldn't beat its own offering
+119 upvotes · 59 comments
+I have 4090 and 5070ti
+r/LocalLLM
+•
+1mo ago
+I have 4090 and 5070ti
+4 upvotes · 18 comments
+Is it worth to buy this 4070Ti super for $630??
+r/gpu
+•
+5mo ago
+Is it worth to buy this 4070Ti super for $630??
+92 upvotes · 267 comments
+VIEW POST IN
+Français
+Português (Brasil)
+See more
+Public
+Home
+Popular
+News
+Explore
+Best of Reddit
+Best of Reddit in Portuguese
+Best of Reddit in German
+Reddit Rules
+Privacy Policy
+User Agreement
+Your Privacy Choices
+Accessibility
+Reddit, Inc. © 2026. All rights reserved.
+
+Join the most real place on the internet
+
+ Sign in with Apple
+Continue with Phone Number
+Continue with Email
+
+By continuing, you agree to our User Agreement and acknowledge that you understand the Privacy Policy.
+```
+⚠ needs-link https://www.instagram.com/reel/DcDs7f9uaqo/
+⚠ needs-link https://www.instagram.com/reel/Der26qADV2G/
+⚠ needs-link https://www.instagram.com/reel/DejpGOctoHu/
+⚠ needs-link https://www.instagram.com/reel/DX-Rc6RN51E/
+⚠ needs-link https://www.instagram.com/reel/DamtFQYxYtn/
+⚠ needs-link https://www.instagram.com/reel/DeBaajzgEeb/
+⚠ needs-link https://www.instagram.com/reel/DfAykyuuEpk/
+⚠ needs-link https://www.instagram.com/reel/DfAALtXkvNs/
+⚠ needs-link https://www.instagram.com/reel/DfAVR6MtdFR/
+⚠ needs-link https://www.instagram.com/reel/Dd_kMxYOcPk/ — 2.5D game trick
+⚠ needs-link https://www.instagram.com/reel/DfB8X4UxfrH/
+⚠ needs-link https://www.instagram.com/reel/DfCdgxvDwVG/
+⚠ needs-link https://www.instagram.com/reel/De-2omfu5-7/
+⚠ needs-link https://www.instagram.com/reel/DX7-1qZtVhS/
+⚠ needs-link https://www.instagram.com/reel/DZqZpQbtQ79/
+⚠ needs-link https://www.instagram.com/reel/Dez02K2qND3/
