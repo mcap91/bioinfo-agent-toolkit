@@ -62,10 +62,19 @@ The full flow is documented in `skills/catalog-intake/SKILL.md`. Summary:
    ```
    npm run -w @catalog/mcp catalog:process
    ```
-   This launches `claude --print` with the catalog MCP server, follows `catalog/recipe.md`, and
-   processes every pending queue item unattended. The queue holds only pending work: every item
-   ends as a catalog entry or returns to `catalog/inbox.md` marked `⚠ <reason>`, so after a clean
-   run `catalog/queue.json` is empty. Check `inbox.md` for any returned items, then commit the new entries.
+   Code reads `catalog/queue.json` and runs one fresh `claude --print` session per item,
+   sequentially, in stored queue order (WK-0092) — not one session over the whole queue, which
+   gets expensive per item and drifts off the recipe after a handful of items. Each session's
+   prompt is `catalog/recipe.md` plus that one item (key, url, content); the session is locked to
+   `--model sonnet`, `--strict-mcp-config` with only the catalog MCP server attached, and
+   `--allowedTools` scoped to `WebSearch`/`WebFetch`/`Read` plus the catalog MCP tools the recipe
+   calls. After each session, code re-reads the queue: an item still queued (including one killed
+   by the 15-minute per-item timeout) is logged as a failure in `catalog/process-log.jsonl` and
+   left queued for the next run; the loop always continues. The queue holds only pending work:
+   every item ends as a catalog entry/annotation or returns to `catalog/inbox.md` marked
+   `⚠ <reason>`, so after a clean run `catalog/queue.json` is empty. After the loop, code rebuilds
+   every catalog index once (index.md, search index, graph, vectors; no LLM step). Check `inbox.md` for returned items and
+   `process-log.jsonl` for per-item cost/failures, then commit the new entries.
 
 **Direct writes.** Entries go straight to `catalog/entries/` — no draft gate. The security boundary
 is at **adoption/installation** (WK-0031), not cataloging time. The adapter

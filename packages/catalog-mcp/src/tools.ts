@@ -2,7 +2,7 @@
 import { z } from 'zod';
 import { dirSchema, CATEGORIES } from './core/schema.js';
 import { resolveDir, loadConfig, loadState, saveState } from './core/config.js';
-import { generateAndWriteIndex, buildSearchIndex } from './core/index-gen.js';
+import { rebuildCatalogIndexes } from './core/rebuild-indexes.js';
 import { lint } from './core/lint.js';
 import { scaffoldEntry } from './core/scaffold.js';
 import { readQueue, removeFromQueue, returnToInbox, clearQueue } from './core/queue.js';
@@ -39,32 +39,10 @@ export const tools: ToolDef[] = [
     }),
     handler: async (input) => {
       const dir = resolveDir(input.dir as string | undefined);
-      const result = await generateAndWriteIndex({
+      return rebuildCatalogIndexes({
         dir,
         format: input.format as 'full' | 'decision_status' | 'workflow' | 'category',
       });
-      const searchResult = await buildSearchIndex(dir);
-      const graphResult = await buildAndWriteGraph(dir);
-
-      const venvPython = venvPythonPath(dir);
-      let vectorResult: { status: string; reason?: string; stderr?: string };
-      if (existsSync(venvPython)) {
-        const { stderr, code } = await runCatalogEmbedder(venvPython, ['build', '--dir', dir]);
-        vectorResult = code === 0 ? { status: 'ok' } : { status: 'error', stderr };
-      } else {
-        vectorResult = { status: 'skipped', reason: 'venv not found' };
-      }
-
-      return {
-        path: result.path,
-        searchIndexPath: searchResult.path,
-        graphPath: graphResult.path,
-        entryCount: result.entryCount,
-        decisionStatusCounts: result.decisionStatusCounts,
-        graphNodeCount: graphResult.nodeCount,
-        graphEdgeCount: graphResult.edgeCount,
-        vectorResult,
-      };
     },
   },
   {
@@ -179,6 +157,7 @@ export const tools: ToolDef[] = [
       name: z.string(),
       category: z.enum(CATEGORIES),
       url: z.string().url().optional(),
+      source_url: z.string().url().optional(),
     }),
     handler: async (input) => {
       const dir = resolveDir(input.dir as string | undefined);
@@ -187,6 +166,7 @@ export const tools: ToolDef[] = [
         name: input.name as string,
         category: input.category as string as import('./core/schema.js').Category,
         url: input.url as string | undefined,
+        source_url: input.source_url as string | undefined,
       });
     },
   },
@@ -376,7 +356,7 @@ export const tools: ToolDef[] = [
     name: 'build-prompt',
     description: 'Build a structured research prompt for the calling agent',
     inputSchema: dirSchema.extend({
-      url: z.string().url(),
+      url: z.string().url().optional(),
       content: z.string(),
       source_metadata: z.record(z.string(), z.unknown()).optional(),
     }),
@@ -384,7 +364,7 @@ export const tools: ToolDef[] = [
       const dir = resolveDir(input.dir as string | undefined);
       return buildPrompt({
         dir,
-        url: input.url as string,
+        url: input.url as string | undefined,
         content: input.content as string,
         sourceMetadata: input.source_metadata as Record<string, unknown> | undefined,
       });

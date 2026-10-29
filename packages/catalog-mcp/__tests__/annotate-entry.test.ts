@@ -8,6 +8,7 @@ const entry = `---
 name: foo
 title: "Foo"
 url: https://github.com/o/foo
+source: text
 category: cli-tool
 summary: "a tool"
 tags: [x]

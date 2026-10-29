@@ -3,7 +3,7 @@ import { writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { catalogPaths } from './config.js';
-import type { Category } from './schema.js';
+import { deriveSource, type Category } from './schema.js';
 
 const REFERENCE_CATEGORIES = new Set(['reference', 'agent-pattern']);
 
@@ -15,6 +15,7 @@ interface ScaffoldOptions {
   name: string;
   category: Category;
   url?: string;
+  source_url?: string;
 }
 
 interface ScaffoldResult {
@@ -39,8 +40,11 @@ export async function scaffoldEntry(options: ScaffoldOptions): Promise<ScaffoldR
   if (options.url) {
     lines.push(`url: ${options.url}`);
   }
-
+  if (options.source_url) {
+    lines.push(`source_url: ${options.source_url}`);
+  }
   lines.push(
+    `source: ${deriveSource(options.source_url)}`,
     `category: ${options.category}`,
     `summary: ""`,
     `tags: []`,

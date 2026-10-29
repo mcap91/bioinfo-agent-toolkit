@@ -56,13 +56,32 @@ Run the headless pipeline to assess every queued item and write catalog entries:
 npm run -w @catalog/mcp catalog:process
 ```
 
-Run this in the background. It launches `claude --print` with the catalog MCP server attached,
-follows `catalog/recipe.md`, and processes every pending queue item unattended.
+Run this in the background. Code reads `catalog/queue.json` and runs one fresh `claude --print`
+session per item, sequentially, in stored queue order (WK-0092) — never one session over the
+whole queue, which gets expensive per item and drifts off the recipe's steps after a handful of
+items. Each session's prompt is `catalog/recipe.md` plus that one item (key, url, content); the
+session never sees the rest of the queue. Each session is locked to `--model sonnet`,
+`--strict-mcp-config` with only the catalog MCP server attached, and `--allowedTools` scoped to
+`WebSearch`, `WebFetch`, `Read`, and the catalog MCP tools the recipe calls — no `Edit`, `Write`,
+`Bash`, or project MCP servers reach the session. Pass `--limit N` for a test run of just the
+first N queued items.
 
-**What it does per item:** fetch URL → build research prompt → assess the tool → validate →
-write entry to `catalog/entries/` → remove from queue. Items it can't fetch are parked.
+**What it does per item:** fetch URL (if the item has no content already) → search for a
+duplicate → build research prompt → assess the tool → validate → write entry to
+`catalog/entries/` or annotate an existing one → remove from queue. An item it can't fetch or
+can't catalog is returned to `catalog/inbox.md` marked `⚠ <reason>`.
+
+**After each item's session**, code re-reads the queue: if the item is gone, it's done; if it's
+still queued (including a session that ran past the 15-minute per-item timeout and was killed),
+code logs a failure in `catalog/process-log.jsonl` and leaves it queued for the next run — the
+loop always continues. One JSON line per item in `catalog/process-log.jsonl` tracks status, wall
+time, model, and token usage (input/cache read/cache write/output).
+
+**After the whole loop finishes**, code calls the index generator directly once — no LLM step.
 
 **After it finishes:**
-- Check `catalog/queue.json` — any `parked` or `error` items need manual attention.
-- New entries are in `catalog/entries/`. Index is regenerated automatically.
-- Commit the new entries and updated index.
+- Check `catalog/queue.json` — any item still present failed its session and needs another run
+  or manual attention.
+- Check `catalog/process-log.jsonl` for per-item cost and failure detail.
+- New entries are in `catalog/entries/`. `catalog/index.md` is regenerated automatically.
+- Commit the new entries, updated index, and the cost log.

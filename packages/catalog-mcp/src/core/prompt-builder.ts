@@ -5,7 +5,7 @@ import { CATEGORIES } from './schema.js';
 
 interface BuildPromptOptions {
   dir: string;
-  url: string;
+  url?: string;
   content: string;
   sourceMetadata?: Record<string, unknown>;
 }
@@ -29,13 +29,10 @@ export async function buildPrompt(options: BuildPromptOptions): Promise<PromptRe
   const metadataSection = sourceMetadata
     ? `\n## Source Metadata\n\n${JSON.stringify(sourceMetadata, null, 2)}\n`
     : '';
+  const urlSection = url ? `\n## URL\n\n${url}\n` : '';
 
   const prompt = `You are writing a catalog entry. This catalog is a searchable reference — it captures what tools are and how they work, not whether they should be used.
-
-## URL
-
-${url}
-
+${urlSection}
 ## Fetched Content
 
 ${content}
@@ -91,6 +88,8 @@ function buildSchemaTemplate(): string {
 name: kebab-case-slug
 title: "Display Name"
 url: https://source-url
+source_url: https://the-queue-item's-source-link  # reel/post/page/repo link; omit for a url-less text item
+source: instagram | reddit | x | web | text  # must match source_url's host; "text" only when source_url is omitted
 category: ${CATEGORIES.join(' | ')}
 summary: "factual one-line description — no recommendations or value judgments"
 # leave decision_status unset (open); the user marks adopted/rejected later

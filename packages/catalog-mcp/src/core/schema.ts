@@ -21,23 +21,75 @@ export const SOURCES = ['manual', 'reddit', 'slack', 'email', 'other'] as const;
 
 export type Category = (typeof CATEGORIES)[number];
 
-export const entrySchema = z.object({
-  name: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'Must be kebab-case'),
-  title: z.string().min(1),
-  url: z.string().url().optional(),
-  category: z.enum(CATEGORIES),
-  decision_status: z.enum(DECISION_STATUSES).optional(),
-  summary: z.string().min(1),
-  install: z.string().optional(),
-  tags: z.array(z.string()).min(1),
-  workflows: z.array(z.string()).optional(),
-  reviewed: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  acquired: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
-  license: z.string().optional(),
-  security_flags: z.array(z.string()).optional(),
-  supersedes: z.array(z.string()).optional(),
-  overlaps: z.array(z.string()).optional(),
-}).strict();
+// Entry provenance (OR-4, WK-0086). Distinct from SOURCES above, which describes how a queue
+// item entered the intake pipeline — this describes where a catalog entry's content came from.
+export const ENTRY_SOURCES = ['instagram', 'reddit', 'x', 'web', 'text', 'unknown'] as const;
+export type EntrySource = (typeof ENTRY_SOURCES)[number];
+
+type DerivableSource = Exclude<EntrySource, 'text' | 'unknown'>;
+
+// Host -> entry source (OR-4). Matches the bare domain or any subdomain (www., old., m., ...).
+const SOURCE_HOSTS: { domains: string[]; source: DerivableSource }[] = [
+  { domains: ['instagram.com'], source: 'instagram' },
+  { domains: ['reddit.com', 'redd.it'], source: 'reddit' },
+  { domains: ['x.com', 'twitter.com'], source: 'x' },
+];
+
+function hostOrSubdomain(hostname: string, domain: string): boolean {
+  return hostname === domain || hostname.endsWith(`.${domain}`);
+}
+
+/**
+ * Deterministic entry-source derivation from a `source_url` (OR-4). No `source_url` -> 'text'.
+ * Any other host (including an unparseable url) -> 'web'. Never derives 'unknown' — that value
+ * is legacy-only and is never the output of this function.
+ */
+export function deriveSource(sourceUrl?: string): EntrySource {
+  if (!sourceUrl) return 'text';
+  let hostname: string;
+  try {
+    hostname = new URL(sourceUrl).hostname.toLowerCase();
+  } catch {
+    return 'web';
+  }
+  for (const { domains, source } of SOURCE_HOSTS) {
+    if (domains.some((d) => hostOrSubdomain(hostname, d))) return source;
+  }
+  return 'web';
+}
+
+export const entrySchema = z
+  .object({
+    name: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'Must be kebab-case'),
+    title: z.string().min(1),
+    url: z.string().url().optional(),
+    source_url: z.string().url().optional(),
+    source: z.enum(ENTRY_SOURCES),
+    category: z.enum(CATEGORIES),
+    decision_status: z.enum(DECISION_STATUSES).optional(),
+    summary: z.string().min(1),
+    install: z.string().optional(),
+    tags: z.array(z.string()).min(1),
+    workflows: z.array(z.string()).optional(),
+    reviewed: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    acquired: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+    license: z.string().optional(),
+    security_flags: z.array(z.string()).optional(),
+    supersedes: z.array(z.string()).optional(),
+    overlaps: z.array(z.string()).optional(),
+  })
+  .strict()
+  .refine(
+    (entry) => {
+      if (!entry.source_url) return entry.source === 'text' || entry.source === 'unknown';
+      return entry.source === deriveSource(entry.source_url);
+    },
+    {
+      message:
+        'source must equal the derivation from source_url (instagram/reddit/x/web); "unknown" is legacy-only and requires no source_url',
+      path: ['source'],
+    },
+  );
 
 export type CatalogEntry = z.infer<typeof entrySchema>;
 

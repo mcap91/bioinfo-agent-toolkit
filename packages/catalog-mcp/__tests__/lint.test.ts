@@ -14,6 +14,7 @@ describe('lintEntry', () => {
     name: 'test-tool',
     title: 'Test Tool',
     url: 'https://github.com/org/test-tool',
+    source: 'text', // no source_url set, so source must be 'text' (or legacy 'unknown')
     category: 'skill',
     summary: 'looks promising',
     tags: ['testing'],
@@ -37,6 +38,14 @@ describe('lintEntry', () => {
     expect(result.errors.length).toBeGreaterThan(0);
   });
 
+  // OR-4 (WK-0086): source is now required so every entry records its provenance; lint must
+  // not let a new entry through silently without one.
+  it('errors on a missing source field', () => {
+    const { source, ...noSource } = validFrontmatter;
+    const result = lintEntry('test-tool', noSource, '');
+    expect(result.errors.some((e: string) => e.includes('source'))).toBe(true);
+  });
+
   it('warns on missing acquired (migration)', () => {
     const result = lintEntry('test-tool', validFrontmatter, '## What it does\n');
     expect(result.warnings.some((w: string) => w.includes('acquired'))).toBe(true);
@@ -58,6 +67,7 @@ describe('lintEntry — bare block-scalar guard (WK-0070)', () => {
     name: 'test-tool',
     title: 'Test Tool',
     url: 'https://github.com/org/test-tool',
+    source: 'text', // no source_url set, so source must be 'text' (or legacy 'unknown')
     category: 'skill',
     summary: 'looks promising',
     tags: ['testing'],

@@ -11,6 +11,7 @@ const validMarkdown = `---
 name: test-tool
 title: "Test Tool"
 url: https://github.com/org/test-tool
+source: text
 category: skill
 summary: "looks promising"
 tags: [testing]

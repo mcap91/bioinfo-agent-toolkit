@@ -9,6 +9,7 @@ const validEntry = `---
 name: test-tool
 title: "Test Tool"
 url: https://github.com/org/test-tool
+source: text
 category: skill
 summary: "looks promising"
 tags: [testing]
@@ -69,6 +70,15 @@ describe('writeEntry', () => {
     await expect(
       writeEntry({ dir: tmpDir, entry: badEntry, name: 'test' }),
     ).rejects.toThrow(/Invalid entry/);
+  });
+
+  // OR-4 (WK-0086): "unknown" marks pre-existing entries with no recorded provenance — a new
+  // entry written through this tool must always get a real source, never fall back to it.
+  it('rejects source: unknown for a new entry (legacy-only value)', async () => {
+    const unknownSourceEntry = validEntry.replace('source: text', 'source: unknown');
+    await expect(
+      writeEntry({ dir: tmpDir, entry: unknownSourceEntry, name: 'test-tool' }),
+    ).rejects.toThrow(/unknown/);
   });
 
   it('refuses to overwrite without flag', async () => {
