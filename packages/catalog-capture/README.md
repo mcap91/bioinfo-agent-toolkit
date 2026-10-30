@@ -1,8 +1,9 @@
 # catalog-capture
 
 Resolves `⚠ needs-link` lines in `catalog/inbox.md` into catalog-ready text, with no manual
-copy-paste: Reddit `/s/` share links (WK-0080 Reddit slice) and Instagram reels (WK-0080
-Instagram slice).
+copy-paste: Reddit `/s/` share links and Instagram reels today, through one `SourceAdapter`
+registry (WK-0094 Phase B). Adding a source type is one new adapter — no edit to the shared
+rewrite engine, block renderer, sources writer, or review module.
 
 uv only — never base Python.
 
@@ -16,48 +17,48 @@ uv sync --extra dev
 Chromium must already be available to Playwright (shared download cache, or
 `uv run playwright install chromium` if not) for the Reddit path.
 
+## Module layout
+
+- `registry.py` — the `SourceAdapter` protocol, the registry (`register`/`get_adapter`/
+  `registered_adapters`), the one needs-link rewrite engine, and the shared `CaptureOutcome`
+  shape every adapter returns. `# DECISION:` comment there records the `adapters/`/`stages/`
+  split.
+- `rendering.py` — the one inbox block renderer (`source:` line + adapter-supplied sections,
+  fence-break defused once, no trailing newline).
+- `sources_writer.py` — the one `catalog/sources/<platform>/<id>.md` writer (header lines +
+  body + optional sibling artifact directory).
+- `review.py` — the one review-sheet/index/tally module (replaces the reel-only
+  `make_review.py`; never writes a verdict).
+- `pricing.py` — LiteLLM price-table lookup, with a configurable path (CLI option and/or env
+  var); a missing table always returns `(None, reason)`.
+- `canonical.py`, `fence.py`, `versions.py` — small shared helpers (Reddit canonical-URL/post-id
+  derivation, inbox fence-break defusal, tool-version strings).
+- `cli.py` — `python -m catalog_capture capture|needs-link|review ...`.
+- `adapters/` — one module per source type:
+  - `reddit.py` — the `RedditAdapter` (needs-link URL rule, capture via `stages.browser`, block/
+    sources sections).
+  - `instagram_reel.py` — the `InstagramReelAdapter` (needs-link URL rule, the full
+    probe→audio→transcribe→frames→read pipeline via `stages.*`, block/sources sections, OR-3's
+    one-block-per-reel shape).
+- `stages/` — shared capture-pipeline building blocks, called by adapters, never copied:
+  - `browser.py` — headless-Chromium page capture with a per-site wait table (today: Reddit's
+    `shreddit-post` poll).
+  - `media.py` — yt-dlp anonymous probe + bestaudio/bestvideo download.
+  - `transcribe.py` — ffmpeg decode to 16 kHz PCM + faster-whisper transcription.
+  - `frames.py` — ffmpeg keyframe extraction + PIL contact sheet.
+  - `read.py` — the multimodal `claude --print` read call: a prompt plus an ordered list of
+    images (each with its own media type), stream-json in and out, usage parsing.
+
 ## Reddit
 
 Engine: headless Playwright Chromium with a Chrome user agent (clears Reddit's JS challenge),
-one capture module with a per-site wait table (`reddit.com` → poll for `shreddit-post`, soft —
-on timeout it keeps the page text anyway). This is the WK-0054 ENGINE CHOICE ("own script"),
-copied from `toolkit-workbench/web-capture/own/capture.py`. See `wiki/issues/WK-0054.md` and
-`wiki/issues/WK-0080.md` ("Spec check — Reddit slice") for the evidence and rulings this
-package follows.
+one capture module with a per-site wait table (`reddit.com` → poll for `shreddit-post`, soft — on
+timeout it keeps the page text anyway). This is the WK-0054 ENGINE CHOICE ("own script"), copied
+from `toolkit-workbench/web-capture/own/capture.py`. See `wiki/issues/WK-0054.md` and
+`wiki/issues/WK-0080.md` ("Spec check — Reddit slice") for the evidence and rulings this package
+follows.
 
-Capture one URL and print its record:
-
-```
-uv run python -m catalog_capture capture <url>
-uv run python -m catalog_capture capture <url> --out catalog/sources/reddit/<post-id>.md
-```
-
-Resolve every Reddit needs-link line in an inbox file in place:
-
-```
-uv run python -m catalog_capture needs-link --inbox catalog/inbox.md --sources catalog/sources
-```
-
-Options:
-- `--limit N` — process at most N items (useful for a dry run on one link).
-- `--delay SECONDS` — seconds between loads, sequential, not applied before the first
-  (default 3s; avoids tripping Reddit's rate limits by hitting it concurrently).
-
-Each matched line is replaced in place with a fenced block (`inbox.ts`'s existing
-`source:`-prefixed `\`\`\`text` format) and a `catalog/sources/reddit/<post-id>.md` file is
-written with the canonical URL, capture date, tool versions, and full page text. A capture
-failure (including a stalled JS challenge, a blank page, or a block/login redirect with no
-resolvable post id) becomes `⚠ capture-failed <url> — <error>`; a PDF download event becomes
-`⚠ pdf <url>` — neither is silently dropped, and both stay blocked on redrain. Everything else
-in the inbox is left byte-identical. Exits non-zero (after printing a summary) if any item
-failed.
-
-**Retrying a `capture-failed` or `pdf` line.** `needs-link` only matches
-`⚠ needs-link <reddit /s/ url>` lines. To retry, manually edit the line back to
-`⚠ needs-link <url>` (drop the `capture-failed`/`pdf` reason and any trailing error text) before
-running `needs-link` again — there is no automatic retry.
-
-## Instagram
+## Instagram reels
 
 Pipeline (WK-0079's recommended default stack, I4): yt-dlp `-j` anonymous caption probe →
 yt-dlp bestaudio download → ffmpeg (imageio-ffmpeg, never a system ffmpeg) decode to 16 kHz mono
@@ -70,34 +71,68 @@ labeled as unverified hints, and the agent decides what goes into the catalog. S
 `wiki/issues/WK-0080.md` ("OR-3 Operator ruling: capture captures, the processing agent
 decides") for the evidence and rulings.
 
-Capture one reel URL and print its inbox block(s):
+Instagram carousels (`/p/` multi-image posts) are **not** captured by this package yet — a `/p/`
+needs-link line stays `⚠ needs-link` until the carousel adapter lands (WK-0087). WK-0094 Phase A
+probed all 12 known `/p/` links and committed two golden fixtures
+(`tests/fixtures/instagram/carousel/`) for that adapter to build against.
+
+## CLI
+
+Capture one URL and print its inbox block (auto-detects the adapter from the URL, or pass
+`--adapter`):
 
 ```
-uv run python -m catalog_capture instagram-capture <url>
-uv run python -m catalog_capture instagram-capture <url> --sources catalog/sources
+uv run python -m catalog_capture capture <url>
+uv run python -m catalog_capture capture <url> --sources catalog/sources
 ```
 
-Resolve every Instagram `/reel/` needs-link line in an inbox file in place:
+Resolve every `⚠ needs-link` line any registered adapter owns, in an inbox file, in place:
 
 ```
-uv run python -m catalog_capture instagram-needs-link --inbox catalog/inbox.md --sources catalog/sources
+uv run python -m catalog_capture needs-link --inbox catalog/inbox.md --sources catalog/sources
 ```
 
-Options: same `--limit`/`--delay` as `needs-link` (default delay 3s between reels).
+Options:
+- `--limit N` — process at most N items across every adapter (useful for a dry run).
+- `--delay SECONDS` — seconds between captures, sequential, not applied before the first item
+  overall. Default: each matched line's own adapter delay (currently 3s for both Reddit and
+  Instagram reels) — pass `--delay` to override every adapter's delay for this run.
+- `--only NAME` — restrict the run to one registered adapter (`reddit` or `instagram_reel`),
+  leaving every other adapter's lines untouched. This replaces the old separate
+  `instagram-needs-link` command: run `--only instagram_reel` for the equivalent scope.
+- `--prices-path PATH` — LiteLLM price table path for the Instagram read's USD estimate
+  (default: the documented kb-checkout path, or the `CATALOG_CAPTURE_LITELLM_PRICES_PATH` env
+  var). A missing table still yields `(None, reason)`, never a substitute rate.
 
-Each matched line becomes exactly **one** fenced block per reel (OR-3) — its `source:` is always
-the reel URL itself. The body carries the caption, transcript, on-screen text, key claims, and a
-"Mentioned (unverified hints)" list of every tool/URL the read spotted — never HTTP-checked or
-GitHub-normalized at capture time; deciding what each hint becomes (a new entry, an
-`annotate-entry` call, or nothing) is the processing agent's job, not this package's. Every
-record also gets a full `catalog/sources/instagram/<reel-id>.md` (reel URL, capture date, tool
-versions, caption, transcript, on-screen text, key claims, the same unverified hints) plus raw
-artifacts beside it (`info.json`, `transcript.txt`, `sheet.jpg`, `read_response.jsonl` — no
-audio/video). A pipeline failure at any stage becomes `⚠ capture-failed <url> — <stage>:
-<error>` — never a silent drop. Instagram carousels (`/p/`) are out of scope for this slice (a
-separate WK-0080 checklist item) and are left untouched.
+Each matched line is replaced in place with a fenced block (`inbox.ts`'s existing `source:`-
+prefixed `\`\`\`text` format), or left untouched if no adapter's rule matches it. A capture
+failure becomes `⚠ capture-failed <url> — <error>` (never a silent drop); the Reddit adapter's
+PDF-download event becomes `⚠ pdf <url>`. A line no adapter matches, but whose text mentions a
+known platform (reddit.com, instagram.com), is reported on stdout as a near-miss worth a manual
+check. Everything else in the inbox is left byte-identical. Exits non-zero (after printing a
+summary) if any item failed.
 
-## Concurrent edits (both platforms)
+**Retrying a `capture-failed` or `pdf` line.** `needs-link` only matches `⚠ needs-link <url>`
+lines in a shape some adapter's rule recognizes. To retry, manually edit the line back to
+`⚠ needs-link <url>` (drop the `capture-failed`/`pdf` reason and any trailing error text) before
+running `needs-link` again — there is no automatic retry.
+
+### Review sheets
+
+Render one pre-filled review sheet per captured item (`catalog/sources/` → a sheet directory),
+a `REVIEW.md` index with a suggested spot-check sample (capped at 5, WK-0094 OR-5), and tally
+operator verdicts once they're filled in. This never writes a verdict — review is operator-owned
+(WK-0079 OR-2: finder != verifier).
+
+```
+uv run python -m catalog_capture review build --sources catalog/sources --out <review dir>
+uv run python -m catalog_capture review tally --out <review dir>
+```
+
+`review build` takes `--only NAME` (same as `needs-link`) to build sheets for one adapter only,
+and `--sample-cap N` to override the default cap of 5.
+
+## Concurrent edits
 
 A full run can take several minutes (one capture per item, with a delay between them). The
 inbox is read once at the start and written once at the end via a tmp file + atomic rename; if
@@ -115,8 +150,17 @@ uv run pytest -v
 The Reddit golden fixture (`tests/fixtures/JNjEe87YeN.txt`) is a real, unedited WK-0054
 own-engine capture — not hand-written. The fence-break edge case is derived by mutating it.
 
-The Instagram golden fixtures (`tests/fixtures/instagram/`) are the real golden reel
+The Instagram reel golden fixtures (`tests/fixtures/instagram/`) are the real golden reel
 (`De5smNojeZm`) artifacts copied byte-for-byte from `toolkit-workbench/reel/outputs/De5smNojeZm/`
 (`probe_ytdlp.json`, `transcript_small_cpu_int8.txt`, `sheet_t0.3.jpg`), plus this slice's own
 real Claude read response (`read_response.jsonl`) captured against that exact sheet/transcript/
-caption with this slice's own prompt (I3's new `tools`/`on_screen_text` shape).
+caption. The Instagram carousel golden fixtures
+(`tests/fixtures/instagram/carousel/De9SalRGOhy/`, `.../DeCKnW0DAGc/`) are real, unedited
+instaloader + yt-dlp probe captures (WK-0094 Phase A) for the carousel adapter (WK-0087) to build
+against — this package does not yet read them.
+
+`tests/test_output_snapshots.py` pins byte-exact output (rendered blocks, sources files, inbox
+rewrites, and the Reddit CLI stdout/stderr) from before the WK-0094 Phase B refactor. Never
+hand-edit a file under `tests/fixtures/snapshots/` — regenerate with `UPDATE_SNAPSHOTS=1` only
+from code you've already verified is correct, then re-run without the env var to confirm the
+snapshot is deterministic.

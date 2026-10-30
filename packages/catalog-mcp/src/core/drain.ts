@@ -36,8 +36,8 @@ function hostBlocked(url: string, blocked: BlockedDomain[]): boolean {
 // (verified 2026-10-26: real fetchUrl() against a canonical post URL returned a
 // 200 "success" whose content is the /login page skeleton). redd.it is excluded
 // — no capture evidence. This must stay mirrored with NEEDS_LINK_RE in
-// packages/catalog-capture/src/catalog_capture/rewrite.py, or a line one side
-// blocks and the other can't resolve stays `⚠ needs-link` forever.
+// packages/catalog-capture/src/catalog_capture/adapters/reddit.py, or a line
+// one side blocks and the other can't resolve stays `⚠ needs-link` forever.
 const REDDIT_HOST_RE = /^(?:(?:www|old|new|np|m)\.)?reddit\.com$/;
 // A URL that names a specific post: /r/<sub>/s/<id>, /r/<sub>/comments/<id>(/...),
 // /user/<u>/comments/<id>(/...), or bare /comments/<id>(/...). A subreddit home

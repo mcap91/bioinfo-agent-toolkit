@@ -23,7 +23,7 @@
 //   --tools <tools...>         restricts the *built-in* tool set (Bash/Edit/Write/Task* removed);
 //                              takes a comma-separated value, same pattern already verified and
 //                              used at packages/catalog-capture/src/catalog_capture/
-//                              instagram_read.py:29 (`"--tools", ""`)
+//                              stages/read.py's CLAUDE_FLAGS (`"--tools", ""`)
 //   --allowedTools <tools...>  scoped tool allowlist (variadic); in --print mode the run cannot
 //                              answer permission prompts, so every tool the recipe needs must be
 //                              pre-authorized here (built-ins + the catalog MCP tools)

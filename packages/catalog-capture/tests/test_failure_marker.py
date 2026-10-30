@@ -6,12 +6,18 @@ keeps them blocked."""
 
 from pathlib import Path
 
-from catalog_capture.capture import CaptureFailedError, CaptureResult, PdfDownloadError
-from catalog_capture.rewrite import process_needs_link
+from catalog_capture.adapters.reddit import RedditAdapter
+from catalog_capture.registry import process_needs_link
+from catalog_capture.stages.browser import CaptureFailedError, CaptureResult, PdfDownloadError
 
 from conftest import ts_parse_inbox
 
 URL = "https://www.reddit.com/r/LocalLLaMA/s/JNjEe87YeN"
+
+
+def _process(inbox, *, sources_dir, capture_fn, delay_s=0):
+    adapters = [RedditAdapter(capture_fn=capture_fn)]
+    return process_needs_link(inbox, sources_dir=sources_dir, adapters=adapters, delay_s=delay_s)
 
 
 def test_capture_failure_becomes_capture_failed_marker(tmp_path: Path):
@@ -19,9 +25,7 @@ def test_capture_failure_becomes_capture_failed_marker(tmp_path: Path):
         raise CaptureFailedError("net::ERR_NAME_NOT_RESOLVED")
 
     inbox = f"⚠ needs-link {URL}\n"
-    out_text, results = process_needs_link(
-        inbox, sources_dir=tmp_path / "sources", capture_fn=failing_capture, delay_s=0
-    )
+    out_text, results = _process(inbox, sources_dir=tmp_path / "sources", capture_fn=failing_capture)
     assert results[0].status == "failed"
     assert out_text == f"⚠ capture-failed {URL} — net::ERR_NAME_NOT_RESOLVED\n"
 
@@ -43,9 +47,7 @@ def test_pdf_download_event_becomes_pdf_marker(tmp_path: Path):
         raise PdfDownloadError(url)
 
     inbox = f"⚠ needs-link {URL}\n"
-    out_text, results = process_needs_link(
-        inbox, sources_dir=tmp_path / "sources", capture_fn=pdf_capture, delay_s=0
-    )
+    out_text, results = _process(inbox, sources_dir=tmp_path / "sources", capture_fn=pdf_capture)
     assert results[0].status == "pdf"
     assert out_text == f"⚠ pdf {URL}\n"
 
@@ -62,7 +64,7 @@ def test_no_source_file_written_on_failure_or_pdf(tmp_path: Path):
     def failing_capture(url: str):
         raise CaptureFailedError("boom")
 
-    process_needs_link(f"⚠ needs-link {URL}\n", sources_dir=sources_dir, capture_fn=failing_capture, delay_s=0)
+    _process(f"⚠ needs-link {URL}\n", sources_dir=sources_dir, capture_fn=failing_capture)
     assert not sources_dir.exists()
 
 
@@ -94,9 +96,7 @@ def test_stalled_wait_marks_capture_failed(golden_capture, tmp_path: Path):
             wait_matched=False,
         )
 
-    out_text, results = process_needs_link(
-        f"⚠ needs-link {URL}\n", sources_dir=tmp_path / "sources", capture_fn=stalled_capture, delay_s=0
-    )
+    out_text, results = _process(f"⚠ needs-link {URL}\n", sources_dir=tmp_path / "sources", capture_fn=stalled_capture)
     assert results[0].status == "failed"
     assert "stalled" in results[0].error
     assert out_text.startswith(f"⚠ capture-failed {URL} — ")
@@ -115,9 +115,7 @@ def test_blank_body_marks_capture_failed(golden_capture, tmp_path: Path):
             chromium_version="156.0.8078.4",
         )
 
-    out_text, results = process_needs_link(
-        f"⚠ needs-link {URL}\n", sources_dir=tmp_path / "sources", capture_fn=blank_capture, delay_s=0
-    )
+    out_text, results = _process(f"⚠ needs-link {URL}\n", sources_dir=tmp_path / "sources", capture_fn=blank_capture)
     assert results[0].status == "failed"
     assert "blank" in results[0].error
     assert out_text.startswith(f"⚠ capture-failed {URL} — ")
@@ -131,7 +129,7 @@ def test_source_write_failure_becomes_capture_failed_marker_and_batch_continues(
     # one bad write propagated out of `repl()` through `re.sub` and aborted
     # the whole batch, silently dropping every other item in the same run.
     # One bad write must not cost the rest of the batch.
-    import catalog_capture.rewrite as rewrite_mod
+    import catalog_capture.registry as registry_mod
 
     _, body_text = golden_capture
     url_a = "https://www.reddit.com/r/LocalLLaMA/s/JNjEe87YeN"
@@ -147,21 +145,19 @@ def test_source_write_failure_becomes_capture_failed_marker_and_batch_continues(
             chromium_version="156.0.8078.4",
         )
 
-    real_write = rewrite_mod.write_source_file
+    real_write = registry_mod.write_source_file
     calls = {"n": 0}
 
-    def flaky_write(sources_dir, post_id, content):
+    def flaky_write(sources_dir, platform, item_id, content, **kwargs):
         calls["n"] += 1
         if calls["n"] == 1:
             raise OSError("disk full (simulated)")
-        return real_write(sources_dir, post_id, content)
+        return real_write(sources_dir, platform, item_id, content, **kwargs)
 
-    monkeypatch.setattr(rewrite_mod, "write_source_file", flaky_write)
+    monkeypatch.setattr(registry_mod, "write_source_file", flaky_write)
 
     inbox = f"⚠ needs-link {url_a}\n⚠ needs-link {url_b}\n"
-    out_text, results = process_needs_link(
-        inbox, sources_dir=tmp_path / "sources", capture_fn=fake_capture, delay_s=0
-    )
+    out_text, results = _process(inbox, sources_dir=tmp_path / "sources", capture_fn=fake_capture)
 
     assert [r.status for r in results] == ["failed", "ok"]
     out_lines = out_text.splitlines()
@@ -185,9 +181,7 @@ def test_missing_post_id_marks_capture_failed(golden_capture, tmp_path: Path):
             chromium_version="156.0.8078.4",
         )
 
-    out_text, results = process_needs_link(
-        f"⚠ needs-link {URL}\n", sources_dir=tmp_path / "sources", capture_fn=blocked_page_capture, delay_s=0
-    )
+    out_text, results = _process(f"⚠ needs-link {URL}\n", sources_dir=tmp_path / "sources", capture_fn=blocked_page_capture)
     assert results[0].status == "failed"
     assert "post id" in results[0].error
     assert out_text.startswith(f"⚠ capture-failed {URL} — ")

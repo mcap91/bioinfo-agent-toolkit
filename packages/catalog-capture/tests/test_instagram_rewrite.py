@@ -14,8 +14,13 @@ from pathlib import Path
 
 import pytest
 
-from catalog_capture.instagram_capture import InstagramCaptureError, InstagramCaptureResult
-from catalog_capture.instagram_rewrite import INSTAGRAM_NEEDS_LINK_RE, process_instagram_needs_link
+from catalog_capture.adapters.instagram_reel import (
+    INSTAGRAM_NEEDS_LINK_RE,
+    InstagramCaptureError,
+    InstagramCaptureResult,
+    InstagramReelAdapter,
+)
+from catalog_capture.registry import process_needs_link
 
 from conftest import ts_parse_inbox
 
@@ -40,6 +45,11 @@ def _fake_result(reel_id: str = "De5smNojeZm", tools: list[dict] | None = None) 
     )
 
 
+def _process(text, *, sources_dir, capture_fn, limit=None):
+    adapters = [InstagramReelAdapter(capture_fn=capture_fn)]
+    return process_needs_link(text, sources_dir=sources_dir, adapters=adapters, limit=limit, delay_s=0)
+
+
 # -- NEEDS_LINK_RE: what is/isn't matched ----------------------------------
 
 
@@ -60,9 +70,9 @@ def test_reel_line_variants_are_matched(line: str):
 
 
 def test_carousel_line_is_not_matched():
-    # Why: `/p/` carousels are a separate, not-yet-built WK-0080 checklist
-    # item (golden carousel capture pending) — this tool must not silently
-    # mishandle one by matching it; it should stay `⚠ needs-link` untouched.
+    # Why: `/p/` carousels are a separate, not-yet-built adapter (WK-0087) —
+    # this adapter must not silently mishandle one by matching it; it should
+    # stay `⚠ needs-link` untouched.
     line = "⚠ needs-link https://www.instagram.com/p/DeCarousel/"
     assert not INSTAGRAM_NEEDS_LINK_RE.match(line)
 
@@ -85,9 +95,7 @@ def test_one_block_per_reel_with_source_as_the_reel_url():
         return _fake_result(tools=tools)
 
     inbox = f"⚠ needs-link {REEL_URL}\n"
-    out_text, results = process_instagram_needs_link(
-        inbox, sources_dir=Path("/tmp/unused-sources"), capture_fn=fake_capture, delay_s=0
-    )
+    out_text, results = _process(inbox, sources_dir=Path("/tmp/unused-sources"), capture_fn=fake_capture)
     assert results[0].status == "ok"
     assert results[0].mentioned_count == 4
 
@@ -109,9 +117,7 @@ def test_no_tools_mentioned_still_produces_one_block():
         return _fake_result(tools=[])
 
     inbox = f"⚠ needs-link {REEL_URL}\n"
-    out_text, results = process_instagram_needs_link(
-        inbox, sources_dir=Path("/tmp/unused-sources"), capture_fn=fake_capture, delay_s=0
-    )
+    out_text, results = _process(inbox, sources_dir=Path("/tmp/unused-sources"), capture_fn=fake_capture)
     assert results[0].status == "ok"
     assert results[0].mentioned_count == 0
     assert out_text.count("```text\n") == 1
@@ -128,9 +134,7 @@ def test_tool_with_no_url_is_listed_as_a_hint_with_no_url():
         return _fake_result(tools=tools)
 
     inbox = f"⚠ needs-link {REEL_URL}\n"
-    out_text, _ = process_instagram_needs_link(
-        inbox, sources_dir=Path("/tmp/unused-sources"), capture_fn=fake_capture, delay_s=0
-    )
+    out_text, _ = _process(inbox, sources_dir=Path("/tmp/unused-sources"), capture_fn=fake_capture)
     assert "- some unnamed CLI: (no url)" in out_text
 
 
@@ -139,9 +143,7 @@ def test_rewritten_block_parses_under_the_real_ts_inbox_parser(tmp_path: Path):
         return _fake_result(tools=[{"name": "Dumb TV", "url": "github.com/humblemuzzu/dumbtv"}])
 
     inbox = f"⚠ needs-link {REEL_URL}\n"
-    out_text, _ = process_instagram_needs_link(
-        inbox, sources_dir=tmp_path / "sources", capture_fn=fake_capture, delay_s=0
-    )
+    out_text, _ = _process(inbox, sources_dir=tmp_path / "sources", capture_fn=fake_capture)
     inbox_path = tmp_path / "inbox.md"
     inbox_path.write_text(out_text, encoding="utf-8")
     items = ts_parse_inbox(inbox_path)
@@ -164,9 +166,7 @@ def test_capture_failure_becomes_capture_failed_marker():
         raise InstagramCaptureError("audio", "yt-dlp bestaudio exit 1")
 
     inbox = f"⚠ needs-link {REEL_URL}\n"
-    out_text, results = process_instagram_needs_link(
-        inbox, sources_dir=Path("/tmp/unused-sources"), capture_fn=failing_capture, delay_s=0
-    )
+    out_text, results = _process(inbox, sources_dir=Path("/tmp/unused-sources"), capture_fn=failing_capture)
     assert results[0].status == "failed"
     assert out_text == f"⚠ capture-failed {REEL_URL} — audio: yt-dlp bestaudio exit 1\n"
 
@@ -178,9 +178,7 @@ def test_unexpected_exception_also_becomes_capture_failed_marker():
         raise ValueError("boom")
 
     inbox = f"⚠ needs-link {REEL_URL}\n"
-    out_text, results = process_instagram_needs_link(
-        inbox, sources_dir=Path("/tmp/unused-sources"), capture_fn=exploding_capture, delay_s=0
-    )
+    out_text, results = _process(inbox, sources_dir=Path("/tmp/unused-sources"), capture_fn=exploding_capture)
     assert results[0].status == "failed"
     assert out_text == f"⚠ capture-failed {REEL_URL} — boom\n"
 
@@ -196,9 +194,7 @@ def test_limit_caps_how_many_lines_are_processed():
         "⚠ needs-link https://www.instagram.com/reel/aaaaaaaaaaa/\n"
         "⚠ needs-link https://www.instagram.com/reel/bbbbbbbbbbb/\n"
     )
-    out_text, results = process_instagram_needs_link(
-        inbox, sources_dir=Path("/tmp/unused-sources"), capture_fn=fake_capture, limit=1, delay_s=0
-    )
+    out_text, results = _process(inbox, sources_dir=Path("/tmp/unused-sources"), capture_fn=fake_capture, limit=1)
     assert len(results) == 1
     assert len(calls) == 1
     assert len(INSTAGRAM_NEEDS_LINK_RE.findall(out_text)) == 1  # the second line stays untouched

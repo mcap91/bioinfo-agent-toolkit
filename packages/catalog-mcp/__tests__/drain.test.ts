@@ -92,7 +92,7 @@ describe('drainInbox', () => {
   });
 
   // G1/WK-0080: one blocking rule must cover every Reddit post/share host+path
-  // shape catalog-capture's NEEDS_LINK_RE can resolve (rewrite.py) — a line
+  // shape catalog-capture's NEEDS_LINK_RE can resolve (adapters/reddit.py) — a line
   // blocked here but unmatched there would stay `⚠ needs-link` forever. URLs
   // are real (toolkit-workbench/web-capture/results.csv), with host/scheme
   // variants derived from them; the /user/ and bare /comments/ cases keep the

@@ -9,7 +9,7 @@ from __future__ import annotations
 import json
 import re
 
-from catalog_capture.instagram_read import parse_claude_stream_result
+from catalog_capture.stages.read import parse_claude_stream_result
 
 
 def test_probe_json_has_the_real_caption_and_github_urls(golden_instagram_artifacts):

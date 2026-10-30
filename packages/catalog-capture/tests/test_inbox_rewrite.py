@@ -7,8 +7,9 @@ from pathlib import Path
 
 import pytest
 
-from catalog_capture.capture import CaptureResult
-from catalog_capture.rewrite import NEEDS_LINK_RE, process_needs_link
+from catalog_capture.adapters.reddit import NEEDS_LINK_RE, RedditAdapter
+from catalog_capture.registry import process_needs_link
+from catalog_capture.stages.browser import CaptureResult
 
 from conftest import ts_parse_inbox
 
@@ -33,13 +34,16 @@ def fake_capture(golden_capture):
     return _capture
 
 
+def _process(text, *, sources_dir, fake_capture, limit=None):
+    adapters = [RedditAdapter(capture_fn=fake_capture)]
+    return process_needs_link(text, sources_dir=sources_dir, adapters=adapters, limit=limit, delay_s=0)
+
+
 def test_only_reddit_needs_link_lines_change(real_inbox_text: str, fake_capture, tmp_path: Path):
     target_lines = NEEDS_LINK_RE.findall(real_inbox_text)
     assert len(target_lines) == 18  # WK-0054/WK-0080 corpus size
 
-    out_text, results = process_needs_link(
-        real_inbox_text, sources_dir=tmp_path / "sources", capture_fn=fake_capture, delay_s=0
-    )
+    out_text, results = _process(real_inbox_text, sources_dir=tmp_path / "sources", fake_capture=fake_capture)
     assert len(results) == 18
     assert all(r.status == "ok" for r in results)
 
@@ -64,9 +68,7 @@ def test_only_reddit_needs_link_lines_change(real_inbox_text: str, fake_capture,
 
 
 def test_rewritten_inbox_still_parses_under_the_real_ts_parser(real_inbox_text: str, fake_capture, tmp_path: Path):
-    out_text, _ = process_needs_link(
-        real_inbox_text, sources_dir=tmp_path / "sources", capture_fn=fake_capture, delay_s=0
-    )
+    out_text, _ = _process(real_inbox_text, sources_dir=tmp_path / "sources", fake_capture=fake_capture)
     inbox_path = tmp_path / "inbox.md"
     inbox_path.write_text(out_text, encoding="utf-8")
 
@@ -84,9 +86,7 @@ def test_rewritten_inbox_still_parses_under_the_real_ts_parser(real_inbox_text: 
 
 
 def test_limit_caps_how_many_lines_are_processed(real_inbox_text: str, fake_capture, tmp_path: Path):
-    out_text, results = process_needs_link(
-        real_inbox_text, sources_dir=tmp_path / "sources", capture_fn=fake_capture, limit=1, delay_s=0
-    )
+    out_text, results = _process(real_inbox_text, sources_dir=tmp_path / "sources", fake_capture=fake_capture, limit=1)
     assert len(results) == 1
     # 17 needs-link lines remain untouched.
     assert len(NEEDS_LINK_RE.findall(out_text)) == 17
@@ -94,7 +94,7 @@ def test_limit_caps_how_many_lines_are_processed(real_inbox_text: str, fake_capt
 
 def test_source_files_written_for_every_captured_item(real_inbox_text: str, fake_capture, tmp_path: Path):
     sources_dir = tmp_path / "sources"
-    process_needs_link(real_inbox_text, sources_dir=sources_dir, capture_fn=fake_capture, delay_s=0)
+    _process(real_inbox_text, sources_dir=sources_dir, fake_capture=fake_capture)
     written = sorted(p.name for p in (sources_dir / "reddit").glob("*.md"))
     assert len(written) == 18
 
@@ -141,9 +141,7 @@ def test_canonical_comments_needs_link_line_is_captured(line_url, golden_capture
         )
 
     inbox = f"⚠ needs-link {line_url}\n"
-    out_text, results = process_needs_link(
-        inbox, sources_dir=tmp_path / "sources", capture_fn=fake_capture, delay_s=0
-    )
+    out_text, results = _process(inbox, sources_dir=tmp_path / "sources", fake_capture=fake_capture)
     assert len(results) == 1
     assert results[0].status == "ok"
     assert out_text == f"```text\nsource: {CANONICAL_COMMENTS_URL}\n{real_body_text}\n```\n"

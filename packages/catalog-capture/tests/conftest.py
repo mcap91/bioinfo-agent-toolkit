@@ -15,6 +15,23 @@ FIXTURE_TXT = TESTS_DIR / "fixtures" / "JNjEe87YeN.txt"
 FIXTURE_INBOX = TESTS_DIR / "fixtures" / "inbox_2026-10-26.md"
 
 
+@pytest.fixture
+def clean_registry():
+    """WK-0094: `catalog_capture.registry` holds one module-global mutable
+    adapter registry. A test that calls `register()`/`unregister()` (the
+    extensibility tests, the `--only` CLI test) must not leak that mutation
+    into other tests — snapshot `_REGISTRY` before the test and restore it
+    exactly afterward, regardless of pass/fail."""
+    import catalog_capture.registry as registry_mod
+
+    before = dict(registry_mod._REGISTRY)
+    try:
+        yield registry_mod
+    finally:
+        registry_mod._REGISTRY.clear()
+        registry_mod._REGISTRY.update(before)
+
+
 def parse_raw_capture(raw: str) -> tuple[str, str]:
     """Parse the WK-0054 own-engine raw capture format (`final <url>` / `title ...` /
     `shreddit-post ... | comments ...` / `body text:` / <text>). Test-only: production

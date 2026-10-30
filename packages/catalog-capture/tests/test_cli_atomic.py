@@ -6,8 +6,9 @@ before write) — print which items were captured, exit non-zero."""
 import time
 from pathlib import Path
 
-from catalog_capture.capture import CaptureResult
+from catalog_capture.adapters.reddit import RedditAdapter
 from catalog_capture.cli import run_needs_link
+from catalog_capture.stages.browser import CaptureResult
 
 URL_A = "https://www.reddit.com/r/LocalLLaMA/s/JNjEe87YeN"
 
@@ -28,7 +29,8 @@ def test_successful_run_writes_atomically_via_tmp_file_and_replace(tmp_path: Pat
     inbox_path.write_text(f"⚠ needs-link {URL_A}\n", encoding="utf-8")
     sources_dir = tmp_path / "sources"
 
-    code = run_needs_link(inbox_path, sources_dir, capture_fn=_fake_capture, delay_s=0)
+    adapters = [RedditAdapter(capture_fn=_fake_capture)]
+    code = run_needs_link(inbox_path, sources_dir, adapters=adapters, delay_s=0)
 
     assert code == 0
     assert "source: https://www.reddit.com/r/LocalLLaMA/comments/" in inbox_path.read_text(encoding="utf-8")
@@ -51,7 +53,8 @@ def test_aborts_without_writing_when_inbox_changed_during_the_run(tmp_path: Path
         inbox_path.write_text(concurrent_edit, encoding="utf-8")
         return _fake_capture(url)
 
-    code = run_needs_link(inbox_path, sources_dir, capture_fn=capture_that_races, delay_s=0)
+    adapters = [RedditAdapter(capture_fn=capture_that_races)]
+    code = run_needs_link(inbox_path, sources_dir, adapters=adapters, delay_s=0)
 
     assert code == 1
     # The inbox was NOT overwritten — the concurrent edit is what's on disk.

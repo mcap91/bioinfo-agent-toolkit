@@ -11,7 +11,7 @@ host, and an id containing an underscore — all real shapes a pasted or
 redirected Reddit URL can take.
 """
 
-from catalog_capture.rewrite import NEEDS_LINK_RE
+from catalog_capture.adapters.reddit import NEEDS_LINK_RE
 
 from conftest import ts_check_unfetchable
 

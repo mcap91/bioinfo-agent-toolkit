@@ -1,8 +1,10 @@
 // packages/catalog-mcp/src/core/group-items.ts
 import type { QueueItem } from './schema.js';
 
-// Header the Instagram capture writes before its hint list (catalog_capture/instagram_rewrite.py,
-// render_instagram_block): one `- <name>: <url or "(no url)">` line per tool the read spotted.
+// Header the Instagram capture writes before its hint list
+// (catalog_capture/adapters/instagram_reel.py's build_outcome +
+// catalog_capture/rendering.py's render_block): one `- <name>: <url or "(no url)">`
+// line per tool the read spotted.
 const HINTS_HEADER = 'Mentioned (unverified hints):\n';
 const HINT_LINE = /^- (.+): (\(no url\)|\S+)$/;
 const GITHUB_REPO = /github\.com\/([^/\s#?]+)\/([^/\s#?]+)/i;

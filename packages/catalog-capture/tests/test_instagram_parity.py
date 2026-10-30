@@ -30,7 +30,7 @@ def test_every_instagram_path_shape_is_blocked_by_the_real_config():
 
 
 def test_fenced_text_block_with_an_instagram_source_is_ingested_not_blocked(tmp_path):
-    # Why: this is the exact shape `instagram_rewrite`'s no-verified-tool
+    # Why: this is the exact shape the Instagram reel adapter's no-verified-tool
     # fallback writes (source: <reel url>) — it must be ingested (R6's
     # existing precedent: text items skip the url-only block rule), or every
     # route-2 reel would loop forever as `⚠ needs-link`.

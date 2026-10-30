@@ -1,0 +1,20 @@
+Your agent makes the same mistake on Monday that it made on Friday.
+
+Because nothing it learned was written down.
+
+This one keeps a playbook.
+Every wrong answer → one new bullet.
+
+→ a Generator does the task
+→ a Reflector compares it with the correct answer
+→ a Curator adds the lesson. Never rewrites.
+→ plain Python merges it, votes on it, prunes it
+
+8 invoices it had never seen:
+empty playbook 4/16. Its own 3-bullet playbook 16/16.
+
+Swipe for the loop 👉
+
+A PDF Version of the complete Guide is shared with our Exclusive Instagram Subscribers 👑. Get access to it with 1000+ other FREE Resources for just Rs.45 per month❗️. Click subscribe button in profile to access it now!
+
+#datasciencebrain #aiindia #aiagents #contextengineering #selfimprovingai

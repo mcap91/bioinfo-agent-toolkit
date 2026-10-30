@@ -4,10 +4,11 @@ fixture with one line mutated to a bare ``` — not hand-written prose."""
 
 from pathlib import Path
 
+from catalog_capture.adapters.reddit import RedditAdapter
 from catalog_capture.canonical import canonical_url
-from catalog_capture.capture import CaptureResult
 from catalog_capture.fence import _ZWSP, defuse_fence_breaks
-from catalog_capture.rewrite import process_needs_link
+from catalog_capture.registry import process_needs_link
+from catalog_capture.stages.browser import CaptureResult
 
 from conftest import ts_parse_inbox
 
@@ -57,9 +58,8 @@ def test_mutated_golden_fixture_block_survives_the_real_ts_parser(golden_capture
         )
 
     inbox = "⚠ needs-link https://www.reddit.com/r/LocalLLaMA/s/JNjEe87YeN\n"
-    out_text, results = process_needs_link(
-        inbox, sources_dir=tmp_path / "sources", capture_fn=fake_capture, delay_s=0
-    )
+    adapters = [RedditAdapter(capture_fn=fake_capture)]
+    out_text, results = process_needs_link(inbox, sources_dir=tmp_path / "sources", adapters=adapters, delay_s=0)
     assert results[0].status == "ok"
 
     # R8: the sources file gets the verbatim capture (the bare ``` line intact);
@@ -110,9 +110,8 @@ def test_bom_plus_backticks_survives_the_real_ts_parser(golden_capture, tmp_path
         )
 
     inbox = "⚠ needs-link https://www.reddit.com/r/LocalLLaMA/s/JNjEe87YeN\n"
-    out_text, results = process_needs_link(
-        inbox, sources_dir=tmp_path / "sources", capture_fn=fake_capture, delay_s=0
-    )
+    adapters = [RedditAdapter(capture_fn=fake_capture)]
+    out_text, results = process_needs_link(inbox, sources_dir=tmp_path / "sources", adapters=adapters, delay_s=0)
     assert results[0].status == "ok"
 
     inbox_path = tmp_path / "inbox.md"

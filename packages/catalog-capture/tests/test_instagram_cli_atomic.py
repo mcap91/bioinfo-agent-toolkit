@@ -1,15 +1,16 @@
-"""Instagram counterpart of test_cli_atomic.py (S2): `run_instagram_needs_link`
+"""Instagram counterpart of test_cli_atomic.py (S2): the shared `run_needs_link`
 reads the inbox once and writes it once, atomically, and aborts without
 writing if the file changed on disk mid-run — same contract as the Reddit
-path, exercised against its own (duplicated, not shared) implementation."""
+path, exercised here through the Instagram reel adapter's own (injected)
+capture function."""
 
 from __future__ import annotations
 
 import time
 from pathlib import Path
 
-from catalog_capture.cli import run_instagram_needs_link
-from catalog_capture.instagram_capture import InstagramCaptureResult
+from catalog_capture.adapters.instagram_reel import InstagramCaptureResult, InstagramReelAdapter
+from catalog_capture.cli import run_needs_link
 
 URL_A = "https://www.instagram.com/reel/De5smNojeZm/"
 
@@ -33,7 +34,8 @@ def test_successful_run_writes_atomically_via_tmp_file_and_replace(tmp_path: Pat
     inbox_path.write_text(f"⚠ needs-link {URL_A}\n", encoding="utf-8")
     sources_dir = tmp_path / "sources"
 
-    code = run_instagram_needs_link(inbox_path, sources_dir, capture_fn=_fake_capture, delay_s=0)
+    adapters = [InstagramReelAdapter(capture_fn=_fake_capture)]
+    code = run_needs_link(inbox_path, sources_dir, adapters=adapters, delay_s=0)
 
     assert code == 0
     assert f"source: {URL_A}" in inbox_path.read_text(encoding="utf-8")  # OR-3: source is always the reel URL
@@ -53,7 +55,8 @@ def test_aborts_without_writing_when_inbox_changed_during_the_run(tmp_path: Path
         inbox_path.write_text(concurrent_edit, encoding="utf-8")
         return _fake_capture(url)
 
-    code = run_instagram_needs_link(inbox_path, sources_dir, capture_fn=capture_that_races, delay_s=0)
+    adapters = [InstagramReelAdapter(capture_fn=capture_that_races)]
+    code = run_needs_link(inbox_path, sources_dir, adapters=adapters, delay_s=0)
 
     assert code == 1
     assert inbox_path.read_text(encoding="utf-8") == concurrent_edit  # not overwritten

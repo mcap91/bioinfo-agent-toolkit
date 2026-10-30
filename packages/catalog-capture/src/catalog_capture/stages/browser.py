@@ -1,4 +1,6 @@
-"""The WK-0054 "own script" capture engine (ENGINE CHOICE, WK-0054 Results).
+"""Shared browser-page-capture stage (WK-0094 Phase B; formerly `capture.py`).
+
+The WK-0054 "own script" capture engine (ENGINE CHOICE, WK-0054 Results).
 
 Evidence: toolkit-workbench/web-capture/own/capture.py — Chromium headless, Chrome
 user agent (clears Reddit's JS challenge; the default UA stalls on it, WK-0054
@@ -6,6 +8,10 @@ user agent (clears Reddit's JS challenge; the default UA stalls on it, WK-0054
 loop for a per-site selector (never raises on timeout — it keeps the page text
 regardless, R1). A PDF `Page.goto: Download is starting` error is a distinct,
 expected outcome (WK-0054 probe `own-pdf.log`), not a generic capture failure.
+
+This module is a shared stage: any adapter that needs a real browser page load
+(Reddit today; a future login-free page-based source tomorrow) calls into it —
+the per-site `WAIT_TABLE` is already designed to hold more than one host.
 """
 
 from __future__ import annotations
@@ -17,7 +23,7 @@ from urllib.parse import urlsplit, urlunsplit
 
 from playwright.sync_api import sync_playwright
 
-from .versions import playwright_version
+from ..versions import playwright_version
 
 CHROME_UA = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -66,8 +72,8 @@ def _host(url: str) -> str:
 
 
 # www/old/new/np/m.reddit.com or bare reddit.com (G1/WK-0080). Mirrors the host
-# rule in packages/catalog-mcp/src/core/drain.ts `urlUnfetchable` and this
-# package's `rewrite.NEEDS_LINK_RE` — keep all three in sync.
+# rule in packages/catalog-mcp/src/core/drain.ts `urlUnfetchable` and the
+# Reddit adapter's `NEEDS_LINK_RE` — keep all three in sync.
 _REDDIT_HOST_RE = re.compile(r"^(?:(?:www|old|new|np|m)\.)?reddit\.com$", re.IGNORECASE)
 
 

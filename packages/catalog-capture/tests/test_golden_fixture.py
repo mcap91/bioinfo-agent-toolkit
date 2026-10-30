@@ -5,7 +5,7 @@ from pathlib import Path
 
 from catalog_capture.canonical import canonical_url, post_id
 from catalog_capture.fence import defuse_fence_breaks
-from catalog_capture.sources import render_source_md, write_source_file
+from catalog_capture.sources_writer import render_source_md, write_source_file
 
 
 def test_fixture_shape_matches_the_real_capture(golden_capture):
@@ -29,13 +29,15 @@ def test_source_md_carries_full_text_and_tool_versions(golden_capture, tmp_path:
     canonical = canonical_url(final_url)
     safe_text = defuse_fence_breaks(body_text)
     md = render_source_md(
-        canonical=canonical,
-        captured_at="2026-10-26",
-        playwright_version="1.64.1",
-        chromium_version="156.0.8078.4",
-        text=safe_text,
+        header_lines=[
+            f"source: {canonical}",
+            "captured: 2026-10-26",
+            "playwright: 1.64.1",
+            "chromium: 156.0.8078.4",
+        ],
+        body=f"{safe_text}\n",
     )
-    out = write_source_file(tmp_path, "1x9gfnb", md)
+    out = write_source_file(tmp_path, "reddit", "1x9gfnb", md)
     written = out.read_text(encoding="utf-8")
 
     assert written.startswith(f"source: {canonical}\n")

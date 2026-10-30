@@ -8,7 +8,7 @@ row 1, query string stripped per R3); host/scheme variants are derived from it.
 
 import pytest
 
-from catalog_capture.capture import normalize_reddit_url
+from catalog_capture.stages.browser import normalize_reddit_url
 
 PATH = "/r/LocalLLaMA/comments/1x9gfnb/google_open_sources_harness2_for_self_improving/"
 CANONICAL = f"https://www.reddit.com{PATH}"
