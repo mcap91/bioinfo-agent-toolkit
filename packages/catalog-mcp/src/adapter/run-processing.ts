@@ -9,7 +9,9 @@
 // code calls `rebuildCatalogIndexes` once — no LLM step. That function is the same shared
 // implementation the `index` MCP tool calls (packages/catalog-mcp/src/tools.ts), so index.md, the
 // search index, the knowledge graph, and the semantic vectors all stay in sync with the new
-// entries, exactly as they did when the old recipe ended with its own `index` call.
+// entries, exactly as they did when the old recipe ended with its own `index` call. Each item's
+// session is killed if it runs past the per-item timeout — 15 minutes by default, raised with
+// `--item-timeout <minutes>` (WK-0097 D3) for items that legitimately need longer.
 //
 // VERIFIED against `claude 2.1.281 (Claude Code)` on 2026-10-28 (WK-0092). Ran `claude --help`
 // and confirmed:
@@ -569,6 +571,16 @@ export function parsePositiveIntFlag(argv: string[], flag: string): number | und
   return val;
 }
 
+/** WK-0097 D3: `--item-timeout <minutes>` raises the per-item session timeout past the
+ * SESSION_TIMEOUT_MS default (15 min), for items that legitimately need longer (multi-tool
+ * carousels writing 7-8 researched entries). Reuses parsePositiveIntFlag, so a non-positive or
+ * non-integer value, or a missing value, is rejected the same way `--limit` rejects them. Returns
+ * undefined when the flag is absent, so callers fall back to the default. */
+export function parseItemTimeoutMs(argv: string[]): number | undefined {
+  const minutes = parsePositiveIntFlag(argv, '--item-timeout');
+  return minutes !== undefined ? minutes * 60 * 1000 : undefined;
+}
+
 /** Generic `--flag value` reader for the two string-valued pilot flags (`--root`, `--model`). */
 export function parseStringFlag(argv: string[], flag: string): string | undefined {
   const idx = argv.indexOf(flag);
@@ -592,7 +604,9 @@ async function main(): Promise<void> {
   const root = parseStringFlag(argv, '--root');
   const catalogRoot = root !== undefined ? path.resolve(root) : undefined;
   const model = parseStringFlag(argv, '--model');
-  await runProcessing({ dir, catalogRoot, limit, concurrency, group, model });
+  // Default unset — runProcessing falls back to SESSION_TIMEOUT_MS, unchanged from before this flag existed.
+  const timeoutMs = parseItemTimeoutMs(argv);
+  await runProcessing({ dir, catalogRoot, limit, concurrency, group, model, timeoutMs });
 }
 
 // Only run when executed directly (`tsx src/adapter/run-processing.ts` / `npm run catalog:process`),

@@ -24,6 +24,7 @@ import {
   processItem,
   runProcessing,
   parseStringFlag,
+  parseItemTimeoutMs,
   CATALOG_MCP_TOOLS,
   BUILTIN_TOOLS,
 } from '../src/adapter/run-processing.js';
@@ -628,6 +629,24 @@ describe('runProcessing --root (catalogRoot)', () => {
     await runProcessing({ dir, timeoutMs: 5000 });
 
     expect(mockRebuildCatalogIndexes).toHaveBeenCalledWith({ dir, format: 'full' });
+  });
+});
+
+describe('parseItemTimeoutMs (CLI, backs --item-timeout, WK-0097 D3)', () => {
+  it('converts whole minutes to milliseconds', () => {
+    expect(parseItemTimeoutMs(['--item-timeout', '45'])).toBe(45 * 60 * 1000);
+    expect(parseItemTimeoutMs(['--item-timeout', '45'])).toBe(2_700_000);
+  });
+
+  it('returns undefined when the flag is absent, so runProcessing falls back to the 15-minute default', () => {
+    expect(parseItemTimeoutMs(['--limit', '2'])).toBeUndefined();
+  });
+
+  it('rejects 0, a negative value, a non-numeric value, and a missing value — same as --limit', () => {
+    expect(() => parseItemTimeoutMs(['--item-timeout', '0'])).toThrow();
+    expect(() => parseItemTimeoutMs(['--item-timeout', '-5'])).toThrow();
+    expect(() => parseItemTimeoutMs(['--item-timeout', 'abc'])).toThrow();
+    expect(() => parseItemTimeoutMs(['--item-timeout'])).toThrow();
   });
 });
 
