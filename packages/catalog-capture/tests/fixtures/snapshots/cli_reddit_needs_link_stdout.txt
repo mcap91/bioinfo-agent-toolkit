@@ -1,0 +1,2 @@
+needs-link: 2 processed — 1 captured, 0 pdf, 1 failed
+  capture-failed: https://www.reddit.com/r/AI_Agents/s/forcedFailure1 — net::ERR_NAME_NOT_RESOLVED (forced, snapshot test)

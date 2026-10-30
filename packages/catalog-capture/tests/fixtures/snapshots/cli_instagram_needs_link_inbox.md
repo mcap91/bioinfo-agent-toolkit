@@ -1,0 +1,105 @@
+```text
+source: https://www.instagram.com/reel/De5smNojeZm/
+Caption:
+Your slow Android TV is probably full of apps you never asked for. Here's every step to fix it. 📺
+
+People are using Claude Code to switch off bloat, ad rows and trackers on Android TV and Google TV over ADB, with no root. Everything is disabled, not deleted, so it can be undone. The catch: one user bricked a TV, you lose whatever you switch off, and 1 GB TVs may not speed up much.
+
+Would you let an AI tune your TV, or never risk it? 👇
+Comment PROMPT and I'll send you the exact one.
+
+Sources: TechCrunch, It's FOSS, Tom's Hardware, github.com/Gathin23/cleanyourtv, github.com/humblemuzzu/dumbtv, developer.android.com, code.claude.com
+Original animation. Not affiliated with Google, Anthropic or Amazon.
+
+#AndroidTV #GoogleTV #ClaudeCode #SmartTV #TechTips #AI #LearnTech
+
+Transcript:
+[   0.0] People are letting Claude fix their slow Android TVs, and some say it's smoother than new.
+[   5.6] Real speed up or risky hack, here's every step.
+[   9.3] Many budget TVs have just one to two gigabytes of RAM, and ship full of pre-installed apps,
+[  14.0] add rows and trackers.
+[  15.0] Some even fingerprint your screen to sell ads.
+[  18.2] You need a TV, a laptop on the same Wi-Fi, and 15 minutes.
+[  22.3] It works on Android TV and Google TV, not Samsung, LG or Roku.
+[  27.8] Step 1.
+[  28.8] On the TV, open Settings, Device Preferences about.
+[  32.5] Press OK on Build 7 times.
+[  34.8] Your developer.
+[  36.3] Step 2.
+[  37.3] In Developer Options, turn on USB debugging, plus network debugging if you see it.
+[  42.8] Step 3.
+[  43.8] In your Wi-Fi settings, note the TV's IP address.
+[  47.8] Step 4.
+[  48.8] On your laptop, install Android's free platform tools.
+[  52.1] That's ADB, Google's tool for sending commands to a device.
+[  56.2] Then install Claude code and sign in.
+[  58.8] Step 5.
+[  59.8] Tell Claude your TV model and IP, and ask it to connect over ADB.
+[  64.2] Be specific.
+[  65.2] Hack my TV can get refused.
+[  67.8] Step 6.
+[  68.8] The TV asks, allow debugging.
+[  70.7] Press Allow.
+[  71.7] Only computers you approve get in.
+[  73.8] Step 7.
+[  74.8] Have Claude back up the full app list and settings and write a restore script.
+[  78.5] That's your Undo button.
+[  80.3] Step 8.
+[  81.3] Claude sorts every app, tracking, ads, background extras, preloaded apps, and the app
+[  86.2] you use.
+[  87.2] You pick what stays.
+[  88.7] Step 9.
+[  89.7] It switches the extras off with PM Disable User.
+[  92.9] Disabled, not deleted, so you can undo it anytime.
+[  97.2] Step 10.
+[  98.2] It presses remote buttons and screenshots the TV to check each change.
+[ 103.2] On top of that, lower the animation scales in Developer Options.
+[ 107.0] Lower means faster.
+[ 108.9] Swap the heavy home screen.
+[ 110.4] One user went from 192 megabyte launcher to an 83 megabyte one and disabled 25 bloat apps.
+[ 117.7] Gathen built Clean Your TV with Claude code in an afternoon for his parents' TV, a light
+[ 122.6] home screen made for 1 gigabyte TVs.
+[ 126.2] On Fire TV, Dumb TV disables about 50 Amazon ad and tracking packages and blocks about
+[ 132.4] 400 tracking addresses.
+[ 134.1] One script undoes it all.
+[ 136.2] You can also switch off Ad Tracking and Autoplay.
+[ 139.6] To catch, one user bricked their TV.
+[ 142.3] Uninstalling the wrong system app can break home or HDMI, so only disable and install the
+[ 147.6] new launcher before removing the old one.
+[ 150.3] Whatever you switch off is gone, like voice search or updates.
+[ 153.6] On a 1 gigabyte TV, gains may be small and turn debugging off when you're done.
+[ 159.3] Claude code asked before each command.
+[ 161.5] Read it before you press yes.
+[ 163.7] So would you let an AI tune your TV or never risk it?
+[ 167.4] Comment below.
+[ 168.6] What my exact prompt?
+[ 170.1] Comment prompt and I'll reply.
+[ 171.8] Save this and follow for one tech idea a day.
+
+On-screen text:
+SPONSORED | YOU NEED THE TV A LAPTOP ... 15 MINUTES WORKS ON ANDROID TV GOOGLE TV NOT SAMSUNG LG ROKU | 02 STEP 1 UNLOCK DEVELOPER Settings > Device Preferences Device name Android TV OS 12 Build tap Status You are now a developer! PRESS OK x7 you're a developer. | 03 STEP 2 TURN ON DEBUGGING Developer options Stay awake Home Wi-Fi USB debugging Network debugging Window animation scale 1x USB + NETWORK NO WIRELESS TOGGLE? USB MAY BE ENOUGH | 04 STEP 3 FIND THE TV'S IP Wi-Fi Network Signal strength Good IP address 192.168.1.42 Proxy settings 192.168.1.42 EXAMPLE · YOURS WILL DIFFER | 05 STEP 5 CONNECT · TELL CL... CLAUDE CODE > My TV is a [model]. Connect over ADB and back... adb connect 192.168.1.42:5... hack my TV CAN GET REFUSED BE SPECIFIC Step six | 06 STEP 6 APPROVE IT ON THE... Allow USB debugging backup only computers you approve. | 07 STEP 7 BACK UP FIRST restore.sh your undo button. | 10 STEP 10 CHECK EVERY CHANGE KEYEVENT → TV screen.png | ON TOP OF THAT LOW... ANIMATION SCALES ... 1x LOWER = FASTER | A LIGHTER HOME SCRE... 25 BLOAT APPS OFF OR: PROJECTIVY · FLAUNCHER · ATV | WHAT OTHERS BUILT 1 AFT... Good evening 8:42 FOR 1 GB TVS A DOCK · A GRID · NO VIDEO · NO BLUR | LET AI TUN... RI... Want my exact prompt?
+
+Key claims:
+- Claude Code can connect to Android TV/Google TV over ADB with no root to disable bloat, ad rows, and trackers.
+- Works only on Android TV and Google TV, not Samsung, LG, or Roku.
+- Budget TVs often have just 1-2GB RAM and come preloaded with apps, ad rows, and trackers, some of which fingerprint the screen to sell ads.
+- Process requires a TV, a laptop on the same Wi-Fi, and about 15 minutes.
+- Steps include: enabling developer options (tap Build 7x), turning on USB/network debugging, finding the TV's IP, installing ADB and Claude Code, connecting via ADB, approving the debugging prompt, backing up the full app list/settings with a restore script before changes, disabling apps with pm disable-user (disabled not deleted, so reversible), and verifying changes via remote key presses and screenshots.
+- Lowering the animation scale in Developer Options makes the TV feel faster.
+- One user went from a 192MB launcher to an 83MB one and disabled 25 bloat apps.
+- Gathin built 'Clean Your TV' with Claude Code in an afternoon for his parents' TV, a lightweight home screen designed for 1GB TVs.
+- 'Dumb TV' disables about 50 Amazon ad/tracking packages on Fire TV and blocks about 400 tracking addresses; one script undoes it all.
+- Users can also disable ad tracking and autoplay.
+- Risk: one user bricked their TV; uninstalling the wrong system app can break the home screen or HDMI, so only disable apps and install a new launcher before removing the old one.
+- Whatever is switched off is lost (e.g., voice search or updates) unless restored.
+- On 1GB TVs, speed gains may be small.
+- Users should turn debugging off when finished.
+- Claude Code asks for confirmation before each command, and users should read commands before approving.
+
+Mentioned (unverified hints):
+- Claude Code: code.claude.com
+- ADB (Android Debug Bridge / Android platform tools): developer.android.com
+- Clean Your TV: github.com/Gathin23/cleanyourtv
+- Dumb TV: github.com/humblemuzzu/dumbtv
+```
+⚠ capture-failed https://www.instagram.com/reel/forcedFailure2/ — audio: yt-dlp bestaudio exit 1 (forced, snapshot test)
