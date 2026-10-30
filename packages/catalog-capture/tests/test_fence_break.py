@@ -40,7 +40,11 @@ def test_mutated_golden_fixture_block_survives_the_real_ts_parser(golden_capture
     # end-of-text marker after it, so truncation (vs. correct handling) is visible.
     lines = body_text.split("\n")
     mid = len(lines) // 2
-    mutated_body = "\n".join(lines[:mid] + ["```"] + lines[mid:] + [MARKER_AFTER])
+    # OR-10 slices away everything past the post+comments region (header and
+    # footer/sidebar chrome), so MARKER_AFTER must land inside the kept comments
+    # text — right after the injected fence — not past the end, which is now
+    # stripped chrome in the real capture.
+    mutated_body = "\n".join(lines[:mid] + ["```", MARKER_AFTER] + lines[mid:])
     assert MARKER_BEFORE in mutated_body
 
     final_url = (
@@ -92,7 +96,9 @@ def test_bom_plus_backticks_survives_the_real_ts_parser(golden_capture, tmp_path
     bom = chr(0xFEFF)
     lines = body_text.split("\n")
     mid = len(lines) // 2
-    mutated_body = "\n".join(lines[:mid] + [bom + "```"] + lines[mid:] + [MARKER_AFTER])
+    # Same OR-10 reasoning as the bare-fence test above: MARKER_AFTER must stay
+    # inside the kept comments region, not past it in stripped chrome.
+    mutated_body = "\n".join(lines[:mid] + [bom + "```", MARKER_AFTER] + lines[mid:])
     assert MARKER_BEFORE in mutated_body
 
     final_url = (
