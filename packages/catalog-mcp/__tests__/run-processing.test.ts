@@ -23,6 +23,7 @@ import {
   countToolCalls,
   processItem,
   runProcessing,
+  parseStringFlag,
   CATALOG_MCP_TOOLS,
   BUILTIN_TOOLS,
 } from '../src/adapter/run-processing.js';
@@ -139,11 +140,18 @@ describe('buildItemPrompt', () => {
 });
 
 describe('buildClaudeArgs', () => {
-  it('always pins --model sonnet (WK-0092 OR-1: never the inherited default)', () => {
+  it('always pins --model sonnet by default (WK-0092 OR-1: never the inherited default)', () => {
     const args = buildClaudeArgs('/tmp/mcp.json');
     const i = args.indexOf('--model');
     expect(i).toBeGreaterThan(-1);
     expect(args[i + 1]).toBe('sonnet');
+  });
+
+  it('WK-0097 --model: an explicit model is passed through --model instead of the sonnet default', () => {
+    const args = buildClaudeArgs('/tmp/mcp.json', 'opus');
+    const i = args.indexOf('--model');
+    expect(i).toBeGreaterThan(-1);
+    expect(args[i + 1]).toBe('opus');
   });
 
   it('always passes --strict-mcp-config, so only the catalog MCP server loads (no kb-wiki leak)', () => {
@@ -516,6 +524,126 @@ describe('runProcessing', () => {
 
     expect(mockSpawn).toHaveBeenCalledTimes(1);
     expect(JSON.parse(await readFile(queueFilePath(dir), 'utf-8')).items.map((i: QueueItem) => i.key)).toEqual(['b', 'c']);
+  });
+});
+
+// WK-0097 pilot: `--root <dir>` runs against an isolated catalog copy (queue, entries, index,
+// process log, transcript archive, the spawned session's CATALOG_ROOT) while `recipe.md` and the
+// MCP server's own source keep coming from the code repo (`dir`), so the pilot exercises the real,
+// in-progress recipe and code against throwaway data.
+describe('runProcessing --root (catalogRoot)', () => {
+  let dir: string; // code root: has catalog/recipe.md, nothing else under catalog/
+  let catalogRoot: string; // isolated catalog data copy
+  beforeEach(async () => {
+    dir = await mkdtemp(path.join(os.tmpdir(), 'catalog-run-processing-coderoot-'));
+    catalogRoot = await mkdtemp(path.join(os.tmpdir(), 'catalog-run-processing-dataroot-'));
+    await mkdir(path.join(dir, 'catalog'), { recursive: true });
+    await writeFile(path.join(dir, 'catalog', 'recipe.md'), 'RECIPE FROM CODE REPO', 'utf-8');
+    mockSpawn.mockReset();
+    mockRebuildCatalogIndexes.mockClear();
+    vi.stubEnv('CLAUDE_CONFIG_DIR', path.join(catalogRoot, 'claude-config'));
+  });
+  afterEach(async () => {
+    vi.unstubAllEnvs();
+    await rm(dir, { recursive: true, force: true });
+    await rm(catalogRoot, { recursive: true, force: true });
+  });
+
+  it('reads and writes the queue at <catalogRoot>/catalog/queue.json, never at <dir>', async () => {
+    await writeQueueFile(catalogRoot, [item('k1')]);
+    const stdout = await readFixture('single-turn-result.json');
+    installFakeSpawn(catalogRoot, { k1: { removeFromQueue: true, stdout } });
+
+    await runProcessing({ dir, catalogRoot, timeoutMs: 5000 });
+
+    expect(JSON.parse(await readFile(queueFilePath(catalogRoot), 'utf-8')).items).toEqual([]);
+    await expect(readFile(queueFilePath(dir), 'utf-8')).rejects.toThrow();
+  });
+
+  it('writes process-log.jsonl under <catalogRoot>/catalog/, never at <dir>', async () => {
+    await writeQueueFile(catalogRoot, [item('k1')]);
+    const stdout = await readFixture('single-turn-result.json');
+    installFakeSpawn(catalogRoot, { k1: { removeFromQueue: true, stdout } });
+
+    await runProcessing({ dir, catalogRoot, timeoutMs: 5000 });
+
+    const log = (await readFile(path.join(catalogRoot, 'catalog', 'process-log.jsonl'), 'utf-8'))
+      .trim().split('\n').map((l) => JSON.parse(l));
+    expect(log).toHaveLength(1);
+    expect(log[0]).toMatchObject({ key: 'k1', status: 'done' });
+    await expect(readFile(path.join(dir, 'catalog', 'process-log.jsonl'), 'utf-8')).rejects.toThrow();
+  });
+
+  it('rebuilds indexes against catalogRoot, not dir', async () => {
+    await writeQueueFile(catalogRoot, [item('k1')]);
+    const stdout = await readFixture('single-turn-result.json');
+    installFakeSpawn(catalogRoot, { k1: { removeFromQueue: true, stdout } });
+
+    await runProcessing({ dir, catalogRoot, timeoutMs: 5000 });
+
+    expect(mockRebuildCatalogIndexes).toHaveBeenCalledWith({ dir: catalogRoot, format: 'full' });
+  });
+
+  it('archives the session transcript under <catalogRoot>/catalog/runs/, not <dir>', async () => {
+    const sessionId = '85446442-2755-4275-81a8-1b8732705236'; // from multi-turn-result.json
+    const store = path.join(catalogRoot, 'claude-config', 'projects', '-some-project-slug');
+    await mkdir(path.join(store, sessionId, 'tool-results'), { recursive: true });
+    await writeFile(path.join(store, `${sessionId}.jsonl`), await readFixture('item-session-transcript.jsonl'), 'utf-8');
+    await writeQueueFile(catalogRoot, [item('k1')]);
+    installFakeSpawn(catalogRoot, { k1: { removeFromQueue: true, stdout: await readFixture('multi-turn-result.json') } });
+
+    await runProcessing({ dir, catalogRoot, timeoutMs: 5000 });
+
+    const runDir = path.join(catalogRoot, 'catalog', 'runs', sessionId);
+    expect(await readFile(path.join(runDir, 'transcript.jsonl'), 'utf-8'))
+      .toBe(await readFixture('item-session-transcript.jsonl'));
+  });
+
+  it('still reads recipe.md from the code root (dir) — catalogRoot has no recipe.md at all', async () => {
+    await writeQueueFile(catalogRoot, [item('k1')]);
+    const stdout = await readFixture('single-turn-result.json');
+    installFakeSpawn(catalogRoot, { k1: { removeFromQueue: true, stdout } });
+
+    // If the code tried to read recipe.md from catalogRoot instead, this would reject (ENOENT).
+    await expect(runProcessing({ dir, catalogRoot, timeoutMs: 5000 })).resolves.not.toThrow();
+  });
+
+  it('points the generated MCP config\'s CATALOG_ROOT at catalogRoot, and the server command at the code root (dir)', async () => {
+    await writeQueueFile(catalogRoot, [item('k1')]);
+    const stdout = await readFixture('single-turn-result.json');
+    installFakeSpawn(catalogRoot, { k1: { removeFromQueue: true, stdout } });
+
+    await runProcessing({ dir, catalogRoot, timeoutMs: 5000 });
+
+    const mcpConfig = JSON.parse(await readFile(path.join(dir, '.catalog-mcp.run.json'), 'utf-8'));
+    expect(mcpConfig.mcpServers.catalog.env.CATALOG_ROOT).toBe(catalogRoot);
+    expect(mcpConfig.mcpServers.catalog.args).toContain(path.join(dir, 'packages', 'catalog-mcp', 'src', 'server.ts'));
+  });
+
+  it('defaults catalogRoot to dir when --root is not given (unchanged behavior)', async () => {
+    await writeQueueFile(dir, [item('k1')]);
+    const stdout = await readFixture('single-turn-result.json');
+    installFakeSpawn(dir, { k1: { removeFromQueue: true, stdout } });
+
+    await runProcessing({ dir, timeoutMs: 5000 });
+
+    expect(mockRebuildCatalogIndexes).toHaveBeenCalledWith({ dir, format: 'full' });
+  });
+});
+
+describe('parseStringFlag (CLI, backs --root and --model)', () => {
+  it('reads the value following the flag', () => {
+    expect(parseStringFlag(['--root', '/tmp/pilot'], '--root')).toBe('/tmp/pilot');
+    expect(parseStringFlag(['--model', 'opus'], '--model')).toBe('opus');
+  });
+
+  it('returns undefined when the flag is absent, so callers can default', () => {
+    expect(parseStringFlag(['--limit', '2'], '--root')).toBeUndefined();
+  });
+
+  it('rejects a missing or flag-shaped value instead of silently consuming the next flag', () => {
+    expect(() => parseStringFlag(['--root'], '--root')).toThrow();
+    expect(() => parseStringFlag(['--root', '--model'], '--root')).toThrow();
   });
 });
 

@@ -124,10 +124,12 @@ export function buildItemPrompt(recipe: string, item: QueueItem): string {
   return recipe.trimEnd() + '\n' + lines.join('\n') + '\n';
 }
 
-export function buildClaudeArgs(mcpConfigPath: string): string[] {
+/** `model` defaults to `sonnet` (WK-0092 OR-1: a run must never inherit the operator's global
+ * default model unless explicitly overridden by `--model`, e.g. for the WK-0097 pilot). */
+export function buildClaudeArgs(mcpConfigPath: string, model = 'sonnet'): string[] {
   return [
     '--print',
-    '--model', 'sonnet',
+    '--model', model,
     '--strict-mcp-config',
     '--mcp-config', mcpConfigPath,
     '--tools', TOOLS_FLAG,
@@ -137,19 +139,24 @@ export function buildClaudeArgs(mcpConfigPath: string): string[] {
   ];
 }
 
-async function writeMcpConfig(root: string): Promise<string> {
+/** `codeRoot` is always the real repo checkout — it's where packages/catalog-mcp/src/server.ts
+ * actually lives, so the generated MCP config can spawn it regardless of `--root`. `catalogRoot`
+ * is the directory whose `catalog/` subfolder the spawned server reads and writes (WK-0097
+ * `--root`: an isolated catalog copy for the pilot); it defaults to `codeRoot` so the untouched
+ * default behavior is "the repo's own catalog". */
+async function writeMcpConfig(codeRoot: string, catalogRoot: string): Promise<string> {
   // MCP config attaching only the catalog server (stdio) — same shape `--strict-mcp-config`
   // enforces as the sole source of MCP servers for the session.
   const mcpConfig = JSON.stringify({
     mcpServers: {
       catalog: {
         command: 'npx',
-        args: ['tsx', path.join(root, 'packages', 'catalog-mcp', 'src', 'server.ts')],
-        env: { CATALOG_ROOT: root },
+        args: ['tsx', path.join(codeRoot, 'packages', 'catalog-mcp', 'src', 'server.ts')],
+        env: { CATALOG_ROOT: catalogRoot },
       },
     },
   });
-  const mcpConfigPath = path.join(root, '.catalog-mcp.run.json');
+  const mcpConfigPath = path.join(codeRoot, '.catalog-mcp.run.json');
   await writeFile(mcpConfigPath, mcpConfig, 'utf-8');
   return mcpConfigPath;
 }
@@ -315,28 +322,37 @@ export interface ItemOutcome {
 
 /** Run one item's session and decide its outcome purely from whether it left the queue
  * (design decision 4) — never from the session's exit code or stdout, since a session can exit 0
- * without finishing its outcome, or can be killed on timeout after it already wrote everything. */
+ * without finishing its outcome, or can be killed on timeout after it already wrote everything.
+ *
+ * `dir` is the code root (recipe.md and the spawned MCP server's source both come from here —
+ * WK-0097 `--root` never moves these, since the pilot runs the in-progress recipe and the real
+ * server code against an isolated catalog copy). `opts.catalogRoot` (default `dir`) is where that
+ * catalog copy lives: the queue check, the transcript archive, and the session's own
+ * `CATALOG_ROOT` env all follow it. `opts.model` (default `sonnet`) is passed straight to
+ * `buildClaudeArgs`. */
 export async function processItem(
   dir: string,
   item: QueueItem,
   recipe: string,
   mcpConfigPath: string,
-  opts: { timeoutMs: number },
+  opts: { timeoutMs: number; catalogRoot?: string; model?: string },
 ): Promise<ItemOutcome> {
+  const catalogRoot = opts.catalogRoot ?? dir;
+  const model = opts.model ?? 'sonnet';
   const prompt = buildItemPrompt(recipe, item);
-  const claudeArgs = buildClaudeArgs(mcpConfigPath);
+  const claudeArgs = buildClaudeArgs(mcpConfigPath, model);
   const t0 = Date.now();
   const session = await runClaudeSession({
     claudeArgs,
     prompt,
     cwd: dir,
-    env: { ...process.env, CATALOG_ROOT: dir },
+    env: { ...process.env, CATALOG_ROOT: catalogRoot },
     timeoutMs: opts.timeoutMs,
   });
   const wallS = (Date.now() - t0) / 1000;
   const usage = parseSessionUsage(session.stdout);
 
-  const queue = await readQueue(dir);
+  const queue = await readQueue(catalogRoot);
   const stillQueued = queue.items.some((i) => i.key === item.key);
   if (stillQueued) {
     const reason = session.timedOut ? 'timed out' : `exit ${session.exitCode}`;
@@ -348,9 +364,9 @@ export async function processItem(
   let toolCalls: Record<string, number> | null = null;
   if (usage?.sessionId) {
     try {
-      transcript = await archiveTranscript(dir, usage.sessionId);
+      transcript = await archiveTranscript(catalogRoot, usage.sessionId);
       if (transcript) {
-        toolCalls = countToolCalls(await readFile(path.join(dir, transcript, 'transcript.jsonl'), 'utf-8'));
+        toolCalls = countToolCalls(await readFile(path.join(catalogRoot, transcript, 'transcript.jsonl'), 'utf-8'));
       } else {
         console.error(`[${item.key}] transcript for session ${usage.sessionId} not found — not archived`);
       }
@@ -449,6 +465,16 @@ function printTotalsLine(count: number, totals: Totals, wallS: number): void {
 
 export interface RunProcessingOptions {
   dir: string;
+  /** WK-0097 `--root`: run against a catalog at `<catalogRoot>/catalog/` instead of the code
+   * repo's own. The queue read/write, the per-item queue check, the post-loop index rebuild, the
+   * process log, the transcript archive, and the spawned session's `CATALOG_ROOT` env all follow
+   * it. `recipe.md` and the MCP server's own source still come from `dir` (the code repo), so a
+   * pilot run on an isolated catalog copy still uses the real, in-progress recipe and code.
+   * Defaults to `dir` — unset, behavior is unchanged (one root for everything, as before). */
+  catalogRoot?: string;
+  /** WK-0097 `--model`: the session model, passed to `buildClaudeArgs`. Default `sonnet`
+   * (WK-0092 OR-1 still holds as the default; this only lets a pilot run opt into a larger model). */
+  model?: string;
   limit?: number;
   timeoutMs?: number;
   /** Sessions run at once (default 1). Items start in stored queue order; each session is still
@@ -465,11 +491,13 @@ export interface RunProcessingOptions {
  * function called once at the end. */
 export async function runProcessing(opts: RunProcessingOptions): Promise<void> {
   const { dir } = opts;
+  const catalogRoot = opts.catalogRoot ?? dir;
+  const model = opts.model ?? 'sonnet';
   const timeoutMs = opts.timeoutMs ?? SESSION_TIMEOUT_MS;
   const recipe = await readFile(path.join(dir, 'catalog', 'recipe.md'), 'utf-8');
-  const mcpConfigPath = await writeMcpConfig(dir);
+  const mcpConfigPath = await writeMcpConfig(dir, catalogRoot);
 
-  const queue = await readQueue(dir);
+  const queue = await readQueue(catalogRoot);
   const items = opts.limit !== undefined ? queue.items.slice(0, opts.limit) : queue.items;
 
   const totals: Totals = { done: 0, failed: 0, input: 0, cacheRead: 0, cacheWrite: 0, output: 0, costUsd: 0 };
@@ -491,10 +519,10 @@ export async function runProcessing(opts: RunProcessingOptions): Promise<void> {
   // Graceful stop: `touch catalog/.stop-processing`. In-flight sessions finish, no new item
   // starts (checked before every item, so a group stops mid-way too), the index is rebuilt, and
   // unstarted items stay queued for the next run.
-  const stopFile = path.join(dir, 'catalog', '.stop-processing');
+  const stopFile = path.join(catalogRoot, 'catalog', '.stop-processing');
   const stopRequested = (): boolean => {
     if (!stopping && existsSync(stopFile)) {
-      console.log(`Stop file found (${path.relative(dir, stopFile)}) — finishing in-flight items, starting no more`);
+      console.log(`Stop file found (${path.relative(catalogRoot, stopFile)}) — finishing in-flight items, starting no more`);
       stopping = true;
     }
     return stopping;
@@ -504,8 +532,8 @@ export async function runProcessing(opts: RunProcessingOptions): Promise<void> {
     while (next < units.length && !stopRequested()) {
       for (const item of units[next++]) {
         if (stopRequested()) return;
-        const outcome = await processItem(dir, item, recipe, mcpConfigPath, { timeoutMs });
-        await appendCostLog(dir, outcome);
+        const outcome = await processItem(dir, item, recipe, mcpConfigPath, { timeoutMs, catalogRoot, model });
+        await appendCostLog(catalogRoot, outcome);
         printItemLine(outcome);
         if (outcome.status === 'done') totals.done++; else totals.failed++;
         if (outcome.usage) {
@@ -524,7 +552,7 @@ export async function runProcessing(opts: RunProcessingOptions): Promise<void> {
 
   // Index once, by code (design decision 6) — no LLM step. Same shared function the `index`
   // MCP tool calls, so the search index, graph, and vectors are rebuilt too, not just index.md.
-  await rebuildCatalogIndexes({ dir, format: 'full' });
+  await rebuildCatalogIndexes({ dir: catalogRoot, format: 'full' });
 
   printTotalsLine(totals.done + totals.failed, totals, (Date.now() - t0) / 1000);
   if (stopping) console.log(`Stopped early: ${items.length - totals.done - totals.failed} item(s) not started, still queued`);
@@ -541,13 +569,30 @@ export function parsePositiveIntFlag(argv: string[], flag: string): number | und
   return val;
 }
 
+/** Generic `--flag value` reader for the two string-valued pilot flags (`--root`, `--model`). */
+export function parseStringFlag(argv: string[], flag: string): string | undefined {
+  const idx = argv.indexOf(flag);
+  if (idx === -1) return undefined;
+  const raw = argv[idx + 1];
+  if (raw === undefined || raw.startsWith('--')) {
+    throw new Error(`${flag} requires a value`);
+  }
+  return raw;
+}
+
 async function main(): Promise<void> {
   const dir = repoRoot();
   const argv = process.argv.slice(2);
   const limit = parsePositiveIntFlag(argv, '--limit');
   const concurrency = parsePositiveIntFlag(argv, '--concurrency');
   const group = argv.includes('--group');
-  await runProcessing({ dir, limit, concurrency, group });
+  // WK-0097 pilot: `--root <dir>` points the catalog data (queue, entries, index, process log,
+  // transcript archive) at `<dir>/catalog/` instead of this repo's own; `--model <alias>` picks
+  // the session model. Both default to the repo's own catalog and `sonnet` (WK-0092 OR-1).
+  const root = parseStringFlag(argv, '--root');
+  const catalogRoot = root !== undefined ? path.resolve(root) : undefined;
+  const model = parseStringFlag(argv, '--model');
+  await runProcessing({ dir, catalogRoot, limit, concurrency, group, model });
 }
 
 // Only run when executed directly (`tsx src/adapter/run-processing.ts` / `npm run catalog:process`),

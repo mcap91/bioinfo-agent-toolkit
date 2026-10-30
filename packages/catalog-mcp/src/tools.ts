@@ -354,7 +354,7 @@ export const tools: ToolDef[] = [
   },
   {
     name: 'build-prompt',
-    description: 'Build a structured research prompt for the calling agent',
+    description: 'Build a structured research prompt for the calling agent: entry schema, body-section guide, and security checklist embedded in `prompt`. Result size does not grow with the catalog — it does not contain a catalog table; call `search` first for dedup/overlaps/related.',
     inputSchema: dirSchema.extend({
       url: z.string().url().optional(),
       content: z.string(),
