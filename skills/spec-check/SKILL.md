@@ -146,9 +146,31 @@ design decisions? If yes, list them. If no, say why you're confident.
 **Formatting:** Output must use markdown headers (`#`) and blank lines
 between items so it renders cleanly in a terminal. No inline walls of text.
 
+### 6. Record the check (kb WK targets only)
+
+For each target that is a kb work item (`wiki/issues/WK-*.md`), append one
+row to its `## Hardening` table. Other targets get no row.
+
+```
+| # | date | check | by | verdict | notes |
+|---|---|---|---|---|---|
+```
+
+Copy the header exactly; kb lint rejects any other spelling.
+
+- `#`: the next integer after the last row (first row is 1). Never renumber or edit old rows.
+- `date`: `YYYY-MM-DD`. `check`: `spec-check`.
+- `by`: your session id — run `echo $CLAUDE_CODE_SESSION_ID`. If it is empty, write `unknown session`.
+- `verdict`: `pass` for CLEAR, `fail` for BLOCKED.
+- `notes`: the CLEAR sentence, or `N open decisions`; add the scope hint if one was given.
+- Write values bare, without backticks. Write a literal `|` inside a cell as `\|`.
+
+If the section is absent, add it (heading, header, separator) at the end of the file.
+Every run appends a new row. Run the repo's wiki lint if it has one.
+
 ## What this skill does NOT do
 
-- Modify any file
+- Modify any file, except the one `## Hardening` row in step 6
 - Propose answers to open decisions
 - Generate rulings or specs
 - Run a mandatory wiki/retrieval pass — it reads what you point it at and chases references the doc names

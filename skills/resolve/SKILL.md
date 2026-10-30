@@ -78,7 +78,7 @@ Copy the header exactly; kb lint rejects any other spelling.
 - Write a literal `|` inside a cell as `\|`.
 
 If your role may edit the work item, append the row to its `## Resolutions` section. If the
-section is absent, add it (heading, header, separator) after `## Notes`. Run the repo's
+section is absent, add it (heading, header, separator) at the end of the file. Run the repo's
 wiki lint if it has one. Otherwise put the row in your reply. Then one line: `Resolved: <choice>. Continuing with <next step>.`
 Then continue.
 
