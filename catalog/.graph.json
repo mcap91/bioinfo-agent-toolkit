@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T05:04:11.989Z",
+  "generated_at": "2026-10-30T18:57:49.322Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -18,6 +18,16 @@
       "url": "https://example.com",
       "summary": "A prompt architecture for orchestrating multi-agent development with built-in quality verification — architecture-first design docs, screenshot-based verification loops, dependency-ordered builder waves, and a critic agent that scores against reference screenshots before passing quality gates",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "ace-step",
+      "kind": "entry",
+      "title": "ACE-Step 1.5",
+      "url": "https://github.com/ace-step/ACE-Step-1.5",
+      "summary": "Open-source local music-generation foundation model (successor to the original ACE-Step) — a hybrid architecture where a language model plans a song blueprint (metadata, lyrics, captions via chain-of-thought) that guides a Diffusion Transformer decoder; generates a full song in under 2 seconds on an A100 and under 10 seconds on an RTX 3090, runs locally on under 4GB VRAM (base models; the newer 4B-parameter XL variants need 12-20GB+), supports 10-second to 10-minute durations, batch generation of up to 8 songs, cover generation, repaint/edit, track separation, vocal-to-BGM, reference-audio-guided generation, LoRA personalization from a handful of songs, and 50+ languages; ships a Gradio UI, REST API, Python API, CLI, and a C++/GGML VST3 plugin; co-led by ACE Studio and StepFun; MIT, with a usage disclaimer about copyright/cultural-sensitivity risk in generated output.",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -469,6 +479,16 @@
       "exists": true
     },
     {
+      "id": "aleph-geo",
+      "kind": "entry",
+      "title": "Aleph",
+      "url": "https://github.com/Belluxx/Aleph",
+      "summary": "Python CLI/dashboard (alephgeo) that downloads satellite imagery, terrain elevation, OSM buildings, Street View photos, and textured 3D meshes for any drawn area or named place, with no API key; built to give LLMs a local, structured snapshot of real-world geography; MIT license; pulls undocumented Google APIs so may break or rate-limit.",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "amazon-bedrock",
       "kind": "entry",
       "title": "Amazon Bedrock",
@@ -698,6 +718,16 @@
       "exists": true
     },
     {
+      "id": "audio2face-3d",
+      "kind": "entry",
+      "title": "NVIDIA Audio2Face-3D",
+      "url": "https://github.com/NVIDIA/Audio2Face-3D",
+      "summary": "NVIDIA technology collection that generates 3D facial animation — synchronized jaw/tongue/eye articulation plus emotional expression inferred from speech tone — from pre-recorded or real-time audio, driving a character via mesh deformation, joint transforms, or blendshape weights; ships as a C++/Python inference SDK (MIT), a Python+Docker model-training framework (Apache-2.0), an Autodesk Maya plugin (MIT), an Unreal Engine 5.4/5.5/5.6 Blueprint-integrated plugin with a MetaHuman sample project (MIT), and a gRPC containerized NIM microservice for multi-user deployment (NVIDIA Software License Agreement); pre-trained regression (v2.3) and diffusion (v3.0) lip-sync models (Mark/Claire/James voices) and emotion-inference models are distributed separately on Hugging Face under an NVIDIA Open Model license (Audio2Emotion models under a custom license restricted to use with Audio2Face only); mixed licensing across code and model-weight components.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "autodock-vina",
       "kind": "entry",
       "title": "AutoDock Vina",
@@ -848,6 +878,16 @@
       "exists": true
     },
     {
+      "id": "beam-reflection-ai",
+      "kind": "entry",
+      "title": "Beam (Reflection AI)",
+      "url": "https://huggingface.co/reflection/Beam-1.0-501B-A23B",
+      "summary": "501B-total/23B-active sparse mixture-of-experts open-weight model from Reflection AI (a Brooklyn lab founded by two ex-Google-DeepMind researchers) for coding, reasoning, and agentic workloads — 1M-token effective context, pretrained on 23.8T tokens plus 100M+ RL rollouts; vendor-reported benchmarks include 81.6% SWE-bench Verified, 80.1% Terminal-Bench 2.1, 90.6% GPQA Diamond, 97.7% AIME 2026; weights (BF16/FP8/NVFP4) and a DFlash2 speculative-decoding drafter released under Apache-2.0 on 2026-10-16 with a 40+ partner hosting ecosystem",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "bedrock-agentcore-gateway",
       "kind": "entry",
       "title": "Amazon Bedrock AgentCore Gateway",
@@ -864,6 +904,16 @@
       "url": "https://github.com/oooscoos/benzi",
       "summary": "Code-intelligence agent/tool that compiles a codebase into a queryable index (tree-sitter-based: symbols, call edges, references, class inheritance) before answering questions or editing, instead of grepping/globbing raw source into an LLM's context window. Ships as a VS Code extension, a headless CLI (benzi-headless), and an MCP server (benzi-mcp) for other agents, sharing one login. The VS Code/CLI agent additionally runs a runtime tracer, gates edits against a fresh parse, checks blast radius before/after writes, self-escalates to a larger model mid-task, and keeps persistent per-repo memory with one-step rollback. Covers 10 languages (Python deepest) plus an HTML/CSS/DOM-JS markup engine; 35+ query tools. Free during beta, BYOK against Anthropic/OpenAI/DeepSeek/Groq/Kimi/compatible APIs; self-published 82.4% SWE-bench Verified result. The GitHub repo is documentation only (no source), with GitHub reporting no recognized open-source license (license key: other/NOASSERTION).",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "billboard-2d-art-on-3d-primitives",
+      "kind": "entry",
+      "title": "2D Illustrated Art Projected Onto Simple 3D Primitives (Boxes, Cylinders)",
+      "url": "https://www.instagram.com/reel/DezJsUWuQqo/",
+      "summary": "Game-dev environment-art technique for cutting poly count and art workload: instead of modeling detailed 3D geometry for environment pieces, an artist illustrates the assets as flat 2D art, which is then projected/mapped onto simple 3D primitive stand-in shapes (boxes, cylinders) that carry the actual scene geometry. The 2D art carries all visual detail and stylization while the underlying mesh stays trivially simple, letting a small team build varied, stylized environments quickly and keep scene poly count low for performance across a wide hardware range (including Steam Deck). Demonstrated by the two-person dev team of the upcoming Unreal Engine roguelike 'Barrow and Blade' as part of an optimization pass alongside occlusion culling, baked lighting, and object pooling.",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -923,6 +973,16 @@
       "exists": true
     },
     {
+      "id": "blockout-pixel-art-animation",
+      "kind": "entry",
+      "title": "Blockout Technique for Pixel Art Animation (Color-Coded Body-Part Blobs)",
+      "url": "https://www.instagram.com/reel/DX-Rc6RN51E/",
+      "summary": "Game-dev animation technique for pixel art sprites. Animating detailed pixel art frame by frame from the start is slow — each pose requires precise pixel placement, and fixing a bad pose means redoing detail work. A blockout instead assigns each body part (arm, leg, head, torso, weapon) a distinct flat color with no internal detail, producing a rough colored-blob version of the sprite. The full animation is blocked out first using only these color blobs, which is faster to pose and easier to revise since there is no detail to preserve; the blockout can be previewed and tested in-engine to validate timing and motion before any detail work begins. Once the blocked-out motion reads correctly, each pose is detailed individually — adding detail on top of an established pose is reported as easier than freehanding a detailed pose from scratch. Framed as an extension of the general game-dev 'blockout' practice (used for roughing in level geometry/environment art before detailing) applied to sprite animation, and overlaps with the traditional animation concepts of blocking/pose-to-pose workflows and silhouette-based pose readability checks.",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "blueprint4llm",
       "kind": "entry",
       "title": "blueprint4llm",
@@ -977,6 +1037,16 @@
       "title": "Boris Cherny's CLAUDE.md",
       "url": "https://gist.github.com/hqman/e29cb6386c539d795767e8c3fd2c959b",
       "summary": "A widely-shared CLAUDE.md (attributed to Boris Cherny) codifying a Claude Code operating discipline: plan-mode-by-default, liberal subagent use, a self-improvement lessons loop, verification-before-done, demanding elegance, and autonomous bug fixing, plus a tasks/todo.md + tasks/lessons.md task-management convention.",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "boss-fight-entrance-design",
+      "kind": "entry",
+      "title": "Five-Beat Boss Entrance Sequence (Lock, Wait, Reveal, Name, Sell-the-Size)",
+      "url": "https://www.instagram.com/reel/DeozoT-xXrP/",
+      "summary": "Game-dev technique for staging a boss encounter's opening moments as a five-beat sequence rather than a plain spawn-and-health-bar pop-in — lock the arena (seal the path the player entered by, e.g. collapsing it, removing retreat as an option), make the player wait (empty arena, low rumble, dust settling, building tension before the boss appears), reveal the boss slowly by panning the camera from its feet up to its face rather than showing it all at once, slam its name on screen in large text, fill a large health bar from empty rather than showing it already full (communicating scale), then sell its size with a low camera angle, screen-shaking footsteps, and a roar that triggers screen shake, a dust blast, and arena-wide reaction. Framed as reusable staging independent of the specific boss's stats or moveset — the same boss model reads as a non-event or as a threat purely based on how the entrance is directed.",
       "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
@@ -1088,6 +1158,16 @@
       "url": "https://github.com/esimov/caire",
       "summary": "Go content-aware image resizing library and CLI implementing seam carving — computes an edge-energy map, repeatedly finds and removes (or duplicates) the lowest-cumulative-energy one-pixel-per-row seam to shrink or grow an image without uniform squeezing; optional face-detection and protective/removal masks to guide which regions survive; ~11k GitHub stars, MIT",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "card-feel-five-effects",
+      "kind": "entry",
+      "title": "Five-Effect Card Feel Technique (Hover, Pick Up, Sway, Snap, Sound)",
+      "url": "https://www.instagram.com/reel/De-2omfu5-7/",
+      "summary": "Game-dev technique for making a playable card feel satisfying instead of flat, via five layered effects applied on top of an otherwise unchanged card-in-hand interaction — (1) hover, where sliding across the hand pops each card up and leans it toward the cursor, though grabbing one barely lifts it off the table; (2) pick up, where lifting a card high spreads its shadow outward beneath it, though the card stays visually flat while dragged; (3) sway, where the card leans in the direction it's dragged and swings back when released, though it originally teleported into place on drop; (4) snap, where the card flies into its target slot, overshoots, and settles, with the rest of the hand sliding over to close the gap, though this step is silent; (5) sound, adding a soft flick noise on grab and a slap noise on landing. Framed as a reusable five-layer pipeline — the same baseline card-in-hand interaction (described as \"about as fun as filling in a form\") reads as a satisfying \"big play\" purely from how many of these layers are stacked on top of it, independent of the card game's actual rules or content.",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -1326,6 +1406,16 @@
       "exists": true
     },
     {
+      "id": "claude-code-game-studios",
+      "kind": "entry",
+      "title": "Claude Code Game Studios",
+      "url": "https://github.com/Donchitos/Claude-Code-Game-Studios",
+      "summary": "Claude Code template that turns one session into a 49-agent, 74-skill simulated game studio with a three-tier director/lead/specialist hierarchy, 15 validation hooks, 14 path-scoped coding rules, and 62 document templates; ships engine-specific agent sets for Godot 4, Unity, and Unreal Engine 5; a project.yaml modes.rigor setting (minimal/standard/full) trades process weight for speed — the project's own measurement built four games from one brief and found the heavier standard-rigor build produced 30 process documents and lost a blind playtest ranking to the minimal-rigor build, which produced only a one-page brief; agents ask before acting and the user approves every write by default; MIT license.",
+      "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "claude-code-local-model-switching",
       "kind": "entry",
       "title": "Claude Code Local Model Switching",
@@ -1455,16 +1545,6 @@
       "url": "https://support.claude.com/en/articles/9517075-what-are-projects",
       "summary": "Anthropic support documentation for Claude Projects — persistent workspaces with an uploaded-file knowledge base and custom instructions across claude.ai chat, Cowork, and Claude Code, plus a September 2026 beta redesign (Claude Code first) that turns a project into one coordinator conversation dispatching parallel cloud-hosted worker threads",
       "category": "reference",
-      "decision_status": "open",
-      "exists": true
-    },
-    {
-      "id": "claude-pxl",
-      "kind": "entry",
-      "title": "",
-      "url": "https://www.instagram.com/reel/DejwS6fjDvg/",
-      "summary": "",
-      "category": "skill",
       "decision_status": "open",
       "exists": true
     },
@@ -1973,6 +2053,16 @@
       "exists": true
     },
     {
+      "id": "cut-anticipation-frames-responsiveness",
+      "kind": "entry",
+      "title": "Cutting Anticipation Frames for Input Responsiveness (Diablo 3 Barbarian Swing, Mario Jump)",
+      "url": "https://www.instagram.com/reel/DeuiO0UjRLM/",
+      "summary": "Game-dev technique for making player-controlled actions feel responsive by removing, rather than speeding up, the anticipation phase of an animation. Traditional animation splits an action into three roughly equal parts — anticipation (wind-up), action, and follow-through — but the anticipation portion delays the visible response to player input. Cites classic platformers (e.g. Super Mario), where the character begins moving upward immediately on jump input instead of crouching first, and Diablo 3's early development, where a barbarian's two-handed weapon swing originally reached back from a neutral pose before striking; speeding up that wind-up still read as sluggish and lost its sense of weight, while cutting the roughly 5–6 frames (about 180ms) of anticipation entirely — so the character instantly snaps to the fully wound-up pose the instant the player clicks — fixed the responsiveness complaints. Frames the fix in terms of silhouette — an instant, dramatic change in the character's on-screen shape gives the player an immediate visual read that the input registered, substituting for the anticipation frames as the feedback signal.",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "daily-team",
       "kind": "entry",
       "title": "daily-team (rotating four-person creative agent team)",
@@ -2118,6 +2208,16 @@
       "exists": true
     },
     {
+      "id": "dialogue-feel-five-steps",
+      "kind": "entry",
+      "title": "Five-Step Dialogue Presentation Technique (Typewriter, Pauses, Sound, Text Effects, Speaker Animation)",
+      "url": "https://www.instagram.com/reel/DfB8X4UxfrH/",
+      "summary": "Game-dev technique for making NPC dialogue feel alive instead of appearing as a flat wall of text, via five layered presentation steps — (1) typewriter effect reveals letters one at a time so the player reads along at the character's pace; (2) pauses hold a short beat on each comma and period, giving the line timing instead of a flat reading speed; (3) a tiny sound blip plays on every revealed letter, pitched to suit the speaking character; (4) text effects apply per-word motion keyed to tone, e.g. happy words wave and angry words shake; (5) the speaker's portrait or model bobs while talking and its facial expression switches between states (e.g. happy to furious) tied to the line's content. Framed as a reusable layered presentation pipeline independent of the actual dialogue content — the same line of text reads as flat or as a performed character purely from how these five steps are applied on top of it.",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "diffdock",
       "kind": "entry",
       "title": "DiffDock",
@@ -2143,6 +2243,16 @@
       "title": "Directing and Verifying AI Coding Agents (What Separates Strong Engineers)",
       "url": "https://www.reddit.com/r/AI_Agents/comments/1xaypur/we_benchmarked_how_60_engineers_direct_ai_coding/",
       "summary": "Findings from a founder's informal benchmark scoring ~60 engineers (0-1000) on how well they direct, review, and verify a coding agent on a real task with deliberately planted half-failures: the dominant skill gap was specification quality and review behavior, not prompting; top scorers verify mechanism (which files changed, whether test files changed) rather than output alone, since output-only review never catches an agent weakening a test to go green; checking between turns beats one review at the end; a task costing 3x its neighbors signals a badly cut task, not inherent difficulty; and detecting a half-failure without an owner to act on it is worthless.",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "disney-animation-principles-game-vfx",
+      "kind": "entry",
+      "title": "Disney's Animation Principles Applied to Game VFX (Anticipation, Squash & Stretch, Follow Through, Timing, Arcs)",
+      "url": "https://www.instagram.com/reel/DejpGOctoHu/",
+      "summary": "Game-dev technique for making a combat VFX effect (demonstrated on a thrown fireball) read as satisfying by applying five of Disney's twelve classical animation principles instead of adding more particles or better shaders — anticipation (the hero leans back while the fire gathers, then throws), squash and stretch (the fireball stretches in flight, the enemy squashes on hit), follow through (the hero's body settles after the throw, the trail lags behind, the burst flies on), timing (freeze the game for a few frames on the hit, i.e. hit-stop), and arcs (the fireball, sparks, and damage numbers travel on curved rather than straight paths). Framed as the same underlying asset read as flat or alive purely based on which of these principles are layered on top, independent of particle count or shader quality.",
       "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
@@ -2620,6 +2730,26 @@
       "exists": true
     },
     {
+      "id": "flattened-mesh-fake-shadows",
+      "kind": "entry",
+      "title": "Flattened Secondary Mesh as a Stylized Fake Shadow (Instead of Dynamic Shadow Rendering)",
+      "url": "https://www.instagram.com/reel/DezJsUWuQqo/",
+      "summary": "Game-dev shadow technique that replaces an engine's built-in dynamic shadow system with a hand-controlled stand-in: a second, simplified version of the character mesh is flattened onto the floor via a material, and that flattened silhouette is used as the character's shadow. Reported benefits are twofold — it saves the performance cost of real-time shadow/lighting calculations, and it gives the artist direct control over the shadow's shape and softness so it can be made 'punchy' and stylized to match the game's art style rather than looking like a physically-accurate soft/dynamic shadow. Demonstrated in Unreal Engine by the two-person dev team of the upcoming roguelike 'Barrow and Blade' as one of three non-standard optimization techniques.",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "flectar-mail",
+      "kind": "entry",
+      "title": "Flectar Mail",
+      "url": "https://github.com/flectar/mail",
+      "summary": "Native Rust email, calendar, and contacts client marketed on low memory use (README: as little as 80 MB RAM) and a no-WebView, no-script HTML rendering pipeline (Blitz); pre-release, AGPLv3.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "floci",
       "kind": "entry",
       "title": "Floci — Local Cloud Emulators",
@@ -2710,6 +2840,15 @@
       "exists": true
     },
     {
+      "id": "game-engine-data-structures-cheatsheet",
+      "kind": "entry",
+      "title": "Game Engine Data Structures Cheat Sheet",
+      "summary": "Practitioner cheat sheet on six data structures used in game engines for performance: contiguous arrays (C++ vector, Unreal TArray) over linked lists for CPU cache locality during entity iteration; quad trees/octrees for spatial partitioning (frustum culling, raycasting) cutting O(n) scans to O(log n); bounding volume hierarchies (BVH) for fast ray tracing and broad-phase collision detection; ring buffers/circular queues for fixed-length event logs, input, and audio buffers; graphs with A* for pathfinding; spatial hashmaps for constant-time grid-based lookups.",
+      "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "gbrain",
       "kind": "entry",
       "title": "gbrain",
@@ -2725,6 +2864,16 @@
       "title": "Gemini 3.8 Flash",
       "url": "https://deepmind.google/models/model-cards/gemini-3-8-flash/",
       "summary": "Google DeepMind's Gemini 3 family Flash-tier model (built on Gemini 3.7 Flash), published 2026-09-02 — 1M-token multimodal input context (text/image/audio/video), 64K text output, customizable inference effort levels, $0.75/$3.75 per 1M input/output tokens; targets cost-effective software engineering and agentic knowledge-work at production scale",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "gemini-4-argon",
+      "kind": "entry",
+      "title": "Gemini 4 Argon (Google)",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+      "summary": "Google's newest frontier LLM, announced 2026-09-30 and broadly rolled out 2026-10-13 — built for long-horizon coding and agent tasks, up to 1M output tokens (vs a prior 64K limit), Google Antigravity agentic coding interface integration, and cybersecurity-defense tuning; available via the Gemini app (AI Pro/Ultra), the API in AI Studio/Gemini platform, and Google Cloud; Google reports a 14% enterprise-knowledge-work accuracy gain over Gemini 3.1 Pro and a drop in coding shortcut-attempts to 2%; introductory API pricing $2/$10 per 1M input/output tokens through 2026-11-30",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -2800,12 +2949,32 @@
       "exists": true
     },
     {
+      "id": "glass-home-samsung-tv",
+      "kind": "entry",
+      "title": "Glass Home for Samsung Tizen TV",
+      "url": "https://github.com/victaphu/glass-home-samsung-tv",
+      "summary": "Apple TV-style home screen for Samsung Tizen TVs (2018-2025, Tizen 4-10) — a frosted-glass app dock, crossfading nature photos, clock/weather (Open-Meteo), and a screensaver, paired with a small password-protected website the TV itself serves on the home LAN for uploading photos and adding website/YouTube shortcuts from a phone; sideloaded via Tizen Developer Mode with a free per-TV Samsung certificate (no universal download, no root); one Tizen package bundles the UI and a Node.js service on 127.0.0.1:8090; ships tvremote.py (stdlib client for the TV's local control API), phonecam.py (turns a phone into a camera pointed at the TV, since \"Samsung TVs can't take screenshots\"), and wake.py; plain HTML/CSS/JS, MIT.",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "godogen",
       "kind": "entry",
       "title": "godogen",
       "url": "https://github.com/htdt/godogen",
       "summary": "Generator + agent-driven workflow for autonomous game development targeting Godot 4, Bevy, or Babylon.js — a publish.sh script renders a thin runtime layout (manifest, engine guide, asset-generation skill) into a fresh target repo for either Claude Code (CLAUDE.md + .claude/skills/) or Codex (AGENTS.md + .agents/skills/), then the chosen host agent builds the actual game by reading the engine guide and calling external asset-generation APIs (Gemini, xAI Grok, Tripo3D)",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "godot-mcp",
+      "kind": "entry",
+      "title": "Godot MCP (Coding-Solo)",
+      "url": "https://github.com/Coding-Solo/godot-mcp",
+      "summary": "MCP server (npm package @coding-solo/godot-mcp) that lets an AI agent launch the Godot editor, run a project in debug mode, capture debug/error output, list projects in a directory, query the installed Godot version, and manage UIDs for Godot 4.4+; installs via `claude mcp add godot -- npx @coding-solo/godot-mcp`; the most-forked and most-cited server under the generic 'Godot MCP' name per third-party MCP-server directories, ahead of numerous same-named community forks and rewrites that add scene-tree editing, screenshot capture, and C# support; MIT.",
+      "category": "mcp-server",
       "decision_status": "open",
       "exists": true
     },
@@ -3093,6 +3262,16 @@
       "exists": true
     },
     {
+      "id": "health-bar-chip-damage-feedback",
+      "kind": "entry",
+      "title": "Chip-Damage Health Bars and Color-Coded Floating Damage Numbers (Hit-Feedback Game-Feel Techniques)",
+      "url": "https://www.instagram.com/reel/DemP6LfRbug/",
+      "summary": "Game-dev UI/feedback techniques for making hit-point damage feel satisfying without changing the underlying numbers. Health bar — on damage, a pale/orange \"chip\" trail is left behind at the bar's prior fill level and holds briefly before draining down to the new value (rather than snapping instantly), so the player sees how much was lost; the bar also shakes, flashes, and punches on each hit; its color shifts green→yellow→red as a threshold-based danger signal; healing fills back in smoothly with a sparkle effect at the fill edge. Floating damage numbers — numbers pop in, float upward, and fade out over roughly half a second to just over a second; rapid consecutive hits stack and arc to alternating sides so overlapping numbers stay legible; number size scales with hit magnitude; numbers are color-coded by type (e.g. white/normal, orange/critical, green/heal); critical hits render bold and with extra shake. Presented as a reusable feedback layer independent of the underlying damage math — the same damage value reads as more or less impactful purely from how it is animated and rendered.",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "helm-session-manager",
       "kind": "entry",
       "title": "Helm (gamepad-driven multi-agent session manager)",
@@ -3258,6 +3437,16 @@
       "exists": true
     },
     {
+      "id": "ingame-debug-console",
+      "kind": "entry",
+      "title": "In-game Debug Console (UnityIngameDebugConsole)",
+      "url": "https://github.com/yasirkula/UnityIngameDebugConsole",
+      "summary": "yasirkula's uGUI-based in-game console for Unity — shows runtime log/warning/error/exception output and lets players or testers execute registered commands (e.g. cheats) from a resizable, minimizable window inside a running build, including on mobile/device builds where the editor console isn't available; supports Android logcat forwarding; 2.8k stars, 268 forks; MIT.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "instagram-saved-reels-obsidian-knowledge-graph",
       "kind": "entry",
       "title": "Instagram Saved-Reels-to-Obsidian Knowledge Graph Pipeline",
@@ -3393,6 +3582,16 @@
       "url": "https://github.com/jqlang/jq",
       "summary": "Lightweight command-line JSON processor — slice, filter, map, and transform structured data; portable C with zero runtime dependencies; sed/awk/grep for JSON; MIT",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "juicy-damage-numbers",
+      "kind": "entry",
+      "title": "Nine-Step Juicy Damage Number Technique (Pop, Float, Fade, Arc, Scale, Color, Crit FX, Stack, Randomize)",
+      "url": "https://www.instagram.com/reel/DcDs7f9uaqo/",
+      "summary": "Game-dev technique for upgrading a default floating-damage-number label into \"juicy\" feedback through a stack of independent, optional tweaks rather than one fix — pick a legible display font (the reel uses Bungee from Google Fonts), pop the number in on spawn instead of just appearing, float it upward as it arrives, fade it out at the end of its lifetime, give each digit an arc-like falling offset instead of a straight rise, scale its size by the damage value so bigger hits read as bigger, shift its color over time based on which action produced it, layer particles and screen shake onto critical hits using the same logic, experimentally stack numbers on very fast multi-hit attacks, and randomize each number's spawn offset so a burst of hits doesn't render as a single overlapping stack. Framed as a menu of optional, independently-applicable steps rather than a required pipeline, and as engine-agnostic (the creator states it applies to any game engine).",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -3644,6 +3843,16 @@
       "exists": true
     },
     {
+      "id": "lg-webos-root-debloat-relaunch",
+      "kind": "entry",
+      "title": "Agent-Driven Rooted LG webOS TV Debloat & Relaunch",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1x9fwk4/comment/phmsw9i/",
+      "summary": "Prompt pattern for directing a coding agent (Claude Opus via Claude Code) over SSH/telnet to debloat and relaunch an already-rooted LG webOS TV: the owner roots the TV themselves first, then gives the agent an allowlist of apps/inputs to keep, named features to preserve, a permanent block on LG firmware updates and telemetry, a sub-second custom launcher with a fallback to stock Home, and safety rules (measure first, reversible/batched changes, never touch firmware partitions, write a handoff); cites a public debloat script as a named starting point to go beyond.",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "litellm",
       "kind": "entry",
       "title": "LiteLLM",
@@ -3802,6 +4011,16 @@
       "exists": true
     },
     {
+      "id": "locally-uncensored",
+      "kind": "entry",
+      "title": "Locally Uncensored",
+      "url": "https://github.com/PurpleDoubleD/locally-uncensored",
+      "summary": "All-in-one free, open-source local AI desktop studio (Windows/Linux, AGPL-3.0-only) combining chat, image generation, video generation, and a coding agent — no Docker, terminal, or cloud required; coding agent shows the diff before applying changes; supports local image models (Juggernaut XL V9, DreamShaper XL Turbo V2, FLUX.1, FLUX 2 Klein 4B, Z-Image Turbo, Qwen-Image 2.1); beta features include on-device voice conversation and gated computer-control; optional remote access via passcode-gated encrypted Cloudflare tunnel; maintained by GitHub user PurpleDoubleD with near-weekly releases (~1,750 stars as of Sept 2026); Windows installers currently ship unsigned",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "locate-anything",
       "kind": "entry",
       "title": "LocateAnything",
@@ -3818,6 +4037,16 @@
       "url": "https://huggingface.co/docs/peft/main/en/conceptual_guides/lora",
       "summary": "Hugging Face PEFT conceptual guide to LoRA (Low-Rank Adaptation): fine-tune large models by training two small low-rank update matrices while the original weights stay frozen — drastically fewer trainable parameters, portable per-task adapters, and no added inference latency once merged. Covers LoraConfig parameters, merge/unmerge/unload utilities, and initialization options (Gaussian, LoftQ for QLoRA, rank-stabilized rsLoRA).",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "lucataco-webos-debloat",
+      "kind": "entry",
+      "title": "webos-debloat (lucataco)",
+      "url": "https://gist.github.com/lucataco/7c303b443934008a9031a55cfca552ec",
+      "summary": "Single shell script for a rooted LG webOS TV that hides launcher bloat tiles and background apps, stops those apps from preloading into RAM, and disables home-screen promotions, sports alerts, recommendations and LG's Live Plus (ACR) tracking by editing LG's own app block list, preload-manager policy and settings keys (never the root filesystem), making every change reversible without blocking firmware updates; tested on one 2026 LG OLED (webOS 26, firmware 11.2).",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -4131,6 +4360,16 @@
       "exists": true
     },
     {
+      "id": "mitsuba3",
+      "kind": "entry",
+      "title": "Mitsuba 3",
+      "url": "https://github.com/mitsuba-renderer/mitsuba3",
+      "summary": "Research-oriented, retargetable forward/inverse renderer from EPFL — Python-first, JIT-compiled and differentiable via the Dr.Jit backend, supports monochromatic/RGB/spectral and polarized light transport, CPU and GPU execution; ~3k stars, 374 forks; BSD-3-Clause.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "mixpeek",
       "kind": "entry",
       "title": "Mixpeek",
@@ -4195,6 +4434,26 @@
       "url": "https://github.com/LottieFiles/motion-design-skill",
       "summary": "LottieFiles agent skill teaching universal, implementation-agnostic motion-design principles — timing, easing, choreography, and Disney's 12 principles adapted for UI — so agents choose motion intent before writing animation code. Works with any system (CSS, Framer Motion, GSAP, Lottie, Spring); ships philosophy, pattern recipes, and reference tables. Installs via npx skills add. MIT.",
       "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "motionbricks",
+      "kind": "entry",
+      "title": "MotionBricks (NVIDIA)",
+      "url": "https://github.com/NVlabs/motionbricks",
+      "summary": "NVIDIA's modular latent generative model (SIGGRAPH 2026 / ACM TOG) for real-time character and robot motion synthesis — given 4 recent poses and up to 4 target poses it generates the in-between motion at 30 Hz via a root-path module, a masked-token pose transformer, and a VQ-VAE decoder; chaining generations with application-supplied targets produces continuous locomotion, navigation, and object interaction (\"Smart Primitives\") with no retraining; ships pretrained ONNX checkpoints for the SOMA human body model and the Unitree G1 robot, a Python runtime (Warp/Newton/TensorRT) and demo/editor apps; requires an NVIDIA GPU (TensorRT); code Apache-2.0, models under the NVIDIA Open Model Agreement, bundled sample motions restricted to NVIDIA evaluation use only; ~561 stars, 55 forks.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "motionbricks-blender",
+      "kind": "entry",
+      "title": "motionbricks-blender",
+      "url": "https://github.com/hyun2xyz/motionbricks-blender",
+      "summary": "Free, unofficial Blender add-on that imports motion generated by NVIDIA MotionBricks (.npz files) as an animated SOMA character, with optional greybox cubes, checker floor, sun, and follow camera; bundles a \"walker\" script that generates a walk along a JSON-defined waypoint course using no input motion clips at all, and a \"recorder\" script that captures MotionBricks' own Scene Preview demo to .npz; ships an AGENTS.md so a coding agent (Codex, Claude Code) can set up the full MotionBricks + add-on pipeline from one prompt; requires Blender 4.2+ and an NVIDIA RTX GPU (MotionBricks' TensorRT dependency); add-on GPL-3.0-or-later, walker/recorder scripts Apache-2.0; first release (v0.1.0) 2026-10-28.",
+      "category": "cli-tool",
       "decision_status": "open",
       "exists": true
     },
@@ -4269,6 +4528,16 @@
       "url": "https://code.claude.com/docs/en/sub-agents",
       "summary": "lightweight HO consultation route within existing sessions; no separate billing",
       "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "navmesh-plus",
+      "kind": "entry",
+      "title": "NavMeshPlus",
+      "url": "https://github.com/h8man/NavMeshPlus",
+      "summary": "Unity package extending Unity's NavMeshComponents with a 2D extensions system — auto-generates a navigation mesh from scene geometry (tilemaps, sprites, Collider2D) for top-down 2D pathfinding, letting characters and AI navigate around obstacles without hand-authored waypoints; 2.4k stars, 269 forks; MIT.",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -4368,6 +4637,16 @@
       "title": "NVIDIA Build (NIM)",
       "url": "https://build.nvidia.com/models",
       "summary": "NVIDIA's model API catalog and NIM inference microservices; broad model access but enterprise-focused with GPU-heavy deployment requirements",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "nvidia-model-optimizer",
+      "kind": "entry",
+      "title": "NVIDIA Model Optimizer",
+      "url": "https://github.com/NVIDIA/Model-Optimizer",
+      "summary": "NVIDIA's open-source library (formerly TensorRT Model Optimizer, rebranded Dec 2025) of LLM/VLM compression techniques — post-training quantization (NVFP4/FP8/INT8/INT4 via SmoothQuant, AWQ, SVDQuant), quantization-aware training/distillation, pruning, distillation, speculative-decoding draft training, and sparsity; takes Hugging Face/PyTorch/ONNX checkpoints, exports quantized checkpoints deployable on TensorRT-LLM, TensorRT, vLLM, or SGLang; publishes pre-quantized checkpoints (DeepSeek-R1-FP4, Llama-3.3-70B-FP4, Nemotron NVFP4) on Hugging Face; pip install nvidia-modelopt[all]; pre-1.0 (0.x), Apache-2.0.",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -4766,6 +5045,16 @@
       "exists": true
     },
     {
+      "id": "orq-ai",
+      "kind": "entry",
+      "title": "Orq.ai (Agent Runtime / LLMOps Platform)",
+      "url": "https://orq.ai/",
+      "summary": "Amsterdam-based (founded 2022, formerly Orquesta.cloud) proprietary enterprise control platform for the AI agent lifecycle — Agent Runtime sits in the request path to manage tools, memory, retries/handoffs, and multi-step orchestration; supports granular per-tool approval gates (an individual MCP tool can be flagged to pause and require human sign-off without gating the whole agent run), risk-based approval thresholds, a governed registry of approved agents/models/MCPs/skills/tools with pre-production approval and default-deny for anything outside it, plus guardrails, PII masking, RBAC, observability/tracing, and human-in-the-loop evaluation workflows; 300+ models across 17 providers via its AI Gateway; cloud/VPC/on-prem deployment with US/EU data residency, SOC 2 and GDPR compliance; closed-source SaaS, pricing not published",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "ossu-computer-science",
       "kind": "entry",
       "title": "OSSU Computer Science",
@@ -4906,6 +5195,16 @@
       "exists": true
     },
     {
+      "id": "papermorph",
+      "kind": "entry",
+      "title": "Papermorph",
+      "url": "https://github.com/DozenTwelve/Papermorph",
+      "summary": "Agent skill (Claude Code / OpenCode, invoked as /papermorph) that turns a textbook PDF or a story into a self-hosted static web book — narrated step-by-step lessons with graded quizzes, paper-puppet picture-book films, or documentaries/shorts/explorable pages; plans chapters, writes narration, animates visuals to per-word TTS timing, and self-reviews output before publishing; exports to MP4+SRT or SCORM; MIT license (bundled MathJax Apache-2.0, media assets keep own licenses); ~1,000 GitHub stars",
+      "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "parallax",
       "kind": "entry",
       "title": "Parallax",
@@ -4956,11 +5255,31 @@
       "exists": true
     },
     {
+      "id": "pearwebos",
+      "kind": "entry",
+      "title": "PearWebOS",
+      "url": "https://github.com/Arnedeklerk/PearWebOS",
+      "summary": "Python CLI and home-screen replacement for rooted LG webOS TVs, styled after Apple TV's Home — name/date/clock/weather over the owner's own photos, six apps in a dock with every other installed app one press down, Inputs/Settings top right; runs entirely through the TV's own rooted SSH access with a one-command revert to LG's stock Home; built for webOS 6 (2021 TVs), with newer webOS (incl. 10) supported as a separate app install rather than a full Home replacement.",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "penecho",
       "kind": "entry",
       "title": "PenEcho",
       "url": "https://github.com/penecho/penecho",
       "summary": "Local-first AI canvas: put a question, equation, diagram, or half-formed idea anywhere on an infinite canvas and PenEcho reads the marks and their spatial relationships and answers beside them. Node server + browser UI; pluggable LLM source (Claude CLI, Codex CLI, Kimi CLI, or OpenAI/Anthropic API). A Kimi Open Source Friend. AGPL-3.0-only.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "pentagi",
+      "kind": "entry",
+      "title": "PentAGI",
+      "url": "https://github.com/vxcontrol/pentagi",
+      "summary": "Fully autonomous, multi-agent AI system (Go, MIT) for penetration testing — given a target and goal in plain English, a delegation system of specialized agents (research, development, infrastructure) plans and executes testing steps, running tools like Nmap and Metasploit inside an isolated Docker sandbox, and produces a report; supports OpenAI, Anthropic, Ollama, AWS Bedrock, Google AI/Gemini, DeepInfra, OpenRouter, DeepSeek, and Moonshot as LLM providers; ships a ctester utility for evaluating agent-model capability; self-described as an autonomous/assistant-guided platform, not a CALDERA-style BAS product with predefined attack campaigns",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -5086,6 +5405,16 @@
       "exists": true
     },
     {
+      "id": "pixelrag",
+      "kind": "entry",
+      "title": "PixelRAG",
+      "url": "https://github.com/StarTrail-org/PixelRAG",
+      "summary": "Open-source RAG framework from Berkeley Sky Computing Lab/BAIR/Berkeley NLP that renders web pages, PDFs, and images to screenshot tiles and retrieves over the images directly (via a LoRA-fine-tuned Qwen3-VL-Embedding-2B model) instead of parsing text, preserving tables/charts/layout; supports text or image queries; ships a hosted API over a pre-built 8.28M-page Wikipedia index, a Claude Code plugin (pixelbrowse) that lets Claude screenshot and read a page instead of fetching raw HTML, FAISS or Qdrant backends, and a separate LoRA training pipeline; Apache-2.0",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "piyaz",
       "kind": "entry",
       "title": "Piyaz",
@@ -5142,6 +5471,16 @@
       "url": "https://github.com/DietrichGebert/ponytail",
       "summary": "YAGNI enforcement plugin with strong benchmarks (80-94% less code, 47-77% cheaper); multi-platform support and clean design make it worth trialing",
       "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "primetween",
+      "kind": "entry",
+      "title": "PrimeTween",
+      "url": "https://github.com/KyryloKuzyk/PrimeTween",
+      "summary": "Allocation-free Unity tweening library — animates Transform, RectTransform, SpriteRenderer, AudioSource, Light, Materials, UI Toolkit elements, and generic float/Color/Vector values in one line of code with sequences, delays, and coroutine/async-await support (delays allocate as part of C# async, nothing else does); tunable from the Inspector; pitched as a faster, allocation-free alternative to DOTween; a paid PRO tier adds visual Inspector-authored animation; free tier license is source-available but restricts repackaging/resale, not OSI-approved MIT/Apache; 2.0k stars, 83 forks.",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -5217,6 +5556,16 @@
       "title": "Prompt Versioning and Rollback (Managed Agents)",
       "url": "https://platform.claude.com/cookbook/managed-agents-cma-prompt-versioning-and-rollback",
       "summary": "Demonstrates prompt lifecycle management using Claude Managed Agents' versioning system — immutable version creation on every update, version pinning for controlled evaluation, labeled-test-set comparison between versions, and rollback by switching the pinned version number",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "pseudo-3d-sprite-billboarding",
+      "kind": "entry",
+      "title": "Pseudo-3D via Sprite Billboarding Over 2D Gameplay Logic, with Fog-Based Distance Culling",
+      "url": "https://www.instagram.com/reel/Dd_kMxYOcPk/",
+      "summary": "Game-dev rendering technique for making a fully 2D top-down game look 2.5D/3D without changing its gameplay logic. The camera is tilted down from a pure overhead view, and top-down sprites are 'stood up' and rotated to face the camera via a single matrix transform in code (classic sprite billboarding, as in Pokemon Black & White-style pseudo-3D). Hit detection stays simple circle hitboxes and elevation/jump checks stay a plain numeric comparison between grid cells, both unaware of the new camera angle. Tilting the camera low exposed a far draw distance that tanked frame rate; hiding distant geometry in fog and simplifying far props (trees) recovered performance, reported as a 7x speedup. Demonstrated in a devlog for the in-development game 'Soul Stream.'",
       "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
@@ -5506,6 +5855,16 @@
       "exists": true
     },
     {
+      "id": "rogue-1980-tic-tac-toe-dungeon-generation",
+      "kind": "entry",
+      "title": "Rogue's 3x3 Grid (\"Tic-Tac-Toe\") Dungeon Generation Algorithm",
+      "url": "https://www.instagram.com/reel/DfAALtXkvNs/",
+      "summary": "Procedural dungeon-layout algorithm from Rogue (1980, by Michael Toy and Glenn Wichman, later joined by Ken Arnold), the game that gave the roguelike genre its name. Rather than placing rooms at arbitrary positions — which collide and can leave rooms unreachable — Rogue's source (version 5.4, files rooms.c and passages.c) divides its 80x24 terminal screen into a fixed 3x3 grid of nine cells. Each cell gets at most one room, randomly sized and positioned but confined to its cell so rooms can never overlap or share a wall; up to three cells (equally likely to be 0-3) are left empty, acting only as a point corridors pass through. Cells are then linked one at a time, each new link joining an already-connected cell to an unconnected neighbor, until all nine are reachable from the starting room, plus up to four extra random links so the layout isn't a single unique path. The result is a layout that is random but always fully connected and always resolvable within a single draw call's worth of simple grid math.",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "rtk",
       "kind": "entry",
       "title": "rtk — CLI Proxy for LLM Token Reduction",
@@ -5571,6 +5930,26 @@
       "exists": true
     },
     {
+      "id": "sana-wm",
+      "kind": "entry",
+      "title": "SANA-WM (NVIDIA)",
+      "url": "https://github.com/NVlabs/Sana",
+      "summary": "2.6B-parameter open-source text+image-to-video diffusion transformer world model from NVIDIA/MIT (Haoyi Zhu, Song Han, Enze Xie, et al.) — given one image, a text prompt, and a 6-DoF camera trajectory, generates an explorable, controllable, minute-long 720p video on a single GPU via Hybrid Linear Attention (Gated DeltaNet + periodic softmax attention) and an LTX-2 refiner; Apache-2.0 code and weights, trained in 15 days on 64 H100 GPUs",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "save-game-free",
+      "kind": "entry",
+      "title": "Save Game Free",
+      "url": "https://github.com/BayatGames/SaveGameFree",
+      "summary": "Bayat Games' free Unity save/load library — serializes game data to Binary, JSON, or XML with optional encryption via a static SaveGame.Save/Load API, supports serializable complex/custom classes, works across Windows/Linux/macOS/Android/iOS/tvOS/Samsung TV/WebGL, and persists state across scene loads without reinitialization; a paid Save Game Pro tier adds support for saving native Unity types (GameObjects, Transforms) directly; 672 stars, 65 forks; MIT.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "scaledown-cdm",
       "kind": "entry",
       "title": "ScaleDown Constrained Decoding Models (CDM)",
@@ -5616,6 +5995,16 @@
       "title": "ScrapeGraphAI",
       "url": "https://github.com/ScrapeGraphAI/Scrapegraph-ai",
       "summary": "Python web-scraping library that uses LLMs plus graph-based pipelines (SmartScraperGraph, SearchGraph, SpeechGraph, ScriptCreatorGraph, and multi-page variants) to extract structured data from websites and local documents (HTML, XML, JSON, Markdown); MIT-licensed open-source core with a separate paid managed cloud API/SDKs",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "screenshot-to-code",
+      "kind": "entry",
+      "title": "Screenshot to Code",
+      "url": "https://github.com/abi/screenshot-to-code",
+      "summary": "Converts screenshots, mockups, Figma designs, and screen recordings into HTML+Tailwind, HTML+CSS, React+Tailwind, Vue+Tailwind, Bootstrap, or Ionic+Tailwind code via multi-provider LLMs (OpenAI/Anthropic/Gemini); Gemini extracts real logos/images from the source rather than regenerating them, Replicate handles image generation/editing/background removal; React/Vite frontend + FastAPI backend, self-hostable or hosted at screenshottocode.com; MIT, 55k+ stars",
       "category": "framework",
       "decision_status": "open",
       "exists": true
@@ -5691,12 +6080,41 @@
       "exists": true
     },
     {
+      "id": "seven-levels-of-observability",
+      "kind": "entry",
+      "title": "The 7 Levels of Observability",
+      "url": "https://www.instagram.com/reel/De4iU2vMW7X/",
+      "summary": "A content creator's seven-stage observability maturity ladder — logs, metrics, traces, correlation (shared request ID across logs/traces), alerts, SLOs (SLI/SLO/SLA), and cardinality management — presented as a progression where each stage answers a question the previous one couldn't (what happened, is it trending, where is the time going, why, before users notice, is the target at risk, can we afford to measure it). Not a single named industry-standard framework: published observability maturity models elsewhere range from 3 pillars (logs/metrics/traces) to 4-5 level maturity scales (e.g. Last9, codefarm.in) covering the same underlying concepts — structured logs with trace IDs, OpenTelemetry-style distributed tracing, SLO/error-budget-driven alerting, and cardinality limits on metric labels — under different level counts and names.",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "sglang",
       "kind": "entry",
       "title": "SGLang",
       "url": "https://github.com/sgl-project/sglang",
       "summary": "High-performance LLM/VLM serving framework from UC Berkeley/LMSYS — RadixAttention automatically reuses KV cache across requests with shared prefixes via radix tree, achieving 75–95% cache hit rates on multi-turn agent workloads; structured generation language for constrained decoding; powers 400K+ GPUs in production (xAI, NVIDIA, AMD, LinkedIn); part of PyTorch ecosystem; Apache-2.0",
       "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "shader-skills",
+      "kind": "entry",
+      "title": "Shader Skills",
+      "url": "https://github.com/gokayfem/shader-skills",
+      "summary": "Agent skill (gokayfem) teaching Claude Code, Codex, Cursor, Copilot, and Gemini CLI to write procedural GLSL/Shadertoy shaders that compile on the first try. Ships a 186-function GLSL library across 20 modules (hashing, noise, SDFs, raymarching, shading, water, volumetrics, color/tonemapping, cameras, debugging), each function WebGL2-compiled and GPU-tested (90 property tests across 16,384 samples), plus a Python bundler that inlines only the functions a given shader uses into one Shadertoy-ready file, and a checker that catches common WebGL-vs-desktop-GLSL mistakes. v2.0.0 tagged 2026-10-23; MIT; 410 stars, 36 forks at time of review.",
+      "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "shadow-mode-progressive-trust-approval",
+      "kind": "entry",
+      "title": "Shadow-Mode Progressive Trust for Agent Approval Gates",
+      "summary": "Review-load design pattern for human-in-the-loop agent approval: tier actions by risk/reversibility rather than by tool, run gated actions in shadow mode (agent logs what it would decide without executing, compared against the human's actual call) to measure per-action-type agreement rather than one global rate, write explicit promotion/demotion rules (agreement above threshold for N decisions with no high-severity miss loosens the gate a notch; a drop or miss tightens it) so oversight shrinks as the agent earns it instead of staying flat, keep approval UI to a few lines of what/why/evidence, and convert any judgment call the human keeps approving the same way into a deterministic code rule instead of re-reviewing it",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -6027,6 +6445,26 @@
       "exists": true
     },
     {
+      "id": "splashsurf",
+      "kind": "entry",
+      "title": "splashsurf",
+      "url": "https://github.com/InteractiveComputerGraphics/splashsurf",
+      "summary": "Rust surface reconstruction library and CLI (Fabian Löschner, Interactive Computer Graphics) that converts SPH particle data (e.g. from [[splishsplash]]) into a smooth triangle mesh for rendering — loads formats including .bgeo and .vtk; 309 stars, 29 forks; MIT.",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "splishsplash",
+      "kind": "entry",
+      "title": "SPlisHSPlasH",
+      "url": "https://github.com/InteractiveComputerGraphics/SPlisHSPlasH",
+      "summary": "Open-source C++ library (Jan Bender et al.) for physically-based fluid simulation using smoothed particle hydrodynamics (SPH) — 2D/3D, CPU/GPU neighborhood search, AVX vectorization, Python bindings, multiple pressure solvers (WCSPH, PCISPH, PBF, IISPH, DFSPH, PF), viscosity/surface-tension/vorticity methods, multi-phase and rigid-fluid coupling; 1.9k stars, 339 forks; MIT.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "sqltools",
       "kind": "entry",
       "title": "SQLTools",
@@ -6143,6 +6581,16 @@
       "url": "https://arxiv.org/abs/2609.24616",
       "summary": "Eye-tracking study (n=53) comparing how code rendering strategies (static, token-by-token, AST-based structured) affect programmer visual attention — structured rendering reveals code in syntactic chunks (outer blocks before inner details), inducing deeper processing and better structural awareness than character-based streaming; argues rendering is a first-class interaction primitive for AI coding tools",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "subtask4llm",
+      "kind": "entry",
+      "title": "subtask4llm",
+      "url": "https://github.com/evgenyigumnov/subtask4llm",
+      "summary": "Skill pack that splits a coding task into a dependency-ordered plan of up to 10 subtasks, each run by a fresh, isolated one-shot coding-agent worker (Pi Coding Agent or OpenAI Codex CLI) with its own clean context window instead of one agent accumulating the whole task's history; a Python runner (scripts/run_workflow.py) executes workers sequentially, passing each only shared project context plus its declared-dependency results, with bounded per-step timeouts/retries, one shared live log, and --continue-on-error; ships subtask4llm-pi and subtask4llm-codex skills installable independently via the Skills CLI (no Claude Code skill yet — README requests a PR); MIT",
+      "category": "skill",
       "decision_status": "open",
       "exists": true
     },
@@ -6287,6 +6735,11 @@
       "exists": true
     },
     {
+      "id": "tag:2d-pathfinding",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:3blue1brown",
       "kind": "tag",
       "exists": true
@@ -6313,6 +6766,11 @@
     },
     {
       "id": "tag:3d-rendering",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:3d-tiles",
       "kind": "tag",
       "exists": true
     },
@@ -6438,6 +6896,11 @@
     },
     {
       "id": "tag:acp",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:acr",
       "kind": "tag",
       "exists": true
     },
@@ -6702,6 +7165,11 @@
       "exists": true
     },
     {
+      "id": "tag:agent-runtime",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:agent-safety",
       "kind": "tag",
       "exists": true
@@ -6822,7 +7290,17 @@
       "exists": true
     },
     {
+      "id": "tag:agents-md",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:agpl",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:agplv3",
       "kind": "tag",
       "exists": true
     },
@@ -6858,6 +7336,11 @@
     },
     {
       "id": "tag:ai-code-verification",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ai-coding-agent-setup",
       "kind": "tag",
       "exists": true
     },
@@ -6912,6 +7395,11 @@
       "exists": true
     },
     {
+      "id": "tag:ai-navigation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ai-orchestration",
       "kind": "tag",
       "exists": true
@@ -6948,6 +7436,11 @@
     },
     {
       "id": "tag:ai-workspace",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:alerting",
       "kind": "tag",
       "exists": true
     },
@@ -7022,6 +7515,11 @@
       "exists": true
     },
     {
+      "id": "tag:animation-principles",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:ann-search",
       "kind": "tag",
       "exists": true
@@ -7068,6 +7566,11 @@
     },
     {
       "id": "tag:anti-sycophancy",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:anticipation",
       "kind": "tag",
       "exists": true
     },
@@ -7128,6 +7631,11 @@
     },
     {
       "id": "tag:apple-silicon",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:apple-tv-style",
       "kind": "tag",
       "exists": true
     },
@@ -7242,6 +7750,11 @@
       "exists": true
     },
     {
+      "id": "tag:async-await",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:attack-surface",
       "kind": "tag",
       "exists": true
@@ -7268,6 +7781,11 @@
     },
     {
       "id": "tag:audio-download",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:audio-to-face",
       "kind": "tag",
       "exists": true
     },
@@ -7358,6 +7876,11 @@
     },
     {
       "id": "tag:autoresearch",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:autotiling",
       "kind": "tag",
       "exists": true
     },
@@ -7527,6 +8050,11 @@
       "exists": true
     },
     {
+      "id": "tag:billboarding",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:binary-analysis",
       "kind": "tag",
       "exists": true
@@ -7567,7 +8095,32 @@
       "exists": true
     },
     {
+      "id": "tag:blender-addon",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:blender-foundation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:blendshapes",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:blocking",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:blockout",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:blueprints",
       "kind": "tag",
       "exists": true
     },
@@ -7583,6 +8136,16 @@
     },
     {
       "id": "tag:bookmarks",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:boss-design",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:boss-fight",
       "kind": "tag",
       "exists": true
     },
@@ -7667,6 +8230,11 @@
       "exists": true
     },
     {
+      "id": "tag:bvh",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:byoc",
       "kind": "tag",
       "exists": true
@@ -7678,6 +8246,11 @@
     },
     {
       "id": "tag:c",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:cache-locality",
       "kind": "tag",
       "exists": true
     },
@@ -7712,6 +8285,21 @@
       "exists": true
     },
     {
+      "id": "tag:camera-control",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:camera-verification",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:camera-work",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:cancer",
       "kind": "tag",
       "exists": true
@@ -7723,6 +8311,16 @@
     },
     {
       "id": "tag:capability-based-security",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:card-game",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:cardinality",
       "kind": "tag",
       "exists": true
     },
@@ -7782,6 +8380,11 @@
       "exists": true
     },
     {
+      "id": "tag:character-animation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:charts",
       "kind": "tag",
       "exists": true
@@ -7793,6 +8396,11 @@
     },
     {
       "id": "tag:chatbot",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:cheats",
       "kind": "tag",
       "exists": true
     },
@@ -7823,6 +8431,11 @@
     },
     {
       "id": "tag:chinese-landscape",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:chip-damage",
       "kind": "tag",
       "exists": true
     },
@@ -8067,6 +8680,11 @@
       "exists": true
     },
     {
+      "id": "tag:coastline-rendering",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:cocomo-ii",
       "kind": "tag",
       "exists": true
@@ -8248,6 +8866,11 @@
     },
     {
       "id": "tag:collection",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:collision-detection",
       "kind": "tag",
       "exists": true
     },
@@ -8442,6 +9065,11 @@
       "exists": true
     },
     {
+      "id": "tag:contacts",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:containers",
       "kind": "tag",
       "exists": true
@@ -8567,12 +9195,22 @@
       "exists": true
     },
     {
+      "id": "tag:coroutines",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:corpus",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:corpus-enrichment",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:correlation",
       "kind": "tag",
       "exists": true
     },
@@ -8882,6 +9520,11 @@
       "exists": true
     },
     {
+      "id": "tag:cutscene-design",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:cv",
       "kind": "tag",
       "exists": true
@@ -8917,6 +9560,11 @@
       "exists": true
     },
     {
+      "id": "tag:damage-numbers",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:damage-over-time",
       "kind": "tag",
       "exists": true
@@ -8948,6 +9596,11 @@
     },
     {
       "id": "tag:data-catalog",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:data-driven-grid",
       "kind": "tag",
       "exists": true
     },
@@ -9002,6 +9655,11 @@
       "exists": true
     },
     {
+      "id": "tag:data-oriented-design",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:data-portability",
       "kind": "tag",
       "exists": true
@@ -9023,6 +9681,11 @@
     },
     {
       "id": "tag:data-streaming",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:data-structures",
       "kind": "tag",
       "exists": true
     },
@@ -9073,6 +9736,11 @@
     },
     {
       "id": "tag:debloat",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:debug-console",
       "kind": "tag",
       "exists": true
     },
@@ -9232,6 +9900,11 @@
       "exists": true
     },
     {
+      "id": "tag:demo-sharing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:denial-of-wallet",
       "kind": "tag",
       "exists": true
@@ -9282,6 +9955,11 @@
       "exists": true
     },
     {
+      "id": "tag:design-to-code",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:desktop",
       "kind": "tag",
       "exists": true
@@ -9322,12 +10000,22 @@
       "exists": true
     },
     {
+      "id": "tag:dev-tunnels",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:developer-education",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:developer-experience",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:developer-mode",
       "kind": "tag",
       "exists": true
     },
@@ -9362,12 +10050,22 @@
       "exists": true
     },
     {
+      "id": "tag:devlog",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:devops",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:devsecops",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:dfsph",
       "kind": "tag",
       "exists": true
     },
@@ -9397,6 +10095,11 @@
       "exists": true
     },
     {
+      "id": "tag:dialogue-system",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:diarization",
       "kind": "tag",
       "exists": true
@@ -9412,6 +10115,11 @@
       "exists": true
     },
     {
+      "id": "tag:differentiable-rendering",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:diffusion",
       "kind": "tag",
       "exists": true
@@ -9423,6 +10131,11 @@
     },
     {
       "id": "tag:diffusion-model",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:diffusion-transformer",
       "kind": "tag",
       "exists": true
     },
@@ -9463,6 +10176,11 @@
     },
     {
       "id": "tag:dispatch",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:distance-culling",
       "kind": "tag",
       "exists": true
     },
@@ -9647,6 +10365,11 @@
       "exists": true
     },
     {
+      "id": "tag:drjit",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:drug-design",
       "kind": "tag",
       "exists": true
@@ -9658,6 +10381,11 @@
     },
     {
       "id": "tag:drug-response",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:dual-grid",
       "kind": "tag",
       "exists": true
     },
@@ -9747,6 +10475,11 @@
       "exists": true
     },
     {
+      "id": "tag:editor-plugin",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:editorial",
       "kind": "tag",
       "exists": true
@@ -9798,6 +10531,11 @@
     },
     {
       "id": "tag:email",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:email-client",
       "kind": "tag",
       "exists": true
     },
@@ -9928,6 +10666,11 @@
     },
     {
       "id": "tag:env-vars",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:environment-art",
       "kind": "tag",
       "exists": true
     },
@@ -10147,6 +10890,11 @@
       "exists": true
     },
     {
+      "id": "tag:facial-animation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:facial-recognition",
       "kind": "tag",
       "exists": true
@@ -10317,6 +11065,11 @@
       "exists": true
     },
     {
+      "id": "tag:firmware",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:firmware-analysis",
       "kind": "tag",
       "exists": true
@@ -10332,7 +11085,17 @@
       "exists": true
     },
     {
+      "id": "tag:floating-combat-text",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:flow-graph",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:fluid-simulation",
       "kind": "tag",
       "exists": true
     },
@@ -10342,7 +11105,17 @@
       "exists": true
     },
     {
+      "id": "tag:fog-rendering",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:foliage",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:follow-through",
       "kind": "tag",
       "exists": true
     },
@@ -10398,6 +11171,11 @@
     },
     {
       "id": "tag:fragment-based",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:frame-data",
       "kind": "tag",
       "exists": true
     },
@@ -10517,6 +11295,11 @@
       "exists": true
     },
     {
+      "id": "tag:game-feel",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:game-jams",
       "kind": "tag",
       "exists": true
@@ -10613,6 +11396,11 @@
     },
     {
       "id": "tag:generative-chemistry",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:generative-model",
       "kind": "tag",
       "exists": true
     },
@@ -10753,6 +11541,11 @@
     },
     {
       "id": "tag:glossary",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:glsl",
       "kind": "tag",
       "exists": true
     },
@@ -10947,6 +11740,11 @@
       "exists": true
     },
     {
+      "id": "tag:grid-based-generation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:grid-generation",
       "kind": "tag",
       "exists": true
@@ -10958,6 +11756,11 @@
     },
     {
       "id": "tag:groq",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ground-effects",
       "kind": "tag",
       "exists": true
     },
@@ -11112,6 +11915,11 @@
       "exists": true
     },
     {
+      "id": "tag:health-bar",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:healthcare-ai",
       "kind": "tag",
       "exists": true
@@ -11172,7 +11980,27 @@
       "exists": true
     },
     {
+      "id": "tag:history",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:hit-stop",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:hnsw",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:home-screen",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:homebrew-channel",
       "kind": "tag",
       "exists": true
     },
@@ -11372,7 +12200,17 @@
       "exists": true
     },
     {
+      "id": "tag:image-to-video",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:imageio",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:imap",
       "kind": "tag",
       "exists": true
     },
@@ -11463,6 +12301,11 @@
     },
     {
       "id": "tag:inherited-permissions",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:input-responsiveness",
       "kind": "tag",
       "exists": true
     },
@@ -11632,6 +12475,11 @@
       "exists": true
     },
     {
+      "id": "tag:jailbreak",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:java",
       "kind": "tag",
       "exists": true
@@ -11682,6 +12530,16 @@
       "exists": true
     },
     {
+      "id": "tag:jit-compilation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:jmap",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:job-search",
       "kind": "tag",
       "exists": true
@@ -11703,6 +12561,11 @@
     },
     {
       "id": "tag:judge",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:juice",
       "kind": "tag",
       "exists": true
     },
@@ -12027,6 +12890,11 @@
       "exists": true
     },
     {
+      "id": "tag:lip-sync",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:listagents",
       "kind": "tag",
       "exists": true
@@ -12157,6 +13025,11 @@
       "exists": true
     },
     {
+      "id": "tag:llm-tooling",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:llm-tools",
       "kind": "tag",
       "exists": true
@@ -12168,6 +13041,11 @@
     },
     {
       "id": "tag:llm-ui",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:llm-vision",
       "kind": "tag",
       "exists": true
     },
@@ -12242,12 +13120,22 @@
       "exists": true
     },
     {
+      "id": "tag:localhost-sharing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:localstack-alternative",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:logging",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:logs",
       "kind": "tag",
       "exists": true
     },
@@ -12412,12 +13300,22 @@
       "exists": true
     },
     {
+      "id": "tag:material-technique",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:math-recognition",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:mathematics",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:matrix-transform",
       "kind": "tag",
       "exists": true
     },
@@ -12433,6 +13331,11 @@
     },
     {
       "id": "tag:maturity-model",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:maya-plugin",
       "kind": "tag",
       "exists": true
     },
@@ -12607,6 +13510,11 @@
       "exists": true
     },
     {
+      "id": "tag:metahuman",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:metal",
       "kind": "tag",
       "exists": true
@@ -12668,6 +13576,16 @@
     },
     {
       "id": "tag:mit",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:mit-license",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:mixture-of-experts",
       "kind": "tag",
       "exists": true
     },
@@ -12743,6 +13661,11 @@
     },
     {
       "id": "tag:model-card",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:model-compression",
       "kind": "tag",
       "exists": true
     },
@@ -12897,7 +13820,17 @@
       "exists": true
     },
     {
+      "id": "tag:motion-generation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:motion-graphics",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:motion-import",
       "kind": "tag",
       "exists": true
     },
@@ -12987,7 +13920,17 @@
       "exists": true
     },
     {
+      "id": "tag:multimodal-retrieval",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:multiplayer",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:music-generation",
       "kind": "tag",
       "exists": true
     },
@@ -13032,7 +13975,22 @@
       "exists": true
     },
     {
+      "id": "tag:narrative-scripting",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:native-app",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:natural-language-query",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:navmesh",
       "kind": "tag",
       "exists": true
     },
@@ -13262,6 +14220,11 @@
       "exists": true
     },
     {
+      "id": "tag:octree",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:offensive-security",
       "kind": "tag",
       "exists": true
@@ -13318,6 +14281,11 @@
     },
     {
       "id": "tag:one-click",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:onnx",
       "kind": "tag",
       "exists": true
     },
@@ -13428,6 +14396,11 @@
     },
     {
       "id": "tag:openscad",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:openstreetmap",
       "kind": "tag",
       "exists": true
     },
@@ -13657,12 +14630,27 @@
       "exists": true
     },
     {
+      "id": "tag:particle-to-mesh",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:particles",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:password",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:password-manager",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:pathfinding",
       "kind": "tag",
       "exists": true
     },
@@ -13693,6 +14681,11 @@
     },
     {
       "id": "tag:pdf-import",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:pdf-to-web",
       "kind": "tag",
       "exists": true
     },
@@ -13733,6 +14726,11 @@
     },
     {
       "id": "tag:performance",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:performance-optimization",
       "kind": "tag",
       "exists": true
     },
@@ -13838,6 +14836,16 @@
     },
     {
       "id": "tag:php",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:physically-based-rendering",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:physics-simulation",
       "kind": "tag",
       "exists": true
     },
@@ -14007,7 +15015,17 @@
       "exists": true
     },
     {
+      "id": "tag:poly-count-optimization",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:polyglot",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:port-forwarding",
       "kind": "tag",
       "exists": true
     },
@@ -14073,6 +15091,11 @@
     },
     {
       "id": "tag:pre-implementation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:preload-manager",
       "kind": "tag",
       "exists": true
     },
@@ -14217,6 +15240,11 @@
       "exists": true
     },
     {
+      "id": "tag:progressive-trust",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:project-ideas",
       "kind": "tag",
       "exists": true
@@ -14357,7 +15385,17 @@
       "exists": true
     },
     {
+      "id": "tag:pruning",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:psd",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:pseudo-3d",
       "kind": "tag",
       "exists": true
     },
@@ -14413,6 +15451,11 @@
     },
     {
       "id": "tag:python",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:python-bindings",
       "kind": "tag",
       "exists": true
     },
@@ -14532,6 +15575,11 @@
       "exists": true
     },
     {
+      "id": "tag:raymarching",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:rdkit",
       "kind": "tag",
       "exists": true
@@ -14642,6 +15690,11 @@
       "exists": true
     },
     {
+      "id": "tag:reflection-ai",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:reflexes",
       "kind": "tag",
       "exists": true
@@ -14713,6 +15766,11 @@
     },
     {
       "id": "tag:remotion-alternative",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:render-target",
       "kind": "tag",
       "exists": true
     },
@@ -14857,6 +15915,11 @@
       "exists": true
     },
     {
+      "id": "tag:review-load",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:reviewer-class",
       "kind": "tag",
       "exists": true
@@ -14878,6 +15941,16 @@
     },
     {
       "id": "tag:rigging",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ring-buffer",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:risk-tiering",
       "kind": "tag",
       "exists": true
     },
@@ -14958,6 +16031,16 @@
     },
     {
       "id": "tag:rollback",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:root",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:rooting",
       "kind": "tag",
       "exists": true
     },
@@ -15077,7 +16160,17 @@
       "exists": true
     },
     {
+      "id": "tag:satellite-imagery",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:satellite-tracking",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:save-system",
       "kind": "tag",
       "exists": true
     },
@@ -15183,6 +16276,21 @@
     },
     {
       "id": "tag:scoring-function",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:screen-shake",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:screenshot",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:screenshot-to-code",
       "kind": "tag",
       "exists": true
     },
@@ -15337,6 +16445,11 @@
       "exists": true
     },
     {
+      "id": "tag:self-hostable",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:self-hosted",
       "kind": "tag",
       "exists": true
@@ -15447,6 +16560,11 @@
       "exists": true
     },
     {
+      "id": "tag:serialization",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:server-tool",
       "kind": "tag",
       "exists": true
@@ -15537,6 +16655,21 @@
       "exists": true
     },
     {
+      "id": "tag:shadertoy",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:shadow-mode",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:shadows",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:shared-catalog",
       "kind": "tag",
       "exists": true
@@ -15562,7 +16695,27 @@
       "exists": true
     },
     {
+      "id": "tag:shell-script",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:shift-left",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:sideload",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:sideloading",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:siggraph",
       "kind": "tag",
       "exists": true
     },
@@ -15588,6 +16741,11 @@
     },
     {
       "id": "tag:signed-distance-functions",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:silhouette",
       "kind": "tag",
       "exists": true
     },
@@ -15727,6 +16885,11 @@
       "exists": true
     },
     {
+      "id": "tag:sla",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:slack",
       "kind": "tag",
       "exists": true
@@ -15742,7 +16905,17 @@
       "exists": true
     },
     {
+      "id": "tag:sli",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:slides",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:slo",
       "kind": "tag",
       "exists": true
     },
@@ -15753,6 +16926,11 @@
     },
     {
       "id": "tag:small-molecule",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:smart-tv",
       "kind": "tag",
       "exists": true
     },
@@ -15768,6 +16946,16 @@
     },
     {
       "id": "tag:smolvm",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:smoothed-particle-hydrodynamics",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:snappy-controls",
       "kind": "tag",
       "exists": true
     },
@@ -15827,6 +17015,11 @@
       "exists": true
     },
     {
+      "id": "tag:sound-design",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:source-citation",
       "kind": "tag",
       "exists": true
@@ -15852,12 +17045,27 @@
       "exists": true
     },
     {
+      "id": "tag:sparsity",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:spatial",
       "kind": "tag",
       "exists": true
     },
     {
+      "id": "tag:spatial-hashing",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:spatial-intelligence",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:spatial-partitioning",
       "kind": "tag",
       "exists": true
     },
@@ -15882,6 +17090,11 @@
       "exists": true
     },
     {
+      "id": "tag:spectral-rendering",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:speculative-decoding",
       "kind": "tag",
       "exists": true
@@ -15897,7 +17110,22 @@
       "exists": true
     },
     {
+      "id": "tag:sph",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:sprint",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:sprite-animation",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:sprite-rendering",
       "kind": "tag",
       "exists": true
     },
@@ -15923,6 +17151,16 @@
     },
     {
       "id": "tag:sqlite",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:squash-and-stretch",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:sre",
       "kind": "tag",
       "exists": true
     },
@@ -16017,12 +17255,22 @@
       "exists": true
     },
     {
+      "id": "tag:static-site",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:statistics",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:status-effects",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:steam-deck",
       "kind": "tag",
       "exists": true
     },
@@ -16062,6 +17310,11 @@
       "exists": true
     },
     {
+      "id": "tag:street-view",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:strix-halo",
       "kind": "tag",
       "exists": true
@@ -16083,6 +17336,11 @@
     },
     {
       "id": "tag:structured-output",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:stylized-rendering",
       "kind": "tag",
       "exists": true
     },
@@ -16133,6 +17391,11 @@
     },
     {
       "id": "tag:supply-chain",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:surface-reconstruction",
       "kind": "tag",
       "exists": true
     },
@@ -16267,6 +17530,11 @@
       "exists": true
     },
     {
+      "id": "tag:tailwind",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:task-automation",
       "kind": "tag",
       "exists": true
@@ -16342,6 +17610,11 @@
       "exists": true
     },
     {
+      "id": "tag:template",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:templates",
       "kind": "tag",
       "exists": true
@@ -16363,6 +17636,16 @@
     },
     {
       "id": "tag:tensorflow",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:tensorrt",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:tensorrt-llm",
       "kind": "tag",
       "exists": true
     },
@@ -16412,6 +17695,11 @@
       "exists": true
     },
     {
+      "id": "tag:terrain-blending",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:terrain-generation",
       "kind": "tag",
       "exists": true
@@ -16447,6 +17735,11 @@
       "exists": true
     },
     {
+      "id": "tag:text-effects",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:text-recognition",
       "kind": "tag",
       "exists": true
@@ -16462,7 +17755,17 @@
       "exists": true
     },
     {
+      "id": "tag:text-to-music",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:text-to-speech",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:text-to-video",
       "kind": "tag",
       "exists": true
     },
@@ -16473,6 +17776,11 @@
     },
     {
       "id": "tag:textualize",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:texture-projection",
       "kind": "tag",
       "exists": true
     },
@@ -16523,6 +17831,11 @@
     },
     {
       "id": "tag:ties",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:tile-generation",
       "kind": "tag",
       "exists": true
     },
@@ -16642,6 +17955,11 @@
       "exists": true
     },
     {
+      "id": "tag:tool-approval",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:tool-calling",
       "kind": "tag",
       "exists": true
@@ -16677,12 +17995,22 @@
       "exists": true
     },
     {
+      "id": "tag:top-down",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:tpu",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:tracer-bullets",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:traces",
       "kind": "tag",
       "exists": true
     },
@@ -16817,6 +18145,11 @@
       "exists": true
     },
     {
+      "id": "tag:tweening",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:twine",
       "kind": "tag",
       "exists": true
@@ -16847,6 +18180,11 @@
       "exists": true
     },
     {
+      "id": "tag:typewriter-effect",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:typography",
       "kind": "tag",
       "exists": true
@@ -16858,6 +18196,11 @@
     },
     {
       "id": "tag:ui",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:ui-feedback",
       "kind": "tag",
       "exists": true
     },
@@ -16923,6 +18266,16 @@
     },
     {
       "id": "tag:unreal",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:unreal-engine",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:unreal-engine-plugin",
       "kind": "tag",
       "exists": true
     },
@@ -17092,6 +18445,11 @@
       "exists": true
     },
     {
+      "id": "tag:vfx",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:vibe-coded",
       "kind": "tag",
       "exists": true
@@ -17187,12 +18545,22 @@
       "exists": true
     },
     {
+      "id": "tag:visual-feedback",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:visual-plans",
       "kind": "tag",
       "exists": true
     },
     {
       "id": "tag:visual-programming",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:visual-rag",
       "kind": "tag",
       "exists": true
     },
@@ -17277,6 +18645,11 @@
       "exists": true
     },
     {
+      "id": "tag:vq-vae",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:vram",
       "kind": "tag",
       "exists": true
@@ -17313,6 +18686,11 @@
     },
     {
       "id": "tag:vscode-extension",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:vue",
       "kind": "tag",
       "exists": true
     },
@@ -17377,6 +18755,11 @@
       "exists": true
     },
     {
+      "id": "tag:web-dev",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:web-development",
       "kind": "tag",
       "exists": true
@@ -17393,6 +18776,11 @@
     },
     {
       "id": "tag:web-scraping",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:web-scraping-alternative",
       "kind": "tag",
       "exists": true
     },
@@ -17427,7 +18815,17 @@
       "exists": true
     },
     {
+      "id": "tag:webgl2",
+      "kind": "tag",
+      "exists": true
+    },
+    {
       "id": "tag:webos",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:website-cloning",
       "kind": "tag",
       "exists": true
     },
@@ -17558,6 +18956,11 @@
     },
     {
       "id": "tag:worktrees",
+      "kind": "tag",
+      "exists": true
+    },
+    {
+      "id": "tag:world-model",
       "kind": "tag",
       "exists": true
     },
@@ -17731,6 +19134,16 @@
       "exists": true
     },
     {
+      "id": "texture-time-ground-effects",
+      "kind": "entry",
+      "title": "Storing Per-Pixel Time and Location in a Texture to Drive Ground Effects (Instead of Spawned Decals/Actors)",
+      "url": "https://www.instagram.com/reel/DezJsUWuQqo/",
+      "summary": "Game-dev technique for rendering ground effects (e.g. area-of-effect visuals) without spawning a decal or actor object per effect instance. Time-of-occurrence and location data is written into a texture; a material reads that texture to control how the effect visually appears and disappears over time. A separate data-driven grid system tracks which grid cells a character currently occupies, used to decide when to trigger or clear an effect, rather than each effect instance independently tracking its own lifetime and overlap with other effects. Reported benefit is avoiding the lifetime/overlap bookkeeping cost that scales with the number of independently-spawned decal/actor effects. Demonstrated in Unreal Engine by the two-person dev team of the upcoming roguelike 'Barrow and Blade' as one of three non-standard optimization techniques.",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "tfm-tui",
       "kind": "entry",
       "title": "tfm — Terminal File Manager",
@@ -17800,6 +19213,16 @@
       "exists": true
     },
     {
+      "id": "tileless-terrain-corner-blend-shader",
+      "kind": "entry",
+      "title": "Tileless Terrain Rendering via Per-Pixel Four-Corner Blending Shader",
+      "url": "https://www.instagram.com/reel/DfAKyLiM9Or/",
+      "summary": "Game-dev terrain-rendering technique that replaces hand-drawn tileset art entirely with a single shader. Each map cell stores one terrain-type number instead of a chosen tile sprite; a shader reads the four cell values surrounding each screen pixel and renders a terrain layer at that pixel only when it covers more than half of those four corners, producing automatically-rounded coastlines, grass/dirt edges, and other transitions with no pre-drawn edge, corner, or inner-corner art. The same four-corner read drives layered procedural detail (grass blades, foam, roads, footpaths, plowed fields, snow) and the entire ground renders in one draw call; demonstrated in the dev log for Valdrin, a 2D medieval kingdom-sim on Steam.",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "titans-atlas-cronus",
       "kind": "entry",
       "title": "Titans (Atlas + Cronus)",
@@ -17826,6 +19249,15 @@
       "url": "https://github.com/tldr-pages/tldr",
       "summary": "Community-maintained simplified man pages — practical examples for common CLI commands; covers UNIX/Linux/macOS/FreeBSD/Windows/Android/Cisco IOS; official clients in Python, Rust (tlrc), and Node.js; web client with offline PWA; 40+ language translations; CC BY 4.0",
       "category": "cli-tool",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "token-budget-local-agent-workflow",
+      "kind": "entry",
+      "title": "Token-Budget Workflow for Small-Context Local Coding Agents",
+      "summary": "Practitioner workflow for making a heavily quantized local LLM (32K-65K context) usable as a coding agent despite its narrow context window and higher error rate: (1) pick a harness with a small startup token footprint (author reports Pi needs ~1.5K tokens vs. an estimated 10-14K for Codex/Claude Code, leaving more of a 64K window for actual work) instead of a heavier, feature-rich harness; (2) split every task into a planning turn that writes plan.md, then clear the session (Pi's /new) and run a separate implementation turn that reads plan.md and records results in it, so neither turn needs the whole task history in context; (3) for plans too large for one implementation turn, delegate via a subtask-runner skill (subtask4llm) that executes up to 10 subtasks sequentially in fresh, isolated agent contexts, feeding results back to the coordinating instance; (4) compensate for the model's lower quality at low-bit quantization by enforcing hard constraints in AGENTS.md — a 300-500 line file-size ceiling, one responsibility per module, mandatory unit tests for every function/change, tests-and-build must pass before done, no commits without explicit user request — which the author attributes to a remark by Robert Martin (Uncle Bob, author of Clean Code) that he has stopped reading AI-generated code, substituting enforced constraints for manual review and spending free local-GPU iterations letting the model self-correct against those constraints.",
+      "category": "agent-pattern",
       "decision_status": "open",
       "exists": true
     },
@@ -18008,6 +19440,26 @@
       "exists": true
     },
     {
+      "id": "unitask",
+      "kind": "entry",
+      "title": "UniTask",
+      "url": "https://github.com/Cysharp/UniTask",
+      "summary": "Cysharp's allocation-free async/await library for Unity — a struct-based UniTask<T> (vs. the heap-allocating Task<T>) that makes Unity's AsyncOperations, Coroutines, and MonoBehaviour/uGUI events awaitable, runs on Unity's PlayerLoop without threads (works on WebGL/wasm), and adds async LINQ (Channel, AsyncReactiveProperty) plus a TaskTracker window for leak detection; commonly used to replace coroutines for timers and sequencing (e.g. day/night cycles); requires Unity 2018.3+ for C# 7.0 task-like builders; 11.3k stars, 1.0k forks; MIT.",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "unrealclaude",
+      "kind": "entry",
+      "title": "UnrealClaude",
+      "url": "https://github.com/Natfii/UnrealClaude",
+      "summary": "Unreal Engine 5.7 editor plugin that docks a Claude Code chat panel in the editor and shells out to the local `claude` CLI (no separate API key) for in-editor assistance, plus a bundled Node.js MCP bridge exposing 20+ tools for actor manipulation, Blueprint/Animation-Blueprint editing, level management, materials, and Enhanced Input; by default the plugin invokes `claude -p --skip-permissions` for every prompt, removing Claude Code's human-in-the-loop approval step unless the integrator changes AllowedTools in C++; a separate 'Auto-approve script execution' project setting (default OFF) controls whether Python/C++/console scripts triggered through the bridge or chat run without a per-script permission dialog; hidden MCP tools (execute_script, run_console_command) can reach the Python interpreter if un-hidden by editing source; Windows/Linux/macOS (Apple Silicon); MIT; built from source, no prebuilt binaries.",
+      "category": "plugin",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "unslop-skills",
       "kind": "entry",
       "title": "Unslop Skills (UI / Text / Code)",
@@ -18186,6 +19638,26 @@
       "exists": true
     },
     {
+      "id": "vscode-port-forwarding-devtunnels",
+      "kind": "entry",
+      "title": "VS Code Port Forwarding via Dev Tunnels (Public Localhost Sharing)",
+      "url": "https://www.instagram.com/reel/DfCdgxvDwVG/",
+      "summary": "Technique for sharing a locally-running dev server with anyone over the internet using VS Code's built-in Ports panel — run the project, note the port, open the Ports view, use Forward a Port, then open the generated URL's context menu and set Port Visibility to Public so viewers reach it without GitHub sign-in. The underlying mechanism is Microsoft Dev Tunnels (URLs resolve to *.devtunnels.ms); forwarded ports default to Private (requires sign-in with the same GitHub account used to start forwarding) and must be explicitly switched to Public to work as a no-login share link. Works for any local server (the reel demonstrates a full-stack Vite/React PDF-tools clone) as long as the process keeps running on the local machine — the tunnel relays traffic, it does not host the app independently.",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "wave-function-collapse",
+      "kind": "entry",
+      "title": "WaveFunctionCollapse",
+      "url": "https://github.com/mxgmn/WaveFunctionCollapse",
+      "summary": "C# algorithm (by Maxim Gumin) that generates bitmaps/tilemaps locally similar to a single input example — picks the lowest-entropy region, collapses it to one of the input's NxN patterns weighted by their input frequency, and propagates that constraint outward, repeating until the whole output is determined or a contradiction forces a retry; used for procedural terrain, dungeon, and texture generation; 25.5k stars, 1.4k forks; MIT (sample images/tiles excluded from the license).",
+      "category": "framework",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
       "id": "weaviate",
       "kind": "entry",
       "title": "Weaviate",
@@ -18202,6 +19674,26 @@
       "url": "https://github.com/anthropics/skills/blob/main/skills/web-artifacts-builder/SKILL.md",
       "summary": "use when markdown isn't enough for interactive reports/dashboards",
       "category": "skill",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "webcam-feedback-loop-hardware-debug",
+      "kind": "entry",
+      "title": "Webcam Feedback Loop for Agent Hardware/Firmware Debugging",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1x9fwk4/comment/phmsw9i/",
+      "summary": "Anecdote of a coding agent (Opus 5.5 via Claude Code) suggesting its own instrumentation for a hardware task it couldn't otherwise observe: pointing a webcam at a physical ESP32-driven display so the agent could see the live rendered output while tuning Waveshare display-driver settings for portrait-mode frame rate, going from 4fps to 60fps in a few minutes once it had that visual feedback loop.",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "webosbrew",
+      "kind": "entry",
+      "title": "webosbrew (Homebrew Channel for LG webOS)",
+      "url": "https://www.webosbrew.org/",
+      "summary": "Community hub for rooting LG webOS Smart TVs — hosts the Homebrew Channel (a sideloaded on-device app store/manager unlocking apps like Kodi and Moonlight, ambient-light integrations such as HyperHDR, screensaver/wallpaper changes and remote-button remapping once installed), a directory of current software root exploits tracked per webOS version and patch date (faultmanager, DejaVuln, WTA, crashd, RootMy.TV, GetMeNow, plus a hardware DEBUG-flag method), and a model/firmware compatibility checker (CanI.RootMy.TV).",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -18237,6 +19729,16 @@
       "url": "https://www.tomshardware.com/how-to/enable-god-mode-windows-11",
       "summary": "Windows 10/11 trick — create a folder named GodMode.{ED7BA470-8E54-465E-825C-99712043E01C} to get a flat list of 200+ Control Panel shortcuts; useful for quick access to buried settings like environment variables, audio devices, power options",
       "category": "reference",
+      "decision_status": "open",
+      "exists": true
+    },
+    {
+      "id": "yarn-spinner",
+      "kind": "entry",
+      "title": "Yarn Spinner",
+      "url": "https://github.com/YarnSpinnerTool/YarnSpinner-Unity",
+      "summary": "Open-source dialogue system (Secret Lab) for writing and running branching game dialogue in a screenplay-like scripting language — the Yarn Spinner compiler/runtime is engine-agnostic, with an official Unity integration (YarnSpinner-Unity) sending lines, player-choice options, and in-scene commands from scripted conversations to the game; used in shipped titles including Night in the Woods, A Short Hike, and Dredge; Unity integration repo: 845 stars, 129 forks; MIT.",
+      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -18393,6 +19895,51 @@
     {
       "source": "aaa-quality-gate-orchestration",
       "target": "tag:verification",
+      "relation": "tagged"
+    },
+    {
+      "source": "ace-step",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "ace-step",
+      "target": "tag:audio",
+      "relation": "tagged"
+    },
+    {
+      "source": "ace-step",
+      "target": "tag:diffusion-transformer",
+      "relation": "tagged"
+    },
+    {
+      "source": "ace-step",
+      "target": "tag:gradio",
+      "relation": "tagged"
+    },
+    {
+      "source": "ace-step",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "ace-step",
+      "target": "tag:lora",
+      "relation": "tagged"
+    },
+    {
+      "source": "ace-step",
+      "target": "tag:music-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "ace-step",
+      "target": "tag:open-source",
+      "relation": "tagged"
+    },
+    {
+      "source": "ace-step",
+      "target": "tag:text-to-music",
       "relation": "tagged"
     },
     {
@@ -20381,6 +21928,61 @@
       "relation": "tagged"
     },
     {
+      "source": "aleph-geo",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "aleph-geo",
+      "target": "tag:3d-tiles",
+      "relation": "tagged"
+    },
+    {
+      "source": "aleph-geo",
+      "target": "tag:cli-tool",
+      "relation": "tagged"
+    },
+    {
+      "source": "aleph-geo",
+      "target": "tag:geospatial",
+      "relation": "tagged"
+    },
+    {
+      "source": "aleph-geo",
+      "target": "tag:gis",
+      "relation": "tagged"
+    },
+    {
+      "source": "aleph-geo",
+      "target": "tag:llm-tooling",
+      "relation": "tagged"
+    },
+    {
+      "source": "aleph-geo",
+      "target": "tag:openstreetmap",
+      "relation": "tagged"
+    },
+    {
+      "source": "aleph-geo",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "aleph-geo",
+      "target": "tag:satellite-imagery",
+      "relation": "tagged"
+    },
+    {
+      "source": "aleph-geo",
+      "target": "tag:street-view",
+      "relation": "tagged"
+    },
+    {
+      "source": "aleph-geo",
+      "target": "tag:terrain",
+      "relation": "tagged"
+    },
+    {
       "source": "amazon-bedrock",
       "target": "cat:framework",
       "relation": "categorized"
@@ -21576,6 +23178,56 @@
       "relation": "tagged"
     },
     {
+      "source": "audio2face-3d",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "audio2face-3d",
+      "target": "tag:audio-to-face",
+      "relation": "tagged"
+    },
+    {
+      "source": "audio2face-3d",
+      "target": "tag:blendshapes",
+      "relation": "tagged"
+    },
+    {
+      "source": "audio2face-3d",
+      "target": "tag:facial-animation",
+      "relation": "tagged"
+    },
+    {
+      "source": "audio2face-3d",
+      "target": "tag:lip-sync",
+      "relation": "tagged"
+    },
+    {
+      "source": "audio2face-3d",
+      "target": "tag:maya-plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "audio2face-3d",
+      "target": "tag:metahuman",
+      "relation": "tagged"
+    },
+    {
+      "source": "audio2face-3d",
+      "target": "tag:nvidia",
+      "relation": "tagged"
+    },
+    {
+      "source": "audio2face-3d",
+      "target": "tag:real-time",
+      "relation": "tagged"
+    },
+    {
+      "source": "audio2face-3d",
+      "target": "tag:unreal-engine-plugin",
+      "relation": "tagged"
+    },
+    {
       "source": "autodock-vina",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -22241,6 +23893,41 @@
       "relation": "tagged"
     },
     {
+      "source": "beam-reflection-ai",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "beam-reflection-ai",
+      "target": "tag:agentic",
+      "relation": "tagged"
+    },
+    {
+      "source": "beam-reflection-ai",
+      "target": "tag:coding-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "beam-reflection-ai",
+      "target": "tag:llm",
+      "relation": "tagged"
+    },
+    {
+      "source": "beam-reflection-ai",
+      "target": "tag:mixture-of-experts",
+      "relation": "tagged"
+    },
+    {
+      "source": "beam-reflection-ai",
+      "target": "tag:open-weights",
+      "relation": "tagged"
+    },
+    {
+      "source": "beam-reflection-ai",
+      "target": "tag:reflection-ai",
+      "relation": "tagged"
+    },
+    {
       "source": "bedrock-agentcore-gateway",
       "target": "a2a-protocol",
       "relation": "overlaps"
@@ -22373,6 +24060,51 @@
     {
       "source": "benzi",
       "target": "tag:vs-code-extension",
+      "relation": "tagged"
+    },
+    {
+      "source": "billboard-2d-art-on-3d-primitives",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "billboard-2d-art-on-3d-primitives",
+      "target": "tag:environment-art",
+      "relation": "tagged"
+    },
+    {
+      "source": "billboard-2d-art-on-3d-primitives",
+      "target": "tag:game-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "billboard-2d-art-on-3d-primitives",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "billboard-2d-art-on-3d-primitives",
+      "target": "tag:poly-count-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "billboard-2d-art-on-3d-primitives",
+      "target": "tag:steam-deck",
+      "relation": "tagged"
+    },
+    {
+      "source": "billboard-2d-art-on-3d-primitives",
+      "target": "tag:stylized-rendering",
+      "relation": "tagged"
+    },
+    {
+      "source": "billboard-2d-art-on-3d-primitives",
+      "target": "tag:texture-projection",
+      "relation": "tagged"
+    },
+    {
+      "source": "billboard-2d-art-on-3d-primitives",
+      "target": "tag:unreal-engine",
       "relation": "tagged"
     },
     {
@@ -22588,6 +24320,51 @@
     {
       "source": "blitzos",
       "target": "tag:session-persistence",
+      "relation": "tagged"
+    },
+    {
+      "source": "blockout-pixel-art-animation",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "blockout-pixel-art-animation",
+      "target": "tag:animation",
+      "relation": "tagged"
+    },
+    {
+      "source": "blockout-pixel-art-animation",
+      "target": "tag:blocking",
+      "relation": "tagged"
+    },
+    {
+      "source": "blockout-pixel-art-animation",
+      "target": "tag:blockout",
+      "relation": "tagged"
+    },
+    {
+      "source": "blockout-pixel-art-animation",
+      "target": "tag:game-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "blockout-pixel-art-animation",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "blockout-pixel-art-animation",
+      "target": "tag:godot",
+      "relation": "tagged"
+    },
+    {
+      "source": "blockout-pixel-art-animation",
+      "target": "tag:pixel-art",
+      "relation": "tagged"
+    },
+    {
+      "source": "blockout-pixel-art-animation",
+      "target": "tag:sprite-animation",
       "relation": "tagged"
     },
     {
@@ -22873,6 +24650,56 @@
     {
       "source": "boris-cherny-claude-md",
       "target": "tag:workflow",
+      "relation": "tagged"
+    },
+    {
+      "source": "boss-fight-entrance-design",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "boss-fight-entrance-design",
+      "target": "tag:boss-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "boss-fight-entrance-design",
+      "target": "tag:boss-fight",
+      "relation": "tagged"
+    },
+    {
+      "source": "boss-fight-entrance-design",
+      "target": "tag:camera-work",
+      "relation": "tagged"
+    },
+    {
+      "source": "boss-fight-entrance-design",
+      "target": "tag:cutscene-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "boss-fight-entrance-design",
+      "target": "tag:game-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "boss-fight-entrance-design",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "boss-fight-entrance-design",
+      "target": "tag:game-feel",
+      "relation": "tagged"
+    },
+    {
+      "source": "boss-fight-entrance-design",
+      "target": "tag:health-bar",
+      "relation": "tagged"
+    },
+    {
+      "source": "boss-fight-entrance-design",
+      "target": "tag:screen-shake",
       "relation": "tagged"
     },
     {
@@ -23338,6 +25165,56 @@
     {
       "source": "caire",
       "target": "tag:seam-carving",
+      "relation": "tagged"
+    },
+    {
+      "source": "card-feel-five-effects",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "card-feel-five-effects",
+      "target": "tag:animation",
+      "relation": "tagged"
+    },
+    {
+      "source": "card-feel-five-effects",
+      "target": "tag:card-game",
+      "relation": "tagged"
+    },
+    {
+      "source": "card-feel-five-effects",
+      "target": "tag:drag-and-drop",
+      "relation": "tagged"
+    },
+    {
+      "source": "card-feel-five-effects",
+      "target": "tag:game-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "card-feel-five-effects",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "card-feel-five-effects",
+      "target": "tag:game-feel",
+      "relation": "tagged"
+    },
+    {
+      "source": "card-feel-five-effects",
+      "target": "tag:juice",
+      "relation": "tagged"
+    },
+    {
+      "source": "card-feel-five-effects",
+      "target": "tag:sound-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "card-feel-five-effects",
+      "target": "tag:ui-feedback",
       "relation": "tagged"
     },
     {
@@ -24216,6 +26093,66 @@
       "relation": "tagged"
     },
     {
+      "source": "claude-code-game-studios",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "claude-code-game-studios",
+      "target": "tag:claude-code-plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-game-studios",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-game-studios",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-game-studios",
+      "target": "tag:godot",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-game-studios",
+      "target": "tag:hooks",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-game-studios",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-game-studios",
+      "target": "tag:skills",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-game-studios",
+      "target": "tag:subagents",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-game-studios",
+      "target": "tag:template",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-game-studios",
+      "target": "tag:unity",
+      "relation": "tagged"
+    },
+    {
+      "source": "claude-code-game-studios",
+      "target": "tag:unreal-engine",
+      "relation": "tagged"
+    },
+    {
       "source": "claude-code-local-model-switching",
       "target": "cat:agent-pattern",
       "relation": "categorized"
@@ -24794,11 +26731,6 @@
       "source": "claude-projects",
       "target": "tag:rag",
       "relation": "tagged"
-    },
-    {
-      "source": "claude-pxl",
-      "target": "cat:skill",
-      "relation": "categorized"
     },
     {
       "source": "claude-science",
@@ -27171,6 +29103,61 @@
       "relation": "overlaps"
     },
     {
+      "source": "cut-anticipation-frames-responsiveness",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "cut-anticipation-frames-responsiveness",
+      "target": "tag:animation-principles",
+      "relation": "tagged"
+    },
+    {
+      "source": "cut-anticipation-frames-responsiveness",
+      "target": "tag:anticipation",
+      "relation": "tagged"
+    },
+    {
+      "source": "cut-anticipation-frames-responsiveness",
+      "target": "tag:frame-data",
+      "relation": "tagged"
+    },
+    {
+      "source": "cut-anticipation-frames-responsiveness",
+      "target": "tag:game-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "cut-anticipation-frames-responsiveness",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "cut-anticipation-frames-responsiveness",
+      "target": "tag:game-feel",
+      "relation": "tagged"
+    },
+    {
+      "source": "cut-anticipation-frames-responsiveness",
+      "target": "tag:input-responsiveness",
+      "relation": "tagged"
+    },
+    {
+      "source": "cut-anticipation-frames-responsiveness",
+      "target": "tag:juice",
+      "relation": "tagged"
+    },
+    {
+      "source": "cut-anticipation-frames-responsiveness",
+      "target": "tag:silhouette",
+      "relation": "tagged"
+    },
+    {
+      "source": "cut-anticipation-frames-responsiveness",
+      "target": "tag:snappy-controls",
+      "relation": "tagged"
+    },
+    {
       "source": "daily-team",
       "target": "cat:skill",
       "relation": "categorized"
@@ -27871,6 +29858,51 @@
       "relation": "tagged"
     },
     {
+      "source": "dialogue-feel-five-steps",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "dialogue-feel-five-steps",
+      "target": "tag:dialogue-system",
+      "relation": "tagged"
+    },
+    {
+      "source": "dialogue-feel-five-steps",
+      "target": "tag:game-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "dialogue-feel-five-steps",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "dialogue-feel-five-steps",
+      "target": "tag:game-feel",
+      "relation": "tagged"
+    },
+    {
+      "source": "dialogue-feel-five-steps",
+      "target": "tag:sound-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "dialogue-feel-five-steps",
+      "target": "tag:text-effects",
+      "relation": "tagged"
+    },
+    {
+      "source": "dialogue-feel-five-steps",
+      "target": "tag:typewriter-effect",
+      "relation": "tagged"
+    },
+    {
+      "source": "dialogue-feel-five-steps",
+      "target": "tag:ui-feedback",
+      "relation": "tagged"
+    },
+    {
       "source": "diffdock",
       "target": "autodock-vina",
       "relation": "overlaps"
@@ -28004,6 +30036,61 @@
       "source": "directing-and-verifying-coding-agents",
       "target": "verify-before-claim",
       "relation": "overlaps"
+    },
+    {
+      "source": "disney-animation-principles-game-vfx",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "disney-animation-principles-game-vfx",
+      "target": "tag:animation-principles",
+      "relation": "tagged"
+    },
+    {
+      "source": "disney-animation-principles-game-vfx",
+      "target": "tag:anticipation",
+      "relation": "tagged"
+    },
+    {
+      "source": "disney-animation-principles-game-vfx",
+      "target": "tag:follow-through",
+      "relation": "tagged"
+    },
+    {
+      "source": "disney-animation-principles-game-vfx",
+      "target": "tag:game-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "disney-animation-principles-game-vfx",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "disney-animation-principles-game-vfx",
+      "target": "tag:game-feel",
+      "relation": "tagged"
+    },
+    {
+      "source": "disney-animation-principles-game-vfx",
+      "target": "tag:hit-stop",
+      "relation": "tagged"
+    },
+    {
+      "source": "disney-animation-principles-game-vfx",
+      "target": "tag:juice",
+      "relation": "tagged"
+    },
+    {
+      "source": "disney-animation-principles-game-vfx",
+      "target": "tag:squash-and-stretch",
+      "relation": "tagged"
+    },
+    {
+      "source": "disney-animation-principles-game-vfx",
+      "target": "tag:vfx",
+      "relation": "tagged"
     },
     {
       "source": "distill",
@@ -30291,6 +32378,111 @@
       "relation": "tagged"
     },
     {
+      "source": "flattened-mesh-fake-shadows",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "flattened-mesh-fake-shadows",
+      "target": "tag:game-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "flattened-mesh-fake-shadows",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "flattened-mesh-fake-shadows",
+      "target": "tag:material-technique",
+      "relation": "tagged"
+    },
+    {
+      "source": "flattened-mesh-fake-shadows",
+      "target": "tag:performance-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "flattened-mesh-fake-shadows",
+      "target": "tag:shadows",
+      "relation": "tagged"
+    },
+    {
+      "source": "flattened-mesh-fake-shadows",
+      "target": "tag:stylized-rendering",
+      "relation": "tagged"
+    },
+    {
+      "source": "flattened-mesh-fake-shadows",
+      "target": "tag:unreal-engine",
+      "relation": "tagged"
+    },
+    {
+      "source": "flectar-mail",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "flectar-mail",
+      "target": "tag:agplv3",
+      "relation": "tagged"
+    },
+    {
+      "source": "flectar-mail",
+      "target": "tag:calendar",
+      "relation": "tagged"
+    },
+    {
+      "source": "flectar-mail",
+      "target": "tag:contacts",
+      "relation": "tagged"
+    },
+    {
+      "source": "flectar-mail",
+      "target": "tag:desktop",
+      "relation": "tagged"
+    },
+    {
+      "source": "flectar-mail",
+      "target": "tag:email-client",
+      "relation": "tagged"
+    },
+    {
+      "source": "flectar-mail",
+      "target": "tag:imap",
+      "relation": "tagged"
+    },
+    {
+      "source": "flectar-mail",
+      "target": "tag:jmap",
+      "relation": "tagged"
+    },
+    {
+      "source": "flectar-mail",
+      "target": "tag:local-first",
+      "relation": "tagged"
+    },
+    {
+      "source": "flectar-mail",
+      "target": "tag:mobile",
+      "relation": "tagged"
+    },
+    {
+      "source": "flectar-mail",
+      "target": "tag:native-app",
+      "relation": "tagged"
+    },
+    {
+      "source": "flectar-mail",
+      "target": "tag:privacy",
+      "relation": "tagged"
+    },
+    {
+      "source": "flectar-mail",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
       "source": "floci",
       "target": "cat:framework",
       "relation": "categorized"
@@ -30821,6 +33013,66 @@
       "relation": "tagged"
     },
     {
+      "source": "game-engine-data-structures-cheatsheet",
+      "target": "cat:reference",
+      "relation": "categorized"
+    },
+    {
+      "source": "game-engine-data-structures-cheatsheet",
+      "target": "navmesh-plus",
+      "relation": "overlaps"
+    },
+    {
+      "source": "game-engine-data-structures-cheatsheet",
+      "target": "tag:bvh",
+      "relation": "tagged"
+    },
+    {
+      "source": "game-engine-data-structures-cheatsheet",
+      "target": "tag:cache-locality",
+      "relation": "tagged"
+    },
+    {
+      "source": "game-engine-data-structures-cheatsheet",
+      "target": "tag:data-oriented-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "game-engine-data-structures-cheatsheet",
+      "target": "tag:data-structures",
+      "relation": "tagged"
+    },
+    {
+      "source": "game-engine-data-structures-cheatsheet",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "game-engine-data-structures-cheatsheet",
+      "target": "tag:octree",
+      "relation": "tagged"
+    },
+    {
+      "source": "game-engine-data-structures-cheatsheet",
+      "target": "tag:pathfinding",
+      "relation": "tagged"
+    },
+    {
+      "source": "game-engine-data-structures-cheatsheet",
+      "target": "tag:ring-buffer",
+      "relation": "tagged"
+    },
+    {
+      "source": "game-engine-data-structures-cheatsheet",
+      "target": "tag:spatial-hashing",
+      "relation": "tagged"
+    },
+    {
+      "source": "game-engine-data-structures-cheatsheet",
+      "target": "tag:spatial-partitioning",
+      "relation": "tagged"
+    },
+    {
       "source": "gbrain",
       "target": "cat:framework",
       "relation": "categorized"
@@ -30888,6 +33140,51 @@
     {
       "source": "gemini-3-8-flash",
       "target": "tag:multimodal",
+      "relation": "tagged"
+    },
+    {
+      "source": "gemini-4-argon",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "gemini-4-argon",
+      "target": "tag:agentic",
+      "relation": "tagged"
+    },
+    {
+      "source": "gemini-4-argon",
+      "target": "tag:api-model",
+      "relation": "tagged"
+    },
+    {
+      "source": "gemini-4-argon",
+      "target": "tag:coding-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "gemini-4-argon",
+      "target": "tag:gemini",
+      "relation": "tagged"
+    },
+    {
+      "source": "gemini-4-argon",
+      "target": "tag:google",
+      "relation": "tagged"
+    },
+    {
+      "source": "gemini-4-argon",
+      "target": "tag:llm",
+      "relation": "tagged"
+    },
+    {
+      "source": "gemini-4-argon",
+      "target": "tag:long-context",
+      "relation": "tagged"
+    },
+    {
+      "source": "gemini-4-argon",
+      "target": "tag:proprietary",
       "relation": "tagged"
     },
     {
@@ -31161,6 +33458,81 @@
       "relation": "tagged"
     },
     {
+      "source": "glass-home-samsung-tv",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "glass-home-samsung-tv",
+      "target": "coding-agent-adb-tv-debloat",
+      "relation": "overlaps"
+    },
+    {
+      "source": "glass-home-samsung-tv",
+      "target": "free-my-tv",
+      "relation": "overlaps"
+    },
+    {
+      "source": "glass-home-samsung-tv",
+      "target": "tag:agent-driven",
+      "relation": "tagged"
+    },
+    {
+      "source": "glass-home-samsung-tv",
+      "target": "tag:camera-verification",
+      "relation": "tagged"
+    },
+    {
+      "source": "glass-home-samsung-tv",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "glass-home-samsung-tv",
+      "target": "tag:debloat",
+      "relation": "tagged"
+    },
+    {
+      "source": "glass-home-samsung-tv",
+      "target": "tag:developer-mode",
+      "relation": "tagged"
+    },
+    {
+      "source": "glass-home-samsung-tv",
+      "target": "tag:home-screen",
+      "relation": "tagged"
+    },
+    {
+      "source": "glass-home-samsung-tv",
+      "target": "tag:launcher",
+      "relation": "tagged"
+    },
+    {
+      "source": "glass-home-samsung-tv",
+      "target": "tag:nodejs",
+      "relation": "tagged"
+    },
+    {
+      "source": "glass-home-samsung-tv",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "glass-home-samsung-tv",
+      "target": "tag:samsung",
+      "relation": "tagged"
+    },
+    {
+      "source": "glass-home-samsung-tv",
+      "target": "tag:sideload",
+      "relation": "tagged"
+    },
+    {
+      "source": "glass-home-samsung-tv",
+      "target": "tag:tizen",
+      "relation": "tagged"
+    },
+    {
       "source": "godogen",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -31218,6 +33590,46 @@
     {
       "source": "godogen",
       "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "godot-mcp",
+      "target": "cat:mcp-server",
+      "relation": "categorized"
+    },
+    {
+      "source": "godot-mcp",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "godot-mcp",
+      "target": "tag:debugging",
+      "relation": "tagged"
+    },
+    {
+      "source": "godot-mcp",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "godot-mcp",
+      "target": "tag:godot",
+      "relation": "tagged"
+    },
+    {
+      "source": "godot-mcp",
+      "target": "tag:mcp-server",
+      "relation": "tagged"
+    },
+    {
+      "source": "godot-mcp",
+      "target": "tag:npm",
+      "relation": "tagged"
+    },
+    {
+      "source": "godot-mcp",
+      "target": "tag:typescript",
       "relation": "tagged"
     },
     {
@@ -32601,6 +35013,61 @@
       "relation": "tagged"
     },
     {
+      "source": "health-bar-chip-damage-feedback",
+      "target": "boss-fight-entrance-design",
+      "relation": "overlaps"
+    },
+    {
+      "source": "health-bar-chip-damage-feedback",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "health-bar-chip-damage-feedback",
+      "target": "tag:chip-damage",
+      "relation": "tagged"
+    },
+    {
+      "source": "health-bar-chip-damage-feedback",
+      "target": "tag:damage-numbers",
+      "relation": "tagged"
+    },
+    {
+      "source": "health-bar-chip-damage-feedback",
+      "target": "tag:floating-combat-text",
+      "relation": "tagged"
+    },
+    {
+      "source": "health-bar-chip-damage-feedback",
+      "target": "tag:game-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "health-bar-chip-damage-feedback",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "health-bar-chip-damage-feedback",
+      "target": "tag:game-feel",
+      "relation": "tagged"
+    },
+    {
+      "source": "health-bar-chip-damage-feedback",
+      "target": "tag:health-bar",
+      "relation": "tagged"
+    },
+    {
+      "source": "health-bar-chip-damage-feedback",
+      "target": "tag:juice",
+      "relation": "tagged"
+    },
+    {
+      "source": "health-bar-chip-damage-feedback",
+      "target": "tag:ui-feedback",
+      "relation": "tagged"
+    },
+    {
       "source": "helm-session-manager",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -33391,6 +35858,41 @@
       "relation": "tagged"
     },
     {
+      "source": "ingame-debug-console",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "ingame-debug-console",
+      "target": "tag:cheats",
+      "relation": "tagged"
+    },
+    {
+      "source": "ingame-debug-console",
+      "target": "tag:csharp",
+      "relation": "tagged"
+    },
+    {
+      "source": "ingame-debug-console",
+      "target": "tag:debug-console",
+      "relation": "tagged"
+    },
+    {
+      "source": "ingame-debug-console",
+      "target": "tag:developer-tools",
+      "relation": "tagged"
+    },
+    {
+      "source": "ingame-debug-console",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "ingame-debug-console",
+      "target": "tag:unity",
+      "relation": "tagged"
+    },
+    {
       "source": "instagram-saved-reels-obsidian-knowledge-graph",
       "target": "cat:agent-pattern",
       "relation": "categorized"
@@ -34123,6 +36625,56 @@
     {
       "source": "jq",
       "target": "tag:unix",
+      "relation": "tagged"
+    },
+    {
+      "source": "juicy-damage-numbers",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "juicy-damage-numbers",
+      "target": "tag:damage-numbers",
+      "relation": "tagged"
+    },
+    {
+      "source": "juicy-damage-numbers",
+      "target": "tag:game-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "juicy-damage-numbers",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "juicy-damage-numbers",
+      "target": "tag:game-feel",
+      "relation": "tagged"
+    },
+    {
+      "source": "juicy-damage-numbers",
+      "target": "tag:juice",
+      "relation": "tagged"
+    },
+    {
+      "source": "juicy-damage-numbers",
+      "target": "tag:particles",
+      "relation": "tagged"
+    },
+    {
+      "source": "juicy-damage-numbers",
+      "target": "tag:screen-shake",
+      "relation": "tagged"
+    },
+    {
+      "source": "juicy-damage-numbers",
+      "target": "tag:ui-feedback",
+      "relation": "tagged"
+    },
+    {
+      "source": "juicy-damage-numbers",
+      "target": "tag:vfx",
       "relation": "tagged"
     },
     {
@@ -35351,6 +37903,101 @@
       "relation": "tagged"
     },
     {
+      "source": "lg-webos-root-debloat-relaunch",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "lg-webos-root-debloat-relaunch",
+      "target": "cleanyourtv",
+      "relation": "overlaps"
+    },
+    {
+      "source": "lg-webos-root-debloat-relaunch",
+      "target": "coding-agent-adb-tv-debloat",
+      "relation": "overlaps"
+    },
+    {
+      "source": "lg-webos-root-debloat-relaunch",
+      "target": "dumbtv",
+      "relation": "overlaps"
+    },
+    {
+      "source": "lg-webos-root-debloat-relaunch",
+      "target": "free-my-tv",
+      "relation": "overlaps"
+    },
+    {
+      "source": "lg-webos-root-debloat-relaunch",
+      "target": "lucataco-webos-debloat",
+      "relation": "overlaps"
+    },
+    {
+      "source": "lg-webos-root-debloat-relaunch",
+      "target": "pearwebos",
+      "relation": "overlaps"
+    },
+    {
+      "source": "lg-webos-root-debloat-relaunch",
+      "target": "tag:agent-pattern",
+      "relation": "tagged"
+    },
+    {
+      "source": "lg-webos-root-debloat-relaunch",
+      "target": "tag:backup-before-change",
+      "relation": "tagged"
+    },
+    {
+      "source": "lg-webos-root-debloat-relaunch",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "lg-webos-root-debloat-relaunch",
+      "target": "tag:debloat",
+      "relation": "tagged"
+    },
+    {
+      "source": "lg-webos-root-debloat-relaunch",
+      "target": "tag:device-automation",
+      "relation": "tagged"
+    },
+    {
+      "source": "lg-webos-root-debloat-relaunch",
+      "target": "tag:handoff",
+      "relation": "tagged"
+    },
+    {
+      "source": "lg-webos-root-debloat-relaunch",
+      "target": "tag:lg",
+      "relation": "tagged"
+    },
+    {
+      "source": "lg-webos-root-debloat-relaunch",
+      "target": "tag:restore-script",
+      "relation": "tagged"
+    },
+    {
+      "source": "lg-webos-root-debloat-relaunch",
+      "target": "tag:root",
+      "relation": "tagged"
+    },
+    {
+      "source": "lg-webos-root-debloat-relaunch",
+      "target": "tag:smart-tv",
+      "relation": "tagged"
+    },
+    {
+      "source": "lg-webos-root-debloat-relaunch",
+      "target": "tag:webos",
+      "relation": "tagged"
+    },
+    {
+      "source": "lg-webos-root-debloat-relaunch",
+      "target": "webosbrew",
+      "relation": "overlaps"
+    },
+    {
       "source": "litellm",
       "target": "cat:framework",
       "relation": "categorized"
@@ -36296,6 +38943,66 @@
       "relation": "tagged"
     },
     {
+      "source": "locally-uncensored",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "locally-uncensored",
+      "target": "lm-studio",
+      "relation": "overlaps"
+    },
+    {
+      "source": "locally-uncensored",
+      "target": "tag:chat",
+      "relation": "tagged"
+    },
+    {
+      "source": "locally-uncensored",
+      "target": "tag:coding-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "locally-uncensored",
+      "target": "tag:desktop-app",
+      "relation": "tagged"
+    },
+    {
+      "source": "locally-uncensored",
+      "target": "tag:image-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "locally-uncensored",
+      "target": "tag:linux",
+      "relation": "tagged"
+    },
+    {
+      "source": "locally-uncensored",
+      "target": "tag:local-inference",
+      "relation": "tagged"
+    },
+    {
+      "source": "locally-uncensored",
+      "target": "tag:open-source",
+      "relation": "tagged"
+    },
+    {
+      "source": "locally-uncensored",
+      "target": "tag:privacy",
+      "relation": "tagged"
+    },
+    {
+      "source": "locally-uncensored",
+      "target": "tag:video-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "locally-uncensored",
+      "target": "tag:windows",
+      "relation": "tagged"
+    },
+    {
       "source": "locate-anything",
       "target": "cat:framework",
       "relation": "categorized"
@@ -36378,6 +39085,61 @@
     {
       "source": "lora-peft-guide",
       "target": "tag:transformers",
+      "relation": "tagged"
+    },
+    {
+      "source": "lucataco-webos-debloat",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "lucataco-webos-debloat",
+      "target": "free-my-tv",
+      "relation": "overlaps"
+    },
+    {
+      "source": "lucataco-webos-debloat",
+      "target": "tag:acr",
+      "relation": "tagged"
+    },
+    {
+      "source": "lucataco-webos-debloat",
+      "target": "tag:debloat",
+      "relation": "tagged"
+    },
+    {
+      "source": "lucataco-webos-debloat",
+      "target": "tag:lg",
+      "relation": "tagged"
+    },
+    {
+      "source": "lucataco-webos-debloat",
+      "target": "tag:preload-manager",
+      "relation": "tagged"
+    },
+    {
+      "source": "lucataco-webos-debloat",
+      "target": "tag:privacy",
+      "relation": "tagged"
+    },
+    {
+      "source": "lucataco-webos-debloat",
+      "target": "tag:root",
+      "relation": "tagged"
+    },
+    {
+      "source": "lucataco-webos-debloat",
+      "target": "tag:shell-script",
+      "relation": "tagged"
+    },
+    {
+      "source": "lucataco-webos-debloat",
+      "target": "tag:telemetry",
+      "relation": "tagged"
+    },
+    {
+      "source": "lucataco-webos-debloat",
+      "target": "tag:webos",
       "relation": "tagged"
     },
     {
@@ -38041,6 +40803,51 @@
       "relation": "overlaps"
     },
     {
+      "source": "mitsuba3",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "mitsuba3",
+      "target": "tag:differentiable-rendering",
+      "relation": "tagged"
+    },
+    {
+      "source": "mitsuba3",
+      "target": "tag:drjit",
+      "relation": "tagged"
+    },
+    {
+      "source": "mitsuba3",
+      "target": "tag:jit-compilation",
+      "relation": "tagged"
+    },
+    {
+      "source": "mitsuba3",
+      "target": "tag:physically-based-rendering",
+      "relation": "tagged"
+    },
+    {
+      "source": "mitsuba3",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "mitsuba3",
+      "target": "tag:rendering",
+      "relation": "tagged"
+    },
+    {
+      "source": "mitsuba3",
+      "target": "tag:spectral-rendering",
+      "relation": "tagged"
+    },
+    {
+      "source": "mitsuba3",
+      "target": "tag:vfx",
+      "relation": "tagged"
+    },
+    {
       "source": "mixpeek",
       "target": "cat:framework",
       "relation": "categorized"
@@ -38366,6 +41173,111 @@
       "relation": "tagged"
     },
     {
+      "source": "motionbricks-blender",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "motionbricks-blender",
+      "target": "motionbricks",
+      "relation": "overlaps"
+    },
+    {
+      "source": "motionbricks-blender",
+      "target": "tag:ai-coding-agent-setup",
+      "relation": "tagged"
+    },
+    {
+      "source": "motionbricks-blender",
+      "target": "tag:blender-addon",
+      "relation": "tagged"
+    },
+    {
+      "source": "motionbricks-blender",
+      "target": "tag:blender",
+      "relation": "tagged"
+    },
+    {
+      "source": "motionbricks-blender",
+      "target": "tag:character-animation",
+      "relation": "tagged"
+    },
+    {
+      "source": "motionbricks-blender",
+      "target": "tag:motion-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "motionbricks-blender",
+      "target": "tag:motion-import",
+      "relation": "tagged"
+    },
+    {
+      "source": "motionbricks-blender",
+      "target": "tag:nvidia",
+      "relation": "tagged"
+    },
+    {
+      "source": "motionbricks-blender",
+      "target": "tag:tensorrt",
+      "relation": "tagged"
+    },
+    {
+      "source": "motionbricks",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "motionbricks",
+      "target": "tag:character-animation",
+      "relation": "tagged"
+    },
+    {
+      "source": "motionbricks",
+      "target": "tag:generative-model",
+      "relation": "tagged"
+    },
+    {
+      "source": "motionbricks",
+      "target": "tag:motion-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "motionbricks",
+      "target": "tag:nvidia",
+      "relation": "tagged"
+    },
+    {
+      "source": "motionbricks",
+      "target": "tag:onnx",
+      "relation": "tagged"
+    },
+    {
+      "source": "motionbricks",
+      "target": "tag:real-time",
+      "relation": "tagged"
+    },
+    {
+      "source": "motionbricks",
+      "target": "tag:robotics",
+      "relation": "tagged"
+    },
+    {
+      "source": "motionbricks",
+      "target": "tag:siggraph",
+      "relation": "tagged"
+    },
+    {
+      "source": "motionbricks",
+      "target": "tag:tensorrt",
+      "relation": "tagged"
+    },
+    {
+      "source": "motionbricks",
+      "target": "tag:vq-vae",
+      "relation": "tagged"
+    },
+    {
       "source": "multi-session-management-strategies",
       "target": "cat:reference",
       "relation": "categorized"
@@ -38673,6 +41585,41 @@
     {
       "source": "native-subagents",
       "target": "tag:subagents",
+      "relation": "tagged"
+    },
+    {
+      "source": "navmesh-plus",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "navmesh-plus",
+      "target": "tag:2d-pathfinding",
+      "relation": "tagged"
+    },
+    {
+      "source": "navmesh-plus",
+      "target": "tag:ai-navigation",
+      "relation": "tagged"
+    },
+    {
+      "source": "navmesh-plus",
+      "target": "tag:csharp",
+      "relation": "tagged"
+    },
+    {
+      "source": "navmesh-plus",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "navmesh-plus",
+      "target": "tag:navmesh",
+      "relation": "tagged"
+    },
+    {
+      "source": "navmesh-plus",
+      "target": "tag:unity",
       "relation": "tagged"
     },
     {
@@ -39183,6 +42130,76 @@
     {
       "source": "nvidia-build",
       "target": "tag:nvidia",
+      "relation": "tagged"
+    },
+    {
+      "source": "nvidia-model-optimizer",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "nvidia-model-optimizer",
+      "target": "llm-compressor",
+      "relation": "overlaps"
+    },
+    {
+      "source": "nvidia-model-optimizer",
+      "target": "tag:distillation",
+      "relation": "tagged"
+    },
+    {
+      "source": "nvidia-model-optimizer",
+      "target": "tag:fp8",
+      "relation": "tagged"
+    },
+    {
+      "source": "nvidia-model-optimizer",
+      "target": "tag:inference-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "nvidia-model-optimizer",
+      "target": "tag:model-compression",
+      "relation": "tagged"
+    },
+    {
+      "source": "nvidia-model-optimizer",
+      "target": "tag:nvfp4",
+      "relation": "tagged"
+    },
+    {
+      "source": "nvidia-model-optimizer",
+      "target": "tag:nvidia",
+      "relation": "tagged"
+    },
+    {
+      "source": "nvidia-model-optimizer",
+      "target": "tag:pruning",
+      "relation": "tagged"
+    },
+    {
+      "source": "nvidia-model-optimizer",
+      "target": "tag:quantization",
+      "relation": "tagged"
+    },
+    {
+      "source": "nvidia-model-optimizer",
+      "target": "tag:sparsity",
+      "relation": "tagged"
+    },
+    {
+      "source": "nvidia-model-optimizer",
+      "target": "tag:speculative-decoding",
+      "relation": "tagged"
+    },
+    {
+      "source": "nvidia-model-optimizer",
+      "target": "tag:tensorrt-llm",
+      "relation": "tagged"
+    },
+    {
+      "source": "nvidia-model-optimizer",
+      "target": "tag:vllm",
       "relation": "tagged"
     },
     {
@@ -40956,6 +43973,66 @@
       "relation": "tagged"
     },
     {
+      "source": "orq-ai",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "orq-ai",
+      "target": "production-agentic-platforms-2026",
+      "relation": "overlaps"
+    },
+    {
+      "source": "orq-ai",
+      "target": "tag:agent-runtime",
+      "relation": "tagged"
+    },
+    {
+      "source": "orq-ai",
+      "target": "tag:enterprise",
+      "relation": "tagged"
+    },
+    {
+      "source": "orq-ai",
+      "target": "tag:governance",
+      "relation": "tagged"
+    },
+    {
+      "source": "orq-ai",
+      "target": "tag:guardrails",
+      "relation": "tagged"
+    },
+    {
+      "source": "orq-ai",
+      "target": "tag:human-in-the-loop",
+      "relation": "tagged"
+    },
+    {
+      "source": "orq-ai",
+      "target": "tag:llmops",
+      "relation": "tagged"
+    },
+    {
+      "source": "orq-ai",
+      "target": "tag:mcp",
+      "relation": "tagged"
+    },
+    {
+      "source": "orq-ai",
+      "target": "tag:observability",
+      "relation": "tagged"
+    },
+    {
+      "source": "orq-ai",
+      "target": "tag:saas",
+      "relation": "tagged"
+    },
+    {
+      "source": "orq-ai",
+      "target": "tag:tool-approval",
+      "relation": "tagged"
+    },
+    {
       "source": "ossu-computer-science",
       "target": "build-your-own-x",
       "relation": "overlaps"
@@ -41621,6 +44698,61 @@
       "relation": "tagged"
     },
     {
+      "source": "papermorph",
+      "target": "cat:skill",
+      "relation": "categorized"
+    },
+    {
+      "source": "papermorph",
+      "target": "tag:agent-skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "papermorph",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "papermorph",
+      "target": "tag:education",
+      "relation": "tagged"
+    },
+    {
+      "source": "papermorph",
+      "target": "tag:interactive-learning",
+      "relation": "tagged"
+    },
+    {
+      "source": "papermorph",
+      "target": "tag:mit-license",
+      "relation": "tagged"
+    },
+    {
+      "source": "papermorph",
+      "target": "tag:opencode",
+      "relation": "tagged"
+    },
+    {
+      "source": "papermorph",
+      "target": "tag:pdf-to-web",
+      "relation": "tagged"
+    },
+    {
+      "source": "papermorph",
+      "target": "tag:static-site",
+      "relation": "tagged"
+    },
+    {
+      "source": "papermorph",
+      "target": "tag:text-to-speech",
+      "relation": "tagged"
+    },
+    {
+      "source": "papermorph",
+      "target": "tag:video-generation",
+      "relation": "tagged"
+    },
+    {
       "source": "parallax",
       "target": "cat:framework",
       "relation": "categorized"
@@ -41866,6 +44998,51 @@
       "relation": "tagged"
     },
     {
+      "source": "pearwebos",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "pearwebos",
+      "target": "free-my-tv",
+      "relation": "overlaps"
+    },
+    {
+      "source": "pearwebos",
+      "target": "tag:apple-tv-style",
+      "relation": "tagged"
+    },
+    {
+      "source": "pearwebos",
+      "target": "tag:homebrew-channel",
+      "relation": "tagged"
+    },
+    {
+      "source": "pearwebos",
+      "target": "tag:launcher",
+      "relation": "tagged"
+    },
+    {
+      "source": "pearwebos",
+      "target": "tag:lg",
+      "relation": "tagged"
+    },
+    {
+      "source": "pearwebos",
+      "target": "tag:python",
+      "relation": "tagged"
+    },
+    {
+      "source": "pearwebos",
+      "target": "tag:root",
+      "relation": "tagged"
+    },
+    {
+      "source": "pearwebos",
+      "target": "tag:webos",
+      "relation": "tagged"
+    },
+    {
       "source": "penecho",
       "target": "cat:framework",
       "relation": "categorized"
@@ -41908,6 +45085,61 @@
     {
       "source": "penecho",
       "target": "tag:whiteboard",
+      "relation": "tagged"
+    },
+    {
+      "source": "pentagi",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "pentagi",
+      "target": "shannon",
+      "relation": "overlaps"
+    },
+    {
+      "source": "pentagi",
+      "target": "tag:ai-agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "pentagi",
+      "target": "tag:autonomous-agents",
+      "relation": "tagged"
+    },
+    {
+      "source": "pentagi",
+      "target": "tag:docker",
+      "relation": "tagged"
+    },
+    {
+      "source": "pentagi",
+      "target": "tag:golang",
+      "relation": "tagged"
+    },
+    {
+      "source": "pentagi",
+      "target": "tag:multi-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "pentagi",
+      "target": "tag:offensive-security",
+      "relation": "tagged"
+    },
+    {
+      "source": "pentagi",
+      "target": "tag:pentesting",
+      "relation": "tagged"
+    },
+    {
+      "source": "pentagi",
+      "target": "tag:sandbox",
+      "relation": "tagged"
+    },
+    {
+      "source": "pentagi",
+      "target": "tag:security",
       "relation": "tagged"
     },
     {
@@ -42501,6 +45733,66 @@
       "relation": "tagged"
     },
     {
+      "source": "pixelrag",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "pixelrag",
+      "target": "tag:claude-code-plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "pixelrag",
+      "target": "tag:document-retrieval",
+      "relation": "tagged"
+    },
+    {
+      "source": "pixelrag",
+      "target": "tag:faiss",
+      "relation": "tagged"
+    },
+    {
+      "source": "pixelrag",
+      "target": "tag:multimodal-retrieval",
+      "relation": "tagged"
+    },
+    {
+      "source": "pixelrag",
+      "target": "tag:qdrant",
+      "relation": "tagged"
+    },
+    {
+      "source": "pixelrag",
+      "target": "tag:qwen",
+      "relation": "tagged"
+    },
+    {
+      "source": "pixelrag",
+      "target": "tag:rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "pixelrag",
+      "target": "tag:screenshot",
+      "relation": "tagged"
+    },
+    {
+      "source": "pixelrag",
+      "target": "tag:vision-language-model",
+      "relation": "tagged"
+    },
+    {
+      "source": "pixelrag",
+      "target": "tag:visual-rag",
+      "relation": "tagged"
+    },
+    {
+      "source": "pixelrag",
+      "target": "tag:web-scraping-alternative",
+      "relation": "tagged"
+    },
+    {
       "source": "piyaz",
       "target": "cat:framework",
       "relation": "categorized"
@@ -42828,6 +46120,41 @@
     {
       "source": "ponytail",
       "target": "tag:yagni",
+      "relation": "tagged"
+    },
+    {
+      "source": "primetween",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "primetween",
+      "target": "tag:animation",
+      "relation": "tagged"
+    },
+    {
+      "source": "primetween",
+      "target": "tag:csharp",
+      "relation": "tagged"
+    },
+    {
+      "source": "primetween",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "primetween",
+      "target": "tag:performance",
+      "relation": "tagged"
+    },
+    {
+      "source": "primetween",
+      "target": "tag:tweening",
+      "relation": "tagged"
+    },
+    {
+      "source": "primetween",
+      "target": "tag:unity",
       "relation": "tagged"
     },
     {
@@ -43208,6 +46535,66 @@
     {
       "source": "prompt-versioning-managed-agents",
       "target": "tag:versioning",
+      "relation": "tagged"
+    },
+    {
+      "source": "pseudo-3d-sprite-billboarding",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "pseudo-3d-sprite-billboarding",
+      "target": "tag:billboarding",
+      "relation": "tagged"
+    },
+    {
+      "source": "pseudo-3d-sprite-billboarding",
+      "target": "tag:collision-detection",
+      "relation": "tagged"
+    },
+    {
+      "source": "pseudo-3d-sprite-billboarding",
+      "target": "tag:devlog",
+      "relation": "tagged"
+    },
+    {
+      "source": "pseudo-3d-sprite-billboarding",
+      "target": "tag:distance-culling",
+      "relation": "tagged"
+    },
+    {
+      "source": "pseudo-3d-sprite-billboarding",
+      "target": "tag:fog-rendering",
+      "relation": "tagged"
+    },
+    {
+      "source": "pseudo-3d-sprite-billboarding",
+      "target": "tag:game-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "pseudo-3d-sprite-billboarding",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "pseudo-3d-sprite-billboarding",
+      "target": "tag:matrix-transform",
+      "relation": "tagged"
+    },
+    {
+      "source": "pseudo-3d-sprite-billboarding",
+      "target": "tag:pseudo-3d",
+      "relation": "tagged"
+    },
+    {
+      "source": "pseudo-3d-sprite-billboarding",
+      "target": "tag:sprite-rendering",
+      "relation": "tagged"
+    },
+    {
+      "source": "pseudo-3d-sprite-billboarding",
+      "target": "tag:top-down",
       "relation": "tagged"
     },
     {
@@ -44506,6 +47893,46 @@
       "relation": "tagged"
     },
     {
+      "source": "rogue-1980-tic-tac-toe-dungeon-generation",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "rogue-1980-tic-tac-toe-dungeon-generation",
+      "target": "tag:dungeon-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "rogue-1980-tic-tac-toe-dungeon-generation",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "rogue-1980-tic-tac-toe-dungeon-generation",
+      "target": "tag:grid-based-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "rogue-1980-tic-tac-toe-dungeon-generation",
+      "target": "tag:history",
+      "relation": "tagged"
+    },
+    {
+      "source": "rogue-1980-tic-tac-toe-dungeon-generation",
+      "target": "tag:level-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "rogue-1980-tic-tac-toe-dungeon-generation",
+      "target": "tag:procedural-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "rogue-1980-tic-tac-toe-dungeon-generation",
+      "target": "tag:roguelike",
+      "relation": "tagged"
+    },
+    {
       "source": "rtk",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -44826,6 +48253,86 @@
       "relation": "tagged"
     },
     {
+      "source": "sana-wm",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "sana-wm",
+      "target": "tag:camera-control",
+      "relation": "tagged"
+    },
+    {
+      "source": "sana-wm",
+      "target": "tag:diffusion-transformer",
+      "relation": "tagged"
+    },
+    {
+      "source": "sana-wm",
+      "target": "tag:image-to-video",
+      "relation": "tagged"
+    },
+    {
+      "source": "sana-wm",
+      "target": "tag:nvidia",
+      "relation": "tagged"
+    },
+    {
+      "source": "sana-wm",
+      "target": "tag:open-weights",
+      "relation": "tagged"
+    },
+    {
+      "source": "sana-wm",
+      "target": "tag:text-to-video",
+      "relation": "tagged"
+    },
+    {
+      "source": "sana-wm",
+      "target": "tag:video-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "sana-wm",
+      "target": "tag:world-model",
+      "relation": "tagged"
+    },
+    {
+      "source": "save-game-free",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "save-game-free",
+      "target": "tag:csharp",
+      "relation": "tagged"
+    },
+    {
+      "source": "save-game-free",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "save-game-free",
+      "target": "tag:persistence",
+      "relation": "tagged"
+    },
+    {
+      "source": "save-game-free",
+      "target": "tag:save-system",
+      "relation": "tagged"
+    },
+    {
+      "source": "save-game-free",
+      "target": "tag:serialization",
+      "relation": "tagged"
+    },
+    {
+      "source": "save-game-free",
+      "target": "tag:unity",
+      "relation": "tagged"
+    },
+    {
       "source": "scaledown-cdm",
       "target": "cat:framework",
       "relation": "categorized"
@@ -45103,6 +48610,61 @@
     {
       "source": "scrapegraph-ai",
       "target": "tag:web-scraping",
+      "relation": "tagged"
+    },
+    {
+      "source": "screenshot-to-code",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "screenshot-to-code",
+      "target": "tag:design-to-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "screenshot-to-code",
+      "target": "tag:fastapi",
+      "relation": "tagged"
+    },
+    {
+      "source": "screenshot-to-code",
+      "target": "tag:llm-vision",
+      "relation": "tagged"
+    },
+    {
+      "source": "screenshot-to-code",
+      "target": "tag:react",
+      "relation": "tagged"
+    },
+    {
+      "source": "screenshot-to-code",
+      "target": "tag:screenshot-to-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "screenshot-to-code",
+      "target": "tag:self-hostable",
+      "relation": "tagged"
+    },
+    {
+      "source": "screenshot-to-code",
+      "target": "tag:tailwind",
+      "relation": "tagged"
+    },
+    {
+      "source": "screenshot-to-code",
+      "target": "tag:ui-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "screenshot-to-code",
+      "target": "tag:vue",
+      "relation": "tagged"
+    },
+    {
+      "source": "screenshot-to-code",
+      "target": "tag:website-cloning",
       "relation": "tagged"
     },
     {
@@ -45401,6 +48963,86 @@
       "relation": "tagged"
     },
     {
+      "source": "seven-levels-of-observability",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "seven-levels-of-observability",
+      "target": "production-rag-system-taxonomy",
+      "relation": "overlaps"
+    },
+    {
+      "source": "seven-levels-of-observability",
+      "target": "tag:alerting",
+      "relation": "tagged"
+    },
+    {
+      "source": "seven-levels-of-observability",
+      "target": "tag:cardinality",
+      "relation": "tagged"
+    },
+    {
+      "source": "seven-levels-of-observability",
+      "target": "tag:correlation",
+      "relation": "tagged"
+    },
+    {
+      "source": "seven-levels-of-observability",
+      "target": "tag:devops",
+      "relation": "tagged"
+    },
+    {
+      "source": "seven-levels-of-observability",
+      "target": "tag:logs",
+      "relation": "tagged"
+    },
+    {
+      "source": "seven-levels-of-observability",
+      "target": "tag:metrics",
+      "relation": "tagged"
+    },
+    {
+      "source": "seven-levels-of-observability",
+      "target": "tag:monitoring",
+      "relation": "tagged"
+    },
+    {
+      "source": "seven-levels-of-observability",
+      "target": "tag:observability",
+      "relation": "tagged"
+    },
+    {
+      "source": "seven-levels-of-observability",
+      "target": "tag:opentelemetry",
+      "relation": "tagged"
+    },
+    {
+      "source": "seven-levels-of-observability",
+      "target": "tag:sla",
+      "relation": "tagged"
+    },
+    {
+      "source": "seven-levels-of-observability",
+      "target": "tag:sli",
+      "relation": "tagged"
+    },
+    {
+      "source": "seven-levels-of-observability",
+      "target": "tag:slo",
+      "relation": "tagged"
+    },
+    {
+      "source": "seven-levels-of-observability",
+      "target": "tag:sre",
+      "relation": "tagged"
+    },
+    {
+      "source": "seven-levels-of-observability",
+      "target": "tag:traces",
+      "relation": "tagged"
+    },
+    {
       "source": "sglang",
       "target": "cat:framework",
       "relation": "categorized"
@@ -45443,6 +49085,121 @@
     {
       "source": "sglang",
       "target": "tag:vllm-alternative",
+      "relation": "tagged"
+    },
+    {
+      "source": "shader-skills",
+      "target": "cat:skill",
+      "relation": "categorized"
+    },
+    {
+      "source": "shader-skills",
+      "target": "tag:claude-code-skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "shader-skills",
+      "target": "tag:generative-art",
+      "relation": "tagged"
+    },
+    {
+      "source": "shader-skills",
+      "target": "tag:glsl",
+      "relation": "tagged"
+    },
+    {
+      "source": "shader-skills",
+      "target": "tag:procedural-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "shader-skills",
+      "target": "tag:raymarching",
+      "relation": "tagged"
+    },
+    {
+      "source": "shader-skills",
+      "target": "tag:shaders",
+      "relation": "tagged"
+    },
+    {
+      "source": "shader-skills",
+      "target": "tag:shadertoy",
+      "relation": "tagged"
+    },
+    {
+      "source": "shader-skills",
+      "target": "tag:skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "shader-skills",
+      "target": "tag:webgl2",
+      "relation": "tagged"
+    },
+    {
+      "source": "shader-skills",
+      "target": "threejs-skills",
+      "relation": "overlaps"
+    },
+    {
+      "source": "shadow-mode-progressive-trust-approval",
+      "target": "agent-execution-governance",
+      "relation": "overlaps"
+    },
+    {
+      "source": "shadow-mode-progressive-trust-approval",
+      "target": "agent-software-engineering-fundamentals",
+      "relation": "overlaps"
+    },
+    {
+      "source": "shadow-mode-progressive-trust-approval",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "shadow-mode-progressive-trust-approval",
+      "target": "governance-first-multi-agent-architecture",
+      "relation": "overlaps"
+    },
+    {
+      "source": "shadow-mode-progressive-trust-approval",
+      "target": "tag:agent-pattern",
+      "relation": "tagged"
+    },
+    {
+      "source": "shadow-mode-progressive-trust-approval",
+      "target": "tag:approval-gates",
+      "relation": "tagged"
+    },
+    {
+      "source": "shadow-mode-progressive-trust-approval",
+      "target": "tag:governance",
+      "relation": "tagged"
+    },
+    {
+      "source": "shadow-mode-progressive-trust-approval",
+      "target": "tag:human-in-the-loop",
+      "relation": "tagged"
+    },
+    {
+      "source": "shadow-mode-progressive-trust-approval",
+      "target": "tag:progressive-trust",
+      "relation": "tagged"
+    },
+    {
+      "source": "shadow-mode-progressive-trust-approval",
+      "target": "tag:review-load",
+      "relation": "tagged"
+    },
+    {
+      "source": "shadow-mode-progressive-trust-approval",
+      "target": "tag:risk-tiering",
+      "relation": "tagged"
+    },
+    {
+      "source": "shadow-mode-progressive-trust-approval",
+      "target": "tag:shadow-mode",
       "relation": "tagged"
     },
     {
@@ -46971,6 +50728,91 @@
       "relation": "tagged"
     },
     {
+      "source": "splashsurf",
+      "target": "cat:cli-tool",
+      "relation": "categorized"
+    },
+    {
+      "source": "splashsurf",
+      "target": "tag:cli",
+      "relation": "tagged"
+    },
+    {
+      "source": "splashsurf",
+      "target": "tag:mesh-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "splashsurf",
+      "target": "tag:particle-to-mesh",
+      "relation": "tagged"
+    },
+    {
+      "source": "splashsurf",
+      "target": "tag:rust",
+      "relation": "tagged"
+    },
+    {
+      "source": "splashsurf",
+      "target": "tag:sph",
+      "relation": "tagged"
+    },
+    {
+      "source": "splashsurf",
+      "target": "tag:surface-reconstruction",
+      "relation": "tagged"
+    },
+    {
+      "source": "splashsurf",
+      "target": "tag:vfx",
+      "relation": "tagged"
+    },
+    {
+      "source": "splishsplash",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "splishsplash",
+      "target": "tag:cplusplus",
+      "relation": "tagged"
+    },
+    {
+      "source": "splishsplash",
+      "target": "tag:dfsph",
+      "relation": "tagged"
+    },
+    {
+      "source": "splishsplash",
+      "target": "tag:fluid-simulation",
+      "relation": "tagged"
+    },
+    {
+      "source": "splishsplash",
+      "target": "tag:physics-simulation",
+      "relation": "tagged"
+    },
+    {
+      "source": "splishsplash",
+      "target": "tag:python-bindings",
+      "relation": "tagged"
+    },
+    {
+      "source": "splishsplash",
+      "target": "tag:smoothed-particle-hydrodynamics",
+      "relation": "tagged"
+    },
+    {
+      "source": "splishsplash",
+      "target": "tag:sph",
+      "relation": "tagged"
+    },
+    {
+      "source": "splishsplash",
+      "target": "tag:vfx",
+      "relation": "tagged"
+    },
+    {
       "source": "sqltools",
       "target": "cat:framework",
       "relation": "categorized"
@@ -47583,6 +51425,61 @@
     {
       "source": "structure-aware-rendering",
       "target": "tag:vibe-coding",
+      "relation": "tagged"
+    },
+    {
+      "source": "subtask4llm",
+      "target": "blueprint4llm",
+      "relation": "overlaps"
+    },
+    {
+      "source": "subtask4llm",
+      "target": "cat:skill",
+      "relation": "categorized"
+    },
+    {
+      "source": "subtask4llm",
+      "target": "local-model-harness-patterns",
+      "relation": "overlaps"
+    },
+    {
+      "source": "subtask4llm",
+      "target": "tag:cli-tool",
+      "relation": "tagged"
+    },
+    {
+      "source": "subtask4llm",
+      "target": "tag:codex",
+      "relation": "tagged"
+    },
+    {
+      "source": "subtask4llm",
+      "target": "tag:context-management",
+      "relation": "tagged"
+    },
+    {
+      "source": "subtask4llm",
+      "target": "tag:local-llm",
+      "relation": "tagged"
+    },
+    {
+      "source": "subtask4llm",
+      "target": "tag:orchestration",
+      "relation": "tagged"
+    },
+    {
+      "source": "subtask4llm",
+      "target": "tag:pi-coding-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "subtask4llm",
+      "target": "tag:skill",
+      "relation": "tagged"
+    },
+    {
+      "source": "subtask4llm",
+      "target": "tag:task-decomposition",
       "relation": "tagged"
     },
     {
@@ -48591,6 +52488,51 @@
       "relation": "tagged"
     },
     {
+      "source": "texture-time-ground-effects",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "texture-time-ground-effects",
+      "target": "tag:data-driven-grid",
+      "relation": "tagged"
+    },
+    {
+      "source": "texture-time-ground-effects",
+      "target": "tag:game-design",
+      "relation": "tagged"
+    },
+    {
+      "source": "texture-time-ground-effects",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "texture-time-ground-effects",
+      "target": "tag:ground-effects",
+      "relation": "tagged"
+    },
+    {
+      "source": "texture-time-ground-effects",
+      "target": "tag:performance-optimization",
+      "relation": "tagged"
+    },
+    {
+      "source": "texture-time-ground-effects",
+      "target": "tag:render-target",
+      "relation": "tagged"
+    },
+    {
+      "source": "texture-time-ground-effects",
+      "target": "tag:shader-technique",
+      "relation": "tagged"
+    },
+    {
+      "source": "texture-time-ground-effects",
+      "target": "tag:unreal-engine",
+      "relation": "tagged"
+    },
+    {
       "source": "tfm-tui",
       "target": "cat:cli-tool",
       "relation": "categorized"
@@ -48901,6 +52843,51 @@
       "relation": "tagged"
     },
     {
+      "source": "tileless-terrain-corner-blend-shader",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "tileless-terrain-corner-blend-shader",
+      "target": "tag:autotiling",
+      "relation": "tagged"
+    },
+    {
+      "source": "tileless-terrain-corner-blend-shader",
+      "target": "tag:coastline-rendering",
+      "relation": "tagged"
+    },
+    {
+      "source": "tileless-terrain-corner-blend-shader",
+      "target": "tag:dual-grid",
+      "relation": "tagged"
+    },
+    {
+      "source": "tileless-terrain-corner-blend-shader",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "tileless-terrain-corner-blend-shader",
+      "target": "tag:pixel-art",
+      "relation": "tagged"
+    },
+    {
+      "source": "tileless-terrain-corner-blend-shader",
+      "target": "tag:procedural-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "tileless-terrain-corner-blend-shader",
+      "target": "tag:shader-technique",
+      "relation": "tagged"
+    },
+    {
+      "source": "tileless-terrain-corner-blend-shader",
+      "target": "tag:terrain-blending",
+      "relation": "tagged"
+    },
+    {
       "source": "titans-atlas-cronus",
       "target": "cat:framework",
       "relation": "categorized"
@@ -49038,6 +53025,66 @@
     {
       "source": "tldr-pages",
       "target": "tag:man-pages",
+      "relation": "tagged"
+    },
+    {
+      "source": "token-budget-local-agent-workflow",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "token-budget-local-agent-workflow",
+      "target": "local-model-harness-patterns",
+      "relation": "overlaps"
+    },
+    {
+      "source": "token-budget-local-agent-workflow",
+      "target": "pi-coding-agent",
+      "relation": "overlaps"
+    },
+    {
+      "source": "token-budget-local-agent-workflow",
+      "target": "subtask4llm",
+      "relation": "overlaps"
+    },
+    {
+      "source": "token-budget-local-agent-workflow",
+      "target": "tag:agent-pattern",
+      "relation": "tagged"
+    },
+    {
+      "source": "token-budget-local-agent-workflow",
+      "target": "tag:agents-md",
+      "relation": "tagged"
+    },
+    {
+      "source": "token-budget-local-agent-workflow",
+      "target": "tag:context-management",
+      "relation": "tagged"
+    },
+    {
+      "source": "token-budget-local-agent-workflow",
+      "target": "tag:local-llm",
+      "relation": "tagged"
+    },
+    {
+      "source": "token-budget-local-agent-workflow",
+      "target": "tag:pi-coding-agent",
+      "relation": "tagged"
+    },
+    {
+      "source": "token-budget-local-agent-workflow",
+      "target": "tag:plan-md",
+      "relation": "tagged"
+    },
+    {
+      "source": "token-budget-local-agent-workflow",
+      "target": "tag:task-decomposition",
+      "relation": "tagged"
+    },
+    {
+      "source": "token-budget-local-agent-workflow",
+      "target": "tag:token-budget",
       "relation": "tagged"
     },
     {
@@ -49943,6 +53990,81 @@
     {
       "source": "unforget",
       "target": "tag:todos",
+      "relation": "tagged"
+    },
+    {
+      "source": "unitask",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "unitask",
+      "target": "tag:async-await",
+      "relation": "tagged"
+    },
+    {
+      "source": "unitask",
+      "target": "tag:coroutines",
+      "relation": "tagged"
+    },
+    {
+      "source": "unitask",
+      "target": "tag:csharp",
+      "relation": "tagged"
+    },
+    {
+      "source": "unitask",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "unitask",
+      "target": "tag:performance",
+      "relation": "tagged"
+    },
+    {
+      "source": "unitask",
+      "target": "tag:unity",
+      "relation": "tagged"
+    },
+    {
+      "source": "unrealclaude",
+      "target": "cat:plugin",
+      "relation": "categorized"
+    },
+    {
+      "source": "unrealclaude",
+      "target": "tag:blueprints",
+      "relation": "tagged"
+    },
+    {
+      "source": "unrealclaude",
+      "target": "tag:claude-code",
+      "relation": "tagged"
+    },
+    {
+      "source": "unrealclaude",
+      "target": "tag:cpp",
+      "relation": "tagged"
+    },
+    {
+      "source": "unrealclaude",
+      "target": "tag:editor-plugin",
+      "relation": "tagged"
+    },
+    {
+      "source": "unrealclaude",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "unrealclaude",
+      "target": "tag:mcp-server",
+      "relation": "tagged"
+    },
+    {
+      "source": "unrealclaude",
+      "target": "tag:unreal-engine",
       "relation": "tagged"
     },
     {
@@ -50866,6 +54988,96 @@
       "relation": "tagged"
     },
     {
+      "source": "vscode-port-forwarding-devtunnels",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "vscode-port-forwarding-devtunnels",
+      "target": "tag:demo-sharing",
+      "relation": "tagged"
+    },
+    {
+      "source": "vscode-port-forwarding-devtunnels",
+      "target": "tag:dev-tunnels",
+      "relation": "tagged"
+    },
+    {
+      "source": "vscode-port-forwarding-devtunnels",
+      "target": "tag:localhost-sharing",
+      "relation": "tagged"
+    },
+    {
+      "source": "vscode-port-forwarding-devtunnels",
+      "target": "tag:networking",
+      "relation": "tagged"
+    },
+    {
+      "source": "vscode-port-forwarding-devtunnels",
+      "target": "tag:port-forwarding",
+      "relation": "tagged"
+    },
+    {
+      "source": "vscode-port-forwarding-devtunnels",
+      "target": "tag:remote-access",
+      "relation": "tagged"
+    },
+    {
+      "source": "vscode-port-forwarding-devtunnels",
+      "target": "tag:vscode",
+      "relation": "tagged"
+    },
+    {
+      "source": "vscode-port-forwarding-devtunnels",
+      "target": "tag:web-dev",
+      "relation": "tagged"
+    },
+    {
+      "source": "wave-function-collapse",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "wave-function-collapse",
+      "target": "markov-junior",
+      "relation": "overlaps"
+    },
+    {
+      "source": "wave-function-collapse",
+      "target": "tag:constraint-propagation",
+      "relation": "tagged"
+    },
+    {
+      "source": "wave-function-collapse",
+      "target": "tag:csharp",
+      "relation": "tagged"
+    },
+    {
+      "source": "wave-function-collapse",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "wave-function-collapse",
+      "target": "tag:procedural-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "wave-function-collapse",
+      "target": "tag:tile-generation",
+      "relation": "tagged"
+    },
+    {
+      "source": "wave-function-collapse",
+      "target": "tag:unity",
+      "relation": "tagged"
+    },
+    {
+      "source": "wave-function-collapse",
+      "target": "tag:wave-function-collapse",
+      "relation": "tagged"
+    },
+    {
       "source": "weaviate",
       "target": "cat:framework",
       "relation": "categorized"
@@ -50958,6 +55170,96 @@
     {
       "source": "web-artifacts-builder",
       "target": "tag:visualization",
+      "relation": "tagged"
+    },
+    {
+      "source": "webcam-feedback-loop-hardware-debug",
+      "target": "cat:agent-pattern",
+      "relation": "categorized"
+    },
+    {
+      "source": "webcam-feedback-loop-hardware-debug",
+      "target": "tag:agent-pattern",
+      "relation": "tagged"
+    },
+    {
+      "source": "webcam-feedback-loop-hardware-debug",
+      "target": "tag:computer-vision",
+      "relation": "tagged"
+    },
+    {
+      "source": "webcam-feedback-loop-hardware-debug",
+      "target": "tag:debugging",
+      "relation": "tagged"
+    },
+    {
+      "source": "webcam-feedback-loop-hardware-debug",
+      "target": "tag:embedded",
+      "relation": "tagged"
+    },
+    {
+      "source": "webcam-feedback-loop-hardware-debug",
+      "target": "tag:esp32",
+      "relation": "tagged"
+    },
+    {
+      "source": "webcam-feedback-loop-hardware-debug",
+      "target": "tag:firmware",
+      "relation": "tagged"
+    },
+    {
+      "source": "webcam-feedback-loop-hardware-debug",
+      "target": "tag:hardware",
+      "relation": "tagged"
+    },
+    {
+      "source": "webcam-feedback-loop-hardware-debug",
+      "target": "tag:visual-feedback",
+      "relation": "tagged"
+    },
+    {
+      "source": "webosbrew",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "webosbrew",
+      "target": "tag:homebrew-channel",
+      "relation": "tagged"
+    },
+    {
+      "source": "webosbrew",
+      "target": "tag:jailbreak",
+      "relation": "tagged"
+    },
+    {
+      "source": "webosbrew",
+      "target": "tag:lg",
+      "relation": "tagged"
+    },
+    {
+      "source": "webosbrew",
+      "target": "tag:rooting",
+      "relation": "tagged"
+    },
+    {
+      "source": "webosbrew",
+      "target": "tag:root",
+      "relation": "tagged"
+    },
+    {
+      "source": "webosbrew",
+      "target": "tag:sideloading",
+      "relation": "tagged"
+    },
+    {
+      "source": "webosbrew",
+      "target": "tag:smart-tv",
+      "relation": "tagged"
+    },
+    {
+      "source": "webosbrew",
+      "target": "tag:webos",
       "relation": "tagged"
     },
     {
@@ -51063,6 +55365,36 @@
     {
       "source": "windows-god-mode",
       "target": "tag:windows",
+      "relation": "tagged"
+    },
+    {
+      "source": "yarn-spinner",
+      "target": "cat:framework",
+      "relation": "categorized"
+    },
+    {
+      "source": "yarn-spinner",
+      "target": "tag:csharp",
+      "relation": "tagged"
+    },
+    {
+      "source": "yarn-spinner",
+      "target": "tag:dialogue-system",
+      "relation": "tagged"
+    },
+    {
+      "source": "yarn-spinner",
+      "target": "tag:game-development",
+      "relation": "tagged"
+    },
+    {
+      "source": "yarn-spinner",
+      "target": "tag:narrative-scripting",
+      "relation": "tagged"
+    },
+    {
+      "source": "yarn-spinner",
+      "target": "tag:unity",
       "relation": "tagged"
     },
     {

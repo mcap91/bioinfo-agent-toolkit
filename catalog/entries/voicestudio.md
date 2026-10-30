@@ -40,3 +40,7 @@ Build from source: `git clone && cd VoiceStudio && bun install && bun run setup:
 ## Security
 
 AGPL-3.0 licensed. Local workflows run entirely on your hardware. Remote services are optional. Usage analytics requires consent. Models have their own licenses — review before commercial use. Clone voices only with permission.
+
+## Usage notes
+
+- Install flow runs a hardware compatibility check on first launch and lets the user pick output quality (e.g. max); voice cloning worked from a 15-second reference clip in a live demo (source: https://www.instagram.com/reel/De1zlGniBQp/)

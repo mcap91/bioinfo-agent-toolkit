@@ -78,3 +78,7 @@ Constraints and risks the source reports:
 - Network ADB is unauthenticated beyond the initial pairing and unencrypted on the LAN; the source and both cited repos say to disable it afterwards.
 - Reversibility depends on the backup being taken first and on not writing to `/system`; the cited repos document that a factory reset remains the fallback.
 - The reel is sponsored content from an animation account; the technical claims align with the two cited repos' READMEs, which were fetched directly for the companion entries.
+
+## Usage notes
+
+- Samsung Tizen TVs have no ADB and no screenshot API, so an agent-driven debloat/launcher session there substitutes the TV's own local remote-control API for ADB and a phone pointed at the screen for the screenshot-pull verification step: the agent stood up a small local web server, generated a QR code to pair a phone as a camera taking photos of the TV every 4 seconds, and used that as its only visual ground truth through an 11-hour, ~14M-read/1.5M-write-token Claude Code (Opus 5.5) session (source: https://www.reddit.com/r/ClaudeAI/comments/1xbj7jr/i_used_claude_to_fix_my_samsung_tv/; see also the resulting repo entry [[glass-home-samsung-tv]], whose own `tools/phonecam.py` documents the same substitution)

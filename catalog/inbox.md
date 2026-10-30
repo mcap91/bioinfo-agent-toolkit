@@ -19,6 +19,8 @@ strata — annotate existing entry: PolyStrata adds four more MoE models (see th
 ⚠ needs-link https://www.instagram.com/p/De9SalRGOhy/ — carousel
 ⚠ needs-link https://www.instagram.com/p/Dd5X-6WGH1n/
 ⚠ needs-link https://www.instagram.com/p/DedahbJGPgY/
+⚠ needs-link https://www.instagram.com/p/Deld9TBjYyr/
+⚠ needs-link https://www.instagram.com/p/De06uHEiJv4/
 ⚠ write-blocked:-scaffold-left-an-invalid-placeholder-at-catalog/entries/oxynote.md-(title/summary/tags-empty);-write-entry's-exposed-MCP-schema-has-no-overwrite-param-(core-writeEntry/persistEntry-support-it,-tools.ts-never-exposes-it)-so-a-validated-oxynote-entry-(framework,-source-reddit)-can't-be-persisted-without-a-manual-fs-fix-or-a-schema-patch.-Researched-entry-content-is-in-this-item's-process-log/conversation,-ready-to-write-once-unblocked.
 ```text
 source: https://www.reddit.com/r/SATNA_PROJECT/comments/1x2856v/the_500mo_stack_for_0_5_new_opensource_ai/

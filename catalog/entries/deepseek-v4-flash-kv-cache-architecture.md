@@ -34,3 +34,8 @@ Results: 4x smaller global cache and 8x smaller persistent cache compared to V4 
 ## Security
 
 No security concerns — this is a reference about a model architecture design.
+
+## Usage notes
+
+- The architecture this entry documents backs a 552B-total-parameter MoE backbone with 16B parameters active during decode (8B during prefill) — confirmed total/active parameter counts for DeepSeek V4.1 Flash (source: https://www.instagram.com/reel/De2LjyNNS4H/)
+- DeepSeek added live Search and Fetch APIs (api.deepseek.com) for agent/RAG tool use around the V4.1 Flash-1017 snapshot, with a fee waiver for Claude Code/Codex web-search calls through 2026-11-01 (source: https://www.instagram.com/reel/De2LjyNNS4H/)

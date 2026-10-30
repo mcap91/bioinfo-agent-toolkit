@@ -37,3 +37,7 @@ Cross-agent discovery via symlinks for Claude Code, Codex CLI, and opencode. Req
 - License: MIT
 - Dependencies: requires Hyperframes CLI and FFmpeg
 - Music/SFX: bundled assets from ende.app and Kenney
+
+## Usage notes
+
+- One reported run against a real side project (a storage-cleaning app) took about 10 minutes and used 61,000 output tokens plus 600 input tokens, costing $6 (source: https://www.instagram.com/reel/Dezc4qeimex/)

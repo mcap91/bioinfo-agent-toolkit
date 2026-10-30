@@ -29,3 +29,7 @@ GeoLibre is a free, open-source, lightweight cloud-native GIS platform for visua
 ## Security
 
 MIT licensed. GeoLibre is described as local-first — data stays on the user's device — and processing (including the 700+ tools and DuckDB-WASM Spatial) runs client-side in the app or browser. Optional integrations and remote basemap/tile sources involve outbound requests to those providers. No security flags recorded from the observed material.
+
+## Usage notes
+
+- Tool count has grown to 1,000+ geoprocessing tools (up from 700+ recorded above), and GeoLibre now ships a Model Builder + AI assistant for building reusable geoprocessing workflows from plain-English descriptions (source: https://www.instagram.com/reel/DcZJhbjxXoB/)

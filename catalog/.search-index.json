@@ -2,7 +2,7 @@
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
   "generated": "2026-10-30",
-  "count": 683,
+  "count": 738,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -57,6 +57,30 @@
       "security_flags": [],
       "reviewed": "2026-09-02",
       "path": "catalog/entries/aaa-quality-gate-orchestration.md"
+    },
+    {
+      "name": "ace-step",
+      "title": "ACE-Step 1.5",
+      "url": "https://github.com/ace-step/ACE-Step-1.5",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source local music-generation foundation model (successor to the original ACE-Step) — a hybrid architecture where a language model plans a song blueprint (metadata, lyrics, captions via chain-of-thought) that guides a Diffusion Transformer decoder; generates a full song in under 2 seconds on an A100 and under 10 seconds on an RTX 3090, runs locally on under 4GB VRAM (base models; the newer 4B-parameter XL variants need 12-20GB+), supports 10-second to 10-minute durations, batch generation of up to 8 songs, cover generation, repaint/edit, track separation, vocal-to-BGM, reference-audio-guided generation, LoRA personalization from a handful of songs, and 50+ languages; ships a Gradio UI, REST API, Python API, CLI, and a C++/GGML VST3 plugin; co-led by ACE Studio and StepFun; MIT, with a usage disclaimer about copyright/cultural-sensitivity risk in generated output.",
+      "body_summary": "ACE-Step 1.5 is an open-source music foundation model aimed at bringing commercial-grade music generation to consumer hardware. Its architecture pairs a language model (LM), which acts as a planner that expands a simple user query into a full song blueprint — scaling from short loops to 10-minute compositions while generating metadata, lyrics, and captions via chain-of-thought — with a Diffusion Transformer (DiT) decoder that the LM's blueprint guides during synthesis. The LM/DiT alignment is trained with intrinsic reinforcement learning using only the model's own internal signals, without an external reward model or human-preference data, per the project's abstract. Beyond straight text-to-music synthesis, it supports cover generation, selective repaint/edit of part of a track, stem/track separation, multi-track layering, automatic vocal-to-backing-track (Vocal2BGM) generation, reference-audio-guided style control, metadata control (duration, BPM, key/scale, time signature), audio-understanding (extracting BPM/key/caption from an existing track), automatic lyric-timestamp (LRC) generation, and one-click LoRA personalization — a user-specific style trained from as few as 8 songs in about an hour on a 12GB-VRAM RTX 3090.",
+      "tags": [
+        "music-generation",
+        "text-to-music",
+        "diffusion-transformer",
+        "audio",
+        "local-inference",
+        "gradio",
+        "lora",
+        "open-source"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/ace-step.md"
     },
     {
       "name": "actual-budget",
@@ -1123,6 +1147,36 @@
       "path": "catalog/entries/alcoa-plus-for-ai.md"
     },
     {
+      "name": "aleph-geo",
+      "title": "Aleph",
+      "url": "https://github.com/Belluxx/Aleph",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Python CLI/dashboard (alephgeo) that downloads satellite imagery, terrain elevation, OSM buildings, Street View photos, and textured 3D meshes for any drawn area or named place, with no API key; built to give LLMs a local, structured snapshot of real-world geography; MIT license; pulls undocumented Google APIs so may break or rate-limit.",
+      "body_summary": "Aleph (`alephgeo` CLI, Belluxx) downloads a textured snapshot of a real-world place to a local folder, with no API key required. A browser dashboard (`alephgeo dashboard -o captures`, served at `127.0.0.1:8100` over OpenFreeMap basemaps) lets you draw a rectangle or polygon on a map and pulls everything inside it: OSM building footprints, elevation/terrain, HD satellite imagery, Street View photos, and textured 3D meshes. The CLI provides the same data for a named place or point on the fly, e.g. `alephgeo streetview --place \"Colosseum, Rome\" --best-match -o captures` or `alephgeo satellite --place \"Colosseum, Rome\" --best-match -o captures`. The README states the project was built so LLMs can quickly gather information about the physical world, though it works standalone as a way to save a piece of the Earth locally.",
+      "tags": [
+        "geospatial",
+        "gis",
+        "satellite-imagery",
+        "street-view",
+        "3d-tiles",
+        "terrain",
+        "openstreetmap",
+        "cli-tool",
+        "python",
+        "llm-tooling"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "tos-violation-risk",
+        "undocumented-api-dependency",
+        "mixed-data-licensing"
+      ],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/aleph-geo.md"
+    },
+    {
       "name": "amazon-bedrock",
       "title": "Amazon Bedrock",
       "url": "https://aws.amazon.com/bedrock/",
@@ -1718,6 +1772,33 @@
       "path": "catalog/entries/atuin.md"
     },
     {
+      "name": "audio2face-3d",
+      "title": "NVIDIA Audio2Face-3D",
+      "url": "https://github.com/NVIDIA/Audio2Face-3D",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "NVIDIA technology collection that generates 3D facial animation — synchronized jaw/tongue/eye articulation plus emotional expression inferred from speech tone — from pre-recorded or real-time audio, driving a character via mesh deformation, joint transforms, or blendshape weights; ships as a C++/Python inference SDK (MIT), a Python+Docker model-training framework (Apache-2.0), an Autodesk Maya plugin (MIT), an Unreal Engine 5.4/5.5/5.6 Blueprint-integrated plugin with a MetaHuman sample project (MIT), and a gRPC containerized NIM microservice for multi-user deployment (NVIDIA Software License Agreement); pre-trained regression (v2.3) and diffusion (v3.0) lip-sync models (Mark/Claire/James voices) and emotion-inference models are distributed separately on Hugging Face under an NVIDIA Open Model license (Audio2Emotion models under a custom license restricted to use with Audio2Face only); mixed licensing across code and model-weight components.",
+      "body_summary": "Audio2Face-3D generates high-fidelity 3D facial animation from an audio source, taking either a pre-recorded file or a real-time stream and synthesizing the synchronized motion of jaw, tongue, and eyes plus facial-skin deformation. It produces two combined outputs: phonetically accurate lip-sync, and emotional expression inferred from the tone of the speech. The resulting performance drives a target character through one of three output modes: direct mesh deformation, joint/bone transforms, or blend shape weights — letting it plug into whatever rigging approach a given character pipeline already uses.\n\nThe NVIDIA/Audio2Face-3D GitHub repo is a hub, not a single codebase — it links the actual components: the Audio2Face-3D SDK (a C++ library for embedding real-time inference directly in custom software, tools, or batch pipelines); the Audio2Face-3D Training Framework (the same toolset NVIDIA used to train its own Mark/Claire/James models, for training a custom model on a studio's own lip-synced data, including multi-language support); the Maya ACE (MACE) plugin (an artist-facing Maya UI for generating and previewing facial animation in-viewport, loading any compatible model via its JSON model card, exporting as Maya keyframes or FBX); the Unreal Engine 5 plugin (Blueprint-node integration for driving a character's facial rig at editor time, with a sample project demonstrating setup against Epic's MetaHuman rig); and the Audio2Face-3D NIM (NVIDIA Inference Microservice) — a containerized, gRPC-based service for serving concurrent inference requests to many clients at once, aimed at centralized studio deployments or web/cloud-hosted digital humans.",
+      "tags": [
+        "facial-animation",
+        "lip-sync",
+        "nvidia",
+        "audio-to-face",
+        "blendshapes",
+        "unreal-engine-plugin",
+        "maya-plugin",
+        "real-time",
+        "metahuman"
+      ],
+      "workflows": [],
+      "license": "mixed (MIT SDK/Maya/UE5 plugins, Apache-2.0 training framework, NVIDIA Software License NIM, NVIDIA Open Model / custom license on model weights)",
+      "security_flags": [
+        "mixed-licensing"
+      ],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/audio2face-3d.md"
+    },
+    {
       "name": "autodock-vina",
       "title": "AutoDock Vina",
       "url": "https://github.com/ccsb-scripps/AutoDock-Vina",
@@ -2067,6 +2148,28 @@
       "path": "catalog/entries/bdh.md"
     },
     {
+      "name": "beam-reflection-ai",
+      "title": "Beam (Reflection AI)",
+      "url": "https://huggingface.co/reflection/Beam-1.0-501B-A23B",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "501B-total/23B-active sparse mixture-of-experts open-weight model from Reflection AI (a Brooklyn lab founded by two ex-Google-DeepMind researchers) for coding, reasoning, and agentic workloads — 1M-token effective context, pretrained on 23.8T tokens plus 100M+ RL rollouts; vendor-reported benchmarks include 81.6% SWE-bench Verified, 80.1% Terminal-Bench 2.1, 90.6% GPQA Diamond, 97.7% AIME 2026; weights (BF16/FP8/NVFP4) and a DFlash2 speculative-decoding drafter released under Apache-2.0 on 2026-10-16 with a 40+ partner hosting ecosystem",
+      "body_summary": "Beam is Reflection AI's first open-weight model: a sparse mixture-of-experts (MoE) architecture with 501 billion total parameters and 23 billion active per token, pretrained on 23.8 trillion tokens and tuned with more than 100 million reinforcement-learning rollouts. Reflection AI is a Brooklyn-based lab founded in 2024 by two former Google DeepMind researchers. Beam targets coding, reasoning, and agentic workloads — resolving software issues, modifying code, calling tools, and acting on intermediate results — with an effective context length of 1 million tokens. Vendor-reported benchmarks (BF16 weights, temperature 0.7): 81.6% SWE-bench Verified, 80.1% Terminal-Bench 2.1, 43.3% DeepSWE v1.1, 80.8% MCP Atlas, 90.6% GPQA Diamond, 97.7% AIME 2026.\n\nAnnounced October 5, 2026 as an open-weight release; weights were not initially downloadable (waitlist only) and went fully live under Apache-2.0 on October 16, 2026, in collaboration with an ecosystem of 40+ hosting/serving partners (e.g. Baseten).",
+      "tags": [
+        "llm",
+        "coding-agent",
+        "mixture-of-experts",
+        "open-weights",
+        "reflection-ai",
+        "agentic"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/beam-reflection-ai.md"
+    },
+    {
       "name": "bedrock-agentcore-gateway",
       "title": "Amazon Bedrock AgentCore Gateway",
       "url": "https://aws.amazon.com/blogs/machine-learning/introducing-amazon-bedrock-agentcore-gateway-transforming-enterprise-ai-agent-tool-development/",
@@ -2122,6 +2225,30 @@
       ],
       "reviewed": "2026-10-28",
       "path": "catalog/entries/benzi.md"
+    },
+    {
+      "name": "billboard-2d-art-on-3d-primitives",
+      "title": "2D Illustrated Art Projected Onto Simple 3D Primitives (Boxes, Cylinders)",
+      "url": "https://www.instagram.com/reel/DezJsUWuQqo/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Game-dev environment-art technique for cutting poly count and art workload: instead of modeling detailed 3D geometry for environment pieces, an artist illustrates the assets as flat 2D art, which is then projected/mapped onto simple 3D primitive stand-in shapes (boxes, cylinders) that carry the actual scene geometry. The 2D art carries all visual detail and stylization while the underlying mesh stays trivially simple, letting a small team build varied, stylized environments quickly and keep scene poly count low for performance across a wide hardware range (including Steam Deck). Demonstrated by the two-person dev team of the upcoming Unreal Engine roguelike 'Barrow and Blade' as part of an optimization pass alongside occlusion culling, baked lighting, and object pooling.",
+      "body_summary": "A game environment-art technique that trades modeled geometric detail for painted/illustrated 2D detail. Rather than sculpting a detailed 3D mesh for each environment piece (a building, rock formation, prop), the artist draws the piece as flat 2D illustrated art. That art is then projected or textured onto a simple 3D primitive — a box or cylinder — that stands in for the object's actual collision/scene geometry. The primitive supplies correct silhouette, scale, and occlusion behavior in 3D space; the 2D art supplies all the visual richness and stylization that would otherwise require detailed modeling, UV unwrapping, and texturing per object.\n\nReported benefits (from the source): drastically lower poly count per scene (since geometry is reduced to boxes/cylinders instead of detailed meshes), faster creation of varied stylized environments with a two-person team, and an art style the team specifically wanted, achieved as a side effect of the technique rather than through more conventional stylization methods. The team frames this as one of several non-standard optimization techniques (alongside occlusion culling, baked lighting, and object pooling) used while targeting a wide range of hardware, including the Steam Deck, for their hack-and-slash roguelike \"Barrow and Blade.\"",
+      "tags": [
+        "game-design",
+        "environment-art",
+        "texture-projection",
+        "stylized-rendering",
+        "poly-count-optimization",
+        "game-development",
+        "unreal-engine",
+        "steam-deck"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/billboard-2d-art-on-3d-primitives.md"
     },
     {
       "name": "biomysterybench",
@@ -2247,6 +2374,30 @@
       "security_flags": [],
       "reviewed": "2026-07-15",
       "path": "catalog/entries/blitzos.md"
+    },
+    {
+      "name": "blockout-pixel-art-animation",
+      "title": "Blockout Technique for Pixel Art Animation (Color-Coded Body-Part Blobs)",
+      "url": "https://www.instagram.com/reel/DX-Rc6RN51E/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Game-dev animation technique for pixel art sprites. Animating detailed pixel art frame by frame from the start is slow — each pose requires precise pixel placement, and fixing a bad pose means redoing detail work. A blockout instead assigns each body part (arm, leg, head, torso, weapon) a distinct flat color with no internal detail, producing a rough colored-blob version of the sprite. The full animation is blocked out first using only these color blobs, which is faster to pose and easier to revise since there is no detail to preserve; the blockout can be previewed and tested in-engine to validate timing and motion before any detail work begins. Once the blocked-out motion reads correctly, each pose is detailed individually — adding detail on top of an established pose is reported as easier than freehanding a detailed pose from scratch. Framed as an extension of the general game-dev 'blockout' practice (used for roughing in level geometry/environment art before detailing) applied to sprite animation, and overlaps with the traditional animation concepts of blocking/pose-to-pose workflows and silhouette-based pose readability checks.",
+      "body_summary": "A pixel-art sprite animation workflow that separates the motion problem from the detail-art problem. Animating directly in full detail, frame by frame, from the first pose is slow: each new pose requires precise pixel-level redrawing, and if the pose or timing turns out wrong, fixing it means reworking finished detail art rather than a quick sketch.\n\nA blockout avoids this by assigning each body part (e.g. arm, leg, head, torso, weapon) a single distinct flat color with no internal shading, outline detail, or texture — producing a rough, instantly-recognizable colored-blob version of the sprite where every part is visually distinguishable from every other part. The entire animation (every frame/pose) is blocked out first using only these color blobs. Because there is no detail to preserve, each blockout pose is faster to draw and far cheaper to revise — a bad pose or awkward transition can be reworked by moving blobs around rather than redrawing pixel art. The blockout version can be dropped into the game and tested in-engine, so timing, spacing, and overall motion readability are validated before any time is spent on final art.\n\nOnce the blocked-out animation reads correctly in motion, detail (shading, outlines, textures) is added pose by pose on top of the now-finalized blockout. Adding detail to an already-correct pose is reported as substantially easier than freehanding a fully detailed pose from a blank frame, since the proportions, silhouette, and pose have already been solved.\n\nThe technique is presented as an application of the broader game-dev \"blockout\" practice — roughing in level geometry or environment layout with simple placeholder shapes before detailing — to 2D sprite animation specifically. It overlaps conceptually with traditional animation's blocking/pose-to-pose workflow (key poses before polish) and with silhouette-readability checks (a pose should read clearly as a flat shape before detail is added); the pixel-art version adds per-body-part color coding so individual limbs stay distinguishable within the flat-shape stage.",
+      "tags": [
+        "game-design",
+        "pixel-art",
+        "animation",
+        "blockout",
+        "blocking",
+        "sprite-animation",
+        "game-development",
+        "godot"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/blockout-pixel-art-animation.md"
     },
     {
       "name": "blueprint4llm",
@@ -2402,6 +2553,31 @@
       "security_flags": [],
       "reviewed": "2026-07-27",
       "path": "catalog/entries/boris-cherny-claude-md.md"
+    },
+    {
+      "name": "boss-fight-entrance-design",
+      "title": "Five-Beat Boss Entrance Sequence (Lock, Wait, Reveal, Name, Sell-the-Size)",
+      "url": "https://www.instagram.com/reel/DeozoT-xXrP/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Game-dev technique for staging a boss encounter's opening moments as a five-beat sequence rather than a plain spawn-and-health-bar pop-in — lock the arena (seal the path the player entered by, e.g. collapsing it, removing retreat as an option), make the player wait (empty arena, low rumble, dust settling, building tension before the boss appears), reveal the boss slowly by panning the camera from its feet up to its face rather than showing it all at once, slam its name on screen in large text, fill a large health bar from empty rather than showing it already full (communicating scale), then sell its size with a low camera angle, screen-shaking footsteps, and a roar that triggers screen shake, a dust blast, and arena-wide reaction. Framed as reusable staging independent of the specific boss's stats or moveset — the same boss model reads as a non-event or as a threat purely based on how the entrance is directed.",
+      "body_summary": "A five-beat structure for directing a boss's entrance so it reads as a threat before it attacks, contrasted against a plain baseline (boss model appears, health bar pops up, nothing else happens). The beats: (1) lock the arena — collapse or seal the path behind the player so retreat is no longer available, raising stakes; (2) make the player wait — an empty arena, a low rumble, and dust shaking loose, building tension before anything is shown; (3) reveal slowly — pan the camera from the boss's feet up to its face instead of cutting to a full view; (4) name it — slam the boss's name on screen in large text, paired with a large health bar that fills from empty (rather than appearing already full) so the player feels how much health it represents, backed by low, heavy, slow drums; (5) sell the size — a low camera angle, ground-shaking footsteps, and a roar that triggers screen shake, a dust blast, and visible reaction from the rest of the arena. Presented as a reusable staging pattern: the same boss asset can read as unremarkable or as epic purely from how these beats are directed, independent of its actual combat design.",
+      "tags": [
+        "game-design",
+        "boss-fight",
+        "boss-design",
+        "game-feel",
+        "cutscene-design",
+        "camera-work",
+        "screen-shake",
+        "health-bar",
+        "game-development"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/boss-fight-entrance-design.md"
     },
     {
       "name": "brag",
@@ -2671,6 +2847,31 @@
       "security_flags": [],
       "reviewed": "2026-10-29",
       "path": "catalog/entries/caire.md"
+    },
+    {
+      "name": "card-feel-five-effects",
+      "title": "Five-Effect Card Feel Technique (Hover, Pick Up, Sway, Snap, Sound)",
+      "url": "https://www.instagram.com/reel/De-2omfu5-7/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Game-dev technique for making a playable card feel satisfying instead of flat, via five layered effects applied on top of an otherwise unchanged card-in-hand interaction — (1) hover, where sliding across the hand pops each card up and leans it toward the cursor, though grabbing one barely lifts it off the table; (2) pick up, where lifting a card high spreads its shadow outward beneath it, though the card stays visually flat while dragged; (3) sway, where the card leans in the direction it's dragged and swings back when released, though it originally teleported into place on drop; (4) snap, where the card flies into its target slot, overshoots, and settles, with the rest of the hand sliding over to close the gap, though this step is silent; (5) sound, adding a soft flick noise on grab and a slap noise on landing. Framed as a reusable five-layer pipeline — the same baseline card-in-hand interaction (described as \"about as fun as filling in a form\") reads as a satisfying \"big play\" purely from how many of these layers are stacked on top of it, independent of the card game's actual rules or content.",
+      "body_summary": "A five-step layered presentation pipeline for a card-in-hand interaction, contrasted against a plain baseline (a card that can be dragged and dropped with no animation, described as feeling like \"filling in a form\"). The steps, each built on top of the last: (1) hover — sliding the cursor across the hand pops each card up and leans it toward the cursor, though at this stage grabbing a card barely lifts it off the table; (2) pick up — lifting a card high spreads its shadow outward beneath it to sell the height, though the card itself stays visually flat while being dragged around; (3) sway — the card leans in the direction it's being dragged and swings back when drag stops, though releasing it still teleports it straight into place; (4) snap — on release the card flies into its target slot, overshoots past it, and settles back, while the rest of the hand slides over to close the gap left behind, though this motion is silent; (5) sound — a soft flick sound plays on grab and a slap sound plays on landing, completing the stack. Presented as a reusable five-layer pipeline: the same underlying drag-and-drop interaction reads as flat and unengaging or as a satisfying \"big play\" purely from how many of these layers are applied on top of it, independent of the card game's actual rules or card content.",
+      "tags": [
+        "game-design",
+        "card-game",
+        "game-feel",
+        "juice",
+        "drag-and-drop",
+        "ui-feedback",
+        "sound-design",
+        "animation",
+        "game-development"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/card-feel-five-effects.md"
     },
     {
       "name": "career-ops",
@@ -3099,6 +3300,33 @@
       "path": "catalog/entries/claude-code-fable-cost-playbook.md"
     },
     {
+      "name": "claude-code-game-studios",
+      "title": "Claude Code Game Studios",
+      "url": "https://github.com/Donchitos/Claude-Code-Game-Studios",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Claude Code template that turns one session into a 49-agent, 74-skill simulated game studio with a three-tier director/lead/specialist hierarchy, 15 validation hooks, 14 path-scoped coding rules, and 62 document templates; ships engine-specific agent sets for Godot 4, Unity, and Unreal Engine 5; a project.yaml modes.rigor setting (minimal/standard/full) trades process weight for speed — the project's own measurement built four games from one brief and found the heavier standard-rigor build produced 30 process documents and lost a blind playtest ranking to the minimal-rigor build, which produced only a one-page brief; agents ask before acting and the user approves every write by default; MIT license.",
+      "body_summary": "A git-clone template (`git clone https://github.com/Donchitos/Claude-Code-Game-Studios.git`) that restructures a single Claude Code session into a simulated game development studio. It ships 49 subagent definitions (Markdown + YAML frontmatter) organized into three tiers — Tier 1 directors (creative-director, technical-director, producer), Tier 2 department leads (game-designer, lead-programmer, art-director, audio-director, narrative-director, qa-lead, release-manager, localization-lead), and Tier 3 specialists (gameplay-programmer, engine-programmer, ai-programmer, level-designer, ux-designer, and 19 others) — plus engine-specific lead agents for Godot 4, Unity, and Unreal Engine 5. Agents follow vertical delegation (directors delegate to leads, leads to specialists), horizontal consultation between same-tier agents, and escalation of cross-domain conflicts to a shared parent; domain boundaries keep an agent from editing files outside its own area without explicit delegation.\n\n74 skills expose the studio's workflow as slash commands across onboarding, design, art, UX, architecture, sprint/story management, review, QA, production, release, and nine `/team-*` multi-agent orchestration commands (e.g. `/team-combat`, `/team-release`). 15 hooks validate commits, pushes, large design-doc reads, writes against stated file/registry rules, and asset JSON, plus session lifecycle and subagent audit-trail logging. 14 path-scoped rules enforce coding standards per directory (e.g. no UI references in gameplay code, zero allocations in hot-path core code, server-authoritative networking) across all three supported engines' directory layouts.\n\nA `project.yaml` `modes.rigor` setting (minimal / standard / full) is a single front door over six underlying knobs (workflow depth, doc density, QA evidence level, story granularity, review strictness, team size) and defaults to `minimal`. The README reports its own measurement: four games built from one brief at different rigor levels were compared on documents produced before the first line of game code — minimal produced 1 (the brief, in 0 minutes), standard produced 30 (in 58 minutes) — and all four produced a running, tested game; two blind reviewers and a human playtest then ranked the standard-rigor build last, concluding the extra documents \"bought traceability, not a better game.\"",
+      "tags": [
+        "claude-code",
+        "claude-code-plugin",
+        "subagents",
+        "multi-agent",
+        "game-development",
+        "skills",
+        "hooks",
+        "template",
+        "godot",
+        "unity",
+        "unreal-engine"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/claude-code-game-studios.md"
+    },
+    {
       "name": "claude-code-local-model-switching",
       "title": "Claude Code Local Model Switching",
       "url": "https://docs.anthropic.com/en/docs/claude-code",
@@ -3404,20 +3632,6 @@
       ],
       "reviewed": "2026-09-25",
       "path": "catalog/entries/claude-projects.md"
-    },
-    {
-      "name": "claude-pxl",
-      "title": "",
-      "url": "https://www.instagram.com/reel/DejwS6fjDvg/",
-      "category": "skill",
-      "decision_status": "open",
-      "summary": "",
-      "body_summary": "## Differentiators",
-      "tags": [],
-      "workflows": [],
-      "security_flags": [],
-      "reviewed": "2026-10-30",
-      "path": "catalog/entries/claude-pxl.md"
     },
     {
       "name": "claude-science",
@@ -4645,6 +4859,32 @@
       "path": "catalog/entries/customtkinter.md"
     },
     {
+      "name": "cut-anticipation-frames-responsiveness",
+      "title": "Cutting Anticipation Frames for Input Responsiveness (Diablo 3 Barbarian Swing, Mario Jump)",
+      "url": "https://www.instagram.com/reel/DeuiO0UjRLM/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Game-dev technique for making player-controlled actions feel responsive by removing, rather than speeding up, the anticipation phase of an animation. Traditional animation splits an action into three roughly equal parts — anticipation (wind-up), action, and follow-through — but the anticipation portion delays the visible response to player input. Cites classic platformers (e.g. Super Mario), where the character begins moving upward immediately on jump input instead of crouching first, and Diablo 3's early development, where a barbarian's two-handed weapon swing originally reached back from a neutral pose before striking; speeding up that wind-up still read as sluggish and lost its sense of weight, while cutting the roughly 5–6 frames (about 180ms) of anticipation entirely — so the character instantly snaps to the fully wound-up pose the instant the player clicks — fixed the responsiveness complaints. Frames the fix in terms of silhouette — an instant, dramatic change in the character's on-screen shape gives the player an immediate visual read that the input registered, substituting for the anticipation frames as the feedback signal.",
+      "body_summary": "Argues that the \"anticipation\" phase of the classic three-part animation structure (anticipation, action, follow-through) is a direct liability for player-controlled actions, because it delays the point at which the screen visibly reacts to input — and that the fix is to cut those frames outright rather than play them faster. Two examples are given: (1) classic platformers like Super Mario have the character begin moving upward the instant the jump button is pressed, skipping a crouch/wind-up, which the reel frames as a widely-taught game-design-school principle; (2) Diablo 3's barbarian two-handed weapon swing, which during early development reached back from a neutral pose (the anticipation) before striking — play-testers called the attack sluggish, and the team's first attempt to fix it (speeding up the wind-up animation) made the swing look less believable and lose its sense of weight without actually resolving the responsiveness complaints. The fix that worked was removing the anticipation frames entirely: the moment the player clicks, the barbarian instantly snaps to the fully retracted swing-starting pose with no transition. The reel frames the mechanism via a character's \"silhouette\" (overall on-screen shape) — an instant, large silhouette change gives the player an immediate, satisfying visual read that their input registered, which stands in for the feedback that the anticipation frames would otherwise have provided. The removed anticipation is characterized as only about 5–6 frames, roughly 180 milliseconds, but is credited with resolving the perceived-responsiveness complaints. The reel frames this as a deliberate exception to traditional animation rules, applicable to games that prioritize input responsiveness over per-action weight — contrasted with non-interactive media (film/TV) and games where the wind-up is itself part of the gameplay (e.g. a telegraphed enemy attack), where anticipation remains appropriate.",
+      "tags": [
+        "game-design",
+        "game-feel",
+        "juice",
+        "animation-principles",
+        "anticipation",
+        "input-responsiveness",
+        "snappy-controls",
+        "frame-data",
+        "silhouette",
+        "game-development"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/cut-anticipation-frames-responsiveness.md"
+    },
+    {
       "name": "daily-team",
       "title": "daily-team (rotating four-person creative agent team)",
       "url": "https://github.com/isas1/daily-team",
@@ -4994,6 +5234,30 @@
       "path": "catalog/entries/diagram-design.md"
     },
     {
+      "name": "dialogue-feel-five-steps",
+      "title": "Five-Step Dialogue Presentation Technique (Typewriter, Pauses, Sound, Text Effects, Speaker Animation)",
+      "url": "https://www.instagram.com/reel/DfB8X4UxfrH/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Game-dev technique for making NPC dialogue feel alive instead of appearing as a flat wall of text, via five layered presentation steps — (1) typewriter effect reveals letters one at a time so the player reads along at the character's pace; (2) pauses hold a short beat on each comma and period, giving the line timing instead of a flat reading speed; (3) a tiny sound blip plays on every revealed letter, pitched to suit the speaking character; (4) text effects apply per-word motion keyed to tone, e.g. happy words wave and angry words shake; (5) the speaker's portrait or model bobs while talking and its facial expression switches between states (e.g. happy to furious) tied to the line's content. Framed as a reusable layered presentation pipeline independent of the actual dialogue content — the same line of text reads as flat or as a performed character purely from how these five steps are applied on top of it.",
+      "body_summary": "A five-step layered presentation pipeline for NPC dialogue, contrasted against a plain baseline (the full line of text appearing on screen all at once). The steps: (1) typewriter — letters are revealed one at a time instead of all at once, so the player reads along at the pace the line is delivered; (2) pauses — playback holds a short beat on each comma and period, giving the line timing rather than a constant per-character reveal speed; (3) sound — a short blip sound plays on every letter as it's revealed, pitched to match the speaking character; (4) text effects — per-word motion is keyed to the word's tone, e.g. happy words wave and angry words shake, while the speaker's face stays static; (5) the speaker — the speaker's portrait or model bobs along while talking, and its facial expression switches between states (e.g. happy to furious) as the line progresses. Presented as a reusable five-layer pipeline: the same dialogue text reads as flat or as a performed character purely from how many of these layers are applied, independent of what the line actually says.",
+      "tags": [
+        "game-design",
+        "dialogue-system",
+        "game-feel",
+        "typewriter-effect",
+        "text-effects",
+        "sound-design",
+        "ui-feedback",
+        "game-development"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/dialogue-feel-five-steps.md"
+    },
+    {
       "name": "diffdock",
       "title": "DiffDock",
       "url": "https://github.com/gcorso/DiffDock",
@@ -5060,6 +5324,32 @@
       "security_flags": [],
       "reviewed": "2026-10-28",
       "path": "catalog/entries/directing-and-verifying-coding-agents.md"
+    },
+    {
+      "name": "disney-animation-principles-game-vfx",
+      "title": "Disney's Animation Principles Applied to Game VFX (Anticipation, Squash & Stretch, Follow Through, Timing, Arcs)",
+      "url": "https://www.instagram.com/reel/DejpGOctoHu/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Game-dev technique for making a combat VFX effect (demonstrated on a thrown fireball) read as satisfying by applying five of Disney's twelve classical animation principles instead of adding more particles or better shaders — anticipation (the hero leans back while the fire gathers, then throws), squash and stretch (the fireball stretches in flight, the enemy squashes on hit), follow through (the hero's body settles after the throw, the trail lags behind, the burst flies on), timing (freeze the game for a few frames on the hit, i.e. hit-stop), and arcs (the fireball, sparks, and damage numbers travel on curved rather than straight paths). Framed as the same underlying asset read as flat or alive purely based on which of these principles are layered on top, independent of particle count or shader quality.",
+      "body_summary": "Demonstrates, via a before/after fireball VFX comparison, that five of Disney's classical animation principles — not particle count or shader quality — are what make a game effect feel alive. The reel pairs each principle with a concrete application to a thrown-fireball attack: (1) **anticipation** — the hero leans back while the fire gathers before throwing, signaling the action before it happens; (2) **squash and stretch** — the fireball stretches along its flight path, and the enemy squashes on impact, communicating velocity and force; (3) **follow through** (and overlapping action) — the hero's body continues settling after the throw, the fireball's trail lags behind the head of the effect, and the burst continues expanding after the main impact; (4) **timing** — the game briefly freezes on the hit (a hit-stop/freeze-frame), giving the impact weight; (5) **arcs** — the fireball, its sparks, and the resulting damage numbers all travel on curved rather than straight paths. The claimed takeaway is that the same base asset (particles, glow, fireball shape) reads as flat in the \"before\" version and satisfying in the \"after\" version purely from applying these five principles, and that the principles themselves are roughly 90 years old (attributed to Disney animators of the 1930s) and still apply directly to real-time game VFX.",
+      "tags": [
+        "game-design",
+        "game-feel",
+        "juice",
+        "animation-principles",
+        "squash-and-stretch",
+        "anticipation",
+        "follow-through",
+        "hit-stop",
+        "vfx",
+        "game-development"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/disney-animation-principles-game-vfx.md"
     },
     {
       "name": "distill",
@@ -6233,6 +6523,63 @@
       "path": "catalog/entries/five-levels-of-chunking.md"
     },
     {
+      "name": "flattened-mesh-fake-shadows",
+      "title": "Flattened Secondary Mesh as a Stylized Fake Shadow (Instead of Dynamic Shadow Rendering)",
+      "url": "https://www.instagram.com/reel/DezJsUWuQqo/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Game-dev shadow technique that replaces an engine's built-in dynamic shadow system with a hand-controlled stand-in: a second, simplified version of the character mesh is flattened onto the floor via a material, and that flattened silhouette is used as the character's shadow. Reported benefits are twofold — it saves the performance cost of real-time shadow/lighting calculations, and it gives the artist direct control over the shadow's shape and softness so it can be made 'punchy' and stylized to match the game's art style rather than looking like a physically-accurate soft/dynamic shadow. Demonstrated in Unreal Engine by the two-person dev team of the upcoming roguelike 'Barrow and Blade' as one of three non-standard optimization techniques.",
+      "body_summary": "A technique for producing a character's ground shadow without using the engine's real-time dynamic shadow system. A second, simplified mesh of the character (distinct from the render mesh) is used as the shadow's shape source; a material flattens that mesh onto the floor plane, projecting its silhouette as a 2D shape on the ground beneath the character. This flattened shape stands in for a cast shadow.\n\nReported motivations (from the source): it saves performance that would otherwise go to real-time shadow and lighting calculations, and it gives the team direct authorial control over the shadow's look — described as letting them create \"punchy,\" stylized shadows that match the rest of the environment's art style, rather than the shadow looking like whatever the engine's dynamic lighting model happens to produce. Demonstrated in Unreal Engine by the two-person dev team of the hack-and-slash roguelike \"Barrow and Blade,\" alongside two other non-standard optimization techniques, as part of an effort to run well across a wide range of hardware including the Steam Deck.",
+      "tags": [
+        "game-design",
+        "stylized-rendering",
+        "shadows",
+        "performance-optimization",
+        "material-technique",
+        "game-development",
+        "unreal-engine"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/flattened-mesh-fake-shadows.md"
+    },
+    {
+      "name": "flectar-mail",
+      "title": "Flectar Mail",
+      "url": "https://github.com/flectar/mail",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Native Rust email, calendar, and contacts client marketed on low memory use (README: as little as 80 MB RAM) and a no-WebView, no-script HTML rendering pipeline (Blitz); pre-release, AGPLv3.",
+      "body_summary": "Flectar Mail is a native desktop/mobile client for email, calendars, and contacts, built in Rust. It connects to Gmail, Outlook/Microsoft 365, and standards-based IMAP, POP3, SMTP, JMAP, CalDAV, and CardDAV accounts, stores mail and calendar data locally for offline access, and targets low memory use — the README states \"as little as 80 MB of RAM\" (note: the Instagram reel that surfaced this tool claimed 20 MB; the project's own README gives the 80 MB figure, which this entry uses as the authoritative source).\n\nIts defining architectural choice is rendering email HTML/CSS through Blitz, a Rust HTML/CSS renderer from the Dioxus team, instead of embedding a browser engine or WebView. Email scripts are not executed, and remote images are blocked by default to prevent tracking pixels. This renderer is explicitly called out as experimental — complex or unusual markup/CSS may not render correctly yet.\n\nOther features: file/attachment browsing over JMAP/WebDAV with PDF/image/text preview; per-account signatures with separate new-message/reply defaults; desktop OpenPGP/MIME signing and encryption via an installed GnuPG 2.x plus pinentry (S/MIME and mobile OpenPGP are not supported); conversation threading with full keyboard navigation; browser-style tabs that persist per-tab scroll position and open item; named account profiles with per-profile colors; light/dark themes with custom color palettes; a frameless-window option; and storage/backup tooling including mbox/.eml/maildir export and import from Thunderbird, K-9 Mail, and Apple Mail.",
+      "tags": [
+        "email-client",
+        "rust",
+        "native-app",
+        "desktop",
+        "mobile",
+        "calendar",
+        "contacts",
+        "jmap",
+        "imap",
+        "local-first",
+        "privacy",
+        "agplv3"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0",
+      "security_flags": [
+        "pre-release-unstable",
+        "experimental-html-renderer",
+        "processes-email-content",
+        "optional-oauth-credentials",
+        "unsigned-or-unnotarized-builds"
+      ],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/flectar-mail.md"
+    },
+    {
       "name": "floci",
       "title": "Floci — Local Cloud Emulators",
       "url": "https://floci.io/",
@@ -6470,6 +6817,31 @@
       "path": "catalog/entries/fzf.md"
     },
     {
+      "name": "game-engine-data-structures-cheatsheet",
+      "title": "Game Engine Data Structures Cheat Sheet",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Practitioner cheat sheet on six data structures used in game engines for performance: contiguous arrays (C++ vector, Unreal TArray) over linked lists for CPU cache locality during entity iteration; quad trees/octrees for spatial partitioning (frustum culling, raycasting) cutting O(n) scans to O(log n); bounding volume hierarchies (BVH) for fast ray tracing and broad-phase collision detection; ring buffers/circular queues for fixed-length event logs, input, and audio buffers; graphs with A* for pathfinding; spatial hashmaps for constant-time grid-based lookups.",
+      "body_summary": "Six data structures, each matched to a specific game-engine performance problem:\n\n1. **Contiguous arrays over linked lists** (data-oriented design): a `std::vector` (C++) or `TArray` (Unreal Engine) stores elements sequentially, letting CPU L1/L2 caches prefetch upcoming elements during iteration. Linked lists scatter nodes across the heap — each traversal step is a likely cache miss. Measured effects reported elsewhere: linked-list-heavy code can see 70-90% cache-miss rates versus 5-15% for array-based equivalents, and over 96% of linked-list cache misses are heap misses specifically. Trade-off: contiguous arrays make insertion/deletion in the middle more expensive than a linked list's O(1) splice, which is usually outweighed by the iteration-speed win in hot loops (entity updates, render passes).\n2. **Quad trees (2D) / octrees (3D)**: recursively subdivide space into four or eight child regions, each wrapped in a bounding box. A spatial query (frustum culling, raycasting, nearest-object lookup) descends only the branches whose bounding box intersects the query, cutting a naive O(n) scan over every object to roughly O(log n).\n3. **Bounding Volume Hierarchies (BVH)**: a tree of nested bounding boxes around geometry, used for ray tracing and collision broad-phase. For ray tracing, a BVH cuts expected per-ray cost from O(n) triangle tests to O(log n) — a 10-million-triangle scene needs roughly 23 box tests plus a handful of triangle tests per ray. For collision detection, which traverses two BVHs simultaneously and collects every overlapping pair (no early exit), query cost is closer to O(log n + k), where k is the number of overlaps returned.\n4. **Ring buffers (circular queues)**: fixed-capacity buffers that wrap writes back to index 0 once full, overwriting the oldest entry. Used for data with a natural fixed-length window and no need for dynamic growth: input command history, event logs, audio sample buffers.\n5. **Graphs with A***: game worlds are modeled as a graph of connected nodes (navmesh polygons, tile grids); A* search finds a shortest path by combining actual path cost with a heuristic estimate to the goal, avoiding the need to explore the whole graph.\n6. **Spatial hashmaps**: bucket world-space coordinates into a hash of grid-cell IDs, giving O(1) average lookup for \"what's in this cell\" or \"what's near this point\" — used for grid-based inventories and broad-phase neighbor checks without building a tree.",
+      "tags": [
+        "data-structures",
+        "game-development",
+        "cache-locality",
+        "data-oriented-design",
+        "spatial-partitioning",
+        "octree",
+        "bvh",
+        "ring-buffer",
+        "pathfinding",
+        "spatial-hashing"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/game-engine-data-structures-cheatsheet.md"
+    },
+    {
       "name": "gbrain",
       "title": "gbrain",
       "url": "https://github.com/garrytan/gbrain",
@@ -6512,6 +6884,32 @@
       "security_flags": [],
       "reviewed": "2026-09-25",
       "path": "catalog/entries/gemini-3-8-flash.md"
+    },
+    {
+      "name": "gemini-4-argon",
+      "title": "Gemini 4 Argon (Google)",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Google's newest frontier LLM, announced 2026-09-30 and broadly rolled out 2026-10-13 — built for long-horizon coding and agent tasks, up to 1M output tokens (vs a prior 64K limit), Google Antigravity agentic coding interface integration, and cybersecurity-defense tuning; available via the Gemini app (AI Pro/Ultra), the API in AI Studio/Gemini platform, and Google Cloud; Google reports a 14% enterprise-knowledge-work accuracy gain over Gemini 3.1 Pro and a drop in coding shortcut-attempts to 2%; introductory API pricing $2/$10 per 1M input/output tokens through 2026-11-30",
+      "body_summary": "Gemini 4 Argon is Google's newest frontier large language model, announced September 30, 2026 as Google's most capable model yet. It was built to sustain deep reasoning across complex, long-horizon workflows — coding tasks from everyday debugging to large-scale codebase migrations, algorithm design, financial-report analysis, deck creation from scattered sources, and interactive 3D-model building. Google tuned Argon specifically for cybersecurity defense and initially rolled it out to trusted cyber defenders through its Fairwind Program before wider release.\n\nBroader availability followed October 13, 2026: global rollout in the Gemini app for Google AI Pro & Ultra subscribers, API access via AI Studio and the Gemini platform for developers and enterprises, availability in Google Antigravity (Google's agentic coding interface, also brought into the Gemini macOS app), and general availability on Google Cloud. Google reported Argon scoring higher than OpenAI's GPT-6 Astra and Anthropic's Fable/Opus models on third-party benchmark indexes it cited (Vals AI), a 14% accuracy improvement on enterprise knowledge work versus Gemini 3.1 Pro, and a drop in coding \"shortcut attempts\" to 2%, its best result against prior Gemini models. Output capacity was raised to up to 1 million tokens, up from a prior 64,000-token limit.",
+      "tags": [
+        "llm",
+        "google",
+        "gemini",
+        "agentic",
+        "long-context",
+        "api-model",
+        "coding-agent",
+        "proprietary"
+      ],
+      "workflows": [],
+      "license": "Proprietary",
+      "security_flags": [
+        "closed-source"
+      ],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/gemini-4-argon.md"
     },
     {
       "name": "gentrl",
@@ -6672,6 +7070,38 @@
       "path": "catalog/entries/glama.md"
     },
     {
+      "name": "glass-home-samsung-tv",
+      "title": "Glass Home for Samsung Tizen TV",
+      "url": "https://github.com/victaphu/glass-home-samsung-tv",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Apple TV-style home screen for Samsung Tizen TVs (2018-2025, Tizen 4-10) — a frosted-glass app dock, crossfading nature photos, clock/weather (Open-Meteo), and a screensaver, paired with a small password-protected website the TV itself serves on the home LAN for uploading photos and adding website/YouTube shortcuts from a phone; sideloaded via Tizen Developer Mode with a free per-TV Samsung certificate (no universal download, no root); one Tizen package bundles the UI and a Node.js service on 127.0.0.1:8090; ships tvremote.py (stdlib client for the TV's local control API), phonecam.py (turns a phone into a camera pointed at the TV, since \"Samsung TVs can't take screenshots\"), and wake.py; plain HTML/CSS/JS, MIT.",
+      "body_summary": "Glass Home replaces the visible home screen on a Samsung Tizen TV (it cannot replace Samsung's own Home button, which still opens Smart Hub; the README's workaround is pinning Glass Home first on the Home row and enabling Autorun Last App so the TV reopens it at power-on). The screen itself is full-screen nature photos crossfading every 45 seconds, a frosted-glass dock of the owner's apps plus website and YouTube shortcuts, a clock/date, optional 7-day weather from Open-Meteo, and a screensaver after 3 minutes idle. A `+` tile opens a small password-protected website — served by the TV itself on the home network — for uploading photos from a phone (resized client-side so iPhone HEIC works) and adding website or YouTube shortcuts.\n\nInstall happens through Tizen's own Developer Mode: the owner makes a free, per-TV Samsung developer certificate, builds the app with Samsung's Tizen SDK command-line tools, and sideloads it — there is no universal downloadable package, since a signed build only installs on the TV it was certified for. The repo documents this as reported working on Samsung TVs from 2018 to 2025 (Tizen 4 through 10), with per-TV-model notes in a \"Tested TVs\" table built from community reports.\n\nThe repo's own account of its origin: \"Built in an evening with Claude Code, which did the research, drove the TV over Wi-Fi, checked every step through the iPhone camera, and wrote and tested the app.\" Because Samsung Tizen TVs have no screenshot API, the repo ships `tools/phonecam.py`, a page that turns a phone on the same Wi-Fi into a camera pointed at the TV, as the only way an agent (or the owner) can see what's on screen during development.",
+      "tags": [
+        "tizen",
+        "samsung",
+        "launcher",
+        "debloat",
+        "claude-code",
+        "agent-driven",
+        "home-screen",
+        "developer-mode",
+        "sideload",
+        "nodejs",
+        "python",
+        "camera-verification"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "no-prebuilt-binaries",
+        "agent-executes-device-commands",
+        "plaintext-local-http"
+      ],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/glass-home-samsung-tv.md"
+    },
+    {
       "name": "godogen",
       "title": "godogen",
       "url": "https://github.com/htdt/godogen",
@@ -6701,6 +7131,29 @@
       ],
       "reviewed": "2026-08-25",
       "path": "catalog/entries/godogen.md"
+    },
+    {
+      "name": "godot-mcp",
+      "title": "Godot MCP (Coding-Solo)",
+      "url": "https://github.com/Coding-Solo/godot-mcp",
+      "category": "mcp-server",
+      "decision_status": "open",
+      "summary": "MCP server (npm package @coding-solo/godot-mcp) that lets an AI agent launch the Godot editor, run a project in debug mode, capture debug/error output, list projects in a directory, query the installed Godot version, and manage UIDs for Godot 4.4+; installs via `claude mcp add godot -- npx @coding-solo/godot-mcp`; the most-forked and most-cited server under the generic 'Godot MCP' name per third-party MCP-server directories, ahead of numerous same-named community forks and rewrites that add scene-tree editing, screenshot capture, and C# support; MIT.",
+      "body_summary": "Godot MCP is a Model Context Protocol server that gives an AI coding agent a feedback loop into the Godot game engine: it can launch the Godot editor for a given project, run a project in debug mode and capture its debug output (including runtime errors), list Godot projects found under a directory, retrieve the installed Godot engine version, and manage resource UIDs introduced in Godot 4.4+. The project's own framing is that direct run/debug feedback — rather than just generating code blind — helps an agent tell what works from what doesn't and produce better fixes. A bundled script accepts an operation type and JSON parameters, so operations run without the server generating a temporary file per call.",
+      "tags": [
+        "godot",
+        "mcp-server",
+        "claude-code",
+        "game-development",
+        "debugging",
+        "typescript",
+        "npm"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/godot-mcp.md"
     },
     {
       "name": "godot-node-composition-components",
@@ -7418,6 +7871,31 @@
       "path": "catalog/entries/headroom.md"
     },
     {
+      "name": "health-bar-chip-damage-feedback",
+      "title": "Chip-Damage Health Bars and Color-Coded Floating Damage Numbers (Hit-Feedback Game-Feel Techniques)",
+      "url": "https://www.instagram.com/reel/DemP6LfRbug/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Game-dev UI/feedback techniques for making hit-point damage feel satisfying without changing the underlying numbers. Health bar — on damage, a pale/orange \"chip\" trail is left behind at the bar's prior fill level and holds briefly before draining down to the new value (rather than snapping instantly), so the player sees how much was lost; the bar also shakes, flashes, and punches on each hit; its color shifts green→yellow→red as a threshold-based danger signal; healing fills back in smoothly with a sparkle effect at the fill edge. Floating damage numbers — numbers pop in, float upward, and fade out over roughly half a second to just over a second; rapid consecutive hits stack and arc to alternating sides so overlapping numbers stay legible; number size scales with hit magnitude; numbers are color-coded by type (e.g. white/normal, orange/critical, green/heal); critical hits render bold and with extra shake. Presented as a reusable feedback layer independent of the underlying damage math — the same damage value reads as more or less impactful purely from how it is animated and rendered.",
+      "body_summary": "Two paired feedback layers for hit-point damage, both decoupled from the actual damage value:\n\n**Health bar.** Instead of the fill snapping instantly to the new value on a hit, a pale/orange \"chip\" segment is left behind at the bar's prior level, holds for a beat, then drains down to the new value — this trailing segment is what lets the player register how much was lost on a fast hit, not just the end state. The bar also shakes, flashes, and \"punches\" on every hit as an immediate impact cue, and its overall color shifts on thresholds (green → yellow → red) as a secondary, at-a-glance danger signal independent of the exact number. Healing is handled as the inverse: the fill rises smoothly rather than jumping, with a sparkle effect at the moving edge.\n\n**Floating damage numbers.** Each hit spawns a number that pops in, floats upward, and fades out over roughly half a second to a bit over a second. Rapid consecutive hits stack their numbers and arc them to alternating sides so overlapping hits stay individually readable instead of stacking illegibly in place. Number size scales with the hit's magnitude (small hit → small glyph, big hit → big glyph), and color encodes hit type (e.g. white for normal, orange for critical, green for healing); critical hits additionally render bold and with extra shake for emphasis.\n\nBoth layers are framed as cosmetic feedback on top of an unchanged damage/health model — the same underlying value change can read as weak or punishing purely from how the bar and numbers animate it.",
+      "tags": [
+        "game-design",
+        "game-feel",
+        "health-bar",
+        "damage-numbers",
+        "floating-combat-text",
+        "ui-feedback",
+        "juice",
+        "chip-damage",
+        "game-development"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/health-bar-chip-damage-feedback.md"
+    },
+    {
       "name": "helm-session-manager",
       "title": "Helm (gamepad-driven multi-agent session manager)",
       "url": "https://github.com/PetePeter/helm",
@@ -7816,6 +8294,28 @@
       "path": "catalog/entries/inbox-zero.md"
     },
     {
+      "name": "ingame-debug-console",
+      "title": "In-game Debug Console (UnityIngameDebugConsole)",
+      "url": "https://github.com/yasirkula/UnityIngameDebugConsole",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "yasirkula's uGUI-based in-game console for Unity — shows runtime log/warning/error/exception output and lets players or testers execute registered commands (e.g. cheats) from a resizable, minimizable window inside a running build, including on mobile/device builds where the editor console isn't available; supports Android logcat forwarding; 2.8k stars, 268 forks; MIT.",
+      "body_summary": "UnityIngameDebugConsole (\"In-game Debug Console\") is a uGUI-based console overlay that runs inside a live Unity build (not just the editor), surfacing `Debug.Log`/warning/error/exception output and accepting typed commands at a bottom input field. Registered commands can return values (printed back to the console) and are commonly used to expose cheats or debug toggles for QA/playtesting directly on-device — e.g. testing a build on a phone where the Unity editor console isn't accessible. The console window is resizable, can be hidden/minimized to a popup indicator, and (as a \"Singleton\") persists across scene loads.",
+      "tags": [
+        "unity",
+        "debug-console",
+        "developer-tools",
+        "cheats",
+        "game-development",
+        "csharp"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/ingame-debug-console.md"
+    },
+    {
       "name": "instagram-saved-reels-obsidian-knowledge-graph",
       "title": "Instagram Saved-Reels-to-Obsidian Knowledge Graph Pipeline",
       "url": "https://www.instagram.com/reel/DeaAbkiyU-A/",
@@ -8186,6 +8686,31 @@
       "security_flags": [],
       "reviewed": "2026-10-06",
       "path": "catalog/entries/jq.md"
+    },
+    {
+      "name": "juicy-damage-numbers",
+      "title": "Nine-Step Juicy Damage Number Technique (Pop, Float, Fade, Arc, Scale, Color, Crit FX, Stack, Randomize)",
+      "url": "https://www.instagram.com/reel/DcDs7f9uaqo/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Game-dev technique for upgrading a default floating-damage-number label into \"juicy\" feedback through a stack of independent, optional tweaks rather than one fix — pick a legible display font (the reel uses Bungee from Google Fonts), pop the number in on spawn instead of just appearing, float it upward as it arrives, fade it out at the end of its lifetime, give each digit an arc-like falling offset instead of a straight rise, scale its size by the damage value so bigger hits read as bigger, shift its color over time based on which action produced it, layer particles and screen shake onto critical hits using the same logic, experimentally stack numbers on very fast multi-hit attacks, and randomize each number's spawn offset so a burst of hits doesn't render as a single overlapping stack. Framed as a menu of optional, independently-applicable steps rather than a required pipeline, and as engine-agnostic (the creator states it applies to any game engine).",
+      "body_summary": "A checklist of independent visual tweaks for turning a bare floating-damage-number label into \"juicy\" feedback, demonstrated by upgrading a default implementation (a plain number that appears and disappears with no animation) step by step: (1) choose a legible display font first — the reel uses Bungee from Google Fonts; (2) pop the number in with a scale/spawn animation rather than having it appear instantly; (3) float it upward as it arrives; (4) fade it out once its on-screen lifetime ends; (5) give it an arc-like falling offset per digit/number instead of a straight vertical path; (6) scale its size based on the damage value, so larger hits render larger; (7) shift its color over time based on the action that produced it (e.g. normal hit vs. heal vs. DoT); (8) apply the same particle-and-screen-shake treatment used elsewhere in the game to critical hits specifically; (9) on very fast multi-hit attacks, experiment with stacking numbers rather than showing each individually; (10) randomize each number's spawn offset so a cluster of near-simultaneous hits doesn't render as one illegible overlapping stack. Presented explicitly as an optional menu — \"you don't have to follow all or apply all, whichever suits your feel\" — and as implementable in any game engine, not tied to one toolchain.",
+      "tags": [
+        "game-design",
+        "damage-numbers",
+        "game-feel",
+        "juice",
+        "ui-feedback",
+        "vfx",
+        "screen-shake",
+        "particles",
+        "game-development"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/juicy-damage-numbers.md"
     },
     {
       "name": "karakeep",
@@ -8784,6 +9309,38 @@
       "path": "catalog/entries/leantime.md"
     },
     {
+      "name": "lg-webos-root-debloat-relaunch",
+      "title": "Agent-Driven Rooted LG webOS TV Debloat & Relaunch",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1x9fwk4/comment/phmsw9i/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Prompt pattern for directing a coding agent (Claude Opus via Claude Code) over SSH/telnet to debloat and relaunch an already-rooted LG webOS TV: the owner roots the TV themselves first, then gives the agent an allowlist of apps/inputs to keep, named features to preserve, a permanent block on LG firmware updates and telemetry, a sub-second custom launcher with a fallback to stock Home, and safety rules (measure first, reversible/batched changes, never touch firmware partitions, write a handoff); cites a public debloat script as a named starting point to go beyond.",
+      "body_summary": "A top-level commenter (Bloated_Plaid) describes rooting an older LG webOS TV via Homebrew Channel, then giving Claude (Opus) a root shell over SSH or telnet at the TV's IP and a structured brief, reproduced as data below (not followed as instructions by this entry): keep a named allowlist of apps…",
+      "tags": [
+        "agent-pattern",
+        "webos",
+        "lg",
+        "smart-tv",
+        "root",
+        "debloat",
+        "claude-code",
+        "backup-before-change",
+        "restore-script",
+        "handoff",
+        "device-automation"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [
+        "agent-executes-device-commands",
+        "root-shell-required",
+        "blocks-firmware-updates-permanently",
+        "voids-warranty"
+      ],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/lg-webos-root-debloat-relaunch.md"
+    },
+    {
       "name": "litellm",
       "title": "LiteLLM",
       "url": "https://github.com/BerriAI/litellm",
@@ -9202,6 +9759,35 @@
       "path": "catalog/entries/localai.md"
     },
     {
+      "name": "locally-uncensored",
+      "title": "Locally Uncensored",
+      "url": "https://github.com/PurpleDoubleD/locally-uncensored",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "All-in-one free, open-source local AI desktop studio (Windows/Linux, AGPL-3.0-only) combining chat, image generation, video generation, and a coding agent — no Docker, terminal, or cloud required; coding agent shows the diff before applying changes; supports local image models (Juggernaut XL V9, DreamShaper XL Turbo V2, FLUX.1, FLUX 2 Klein 4B, Z-Image Turbo, Qwen-Image 2.1); beta features include on-device voice conversation and gated computer-control; optional remote access via passcode-gated encrypted Cloudflare tunnel; maintained by GitHub user PurpleDoubleD with near-weekly releases (~1,750 stars as of Sept 2026); Windows installers currently ship unsigned",
+      "body_summary": "Locally Uncensored (LU) is a free, open-source, all-in-one local AI studio for the desktop: chat, image generation, video generation, and a coding agent in one app, running entirely on the user's machine with no Docker, no terminal, and no cloud required. It ships for Windows (NSIS installer or MSI) and Linux (AppImage, deb, or rpm); there is no macOS desktop build — Mac users are directed to a browser-based \"LU Cloud\" instead. The project markets itself against Open WebUI, LM Studio, Jan, and SillyTavern on the basis of including image-to-image, image-to-video, and a coding agent in one app. The coding agent shows the diff before applying a change; \"agent mode\" otherwise performs the work directly. In local mode, chat, agent runs, and image/video generation happen on-device with no telemetry or analytics.\n\nSupported local image-generation models include Juggernaut XL V9 (photoreal SDXL), DreamShaper XL Turbo V2 (anime/stylized), FLUX.1, FLUX 2 Klein 4B, Z-Image Turbo, and Qwen-Image 2.1 (generate-and-edit-in-one-model, requiring ComfyUI 0.37.0 under a research/non-commercial license).\n\nBeta features: an on-device spoken-conversation mode (speech recognition, voice, and turn-taking run locally, English only, fifteen voices), and a computer-control feature where a model views the screen and uses the mouse/keyboard in approved apps, asking before every action unless set to autonomous, and never touching terminals, password managers, or password fields. Remote access is off by default; when enabled it is passcode-gated — on a LAN nothing leaves the network, and off-LAN it uses an encrypted Cloudflare tunnel with no third-party AI server involved.",
+      "tags": [
+        "desktop-app",
+        "local-inference",
+        "chat",
+        "image-generation",
+        "video-generation",
+        "coding-agent",
+        "windows",
+        "linux",
+        "open-source",
+        "privacy"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0-only",
+      "security_flags": [
+        "agpl-copyleft",
+        "unsigned-installer"
+      ],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/locally-uncensored.md"
+    },
+    {
       "name": "locate-anything",
       "title": "LocateAnything",
       "url": "https://research.nvidia.com/labs/lpr/locate-anything/",
@@ -9251,6 +9837,35 @@
       "security_flags": [],
       "reviewed": "2026-08-17",
       "path": "catalog/entries/lora-peft-guide.md"
+    },
+    {
+      "name": "lucataco-webos-debloat",
+      "title": "webos-debloat (lucataco)",
+      "url": "https://gist.github.com/lucataco/7c303b443934008a9031a55cfca552ec",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Single shell script for a rooted LG webOS TV that hides launcher bloat tiles and background apps, stops those apps from preloading into RAM, and disables home-screen promotions, sports alerts, recommendations and LG's Live Plus (ACR) tracking by editing LG's own app block list, preload-manager policy and settings keys (never the root filesystem), making every change reversible without blocking firmware updates; tested on one 2026 LG OLED (webOS 26, firmware 11.2).",
+      "body_summary": "\"webos-debloat\" is a single shell script for a rooted LG webOS TV that hides bloat tiles and background apps from the launcher, stops the OS from preloading apps into RAM whether or not they're opened, and turns off home-screen promotions, promo videos, sports alerts, content recommendations and LG's Live Plus (ACR) tracking. Per the gist, it only edits LG's own app block list, the preload manager's policy file, and a handful of system settings — the root filesystem is never touched — so every change is reversible and firmware updates continue to install as on a stock TV. The author states it was written and tested on one TV (a 2026 LG OLED running webOS 26, firmware 11.2, US region) and recommends starting with `--plan`/`--dry-run` on other models, since untested app IDs or settings keys are skipped rather than causing failures.",
+      "tags": [
+        "webos",
+        "lg",
+        "debloat",
+        "shell-script",
+        "root",
+        "preload-manager",
+        "telemetry",
+        "acr",
+        "privacy"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "root-shell-required",
+        "unauthenticated-telnet-root-shell",
+        "single-device-tested"
+      ],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/lucataco-webos-debloat.md"
     },
     {
       "name": "manim",
@@ -10061,6 +10676,30 @@
       "path": "catalog/entries/mit-opencourseware.md"
     },
     {
+      "name": "mitsuba3",
+      "title": "Mitsuba 3",
+      "url": "https://github.com/mitsuba-renderer/mitsuba3",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Research-oriented, retargetable forward/inverse renderer from EPFL — Python-first, JIT-compiled and differentiable via the Dr.Jit backend, supports monochromatic/RGB/spectral and polarized light transport, CPU and GPU execution; ~3k stars, 374 forks; BSD-3-Clause.",
+      "body_summary": "Mitsuba 3 is a research rendering system for forward (image synthesis) and inverse (parameter recovery from images) light transport simulation, developed at EPFL. It is \"retargetable\": the same scene description and core library can be recompiled or re-dispatched to act as a scalar CPU renderer, a vectorized/GPU renderer, or a differentiable renderer that computes derivatives of the rendered image with respect to scene parameters (camera pose, geometry, BSDFs, textures, volumes). Materials, textures, and even full rendering algorithms can be written in Python, which Mitsuba JIT-compiles (and optionally differentiates) at runtime via the Dr.Jit backend.",
+      "tags": [
+        "rendering",
+        "differentiable-rendering",
+        "physically-based-rendering",
+        "python",
+        "drjit",
+        "jit-compilation",
+        "spectral-rendering",
+        "vfx"
+      ],
+      "workflows": [],
+      "license": "BSD-3-Clause",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/mitsuba3.md"
+    },
+    {
       "name": "mixpeek",
       "title": "Mixpeek",
       "url": "https://mixpeek.com/education/videos/multimodal-warehouse-vs-vector-database",
@@ -10229,6 +10868,56 @@
       "security_flags": [],
       "reviewed": "2026-07-27",
       "path": "catalog/entries/motion-design-skill.md"
+    },
+    {
+      "name": "motionbricks-blender",
+      "title": "motionbricks-blender",
+      "url": "https://github.com/hyun2xyz/motionbricks-blender",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Free, unofficial Blender add-on that imports motion generated by NVIDIA MotionBricks (.npz files) as an animated SOMA character, with optional greybox cubes, checker floor, sun, and follow camera; bundles a \"walker\" script that generates a walk along a JSON-defined waypoint course using no input motion clips at all, and a \"recorder\" script that captures MotionBricks' own Scene Preview demo to .npz; ships an AGENTS.md so a coding agent (Codex, Claude Code) can set up the full MotionBricks + add-on pipeline from one prompt; requires Blender 4.2+ and an NVIDIA RTX GPU (MotionBricks' TensorRT dependency); add-on GPL-3.0-or-later, walker/recorder scripts Apache-2.0; first release (v0.1.0) 2026-10-28.",
+      "body_summary": "motionbricks-blender is a free, unofficial Blender add-on that imports motion generated by NVIDIA's MotionBricks model (see [[motionbricks]]) as an animated SOMA-rig character inside Blender, via `File › Import › MotionBricks (.npz)` or a MotionBricks tab in the 3D Viewport sidebar. It can optionally build out the rest of the scene too — greybox cubes, a checker floor, a sun, and a camera that follows the character. The imported armature's rest pose matches MotionBricks' own SOMA bind pose and skinning, and every frame is keyed, so the result can be edited, retimed, or baked like any normal Blender action.",
+      "tags": [
+        "blender",
+        "blender-addon",
+        "nvidia",
+        "motion-generation",
+        "character-animation",
+        "motion-import",
+        "ai-coding-agent-setup",
+        "tensorrt"
+      ],
+      "workflows": [],
+      "license": "GPL-3.0-or-later (add-on); Apache-2.0 (walker and recorder scripts)",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/motionbricks-blender.md"
+    },
+    {
+      "name": "motionbricks",
+      "title": "MotionBricks (NVIDIA)",
+      "url": "https://github.com/NVlabs/motionbricks",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "NVIDIA's modular latent generative model (SIGGRAPH 2026 / ACM TOG) for real-time character and robot motion synthesis — given 4 recent poses and up to 4 target poses it generates the in-between motion at 30 Hz via a root-path module, a masked-token pose transformer, and a VQ-VAE decoder; chaining generations with application-supplied targets produces continuous locomotion, navigation, and object interaction (\"Smart Primitives\") with no retraining; ships pretrained ONNX checkpoints for the SOMA human body model and the Unitree G1 robot, a Python runtime (Warp/Newton/TensorRT) and demo/editor apps; requires an NVIDIA GPU (TensorRT); code Apache-2.0, models under the NVIDIA Open Model Agreement, bundled sample motions restricted to NVIDIA evaluation use only; ~561 stars, 55 forks.",
+      "body_summary": "MotionBricks is NVIDIA's real-time motion-generation model for animating characters (the SOMA parametric human body model) and robots (Unitree G1), introduced at SIGGRAPH 2026. Given the character's current motion (its 4 most recent poses, \"context\") and one or more target poses placed ahead (\"target\"), it generates every in-between frame, deciding transition duration itself (one generation produces 6–16 tokens of 4 poses, roughly 0.6–1.9 s of motion). Chaining generations — feeding the last 4 played poses back in as context and letting the calling application choose new targets — turns a single inbetweening model into continuous locomotion, keyframe animation, or scripted object interactions. \"Smart Primitives\" package target poses as reusable building blocks for behaviors like vaulting, ducking, and sitting that compose around obstacles without retraining the model.",
+      "tags": [
+        "nvidia",
+        "motion-generation",
+        "character-animation",
+        "robotics",
+        "real-time",
+        "generative-model",
+        "tensorrt",
+        "onnx",
+        "vq-vae",
+        "siggraph"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0 (code); NVIDIA Open Model Agreement (models); NVIDIA Sample Data Evaluation License (sample motions)",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/motionbricks.md"
     },
     {
       "name": "multi-session-management-strategies",
@@ -10401,6 +11090,28 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/native-subagents.md"
+    },
+    {
+      "name": "navmesh-plus",
+      "title": "NavMeshPlus",
+      "url": "https://github.com/h8man/NavMeshPlus",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Unity package extending Unity's NavMeshComponents with a 2D extensions system — auto-generates a navigation mesh from scene geometry (tilemaps, sprites, Collider2D) for top-down 2D pathfinding, letting characters and AI navigate around obstacles without hand-authored waypoints; 2.4k stars, 269 forks; MIT.",
+      "body_summary": "NavMeshPlus extends Unity's built-in NavMesh system (designed for 3D) to generate navigation meshes from 2D scene geometry — tilemaps, sprite colliders, and Collider2D components — so top-down 2D games can use standard pathfinding/avoidance instead of hand-rolled waypoint graphs. Usage: add a `NavigationSurface` component to an empty GameObject, add a `NavMeshCollectSources2d` component to collect 2D geometry as sources, click \"Rotate Surface to XY\" to orient the baked mesh toward a standard 2D camera, then bake. Obstacles/areas can be tagged with a `NavMeshModifier` to override walkability per object (e.g. marking fences as unwalkable so AI-controlled characters route around them).",
+      "tags": [
+        "unity",
+        "navmesh",
+        "2d-pathfinding",
+        "ai-navigation",
+        "game-development",
+        "csharp"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/navmesh-plus.md"
     },
     {
       "name": "nemo-switchyard",
@@ -10651,6 +11362,34 @@
       "security_flags": [],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/nvidia-build.md"
+    },
+    {
+      "name": "nvidia-model-optimizer",
+      "title": "NVIDIA Model Optimizer",
+      "url": "https://github.com/NVIDIA/Model-Optimizer",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "NVIDIA's open-source library (formerly TensorRT Model Optimizer, rebranded Dec 2025) of LLM/VLM compression techniques — post-training quantization (NVFP4/FP8/INT8/INT4 via SmoothQuant, AWQ, SVDQuant), quantization-aware training/distillation, pruning, distillation, speculative-decoding draft training, and sparsity; takes Hugging Face/PyTorch/ONNX checkpoints, exports quantized checkpoints deployable on TensorRT-LLM, TensorRT, vLLM, or SGLang; publishes pre-quantized checkpoints (DeepSeek-R1-FP4, Llama-3.3-70B-FP4, Nemotron NVFP4) on Hugging Face; pip install nvidia-modelopt[all]; pre-1.0 (0.x), Apache-2.0.",
+      "body_summary": "NVIDIA Model Optimizer (ModelOpt, formerly \"TensorRT Model Optimizer\" before a December 2025 rebrand) is a library of model optimization techniques for accelerating LLM and VLM inference: post-training quantization (PTQ), quantization-aware training (QAT) and quantization-aware distillation, pruning, knowledge distillation, speculative-decoding draft-module training, and sparsity. It consumes Hugging Face, PyTorch, or ONNX checkpoints and exposes Python APIs to compose these techniques, exporting a checkpoint ready for downstream deployment on TensorRT-LLM, TensorRT, vLLM, or SGLang. It integrates with NVIDIA Megatron-Bridge, Megatron-LM, and Hugging Face Accelerate for training-required optimization steps.\n\nQuantization support covers NVFP4, FP8, INT8, and INT4 formats using algorithms including SmoothQuant, AWQ, SVDQuant, and Double Quantization, with both PTQ and QAT workflows. NVIDIA publishes pre-quantized checkpoints built with ModelOpt on Hugging Face (e.g. DeepSeek-R1-FP4, Llama-3.3-70B-Instruct-FP4, Llama-3.1-405B-Instruct-FP4, Nemotron 3 Ultra NVFP4, Nemotron-3-Super FP8/NVFP4), and documents customer uses: Domyn compressed Colosseum-355B to 260B with Minitron pruning+distillation, Bielik.AI built a 7B Minitron model (33% smaller, 50% faster, 90% quality retained), and Adobe reports a 60% diffusion-latency reduction and 40% TCO reduction combining ModelOpt with TensorRT.",
+      "tags": [
+        "nvidia",
+        "quantization",
+        "pruning",
+        "distillation",
+        "speculative-decoding",
+        "sparsity",
+        "model-compression",
+        "tensorrt-llm",
+        "vllm",
+        "nvfp4",
+        "fp8",
+        "inference-optimization"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/nvidia-model-optimizer.md"
     },
     {
       "name": "nvidia-pair",
@@ -11609,6 +12348,35 @@
       "path": "catalog/entries/ornith-dgx-spark-setup.md"
     },
     {
+      "name": "orq-ai",
+      "title": "Orq.ai (Agent Runtime / LLMOps Platform)",
+      "url": "https://orq.ai/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Amsterdam-based (founded 2022, formerly Orquesta.cloud) proprietary enterprise control platform for the AI agent lifecycle — Agent Runtime sits in the request path to manage tools, memory, retries/handoffs, and multi-step orchestration; supports granular per-tool approval gates (an individual MCP tool can be flagged to pause and require human sign-off without gating the whole agent run), risk-based approval thresholds, a governed registry of approved agents/models/MCPs/skills/tools with pre-production approval and default-deny for anything outside it, plus guardrails, PII masking, RBAC, observability/tracing, and human-in-the-loop evaluation workflows; 300+ models across 17 providers via its AI Gateway; cloud/VPC/on-prem deployment with US/EU data residency, SOC 2 and GDPR compliance; closed-source SaaS, pricing not published",
+      "body_summary": "Orq.ai is a proprietary enterprise platform for running AI agents in production. Its Agent Runtime component sits directly in the request path between an application and the LLM/tools it calls, giving teams a control panel over tools, memory, context, guardrails, retries, and human handoffs for multi-step agent workflows. Approval gating is tool-level rather than run-level: an individual MCP tool can be flagged as requiring approval, so only that action pauses on an approval card for a human decision — the rest of the run continues ungated. Teams can also set risk-based thresholds (e.g. let reversible, low-risk work run further before anyone intervenes, while a destructive or hard-to-undo action always waits). On the governance side, Orq.ai maintains a centrally managed \"compliance registry\" of approved agents, models, prompts, and MCP servers; anything not on the approved list is blocked by default, and new additions go through an approval workflow before reaching production. Human-in-the-loop is also built into evaluation: logged responses can be sent to a dataset for human or rule-based grading, feeding retraining/optimization loops. The platform supports 300+ models across 17 providers through its AI Gateway, integrates with LangChain/LlamaIndex, and deploys to cloud, VPC, or on-premise with US/EU data residency.",
+      "tags": [
+        "llmops",
+        "agent-runtime",
+        "human-in-the-loop",
+        "tool-approval",
+        "governance",
+        "guardrails",
+        "observability",
+        "enterprise",
+        "saas",
+        "mcp"
+      ],
+      "workflows": [],
+      "license": "proprietary",
+      "security_flags": [
+        "closed-source",
+        "vendor-sits-in-request-path"
+      ],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/orq-ai.md"
+    },
+    {
       "name": "ossu-computer-science",
       "title": "OSSU Computer Science",
       "url": "https://github.com/ossu/computer-science",
@@ -11962,6 +12730,32 @@
       "path": "catalog/entries/paperless-ngx.md"
     },
     {
+      "name": "papermorph",
+      "title": "Papermorph",
+      "url": "https://github.com/DozenTwelve/Papermorph",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Agent skill (Claude Code / OpenCode, invoked as /papermorph) that turns a textbook PDF or a story into a self-hosted static web book — narrated step-by-step lessons with graded quizzes, paper-puppet picture-book films, or documentaries/shorts/explorable pages; plans chapters, writes narration, animates visuals to per-word TTS timing, and self-reviews output before publishing; exports to MP4+SRT or SCORM; MIT license (bundled MathJax Apache-2.0, media assets keep own licenses); ~1,000 GitHub stars",
+      "body_summary": "Papermorph is an agent skill (`npx skills add DozenTwelve/Papermorph --skill papermorph --agent claude-code` or `--agent opencode`, then `/papermorph`) that turns a PDF textbook, a story, or a book idea into a self-hosted, static interactive web experience. From math/science textbooks it builds narrated, step-by-step lessons with graded quizzes; from stories, paper-puppet picture-book films with voices, subtitles, sound effects, and music; from books or ideas, documentaries, vertical shorts, or explorable \"play\" pages (an interactive essay, a historical map walked year by year). Output is a self-contained static site — no server, database, or account — that is just a folder you can host anywhere.",
+      "tags": [
+        "agent-skill",
+        "claude-code",
+        "opencode",
+        "pdf-to-web",
+        "text-to-speech",
+        "interactive-learning",
+        "static-site",
+        "education",
+        "video-generation",
+        "mit-license"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/papermorph.md"
+    },
+    {
       "name": "parallax",
       "title": "Parallax",
       "url": "https://github.com/GradientHQ/parallax",
@@ -12088,6 +12882,33 @@
       "path": "catalog/entries/pdf24-creator.md"
     },
     {
+      "name": "pearwebos",
+      "title": "PearWebOS",
+      "url": "https://github.com/Arnedeklerk/PearWebOS",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Python CLI and home-screen replacement for rooted LG webOS TVs, styled after Apple TV's Home — name/date/clock/weather over the owner's own photos, six apps in a dock with every other installed app one press down, Inputs/Settings top right; runs entirely through the TV's own rooted SSH access with a one-command revert to LG's stock Home; built for webOS 6 (2021 TVs), with newer webOS (incl. 10) supported as a separate app install rather than a full Home replacement.",
+      "body_summary": "PearWebOS is a Python-based home-screen replacement for rooted LG webOS TVs, styled after the Apple TV Home screen: the owner's name, the date, a clock and weather displayed over their own photos, six apps shown in a \"glass\" dock with every other installed app one press down, and Inputs/Settings reachable from the top right. The README states Pear changes nothing in the TV's own system and that a single command restores LG's stock Home screen. It's built for webOS 6 (2021 TVs); on newer sets, including webOS 10, it installs as its own app rather than replacing Home outright, which the README calls new and asks users to report results on.",
+      "tags": [
+        "webos",
+        "lg",
+        "launcher",
+        "root",
+        "apple-tv-style",
+        "python",
+        "homebrew-channel"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "root-shell-required",
+        "default-ssh-password",
+        "voids-warranty"
+      ],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/pearwebos.md"
+    },
+    {
       "name": "penecho",
       "title": "PenEcho",
       "url": "https://github.com/penecho/penecho",
@@ -12114,6 +12935,34 @@
       ],
       "reviewed": "2026-07-27",
       "path": "catalog/entries/penecho.md"
+    },
+    {
+      "name": "pentagi",
+      "title": "PentAGI",
+      "url": "https://github.com/vxcontrol/pentagi",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Fully autonomous, multi-agent AI system (Go, MIT) for penetration testing — given a target and goal in plain English, a delegation system of specialized agents (research, development, infrastructure) plans and executes testing steps, running tools like Nmap and Metasploit inside an isolated Docker sandbox, and produces a report; supports OpenAI, Anthropic, Ollama, AWS Bedrock, Google AI/Gemini, DeepInfra, OpenRouter, DeepSeek, and Moonshot as LLM providers; ships a ctester utility for evaluating agent-model capability; self-described as an autonomous/assistant-guided platform, not a CALDERA-style BAS product with predefined attack campaigns",
+      "body_summary": "PentAGI (vxcontrol/pentagi) is a fully autonomous, multi-agent AI system for penetration testing, written in Go and licensed MIT. Given a target and goal described in plain English, it plans and executes testing steps through a delegation system of specialized agents (research, development, infrastructure tasks), running tools such as Nmap and Metasploit inside an isolated Docker sandbox, and produces a report. It supports multiple LLM providers — OpenAI, Anthropic, Ollama, AWS Bedrock, Google AI/Gemini, DeepInfra, OpenRouter, DeepSeek, and Moonshot — plus custom configurations. The project positions itself as \"an autonomous and assistant-guided penetration testing platform,\" explicitly distinct from a CALDERA-style Breach and Attack Simulation (BAS) or adversary-emulation product with predefined campaigns or attack plans.",
+      "tags": [
+        "security",
+        "pentesting",
+        "offensive-security",
+        "ai-agents",
+        "autonomous-agents",
+        "multi-agent",
+        "docker",
+        "sandbox",
+        "golang"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "executes-exploits",
+        "mutates-target-state"
+      ],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/pentagi.md"
     },
     {
       "name": "perplexity-mcp-server",
@@ -12418,6 +13267,36 @@
       "path": "catalog/entries/pixel-agents.md"
     },
     {
+      "name": "pixelrag",
+      "title": "PixelRAG",
+      "url": "https://github.com/StarTrail-org/PixelRAG",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source RAG framework from Berkeley Sky Computing Lab/BAIR/Berkeley NLP that renders web pages, PDFs, and images to screenshot tiles and retrieves over the images directly (via a LoRA-fine-tuned Qwen3-VL-Embedding-2B model) instead of parsing text, preserving tables/charts/layout; supports text or image queries; ships a hosted API over a pre-built 8.28M-page Wikipedia index, a Claude Code plugin (pixelbrowse) that lets Claude screenshot and read a page instead of fetching raw HTML, FAISS or Qdrant backends, and a separate LoRA training pipeline; Apache-2.0",
+      "body_summary": "PixelRAG (paper: \"PIXELRAG: Web Screenshots Beat Text for Retrieval-Augmented Generation,\" arXiv:2606.28344, Berkeley Sky Computing Lab/BAIR/Berkeley NLP) renders documents — web pages, PDFs, images — as screenshots and retrieves over the images directly, rather than parsing them to text first. Visual structure that text extraction discards (tables, charts, layout, infographics) stays intact in the retrieved tile, so a reader model can answer questions grounded in the image rather than a lossy text chunk. Queries can be text or an image (true visual search).\n\nTwo components: (1) a renderer (`pixelshot`) that converts a page or PDF into image tiles via headless Chromium (Playwright/CDP) or poppler, and (2) a Qwen3-VL-Embedding-2B model, LoRA-fine-tuned on screenshot data, that embeds page images into a retrievable vector space.",
+      "tags": [
+        "rag",
+        "visual-rag",
+        "screenshot",
+        "multimodal-retrieval",
+        "vision-language-model",
+        "qwen",
+        "faiss",
+        "qdrant",
+        "claude-code-plugin",
+        "web-scraping-alternative",
+        "document-retrieval"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "docker-root-sandbox-disabled",
+        "untested-docker-build"
+      ],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/pixelrag.md"
+    },
+    {
       "name": "piyaz",
       "title": "Piyaz",
       "url": "https://github.com/FrkAk/piyaz/",
@@ -12577,6 +13456,30 @@
       "security_flags": [],
       "reviewed": "2026-06-16",
       "path": "catalog/entries/ponytail.md"
+    },
+    {
+      "name": "primetween",
+      "title": "PrimeTween",
+      "url": "https://github.com/KyryloKuzyk/PrimeTween",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Allocation-free Unity tweening library — animates Transform, RectTransform, SpriteRenderer, AudioSource, Light, Materials, UI Toolkit elements, and generic float/Color/Vector values in one line of code with sequences, delays, and coroutine/async-await support (delays allocate as part of C# async, nothing else does); tunable from the Inspector; pitched as a faster, allocation-free alternative to DOTween; a paid PRO tier adds visual Inspector-authored animation; free tier license is source-available but restricts repackaging/resale, not OSI-approved MIT/Apache; 2.0k stars, 83 forks.",
+      "body_summary": "PrimeTween is a Unity animation (\"tweening\") library that animates object properties — position, rotation, scale, color, UI/UI Toolkit values, material properties, camera properties, audio volume, and generic `float`/`Color`/`Vector` values — in a single line of code, with support for delays, sequences, coroutines, and async/await. All animation parameters are also exposed in the Inspector for designer tuning without code. The library is marketed as allocation-free at runtime (the one exception being that `async`/`await` itself allocates a small amount of garbage in C#, independent of PrimeTween), and as a drop-in, easier-to-learn replacement for the popular commercial DOTween library — PrimeTween ships migration documentation for teams switching from DOTween. A separate paid PrimeTween PRO tier adds an Inspector-based visual animation authoring tool (`TweenAnimation`) and claims faster runtime performance.",
+      "tags": [
+        "unity",
+        "tweening",
+        "animation",
+        "performance",
+        "game-development",
+        "csharp"
+      ],
+      "workflows": [],
+      "license": "custom (source-available; free use in apps/games, no repackaging or resale)",
+      "security_flags": [
+        "non-standard-license"
+      ],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/primetween.md"
     },
     {
       "name": "procedura",
@@ -12763,6 +13666,33 @@
       ],
       "reviewed": "2026-06-25",
       "path": "catalog/entries/prompt-versioning-managed-agents.md"
+    },
+    {
+      "name": "pseudo-3d-sprite-billboarding",
+      "title": "Pseudo-3D via Sprite Billboarding Over 2D Gameplay Logic, with Fog-Based Distance Culling",
+      "url": "https://www.instagram.com/reel/Dd_kMxYOcPk/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Game-dev rendering technique for making a fully 2D top-down game look 2.5D/3D without changing its gameplay logic. The camera is tilted down from a pure overhead view, and top-down sprites are 'stood up' and rotated to face the camera via a single matrix transform in code (classic sprite billboarding, as in Pokemon Black & White-style pseudo-3D). Hit detection stays simple circle hitboxes and elevation/jump checks stay a plain numeric comparison between grid cells, both unaware of the new camera angle. Tilting the camera low exposed a far draw distance that tanked frame rate; hiding distant geometry in fog and simplifying far props (trees) recovered performance, reported as a 7x speedup. Demonstrated in a devlog for the in-development game 'Soul Stream.'",
+      "body_summary": "A rendering trick for turning a plain top-down 2D game into one that reads as 2.5D/3D, while leaving the underlying 2D gameplay logic untouched. The game started as an ordinary overhead top-down game. The developer tilted the camera down off the pure-overhead angle, which immediately exposed a problem: character sprites, drawn flat for a top-down view, now appeared to be lying on the floor instead of standing. The fix was a single matrix transform applied in code that rotates each sprite up and turns it to face the camera — standard camera-facing sprite billboarding, the same family of technique used by games like Pokemon Black & White to combine a tilted 3D-looking camera with 2D character art (three-quarter/pseudo-3D perspective).\n\nThe notable part is what did *not* change underneath the new visual: hit detection is still plain circle hitboxes, with no 3D collision geometry added. Elevation/jump logic is still a flat grid where each cell holds a number, and a jump check is just a comparison between two of those numbers — no physics simulation or 3D height field. The visual layer (tilted camera, billboarded sprites) and the logic layer (2D circles and a numeric grid) stay fully decoupled, so the 3D-looking presentation is achieved without the cost or complexity of an actual 3D simulation.\n\nTilting the camera low also created a separate, real problem: at a shallow angle the view draws all the way to the horizon, and the devlog reports this caused a severe frame-rate drop (\"a slideshow\"). The reported fix was distance-based optimization: hiding far-away geometry in fog and using simplified (\"lazy\") tree art for distant props, which the devlog claims recovered a 7x speedup. No benchmark or profiling data is shown — this is a self-reported figure from the devlog, not an independently measured one.",
+      "tags": [
+        "game-design",
+        "billboarding",
+        "pseudo-3d",
+        "sprite-rendering",
+        "top-down",
+        "matrix-transform",
+        "collision-detection",
+        "distance-culling",
+        "fog-rendering",
+        "game-development",
+        "devlog"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/pseudo-3d-sprite-billboarding.md"
     },
     {
       "name": "pstack",
@@ -13438,6 +14368,29 @@
       "path": "catalog/entries/robyn.md"
     },
     {
+      "name": "rogue-1980-tic-tac-toe-dungeon-generation",
+      "title": "Rogue's 3x3 Grid (\"Tic-Tac-Toe\") Dungeon Generation Algorithm",
+      "url": "https://www.instagram.com/reel/DfAALtXkvNs/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Procedural dungeon-layout algorithm from Rogue (1980, by Michael Toy and Glenn Wichman, later joined by Ken Arnold), the game that gave the roguelike genre its name. Rather than placing rooms at arbitrary positions — which collide and can leave rooms unreachable — Rogue's source (version 5.4, files rooms.c and passages.c) divides its 80x24 terminal screen into a fixed 3x3 grid of nine cells. Each cell gets at most one room, randomly sized and positioned but confined to its cell so rooms can never overlap or share a wall; up to three cells (equally likely to be 0-3) are left empty, acting only as a point corridors pass through. Cells are then linked one at a time, each new link joining an already-connected cell to an unconnected neighbor, until all nine are reachable from the starting room, plus up to four extra random links so the layout isn't a single unique path. The result is a layout that is random but always fully connected and always resolvable within a single draw call's worth of simple grid math.",
+      "body_summary": "Rogue (1980) is the game that gave the roguelike genre its name; it was written by Michael Toy and Glenn Wichman, later joined by Ken Arnold, who took over much of the ongoing development. Most adventure games of the era were \"canned\" — the same fixed layout on every playthrough — so Rogue's authors had the program generate a new dungeon layout each time instead.\n\nA naive approach — dropping rooms at arbitrary positions on the screen — causes rooms to overlap each other, and can leave some rooms with no path in. Rogue's solution, implemented in its C source (version 5.4, primarily `rooms.c` and `passages.c`), is to divide the fixed 80-column by 24-line terminal screen into a 3x3 grid of nine equally sized rectangular cells (a \"tic-tac-toe board,\" in Wichman's own description):\n\n- Up to three of the nine cells are randomly marked \"gone\" before room placement — the code picks `goneCount = random(0, 4)`, so 0, 1, 2, or 3 empty cells are equally likely outcomes, each removing one cell from the room-eligible set.\n- Each remaining cell gets exactly one room. The room's width and height are each chosen randomly first (from 4 up to one less than the cell's width/height), and only then is the room positioned inside the cell using the leftover \"slack\" space, with a reserved one-column-left and one-row-bottom gutter always kept clear. Because a room can never grow or be placed outside its own cell, two rooms can never overlap or touch.\n- Cells (whether they hold a room or are \"gone,\" in which case a random point inside the empty cell stands in for a room) are then linked into corridors: starting from one random cell, the algorithm repeatedly links an already-connected cell to an adjacent still-unconnected cell until every one of the nine cells is reachable from the start. Up to four more random links between already-adjacent cells are added on top of that minimum spanning connection, specifically — per a comment in the source — \"so that there isn't always just one unique passage through it,\" producing loops instead of a single critical path.\n- Each corridor between two linked cells is dug as a straight run in the primary direction, a single sideways turn to realign, then a second straight run to the target wall or empty-cell point, so every corridor has at most two bends.\n\nThe result is a layout that is different every run, cannot produce an unreachable room, and is computed with only simple grid arithmetic and small-integer random draws, which was necessary on the limited hardware the game targeted. Wichman later said of the approach, \"We landed on it early because we weren't smart enough to know how to do anything clever\" — yet it was influential enough that the entire roguelike genre of randomly-generated dungeon games is named after it. Wichman and Toy also reportedly wanted more free-form, less grid-locked levels but never found a way to generate them; the later game Hack (an early roguelike) solved that differently.\n\nThe captured Instagram reel that surfaced this item is a third party's own code reimplementation of Rogue 5.4's documented rules (plus a separately-labeled \"naive\" demo of the room-collision problem the grid solves) — it is explicitly not the original Rogue codebase, and the reel states it is not affiliated with or endorsed by Rogue's creators. The original Rogue binary's source was not published at the time; the source referenced here and mirrored on GitHub is the later official Rogue 5.4.4 release under a BSD-style license.",
+      "tags": [
+        "procedural-generation",
+        "dungeon-generation",
+        "roguelike",
+        "grid-based-generation",
+        "level-design",
+        "game-development",
+        "history"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/rogue-1980-tic-tac-toe-dungeon-generation.md"
+    },
+    {
       "name": "rtk",
       "title": "rtk — CLI Proxy for LLM Token Reduction",
       "url": "https://github.com/rtk-ai/rtk",
@@ -13603,6 +14556,52 @@
       "path": "catalog/entries/sam3.md"
     },
     {
+      "name": "sana-wm",
+      "title": "SANA-WM (NVIDIA)",
+      "url": "https://github.com/NVlabs/Sana",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "2.6B-parameter open-source text+image-to-video diffusion transformer world model from NVIDIA/MIT (Haoyi Zhu, Song Han, Enze Xie, et al.) — given one image, a text prompt, and a 6-DoF camera trajectory, generates an explorable, controllable, minute-long 720p video on a single GPU via Hybrid Linear Attention (Gated DeltaNet + periodic softmax attention) and an LTX-2 refiner; Apache-2.0 code and weights, trained in 15 days on 64 H100 GPUs",
+      "body_summary": "SANA-WM is a 2.6-billion-parameter text+image-to-video (TI2V) diffusion transformer \"world model\" from NVIDIA and MIT researchers (Haoyi Zhu, Song Han, Enze Xie, et al.), described in \"SANA-WM: Efficient Minute-Scale World Modeling with Hybrid Linear Diffusion Transformer\" (arXiv:2605.15178, May 2026). Given one input image, a text prompt, and a 6-DoF camera trajectory, it generates an explorable, controllable, minute-long (60s) 720p video on a single GPU. It uses Hybrid Linear Attention — frame-wise Gated DeltaNet (GDN) recurrent blocks combined with softmax attention at every 4th layer (block indices 3, 7, 11, 15, 19) — for memory-efficient long-context video generation, paired with an LTX-2 refiner for high-fidelity decoding. Trained on roughly 213K public video clips with metric-scale pose supervision, completing in 15 days on 64 H100 GPUs. NVIDIA reports 36x higher throughput than the nearest open-source baseline; a distilled variant using NVFP4 quantization runs on a single consumer RTX 5090.",
+      "tags": [
+        "world-model",
+        "video-generation",
+        "text-to-video",
+        "image-to-video",
+        "diffusion-transformer",
+        "camera-control",
+        "nvidia",
+        "open-weights"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/sana-wm.md"
+    },
+    {
+      "name": "save-game-free",
+      "title": "Save Game Free",
+      "url": "https://github.com/BayatGames/SaveGameFree",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Bayat Games' free Unity save/load library — serializes game data to Binary, JSON, or XML with optional encryption via a static SaveGame.Save/Load API, supports serializable complex/custom classes, works across Windows/Linux/macOS/Android/iOS/tvOS/Samsung TV/WebGL, and persists state across scene loads without reinitialization; a paid Save Game Pro tier adds support for saving native Unity types (GameObjects, Transforms) directly; 672 stars, 65 forks; MIT.",
+      "body_summary": "Save Game Free is a save/load library for Unity that persists game data (player progress, scores, custom serializable classes) to disk using a simple static API — e.g. `SaveGame.Save(\"score\", score)` / a matching `Load` call — with no per-scene reinitialization required, since it keeps its state in static properties. It supports three storage formats (Binary, JSON, XML) and optional encryption so saved files aren't trivially editable, and serializes any class marked `[Serializable]`, though it does not support serializing native Unity types (e.g. `GameObject`, `Transform`) directly — that capability is reserved for the paid \"Save Game Pro\" upgrade. Ships cross-platform support for Windows, Linux, macOS, Android, iOS, tvOS, Samsung TV, and WebGL.",
+      "tags": [
+        "unity",
+        "save-system",
+        "serialization",
+        "persistence",
+        "game-development",
+        "csharp"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/save-game-free.md"
+    },
+    {
       "name": "scaledown-cdm",
       "title": "ScaleDown Constrained Decoding Models (CDM)",
       "url": "https://scaledown.ai/",
@@ -13724,6 +14723,32 @@
       ],
       "reviewed": "2026-08-25",
       "path": "catalog/entries/scrapegraph-ai.md"
+    },
+    {
+      "name": "screenshot-to-code",
+      "title": "Screenshot to Code",
+      "url": "https://github.com/abi/screenshot-to-code",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Converts screenshots, mockups, Figma designs, and screen recordings into HTML+Tailwind, HTML+CSS, React+Tailwind, Vue+Tailwind, Bootstrap, or Ionic+Tailwind code via multi-provider LLMs (OpenAI/Anthropic/Gemini); Gemini extracts real logos/images from the source rather than regenerating them, Replicate handles image generation/editing/background removal; React/Vite frontend + FastAPI backend, self-hostable or hosted at screenshottocode.com; MIT, 55k+ stars",
+      "body_summary": "Takes a screenshot, mockup, Figma export, or screen recording and generates working front-end code in a chosen stack: HTML+Tailwind, HTML+CSS, React+Tailwind, Vue+Tailwind, Bootstrap, or Ionic+Tailwind. A user can also enter a live URL instead of uploading an image. Backend is FastAPI, frontend is React/Vite; self-hostable via Poetry or Docker, or used hosted at screenshottocode.com.",
+      "tags": [
+        "screenshot-to-code",
+        "design-to-code",
+        "ui-generation",
+        "website-cloning",
+        "llm-vision",
+        "react",
+        "vue",
+        "tailwind",
+        "fastapi",
+        "self-hostable"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/screenshot-to-code.md"
     },
     {
       "name": "scrub-context-engineering",
@@ -13890,6 +14915,36 @@
       "path": "catalog/entries/seo-god.md"
     },
     {
+      "name": "seven-levels-of-observability",
+      "title": "The 7 Levels of Observability",
+      "url": "https://www.instagram.com/reel/De4iU2vMW7X/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "A content creator's seven-stage observability maturity ladder — logs, metrics, traces, correlation (shared request ID across logs/traces), alerts, SLOs (SLI/SLO/SLA), and cardinality management — presented as a progression where each stage answers a question the previous one couldn't (what happened, is it trending, where is the time going, why, before users notice, is the target at risk, can we afford to measure it). Not a single named industry-standard framework: published observability maturity models elsewhere range from 3 pillars (logs/metrics/traces) to 4-5 level maturity scales (e.g. Last9, codefarm.in) covering the same underlying concepts — structured logs with trace IDs, OpenTelemetry-style distributed tracing, SLO/error-budget-driven alerting, and cardinality limits on metric labels — under different level counts and names.",
+      "body_summary": "A seven-stage mental model for observability maturity, framed as each stage letting you see more of a running system than the last:\n\n1. **Logs** — the app writes a line per event, giving you what happened and when; a single line can't show a trend.\n2. **Metrics** — numbers reported periodically…",
+      "tags": [
+        "observability",
+        "logs",
+        "metrics",
+        "traces",
+        "opentelemetry",
+        "correlation",
+        "alerting",
+        "slo",
+        "sli",
+        "sla",
+        "cardinality",
+        "devops",
+        "sre",
+        "monitoring"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/seven-levels-of-observability.md"
+    },
+    {
       "name": "sglang",
       "title": "SGLang",
       "url": "https://github.com/sgl-project/sglang",
@@ -13912,6 +14967,54 @@
       "security_flags": [],
       "reviewed": "2026-09-14",
       "path": "catalog/entries/sglang.md"
+    },
+    {
+      "name": "shader-skills",
+      "title": "Shader Skills",
+      "url": "https://github.com/gokayfem/shader-skills",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Agent skill (gokayfem) teaching Claude Code, Codex, Cursor, Copilot, and Gemini CLI to write procedural GLSL/Shadertoy shaders that compile on the first try. Ships a 186-function GLSL library across 20 modules (hashing, noise, SDFs, raymarching, shading, water, volumetrics, color/tonemapping, cameras, debugging), each function WebGL2-compiled and GPU-tested (90 property tests across 16,384 samples), plus a Python bundler that inlines only the functions a given shader uses into one Shadertoy-ready file, and a checker that catches common WebGL-vs-desktop-GLSL mistakes. v2.0.0 tagged 2026-10-23; MIT; 410 stars, 36 forks at time of review.",
+      "body_summary": "Shader Skills is an agent skill that teaches coding agents (Claude Code, Codex, Cursor, Copilot, Gemini CLI) to write procedural GLSL shaders targeting WebGL2/Shadertoy that compile successfully and render as intended on the first attempt. Its core is a library of 186 GLSL functions spread across 20 modules — hashing, ten noise variants, patterns, 2D/3D signed distance functions (SDFs), operators, domain transformations, raymarching, shading, water simulation, color/tonemapping, volumetrics, cameras, and debugging utilities. Each function is compiled in WebGL2 and numerically verified on the GPU rather than assumed correct from desktop-GLSL conventions. The README frames the problem it targets as agents writing shaders \"blind\": they cannot see rendered output, misremember exact formulas, and WebGL2 rejects constructs (e.g. struct ternaries) that desktop GLSL accepts, producing GPU-varying hash results, SDFs with wrong signs, double gamma correction, or fog that ignores the sky.\n\nA Python bundler inlines only the dependency functions a given shader actually calls into a single self-contained file that pastes directly into Shadertoy, and a separate checker script scans for the known WebGL2 failure patterns above before the agent presents a result. The repo ships 11 ready-to-run example shaders (SDF still-life with PBR materials/soft shadows/AO/AgX tonemapping, volumetric cumulus clouds with energy-conserving integration and Beer-Powder/dual-lobe phase functions, a physically-based sky with aerial perspective, a 2D distance-field poster using Oklab gradients, texture-free procedural materials — marble, Voronoi cracks, hex tiles, Truchet patterns, filtered checker — and a dispersive-wave ocean with analytic curvature foam and Fresnel sky), each with a paste-ready source file under `skills/shader-art-coding/templates/`. A separate \"Video 2 GLSL\" workflow (promoted by the author on X/Twitter, not verified firsthand here) reconstructs a short reference video clip as a single procedural GLSL fragment shader.",
+      "tags": [
+        "glsl",
+        "shadertoy",
+        "webgl2",
+        "shaders",
+        "procedural-generation",
+        "claude-code-skill",
+        "raymarching",
+        "generative-art",
+        "skill"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/shader-skills.md"
+    },
+    {
+      "name": "shadow-mode-progressive-trust-approval",
+      "title": "Shadow-Mode Progressive Trust for Agent Approval Gates",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Review-load design pattern for human-in-the-loop agent approval: tier actions by risk/reversibility rather than by tool, run gated actions in shadow mode (agent logs what it would decide without executing, compared against the human's actual call) to measure per-action-type agreement rather than one global rate, write explicit promotion/demotion rules (agreement above threshold for N decisions with no high-severity miss loosens the gate a notch; a drop or miss tightens it) so oversight shrinks as the agent earns it instead of staying flat, keep approval UI to a few lines of what/why/evidence, and convert any judgment call the human keeps approving the same way into a deterministic code rule instead of re-reviewing it",
+      "body_summary": "A pattern for deciding which agent actions need a human to look at them, and for shrinking that review load over time instead of leaving it fixed. The starting problem: once an agent can take far more actions per hour than a human can review, flat strategies (sample a fixed percentage, or read everything) never improve as the agent gets more reliable — the review load stays constant regardless of agent quality.\n\nThe pattern has several parts, drawn from a Reddit discussion where multiple practitioners converged on the same design independently:\n\n1. **Tier by risk, not by tool.** Internal, reversible, read-only actions execute and are only logged. Low-risk but customer-facing actions get sampled. Anything that writes externally, spends money, or deletes data always waits for a human.\n2. **Shadow mode as the measurement step.** For gated actions, the agent logs the decision it would have made without executing it, then that logged decision is compared against what the human actually approved, rejected, or edited. Agreement is tracked per action type/slice, not as one global number — one practitioner found ~98% agreement on one action type and far lower on another, which a single global gate had been treating identically.\n3. **Write the promotion/demotion rule before looking at the numbers**, to avoid rationalizing a threshold after seeing the data. Example rule: agreement stays above a threshold for N consecutive decisions with no high-severity miss → loosen that action type's gate one notch (always-approve → sample-approve → log-only). A drop in agreement or any high-severity miss tightens it back. This gives the agent an explicit, evidence-based path to earn reduced oversight, rather than a permanent flat review load.\n4. **Cheap-to-decide approvals.** The approval surface should state what the agent wants to do, why, and the supporting evidence in a few lines; if approving requires reading the full output, the approval UI is badly designed.\n5. **Self-check before human review.** Define what \"done\" looks like for a task and run cheap automated checks first, so a human only sees exceptions rather than everything.\n6. **Promote repeated judgment calls into deterministic code.** When the agent and human keep agreeing on the same call made the same way, pull that decision out of the model and write it as a plain code rule — cheaper, testable, and it never needs reviewing again, narrowing what the agent still handles to genuinely ambiguous cases.\n7. **One owner per approval queue/workflow** — distributing review across several people was reported to make nobody actually accountable for it.\n\nThe thread names LangGraph (interrupts) and Orq.ai (per-tool approval cards) as implementations of the gating mechanism itself, but the pattern — risk tiering, shadow-mode measurement, and trust that is earned rather than assumed — is tool-agnostic.",
+      "tags": [
+        "agent-pattern",
+        "human-in-the-loop",
+        "approval-gates",
+        "shadow-mode",
+        "progressive-trust",
+        "risk-tiering",
+        "governance",
+        "review-load"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/shadow-mode-progressive-trust-approval.md"
     },
     {
       "name": "shan-shui-inf",
@@ -14706,6 +15809,53 @@
       "path": "catalog/entries/spiderbrain-v3.md"
     },
     {
+      "name": "splashsurf",
+      "title": "splashsurf",
+      "url": "https://github.com/InteractiveComputerGraphics/splashsurf",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Rust surface reconstruction library and CLI (Fabian Löschner, Interactive Computer Graphics) that converts SPH particle data (e.g. from [[splishsplash]]) into a smooth triangle mesh for rendering — loads formats including .bgeo and .vtk; 309 stars, 29 forks; MIT.",
+      "body_summary": "splashsurf reconstructs a continuous triangle-mesh surface from raw SPH (smoothed particle hydrodynamics) particle data. Simulators like [[splishsplash]] output only particle positions each timestep, which look like loose sand/grains rather than a liquid; splashsurf fits a smooth surface around the particle cloud so it can be rendered as a fluid. It reads particle data formats including `.bgeo` and `.vtk` and writes mesh output for import into renderers or 3D tools (e.g. Mitsuba, Blender, Maya).",
+      "tags": [
+        "surface-reconstruction",
+        "sph",
+        "particle-to-mesh",
+        "rust",
+        "cli",
+        "mesh-generation",
+        "vfx"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/splashsurf.md"
+    },
+    {
+      "name": "splishsplash",
+      "title": "SPlisHSPlasH",
+      "url": "https://github.com/InteractiveComputerGraphics/SPlisHSPlasH",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source C++ library (Jan Bender et al.) for physically-based fluid simulation using smoothed particle hydrodynamics (SPH) — 2D/3D, CPU/GPU neighborhood search, AVX vectorization, Python bindings, multiple pressure solvers (WCSPH, PCISPH, PBF, IISPH, DFSPH, PF), viscosity/surface-tension/vorticity methods, multi-phase and rigid-fluid coupling; 1.9k stars, 339 forks; MIT.",
+      "body_summary": "SPlisHSPlasH simulates fluids (and deformable solids, with rigid-fluid coupling) by representing the fluid as particles and computing their motion with smoothed particle hydrodynamics (SPH): each particle's density is estimated by summing the mass of nearby particles within a kernel radius, weighted by a smooth falloff function, and an implicit pressure solver corrects local compression toward the fluid's rest density every step before gravity and viscosity are applied and particles are advanced. It implements several interchangeable pressure solvers (WCSPH, PCISPH, PBF, IISPH, DFSPH, PF — the DFSPH solver is divergence-free SPH, which iterates the pressure correction until average compression drops below a configurable tolerance), plus explicit/implicit viscosity, surface tension, vorticity methods, drag-force computation, and multi-phase simulation. Output is raw particle position/velocity data per timestep, which downstream tools (e.g. [[splashsurf]]) convert into a renderable mesh surface.",
+      "tags": [
+        "fluid-simulation",
+        "sph",
+        "smoothed-particle-hydrodynamics",
+        "dfsph",
+        "physics-simulation",
+        "cplusplus",
+        "python-bindings",
+        "vfx"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/splishsplash.md"
+    },
+    {
       "name": "sqltools",
       "title": "SQLTools",
       "url": "https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools",
@@ -14998,6 +16148,33 @@
       "security_flags": [],
       "reviewed": "2026-09-29",
       "path": "catalog/entries/structure-aware-rendering.md"
+    },
+    {
+      "name": "subtask4llm",
+      "title": "subtask4llm",
+      "url": "https://github.com/evgenyigumnov/subtask4llm",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "Skill pack that splits a coding task into a dependency-ordered plan of up to 10 subtasks, each run by a fresh, isolated one-shot coding-agent worker (Pi Coding Agent or OpenAI Codex CLI) with its own clean context window instead of one agent accumulating the whole task's history; a Python runner (scripts/run_workflow.py) executes workers sequentially, passing each only shared project context plus its declared-dependency results, with bounded per-step timeouts/retries, one shared live log, and --continue-on-error; ships subtask4llm-pi and subtask4llm-codex skills installable independently via the Skills CLI (no Claude Code skill yet — README requests a PR); MIT",
+      "body_summary": "subtask4llm splits a large coding task into a dependency-ordered plan of up to 10 subtasks, each executed by a fresh, isolated coding-agent worker process with its own clean context window, rather than one agent working through the whole task in a single accumulating context. A planner (the calling agent) writes a version-1 JSON plan — ordered steps, each with a unique ID, bounded task, nonempty acceptance criteria, and dependencies restricted to earlier steps — and validates it with `--dry-run`. A standalone Python runner (`scripts/run_workflow.py`) then launches one-shot worker processes sequentially in the target workspace; each worker receives only the shared project context, its own assigned task, and the results of its declared dependencies — not the full project or conversation history. Workers run as `--mode json --no-session --no-skills` one-shot processes and must return raw JSON matching a documented result schema.\n\nAll worker/orchestrator activity streams to one shared live log per run (default: outside the workspace, in the system temp directory; `--live-log <path>` picks another location), with a printed `tail -f` command for the user to follow progress. The runner checks progress every 10 minutes, kills a shell command with no output for 10 minutes, and enforces a 30-minute hard limit per step; timeouts are never retried. Non-timeout failures get at most one configured retry (`--retries 0|1`). By default the workflow stops after a step remains unsuccessful past its retries; `--continue-on-error` runs the remaining planned steps anyway (final status still reports failure if any step failed).\n\nShips two independent, agent-specific skills under `skills/<skill-name>/`: `subtask4llm-pi` (drives Pi Coding Agent workers) and `subtask4llm-codex` (drives OpenAI Codex CLI workers); each installs standalone via the Skills CLI. No Claude Code skill exists yet — the README asks for a pull request to add one. No recursive agent spawning and no bundled infrastructure beyond the runner script; workers are plain CLI subprocesses.",
+      "tags": [
+        "skill",
+        "task-decomposition",
+        "context-management",
+        "pi-coding-agent",
+        "codex",
+        "local-llm",
+        "cli-tool",
+        "orchestration"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "single-maintainer",
+        "unsandboxed-worker-execution"
+      ],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/subtask4llm.md"
     },
     {
       "name": "subtext",
@@ -15518,6 +16695,30 @@
       "path": "catalog/entries/textual.md"
     },
     {
+      "name": "texture-time-ground-effects",
+      "title": "Storing Per-Pixel Time and Location in a Texture to Drive Ground Effects (Instead of Spawned Decals/Actors)",
+      "url": "https://www.instagram.com/reel/DezJsUWuQqo/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Game-dev technique for rendering ground effects (e.g. area-of-effect visuals) without spawning a decal or actor object per effect instance. Time-of-occurrence and location data is written into a texture; a material reads that texture to control how the effect visually appears and disappears over time. A separate data-driven grid system tracks which grid cells a character currently occupies, used to decide when to trigger or clear an effect, rather than each effect instance independently tracking its own lifetime and overlap with other effects. Reported benefit is avoiding the lifetime/overlap bookkeeping cost that scales with the number of independently-spawned decal/actor effects. Demonstrated in Unreal Engine by the two-person dev team of the upcoming roguelike 'Barrow and Blade' as one of three non-standard optimization techniques.",
+      "body_summary": "A technique for rendering transient ground-area effects (described in the source as \"ground effects,\" e.g. the visual footprint of an area-of-effect ability) without spawning a decal or actor per effect instance. Instead of each effect being its own object that must independently track how long it has existed and whether it overlaps other active effects, the system writes time and location information into a texture whenever an effect occurs. A material then reads that texture to control how the effect visually appears and fades/disappears, driven by the elapsed time encoded per pixel/location rather than by an object's own internal clock.\n\nA separate data-driven grid system runs alongside this: it detects when a character enters or leaves each grid cell, and that detection is what decides when an effect should be triggered or cleared. This replaces per-instance overlap and lifetime tracking (checking whether this effect and that effect intersect, and how long each has been alive) with a single texture plus a single grid query, which the source states \"saves having to track the lifetime and overlaps of different ground effects independently, which can get expensive quite quickly\" as effect count grows. Demonstrated in Unreal Engine by the two-person dev team of the hack-and-slash roguelike \"Barrow and Blade,\" alongside two other non-standard optimization techniques, targeting a wide range of hardware including the Steam Deck.",
+      "tags": [
+        "game-design",
+        "shader-technique",
+        "render-target",
+        "ground-effects",
+        "performance-optimization",
+        "data-driven-grid",
+        "game-development",
+        "unreal-engine"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/texture-time-ground-effects.md"
+    },
+    {
       "name": "tfm-tui",
       "title": "tfm — Terminal File Manager",
       "url": "https://github.com/clarkarch/tfm-tui",
@@ -15683,6 +16884,30 @@
       "path": "catalog/entries/tiktoken.md"
     },
     {
+      "name": "tileless-terrain-corner-blend-shader",
+      "title": "Tileless Terrain Rendering via Per-Pixel Four-Corner Blending Shader",
+      "url": "https://www.instagram.com/reel/DfAKyLiM9Or/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Game-dev terrain-rendering technique that replaces hand-drawn tileset art entirely with a single shader. Each map cell stores one terrain-type number instead of a chosen tile sprite; a shader reads the four cell values surrounding each screen pixel and renders a terrain layer at that pixel only when it covers more than half of those four corners, producing automatically-rounded coastlines, grass/dirt edges, and other transitions with no pre-drawn edge, corner, or inner-corner art. The same four-corner read drives layered procedural detail (grass blades, foam, roads, footpaths, plowed fields, snow) and the entire ground renders in one draw call; demonstrated in the dev log for Valdrin, a 2D medieval kingdom-sim on Steam.",
+      "body_summary": "A terrain-rendering technique that eliminates hand-drawn tileset art by moving all edge/corner logic from sprite art into a shader. The standard alternative — a \"blob\" autotile set — requires drawing a tile for every edge, corner, and inner-corner case for each pair of terrains, which combinatorially comes out to 47 distinct pieces per pair (reducible to around 16 or, with care, as few as 5, by reusing symmetric pieces); every added terrain type multiplies that work.\n\nIn this technique, each map cell holds nothing but a single integer terrain ID (water, sand, dirt, grass, etc.) — no sprite is chosen or stored per cell. A single shader does the rendering: for every screen pixel, it reads the four map cells surrounding that pixel's position and, for each terrain layer present among them, draws that layer at the pixel only if it covers more than half of the four corners. Because the visibility test is a simple majority-of-four-corners rule rather than a discrete lookup into pre-drawn art, transitions round themselves off automatically without needing a piece drawn for every possible corner combination. Adding low-frequency noise to the coverage test makes boundaries like coastlines read as naturally wandering rather than grid-aligned. The same four-corner read is reused to layer in procedural surface detail — individual grass blades overhanging dirt, foam washing at water edges, roads, footpaths, plowed fields, and snow — and the entire ground, across all terrain types and detail layers, renders in a single draw call.\n\nThis is a shader-only extension of the independently well-documented \"dual-grid\" autotiling principle: both approaches determine a render element's appearance from the four map cells touching it (2⁴ = 16 cases) rather than from eight neighbors of a single cell (47 cases), which is what makes diagonal/inner-corner cases resolve without special-casing. Standard dual-grid implementations still select from a small fixed set of pre-drawn tile sprites (15–16 pieces) via that four-corner bitmask; the technique in this item instead computes the coverage continuously in-shader with no sprite sheet or atlas lookup at all, so zero terrain-transition art is drawn by hand.\n\nIt was demonstrated in a dev-log reel for Valdrin, a 2D low-fantasy medieval kingdom/settlement sim by developer Stalwart Fox, available to wishlist on Steam (App ID 3929800); the reel's spoken audio names the game \"Baldream,\" which does not match the caption's \"Valdrin\" or the Steam listing — likely a transcription error in the reel's own audio-to-text captioning rather than a second game.",
+      "tags": [
+        "procedural-generation",
+        "shader-technique",
+        "dual-grid",
+        "autotiling",
+        "terrain-blending",
+        "pixel-art",
+        "game-development",
+        "coastline-rendering"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/tileless-terrain-corner-blend-shader.md"
+    },
+    {
       "name": "titans-atlas-cronus",
       "title": "Titans (Atlas + Cronus)",
       "url": "https://github.com/titans-tools",
@@ -15755,6 +16980,29 @@
       "security_flags": [],
       "reviewed": "2026-10-06",
       "path": "catalog/entries/tldr-pages.md"
+    },
+    {
+      "name": "token-budget-local-agent-workflow",
+      "title": "Token-Budget Workflow for Small-Context Local Coding Agents",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Practitioner workflow for making a heavily quantized local LLM (32K-65K context) usable as a coding agent despite its narrow context window and higher error rate: (1) pick a harness with a small startup token footprint (author reports Pi needs ~1.5K tokens vs. an estimated 10-14K for Codex/Claude Code, leaving more of a 64K window for actual work) instead of a heavier, feature-rich harness; (2) split every task into a planning turn that writes plan.md, then clear the session (Pi's /new) and run a separate implementation turn that reads plan.md and records results in it, so neither turn needs the whole task history in context; (3) for plans too large for one implementation turn, delegate via a subtask-runner skill (subtask4llm) that executes up to 10 subtasks sequentially in fresh, isolated agent contexts, feeding results back to the coordinating instance; (4) compensate for the model's lower quality at low-bit quantization by enforcing hard constraints in AGENTS.md — a 300-500 line file-size ceiling, one responsibility per module, mandatory unit tests for every function/change, tests-and-build must pass before done, no commits without explicit user request — which the author attributes to a remark by Robert Martin (Uncle Bob, author of Clean Code) that he has stopped reading AI-generated code, substituting enforced constraints for manual review and spending free local-GPU iterations letting the model self-correct against those constraints.",
+      "body_summary": "A practitioner running a heavily quantized (UD-Q2_K_XL) 35B MoE coding model on a single 16GB consumer GPU (RTX 4070 Ti SUPER) at a 65,536-token context window describes a four-part workflow to keep the agent usable despite that narrow window and the extra mistakes a 2-bit quant makes.\n\n- **Harness…",
+      "tags": [
+        "agent-pattern",
+        "local-llm",
+        "context-management",
+        "plan-md",
+        "agents-md",
+        "token-budget",
+        "task-decomposition",
+        "pi-coding-agent"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/token-budget-local-agent-workflow.md"
     },
     {
       "name": "tolvi",
@@ -16192,6 +17440,54 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/unforget.md"
+    },
+    {
+      "name": "unitask",
+      "title": "UniTask",
+      "url": "https://github.com/Cysharp/UniTask",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Cysharp's allocation-free async/await library for Unity — a struct-based UniTask<T> (vs. the heap-allocating Task<T>) that makes Unity's AsyncOperations, Coroutines, and MonoBehaviour/uGUI events awaitable, runs on Unity's PlayerLoop without threads (works on WebGL/wasm), and adds async LINQ (Channel, AsyncReactiveProperty) plus a TaskTracker window for leak detection; commonly used to replace coroutines for timers and sequencing (e.g. day/night cycles); requires Unity 2018.3+ for C# 7.0 task-like builders; 11.3k stars, 1.0k forks; MIT.",
+      "body_summary": "UniTask provides an efficient, allocation-free async/await integration for Unity, built around a struct-based `UniTask`/`UniTask<T>` type instead of the heap-allocating `System.Threading.Tasks.Task<T>`. It makes Unity's native asynchronous objects — `AsyncOperation`, `ResourceRequest`, `UnityWebRequestAsyncOperation`, and coroutines — directly awaitable, and exposes MonoBehaviour lifecycle/uGUI events as awaitable or async-enumerable streams via `AsyncTriggers`. Because it runs on Unity's PlayerLoop rather than real OS threads or `SynchronizationContext`, it works on platforms coroutines already support, including WebGL and wasm. It's commonly adopted as a coroutine replacement for game-logic sequencing and timers — e.g. driving day/night cycles or periodic crop-growth timers in async methods instead of `IEnumerator` coroutines.",
+      "tags": [
+        "unity",
+        "async-await",
+        "coroutines",
+        "csharp",
+        "performance",
+        "game-development"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/unitask.md"
+    },
+    {
+      "name": "unrealclaude",
+      "title": "UnrealClaude",
+      "url": "https://github.com/Natfii/UnrealClaude",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Unreal Engine 5.7 editor plugin that docks a Claude Code chat panel in the editor and shells out to the local `claude` CLI (no separate API key) for in-editor assistance, plus a bundled Node.js MCP bridge exposing 20+ tools for actor manipulation, Blueprint/Animation-Blueprint editing, level management, materials, and Enhanced Input; by default the plugin invokes `claude -p --skip-permissions` for every prompt, removing Claude Code's human-in-the-loop approval step unless the integrator changes AllowedTools in C++; a separate 'Auto-approve script execution' project setting (default OFF) controls whether Python/C++/console scripts triggered through the bridge or chat run without a per-script permission dialog; hidden MCP tools (execute_script, run_console_command) can reach the Python interpreter if un-hidden by editing source; Windows/Linux/macOS (Apple Silicon); MIT; built from source, no prebuilt binaries.",
+      "body_summary": "UnrealClaude integrates the Claude Code CLI directly into the Unreal Engine 5.7 Editor: a docked chat panel (Tools → Claude Assistant) streams responses, groups tool calls, and renders code blocks, using the user's existing Claude Code authentication (Claude Pro/Max subscription or API access) rather than a separate API key. The plugin automatically gathers project context (source modules, enabled plugins, project settings, recent assets, a custom `CLAUDE.md`) and a dynamic UE 5.7 API-context loader (`unreal_get_ue_context`) feeds accurate engine documentation to Claude on demand, queryable by category (animation, blueprint, slate, actor, assets, replication) or keyword search.\n\nA bundled Node.js MCP bridge (a separate repo, included as a submodule) runs an MCP server on port 3000 that starts automatically with the editor, exposing 20+ tools across actor manipulation (spawn/move/delete/inspect/set-properties), level management (open/create/list templates), Blueprint and Animation-Blueprint editing (variables, functions, nodes, pins, full state-machine editing including batch operations), asset search with dependency/referencer queries, character and material tools, Enhanced Input action/mapping management, and utility tools (console commands, output log, viewport capture, script execution) — plus an async task queue so long-running operations don't time out. Claude can write, compile via Live Coding, and run Python/Console/Editor-Utility scripts, each gated by a per-script permission dialog unless auto-approval is turned on. Conversation history persists per-project (`Saved/UnrealClaude/`) across editor sessions.",
+      "tags": [
+        "unreal-engine",
+        "claude-code",
+        "mcp-server",
+        "editor-plugin",
+        "blueprints",
+        "game-development",
+        "cpp"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "skip-permissions-by-default",
+        "unsandboxed-script-execution-available"
+      ],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/unrealclaude.md"
     },
     {
       "name": "unslop-skills",
@@ -16633,6 +17929,56 @@
       "path": "catalog/entries/vphone-cli.md"
     },
     {
+      "name": "vscode-port-forwarding-devtunnels",
+      "title": "VS Code Port Forwarding via Dev Tunnels (Public Localhost Sharing)",
+      "url": "https://www.instagram.com/reel/DfCdgxvDwVG/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Technique for sharing a locally-running dev server with anyone over the internet using VS Code's built-in Ports panel — run the project, note the port, open the Ports view, use Forward a Port, then open the generated URL's context menu and set Port Visibility to Public so viewers reach it without GitHub sign-in. The underlying mechanism is Microsoft Dev Tunnels (URLs resolve to *.devtunnels.ms); forwarded ports default to Private (requires sign-in with the same GitHub account used to start forwarding) and must be explicitly switched to Public to work as a no-login share link. Works for any local server (the reel demonstrates a full-stack Vite/React PDF-tools clone) as long as the process keeps running on the local machine — the tunnel relays traffic, it does not host the app independently.",
+      "body_summary": "VS Code ships built-in support for Microsoft Dev Tunnels, letting a developer expose a local dev server to anyone over the internet without a separate tunneling tool (e.g. ngrok): run the project locally, note its port, open the **Ports** view (bottom panel, next to Terminal, or via the **Ports: Focus on Ports View** command), click **Forward a Port**, and enter the port number. VS Code generates a URL of the form `https://<random-id>.devtunnels.ms` that proxies traffic to the local port.\n\nBy default the forwarded port's visibility is **Private**: anyone opening the URL must sign in with the same GitHub account used to start forwarding. To share it as a no-login link — the behavior the source reel shows — the user must right-click the port and set **Port Visibility → Public**; the reel's transcript does not mention this step or the Private default it bypasses. Once public, any URL holder reaches the service with no authentication of their own. The technique works for any locally-running full-stack process (the reel demos a Vite/React PDF-tools app); the one real condition is that the local process must keep running, since the tunnel only relays to it rather than hosting the app itself.",
+      "tags": [
+        "vscode",
+        "port-forwarding",
+        "dev-tunnels",
+        "localhost-sharing",
+        "web-dev",
+        "networking",
+        "remote-access",
+        "demo-sharing"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [
+        "public-visibility-removes-auth",
+        "exposes-whatever-runs-on-port"
+      ],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/vscode-port-forwarding-devtunnels.md"
+    },
+    {
+      "name": "wave-function-collapse",
+      "title": "WaveFunctionCollapse",
+      "url": "https://github.com/mxgmn/WaveFunctionCollapse",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "C# algorithm (by Maxim Gumin) that generates bitmaps/tilemaps locally similar to a single input example — picks the lowest-entropy region, collapses it to one of the input's NxN patterns weighted by their input frequency, and propagates that constraint outward, repeating until the whole output is determined or a contradiction forces a retry; used for procedural terrain, dungeon, and texture generation; 25.5k stars, 1.4k forks; MIT (sample images/tiles excluded from the license).",
+      "body_summary": "WaveFunctionCollapse (WFC) generates output bitmaps or tilemaps that are \"locally similar\" to a single input sample: every NxN pixel pattern that appears in the output also appears somewhere in the input, and the output's pattern frequencies approximate the input's. It runs an observation/propagation loop borrowed in name only from quantum mechanics: the output starts in a \"superposition\" where every cell could be any input pattern; the algorithm repeatedly finds the cell with the lowest Shannon entropy (fewest remaining valid patterns), collapses it to one pattern chosen at random weighted by input frequency, then propagates that constraint to neighboring cells, removing patterns that would no longer be consistent. The loop continues until every cell is resolved (success) or a contradiction leaves a cell with no valid patterns (the implementation restarts). Two input modes are supported: the \"overlapping\" model (learns patterns directly from a sample image) and the \"tiled\" model (uses a hand-authored tileset with explicit adjacency rules).",
+      "tags": [
+        "procedural-generation",
+        "wave-function-collapse",
+        "tile-generation",
+        "constraint-propagation",
+        "csharp",
+        "game-development",
+        "unity"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/wave-function-collapse.md"
+    },
+    {
       "name": "weaviate",
       "title": "Weaviate",
       "url": "https://github.com/weaviate/weaviate",
@@ -16678,6 +18024,59 @@
       "security_flags": [],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/web-artifacts-builder.md"
+    },
+    {
+      "name": "webcam-feedback-loop-hardware-debug",
+      "title": "Webcam Feedback Loop for Agent Hardware/Firmware Debugging",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1x9fwk4/comment/phmsw9i/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Anecdote of a coding agent (Opus 5.5 via Claude Code) suggesting its own instrumentation for a hardware task it couldn't otherwise observe: pointing a webcam at a physical ESP32-driven display so the agent could see the live rendered output while tuning Waveshare display-driver settings for portrait-mode frame rate, going from 4fps to 60fps in a few minutes once it had that visual feedback loop.",
+      "body_summary": "The poster describes building an ESP32-based clock/display project with a Waveshare screen, where the portrait-mode drivers performed poorly (4fps). Mid-session, Opus 5.5 suggested pointing a webcam at the physical screen so it could observe what was actually happening on the display while it…",
+      "tags": [
+        "agent-pattern",
+        "hardware",
+        "embedded",
+        "esp32",
+        "visual-feedback",
+        "debugging",
+        "firmware",
+        "computer-vision"
+      ],
+      "workflows": [],
+      "license": "unlicensed",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/webcam-feedback-loop-hardware-debug.md"
+    },
+    {
+      "name": "webosbrew",
+      "title": "webosbrew (Homebrew Channel for LG webOS)",
+      "url": "https://www.webosbrew.org/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Community hub for rooting LG webOS Smart TVs — hosts the Homebrew Channel (a sideloaded on-device app store/manager unlocking apps like Kodi and Moonlight, ambient-light integrations such as HyperHDR, screensaver/wallpaper changes and remote-button remapping once installed), a directory of current software root exploits tracked per webOS version and patch date (faultmanager, DejaVuln, WTA, crashd, RootMy.TV, GetMeNow, plus a hardware DEBUG-flag method), and a model/firmware compatibility checker (CanI.RootMy.TV).",
+      "body_summary": "webosbrew.org is the community hub for rooting LG webOS Smart TVs. It hosts the \"Homebrew Channel,\" a sideloaded on-device app/channel that, once installed via a software root exploit, acts as an app store and manager (installs homebrew apps like Kodi and Moonlight, exposes a Dev Manager) and unlocks features LG's own stock Developer Mode does not expose: ambient-light setups (PicCap/Hyperion/HyperHDR), screensaver/wallpaper changes, and remote-control button remapping. The rooting page lists current methods by webOS version and patch status: faultmanager (webOS 4.0+ including webOS 9, unpatched as of January 2025), DejaVuln (webOS 3.5+, being patched per model), WTA (patched in a recent update), crashd (patched April 2024), RootMy.TV (worked on webOS 3–6, patched 2022), GetMeNow (worked on webOS 1–3, stopped working after early-2024 Dev Mode app updates), and NVM, a hardware DEBUG-flag modification requiring opening the TV. A companion site, CanI.RootMy.TV, checks compatibility by model and firmware.",
+      "tags": [
+        "webos",
+        "lg",
+        "root",
+        "jailbreak",
+        "homebrew-channel",
+        "smart-tv",
+        "rooting",
+        "sideloading"
+      ],
+      "workflows": [],
+      "license": "NOASSERTION",
+      "security_flags": [
+        "root-shell-required",
+        "unauthenticated-telnet-root-shell",
+        "hardware-modification-risk",
+        "voids-warranty"
+      ],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/webosbrew.md"
     },
     {
       "name": "weft-language",
@@ -16747,6 +18146,27 @@
       "security_flags": [],
       "reviewed": "2026-06-22",
       "path": "catalog/entries/windows-god-mode.md"
+    },
+    {
+      "name": "yarn-spinner",
+      "title": "Yarn Spinner",
+      "url": "https://github.com/YarnSpinnerTool/YarnSpinner-Unity",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source dialogue system (Secret Lab) for writing and running branching game dialogue in a screenplay-like scripting language — the Yarn Spinner compiler/runtime is engine-agnostic, with an official Unity integration (YarnSpinner-Unity) sending lines, player-choice options, and in-scene commands from scripted conversations to the game; used in shipped titles including Night in the Woods, A Short Hike, and Dredge; Unity integration repo: 845 stars, 129 forks; MIT.",
+      "body_summary": "Yarn Spinner is a dialogue system for writing interactive, branching conversations in Yarn, a simple screenplay-like markup language, then running them inside a game. At runtime the Yarn Spinner engine sends the host game lines of dialogue to display, options for the player to choose between, and commands that trigger in-scene behavior (e.g. playing an animation or setting a game-state flag) as the conversation plays out. The core compiler/runtime is engine-agnostic (C#); `YarnSpinner-Unity` is the official Unity integration package wiring that runtime into Unity's UI and scene systems.",
+      "tags": [
+        "dialogue-system",
+        "narrative-scripting",
+        "unity",
+        "game-development",
+        "csharp"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/yarn-spinner.md"
     },
     {
       "name": "you-cannot-automate-habit",

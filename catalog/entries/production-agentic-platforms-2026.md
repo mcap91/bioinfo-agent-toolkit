@@ -41,3 +41,7 @@ Practitioner evaluation of the agentic AI platform landscape for production depl
 ## Security
 
 N/A — evaluation reference, not software.
+
+## Usage notes
+
+- Practitioner report of using LangGraph's interrupt mechanism specifically to gate individual tool calls behind human approval (not just general human-in-the-loop support) — the graph pauses mid-run at the interrupt and waits for a decision before the tool executes (source: https://www.reddit.com/r/AI_Agents/comments/1xcqkgw/anthropics_own_data_suggests_were_becoming_middle/)
