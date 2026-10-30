@@ -27,7 +27,7 @@ operator. If you asked several, resolve each one.
 
 One sentence. Then one line: what changes in the work depending on the answer.
 
-### 2. Look
+### 2. Search
 
 Search until the answer is clear. The order is your choice; skip what cannot help.
 
@@ -63,11 +63,23 @@ goes to the operator (below).
 One row per question:
 
 ```
-| # | date | seat | question | looked (cite) | evidence | options | choice | reason | cold check |
+| # | date | seat | question | searched | evidence | options | choice | reason | cold check |
+|---|---|---|---|---|---|---|---|---|---|
 ```
 
-If the work item has a `## Resolutions` section and your role may edit it, append the row
-there. Otherwise put it in your reply. Then one line: `Resolved: <choice>. Continuing with <next step>.`
+Copy the header exactly; kb lint rejects any other spelling.
+
+- `#`: the next integer after the last row (first row is 1). Never renumber or edit old rows.
+- `date`: `YYYY-MM-DD`. `seat`: who chose (e.g. orchestrator, planner).
+- `searched`: where you searched, with citations.
+- `cold check`: `pass`, `amended`, or `fail`. Use `n/a` only when `choice` is `unresolved`
+  (no evidence found). A choice that failed two checks is `fail`; say "escalated" in `reason`.
+  Write `cold check` values and `unresolved` bare, without backticks.
+- Write a literal `|` inside a cell as `\|`.
+
+If your role may edit the work item, append the row to its `## Resolutions` section. If the
+section is absent, add it (heading, header, separator) after `## Notes`. Run the repo's
+wiki lint if it has one. Otherwise put the row in your reply. Then one line: `Resolved: <choice>. Continuing with <next step>.`
 Then continue.
 
 ## What still goes to the operator
