@@ -160,8 +160,8 @@ Copy the header exactly; kb lint rejects any other spelling.
 
 - `#`: the next integer after the last row (first row is 1). Never renumber or edit old rows.
 - `date`: `YYYY-MM-DD`. `check`: `spec-check`.
-- `by`: the seat your launcher gave you, if any. Otherwise run `echo $CLAUDE_CODE_SESSION_ID`.
-  If both are empty, leave the cell empty. Never guess a role.
+- `by`: your session id — run `echo $CLAUDE_CODE_SESSION_ID`. If it is empty, leave the cell empty.
+  Never guess a role or seat.
 - `verdict`: `pass` for CLEAR, `fail` for BLOCKED.
 - `notes`: the CLEAR sentence, or `N open decisions`; add the scope hint if one was given.
 - Write values bare, without backticks. Write a literal `|` inside a cell as `\|`.
