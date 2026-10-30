@@ -1,13 +1,12 @@
 # Catalog Index
 
-Generated from 684 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
+Generated from 683 entries in `catalog/entries/`. Regenerate with the catalog `index` tool.
 
 ## By Decision Status
 
 | Item | Category | Status | Reason | Tags |
 |---|---|---|---|---|
 | [](entries/claude-pxl.md) | skill | open |  |  |
-| [](entries/oxynote.md) | framework | open |  |  |
 | [/brag — Launch Video Generator](entries/brag.md) | plugin | open | Claude Code skill/plugin that generates short shareable launch videos from any project — analyzes the codebase, creates a product story with music/motion/share copy, renders via Hyperframes; one command; works with Claude Code, Codex CLI, opencode, Gemini CLI, Cursor via skills CLI; optional AI voiceover via Kokoro; MIT | claude-code-plugin, video, launch, marketing, hyperframes, skill, multi-platform |
 | [3-Store Hybrid Memory Architecture for AI Agents](entries/three-store-hybrid-memory-architecture.md) | agent-pattern | open | An architecture pattern arguing vector embeddings alone fail for AI agent memory, proposing three parallel stores — a vector store for fuzzy semantic matching, a key-value store for exact fact lookup, and a knowledge graph for multi-hop relationship reasoning — merged by a fusion layer | agent-memory, vector-search, knowledge-graph, key-value-store, rag, hybrid-retrieval, architecture-pattern |
 | [5 AI Engineering Projects to Build](entries/ai-engineering-project-ideas.md) | reference | open | Curated list of 5 hands-on AI engineering projects — LLM cost autopilot, semantic caching layer, model regression detector, failure forensics tool, self-healing technical docs; sourced from Instagram reel | ai-engineering, learning, project-ideas, llm-ops, caching, testing, observability |
@@ -789,7 +788,6 @@ Generated from 684 entries in `catalog/entries/`. Regenerate with the catalog `i
 ### General
 
 - [](entries/claude-pxl.md) — open — 
-- [](entries/oxynote.md) — open — 
 - [/brag — Launch Video Generator](entries/brag.md) — open — Claude Code skill/plugin that generates short shareable launch videos from any project — analyzes the codebase, creates a product story with music/motion/share copy, renders via Hyperframes; one command; works with Claude Code, Codex CLI, opencode, Gemini CLI, Cursor via skills CLI; optional AI voiceover via Kokoro; MIT
 - [3-Store Hybrid Memory Architecture for AI Agents](entries/three-store-hybrid-memory-architecture.md) — open — An architecture pattern arguing vector embeddings alone fail for AI agent memory, proposing three parallel stores — a vector store for fuzzy semantic matching, a key-value store for exact fact lookup, and a knowledge graph for multi-hop relationship reasoning — merged by a fusion layer
 - [5 AI Engineering Projects to Build](entries/ai-engineering-project-ideas.md) — open — Curated list of 5 hands-on AI engineering projects — LLM cost autopilot, semantic caching layer, model regression detector, failure forensics tool, self-healing technical docs; sourced from Instagram reel
@@ -1642,7 +1640,6 @@ Generated from 684 entries in `catalog/entries/`. Regenerate with the catalog `i
 
 ### framework
 
-- [](entries/oxynote.md) — open — 
 - [Actual Budget](entries/actual-budget.md) — open — Local-first open-source personal finance app with envelope budgeting — NodeJS, sync across devices, self-hosted (Docker/Fly.io/PikaPods) or local desktop apps (Windows/Mac/Linux); community-driven with i18n via Weblate; MIT
 - [AdGuard Home](entries/adguard-home.md) — open — Production-ready network-wide DNS ad/tracker blocker — infrastructure tool, not an agent/dev workflow component
 - [Agent Dispatcher — repository retrieval and specialist-role routing for Claude Code and Codex](entries/agent-dispatcher.md) — open — Claude Code plugin and Codex skill pack that routes a task to one of 27 specialist roles (engineering, design, testing, research, writing, operations) and assembles a bounded context packet of source excerpts using symbols, source text, code relationships, Git history, and stack-trace frames — rather than a full-repo dump. Ships 79 bundled local skills, references 31 external skills, 8 workflow recipes, a registry of 19 MCP servers, and 50 detection signals for role/skill selection. Standard retrieval runs locally with no model or network calls; optional features (model-assisted reranking, an external 'Jev' decision-engine API, an Onboarding Explorer, procedural learning from recorded outcomes) are off by default and require the operator's own provider configuration. Installs via `claude plugin marketplace add` + `claude plugin install` for Claude Code, or `python3 install_codex.py` for Codex (installs one skill to `~/.agents/skills/agent-dispatcher/`). Invoked with `/agent-dispatcher:agent-dispatcher <request>` (Claude) or `$agent-dispatcher <request>` (Codex); roles can be forced directly (e.g. `$agent-dispatcher reviewer`). Verification is explicit: each role defines what evidence counts as done and reports which checks ran, passed, or were left unverified. Requires Python 3.10+, Git, and an authenticated Claude Code or Codex; native Windows is unsupported (WSL recommended). MIT license, single maintainer, repo created 2026-09-19 with ~50 GitHub stars and 4 forks as of this review.

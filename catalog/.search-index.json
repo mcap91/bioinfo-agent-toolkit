@@ -2,7 +2,7 @@
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
   "generated": "2026-10-30",
-  "count": 684,
+  "count": 683,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -11809,20 +11809,6 @@
       "security_flags": [],
       "reviewed": "2026-09-25",
       "path": "catalog/entries/oxc.md"
-    },
-    {
-      "name": "oxynote",
-      "title": "",
-      "url": "https://github.com/oxynote/oxynote",
-      "category": "framework",
-      "decision_status": "open",
-      "summary": "",
-      "body_summary": "## Differentiators",
-      "tags": [],
-      "workflows": [],
-      "security_flags": [],
-      "reviewed": "2026-10-30",
-      "path": "catalog/entries/oxynote.md"
     },
     {
       "name": "paddleocr",

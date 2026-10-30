@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T03:05:23.302Z",
+  "generated_at": "2026-10-30T05:04:11.989Z",
   "nodes": [
     {
       "id": "a2a-protocol",
@@ -4842,16 +4842,6 @@
       "url": "https://github.com/oxc-project/oxc",
       "summary": "Rust-based JavaScript/TypeScript toolchain from VoidZero (Evan You) providing a shared parser, linter (Oxlint), formatter (Oxfmt), transformer, minifier, and module resolver; Oxlint targets ESLint compatibility with 870+ built-in rules, claims 50-100x ESLint's speed, and offers type-aware linting via tsgo (the Go port of the TypeScript compiler). MIT.",
       "category": "cli-tool",
-      "decision_status": "open",
-      "exists": true
-    },
-    {
-      "id": "oxynote",
-      "kind": "entry",
-      "title": "",
-      "url": "https://github.com/oxynote/oxynote",
-      "summary": "",
-      "category": "framework",
       "decision_status": "open",
       "exists": true
     },
@@ -41349,11 +41339,6 @@
       "source": "oxc",
       "target": "tag:voidzero",
       "relation": "tagged"
-    },
-    {
-      "source": "oxynote",
-      "target": "cat:framework",
-      "relation": "categorized"
     },
     {
       "source": "paddleocr",
