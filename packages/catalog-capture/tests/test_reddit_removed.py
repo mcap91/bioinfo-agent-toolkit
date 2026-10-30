@@ -125,7 +125,7 @@ def test_live_post_body_survives_the_slice_and_sidebar_is_gone():
 
     # The post's own text, unchanged, including its own repo link.
     assert "Google just released Harness2 as open source." in block
-    assert "GitHub https://github.com/google-research/harness2" in block
+    assert "GitHub https://github.com/google-research/harness2" in block  # real capture: U+00A0 nbsp, not a space
     # A real, unedited comment, unchanged.
     assert "I am a bot and this action was performed automatically." in block
 
