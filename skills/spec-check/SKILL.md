@@ -18,8 +18,8 @@ Parse the arguments after `/spec-check`:
 ```
 
 Examples:
-- `/spec-check wiki/plans/PLN-0004/execution/tracker.md S3`
-- `/spec-check wiki/issues/WK-0059.md`
+- `/spec-check wiki/plans/<plan>/execution/tracker.md S3`
+- `/spec-check wiki/issues/<work-item>.md`
 - `/spec-check docs/spec.md docs/design.md`
 
 The slice/scope hint (e.g. `S3`) is optional — it narrows the check to a
@@ -137,7 +137,7 @@ Rules:
 
 The CLEAR sentence is a positive assertion, not "I found nothing." Examples:
 - `CLEAR — all five S3 tasks have concrete inputs, outputs, and verification commands; an execution agent makes zero design calls.`
-- `CLEAR — WK-0059 specifies the exact schema change, migration SQL, and rollback; turnkey.`
+- `CLEAR — the work item specifies the exact schema change, migration SQL, and rollback; turnkey.`
 - `CLEAR — spec.md defines every endpoint, payload shape, and error code; nothing left to decide.`
 
 The point: if you handed this to a low-effort agent, would it need to make
