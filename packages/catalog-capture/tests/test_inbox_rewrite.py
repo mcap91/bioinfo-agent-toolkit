@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from catalog_capture.adapters.reddit import NEEDS_LINK_RE, RedditAdapter
+from catalog_capture.adapters.reddit import _FOOTER_MARKERS, NEEDS_LINK_RE, RedditAdapter, _slice_post_and_comments
 from catalog_capture.registry import process_needs_link
 from catalog_capture.stages.browser import CaptureResult
 
@@ -17,16 +17,22 @@ from conftest import ts_parse_inbox
 @pytest.fixture
 def fake_capture(golden_capture):
     """A capture stand-in whose body is the real golden-fixture text (rule 24),
-    tagged per share id so each of the 18 synthetic captures is distinguishable."""
+    tagged per share id so each of the 18 synthetic captures is distinguishable.
+    The tag is spliced in right before the footer/sidebar chrome (OR-10's
+    `_FOOTER_MARKERS`) so it survives the post+comments slice as the last line
+    of kept content, instead of past it where the slice would drop it."""
     _, real_body_text = golden_capture
+    lines = real_body_text.split("\n")
+    footer_idx = next((i for i, ln in enumerate(lines) if ln in _FOOTER_MARKERS), len(lines))
 
     def _capture(url: str) -> CaptureResult:
         share_id = url.rsplit("/", 1)[-1]
         sub = re.search(r"/r/([^/]+)/s/", url).group(1)
+        tagged_lines = lines[:footer_idx] + [f"[share:{share_id}]"] + lines[footer_idx:]
         return CaptureResult(
             final_url=f"https://www.reddit.com/r/{sub}/comments/post{share_id}/some_title/?solution=x",
             title="t",
-            body_text=f"{real_body_text}\n[share:{share_id}]",
+            body_text="\n".join(tagged_lines),
             playwright_version="1.64.1",
             chromium_version="156.0.8078.4",
         )
@@ -78,7 +84,8 @@ def test_rewritten_inbox_still_parses_under_the_real_ts_parser(real_inbox_text: 
     share_ids = set()
     for item in text_items:
         assert item["blocked"] is False  # unblocked — R6, ready to drain
-        assert item["content"].startswith("Skip to main content")  # real golden-fixture text, not invented prose
+        assert "Skip to main content" not in item["content"]  # OR-10 slice strips header chrome
+        assert "Google just released Harness2 as open source." in item["content"]  # real golden-fixture text, not invented prose
         m = re.search(r"\[share:([^\]]+)\]$", item["content"])
         assert m is not None
         share_ids.add(m.group(1))
@@ -144,4 +151,7 @@ def test_canonical_comments_needs_link_line_is_captured(line_url, golden_capture
     out_text, results = _process(inbox, sources_dir=tmp_path / "sources", fake_capture=fake_capture)
     assert len(results) == 1
     assert results[0].status == "ok"
-    assert out_text == f"```text\nsource: {CANONICAL_COMMENTS_URL}\n{real_body_text}\n```\n"
+    # OR-10 slices header/footer chrome out of the captured body; the expected
+    # block is built from the same slice the adapter applies, not the raw capture.
+    expected_sliced = _slice_post_and_comments(real_body_text)
+    assert out_text == f"```text\nsource: {CANONICAL_COMMENTS_URL}\n{expected_sliced}\n```\n"
