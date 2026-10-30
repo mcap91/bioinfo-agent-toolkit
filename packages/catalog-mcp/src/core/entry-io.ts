@@ -3,6 +3,7 @@ import { writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { catalogPaths } from './config.js';
+import { withFileLock } from './file-lock.js';
 import { validateEntry } from './validate-entry.js';
 
 interface PersistOptions {
@@ -12,8 +13,20 @@ interface PersistOptions {
   overwrite?: boolean;
 }
 
+/** Run `fn` holding the entries lock. Parallel sessions (catalog:process --concurrency) can
+ * write or annotate the same entry at once; the exists-check and annotate's read-modify-write
+ * must not interleave. */
+export function withEntriesLock<T>(dir: string, fn: () => Promise<T>): Promise<T> {
+  return withFileLock(catalogPaths(dir).entriesLock, fn);
+}
+
 /** Validate `markdown` and write it to entries/<name>.md with LF endings. */
-export async function persistEntry(options: PersistOptions): Promise<{ path: string }> {
+export function persistEntry(options: PersistOptions): Promise<{ path: string }> {
+  return withEntriesLock(options.dir, () => persistEntryUnlocked(options));
+}
+
+/** persistEntry for a caller that already holds the entries lock. */
+export async function persistEntryUnlocked(options: PersistOptions): Promise<{ path: string }> {
   const { dir, name, markdown, overwrite = false } = options;
   const filePath = path.join(catalogPaths(dir).entries, `${name}.md`);
 

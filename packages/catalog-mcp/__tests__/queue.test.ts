@@ -185,4 +185,21 @@ describe('queue phase 2', () => {
     expect(inboxText).toContain('⚠ not-cataloguable\n```text\na tip\n```');
     expect(inboxText).not.toContain('source:');
   });
+
+  it('parallel returns all land: 10 sessions returning at once leave 10 inbox blocks and an empty queue (no lost inbox write)', async () => {
+    const keys = Array.from({ length: 10 }, (_, i) => `https://example.com/t${i}`);
+    await addToQueue(dir, keys.map((key) => ({ key, url: key, source: 'manual' as const })));
+    const results = await Promise.all(keys.map((key) => returnToInbox(dir, key, 'fetch-error')));
+    expect(results.every(Boolean)).toBe(true);
+    const inbox = await readFile(path.join(dir, 'catalog', 'inbox.md'), 'utf-8');
+    for (const key of keys) expect(inbox).toContain(`⚠ fetch-error ${key}`);
+    expect((await readQueue(dir)).items).toEqual([]);
+  });
+
+  it('parallel removes all land: no item reappears from a stale read-modify-write', async () => {
+    const keys = Array.from({ length: 10 }, (_, i) => `k${i}`);
+    await addToQueue(dir, keys.map((key) => ({ key, url: `https://example.com/${key}`, source: 'manual' as const })));
+    await Promise.all(keys.map((key) => removeFromQueue(dir, [key])));
+    expect((await readQueue(dir)).items).toEqual([]);
+  });
 });

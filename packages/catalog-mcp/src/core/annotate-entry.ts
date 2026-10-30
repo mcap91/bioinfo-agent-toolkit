@@ -2,7 +2,7 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { catalogPaths } from './config.js';
-import { persistEntry } from './entry-io.js';
+import { persistEntryUnlocked, withEntriesLock } from './entry-io.js';
 
 interface AnnotateOptions { dir: string; name: string; section: string; body: string; }
 interface AnnotateResult { path: string; section: string; created: boolean; }
@@ -10,7 +10,13 @@ interface AnnotateResult { path: string; section: string; created: boolean; }
 /** Append `body` under `## <section>` in entries/<name>.md, creating the section if absent.
  * Frontmatter and every other section are byte-preserved: the file is split textually and the
  * frontmatter is NEVER round-tripped through serializeFrontmatter (which would reorder/reflow it). */
-export async function annotateEntry(options: AnnotateOptions): Promise<AnnotateResult> {
+export function annotateEntry(options: AnnotateOptions): Promise<AnnotateResult> {
+  // Read-modify-write under the entries lock, so two parallel sessions annotating the same entry
+  // both land instead of the second overwriting the first.
+  return withEntriesLock(options.dir, () => annotateEntryUnlocked(options));
+}
+
+async function annotateEntryUnlocked(options: AnnotateOptions): Promise<AnnotateResult> {
   const { dir, name, section, body } = options;
   const filePath = path.join(catalogPaths(dir).entries, `${name}.md`);
 
@@ -25,7 +31,7 @@ export async function annotateEntry(options: AnnotateOptions): Promise<AnnotateR
   const sectionName = section.trim();
   const { body: newBody, created } = appendToSection(fm[2], sectionName, body.trim());
 
-  const result = await persistEntry({ dir, name, markdown: head + newBody, overwrite: true });
+  const result = await persistEntryUnlocked({ dir, name, markdown: head + newBody, overwrite: true });
   return { path: result.path, section: sectionName, created };
 }
 

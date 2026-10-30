@@ -58,4 +58,12 @@ describe('annotateEntry', () => {
   it('throws on a missing entry', async () => {
     await expect(annotateEntry({ dir, name: 'nope', section: 'X', body: 'y' })).rejects.toThrow(/not found/);
   });
+
+  it('parallel annotations of the same entry all land (sessions processed in parallel can hit one entry)', async () => {
+    await Promise.all(Array.from({ length: 8 }, (_, i) =>
+      annotateEntry({ dir, name: 'foo', section: 'Usage notes', body: `- tip ${i}` })));
+    const out = await read();
+    for (let i = 0; i < 8; i++) expect(out).toContain(`- tip ${i}`);
+    expect(out.match(/^## Usage notes$/gm)).toHaveLength(1);
+  });
 });

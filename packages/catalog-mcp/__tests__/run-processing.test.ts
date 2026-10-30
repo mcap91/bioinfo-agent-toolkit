@@ -15,10 +15,12 @@ vi.mock('../src/core/rebuild-indexes.js', () => ({ rebuildCatalogIndexes: vi.fn(
 
 import spawn from 'cross-spawn';
 import { rebuildCatalogIndexes } from '../src/core/rebuild-indexes.js';
+import { removeFromQueue } from '../src/core/queue.js';
 import {
   buildItemPrompt,
   buildClaudeArgs,
   parseSessionUsage,
+  countToolCalls,
   processItem,
   runProcessing,
   CATALOG_MCP_TOOLS,
@@ -45,21 +47,22 @@ interface ChildBehavior {
   stdout?: string; // what the --output-format json session "printed"
   exitCode?: number | null;
   hang?: boolean; // never exits on its own — only resolves if the production code calls kill()
+  delayMs?: number; // how long the session "runs" before exiting
 }
 
 function queueFilePath(dir: string): string {
   return path.join(dir, 'catalog', 'queue.json');
 }
 
-async function removeKeyFromQueueFile(dir: string, key: string): Promise<void> {
-  const raw = await readFile(queueFilePath(dir), 'utf-8');
-  const data = JSON.parse(raw);
-  data.items = data.items.filter((i: QueueItem) => i.key !== key);
-  await writeFile(queueFilePath(dir), JSON.stringify(data), 'utf-8');
-}
+// Live sessions right now / the most seen at once — lets tests check the concurrency bound.
+const inFlight = { now: 0, max: 0 };
 
 function installFakeSpawn(dir: string, behaviors: Record<string, ChildBehavior>) {
+  inFlight.now = 0;
+  inFlight.max = 0;
   mockSpawn.mockImplementation(((_cmd: string, _args: string[], _opts: unknown) => {
+    inFlight.now++;
+    inFlight.max = Math.max(inFlight.max, inFlight.now);
     const child = new EventEmitter() as unknown as {
       stdout: EventEmitter;
       stderr: EventEmitter;
@@ -77,15 +80,18 @@ function installFakeSpawn(dir: string, behaviors: Record<string, ChildBehavior>)
         const key = m ? m[1] : '';
         const behavior = behaviors[key] ?? {};
         if (behavior.hang) return; // only resolves via kill() below
-        setImmediate(async () => {
-          if (behavior.removeFromQueue) await removeKeyFromQueueFile(dir, key);
+        setTimeout(async () => {
+          // The real session removes its item through the catalog MCP server's locked queue code.
+          if (behavior.removeFromQueue) await removeFromQueue(dir, [key]);
+          inFlight.now--;
           if (behavior.stdout) child.stdout.emit('data', Buffer.from(behavior.stdout));
           child.emit('exit', behavior.exitCode ?? 0);
-        });
+        }, behavior.delayMs ?? 0);
       }),
     } as unknown as typeof child.stdin;
 
     child.kill = vi.fn((_signal?: string) => {
+      inFlight.now--;
       child.emit('exit', null); // SIGTERM makes the real process exit; the mock does too
     });
 
@@ -176,6 +182,12 @@ describe('parseSessionUsage (golden capture)', () => {
       cacheRead: 0,
       cacheWrite: 17014,
       output: 4,
+      costUsd: 0.06810000000000001,
+      numTurns: 1,
+      durationApiMs: 1654,
+      isError: false,
+      subtype: 'success',
+      permissionDenials: 0,
     });
   });
 
@@ -189,6 +201,12 @@ describe('parseSessionUsage (golden capture)', () => {
       cacheRead: 18317,
       cacheWrite: 18477,
       output: 66,
+      costUsd: 0.0782394,
+      numTurns: 2,
+      durationApiMs: 2755,
+      isError: false,
+      subtype: 'success',
+      permissionDenials: 0,
     });
   });
 
@@ -198,13 +216,38 @@ describe('parseSessionUsage (golden capture)', () => {
   });
 });
 
+describe('countToolCalls (golden capture)', () => {
+  // Real transcript lines from one catalog:process item session (2026-10-29, the
+  // thermo-nuclear-code-quality-review item, which searched, found an existing entry, and removed
+  // itself from the queue). Only the assistant tool_use lines are kept, each unedited: run logs stay
+  // out of this public repo. Evals rely on these counts to see what each session did.
+  it('counts tool_use blocks by tool name across the whole session', async () => {
+    const transcript = await readFixture('item-session-transcript.jsonl');
+    expect(countToolCalls(transcript)).toEqual({
+      Read: 1,
+      'mcp__catalog__fetch-url': 2,
+      mcp__catalog__queue: 1,
+      mcp__catalog__search: 3,
+    });
+  });
+
+  it('skips blank and unparsable lines instead of throwing', () => {
+    expect(countToolCalls('\nnot json\n{"type":"user"}\n')).toEqual({});
+  });
+});
+
 describe('processItem', () => {
   let dir: string;
   beforeEach(async () => {
     dir = await mkdtemp(path.join(os.tmpdir(), 'catalog-run-processing-'));
     mockSpawn.mockReset();
+    // Point the transcript lookup at an empty store so tests never read ~/.claude.
+    vi.stubEnv('CLAUDE_CONFIG_DIR', path.join(dir, 'claude-config'));
   });
-  afterEach(async () => { await rm(dir, { recursive: true, force: true }); });
+  afterEach(async () => {
+    vi.unstubAllEnvs();
+    await rm(dir, { recursive: true, force: true });
+  });
 
   it('status "done": the session removes the item from the queue, so the code-side check finds it gone', async () => {
     await writeQueueFile(dir, [item('k1')]);
@@ -248,8 +291,12 @@ describe('runProcessing', () => {
     await writeFile(path.join(dir, 'catalog', 'recipe.md'), 'RECIPE TEXT', 'utf-8');
     mockSpawn.mockReset();
     mockRebuildCatalogIndexes.mockClear();
+    vi.stubEnv('CLAUDE_CONFIG_DIR', path.join(dir, 'claude-config'));
   });
-  afterEach(async () => { await rm(dir, { recursive: true, force: true }); });
+  afterEach(async () => {
+    vi.unstubAllEnvs();
+    await rm(dir, { recursive: true, force: true });
+  });
 
   it('a failed item does not stop the loop: the next item is still processed and logged', async () => {
     await writeQueueFile(dir, [item('k1'), item('k2')]);
@@ -302,7 +349,7 @@ describe('runProcessing', () => {
     expect(mockRebuildCatalogIndexes).toHaveBeenCalledWith({ dir, format: 'full' });
   });
 
-  it('writes one cost-log JSON line per item with the designed fields (ts, key, status, wall_s, model, input, cache_read, cache_write, output, session_id)', async () => {
+  it('writes one cost-log JSON line per item with the designed fields, including dollar cost and turns for evals', async () => {
     await writeQueueFile(dir, [item('k1')]);
     const stdout = await readFixture('multi-turn-result.json');
     installFakeSpawn(dir, { k1: { removeFromQueue: true, stdout } });
@@ -312,8 +359,18 @@ describe('runProcessing', () => {
     const [record] = (await readFile(path.join(dir, 'catalog', 'process-log.jsonl'), 'utf-8'))
       .trim().split('\n').map((l) => JSON.parse(l));
     expect(Object.keys(record).sort()).toEqual(
-      ['cache_read', 'cache_write', 'input', 'key', 'model', 'output', 'session_id', 'status', 'ts', 'wall_s'].sort(),
+      [
+        'api_s', 'cache_read', 'cache_write', 'cost_usd', 'input', 'is_error', 'key', 'model', 'num_turns', 'output',
+        'permission_denials', 'session_id', 'status', 'subtype', 'timed_out', 'tool_calls', 'transcript', 'ts', 'wall_s',
+      ].sort(),
     );
+    expect(record.cost_usd).toBe(0.0782394);
+    expect(record.num_turns).toBe(2);
+    expect(record.api_s).toBe(2.8);
+    // No transcript in the (empty) store: logged as null, item outcome unaffected.
+    expect(record.transcript).toBeNull();
+    expect(record.tool_calls).toBeNull();
+    expect(record.status).toBe('done');
     expect(record.model).toBe('claude-sonnet-5');
     expect(record.cache_read).toBe(18317);
     expect(record.cache_write).toBe(18477);
@@ -321,4 +378,106 @@ describe('runProcessing', () => {
     expect(record.output).toBe(66);
     expect(record.session_id).toBe('85446442-2755-4275-81a8-1b8732705236');
   });
+
+  it('archives the session transcript into catalog/runs/<session_id>/ and logs its tool-call counts, so evals survive Claude Code transcript cleanup', async () => {
+    const sessionId = '85446442-2755-4275-81a8-1b8732705236'; // from multi-turn-result.json
+    const store = path.join(dir, 'claude-config', 'projects', '-some-project-slug');
+    await mkdir(path.join(store, sessionId, 'tool-results'), { recursive: true });
+    await writeFile(path.join(store, `${sessionId}.jsonl`), await readFixture('item-session-transcript.jsonl'), 'utf-8');
+    await writeFile(path.join(store, sessionId, 'tool-results', 'big.txt'), 'oversized output', 'utf-8');
+    await writeQueueFile(dir, [item('k1')]);
+    installFakeSpawn(dir, { k1: { removeFromQueue: true, stdout: await readFixture('multi-turn-result.json') } });
+
+    await runProcessing({ dir, timeoutMs: 5000 });
+
+    const [record] = (await readFile(path.join(dir, 'catalog', 'process-log.jsonl'), 'utf-8'))
+      .trim().split('\n').map((l) => JSON.parse(l));
+    expect(record.transcript).toBe(path.join('catalog', 'runs', sessionId));
+    expect(record.tool_calls).toEqual({
+      Read: 1, 'mcp__catalog__fetch-url': 2, mcp__catalog__queue: 1, mcp__catalog__search: 3,
+    });
+    const runDir = path.join(dir, 'catalog', 'runs', sessionId);
+    expect(await readFile(path.join(runDir, 'transcript.jsonl'), 'utf-8'))
+      .toBe(await readFixture('item-session-transcript.jsonl'));
+    expect(await readFile(path.join(runDir, 'sidecar', 'tool-results', 'big.txt'), 'utf-8')).toBe('oversized output');
+  });
+
+  it('--concurrency runs up to N sessions at once, never more, and still processes and logs every item', async () => {
+    const keys = ['k1', 'k2', 'k3', 'k4', 'k5', 'k6', 'k7'];
+    await writeQueueFile(dir, keys.map((k) => item(k)));
+    const stdout = await readFixture('single-turn-result.json');
+    installFakeSpawn(dir, Object.fromEntries(keys.map((k) => [k, { removeFromQueue: true, stdout, delayMs: 20 }])));
+
+    await runProcessing({ dir, timeoutMs: 5000, concurrency: 3 });
+
+    expect(mockSpawn).toHaveBeenCalledTimes(7);
+    expect(inFlight.max).toBe(3);
+    const log = (await readFile(path.join(dir, 'catalog', 'process-log.jsonl'), 'utf-8'))
+      .trim().split('\n').map((l) => JSON.parse(l));
+    expect(log.map((r) => r.key).sort()).toEqual(keys);
+    expect(log.every((r) => r.status === 'done')).toBe(true);
+    expect(JSON.parse(await readFile(queueFilePath(dir), 'utf-8')).items).toEqual([]);
+    expect(mockRebuildCatalogIndexes).toHaveBeenCalledTimes(1);
+  });
+
+  it('default concurrency is 1: sessions never overlap', async () => {
+    await writeQueueFile(dir, [item('k1'), item('k2'), item('k3')]);
+    const stdout = await readFixture('single-turn-result.json');
+    installFakeSpawn(dir, {
+      k1: { removeFromQueue: true, stdout, delayMs: 10 },
+      k2: { removeFromQueue: true, stdout, delayMs: 10 },
+      k3: { removeFromQueue: true, stdout, delayMs: 10 },
+    });
+
+    await runProcessing({ dir, timeoutMs: 5000 });
+
+    expect(inFlight.max).toBe(1);
+  });
+
+  it('graceful stop: with catalog/.stop-processing present, no new session starts, items stay queued, the index is still rebuilt, and the stop file is cleared', async () => {
+    await writeQueueFile(dir, [item('k1'), item('k2')]);
+    await writeFile(path.join(dir, 'catalog', '.stop-processing'), '', 'utf-8');
+    installFakeSpawn(dir, {});
+
+    await runProcessing({ dir, timeoutMs: 5000, concurrency: 2 });
+
+    expect(mockSpawn).not.toHaveBeenCalled();
+    expect(JSON.parse(await readFile(queueFilePath(dir), 'utf-8')).items.map((i: QueueItem) => i.key)).toEqual(['k1', 'k2']);
+    expect(mockRebuildCatalogIndexes).toHaveBeenCalledTimes(1);
+    await expect(readFile(path.join(dir, 'catalog', '.stop-processing'))).rejects.toThrow();
+  });
+
+  it('--group keeps items that share a tool in one slot: they never run at the same time', async () => {
+    const hint = 'Mentioned (unverified hints):\n- Docling: (no url)';
+    await writeQueueFile(dir, [item('a', { content: hint }), item('b'), item('c', { content: hint })]);
+    const stdout = await readFixture('single-turn-result.json');
+    const running = new Set<string>();
+    let overlapped = false;
+    mockSpawn.mockReset();
+    installFakeSpawn(dir, {
+      a: { removeFromQueue: true, stdout, delayMs: 20 },
+      b: { removeFromQueue: true, stdout, delayMs: 20 },
+      c: { removeFromQueue: true, stdout, delayMs: 20 },
+    });
+    const fake = mockSpawn.getMockImplementation()!;
+    mockSpawn.mockImplementation(((cmd: string, args: string[], o: unknown) => {
+      const child = fake(cmd, args, o as never) as unknown as { stdin: { write: (d: string) => void }; on: (e: string, f: () => void) => void };
+      const write = child.stdin.write;
+      child.stdin.write = (d: string) => {
+        const key = d.match(/^key: (.+)$/m)?.[1] ?? '';
+        if ((key === 'a' && running.has('c')) || (key === 'c' && running.has('a'))) overlapped = true;
+        running.add(key);
+        child.on('exit', () => running.delete(key));
+        write(d);
+      };
+      return child;
+    }) as unknown as typeof spawn);
+
+    await runProcessing({ dir, timeoutMs: 5000, concurrency: 3, group: true });
+
+    expect(mockSpawn).toHaveBeenCalledTimes(3);
+    expect(overlapped).toBe(false);
+    expect(inFlight.max).toBe(2); // the a→c group in one slot, b in another
+  });
 });
+

@@ -43,6 +43,7 @@ export function catalogPaths(dir: string) {
     config: path.join(dir, 'catalog', 'config.json'),
     state: path.join(dir, 'catalog', 'state.json'),
     queueLock: path.join(dir, 'catalog', '.queue.lock'),
+    entriesLock: path.join(dir, 'catalog', '.entries.lock'),
   };
 }
 

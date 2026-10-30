@@ -48,11 +48,13 @@
 // cross-spawn is used instead of node:child_process spawn for cross-platform .cmd/.ps1
 // shim resolution on Windows (PATHEXT-aware, no shell:true required).
 import spawn from 'cross-spawn';
-import { readFile, writeFile, appendFile } from 'node:fs/promises';
+import { readFile, writeFile, appendFile, readdir, mkdir, copyFile, cp, unlink } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readQueue } from '../core/queue.js';
+import { groupItems } from '../core/group-items.js';
 import { rebuildCatalogIndexes } from '../core/rebuild-indexes.js';
 import type { QueueItem } from '../core/schema.js';
 
@@ -201,6 +203,14 @@ export interface SessionUsage {
   cacheRead: number;
   cacheWrite: number;
   output: number;
+  /** `total_cost_usd`, `num_turns`, `duration_api_ms`, `is_error`, `subtype`, and
+   * `permission_denials` — all present in both golden captures (fixtures/wk-0092). */
+  costUsd: number | null;
+  numTurns: number | null;
+  durationApiMs: number | null;
+  isError: boolean | null;
+  subtype: string | null;
+  permissionDenials: number;
 }
 
 /** Parse the single `--output-format json` result object. See the module-level "Usage source"
@@ -226,7 +236,58 @@ export function parseSessionUsage(stdout: string): SessionUsage | null {
     cacheRead: Number(usage.cache_read_input_tokens ?? 0),
     cacheWrite: Number(usage.cache_creation_input_tokens ?? 0),
     output: Number(usage.output_tokens ?? 0),
+    costUsd: typeof result.total_cost_usd === 'number' ? result.total_cost_usd : null,
+    numTurns: typeof result.num_turns === 'number' ? result.num_turns : null,
+    durationApiMs: typeof result.duration_api_ms === 'number' ? result.duration_api_ms : null,
+    isError: typeof result.is_error === 'boolean' ? result.is_error : null,
+    subtype: typeof result.subtype === 'string' ? result.subtype : null,
+    permissionDenials: Array.isArray(result.permission_denials) ? result.permission_denials.length : 0,
   };
+}
+
+/** Copy one session's transcript (`<session_id>.jsonl`) and its sidecar directory (oversized
+ * tool results) from Claude Code's project store into `catalog/runs/` so tool-use evals survive
+ * Claude Code's transcript cleanup (30 days by default). The store dir is found by session id
+ * rather than by re-deriving Claude Code's cwd-to-slug rule. Returns the archived path, or null
+ * if the transcript wasn't found. */
+export async function archiveTranscript(dir: string, sessionId: string): Promise<string | null> {
+  const configDir = process.env.CLAUDE_CONFIG_DIR ?? path.join(os.homedir(), '.claude');
+  const projectsDir = path.join(configDir, 'projects');
+  if (!existsSync(projectsDir)) return null;
+  for (const slug of await readdir(projectsDir)) {
+    const src = path.join(projectsDir, slug, `${sessionId}.jsonl`);
+    if (!existsSync(src)) continue;
+    const destDir = path.join(dir, 'catalog', 'runs', sessionId);
+    await mkdir(destDir, { recursive: true });
+    await copyFile(src, path.join(destDir, 'transcript.jsonl'));
+    const sidecar = path.join(projectsDir, slug, sessionId);
+    if (existsSync(sidecar)) await cp(sidecar, path.join(destDir, 'sidecar'), { recursive: true });
+    return path.relative(dir, destDir);
+  }
+  return null;
+}
+
+/** Count tool calls by tool name in a session transcript: every `tool_use` block in an
+ * `assistant` line's `message.content`. Shape checked against a real item-session transcript
+ * (fixtures/wk-0092/item-session-transcript.jsonl holds its tool_use lines, unedited). Unparsable lines are skipped. */
+export function countToolCalls(transcript: string): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const line of transcript.split('\n')) {
+    if (!line.trim()) continue;
+    let entry: { type?: unknown; message?: { content?: unknown } };
+    try {
+      entry = JSON.parse(line);
+    } catch {
+      continue;
+    }
+    if (entry.type !== 'assistant' || !Array.isArray(entry.message?.content)) continue;
+    for (const block of entry.message.content as Array<{ type?: unknown; name?: unknown }>) {
+      if (block?.type === 'tool_use' && typeof block.name === 'string') {
+        counts[block.name] = (counts[block.name] ?? 0) + 1;
+      }
+    }
+  }
+  return counts;
 }
 
 export interface ItemOutcome {
@@ -235,6 +296,9 @@ export interface ItemOutcome {
   timedOut: boolean;
   wallS: number;
   usage: SessionUsage | null;
+  /** Archived transcript dir under catalog/runs/, or null if not found. */
+  transcript: string | null;
+  toolCalls: Record<string, number> | null;
 }
 
 /** Run one item's session and decide its outcome purely from whether it left the queue
@@ -267,20 +331,53 @@ export async function processItem(
     console.error(`[${item.key}] still in queue after its session (${reason}) — logging failure, leaving queued`);
   }
 
-  return { key: item.key, status: stillQueued ? 'failed' : 'done', timedOut: session.timedOut, wallS, usage };
+  // Archiving is for evals only — a failure here is reported but never changes the item outcome.
+  let transcript: string | null = null;
+  let toolCalls: Record<string, number> | null = null;
+  if (usage?.sessionId) {
+    try {
+      transcript = await archiveTranscript(dir, usage.sessionId);
+      if (transcript) {
+        toolCalls = countToolCalls(await readFile(path.join(dir, transcript, 'transcript.jsonl'), 'utf-8'));
+      } else {
+        console.error(`[${item.key}] transcript for session ${usage.sessionId} not found — not archived`);
+      }
+    } catch (err) {
+      console.error(`[${item.key}] transcript archive failed: ${(err as Error).message}`);
+    }
+  }
+
+  return {
+    key: item.key,
+    status: stillQueued ? 'failed' : 'done',
+    timedOut: session.timedOut,
+    wallS,
+    usage,
+    transcript,
+    toolCalls,
+  };
 }
 
 interface CostRecord {
   ts: string;
   key: string;
   status: string;
+  timed_out: boolean;
   wall_s: number;
   model: string | null;
+  cost_usd: number | null;
+  num_turns: number | null;
+  api_s: number | null;
+  is_error: boolean | null;
+  subtype: string | null;
+  permission_denials: number;
   input: number;
   cache_read: number;
   cache_write: number;
   output: number;
+  tool_calls: Record<string, number> | null;
   session_id: string | null;
+  transcript: string | null;
 }
 
 function toCostRecord(outcome: ItemOutcome): CostRecord {
@@ -288,13 +385,22 @@ function toCostRecord(outcome: ItemOutcome): CostRecord {
     ts: new Date().toISOString(),
     key: outcome.key,
     status: outcome.status,
+    timed_out: outcome.timedOut,
     wall_s: Math.round(outcome.wallS * 10) / 10,
     model: outcome.usage?.model ?? null,
+    cost_usd: outcome.usage?.costUsd ?? null,
+    num_turns: outcome.usage?.numTurns ?? null,
+    api_s: outcome.usage?.durationApiMs != null ? Math.round(outcome.usage.durationApiMs / 100) / 10 : null,
+    is_error: outcome.usage?.isError ?? null,
+    subtype: outcome.usage?.subtype ?? null,
+    permission_denials: outcome.usage?.permissionDenials ?? 0,
     input: outcome.usage?.input ?? 0,
     cache_read: outcome.usage?.cacheRead ?? 0,
     cache_write: outcome.usage?.cacheWrite ?? 0,
     output: outcome.usage?.output ?? 0,
+    tool_calls: outcome.toolCalls,
     session_id: outcome.usage?.sessionId ?? null,
+    transcript: outcome.transcript,
   };
 }
 
@@ -306,7 +412,7 @@ async function appendCostLog(dir: string, outcome: ItemOutcome): Promise<void> {
 function printItemLine(outcome: ItemOutcome): void {
   const u = outcome.usage;
   const usageBits = u
-    ? `input=${u.input} cache_read=${u.cacheRead} cache_write=${u.cacheWrite} output=${u.output} model=${u.model}`
+    ? `cost=$${u.costUsd?.toFixed(4) ?? '?'} turns=${u.numTurns ?? '?'} input=${u.input} cache_read=${u.cacheRead} cache_write=${u.cacheWrite} output=${u.output} model=${u.model}`
     : 'usage=unparsed';
   const flag = outcome.timedOut ? ' TIMEOUT' : '';
   console.log(`[${outcome.key}] ${outcome.status}${flag} (${outcome.wallS.toFixed(1)}s) ${usageBits}`);
@@ -319,12 +425,13 @@ interface Totals {
   cacheRead: number;
   cacheWrite: number;
   output: number;
+  costUsd: number;
 }
 
 function printTotalsLine(count: number, totals: Totals, wallS: number): void {
   console.log(
     `Processed ${count} item(s) in ${wallS.toFixed(1)}s: ${totals.done} done, ${totals.failed} failed. ` +
-      `Totals — input=${totals.input} cache_read=${totals.cacheRead} cache_write=${totals.cacheWrite} output=${totals.output}`,
+      `Totals — cost=$${totals.costUsd.toFixed(4)} input=${totals.input} cache_read=${totals.cacheRead} cache_write=${totals.cacheWrite} output=${totals.output}`,
   );
 }
 
@@ -332,10 +439,18 @@ export interface RunProcessingOptions {
   dir: string;
   limit?: number;
   timeoutMs?: number;
+  /** Sessions run at once (default 1). Items start in stored queue order; each session is still
+   * one fresh `claude --print` per item. Shared files (queue, inbox, entries) are guarded by the
+   * cross-process locks in core/file-lock.ts. */
+  concurrency?: number;
+  /** Keep items that share a tool (core/group-items.ts) in one session slot, run in order, so
+   * parallel sessions don't write duplicate entries for the same tool. Off by default. */
+  group?: boolean;
 }
 
-/** The code loop (design decisions 1, 4, 6): one fresh session per queue item, sequentially, in
- * stored queue order; a per-item cost log line; the core index function called once at the end. */
+/** The code loop (design decisions 1, 4, 6): one fresh session per queue item, up to
+ * `concurrency` at a time, started in stored queue order; a per-item cost log line; the core index
+ * function called once at the end. */
 export async function runProcessing(opts: RunProcessingOptions): Promise<void> {
   const { dir } = opts;
   const timeoutMs = opts.timeoutMs ?? SESSION_TIMEOUT_MS;
@@ -345,21 +460,51 @@ export async function runProcessing(opts: RunProcessingOptions): Promise<void> {
   const queue = await readQueue(dir);
   const items = opts.limit !== undefined ? queue.items.slice(0, opts.limit) : queue.items;
 
-  const totals: Totals = { done: 0, failed: 0, input: 0, cacheRead: 0, cacheWrite: 0, output: 0 };
+  const totals: Totals = { done: 0, failed: 0, input: 0, cacheRead: 0, cacheWrite: 0, output: 0, costUsd: 0 };
   const t0 = Date.now();
 
-  for (const item of items) {
-    const outcome = await processItem(dir, item, recipe, mcpConfigPath, { timeoutMs });
-    await appendCostLog(dir, outcome);
-    printItemLine(outcome);
-    if (outcome.status === 'done') totals.done++; else totals.failed++;
-    if (outcome.usage) {
-      totals.input += outcome.usage.input;
-      totals.cacheRead += outcome.usage.cacheRead;
-      totals.cacheWrite += outcome.usage.cacheWrite;
-      totals.output += outcome.usage.output;
-    }
+  // Without --group every item is its own unit, so the default path is the plain item loop.
+  // Largest groups start first (stable sort), so a long group never starts last and stretches the run.
+  const units = opts.group
+    ? groupItems(items).sort((a, b) => b.length - a.length)
+    : items.map((item) => [item]);
+  if (opts.group) {
+    const sizes = units.map((u) => u.length).filter((n) => n > 1).sort((a, b) => b - a);
+    console.log(`Grouped ${items.length} item(s) into ${units.length} group(s); shared-tool groups: ${sizes.join(', ') || 'none'}`);
   }
+
+  // Worker pool: each worker takes the next unstarted unit and runs its items in order until no
+  // units are left. Node is single-threaded, so `next++` and the totals updates never race.
+  let stopping = false;
+  // Graceful stop: `touch catalog/.stop-processing`. In-flight sessions finish, no new unit
+  // starts, the index is rebuilt, and unstarted items stay queued for the next run.
+  const stopFile = path.join(dir, 'catalog', '.stop-processing');
+  let next = 0;
+  const worker = async (): Promise<void> => {
+    while (next < units.length) {
+      if (existsSync(stopFile)) {
+        if (!stopping) console.log(`Stop file found (${path.relative(dir, stopFile)}) — finishing in-flight items, starting no more`);
+        stopping = true;
+        return;
+      }
+      for (const item of units[next++]) {
+        const outcome = await processItem(dir, item, recipe, mcpConfigPath, { timeoutMs });
+        await appendCostLog(dir, outcome);
+        printItemLine(outcome);
+        if (outcome.status === 'done') totals.done++; else totals.failed++;
+        if (outcome.usage) {
+          totals.input += outcome.usage.input;
+          totals.cacheRead += outcome.usage.cacheRead;
+          totals.cacheWrite += outcome.usage.cacheWrite;
+          totals.output += outcome.usage.output;
+          totals.costUsd += outcome.usage.costUsd ?? 0;
+        }
+      }
+    }
+  };
+  const workers = Math.max(1, Math.min(opts.concurrency ?? 1, units.length));
+  await Promise.all(Array.from({ length: workers }, () => worker()));
+  if (stopping) await unlink(stopFile).catch(() => {});
 
   // Index once, by code (design decision 6) — no LLM step. Same shared function the `index`
   // MCP tool calls, so the search index, graph, and vectors are rebuilt too, not just index.md.
@@ -368,21 +513,24 @@ export async function runProcessing(opts: RunProcessingOptions): Promise<void> {
   printTotalsLine(items.length, totals, (Date.now() - t0) / 1000);
 }
 
-function parseLimit(argv: string[]): number | undefined {
-  const idx = argv.indexOf('--limit');
+export function parsePositiveIntFlag(argv: string[], flag: string): number | undefined {
+  const idx = argv.indexOf(flag);
   if (idx === -1) return undefined;
   const raw = argv[idx + 1];
   const val = Number(raw);
   if (!Number.isInteger(val) || val <= 0) {
-    throw new Error(`--limit requires a positive integer, got ${JSON.stringify(raw)}`);
+    throw new Error(`${flag} requires a positive integer, got ${JSON.stringify(raw)}`);
   }
   return val;
 }
 
 async function main(): Promise<void> {
   const dir = repoRoot();
-  const limit = parseLimit(process.argv.slice(2));
-  await runProcessing({ dir, limit });
+  const argv = process.argv.slice(2);
+  const limit = parsePositiveIntFlag(argv, '--limit');
+  const concurrency = parsePositiveIntFlag(argv, '--concurrency');
+  const group = argv.includes('--group');
+  await runProcessing({ dir, limit, concurrency, group });
 }
 
 // Only run when executed directly (`tsx src/adapter/run-processing.ts` / `npm run catalog:process`),
