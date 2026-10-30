@@ -5,11 +5,14 @@ Pairs with the `direct` output style (target 200-300 words). After a week of dat
 blocking ceiling from the log, not from a guess.
 
 Writes to ~/.claude/reply-length/:
-  log.jsonl                 one line per reply: ts, session_id, cwd, words, source
+  log.jsonl                 one line per reply: ts, session_id, cwd, model, words, source
   capture-stop-input.json   the first raw Stop-hook input seen (evidence for the input shape)
 
-Words are counted over every assistant text block since the last real user prompt (what the
-reader sees in that turn). Fenced code blocks are not counted. The hook always exits 0.
+Words are counted over the Stop input's `last_assistant_message` (the turn's final message;
+mid-turn progress messages are not counted). Only when that field is absent are they counted
+over every assistant text block since the last real user prompt. Fenced code blocks are not
+counted. `model` is the last assistant entry's `message.model` in the transcript. The hook
+always exits 0.
 """
 import json, os, re, sys, time
 
@@ -44,6 +47,23 @@ def turn_text(transcript_path):
     return "\n".join(reversed(texts))
 
 
+def last_model(transcript_path):
+    # Transcript assistant entries carry message.model (captured 2026-10-30: "claude-opus-5-5").
+    try:
+        with open(transcript_path) as f:
+            lines = f.readlines()
+    except (OSError, TypeError):
+        return None
+    for line in reversed(lines):
+        try:
+            e = json.loads(line)
+        except ValueError:
+            continue
+        if e.get("type") == "assistant":
+            return (e.get("message") or {}).get("model")
+    return None
+
+
 def main():
     raw = sys.stdin.read()
     os.makedirs(OUT, exist_ok=True)
@@ -57,7 +77,8 @@ def main():
     else:
         text, source = turn_text(data["transcript_path"]), "transcript"
     row = {"ts": time.strftime("%Y-%m-%dT%H:%M:%S"), "session_id": data.get("session_id"),
-           "cwd": data.get("cwd"), "words": words(text), "source": source}
+           "cwd": data.get("cwd"), "model": last_model(data.get("transcript_path")),
+           "words": words(text), "source": source}
     with open(os.path.join(OUT, "log.jsonl"), "a") as f:
         f.write(json.dumps(row) + "\n")
 
