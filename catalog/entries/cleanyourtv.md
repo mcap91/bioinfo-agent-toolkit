@@ -69,3 +69,9 @@ Everything the assistant does can also be run by hand. The README lists bash scr
 - No prebuilt binaries: the launcher is built from source on the user's machine, which requires a JDK and Android SDK.
 - Supply chain: very young repo (12 days at review) with very high contributor volume (README cites 200+ contributors, releases note 323 PRs from 176 people in two days). Most contributions are per-model debloat lists; `CONTRIBUTING.md` and `AGENTS.md` describe testing asked of contributors. A SECURITY.md private-report path exists. Tests and CI were not inspected for this entry.
 - Optional Private DNS ad blocking (e.g. AdGuard DNS) is documented with the trade-off that the resolver sees all TV DNS queries.
+
+## Usage notes
+
+- Fire TV reel demo: setup needs the device name, software version and IP address (from Settings → My Fire TV → About) given to the coding agent before it configures the connection (source: https://www.instagram.com/reel/DfDh40rPknX/)
+- A separate `apply-wallpapers.sh` script pushes custom wallpaper images to the launcher; it needs ADB Debugging left on (an unencrypted LAN connection), which can be toggled off after setup and back on only when pushing new wallpapers (source: https://www.instagram.com/reel/DfDh40rPknX/)
+- Observed launcher config fields beyond theme: apps-per-row (4 or 5), rows-below-dock (0 or 1), dock-band-opacity (70% or 100%), and per-app ordering/prioritization (e.g. pinning specific streaming apps to the top) (source: https://www.instagram.com/reel/DfDh40rPknX/)

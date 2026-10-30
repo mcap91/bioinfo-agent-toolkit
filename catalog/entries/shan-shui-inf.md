@@ -24,3 +24,8 @@ Written entirely in JavaScript. No external dependencies. Runs client-side in an
 ## Security
 
 License not stated in README. Pure client-side JavaScript — no network calls, no data collection.
+
+## Usage notes
+
+- License confirmed as MIT (source: https://www.instagram.com/reel/Deb3bVkHBLV/, caption credits "Shan Shui Infinite by Lingdong Huang · MIT")
+- Used as a generated test input image for a caire seam-carving demo — output served as the wide source image resized from 1960×896 to 1392×896 (source: https://www.instagram.com/reel/Deb3bVkHBLV/)

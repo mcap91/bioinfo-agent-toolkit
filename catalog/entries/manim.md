@@ -37,3 +37,8 @@ Manim ("mathematical animation") is the animation engine Grant Sanderson wrote a
 - **License:** MIT.
 - `personal-project-api-instability` — the README historically warns this version serves 3b1b's own workflow; APIs change without deprecation cycles, and community support concentrates on ManimCE. Not a vulnerability, but a maintenance-planning fact.
 - Rendering executes arbitrary Python and shells out to LaTeX/FFmpeg — standard code-execution surface for any scene file from an untrusted source.
+
+## Usage notes
+
+- ManimCE forked from 3b1b/manim in 2020 (source: https://www.instagram.com/reel/DeFTnCdMfC2/).
+- Demonstrated example animations: applying z² to a 2D grid bends it, summing odd sine harmonics one by one builds a square wave, and a torus morphs into a sphere in 3D (source: https://www.instagram.com/reel/DeFTnCdMfC2/).

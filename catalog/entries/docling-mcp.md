@@ -57,3 +57,9 @@ Tools include document conversion (PDF → structured JSON), document generation
 ## Usage notes
 
 - Docling is the enabling technology for IBM's "Chunkless RAG" architecture — reconstructs logical document hierarchy from PDFs so an AI agent can navigate the tree structure (headings, sections, subsections) instead of retrieving fixed-size chunks. See the chunkless-rag catalog entry.
+
+- On the same IRS depreciation table (3 years, dollar/percentage/deduction columns) where PaddleOCR mislinked years to amounts, Docling produced a complete and correctly structured table — all columns, headers, and numbers present and properly linked. Output still needed post-processing cleanup: inconsistent dollar-sign/percent-sign formatting across rows, and unnecessary leading/trailing dots in two columns (likely table-line/dot-fill artifacts from the source PDF). (source: https://www.instagram.com/reel/DecS5IkjwSA/)
+
+- On the same IRS tax-computation worksheet table where PaddleOCR misread the upper limit of the "over $197,300" row as $50,525, Docling correctly read the upper limit as $250,000. (source: https://www.instagram.com/reel/DeUWz-7FAgX/)
+
+- On a complex merged-cell table in a 3-step OCR router demo (LiteParse → Docling → Qwen), Docling preserved the table structure far better than LiteParse's native-text extraction, but merged two numeric values into a single cell (e.g. "0.1" and "100" separated only by a space in the raw output) — the specific trigger a deterministic routing rule used to escalate that table region from Docling to a cropped-region Qwen pass. (source: https://www.instagram.com/reel/DfAVR6MtdFR/)

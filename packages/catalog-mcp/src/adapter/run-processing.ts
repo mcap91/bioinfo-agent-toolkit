@@ -476,18 +476,22 @@ export async function runProcessing(opts: RunProcessingOptions): Promise<void> {
   // Worker pool: each worker takes the next unstarted unit and runs its items in order until no
   // units are left. Node is single-threaded, so `next++` and the totals updates never race.
   let stopping = false;
-  // Graceful stop: `touch catalog/.stop-processing`. In-flight sessions finish, no new unit
-  // starts, the index is rebuilt, and unstarted items stay queued for the next run.
+  // Graceful stop: `touch catalog/.stop-processing`. In-flight sessions finish, no new item
+  // starts (checked before every item, so a group stops mid-way too), the index is rebuilt, and
+  // unstarted items stay queued for the next run.
   const stopFile = path.join(dir, 'catalog', '.stop-processing');
+  const stopRequested = (): boolean => {
+    if (!stopping && existsSync(stopFile)) {
+      console.log(`Stop file found (${path.relative(dir, stopFile)}) — finishing in-flight items, starting no more`);
+      stopping = true;
+    }
+    return stopping;
+  };
   let next = 0;
   const worker = async (): Promise<void> => {
-    while (next < units.length) {
-      if (existsSync(stopFile)) {
-        if (!stopping) console.log(`Stop file found (${path.relative(dir, stopFile)}) — finishing in-flight items, starting no more`);
-        stopping = true;
-        return;
-      }
+    while (next < units.length && !stopRequested()) {
       for (const item of units[next++]) {
+        if (stopRequested()) return;
         const outcome = await processItem(dir, item, recipe, mcpConfigPath, { timeoutMs });
         await appendCostLog(dir, outcome);
         printItemLine(outcome);
@@ -510,7 +514,8 @@ export async function runProcessing(opts: RunProcessingOptions): Promise<void> {
   // MCP tool calls, so the search index, graph, and vectors are rebuilt too, not just index.md.
   await rebuildCatalogIndexes({ dir, format: 'full' });
 
-  printTotalsLine(items.length, totals, (Date.now() - t0) / 1000);
+  printTotalsLine(totals.done + totals.failed, totals, (Date.now() - t0) / 1000);
+  if (stopping) console.log(`Stopped early: ${items.length - totals.done - totals.failed} item(s) not started, still queued`);
 }
 
 export function parsePositiveIntFlag(argv: string[], flag: string): number | undefined {

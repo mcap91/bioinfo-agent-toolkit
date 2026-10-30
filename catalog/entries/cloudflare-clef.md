@@ -43,3 +43,7 @@ Cloudflare also debuted an RL fine-tuning platform on Workers AI for adapting th
 ## Security
 
 Apache 2.0 licensed. Open weights — full self-hosting possible. Workers AI API is metered. Vision encoder processes images locally within the model.
+
+## Usage notes
+
+- Per Cloudflare's own benchmark, Clef-flash answered in ~38ms versus Jev's ~520ms (about 10x faster) (source: https://www.instagram.com/reel/DeIV3Tam24w/)

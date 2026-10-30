@@ -44,3 +44,7 @@ The idea is elegant in its simplicity — filesystem structure as the orchestrat
 - **Supply chain**: Academic paper by Jake Van Clief
 - **Dangerous patterns**: None — the protocol is a set of filesystem conventions
 - **Maintenance**: Research paper; the protocol is stable by nature (conventions don't need updates)
+
+## Usage notes
+
+- Cited in an Instagram reel (under the name "ICM," attributed to Jake van Cleef) as part of a blind benchmark (uncredited methodology) comparing three LLM-wiki implementations ([[nashsu-llm-wiki]], [[nvk-llm-wiki]], and an uncorroborated "Lukastorian" agent) against plain Claude Code structured with this protocol's organized-folders approach; the reel reports the folder-structured plain-Claude-Code baseline matched the best-performing wiki tool's answer accuracy at about half the per-answer cost (source: https://www.instagram.com/reel/DfFSZDvN6oV/)

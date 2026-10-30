@@ -56,6 +56,9 @@ Two pieces for running a 27B model as a long-context local coding/agent backend 
 
 - Reddit thread: the weights are ~2.4-bit; commenters asked for perplexity and baseline comparisons. One user reported 50–70 tok/s in synthetic tests but ~15 tok/s in real agentic coding at high context on a 12GB 4070 with DDR4 (the repo's own table shows the same decline with context); the author points to subsequent updates.
 
+- A skeptical commenter (mike4080s) couldn't find the author's claimed "98%" figure in either linked page, and pointed out the repo's own table shows 72.6 tok/s at 16K context dropping to 11 tok/s at 180K context. (source: https://www.reddit.com/r/LocalLLM/comments/1x1rv5k/comment/pew7oqh/)
+- Asked what harness produced the agentic-task numbers, the author named an unpublished personal harness, "Marionette" — no repo link given. (source: https://www.reddit.com/r/LocalLLM/comments/1x1rv5k/comment/pew7oqh/)
+
 ## Security
 
 MIT. Code execution from the layer runs inside a WASI sandbox (no host filesystem, network, or subprocesses; memory/time limits) with canary tests checked at runtime fetch. The server binds an HTTP API protected by a generated bearer key. Depends on a custom llama.cpp fork and third-party GGUF conversions; single maintainer, created Oct 2026.

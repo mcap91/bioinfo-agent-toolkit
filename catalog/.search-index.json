@@ -1,8 +1,8 @@
 {
   "description": "Search index for the bioinfo-agent-toolkit catalog. Each entry is an assessed external tool, skill, framework, or reference with a decision_status (adopted/rejected/open) and security review.",
   "usage": "Search by tags, category, decision_status, or keywords in summary/body_summary. Follow the path field for the full entry with security analysis and mechanical details.",
-  "generated": "2026-10-29",
-  "count": 623,
+  "generated": "2026-10-30",
+  "count": 684,
   "decision_statuses": {
     "adopted": "in use",
     "rejected": "evaluated and ruled out",
@@ -1367,6 +1367,40 @@
       "path": "catalog/entries/aperture-cli.md"
     },
     {
+      "name": "api-anything",
+      "title": "API Anything",
+      "url": "https://github.com/goodnight000/api-anything",
+      "category": "mcp-server",
+      "decision_status": "open",
+      "summary": "MCP server, CLI, and TypeScript library that turns a website's own frontend requests into a reusable HTTP \"operation\" an agent can call instead of driving a browser — a headless browser loads the target page once per example input, the part of the request that varies becomes a parameter, and cookies/tokens become references to a local store rather than literal values. Calls replay as plain HTTP where possible, falling back to in-browser fetch or full page render; when a learned operation drifts, the first caller to hit the failure repairs it and the fix is shared to a public Cloudflare Worker catalog (30 bundled read operations across 14 sites — Google Flights, Goodreads, Rotten Tomatoes, Hacker News, X, Instagram, YouTube, Steam, Airbnb, Amazon, Rightmove, Pinterest, LinkedIn, Domino's Australia). Writes are opt-in (--allow-writes) and guarded (write-interception during learning, duplicate-write refusal, idempotency keys). MIT, TypeScript, ~1.7k GitHub stars / 179 forks as of October 2026 (per trendshift.io), 2 contributors.",
+      "body_summary": "API Anything is an MCP server, CLI, and TypeScript library that turns a website's own frontend network traffic into a reusable \"operation\" an agent can call over plain HTTP instead of driving a browser. A headless browser loads the target page once per example input; the part of the request that changes with the input becomes a parameter, and cookies/tokens become references to a local credential store rather than literal values. A learned call replays as a plain HTTP request first (\"tier 1\"); if the site blocks that, it falls back to fetching from inside a browser page, and as a last resort renders the full page and reads its own response. When a learned operation's shape drifts (a rotated id, a moved field), the first agent to hit the failure re-learns and repairs it, and the fix is pushed to a shared public catalog so other installs skip the repair.",
+      "tags": [
+        "mcp-server",
+        "web-scraping",
+        "browser-automation",
+        "reverse-engineering",
+        "api",
+        "agent-tools",
+        "self-healing",
+        "typescript",
+        "cli",
+        "claude-code",
+        "shared-catalog",
+        "nodejs"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "Dual-use web-automation tool: bypasses normal API access by learning a site's own frontend requests; README states 'read each site's terms, you're responsible for how you use it' and does not evaluate ToS compliance for bundled targets (e.g. LinkedIn, Instagram, X) or learned sites",
+        "Source item (Instagram reel) describes using it to automate LinkedIn outreach and Reddit marketing — automated interaction with sites whose terms generally restrict scripted use is a user-assumed risk the tool does not evaluate or prevent",
+        "Session login imports live cookies from the user's local browser profiles (Chrome, Arc, Brave, Edge, Chromium, Firefox) to authenticate operations; project states specs persist only cookie/token references, not values, and redacts live values in error output, but the import step itself handles sensitive session credentials",
+        "Calling an unlearned site pulls a community-contributed operation spec from a public shared catalog before any independent audit — promotion to 'live' is based on crowd-reported success/failure counts (2 confirming networks, 3 failing networks to demote), not a security review",
+        "By the project's own documentation, a write operation's '2xx accepted' response does not confirm the action was actually applied server-side; only an operation with an author-defined readback check reports 'applied', so a write can silently misreport success"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/api-anything.md"
+    },
+    {
       "name": "apito-ai",
       "title": "apito.ai (ClaudeAPI) — third-party Claude API gateway",
       "url": "https://apito.ai/en/blog/tools/mcp-stateless-architecture-apito/",
@@ -1493,6 +1527,36 @@
       "security_flags": [],
       "reviewed": "2026-09-03",
       "path": "catalog/entries/armorocr.md"
+    },
+    {
+      "name": "artcraft",
+      "title": "ArtCraft (storytold \"Crafting Apps\")",
+      "url": "https://github.com/storytold/artcraft",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Desktop IDE for interactive AI image/video creation (Windows/macOS releases, Linux build-from-source) integrating ~62 third-party generative models (Nano Banana, GPT Image, FLUX, Seedream, Kling, Veo, Sora, Suno, Hunyuan 3D, Marble, etc.) for 2D/3D compositing, character posing, kitbashing, and text/canvas-driven image and video editing; flagship of the storytold GitHub org's Crafting Apps line (70+ repos — PhotoCraft, LightCraft, FilmCraft, VectorCraft, PdfCraft, FigCraft, EffectCraft, SoundCraft, CADCraft, WordCraft, and reported Office clones), each billed as a clean-room from-scratch-in-pure-Rust reimplementation of professional creative/office software; reported as built largely by one developer (Brandon Thomas) using Claude Opus 5.5 over days in late Sept/Oct 2026; drew disputed/scrutinized viral GitHub-star growth and AI-slop criticism; ArtCraft itself dual-licensed MIT/Apache-2.0",
+      "body_summary": "ArtCraft is a desktop IDE for interactive AI image and video creation, distributed as stable Windows/macOS releases (Linux via build-from-source). It composes AI-generated media in 2D and 3D: 2D/3D image compositing, image-to-3D-mesh, character posing and identity transfer, kitbashing-based scene blocking, background removal, text-to-image, prompted/canvas image editing (masks, inpainting), and image-to-video. It integrates roughly 62 third-party generative models across providers — image (Nano Banana, GPT Image, FLUX, Seedream), video (Seedance, Kling, Veo, Sora, Vidu, MiniMax, Flux 3), music/sound (Suno, Seed Audio), 3D mesh (Hunyuan 3D, Tripo3D, Meshy, Rodin), and world/Gaussian-splat generation (Marble, TripoSplat).\n\nArtCraft is the flagship of a wider \"Crafting Apps\" line hosted in the same storytold GitHub org (70+ repos as of Oct 2026): PhotoCraft (photo editor), LightCraft (non-destructive photo editor), FilmCraft (nonlinear video editor), VectorCraft (vector art), PdfCraft (PDF reader/editor), FigCraft (design/prototyping), EffectCraft (motion graphics/compositing), SoundCraft (Pro Tools-style audio), CADCraft (AutoCAD-style CAD), WordCraft (word processor), and reported Microsoft Office clones (GridCraft/Excel, DeckCraft/PowerPoint). Each is billed as a clean-room reimplementation \"written from scratch in pure Rust\" of an established piece of professional creative or office software. Press coverage (Tom's Hardware, PetaPixel, and others) attributes most of this output to one developer, Brandon Thomas (Atlanta-based, ~15 years' experience, operating as the ArtCraft team/Storyteller.ai), who has stated he built the apps using Anthropic's Claude Opus 5.5 over a span of days in late September/early October 2026.",
+      "tags": [
+        "rust",
+        "ai-generated-code",
+        "claude-opus",
+        "generative-ai",
+        "image-generation",
+        "video-generation",
+        "desktop-app",
+        "creative-software",
+        "adobe-alternative",
+        "viral-growth"
+      ],
+      "workflows": [],
+      "license": "dual MIT/Apache-2.0 (ArtCraft repo; sibling Crafting Apps repos not individually verified)",
+      "security_flags": [
+        "single-developer-ai-generated-codebase",
+        "disputed-viral-star-growth",
+        "prebuilt-binary-distribution"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/artcraft.md"
     },
     {
       "name": "asi-evolve",
@@ -1852,6 +1916,30 @@
       "path": "catalog/entries/awesome-design-md.md"
     },
     {
+      "name": "awesome-gamedev-agent-skills",
+      "title": "awesome-gamedev-agent-skills",
+      "url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "A library of 77 Agent Skills for game development spanning 12 engines (Godot, Unity, Unreal, Ebitengine, Phaser, PixiJS, three.js, Bevy, pygame, LOVE, Defold, Roblox), plus cross-engine discipline, genre-template, and workflow skills, installed via a router that detects the project's engine from project files and loads only the matching skills",
+      "body_summary": "awesome-gamedev-agent-skills is a curated library of Agent Skills (SKILL.md files, Anthropic's\nopen Agent Skills standard) for game development. It contains 77 skills:\n\n- **Engine skills (across 12 engines):** Godot (16), Unity (8), Unreal (6), plus Ebitengine,\n  Phaser, PixiJS, three.js, Bevy, pygame, LOVE, Defold, and Roblox\n- **15 cross-engine discipline skills:** AI, procedural generation, audio, shaders, physics, etc.\n- **9 genre template skills:** platformer, roguelike, RPG, FPS, tower defense, card games,\n  visual novels, survival-crafting, puzzle\n- **4 workflow skills:** game jams, prototyping, Steam/itch publishing\n\nA router detects the project's engine from project files (`project.godot`, `*.uproject`, etc.),\nanalyzes the user's request for task/genre/concept, and loads only the matching skills in\npriority order (engine basics, then discipline, then genre) — e.g. \"add a double jump to my\nGodot player\" loads just `godot-2d-movement` and `platformer`.\n\nA separate `create-game-assets` skill is an art-direction/production pipeline: it locks a visual\ntarget, builds asset families, normalizes outputs deterministically, and checks them in-game to\nkeep art style consistent across a project.\n\nSkills are version-pinned to specific engine releases (Godot 4.7, Unity 6.3 LTS, Unreal 5.8,\netc.) and claimed to be sourced from official engine docs. All skills pass a Python validator\n(`validate-skills.py`) before merge.",
+      "tags": [
+        "agent-skills",
+        "game-development",
+        "godot",
+        "unity",
+        "unreal",
+        "claude-code-plugin",
+        "router",
+        "skill-library"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/awesome-gamedev-agent-skills.md"
+    },
+    {
       "name": "awesome-harness-engineering",
       "title": "Awesome Harness Engineering",
       "url": "https://github.com/ai-boost/awesome-harness-engineering",
@@ -2109,6 +2197,35 @@
       "path": "catalog/entries/blaxel.md"
     },
     {
+      "name": "blender",
+      "title": "Blender",
+      "url": "https://www.blender.org/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Free, open-source 3D creation suite (modeling, sculpting, UV/texturing, rigging, animation, simulation, the Cycles and EEVEE render engines, compositing, video editing, and Grease Pencil 2D-in-3D drawing); scriptable via a Python API that drives the entire tool including a built-in Python console and add-on system; cross-platform (Linux, Windows, macOS); GPL-licensed (sources vary between citing GPL-2.0-or-later and GPL-3.0), free since 1.0 and open-source since 2002 after a community buyout from the original commercial owner (NaN); maintained by the Blender Foundation with an LTS release track (5.2 LTS released 2026-07-14); third-party MCP servers exist that let AI agents drive Blender's Python API over the Model Context Protocol, which is the specific integration referenced (and dismissed) in this entry's source item.",
+      "body_summary": "Blender is a free, open-source 3D creation suite covering the full content pipeline: modeling, sculpting (multi-resolution and dynamic subdivision, texture-brush painting), UV/texturing, rigging and animation, physics/particle simulation, two render engines (Cycles for path-traced photorealism, EEVEE for real-time/viewport rendering), node-based compositing, basic video editing, and Grease Pencil for 2D drawing directly inside a 3D viewport. It is scriptable end-to-end through a Python API — most of Blender's own UI is itself built on that API — with a built-in Python console and a community add-on ecosystem for extending or automating the tool.\n\nOriginally built in-house by a Dutch animation studio (1994), Blender became free and open-source in 2002 after a community fundraiser bought the rights from the original commercial owner (NaN) for roughly €100,000. It now runs cross-platform (Linux, Windows, macOS) under the Blender Foundation, which maintains a Long-Term-Support release track alongside regular releases (5.2 LTS released 2026-07-14).\n\nBecause Blender exposes its full feature set through Python, third-party Model Context Protocol (MCP) servers exist (community projects, not shipped by the Blender Foundation) that let an AI agent drive Blender — creating/editing geometry, materials, and scenes — by calling that same Python API over MCP. This Blender-via-MCP integration pattern is the specific thing referenced (and dismissed as not worth the effort, in favor of agent-written procedural-generation code) in this entry's source item; no specific MCP server product was named in that item.",
+      "tags": [
+        "3d-modeling",
+        "sculpting",
+        "animation",
+        "rendering",
+        "cycles",
+        "python-scripting",
+        "open-source",
+        "gpl",
+        "blender-foundation",
+        "game-development"
+      ],
+      "workflows": [],
+      "license": "GPL",
+      "security_flags": [
+        "python-scripting-arbitrary-code",
+        "third-party-mcp-code-execution-surface"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/blender.md"
+    },
+    {
       "name": "blitzos",
       "title": "BlitzOS",
       "url": "https://github.com/blitzdotdev/blitzos",
@@ -2213,6 +2330,37 @@
       "path": "catalog/entries/boltz-api.md"
     },
     {
+      "name": "bonsai-ada-surgery",
+      "title": "bonsai-ada-surgery (Ternary Bonsai 2 27B on 8-12GB + agent layer)",
+      "url": "https://github.com/professorpalmer/bonsai-ada-surgery",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Serving recipe and launcher for PrismML's Ternary Bonsai 2 27B (1.58-bit ternary GGUF, PTQ1_0 quant, 5.9GB) that runs the full 262,144-token trained context window on 8GB and 12GB NVIDIA cards — patched PrismML llama.cpp fork, a launcher that sizes the K/V cache per card (q4_0 on 12GB, q3_0 on 8GB), MTP speculative drafting, weights unchanged; fixes reported agent/coding regressions at the runtime layer (template-rejected effort words, output caps that cut off reasoning, a runaway \"xhigh\" reasoning default, tool calls returned as JSON) rather than the compression; optional agent \"layer\" (API cards, sandboxed Python) ported from the same author's mirai-s-ada; repo's own title claims 262k context on 12GB at 54-97 tok/s decode, 2x prefill, q8_0 KV recipe, grammar tool calls 9/9 (self-reported); OpenAI-compatible API; MIT for repo code, PrismML weights Apache-2.0.",
+      "body_summary": "Serving recipe and launcher for PrismML's Ternary Bonsai 2 27B (1.58-bit ternary GGUF, `PTQ1_0`\nquant, 5.9GB) that runs the full 262,144-token trained-max context window on 8GB and 12GB NVIDIA\ncards. Uses a patched PrismML llama.cpp fork; a launcher sizes the K/V cache precision per card\n(`q4_0` on 12GB, `q3_0` on 8GB) and adds MTP (multi-token-prediction) speculative drafting. Model\nweights are not changed — the repo's premise is that most of the coding/agent quality loss people\nreport on this model comes from the serving runtime, not the ternary compression, and fixes it at\nthat layer: effort words the chat template rejects, output caps that cut reasoning short, a\nrunaway `xhigh` reasoning-effort default, and tool calls returned as JSON instead of the expected\nformat. An optional agent \"layer\" (API cards for Python modules, sandboxed code execution) is\nported from the same author's `mirai-s-ada`.",
+      "tags": [
+        "local-inference",
+        "llama-cpp",
+        "ternary-quantization",
+        "long-context",
+        "kv-cache",
+        "speculative-decoding",
+        "mtp",
+        "openai-compatible",
+        "proxy",
+        "code-interpreter",
+        "consumer-gpu"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "custom-llama-cpp-fork",
+        "single-maintainer",
+        "new-project"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/bonsai-ada-surgery.md"
+    },
+    {
       "name": "book-to-skill",
       "title": "Book to Skill",
       "category": "skill",
@@ -2304,6 +2452,32 @@
       ],
       "reviewed": "2026-09-26",
       "path": "catalog/entries/breachdirectory.md"
+    },
+    {
+      "name": "brogue-ce",
+      "title": "Brogue: Community Edition",
+      "url": "https://github.com/tmewett/BrogueCE",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Community-maintained fork of Brian Walker's Brogue roguelike — seeded procedural dungeon generator that places rooms by sliding candidates until a door meets an existing wall without overlap, cuts extra doors between far-apart floor areas to add loops, and shapes lakes with a 5-round cellular-automaton smoothing pass gated by a connectivity check; C, SDL2, 26 playable levels, 1.5k stars/197 forks; AGPL-3.0.",
+      "body_summary": "Brogue: Community Edition continues development of Brian Walker's Brogue, a single-player roguelike where the player descends 26 dungeon levels to retrieve the Amulet of Yendor, with randomly-generated floors and permadeath. CE is maintained by tmewett under a benevolent-dictator model, with contributions from testers and developers coordinated via GitHub issues and a Discord server. Builds exist for Windows, macOS, and Linux (SDL2/SDL2_image), plus a separately-maintained Android port.",
+      "tags": [
+        "procedural-generation",
+        "dungeon-generation",
+        "roguelike",
+        "cellular-automaton",
+        "game-dev",
+        "seeded-random",
+        "c",
+        "sdl2"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0",
+      "security_flags": [
+        "requires-manual-source-build"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/brogue-ce.md"
     },
     {
       "name": "browser-use",
@@ -2474,6 +2648,29 @@
       "security_flags": [],
       "reviewed": "2026-06-25",
       "path": "catalog/entries/building-evals-anthropic.md"
+    },
+    {
+      "name": "caire",
+      "title": "caire",
+      "url": "https://github.com/esimov/caire",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Go content-aware image resizing library and CLI implementing seam carving — computes an edge-energy map, repeatedly finds and removes (or duplicates) the lowest-cumulative-energy one-pixel-per-row seam to shrink or grow an image without uniform squeezing; optional face-detection and protective/removal masks to guide which regions survive; ~11k GitHub stars, MIT",
+      "body_summary": "caire resizes images by removing or duplicating \"seams\" — connected paths of one pixel per row (or column) — instead of uniformly scaling, so it can narrow or widen an image while preserving regions with high visual detail.\n\nIt builds an energy map from edge detection (Sobel by default), then uses dynamic programming to find the seam with the lowest cumulative energy across the image, removes it, and recomputes the energy map before repeating. This process does not understand object semantics — it only tracks edge energy, so which regions survive depends on the image's edge content, not what a viewer would consider important.\n\nImplemented in Go as both a library and CLI (`-in`/`-out` support file paths, stdin/stdout, and directory batch processing). CLI flags include `-width`/`-height`/`-perc` for target size, `-square`, `-face` to run embedded face detection (via the Pigo library) so faces aren't deformed, `-mask`/`-rmask` binary masks to protect or force-remove regions, `-blur`/`-sobel` to tune edge detection, and `-debug` for a GUI visualization of seam removal (via Gio).",
+      "tags": [
+        "seam-carving",
+        "content-aware-resize",
+        "image-processing",
+        "go",
+        "cli",
+        "computer-vision",
+        "face-detection"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/caire.md"
     },
     {
       "name": "career-ops",
@@ -3209,6 +3406,20 @@
       "path": "catalog/entries/claude-projects.md"
     },
     {
+      "name": "claude-pxl",
+      "title": "",
+      "url": "https://www.instagram.com/reel/DejwS6fjDvg/",
+      "category": "skill",
+      "decision_status": "open",
+      "summary": "",
+      "body_summary": "## Differentiators",
+      "tags": [],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/claude-pxl.md"
+    },
+    {
       "name": "claude-science",
       "title": "Claude Science",
       "url": "https://www.anthropic.com/news/claude-science-ai-workbench",
@@ -3452,6 +3663,31 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/cli-anything.md"
+    },
+    {
+      "name": "cline",
+      "title": "Cline",
+      "url": "https://github.com/cline/cline",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source autonomous coding agent distributed as a VS Code extension, JetBrains plugin (early access), SDK, and CLI — file editing, terminal command execution, browser automation, and MCP tool integration with human-in-the-loop approval by default (diff review, checkpoints to undo agent work, optional auto-approve); project rules via .clinerules files; MCP Marketplace and hosted SaaS (Cline.bot) with free/paid/enterprise tiers; developed by Cline Bot Inc.; TypeScript; ~71k GitHub stars, 5M+ VS Code installs; Apache-2.0",
+      "body_summary": "Cline turns an editor into an autonomous coding agent: it reads files, writes code, runs terminal commands, drives a browser, and calls MCP tools, iterating on errors without constant hand-holding. By default it requires approval for each file change and command (human-in-the-loop), shows every edit as a reviewable/revertible diff, and tracks checkpoints to undo its own work; an auto-approve toggle allows unattended runs. Project-specific conventions (coding standards, architecture, deployment, testing) go in `.clinerules` files, picked up automatically across the VS Code extension, JetBrains plugin, and CLI. An MCP Marketplace lists third-party tool servers, and a hosted SaaS (Cline.bot) offers free, paid, and enterprise tiers.",
+      "tags": [
+        "coding-agent",
+        "vscode-extension",
+        "jetbrains",
+        "cli",
+        "sdk",
+        "mcp",
+        "browser-automation",
+        "human-in-the-loop",
+        "agent-harness"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/cline.md"
     },
     {
       "name": "clm",
@@ -3708,6 +3944,28 @@
       "path": "catalog/entries/codegraph.md"
     },
     {
+      "name": "codeql",
+      "title": "CodeQL",
+      "url": "https://codeql.github.com/",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "GitHub's semantic SAST engine — compiles source into a queryable relational database and runs CodeQL-language queries (SQL injection, XSS, etc.) against it without executing the code; CLI integrates into GitHub Actions/Advanced Security code scanning and can fail CI on a match; 12 languages; CLI under GitHub's own Terms (free for OSI-licensed public repos/academic use, GHAS license required for private repos), query packs MIT",
+      "body_summary": "GitHub's semantic code-analysis engine for SAST (static application security testing). The CodeQL CLI compiles source code into a CodeQL database — a relational representation of the code's syntax and semantics — then runs queries written in the CodeQL query language against that database to find vulnerabilities (e.g. SQL injection, XSS, path traversal) and bugs without executing the code. Natively integrated into GitHub Advanced Security's code scanning, where the `github/codeql-action` runs analysis as part of a GitHub Actions workflow and can report or fail a pull request when a query matches.",
+      "tags": [
+        "sast",
+        "static-analysis",
+        "github",
+        "code-scanning",
+        "security",
+        "ci-cd"
+      ],
+      "workflows": [],
+      "license": "GitHub CodeQL Terms and Conditions (source-available); query packs MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/codeql.md"
+    },
+    {
       "name": "codex-memory-cleanup",
       "title": "Codex Memory Cleanup",
       "category": "reference",
@@ -3897,6 +4155,38 @@
       "security_flags": [],
       "reviewed": "2026-10-26",
       "path": "catalog/entries/cold-cache-session-resume.md"
+    },
+    {
+      "name": "colibri",
+      "title": "colibri",
+      "url": "https://github.com/JustVugg/colibri",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Pure-C, zero-dependency inference engine that runs very large open-weight mixture-of-experts (MoE) LLMs (up to ~2.8T parameters) on ordinary hardware by keeping the small per-token-active dense part resident in RAM/VRAM and streaming the inactive routed experts from disk; ships a `coli` CLI, OpenAI- and Anthropic-compatible HTTP API, an MCP server for AI-assisted setup, and a non-generative \"System One\" classification endpoint backed by three purpose-built decision models",
+      "body_summary": "colibri is a from-scratch C inference engine (one .c file per model family, no BLAS, no Python at runtime) for running mixture-of-experts LLMs whose routed experts change on every token but whose dense/shared layers do not. It keeps the dense part and a learned cache of frequently-used experts resident in RAM or VRAM and reads the remaining experts from disk on demand through a per-layer LRU cache plus a usage-learned pinned set (`.coli_usage`, updated every turn). Ten engines run chat/tool-calling language models (GLM-5.2/5.3, GLM-5.3-Flash, Kimi K3, DeepSeek V4/V4.1 Flash, MiMo-V2.6 Flash/Pro, Qwen3.6/Qwen3-Coder/Qwen3.8-Flash-Next, the dense Qwen3.8-27B, and OLMoE), one draws images (Qwen-Image-2.1), and three answer classification-style questions instead of chatting (Laya, GLiNER2.5-Decide, and Clef, the last of which also chats). A one-step setup script (`start-here.sh`/`START-HERE.bat`) profiles the host's RAM, disk, CPU and GPU, recommends a model that fits, downloads it with resumable progress, and builds or downloads the matching engine (CPU, Vulkan for any GPU vendor, CUDA for NVIDIA, Metal for Apple Silicon).",
+      "tags": [
+        "local-inference",
+        "moe",
+        "expert-offloading",
+        "cpu-inference",
+        "vulkan",
+        "cuda",
+        "metal",
+        "openai-compatible",
+        "anthropic-compatible",
+        "mcp-server",
+        "decision-model",
+        "safetensors",
+        "pure-c"
+      ],
+      "workflows": [],
+      "license": "apache-2.0",
+      "security_flags": [
+        "new-project",
+        "unauthenticated-by-default"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/colibri.md"
     },
     {
       "name": "comfyui",
@@ -4606,6 +4896,29 @@
       "path": "catalog/entries/deepseek-v4-flash-kv-cache-architecture.md"
     },
     {
+      "name": "demucs",
+      "title": "Demucs",
+      "url": "https://github.com/adefossez/demucs",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Hybrid Transformer music source separation model from Alexandre Défossez — splits a song into drums, bass, vocals, and other stems via dual waveform/spectrogram branches joined by a cross-domain transformer; MIT licensed, pip/uvx installable, 9.0 dB SDR on MUSDB HQ",
+      "body_summary": "Demucs (Deep Extractor for Music Sources) is a music source separation model that splits a song into four stems: drums, bass, vocals, and everything else (accompaniment). Originally released by Alexandre Défossez at Meta's FAIR group as `facebookresearch/demucs`; now maintained independently at `adefossez/demucs` after Défossez left Meta to join Kyutai. Based on a U-Net convolutional architecture inspired by Wave-U-Net.\n\nThe current v4 release, Hybrid Transformer Demucs, reads the input mixture as both a raw waveform and a spectrogram in parallel branches. Each branch compresses the input through convolutional downsampling, a cross-domain transformer encoder in the middle exchanges information between the two branches (self-attention within each domain, cross-attention across domains), then both branches expand back out into four output tracks whose estimates are summed. It was trained on the MUSDB HQ dataset plus an extra 800-song training set, and reports 9.00 dB SDR on the MUSDB HQ test set (9.20 dB with sparse attention and per-source fine-tuning).",
+      "tags": [
+        "audio",
+        "music-source-separation",
+        "stem-separation",
+        "transformer",
+        "pytorch",
+        "vocal-removal",
+        "signal-processing"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/demucs.md"
+    },
+    {
       "name": "deny-env-reads",
       "title": "Deny .env Reads via Permissions",
       "url": "https://code.claude.com/docs/en/settings",
@@ -4799,6 +5112,33 @@
       "path": "catalog/entries/distributed-inference-multi-node.md"
     },
     {
+      "name": "dlaf",
+      "title": "dlaf",
+      "url": "https://github.com/fogleman/dlaf",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Michael Fogleman's C++ command-line tool implementing diffusion-limited aggregation (DLA) — random walkers stick together on contact with a growing cluster, producing coral- or lichen-like branching structures in 2D or 3D; computes roughly one million points per core in ~35 seconds (per its own README) using Boost for spatial indexing, and writes particle ID/parent/coordinate data to CSV, leaving rendering to the caller; last pushed 2020-01-09; MIT.",
+      "body_summary": "dlaf (Diffusion-Limited Aggregation, Fast) simulates particles that wander randomly until they touch an already-stuck cluster, then stick in place — repeated over many particles this grows branching, coral- or lichen-like structures in 2D or 3D. Each particle records which particle it stuck to (its parent), so the output is a tree. Parameters (attraction distance, particle spacing, stickiness, \"stubbornness\") and hooks (starting position, reset condition, join logic, motion vector) are configurable in code. The README's own benchmark claims about one million points computed per core in ~35 seconds; example renders include a 2D run with 1 million particles and a 3D run with 10 million particles ray-traced in ~10 hours at 4096x4096px, 2048 samples per pixel.",
+      "tags": [
+        "diffusion-limited-aggregation",
+        "procedural-generation",
+        "generative-art",
+        "creative-coding",
+        "cplusplus",
+        "particle-simulation",
+        "branching-structures"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "unmaintained",
+        "single-maintainer",
+        "requires-manual-source-build"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/dlaf.md"
+    },
+    {
       "name": "docker-alternatives-for-ai-agents",
       "title": "Docker Alternatives for AI Agents: Podman, bwrap, Firejail",
       "url": "https://grigio.org/docker-alternatives-for-ai-agents-podman-bwrap-and-firejail/",
@@ -4894,6 +5234,30 @@
       "security_flags": [],
       "reviewed": "2026-09-14",
       "path": "catalog/entries/documenso.md"
+    },
+    {
+      "name": "doom-fire-algorithm",
+      "title": "doom-fire-algorithm",
+      "url": "https://github.com/filipedeschamps/doom-fire-algorithm",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Filipe Deschamps's playground of ~70 community reimplementations of the DOOM fire effect across JS/Rust/C++/Python/Go/Unity/Godot/etc. — a grid of 0-36 values mapped to a 37-color palette, bottom row pinned to 36, each cell takes the value below minus a random 0-2 (shifted up to two cells left) so the fire cools and flickers as it rises; 1.5k stars, 304 forks, actively maintained (pushed 2026-10-17); MIT.",
+      "body_summary": "A playground of roughly 70 community-contributed reimplementations of the fire effect from the original DOOM video game, started by Filipe Deschamps with a plain JavaScript/HTML-table version (fire.js) and open to pull requests in any language. The algorithm: a grid of integers 0-36, each mapped to one of 37 colors in a palette running black to white; the bottom row is pinned to 36 (hottest/whitest). Each step, a cell's new value is the value of the cell directly below it minus a random amount of 0, 1, or 2 (floored at 0); that same random amount also shifts the written value up to two cells to the left, so the fire leans and flickers as it cools from white to yellow to red to black while rising. Setting the bottom row to 0 lets the fire burn out on its own.",
+      "tags": [
+        "doom-fire",
+        "palette-animation",
+        "pixel-art",
+        "procedural-generation",
+        "generative-art",
+        "creative-coding",
+        "javascript",
+        "fire-effect"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/doom-fire-algorithm.md"
     },
     {
       "name": "dotclaude",
@@ -5145,6 +5509,33 @@
       ],
       "reviewed": "2026-05-25",
       "path": "catalog/entries/ecc-plugin.md"
+    },
+    {
+      "name": "elevenlabs",
+      "title": "ElevenLabs",
+      "url": "https://elevenlabs.io/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Commercial AI voice platform — text-to-speech (TTS), voice cloning, and voice-agent APIs; models adapt intonation/pacing/emotion to textual cues across up to 32 languages (marketing cites 90+ languages and 17,500+ voices for the broader product); voice library of 10,000+ community-shared voices plus professional and instant voice cloning and text-described voice design; core endpoint `POST /v1/text-to-speech/:voice_id` (model_id defaults to eleven_multilingual_v2, optional language_code); Eleven Realtime bundles ASR + VAD + turn-taking + LLM + TTS into one speech-to-speech voice agent; official JS (`@elevenlabs/elevenlabs-js`) and Python SDKs plus community integrations (Vercel AI SDK, LangChain-style wrappers); closed-source hosted SaaS, $5-$990+/mo tiers, ~$0.30/1k characters API metering; privacy policy retains voice-model data up to 3 years post-interaction with no published deletion guarantee for a trained voice-clone model, trains on consumer-tier data by default (opt-out available), and faces an active 2026 biometric-data class action and recurring deepfake/voice-cloning-misuse reports; Enterprise tier adds SOC 2 Type II, HIPAA, GDPR terms, EU residency, and a traffic-limited Zero Retention Mode",
+      "body_summary": "ElevenLabs is a commercial AI voice platform offering text-to-speech (TTS), voice cloning, and voice-agent APIs. Models adapt intonation, pacing, and emotional tone to textual cues across up to 32 languages (marketing copy cites 90+ languages and 17,500+ voices for the broader voice-generation product). The voice library ships 10,000+ community-shared voices alongside professional voice cloning (highest fidelity, from longer reference audio), instant voice cloning (from 1-2 minutes of reference audio), and text-described voice design.\n\nCore API: `POST /v1/text-to-speech/:voice_id` converts text to audio for a chosen voice; optional parameters include `model_id` (defaults to `eleven_multilingual_v2`, queryable via `GET /v1/models`) and `language_code`. Eleven Realtime is a separate class of speech-to-speech models bundling ASR, voice-activity detection, turn-taking, an LLM, and TTS into one real-time voice agent. Official JS (`@elevenlabs/elevenlabs-js`) and Python SDKs exist, plus community integrations (Vercel AI SDK's `@ai-sdk/elevenlabs`, LangChain-style wrappers). Reported usage (r/vibecoding, Oct 2026): used for AI-generated music and voiceover in a Claude-Code-produced marketing video.",
+      "tags": [
+        "text-to-speech",
+        "voice-cloning",
+        "tts-api",
+        "voice-agents",
+        "speech-synthesis",
+        "commercial-api",
+        "saas",
+        "deepfake-risk"
+      ],
+      "workflows": [],
+      "license": "proprietary",
+      "security_flags": [
+        "closed-source",
+        "biometric-data-handling"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/elevenlabs.md"
     },
     {
       "name": "embeddinggemma-2",
@@ -5966,6 +6357,45 @@
       "path": "catalog/entries/free-for-dev.md"
     },
     {
+      "name": "free-my-tv",
+      "title": "Free My TV",
+      "url": "https://github.com/simbasjungles/free-my-tv",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Open-source, ad-free home-screen replacement for Google TV/Android TV, LG webOS and Samsung Tizen TVs — a glass-shelf launcher showing only the owner's own apps, hourly TMDB trending picks limited to installed apps, Continue Watching from the TV's own Watch Next list, weather/crypto cards, a matching screensaver, and a sunset-driven day/night theme; runs through the TV's own ADB (pm disable-user/pm grant/pm revoke, cmd package set-home-activity) with nothing rooted or uninstalled and a one-button \"Original\" revert; agent-driven install (Claude Code, Codex, Antigravity given the TV's IP and city) builds and adb-installs it, with a prebuilt, signature/SHA-256-verified auto-updating APK also offered for Google TV; Java/Python/plain JS, MIT.",
+      "body_summary": "Free My TV replaces the home screen on Google TV/Android TV, LG webOS and Samsung Tizen TVs with an ad-free, open-source launcher: a shelf of the owner's own streaming apps, three to six TMDB trending/new-release picks refreshed hourly and limited to apps already on the TV (plus the owner's own Plex library on Google TV), Continue Watching pulled from Android TV's Watch Next list, weather and crypto-price cards, a \"Now Playing\" widget for background audio, a matching full-screen screensaver, and a light/dark theme that follows the TV's real local sunset. Nothing is rooted, flashed, or uninstalled — the app runs the TV's own ADB from inside the TV (connecting to `127.0.0.1:5555` with its own key) to run commands like `cmd package set-home-activity`, `settings put secure screensaver_components`, `pm disable-user`, and `pm grant`/`pm revoke` for the Continue Watching permission. A single \"Original\" menu item restores the factory home screen, screensaver, and every disabled app; the switch also reverts itself automatically after three crashes in five minutes.\n\nInstall is agent-driven on all three platforms. For Google TV/Android TV, the owner enables Developer Mode and USB debugging, gives a coding assistant (Claude Code, Codex, or Antigravity are named) the TV's IP and city, and the assistant clones the repo, installs the JDK/Android SDK/adb tooling, builds a signed ~2 MB APK (`aapt2` → `javac` → `d8` → `zipalign` → `apksigner`, no Gradle), and installs it with `adb install`. A prebuilt APK from GitHub Releases is also offered, which checks weekly (or on demand) for a newer signed release matching GitHub's listed size and SHA-256 before self-updating. LG webOS and Samsung Tizen ship the same UI rewritten in plain HTML/CSS/JS, installed through each platform's own Developer Mode (`webos/install.py`, or the community TizenBrew Installer for Samsung) rather than adb.",
+      "tags": [
+        "android-tv",
+        "google-tv",
+        "webos",
+        "tizen",
+        "lg",
+        "samsung",
+        "adb",
+        "debloat",
+        "launcher",
+        "claude-code",
+        "agent-driven",
+        "tmdb",
+        "plex",
+        "immich",
+        "pm-disable-user",
+        "restore-script",
+        "auto-update"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "network-adb-plaintext",
+        "agent-executes-device-commands",
+        "accessibility-service-notification-listener",
+        "embedded-credentials-in-apk",
+        "self-updating-binary"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/free-my-tv.md"
+    },
+    {
       "name": "freetoken",
       "title": "FreeToken",
       "url": "https://github.com/FlashML-org/FreeToken",
@@ -6271,6 +6701,31 @@
       ],
       "reviewed": "2026-08-25",
       "path": "catalog/entries/godogen.md"
+    },
+    {
+      "name": "godot-node-composition-components",
+      "title": "Reusable Node Components for Shared Enemy/Entity Behavior (Godot Composition Over Inheritance)",
+      "url": "https://www.instagram.com/reel/Der26qADV2G/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Game-dev architecture technique for sharing behavior across many entity types without duplicating code or using deep inheritance chains: break each behavior into a small, self-contained node (e.g. a health component that stores health, subtracts damage, and fires a signal when it reaches zero; a hit-detection component; a damage-on-touch component; a death-drop component), each of which knows nothing about the specific enemy it's attached to. A new enemy is assembled by dropping in the needed components, wiring their signals, and tuning numbers — only animation work is enemy-specific. Improving a shared component improves every entity using it at once. This is Godot's established community pattern of composition over inheritance via nodes and signals, not a technique unique to one project; demonstrated in a dev-log reel where 76 enemies in the roguelike Capy of Gods (built in Godot) run on the same shared health component.",
+      "body_summary": "A game-architecture technique for sharing behavior across many entity types in Godot without deep inheritance chains, by decomposing behavior into small, self-contained node components that know nothing about the entity they're attached to. Each component does one job:\n\n- **Health component**: stores max health, subtracts incoming damage, and fires a signal when health reaches zero.\n- **Hit-detection component**: an area/hitbox that detects an incoming attack and passes the damage amount to the health component.\n- **Damage-on-touch component**: deals damage when the entity's body touches another.\n- **Death-drop component**: spawns experience (or other rewards) when the entity dies.\n\nComponents communicate by emitting and connecting to each other's signals rather than holding direct references or knowledge of the parent entity, so a component written for one enemy works unmodified on any other. A new enemy is built by dropping the needed components into a scene, wiring their signals together (e.g. connecting the hit-detection component's output to the health component's damage input), and tuning exported numeric values (max health, damage amount, drop amount); the only enemy-specific work left is animation. Because every enemy that uses a component shares the same script, fixing or improving one component improves every entity built from it simultaneously.\n\nThis is Godot's broader, established \"composition over inheritance\" community pattern (built around Godot's node tree and signal system), not a technique unique to one project. Community implementations of the same idea include reusable HealthComponent node libraries and C#/GDScript composition frameworks for Godot. Demonstrated in a dev-log reel for Capy of Gods, a Chilean solo-developed vertical-climbing roguelike built in Godot, where the same health component is shared across 76 of the game's enemies.",
+      "tags": [
+        "game-design",
+        "composition-over-inheritance",
+        "component-pattern",
+        "godot",
+        "signals",
+        "architecture",
+        "game-development",
+        "roguelike",
+        "code-reuse"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/godot-node-composition-components.md"
     },
     {
       "name": "gods-eye-view",
@@ -6660,6 +7115,36 @@
       "path": "catalog/entries/gstack.md"
     },
     {
+      "name": "gufo",
+      "title": "gufo",
+      "url": "https://github.com/gufo-org/gufo",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Source-built local inference engine for AMD Strix Halo hardware (Ryzen AI Max+ 395, Radeon 8060S/gfx1151, up to 128GB unified memory) — serves GGUF models (documented against Qwen3.8-Flash-Next and Qwen3.8-27B) over an OpenAI-compatible API with MTP or DFlash2 speculative decoding and vision via a separate mmproj file; Anthropic-style /v1/messages endpoint does not yet support tool calls or streaming; MIT, requires a ROCm toolchain to build",
+      "body_summary": "gufo is an inference engine built specifically for AMD's Strix Halo APUs (Ryzen AI Max+ 395 with Radeon 8060S, gfx1151, up to 128GB unified memory). It serves GGUF-format models — in practice Unsloth's quantized builds of Qwen3.8-Flash-Next and Qwen3.8-27B are the models documented in its own setup guides — over an OpenAI-compatible HTTP API, with speculative decoding via either a shared multi-token-prediction (MTP) head bundled with some GGUF releases or a separate DFlash2 draft model. v0.8.0 added an OpenAI Responses endpoint; its Anthropic-style `/v1/messages` endpoint (the shape Claude Code expects) does not yet support tool calls or streaming, per the project's own `docs/SERVER.md`. Vision input goes through a separate `mmproj` projector file; the server checks only that some projector is present for a given model, so a model row can advertise image support even when the matching `mmproj-BF16.gguf` is missing — an image request then fails at request time rather than at startup.",
+      "tags": [
+        "local-inference",
+        "strix-halo",
+        "amd",
+        "rocm",
+        "gguf",
+        "speculative-decoding",
+        "mtp",
+        "openai-compatible",
+        "qwen",
+        "vision"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "new-project",
+        "requires-manual-source-build",
+        "unauthenticated-api-by-default"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/gufo.md"
+    },
+    {
       "name": "gvs5h-ledger-orchestration",
       "title": "GVS5H — Ledger-Based Zero-Shot Self-Orchestration",
       "url": "https://github.com/slee-persis/GVS5H",
@@ -6732,6 +7217,37 @@
       "security_flags": [],
       "reviewed": "2026-09-18",
       "path": "catalog/entries/hacksplaining.md"
+    },
+    {
+      "name": "halogen-flash-server",
+      "title": "Halogen (halogen-flash-server)",
+      "url": "https://github.com/peonist-ai/halogen-flash-server",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Closed-source, hardware-specific local inference server for running Qwen3.8-Flash-Next on AMD Strix Halo (gfx1151) silicon — distributed as a container image behind an open deployment-tooling repo; serves OpenAI- and Anthropic-compatible APIs on one port, supports MTP speculative decoding, and can route small models to the Ryzen AI NPU alongside the main model; the engine binary itself is proprietary, licensed by Peonist, LLC, separately from the public deployment scaffolding",
+      "body_summary": "Halogen (distributed as `halogen-flash-server`) is a local inference server built exclusively for running the Qwen3.8-Flash-Next model family on AMD Strix Halo (gfx1151) hardware. The GitHub repository is deployment scaffolding only — container orchestration files, entrypoint scripts, benchmarking utilities, and documentation; the inference engine itself ships as a closed-source binary inside the container image and is not visible or patchable from the repo. It serves both an OpenAI-compatible and an Anthropic-compatible API on one port, with configurable reasoning-effort levels (none/low/medium/xhigh, overridable per request) and MTP speculative decoding at a configurable depth. It can also run small models on the device's Ryzen AI NPU alongside the main Flash model, selecting between them by the model name in each request. Weights (~118GB) are distributed separately on Hugging Face as a derivative of Qwen3.8-Flash-Next, under that base model's license.",
+      "tags": [
+        "local-inference",
+        "strix-halo",
+        "amd",
+        "closed-source",
+        "docker",
+        "openai-compatible",
+        "anthropic-compatible",
+        "qwen",
+        "npu",
+        "speculative-decoding",
+        "mtp"
+      ],
+      "workflows": [],
+      "license": "proprietary",
+      "security_flags": [
+        "closed-source-binary",
+        "new-project",
+        "unauthenticated-internal-port"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/halogen-flash-server.md"
     },
     {
       "name": "harness-engineering",
@@ -6900,6 +7416,38 @@
       ],
       "reviewed": "2026-06-10",
       "path": "catalog/entries/headroom.md"
+    },
+    {
+      "name": "helm-session-manager",
+      "title": "Helm (gamepad-driven multi-agent session manager)",
+      "url": "https://github.com/PetePeter/helm",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Electron desktop app (Windows .exe, macOS universal .dmg) for running and switching between multiple AI coding CLI sessions (Claude Code, Copilot CLI, Codex CLI, etc.) as embedded terminals (node-pty + xterm.js), controlled with a game controller or keyboard; includes an opt-in per-session prompt-cache keep-warm heartbeat (auto-off after 8 hours), a Helm MCP server so agents can control sessions programmatically, cross-machine \"Fleet\" pairing with deny-by-default per-peer allow-lists, a Telegram bot for remote control, a per-folder plan graph, pattern-matched auto-fire on terminal output, scheduled prompts, a project memory knowledge graph with scheduled \"dreaming\" maintenance, and session mission/todo/ETA tracking with compaction handover notes; an Android companion app is sideloaded via APK. No LICENSE file in the repository. Single-repo project.",
+      "body_summary": "A session manager for running several AI coding CLIs side by side, built as an Electron desktop\napp. Each CLI (Claude Code, Copilot CLI, Codex CLI, or others configured by the user) runs as an\nembedded terminal via `node-pty` + `xterm.js` — no external windows. Primary control surface is a\ngame controller (Xbox or generic/DirectInput gamepad): D-pad switches sessions and auto-selects\nthe terminal, triggers spawn new sessions for configured CLIs, and the right stick scrolls the\nbuffer. Keyboard shortcuts duplicate every binding. An Android companion app (sideloaded APK,\npaired over Bluetooth LE or local network) mirrors session control, chat, plans, and artifacts,\nwith voice calls and notifications.\n\nRelevant to prompt-cache cost management: a per-session opt-in toggle sends a short heartbeat\nbefore a supported CLI's prompt cache expires, turning itself off automatically after 8 hours\n(`docs/session-freeze.md` covers prompt-cache status, session freezing, and keep-warm controls).\n\nOther features: a Helm MCP server (starts automatically with the app) exposing tools so Claude\nCode or other agents can send text between sessions, read terminal output, and manage plans\nprogrammatically; a Telegram bot with one forum topic per session for remote control\n(`/sessions`, `/status`, `/spawn`, `/send`, `/close`), with activity-gated output batching; a\nper-working-directory plan graph (planning/ready/coding/review/blocked/done states) with\ndependency-aware chips surfaced near the terminal; a regex pattern matcher that auto-fires\nscripted input sequences on PTY output, with per-session cooldowns; one-time and recurring\nscheduled prompts; LLM-directed notification routing between sessions, Telegram, or OS toasts;\nsession recovery across app crashes with a 30-day recycle bin keyed to each session's resume id;\na cross-machine \"Fleet\" mode pairing two Helm instances over LAN (off by default; TCP 47474 +\nmDNS discovery; 6-digit pairing code confirmation; deny-by-default per-peer tool allow-lists with\na rolling 7-day audit log; `helm_restart`, `session_close`, and `session_group_close` are never\nremotely invocable); a per-project memory knowledge graph with auto-save/auto-recall and a\nscheduled \"dreaming\" maintenance run that prunes and merges memories; and per-session mission/\ntodo/ETA tracking plus a compaction handover note carried across a session's own `/compact`.\n\nQuick start is `npm install && npm start`. Current macOS builds are not notarized (first launch\nneeds a Gatekeeper override). Surfaced in an r/ClaudeCode comment linking to a specific commit\ndemonstrating the session-freeze (cache-cooldown) feature, in a thread about handling cold\nprompt-cache hits.",
+      "tags": [
+        "claude-code",
+        "codex",
+        "copilot-cli",
+        "session-manager",
+        "electron",
+        "gamepad",
+        "multi-agent",
+        "mcp-server",
+        "telegram-bot",
+        "prompt-caching",
+        "cache-warming",
+        "remote-control",
+        "android"
+      ],
+      "workflows": [],
+      "license": "unspecified",
+      "security_flags": [
+        "no-license-file",
+        "network-listener-feature-fleet-mode"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/helm-session-manager.md"
     },
     {
       "name": "herdr",
@@ -7072,6 +7620,32 @@
       "path": "catalog/entries/hve-core.md"
     },
     {
+      "name": "hyperframes",
+      "title": "HyperFrames",
+      "url": "https://github.com/heygen-com/hyperframes",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source, agent-native HTML-to-video rendering system by HeyGen — \"write HTML, render video\"; seek-based deterministic rendering (window.__hf object exposing duration + seek()) captured headlessly via Puppeteer/CDP and encoded with FFmpeg; three-method FrameAdapter interface (init/getDurationFrames/seekFrame) plugs in GSAP, CSS/WAAPI, Lottie, Three.js, Anime.js, or a custom runtime, so e.g. Three.js scenes seek on hf-seek events and a window.__hfThreeTime clock instead of wall-clock time; CLI (`npx hyperframes init`) plus modular packages (core, engine, producer, browser studio editor, embeddable player, aws-lambda distributed render); migration skill from Remotion/Motion Canvas/Lottie/canvas verified frame by frame; installs as a Claude Code plugin-marketplace entry or standalone skill (`npx skills add heygen-com/hyperframes`); Node.js 22+ and FFmpeg required; Apache-2.0; ~75.5k stars/6.9k forks",
+      "body_summary": "HyperFrames is an open-source, agent-native rendering system that turns HTML into video. Core design principle: \"seek, don't play\" — every composition exposes a `window.__hf` object with a duration and a `seek()` function that positions every clip, tween, and video at a given timestamp instead of relying on real-time playback. A headless renderer drives the same `window.__hf` interface via Puppeteer and Chrome DevTools Protocol: scrubbing the timeline in the browser-based studio editor calls `seek()`; capturing a frame for render calls `seek()` at that frame's timestamp, making output deterministic regardless of system speed.\n\nAnimation libraries integrate through a three-method FrameAdapter interface (`init`, `getDurationFrames`, `seekFrame`). Adapters ship for GSAP, CSS/WAAPI, Lottie, Three.js, and Anime.js, or a custom runtime. The Three.js adapter makes Three.js scenes seekable by driving them from `hf-seek` events and a `window.__hfThreeTime` clock instead of wall-clock time, so a Three.js animation (e.g. an exploding 3D object) can be captured frame-accurately.\n\nThe CLI (`npx hyperframes init my-video`) scaffolds a project; FFmpeg encodes the captured frames into video. A `/remotion-to-hyperframes` migration skill ports existing Remotion, Motion Canvas, Lottie, canvas, or other renders over, verified frame by frame. It installs as a Claude Code plugin-marketplace entry or standalone skill (`npx skills add heygen-com/hyperframes`), positioning it for agent-driven video generation — an agent writes the HTML/CSS/JS composition, HyperFrames renders it.",
+      "tags": [
+        "video-generation",
+        "html-to-video",
+        "puppeteer",
+        "ffmpeg",
+        "three-js",
+        "agent-skill",
+        "claude-code-plugin",
+        "heygen",
+        "cli",
+        "remotion-alternative"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/hyperframes.md"
+    },
+    {
       "name": "iai-personal-memory-engine",
       "title": "iai — Personal Memory Engine",
       "url": "https://github.com/CodeAbra/iai-personal-memory-engine",
@@ -7121,6 +7695,29 @@
       "security_flags": [],
       "reviewed": "2026-08-31",
       "path": "catalog/entries/icca-harness.md"
+    },
+    {
+      "name": "imageio-ffmpeg",
+      "title": "imageio-ffmpeg",
+      "url": "https://github.com/imageio/imageio-ffmpeg",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Pure-Python FFmpeg subprocess wrapper that reads/writes video frames via pipes as generator functions, bundling platform-specific ffmpeg binaries in its wheels; maintainers now recommend PyAV instead for speed and features",
+      "body_summary": "imageio-ffmpeg is a dependency-free Python library that wraps the `ffmpeg` command-line tool for reading and writing video files. It exposes two generator functions, `read_frames()` and `write_frames()`, that call `ffmpeg` in a subprocess and stream frame data over pipes, reliably terminating the process when done. It forms the basis of the ffmpeg plugin in the broader `imageio` library (which adds a higher-level API, camera support, and seeking), but can be used standalone.\n\nPublished wheels on PyPI bundle a platform-specific `ffmpeg` binary (Windows 7+, Linux kernel 2.6.32+, OSX 10.9+), so no separate ffmpeg install is required via `pip install imageio-ffmpeg`. The conda-forge package instead depends on the `ffmpeg` conda-forge package. Works with Python 3.7+, including PyPy.",
+      "tags": [
+        "ffmpeg",
+        "video",
+        "python",
+        "subprocess",
+        "pipes",
+        "video-io",
+        "imageio"
+      ],
+      "workflows": [],
+      "license": "BSD-2-Clause",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/imageio-ffmpeg.md"
     },
     {
       "name": "img2threejs",
@@ -7219,6 +7816,59 @@
       "path": "catalog/entries/inbox-zero.md"
     },
     {
+      "name": "instagram-saved-reels-obsidian-knowledge-graph",
+      "title": "Instagram Saved-Reels-to-Obsidian Knowledge Graph Pipeline",
+      "url": "https://www.instagram.com/reel/DeaAbkiyU-A/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "A personal-archiving technique that uses yt-dlp to bulk-download a user's own saved Instagram reels (about 500 in the creator's case), then an AI-assisted script transcribes each reel and extracts named entities and proper nouns, categorizes it (memes, tutorials, conspiracies, health, etc.), and writes a node into an Obsidian vault with an executive summary, tags, the source video's hash, key takeaways, and screenshots; Obsidian's graph view then shows reel-to-reel links, and the creator deletes each reel from Instagram's saved library after scraping it and manually prunes the resulting graph.",
+      "body_summary": "Describes a personal-archiving pipeline the creator built to turn their saved Instagram reels into a browsable Obsidian knowledge graph, framed as \"taking control of my data\" from Instagram:\n\n1. **Bulk download**: yt-dlp scrapes every reel in the creator's Instagram \"saved\" library — about 500 videos at the time of the reel.\n2. **Delete from Instagram**: each reel is deleted from the saved library immediately after download, so Instagram's app no longer surfaces it back to the creator (the creator notes Instagram itself still retains the data server-side — this only removes it from their own saved list).\n3. **Transcribe and extract**: a separate, AI-assisted script transcribes each reel and pulls out \"important information like names and proper nouns.\"\n4. **Categorize**: reels are auto-sorted into topic buckets (memes, tutorials, conspiracies, health, etc.).\n5. **Write to Obsidian**: each reel becomes one node/page containing an executive summary, tags, the original video's hash, key takeaways, and screenshots; Obsidian's native graph view renders links between related nodes.\n6. **Manual pruning**: the creator describes the automated linking as \"not perfect\" and \"about 80% of the way there,\" requiring ongoing manual pruning of incorrect or low-value links.\n7. **Ongoing ingestion**: new saved reels get the same treatment and are added to the growing vault, which the creator calls \"the encyclopedia of bravidus.\"",
+      "tags": [
+        "obsidian",
+        "yt-dlp",
+        "instagram",
+        "knowledge-graph",
+        "personal-archiving",
+        "video-transcription",
+        "entity-extraction",
+        "second-brain",
+        "data-liberation"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/instagram-saved-reels-obsidian-knowledge-graph.md"
+    },
+    {
+      "name": "instaloader",
+      "title": "Instaloader",
+      "url": "https://github.com/instaloader/instaloader",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Python CLI and library that downloads public and private Instagram profiles, hashtags, stories, feeds, and saved media along with captions, comments, and geotags — supports incremental re-sync (`--fast-update`, `--latest-stamps`) and session-cookie login for private content; MIT licensed, ~13.7k GitHub stars as of 2026",
+      "body_summary": "Instaloader is a Python command-line tool and library for downloading Instagram content along with its metadata. It pulls pictures, videos, captions, comments, and geotags from public or private profiles, hashtags, user stories, feeds, and saved media. It automatically detects when a profile changes its username and renames the local target directory to match, and automatically resumes a previously-interrupted download.",
+      "tags": [
+        "instagram",
+        "web-scraping",
+        "cli-tool",
+        "python",
+        "media-download",
+        "metadata-extraction",
+        "osint"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "unofficial-unaffiliated-third-party",
+        "platform-tos-violation-risk",
+        "account-ban-risk",
+        "stores-session-cookies-on-disk"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/instaloader.md"
+    },
+    {
       "name": "internal-agent-permission-sprawl",
       "title": "Internal Bot Leaked the Unannounced Reorg Plan (permission sprawl)",
       "url": "https://reddit.com",
@@ -7267,6 +7917,62 @@
       "security_flags": [],
       "reviewed": "2026-09-03",
       "path": "catalog/entries/isaacflath-ocr-guides.md"
+    },
+    {
+      "name": "itch-io",
+      "title": "itch.io",
+      "url": "https://itch.io",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Open, non-curated marketplace and hosting platform for indie digital creations (primarily games, plus game assets, tabletop RPGs, and zines); founded by Leaf Corcoran, launched March 2013; \"open revenue sharing\" model (introduced March 2015) lets each creator set the platform's cut from 0%-100% of a sale (default split 10% platform/90% creator), with pay-what-you-want pricing supported for both free and paid listings; no pre-publication content review; hosted over 200,000 games by 2019 and over 1 million total projects by 2024; also hosts community game jams and charity bundles; commonly used as a lower-stakes, non-exclusive complement to Steam rather than a competitor.",
+      "body_summary": "itch.io is an open, non-curated marketplace and hosting platform for indie digital creations — primarily games, but also game assets (textures, sprites, audio, gradient maps, and similar packs), tabletop RPGs, and zines. Leaf Corcoran founded and launched it in March 2013, inspired by Bandcamp's artist-direct model, at a time when Steam's Greenlight system gated submissions behind community voting. Any creator can publish any legal content without pre-publication review.\n\nMonetization runs on \"open revenue sharing,\" introduced in March 2015: each creator sets the platform's cut of a sale anywhere from 0% to 100% (the default split is 10% platform / 90% creator), and pay-what-you-want pricing is supported for both free and paid listings — so itch.io's own income comes largely from creators voluntarily leaving a larger cut rather than from a fixed fee. The platform grew from roughly 15,000 hosted projects in mid-2015 to over 200,000 games by 2019 and over 1 million total projects (games, assets, TRPGs, zines) by 2024.\n\nBeyond sales, itch.io hosts community game jams — the 2014 \"Flappy Jam\" was an early visibility driver, and Celeste began as a 2018 game-jam prototype released free on itch.io before its commercial release — and periodic charity fundraising bundles (e.g. a Queer Games Bundle around Pride). It is typically framed as a lower-stakes, non-exclusive complement to Steam rather than a competitor: developers commonly prototype and build community on itch.io, then also release on Steam, with no exclusivity restriction between the two.\n\nIn the captured source item, itch.io is used specifically as a source of downloadable gradient-map texture images — searching \"gradient\" on the site surfaces dozens of free and paid gradient asset packs usable in a Blender game-texturing technique (see the [[blender]] entry's Usage notes).",
+      "tags": [
+        "indie-games",
+        "game-marketplace",
+        "asset-store",
+        "game-jams",
+        "pay-what-you-want",
+        "revenue-sharing",
+        "hosting-platform",
+        "game-development"
+      ],
+      "workflows": [],
+      "license": "proprietary",
+      "security_flags": [
+        "unvetted-uploads"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/itch-io.md"
+    },
+    {
+      "name": "jantt",
+      "title": "Jantt",
+      "url": "https://github.com/AhmadHassan-BTed/Jantt",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "TypeScript Gantt chart engine that renders interactive, draggable timelines from a declarative JSON schema — zero runtime dependencies, under 14KB gzipped core; ships as @jantt/core, @jantt/react, @jantt/standalone (UMD/IIFE script tag), and a jantt CLI with bidirectional file-watch sync; includes a topological DAG solver, Critical Path Method analysis, PERT estimation, Earned Value Management (ANSI/EIA-748), and DCMA-14 schedule audits; optional real-time multi-user collaboration backed by Firebase Realtime Database + Cloudflare Workers, gated behind GitHub OAuth and a \"follow and star the maintainer's repos\" unlock; MIT license, single maintainer (AhmadHassan-BTed), ~155 commits, 339 passing tests",
+      "body_summary": "Jantt turns a declarative JSON document into an interactive, draggable Gantt chart: task bars, 90-degree orthogonal dependency wiring, baseline ghost bars, inline progress-drag handles, and a 5-tier zoom (day to year). The same JSON backs a Kanban board (drag-and-drop status columns), a todo checklist view, shared markdown notes with `@person`/`/task` mentions, and a PM dashboard (progress velocity, Critical Path, Earned Value Management, DCMA-14 audit flags). The core engine (`@jantt/core`) is pure TypeScript with no runtime dependencies, under 14KB gzipped; it validates the JSON against a published schema, resolves task scheduling topologically, computes the critical path and float, and lays out the 90-degree dependency routing. Distribution targets: a React component (`@jantt/react`), a script-tag UMD/IIFE bundle (`@jantt/standalone`) for plain HTML with no build step, and a Node.js CLI (`jantt`) that opens a JSON file in-browser with live two-way file-watch sync (`npx jantt open <file.json>`, `npx jantt validate <file.json>`).\n\nThe README pitches the JSON schema as an \"AI-native\" interface: instead of prompting an LLM to generate React/JSX or SVG coordinate math for a timeline (claimed to be brittle and hallucination-prone), the agent emits JSON conforming to Jantt's schema contract, which the README claims costs roughly 10x fewer tokens than equivalent JSX and is schema-validated before render. The repo ships copy-paste system prompts for this workflow.",
+      "tags": [
+        "gantt-chart",
+        "project-management",
+        "typescript",
+        "json-schema",
+        "critical-path",
+        "dag",
+        "react",
+        "cli",
+        "zero-dependencies",
+        "ai-native"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "new-project",
+        "single-maintainer",
+        "cloud-dependency"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/jantt.md"
     },
     {
       "name": "jax",
@@ -7596,6 +8302,80 @@
       "security_flags": [],
       "reviewed": "2026-07-15",
       "path": "catalog/entries/kb.md"
+    },
+    {
+      "name": "kde-connect",
+      "title": "KDE Connect",
+      "url": "https://kdeconnect.kde.org",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Free, open-source app (GPLv2/v3) that pairs a phone and computer over the same local Wi-Fi network for direct device-to-device sync — no account, no cloud relay, no vendor servers in the data path; shared clipboard, instant file/link/SMS transfer, phone-as-touchpad/presentation-remote, and browsing phone storage over SFTP; official Linux/Android support plus Windows (Microsoft Store or .exe) and macOS (Homebrew cask) builds, with a more limited native iOS app",
+      "body_summary": "KDE Connect pairs a phone and a computer over the same local Wi-Fi network so they can exchange data directly, without an account, a cloud relay, or a vendor server in the middle. Once paired, it provides a shared clipboard (copy on one device, paste on the other), instant file and link transfer, notification sync with the ability to read/reply to Android notifications and SMS from the desktop, remote control of Linux media players, a virtual touchpad/keyboard mode, a presentation-remote mode, running shell commands on the computer from the phone, and browsing the phone's filesystem from the computer over SFTP.\n\nThe project originates from KDE and targets Plasma/Linux as the primary platform; the Android app is the reference mobile client. Non-KDE desktop environments get KDE Connect's protocol through separate client implementations: GSConnect for GNOME Shell, Valent for GTK4/libadwaita desktops, Soduto for macOS, and Konnect as a headless server.",
+      "tags": [
+        "kde-connect",
+        "device-sync",
+        "clipboard-sync",
+        "file-transfer",
+        "cross-platform",
+        "android",
+        "linux",
+        "windows",
+        "macos",
+        "local-network",
+        "open-source"
+      ],
+      "workflows": [],
+      "license": "GPL-2.0-or-later",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/kde-connect.md"
+    },
+    {
+      "name": "keepwarm",
+      "title": "keepwarm (Claude Code prompt-cache keep-warm mod)",
+      "url": "https://github.com/declanbx/keepwarm",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Claude Code mod (early-access plugin/hooks feature) that keeps an idle interactive session's prompt cache warm by forking a tool-less, text-free copy of the session's own transcript as a cache-read ping once 57 minutes pass with no model request — restarts the 1-hour cache TTL without adding anything to the conversation; stops after 20h since the last real prompt, after a refresh that reads under 1,000 cached tokens, or if a refresh gets no reply; turns itself off for a session if a refresh has to write more of the conversation than it reads (cache unreachable — 6 of 132 refreshes on record did this); never runs under claude -p or the SDK. Controlled via /keepwarm on|off|status and env vars (KEEPWARM_OFF, KEEPWARM_IDLE_MIN, KEEPWARM_TTL_MIN, KEEPWARM_MAX_HOURS, KEEPWARM_PROMPT); state kept locally in ~/.claude/state/keepwarm/<session id>.json. Installed by cloning into a folder referenced by CLAUDE_CODE_PLUGIN_DIRS.",
+      "body_summary": "A Claude Code \"mod\" (the early-access plugins-of-function-hooks feature; interface may change\nbetween Claude Code releases, and only loads where the feature is switched on) that keeps an\nidle interactive session's prompt cache warm. Inspired by `cachebeat` (ARahim3), a similar\nClaude Code skill using an inactivity-triggered heartbeat; keepwarm does the same job as a mod\ninstead — the refresh is a tool-less fork of the session sent beside it, so nothing is added to\nthe visible conversation.\n\nMechanism: once the main thread sends no model request for 57 minutes (`KEEPWARM_IDLE_MIN`), it\nforks a copy of the session's own transcript and sends a minimal cache-read ping (reply text\n`..`). The API serves the cached prefix and restarts its 1-hour TTL clock. The clock restarts on\nany request (a prompt, a tool return, or a refresh); a subagent's own transcript and TTL are not\naffected (subagents use the 5-minute TTL regardless). Refreshing stops 20 hours after the last\nreal prompt (`KEEPWARM_MAX_HOURS`), when a refresh reads under 1,000 cached tokens, or when a\nrefresh gets no reply (dropped connection, abort, 429/529 — retried on the next 30s tick instead).\nIf a refresh inside the hour has to write more of the conversation than it reads (the fork\ncouldn't reach that session's cache), keepwarm turns itself off for that session until\n`/keepwarm on`; the author logged this on 6 of 132 refreshes across a Team-plan and a Max-plan\naccount. Never active for headless runs (`claude -p` or SDK sessions, where `isInteractive` is\nfalse).\n\nControlled via `/keepwarm off | on | status` per session, with a status row under the prompt\n(`keepwarm: on, no refresh yet`, `keepwarm: last refresh 20:19, read 50k cached`, etc.). State is\nwritten to `~/.claude/state/keepwarm/<session id>.json` and stays on the local machine.\nEnvironment overrides: `KEEPWARM_OFF`, `KEEPWARM_IDLE_MIN` (57), `KEEPWARM_TTL_MIN` (60),\n`KEEPWARM_MAX_HOURS` (20), `KEEPWARM_PROMPT`. Installed by cloning the repo into a folder listed\nin `CLAUDE_CODE_PLUGIN_DIRS` inside `~/.claude/settings.json`'s `env` block, then starting a new\nsession.\n\nThe README publishes its own cost math: each refresh reads the full cached conversation at the\ncached-token rate (Opus 5.5 API pricing, $0.20/M cached tokens) — about $0.02 per refresh for a\n100k-token conversation, ~$0.16 for 800k. A session idle for 20 hours refreshes roughly once an\nhour (~21 refreshes), costing an estimated ~$3.40 total on an 800k-token conversation, against\n~$6.40 to rewrite that same 800k tokens once at the 2x write price when it finally goes cold. On\na subscription plan, refreshes count against usage limits instead of billing directly.\n\nIncludes a test suite (`claude plugin test`) and type checking (`tsc` against Claude Code's\nplugin types); version history published back to 0.1.0 (2026-10-02), currently 0.3.1\n(2026-10-07). Single-maintainer project (Declan Brennan).",
+      "tags": [
+        "claude-code",
+        "prompt-caching",
+        "cache-warming",
+        "mod",
+        "plugin",
+        "hooks",
+        "cost-optimization",
+        "early-access"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/keepwarm.md"
+    },
+    {
+      "name": "knowledge-folder-behavior-model-split",
+      "title": "Knowledge in the Folder, Behavior in the Model: A Fine-Tuning vs. RAG Split",
+      "url": "https://www.instagram.com/reel/DfAmYQQDsNW/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "A three-step strategy for deciding what to fine-tune versus what to retrieve: keep facts (pricing, policies, specs) in documents the model reads at answer time rather than baking them into weights, since fine-tuning changes model behavior, not factual recall, so tuning on company documents still produces factual errors; tune only for behavior (output format, tone, how to answer a complaint) using a few hundred clean, human-approved examples of one task rather than thousands of unreviewed ones; and do that tuning on a small open-weight model run on a single workstation, A/B tested against the untuned baseline before deployment.",
+      "body_summary": "Argues that teams conflate two different problems when they decide to \"fine-tune on our documents\": teaching a model *what you know* (facts) versus teaching it *how to behave* (format, tone, decision protocol). Fine-tuning addresses the second, not the first — a model tuned on a document corpus still hallucinates facts, because gradient updates shape response patterns, not a reliable store of retrievable facts. The reel frames this as a three-step split:\n\n1. **Facts go in a folder, not in weights.** Business knowledge that changes often (pricing, policies, specs) should be read by the model at answer time (i.e., retrieved, as in RAG) rather than trained in, so updates don't require retraining and the model always answers from current source documents.\n2. **Tune for behavior with a small, curated set.** Collect a few hundred clean examples of one task (e.g., how to write a quote, how to answer a complaint), each approved by the person who does that task best, rather than thousands of unreviewed/messy examples. The claim is that example quality and consistency matter more than volume for behavior tuning.\n3. **Tune a model you can host, and test it against the baseline.** Use an open-weight model small enough to fine-tune on a single high-memory workstation (the reel names \"Qwen 3.8 27B\" as an example, unverified against any actual released model name) rather than a much larger model, and A/B test the tuned version against the untuned original before anyone uses it in production.\n\nThis matches the broader industry consensus on RAG-vs-fine-tuning (see Sources): RAG keeps knowledge current, permissioned, and swappable without retraining, while fine-tuning is reserved for narrow, stable behavioral tasks — and most production deployments combine both rather than picking one.",
+      "tags": [
+        "fine-tuning",
+        "rag",
+        "knowledge-vs-behavior",
+        "open-weight-models",
+        "sft",
+        "evaluation",
+        "model-ownership"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/knowledge-folder-behavior-model-split.md"
     },
     {
       "name": "knowledge-graph-construction-anthropic",
@@ -8026,6 +8806,32 @@
       "path": "catalog/entries/litellm.md"
     },
     {
+      "name": "liteparse",
+      "title": "LiteParse",
+      "url": "https://github.com/run-llama/liteparse",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source, local-first document parser from the LlamaIndex team (`@llamaindex/liteparse`, PyPI `liteparse`, crates.io `liteparse`) — PDFium-based native text extraction in ~2-5ms/page when a document already has selectable text, bundled Tesseract OCR fallback (or a pluggable HTTP OCR backend) for scanned pages, and a per-page `is-complex`/needs_ocr check for routing decisions; Rust core with Node.js, Python, and WASM bindings plus a `lit` CLI; ~12.9k stars.",
+      "body_summary": "LiteParse is an open-source, local-first document parser built by the LlamaIndex team. It extracts text with spatial positioning (bounding boxes) from PDFs and other document formats using PDFium for native text extraction — typically 2-5ms per page when the document already contains selectable text, with no OCR model needed. For scanned or image-based pages it falls back to OCR: Tesseract is bundled by default, or an HTTP OCR server (EasyOCR, PaddleOCR, or a custom backend) can be plugged in via a documented OCR API spec. A built-in complexity check (`lit is-complex`) flags per-page `needs_ocr` reasons (scanned, no-text, sparse-text, embedded-images, garbled, vector-text, annotation-text) before a full parse, positioning it as a cheap first step in document-routing pipelines that escalate complex pages to heavier tools like Docling or a vision-language model.",
+      "tags": [
+        "document-parsing",
+        "pdf",
+        "ocr",
+        "tesseract",
+        "rust",
+        "nodejs",
+        "python",
+        "wasm",
+        "llamaindex",
+        "cli"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/liteparse.md"
+    },
+    {
       "name": "llama-cpp-adaptive-kv-streaming",
       "title": "llama.cpp Adaptive KV Streaming",
       "url": "https://github.com/RaymondHuang210129/llama.cpp-adaptive-kv-streaming",
@@ -8102,6 +8908,38 @@
       "security_flags": [],
       "reviewed": "2026-07-06",
       "path": "catalog/entries/llamafactory.md"
+    },
+    {
+      "name": "llamastash",
+      "title": "LlamaStash",
+      "url": "https://github.com/llamastash/llamastash",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Terminal-native manager and daemon for local LLM runtimes — TUI + CLI, routes llama.cpp (GGUF) or any declared OpenAI-compatible server behind one proxy endpoint (default http://127.0.0.1:11435/v1), auto-discovers models cached by Hugging Face/Ollama/LM Studio, and patches Pi/OpenCode/Claude Code configs to route through it; MIT, Rust, single core maintainer (Deepu K Sasidharan)",
+      "body_summary": "LlamaStash is a terminal-native manager for local LLM runtimes — a TUI and CLI built around a daemon that launches, supervises, and routes backend inference servers behind one OpenAI-compatible proxy endpoint (`http://127.0.0.1:11435/v1` by default). It auto-discovers models already cached by Hugging Face, Ollama, and LM Studio instead of requiring its own model directory. Built-in support covers llama.cpp (GGUF) directly; a \"generic\" backend (added in v0.5.0) lets a user declare any other OpenAI-compatible server — binary, flags, env vars, and a readiness path — in `config.yaml`, and LlamaStash then manages that process's lifecycle the same way it manages llama.cpp: reserving a port, waiting on readiness, routing the proxy to it, and stopping it with a grace-period SIGTERM. This is the mechanism documented for folding third-party engines such as Halogen and gufo into the same daemon and proxy. v0.6.0 added per-preset idle TTL, automatic unloading of idle models to make room for a request that doesn't fit, optional preload-at-boot, and CUDA support (`llamastash init` installs llama.cpp's CUDA build and runtime libraries).\n\nAn `integrations` subcommand patches other agent tools' configuration to route through the LlamaStash proxy: it writes a provider entry into Pi's `models.json`, patches OpenCode's config with the proxy URL and model list, and for Claude Code writes a standalone env script (`~/.config/llamastash/claude-code.sh`, without touching `~/.claude/settings.json` directly) that sets `ANTHROPIC_MODEL` and `ANTHROPIC_SMALL_FAST_MODEL` to a LlamaStash-served model id — sourcing that script before `claude` points Claude Code at a local model instead of Anthropic's API.",
+      "tags": [
+        "local-inference",
+        "llm-manager",
+        "proxy",
+        "openai-compatible",
+        "tui",
+        "cli",
+        "rust",
+        "model-management",
+        "generic-backend",
+        "cuda",
+        "claude-code-integration"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "new-project",
+        "model-downloads-third-party",
+        "single-maintainer",
+        "config-patching-other-tools"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/llamastash.md"
     },
     {
       "name": "llm-compressor",
@@ -8244,6 +9082,34 @@
       ],
       "reviewed": "2026-08-31",
       "path": "catalog/entries/lm-studio.md"
+    },
+    {
+      "name": "ln",
+      "title": "ln",
+      "url": "https://github.com/fogleman/ln",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Michael Fogleman's Go library/renderer that draws 3D scenes as vector line art instead of raster images — paths are chopped to a resolution, each point ray-cast toward the camera to test occlusion, and visible paths projected to 2D and output as PNG or SVG; supports primitives (sphere, cube, triangle, cylinder), OBJ/STL mesh import, CSG (union/intersection/difference), and custom vector-based texturing; built for pen-plotter output; last pushed 2019-07-19; MIT.",
+      "body_summary": "ln renders 3D scenes as line drawings rather than shaded raster images. It chops a scene's paths into segments at a given resolution, then for each point casts a ray toward the camera: an unobstructed point is visible, an obstructed one is hidden and dropped. Visible paths are transformed into 2D space via the camera's projection matrices and written out as PNG or SVG. It was built with physical pen-plotter output in mind (the author's own README cites plotting drawings on a Makeblock XY Plotter). Primitives include spheres, cubes, triangles, cylinders, and arbitrary 3D functions; it can import triangle meshes from OBJ/STL, supports CSG operations (union, intersection, difference) via a `Contains` method on its `Shape` interface, and supports custom vector-based texturing.",
+      "tags": [
+        "line-art",
+        "hidden-line-removal",
+        "vector-graphics",
+        "pen-plotter",
+        "ray-casting",
+        "csg",
+        "go",
+        "generative-art",
+        "3d-rendering"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "unmaintained",
+        "single-maintainer"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/ln.md"
     },
     {
       "name": "local-model-adversarial-workflow",
@@ -8802,6 +9668,36 @@
       "security_flags": [],
       "reviewed": "2026-09-03",
       "path": "catalog/entries/meridian.md"
+    },
+    {
+      "name": "meshy",
+      "title": "Meshy",
+      "url": "https://www.meshy.ai/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Commercial AI 3D-content platform — generates textured 3D models from text prompts (\"Text to 3D\") or images (\"Image to 3D\"/\"Multi-Image to 3D\"), plus AI texturing (PBR maps), auto-rigging, animation, remeshing/file conversion, and print-ready STL/3MF export; preview mesh in ~30s, textured model in under 2 minutes on the default Meshy 6 model, Meshy 7.1 branded for closer reference fidelity; bulk generation up to 50+ simultaneous tasks; access via web app, mobile app, REST API (official Python/Node.js SDKs), a Meshy MCP server, ComfyUI nodes, and Blender/Unity/Unreal plugins; for coding agents specifically, ships an open-source skill pack (`meshy-dev/meshy-3d-agent`, installed via `npx skills add meshy-dev/meshy-3d-agent`) with Claude Code/Cursor/OpenClaw skills that call the REST API directly, no MCP server required; closed-source hosted SaaS, Free (100 credits/mo, generated assets public) up to Pro $20/mo, Premium $40/mo, Ultra $100/mo, Studio from $60/mo, Enterprise custom; API-generated assets auto-delete after 3 days (non-Enterprise) per the API docs, though Meshy's own pricing page separately states 14 days for Studio — the two official pages disagree; SOC 2 Type 2, ISO 27001:2022, and GDPR compliance claimed.",
+      "body_summary": "Meshy is a commercial AI platform for generating 3D content: text-to-3D and image-to-3D model generation, AI texturing (PBR diffuse/roughness/metallic/normal maps via text prompt), auto-rigging, animation, remeshing/file-format conversion, and print-ready STL/3MF export with printability checks. A preview mesh renders in roughly 30 seconds; a fully textured model completes in under 2 minutes on the current default model (Meshy 6), with the newer Meshy 7.1 marketed for closer fidelity to a reference image. Bulk generation supports 50+ simultaneous tasks for asset-pipeline use.\n\nAccess paths: the web app, a mobile app, a REST API with official Python and Node.js SDKs, a Meshy-hosted MCP server, ComfyUI custom nodes, and official plugins for Blender, Unity, and Unreal Engine. For AI coding agents specifically, Meshy publishes an open-source skill pack (`meshy-dev/meshy-3d-agent`, installed via `npx skills add meshy-dev/meshy-3d-agent`) providing ready-made Claude Code, Cursor, and OpenClaw skills that call the REST API directly to generate, texture, rig, and animate models and prepare 3D-printable files — no MCP server needed. A separate MCP server is offered for MCP-based clients (Claude Code, Cursor, Windsurf, Codex) that prefer that integration path instead.",
+      "tags": [
+        "text-to-3d",
+        "image-to-3d",
+        "3d-model-generation",
+        "ai-texturing",
+        "rigging",
+        "animation",
+        "saas",
+        "mcp-server",
+        "claude-code-skill",
+        "game-development"
+      ],
+      "workflows": [],
+      "license": "proprietary",
+      "security_flags": [
+        "closed-source",
+        "cloud-asset-storage",
+        "free-tier-public-assets"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/meshy.md"
     },
     {
       "name": "meta-n",
@@ -9458,6 +10354,35 @@
       "path": "catalog/entries/nanogpt.md"
     },
     {
+      "name": "nashsu-llm-wiki",
+      "title": "LLM Wiki (nashsu)",
+      "url": "https://github.com/nashsu/llm_wiki",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Cross-platform Tauri desktop app implementing Karpathy's LLM Wiki pattern — ingests documents (PDF/DOCX/PPTX/XLSX/EPUB/images/web clips) and incrementally compiles them into a persistent, interlinked wiki instead of re-deriving answers via RAG each query; ships a knowledge-graph visualizer (sigma.js/graphology, 4-signal relevance, Louvain community detection), optional LanceDB vector search, a tool-using chat agent, a local token-protected HTTP API plus MCP server for Claude Code/Codex, and an Obsidian-compatible vault output; ~21k GitHub stars; GPLv3",
+      "body_summary": "Desktop application (Rust/Tauri backend, React/TypeScript frontend) implementing Andrej Karpathy's LLM Wiki pattern: instead of RAG re-deriving answers from raw sources on every query, the app ingests documents once via a two-step chain-of-thought process (analysis then generation) and incrementally compiles them into a persistent, cross-linked markdown wiki. Supports PDF, DOCX, PPTX, XLSX, EPUB/MOBI, images, and web clips (via a bundled Chrome extension); the output wiki directory is Obsidian-vault-compatible. Includes a knowledge-graph view (sigma.js + graphology + ForceAtlas2 layout) built on a 4-signal relevance model (direct links, source overlap, Adamic-Adar, type affinity) with Louvain community detection for cluster discovery, plus a \"Graph Insights\" feature that surfaces gaps and unexpected connections via one-click deep research. Search combines tokenized keyword search, graph relevance, and optional LanceDB vector embeddings. Ships a Rust backend chat agent that can search the wiki/sources/graph, do web search (Tavily/SerpApi/SearXNG), read/write workspace files, and run shell commands with approval. Exposes a local, token-protected HTTP API (127.0.0.1:19828) and a bundled MCP server plus an installable agent skill so external clients (Claude Code, Codex) can query the wiki, traverse the graph, and trigger source rescans.",
+      "tags": [
+        "llm-wiki",
+        "knowledge-base",
+        "knowledge-graph",
+        "tauri",
+        "desktop-app",
+        "obsidian",
+        "mcp-server",
+        "vector-search",
+        "rag-alternative"
+      ],
+      "workflows": [],
+      "license": "GPL-3.0",
+      "security_flags": [
+        "network-service",
+        "api-keys-required",
+        "copyleft-license"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/nashsu-llm-wiki.md"
+    },
+    {
       "name": "native-subagents",
       "title": "Claude Native Subagents",
       "url": "https://code.claude.com/docs/en/sub-agents",
@@ -9629,6 +10554,55 @@
       "path": "catalog/entries/nginx.md"
     },
     {
+      "name": "nine-slicing-ui-panels",
+      "title": "Nine Slicing (9-Slice) for Scalable UI Panels",
+      "url": "https://www.instagram.com/reel/DZqZpQbtQ79/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Game-dev UI technique for resizing a panel/box sprite to any dimension without distorting its border art. Naively scaling a textured panel along an axis stretches the corners and looks worse the more it's scaled. Nine slicing splits the source image into a 3x3 grid — four corners, four edges, one center — and scales each region differently when the panel resizes: corners are repositioned but never scaled (so border art stays crisp), each edge stretches along only its own axis to connect the corners, and the center stretches on both axes to fill the middle. Requires only that the edge/center art be drawn so it tiles or stretches cleanly; built into most major engines as a first-class primitive (Godot's NinePatchRect/StyleBoxTexture, Unity's Sliced Sprite image type, and CSS's border-image-slice), so adopting it needs no custom tooling.",
+      "body_summary": "A standard game-UI technique for resizing a bordered panel sprite (dialog box, button, menu frame) to any target size without stretching or blurring its corner/border art. Scaling a flat textured sprite along one axis stretches every pixel uniformly, so decorative corners warp and the distortion compounds with more scaling — the naive fix (hand-drawing a separate art asset per panel size) doesn't scale and makes every later UI tweak require redoing art.\n\nNine slicing instead divides the source image into a 3x3 grid of nine regions — four corners, four edges, and one center — and scales each region by a different rule when the panel is resized:\n\n- **Corners** are repositioned to the panel's new extents but never scaled, so their art stays pixel-perfect regardless of panel size.\n- **Edges** (top/bottom/left/right) stretch or tile along only their own axis (horizontal edges scale horizontally, vertical edges vertically) to span the gap between corners.\n- **Center** stretches or tiles on both axes to fill the remaining middle area.\n\nThe only requirement on the source art is that the edge and center strips be drawn so they scale or tile cleanly (e.g. a repeating pattern or a flat gradient), since those are the regions actually being stretched.\n\nThe technique (also called 9-slice or 9-patch) is a built-in primitive in most major engines rather than something developers implement by hand: Godot exposes it via the `NinePatchRect` node (or a `StyleBoxTexture` margin set on a `Theme`), Unity via the Sprite Editor's border handles plus the UI `Image` component's \"Sliced\" image type, and CSS via `border-image-slice`. Because engine support is first-class, adopting the technique for a given panel is a matter of setting margin/border values on an existing node or sprite, not writing custom scaling code.",
+      "tags": [
+        "game-design",
+        "nine-slice",
+        "nine-patch",
+        "ui",
+        "sprite-scaling",
+        "game-development",
+        "godot",
+        "unity"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/nine-slicing-ui-panels.md"
+    },
+    {
+      "name": "noise-panning-foliage-animation",
+      "title": "Noise-Panning Foliage Animation (Perlin Noise Vertex Displacement)",
+      "url": "https://www.instagram.com/reel/DeKlghCOQiC/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Game-dev technique for animating large numbers of static foliage/vegetation meshes cheaply by driving per-object or per-vertex movement from a Perlin noise texture instead of hand-animating each piece — pixel brightness sets how much an object moves, continuously panning the noise across the environment avoids visible looping, and layering several noise patterns at different speeds adds variation; turns one static art asset into apparently-living foliage across hundreds of instances without per-object animation clips.",
+      "body_summary": "A technique for making large fields of otherwise-static foliage (flowers, leaves, grass patches) read as alive without hand-animating each instance. Instead of displaying a Perlin noise image on screen, its pixel brightness is read as a per-object (or per-vertex) movement amount: darker pixels mean less movement, brighter pixels mean more. The noise pattern is continuously panned across the environment over time rather than sampled once, so the resulting motion has subtle, non-repeating variation instead of a visible loop. Multiple noise layers panned at different speeds can be combined for more organic variation. The net effect: one static mesh (e.g. a single flower) becomes animated-looking across hundreds of placed instances, without authoring an animation clip for each one.\n\nThis is a specific, concretely-demonstrated instance of a broader and independently well-documented game-dev technique — panning a noise texture to drive vertex-shader wind/foliage displacement — seen elsewhere as \"wind using vertex colors\" and world-space-stretched Perlin noise shaders in Unreal Engine 5. It was demonstrated in a dev-log reel for TileShire, an in-development Unity city-builder/tile-merging game by a two-person team, to animate foliage across a procedurally-assembled town.",
+      "tags": [
+        "procedural-animation",
+        "perlin-noise",
+        "shader-technique",
+        "foliage",
+        "vegetation",
+        "wind-animation",
+        "vertex-displacement",
+        "game-development",
+        "unity"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/noise-panning-foliage-animation.md"
+    },
+    {
       "name": "north-star-osint",
       "title": "North Star",
       "url": "https://nstarlive.com/",
@@ -9709,6 +10683,30 @@
       ],
       "reviewed": "2026-09-25",
       "path": "catalog/entries/nvidia-pair.md"
+    },
+    {
+      "name": "nvk-llm-wiki",
+      "title": "llm-wiki (nvk)",
+      "url": "https://github.com/nvk/llm-wiki",
+      "category": "plugin",
+      "decision_status": "open",
+      "summary": "Claude Code plugin (with ports for Codex, DeepSeek Harness, OpenCode, and generic SKILL.md agents) implementing Karpathy's LLM Wiki pattern — treats raw sources as immutable \"source code\" and the LLM as a \"compiler\" that synthesizes them into a structured, source-linked wiki; organizes topics as isolated sub-wikis in a hub, runs parallel multi-agent research (5/8/10 agents per depth mode), and enforces that no wiki page exists without a cited source; commands include /wiki init, /wiki:research, /wiki:thesis, /wiki:query, /wiki:ingest, /wiki:compile; ~1.5k GitHub stars; MIT",
+      "body_summary": "Claude Code plugin (also packaged for OpenAI Codex, DeepSeek Harness, OpenCode, and as portable SKILL.md files for other agents) implementing Andrej Karpathy's LLM Wiki pattern. Frames raw ingested sources as immutable \"source code\" and the LLM as a \"compiler\" that synthesizes them into a structured wiki, enforcing that no wiki page is written without a cited source behind it. Organizes knowledge as a hub of isolated topic sub-wikis (\"one topic, one wiki\") with dual-linking for Obsidian and plain-markdown compatibility. Supports parallel multi-agent research at three depths (5 agents standard, 8 deep, 10 maximum speed), source ingestion from URLs/files/PDFs/bulk collections, thesis-driven research that evaluates specific claims, deterministic linting/integrity verification, session-memory checkpoints, and privacy-sealed project handoffs. Installed on Claude Code via `/install-plugin github:nvk/llm-wiki`; core commands are `/wiki init`, `/wiki:research \"topic\" --sources N`, `/wiki:thesis`, `/wiki:query`, `/wiki:ingest`, `/wiki:compile`.",
+      "tags": [
+        "llm-wiki",
+        "claude-code-plugin",
+        "knowledge-base",
+        "source-citation",
+        "multi-agent",
+        "obsidian",
+        "mcp",
+        "rag-alternative"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/nvk-llm-wiki.md"
     },
     {
       "name": "oauth-cli-coder",
@@ -10214,6 +11212,32 @@
       "security_flags": [],
       "reviewed": "2026-07-21",
       "path": "catalog/entries/openai-codex-claude-code-proxy.md"
+    },
+    {
+      "name": "openai-decisions-api",
+      "title": "OpenAI Decisions API",
+      "url": "https://developers.openai.com/api/docs/guides/decisions",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Hosted decision-model endpoint (POST /v1/decisions, model fixed to gpt-6-luna) that returns typed answers instead of free text — predicate (probability), choice (value + probabilities + confidence), and score (weighted score + probabilities + confidence) — from text, images, input_json, or conversation history; 1-400 questions per request; $0.10/1M uncached input tokens, no output-token charge, prompt caching (1,024-token minimum prefix); announced at DevDay 2026 (2026-09-29) in limited preview, now generally available with GPT-Live voice integration and Private Link; OpenAI claims up to 10x faster than a standard Responses API call to GPT-6 Luna, with a Box Extract case study reporting ~5x faster document routing at matching accuracy; supports Zero Data Retention, HIPAA, and regional data residency (US, EEA, Switzerland); competes with TypeSafe's Jev and Cloudflare's Clef/Clef-flash in the typed-decision-model space",
+      "body_summary": "OpenAI's Decisions API is a hosted endpoint (`POST /v1/decisions`) that returns typed answers instead of generated text, using a constrained version of GPT-6 Luna — `model` is fixed to `gpt-6-luna`, the only supported model. A request carries 1-400 questions, each one of three types:\n- Predicate: a yes/no condition, returns a `probability` (0-1)\n- Choice: pick from fixed options, returns the chosen value plus a `probabilities` array and a `confidence`\n- Score: rate against ordered levels, returns a `score` (weighted average of level indices) plus `probabilities` and `confidence`\n\nInput can be a plain text string, images (base64 data URLs or public HTTP/HTTPS URLs), structured JSON via an `input_json` content part, or full conversation history (messages, tool calls, tool outputs). The response is an `answers` array with one typed entry per question, or a `refusal` entry.\n\nAnnounced at OpenAI's DevDay on 2026-09-29 in limited preview, the API moved to public beta and then general availability. GA added native GPT-Live voice integration (GPT-Live calls Decisions directly while a user is still speaking, instead of round-tripping through the developer's app), prompt caching, and the 400-question-per-request limit. OpenAI claims the API answers up to 10x faster than a standard Responses API call to GPT-6 Luna; a Box Extract case study reported about 5x faster document routing on certificate-of-insurance classification, at the same accuracy as the Responses API.",
+      "tags": [
+        "decision-models",
+        "openai",
+        "gpt-6-luna",
+        "classification",
+        "scoring",
+        "jev-competitor",
+        "vision",
+        "hosted-api",
+        "compliance",
+        "voice"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/openai-decisions-api.md"
     },
     {
       "name": "openai-python-sdk",
@@ -10736,6 +11760,31 @@
       "path": "catalog/entries/ovisocr2.md"
     },
     {
+      "name": "owasp-zap",
+      "title": "OWASP ZAP",
+      "url": "https://www.zaproxy.org/",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Dynamic application security testing (DAST) tool that attacks a running web app from outside — intercepting proxy plus automated/passive scanners for SQL injection, XSS, CSRF, etc.; GUI or headless daemon mode with a REST API for CI/CD automation; Apache-2.0, no paid tier; forked from Paros, became an OWASP project in 2010, Checkmarx-sponsored since Sep 2024 as 'ZAP by Checkmarx' while remaining independently governed; ~15k GitHub stars",
+      "body_summary": "ZAP (Zed Attack Proxy) is a dynamic application security testing (DAST) tool that tests a running application from the outside rather than reading its source. As an intercepting proxy it can view and manipulate all traffic passing through it, including HTTPS; its automated scanner and passive scanner probe the running app for vulnerabilities such as SQL injection, XSS, and CSRF by sending real attack inputs and observing the responses. Also includes traditional and AJAX web spiders/crawlers, forced browsing, a fuzzer, WebSocket support, and scripting-language support.",
+      "tags": [
+        "dast",
+        "security-scanner",
+        "penetration-testing",
+        "owasp",
+        "ci-cd",
+        "java"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [
+        "active-scanning",
+        "requires-authorization"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/owasp-zap.md"
+    },
+    {
       "name": "oxc",
       "title": "Oxc (Oxidation Compiler)",
       "url": "https://github.com/oxc-project/oxc",
@@ -10760,6 +11809,20 @@
       "security_flags": [],
       "reviewed": "2026-09-25",
       "path": "catalog/entries/oxc.md"
+    },
+    {
+      "name": "oxynote",
+      "title": "",
+      "url": "https://github.com/oxynote/oxynote",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "",
+      "body_summary": "## Differentiators",
+      "tags": [],
+      "workflows": [],
+      "security_flags": [],
+      "reviewed": "2026-10-30",
+      "path": "catalog/entries/oxynote.md"
     },
     {
       "name": "paddleocr",
@@ -11011,6 +12074,34 @@
       "path": "catalog/entries/pdf-mcp.md"
     },
     {
+      "name": "pdf24-creator",
+      "title": "PDF24 Creator",
+      "url": "https://www.pdf24.org/",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Free Windows desktop app and virtual printer from Geek Software GmbH (Berlin, developed since 2006) for merging, splitting, compressing, converting, OCR'ing (via Tesseract), signing, password-protecting, watermarking, and rearranging PDFs — offline, with no feature limits or paid tier; proprietary freeware funded by ads on PDF24's companion web tools; one patched local-privilege-escalation CVE in its MSI installer",
+      "body_summary": "PDF24 Creator is a free Windows desktop application that installs as a virtual PDF printer, so any application's print function can output a PDF. Beyond printing, it merges, splits, compresses, and converts to/from PDF; runs OCR on scanned pages using the bundled Tesseract engine; adds digital signatures and watermarks; sets or removes passwords/encryption; rotates and extracts pages; and provides a basic page editor. All desktop operations run offline — files are processed locally rather than uploaded to a server.\n\nGeek Software GmbH, a Berlin-based company, has developed the product since 2006 (originally named PDFDrucker). It also runs pdf24.org, a set of browser-based PDF tools covering similar operations, monetized through advertising rather than subscriptions. The desktop Creator and the online tools are both free for personal and commercial use, with no feature gating or paid tier; Geek Software's terms of use reserve the right to change this in the future.",
+      "tags": [
+        "pdf24-creator",
+        "pdf",
+        "pdf-tools",
+        "merge-pdf",
+        "compress-pdf",
+        "ocr",
+        "windows",
+        "virtual-printer",
+        "freeware",
+        "offline"
+      ],
+      "workflows": [],
+      "license": "proprietary-freeware",
+      "security_flags": [
+        "CVE-2023-49147: local privilege escalation via the MSI installer's repair function (msiexec.exe spawns a visible SYSTEM-level cmd.exe); fixed in 11.15.2 (Dec 2023) — update past that version"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/pdf24-creator.md"
+    },
+    {
       "name": "penecho",
       "title": "PenEcho",
       "url": "https://github.com/penecho/penecho",
@@ -11058,6 +12149,31 @@
       "security_flags": [],
       "reviewed": "2026-07-06",
       "path": "catalog/entries/perplexity-mcp-server.md"
+    },
+    {
+      "name": "persistence-key-entity-state",
+      "title": "Persistence Keys for Entity State Across Area Unload/Reload (Seamless Streaming Worlds)",
+      "url": "https://www.instagram.com/reel/DX7-1qZtVhS/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Game-dev technique for keeping entity state (e.g. a defeated enemy) consistent when a seamless streaming world unloads and reloads the area containing it, without a full save/load pass. Problem: in games with invisible/seamless loading zones (as opposed to distinct rooms, where re-spawning enemies on re-entry reads as normal), an unloaded enemy's defeat is lost — walking back into a previously-cleared area respawns the enemy, breaking immersion. Fix: a small piece of state (a 'persistence key' / flag), identified by the entity's own name/ID, is written to an object that never unloads (e.g. the player character) at the moment the entity is defeated; when the area streams back in and the entity's scene re-instantiates, it checks the persistent object for its own key before running its normal spawn logic, loading in a defeated state if the key is present. Demonstrated in an indie 2D pixel-art game (enemy 'Runk Tonk', persistent holder 'Isadora') without naming a specific engine's API, though captioned with Godot tags. The same pattern generalizes to any stable-ID-keyed state delta kept outside the unloadable scene graph — analogous to dedicated streaming-persistence systems in other engines (e.g. Unreal's SPUD plugin and native LevelStreamingPersistenceManager) and to the broader save-system architecture principle of writing deltas keyed by stable IDs to a store decoupled from runtime objects, rather than serializing live scene state.",
+      "body_summary": "A technique for preventing defeated enemies (or other one-time entity state) from resetting when a seamless streaming game world unloads and reloads the area containing them.\n\n**The problem.** Games that stream the world in and out as the player moves (rather than loading distinct, clearly-separated rooms) unload an area's contents, including a defeated enemy, once the player leaves. If the player walks back, the area — and the enemy — reload fresh, and the enemy appears alive again. In room-based games this reads as normal (the player expects a \"new room\"); in games designed for invisible, seamless loading zones, it breaks immersion because nothing signaled a transition.\n\n**The fix.** Store a small piece of state — a \"persistence key\" — on an object that is guaranteed never to unload during play, such as the player character. When an entity reaches the state that should persist (e.g. an enemy is defeated), it writes a key to that persistent holder, identified by the entity's own name/ID. Whenever the entity's scene is (re)loaded — including after an unload/reload cycle — it asks the persistent holder whether a key matching its own ID exists:\n\n- No matching key → load the entity in its normal/default state.\n- Matching key found → load the entity directly in the persisted state (e.g. already defeated), skipping its normal spawn.\n\nBecause the check runs on every load, the entity can be unloaded and reloaded any number of times and will not revert to its default state once a key has been recorded, without requiring a full save/load pass or special-casing each zone transition.\n\n**Scope demonstrated.** Shown in an indie 2D pixel-art game, with a defeated enemy (\"Runk Tonk\") writing a key to the always-loaded player character (\"Isadora\"). The source does not name a specific engine API or show code — only the pattern and the role each object plays — though the reel is tagged `#godot`.\n\n**Related implementations.** The same stable-ID-keyed-delta idea underlies dedicated engine tooling for exactly this problem, such as Unreal Engine's third-party SPUD plugin and native `LevelStreamingPersistenceManager` (both persist and restore per-actor state across level streaming unload/reload), and is a specific case of the general save-system architecture principle: write deltas keyed by stable IDs to a versioned store decoupled from runtime objects, and rebuild runtime state as a projection of base data plus those deltas on load, rather than serializing live scene objects.",
+      "tags": [
+        "game-design",
+        "state-persistence",
+        "entity-state",
+        "streaming-world",
+        "loading-zones",
+        "respawn-prevention",
+        "level-design",
+        "game-development",
+        "godot"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/persistence-key-entity-state.md"
     },
     {
       "name": "pgvector",
@@ -11504,6 +12620,29 @@
       "path": "catalog/entries/procedura.md"
     },
     {
+      "name": "procedural-code-over-generative-ai-gamedev",
+      "title": "Agent-Written Procedural Generation Over Generative-AI Assets (Game Dev)",
+      "url": "https://www.instagram.com/reel/DeuMK6FJhoc/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Game-dev technique/philosophy for AI-accelerated development — rather than integrating generative mesh-generation tools (e.g. Meshy), 3D-editing-software MCP integrations (e.g. a Blender MCP server), prebuilt game engines, or narrow pre-written markdown \"skills,\" have a coding agent write custom procedural-generation code directly, encoding visual style and geometry in math/code so the same deterministic logic regenerates consistent results across every object instead of re-running a generative model per asset; animation is produced the same way, via deterministic algorithms rather than pre-made or model-generated clips; reported tradeoff is that procedural logic can fail in ways generative output does not (a demonstrated prototype had a spider whose procedurally generated legs ended up inverted), and the achievable art style is constrained relative to what a generative model could produce.",
+      "body_summary": "A technique/philosophy for AI-accelerated (\"vibe-coded\") game development: instead of wiring up third-party generative-AI asset tools (e.g. Meshy for mesh generation), 3D-editing-software MCP integrations (e.g. a Blender MCP server), prebuilt game engines, or narrow pre-written \"skills\" (markdown instruction packages), direct a coding agent to write custom procedural-generation code for geometry, materials, and animation. Visual style and geometry are encoded directly in math/code — e.g. a parametric algorithm for a creature's leg structure — rather than regenerated per-object by a generative model. The claimed benefit is consistency and control: the same deterministic code produces visually coherent results across every generated instance, instead of each generative-model call introducing its own style drift. Animation is produced the same way, via deterministic algorithms, rather than pre-made clips or model-generated motion.\n\nThe reported tradeoff is reliability of a different kind: procedural logic can fail in ways generative output typically does not. A demonstrated work-in-progress prototype had a spider whose procedurally generated legs ended up inverted/glitched, a bug in the generation code rather than a quality issue in a model's output. The approach also constrains achievable art styles compared to what a generative model could attempt, trading style flexibility for consistency and debuggability. The technique was demonstrated via a prototype built with an AI coding agent (the creator names Claude Code as their preferred harness).",
+      "tags": [
+        "procedural-generation",
+        "game-development",
+        "code-generation",
+        "deterministic-animation",
+        "anti-slop",
+        "claude-code",
+        "vibe-coding"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/procedural-code-over-generative-ai-gamedev.md"
+    },
+    {
       "name": "production-agentic-platforms-2026",
       "title": "Production-Grade Agentic AI Platforms (2026 Evaluation)",
       "category": "reference",
@@ -11665,6 +12804,31 @@
       "path": "catalog/entries/pstack.md"
     },
     {
+      "name": "pullmd",
+      "title": "PullMD",
+      "url": "https://github.com/AeternaLabsHQ/pullmd",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Self-hosted anything-to-Markdown conversion service for AI agents — converts web pages (including Reddit/Hacker News threads with comment trees), PDFs, Office documents, EPUB, images, audio, and YouTube videos (transcripts with timecodes) into clean, boilerplate-stripped Markdown with metadata in YAML frontmatter; multi-strategy extraction (Cloudflare's Markdown endpoint plus parallel Readability/Trafilatura scored for quality); exposed via a PWA, REST API, MCP server, and a Claude Code skill; v3 added a markitdown document-conversion sidecar and an opt-in media tier for image captioning/audio transcription via any OpenAI-compatible endpoint; multi-arch Docker images; AGPL-3.0",
+      "body_summary": "PullMD takes a URL or uploaded file and returns clean Markdown for agent consumption. As of v3 it handles web pages (static and JS-heavy, with Reddit/Hacker News thread + comment-tree extraction and tunable `comment_depth`/`comment_limit`), documents (PDF, DOCX, PPTX, XLSX, EPUB, ZIP, CSV, JSON, XML via a bundled `markitdown` sidecar), images, audio, and YouTube videos (transcript with timecodes). Extraction picks between Cloudflare's native Markdown endpoint and parallel Readability/Trafilatura runs by a quality score, stripping ads/navigation/boilerplate and moving metadata (source URL, fetch date, subreddit/author/upvotes for Reddit) into YAML frontmatter rather than inline text, reducing token usage for downstream agents. Each conversion gets a refreshable share ID for re-fetching updated content. Access is via a Progressive Web App, a REST API, an MCP server (streaming HTTP), or a dedicated Claude Code skill. An opt-in media tier adds image captioning and audio transcription through any OpenAI-compatible endpoint (cloud or local), running inside the same container.",
+      "tags": [
+        "markdown-conversion",
+        "document-parsing",
+        "self-hosted",
+        "mcp-server",
+        "web-scraping",
+        "pdf",
+        "reddit",
+        "youtube-transcripts",
+        "claude-code-skill"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/pullmd.md"
+    },
+    {
       "name": "pulsarforge",
       "title": "PulsarForge",
       "url": "https://github.com/siris9476/pulsarforge",
@@ -11754,6 +12918,30 @@
       "security_flags": [],
       "reviewed": "2026-09-29",
       "path": "catalog/entries/qdrant.md"
+    },
+    {
+      "name": "qwen-code",
+      "title": "Qwen Code",
+      "url": "https://github.com/QwenLM/qwen-code",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Alibaba's open-source terminal coding-agent CLI, forked from Gemini CLI and adapted for the Qwen3-Coder model family on agentic coding tasks — asks permission before file edits by default, integrates Git conversationally, reads files as needed without manual context-adding, and auto-switches to vision-capable models when images appear in input; installable via npm (@qwen-code/qwen-code), Homebrew, or from source; Qwen OAuth free-tier auth; companion qwen-code-action GitHub Action and open-computer-use MCP service; TypeScript, Apache-2.0, ~29k GitHub stars",
+      "body_summary": "Qwen Code is a terminal AI coding agent forked from Google's Gemini CLI and re-tuned for Qwen3-Coder models, with an enhanced parser and tool-call support for that model family. It asks for permission before modifying files by default, makes Git operations conversational (e.g. \"what files have I changed?\"), reads project files as needed instead of requiring manual context attachment, and automatically switches to a vision-capable model when it detects images in the input. Install via `npm install -g @qwen-code/qwen-code`, `brew install qwen-code`, or from source. The recommended auth method, Qwen OAuth, is free with generous quotas. The QwenLM org also ships `qwen-code-action` (a GitHub Action wrapper) and `open-computer-use` (an MCP-based computer-use service controlling macOS/Linux/Windows via accessibility APIs).",
+      "tags": [
+        "cli",
+        "coding-agent",
+        "qwen",
+        "terminal",
+        "mcp",
+        "gemini-cli-fork",
+        "agentic",
+        "alibaba"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/qwen-code.md"
     },
     {
       "name": "qwen25-coder-32b",
@@ -11955,6 +13143,39 @@
       "path": "catalog/entries/rag-retrieval-recipe.md"
     },
     {
+      "name": "rea",
+      "title": "REA (Reverse Engineer Anything)",
+      "url": "https://github.com/morluto/rea",
+      "category": "mcp-server",
+      "decision_status": "open",
+      "summary": "Open-source MCP server and CLI (npm package rea-agents) that connects coding agents (Claude Code, Codex, Cursor, Gemini CLI, Grok Build, and others) to reverse-engineering tooling — native binaries, JavaScript/Electron apps, .NET assemblies, Android APKs, websites, firmware, packet captures, and dozens of other artifact types — so an agent can inspect a target's behavior without its source and return pseudocode/evidence the agent uses to explain a feature or reimplement it. Setup (`npx rea-agents setup`) registers the MCP server and workflow instructions for the chosen agent(s), writing to `~/.claude.json` and copying skill files into `~/.claude/skills` (applies to future projects, not just the current one). Deep native-binary analysis needs a caller-supplied Hopper, Ghidra, IDA, or Kuna installation (setup can install Hopper with approval); static JS/.NET/APK inspection needs no native engine. Requires Node.js 22.23.4+/24.22.1+/26.12.1+ and npm; many per-target features need their own external tool (JADX+JDK, Apktool, adb, tshark, sigrok-cli, pwntools, mitmdump, WABT). Repo created 2026-04-14, single primary maintainer (1,566 commits as of review), MIT license for REA-authored code (third-party dependencies and commercial decompilers like IDA/Hopper/JEB keep their own licenses and require the user's own authorization). Went viral in October 2026 —",
+      "body_summary": "REA (\"Reverse Engineer Anything\") is an MCP server and terminal CLI that gives a coding agent an investigation workflow for understanding how an existing app, binary, or website implements a feature, without needing its source. The agent asks about a target (an installed app, a binary, a URL); REA inspects it with the matching analysis tool, traces the relevant code, and returns findings together with their supporting evidence and stated limitations; the agent uses that to explain the behavior or write and test a reimplementation. The same operations are callable directly from the terminal as `rea <command>`.\n\nTarget coverage is broad: native binaries (via a caller-supplied Hopper, Ghidra, IDA, or Kuna), JavaScript/Electron apps, .NET assemblies, Android APKs/signatures/devices, websites, HAR/SAZ network captures, Go/Rust binaries, GPU code objects (CUDA/HIP), model files (GGUF/safetensors), Godot PCK, IL2CPP metadata, firmware (Binwalk/Unblob), packet captures (tshark), and more — each with its own built-in static parser or a required external tool. It can also turn a recorded web-app session (HAR) into a runnable RL (reinforcement learning) environment for the AgentEnv framework.",
+      "tags": [
+        "reverse-engineering",
+        "mcp-server",
+        "cli",
+        "binary-analysis",
+        "ghidra",
+        "hopper",
+        "ida",
+        "android-apk",
+        "electron",
+        "dotnet",
+        "firmware-analysis",
+        "claude-code"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "Dual-use reverse-engineering tool: disclaimer limits intended use to lawful research, education, interoperability, software preservation, and analysis of software the user owns or is authorized to examine; does not prevent unauthorized use",
+        "Copycat/trojan risk from its own virality: a fake 'rea-tools' org distributed an 82.6MB Windows executable flagged as Wacatac-family malware (8/45 VirusTotal engines) before takedown, downloaded 172 times (discovered 2026-10-13); official distribution is only github.com/morluto/rea, rea.tools, or the npm package rea-agents",
+        "Setup writes persistent global agent configuration (~/.claude.json, ~/.claude/skills) affecting all future projects for the chosen agent, not just the current one",
+        "Project's own SECURITY.md states REA is not a sandbox and cannot protect against a malicious target process during runtime capture (process behavior capture, website/Electron analysis run the target using the user's own permissions)"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/rea.md"
+    },
+    {
       "name": "reddit-pain-research-skill",
       "title": "Reddit Pain Research Skill",
       "url": "https://github.com/haseebeqx/reddit-pain-research-skill",
@@ -12028,6 +13249,28 @@
       "security_flags": [],
       "reviewed": "2026-07-06",
       "path": "catalog/entries/redpanda.md"
+    },
+    {
+      "name": "reducto-model-routing",
+      "title": "Reducto — When Is a Bigger Model Actually Better? (model routing framework)",
+      "url": "https://reducto.ai/engineering/posts/when-is-a-bigger-model-actually-better/",
+      "category": "reference",
+      "decision_status": "open",
+      "summary": "Reducto engineering-blog post (2026-08-13, Apurv Gandhi) framing document-model routing as a constrained optimization problem — a per-request 'model advantage' score (delta), a dimensionless cost-quality tradeoff parameter (lambda) that carries across model upgrades, an oracle frontier for benchmarking, and an AUC-based efficiency metric for grading a learned router against that oracle; reports 43.4%/56.6% split of low-gain vs. meaningful-gain requests across 8,276 paired evaluations.",
+      "body_summary": "Engineering blog post from Reducto (a document-parsing API company), published 2026-08-13 by Apurv Gandhi, framing model routing — deciding per-request whether to pay for a larger, more capable model or use a faster/cheaper one — as a constrained optimization problem rather than a set of hand-tuned rules.",
+      "tags": [
+        "model-routing",
+        "ocr",
+        "cost-optimization",
+        "regression",
+        "evaluation",
+        "reducto"
+      ],
+      "workflows": [],
+      "license": "n/a",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/reducto-model-routing.md"
     },
     {
       "name": "reinvent4",
@@ -12374,6 +13617,32 @@
       "path": "catalog/entries/sam3.md"
     },
     {
+      "name": "scaledown-cdm",
+      "title": "ScaleDown Constrained Decoding Models (CDM)",
+      "url": "https://scaledown.ai/",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Hosted product line of task-specific 'Constrained Decoding Models' from ScaleDown — Classify, Extract, Summarize, and a pre-existing fourth model Compress — that make one prefill pass over up to 1M tokens of multimodal input and pick an answer/label/span directly from it instead of generating text token-by-token; Classify returns a calibrated probability + reason per label, Extract returns JSON with confidence scores and source citations, Summarize returns a consistent summary under 1,000 tokens; launched Oct 13, 2026, positioned against TypeSafe's Jev, Cloudflare's Clef, and OpenAI's Decisions API in the typed-decision-model space; claims 200x faster and 467x cheaper than frontier LLM APIs and 77.2% vs Jev's 72% on a decision benchmark (self-reported); $0.05/million input tokens (OpenRouter lists $0.04), output free; hosted API only in public docs (api.scaledown.xyz, x-api-key auth), though ScaleDown's CTO has separately described an undocumented self-hosted deployment option; LangChain integration via langchain-scaledown middleware, also listed on OpenRouter and Vercel",
+      "body_summary": "ScaleDown is an applied research lab (cofounders Neal Patel, CEO, and Soham Chatterjee, CTO)\nthat on Oct 13, 2026 launched Constrained Decoding Models (CDMs) — a product line of four\ntask-specific models: three newly announced (Classify, Extract, Summarize) plus a pre-existing\nfourth (Compress).\n\nMechanism: each CDM makes one prefill pass over up to 1M tokens of multimodal input (text and\nimages) and selects the answer directly from that input, rather than generating it\ntoken-by-token the way an LLM does. ScaleDown's framing: \"You already gave the LLM the answer.\nSo why is it writing it out from scratch?\"\n\n- **Classify**: non-generative; sorts text/images into labels for high-throughput tagging,\n  triage, and filtering; returns a calibrated probability and a one-line reason per label.\n- **Extract**: takes a natural-language description of the fields wanted and returns\n  well-formed JSON with confidence scores and source citations/offsets, from text or images\n  (e.g. name + total from a bill).\n- **Summarize**: the one CDM that does generate text; takes up to 1M tokens of text, images,\n  or PDFs and returns a consistent summary under 1,000 tokens, with no chunking or truncation.\n- **Compress**: pre-existing fourth model in the same product line (not detailed in the\n  Oct 13 announcement).\n\nPositioned directly against TypeSafe's Jev (launched Sep 15, 2026), which the announcement\ncredits with proving the \"decide, don't write\" approach; OpenAI, AWS, and Cloudflare each\nshipped comparable typed-decision tools within about two weeks of Jev's launch.\n\nPerformance claims (ScaleDown's own figures, not independently benchmarked): 200x faster and\n467x cheaper than frontier LLM APIs on these narrow tasks; 77.2% vs Jev's 72% on a decision\nbenchmark.",
+      "tags": [
+        "decision-models",
+        "classification",
+        "extraction",
+        "summarization",
+        "constrained-decoding",
+        "non-autoregressive",
+        "langchain",
+        "jev-competitor",
+        "hosted-api",
+        "multimodal"
+      ],
+      "workflows": [],
+      "license": "",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/scaledown-cdm.md"
+    },
+    {
       "name": "scann",
       "title": "ScaNN",
       "url": "https://github.com/google-research/google-research/tree/master/scann",
@@ -12493,6 +13762,54 @@
       "path": "catalog/entries/scrub-context-engineering.md"
     },
     {
+      "name": "sdf",
+      "title": "sdf",
+      "url": "https://github.com/fogleman/sdf",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Michael Fogleman's Python library for building 3D (and 2D) models from signed distance functions — primitives (sphere, box, torus, cylinder, cone, Platonic solids) composed with boolean ops (union, difference, intersection, including smooth/blended variants), transforms (translate, rotate, scale, twist, bend), and repetition (linear/circular arrays); meshes via Marching Cubes and exports STL natively plus 20+ formats (OBJ, PLY, ...) via meshio; also renders 2D SDFs from text/images for extrusion; actively maintained (pushed 2026-09-30); MIT.",
+      "body_summary": "sdf represents 3D (or 2D) shapes as signed distance functions — functions that take a numpy array of points (shape (N,3) for 3D, (N,2) for 2D) and return, for each point, the signed distance to the shape's surface (negative inside, positive outside). Shapes are built from a library of primitives (sphere, box, torus, cylinder, cone, pyramid, Platonic solids) combined with Python operators for boolean union/difference/intersection, including smooth/blended variants, plus transforms (translate, rotate, scale, twist, bend) and linear/circular repetition. `sdftext.py` renders 2D SDFs from text or images, which can then be extruded into 3D. Meshing uses Marching Cubes; output is natively STL, with 20+ other formats (OBJ, PLY, etc.) available via the `meshio` dependency.",
+      "tags": [
+        "signed-distance-functions",
+        "procedural-modeling",
+        "mesh-generation",
+        "marching-cubes",
+        "constructive-solid-geometry",
+        "stl-export",
+        "python",
+        "generative-art"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "single-maintainer"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/sdf.md"
+    },
+    {
+      "name": "searxng",
+      "title": "SearXNG",
+      "url": "https://github.com/searxng/searxng",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Free, self-hostable, privacy-first federated metasearch engine (fork of the discontinued searX) — queries dozens of external search engines/services in parallel and aggregates results without tracking users, storing queries, profiling, or ads; supports !bang shortcuts to target a single engine and extensive per-engine/ranking customization; no official hosted/cloud offering, self-hosting (typically Docker) is the only deployment model though public community instances exist; ~15k GitHub stars",
+      "body_summary": "SearXNG aggregates results from dozens of external search engines and services (up to ~251 configurable sources) into one interface without tracking users, storing queries, building profiles, or showing ads. It is server-side software meant to be self-hosted (official Docker image `searxng/searxng`), though public community-run instances also exist. `!bang` shortcuts target a single underlying engine, and administrators can select which engines to query and tune ranking/display behavior.",
+      "tags": [
+        "metasearch",
+        "self-hosted",
+        "privacy",
+        "search",
+        "docker",
+        "federated-search"
+      ],
+      "workflows": [],
+      "license": "AGPL-3.0",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/searxng.md"
+    },
+    {
       "name": "seb-ocr",
       "title": "seb-ocr",
       "url": "https://github.com/ALucek/seb-ocr",
@@ -12539,6 +13856,28 @@
       "security_flags": [],
       "reviewed": "2026-07-06",
       "path": "catalog/entries/second-brain-skills.md"
+    },
+    {
+      "name": "semgrep",
+      "title": "Semgrep",
+      "url": "https://github.com/semgrep/semgrep",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Fast open-source static analysis tool using AST pattern matching to find bugs and security issues across 30+ languages; runs as a CLI, pre-commit hook, IDE integration, or CI step; LGPL-2.1 Community Edition engine with per-function-only taint tracking, commercial AppSec Platform adds cross-file/cross-function dataflow and 20,000+ proprietary rules; forked as Opengrep (also LGPL-2.1) after licensing concerns",
+      "body_summary": "Semgrep is a static analysis tool that matches code against rules written to look like the source code itself, using abstract-syntax-tree (AST) pattern matching rather than plain text/regex matching — a rule like `$X == $X` matches a tautological comparison regardless of variable names or formatting. Supports 30+ languages. Runs as a one-off CLI scan, inside an IDE, as a pre-commit hook on changed files (blocking a commit when a rule matches), or as a CI/CD step; provides SAST (security rules), software composition analysis (SCA), and secrets detection.",
+      "tags": [
+        "sast",
+        "static-analysis",
+        "pre-commit",
+        "security",
+        "ast-pattern-matching",
+        "code-quality"
+      ],
+      "workflows": [],
+      "license": "LGPL-2.1 (Community Edition engine); rules under Semgrep Rules License v1.0; commercial AppSec Platform separately licensed",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/semgrep.md"
     },
     {
       "name": "seo-god",
@@ -13205,6 +14544,28 @@
       "path": "catalog/entries/software-factory-orchestration.md"
     },
     {
+      "name": "sonarqube",
+      "title": "SonarQube",
+      "url": "https://github.com/SonarSource/sonarqube",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Self-hosted continuous-inspection platform for code quality and security — static analysis (symbolic execution, data/control-flow analysis) across 20+ languages via quality gates and 6,000+ rules; free Community Build (LGPL-3.0) lacks branch/PR analysis and advanced security (taint analysis, secrets detection, IaC); paid Developer/Enterprise/Data Center editions add those plus portfolios and enterprise reporting; free IDE companion SonarLint gives real-time in-editor feedback; priced per instance/year by lines of code",
+      "body_summary": "SonarQube is a self-hosted platform for continuous code inspection — it applies static-analysis techniques (symbolic execution, data-flow and control-flow analysis) to find bugs, vulnerabilities, code smells, and structural problems across 20+ languages (including infrastructure-as-code), surfaced through configurable quality gates and 6,000+ built-in rules. Its IDE companion, SonarLint (\"SonarQube for IDE\"), gives real-time feedback as code is typed, underlining the specific line an issue is found on.",
+      "tags": [
+        "code-quality",
+        "static-analysis",
+        "security",
+        "ide-plugin",
+        "continuous-inspection",
+        "devsecops"
+      ],
+      "workflows": [],
+      "license": "LGPL-3.0 (Community Build); bundled analyzers under Sonar Source-Available License v1 (SSALv1); commercial editions separately licensed",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/sonarqube.md"
+    },
+    {
       "name": "sota-scan",
       "title": "sota-scan",
       "url": "https://github.com/MerlijnW70/sota-scan",
@@ -13508,6 +14869,29 @@
       "path": "catalog/entries/state-of-open-coding-models-2026.md"
     },
     {
+      "name": "status-effect-functional-differentiation",
+      "title": "Functional Differentiation of Status Effects (Fire/Poison/Bleed by Role, Not Magnitude)",
+      "url": "https://www.instagram.com/reel/DfAdjf6ARg9/",
+      "category": "agent-pattern",
+      "decision_status": "open",
+      "summary": "Game-dev design technique for avoiding redundant damage-over-time status effects — when fire, poison, and bleed differ only in how much damage they deal, players converge on the single strongest one and the rest go unused; the fix is giving each effect a distinct mechanical role instead of a different number. Demonstrated with three effects: fire spreads on kill (igniting the three nearest enemies, which can chain further), poison scales (every 10 stacks adds 10% increased damage taken from all sources), and bleed bursts (at 5 stacks, it detonates all remaining stored damage at once) — giving fire a horde-clearing role, poison a sustained-fight role, and bleed a fast single-target-burst role.",
+      "body_summary": "A game-design technique for avoiding redundant damage-over-time (DoT) status effects. If several DoT effects (e.g. fire, poison, bleed) differ only in the amount of damage they deal, players converge on whichever one hits hardest and the rest become unused \"dead weight\" — the fix is to make each effect differ in what it does, not just how big its number is.\n\nDemonstrated redesign for three DoT effects in the in-development game Capy of Gods:\n\n- **Fire spreads**: when an enemy dies while burning, the fire jumps to the three nearest enemies, which can themselves ignite further enemies in a chain — effective against groups/hordes.\n- **Poison weakens**: every 10 stacks of poison, the affected enemy takes 10% more damage from all sources (not just poison) — a damage-amplifier that compounds in value over a long fight.\n- **Bleed bursts**: at 5 stacks, bleed detonates, dealing all of its remaining stored damage in one instant — suited to finishing off a single target quickly.\n\nEach effect's intended use case follows from its mechanic rather than its numbers: fire for hordes, poison for long fights, bleed for fast single-target kills. Demonstrated in a dev-log reel for Capy of Gods, a pixel-art roguelike built in Godot with a free Steam demo.",
+      "tags": [
+        "game-design",
+        "status-effects",
+        "damage-over-time",
+        "balance",
+        "game-development",
+        "roguelike",
+        "godot"
+      ],
+      "workflows": [],
+      "license": "N/A",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/status-effect-functional-differentiation.md"
+    },
+    {
       "name": "stirling-pdf",
       "title": "Stirling PDF",
       "url": "https://github.com/Stirling-Tools/Stirling-PDF",
@@ -13771,6 +15155,34 @@
       "security_flags": [],
       "reviewed": "2026-10-28",
       "path": "catalog/entries/swe-bench.md"
+    },
+    {
+      "name": "swift-1-5-qwen3-8-27b",
+      "title": "Swift 1.5 Qwen3.8-27B (UkisAI)",
+      "url": "https://huggingface.co/ukisai/Swift-1.5-Qwen3.8-27b",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "UkisAI's reasoning-efficient post-trained derivative of Qwen3.8-27B — reduces thinking tokens by a publisher-reported 58.5% while scoring 0.35% higher than the base model on aggregate benchmarks (GPQA-Diamond, C-Eval, IFBench, ERQA, AIME 2026, HMMT, LiveCodeBench v6, Terminal-Bench 2.1), with savings holding across xhigh/medium/low reasoning-effort settings; ships BF16, GGUF/GSQ-RCO GGUF, AWQ/AutoRound/GPTQ INT4, NVFP4, AMD Quark FP8, and Apple MLX exports plus a free OpenAI-compatible demo API; Swift Open License v1.0 (free under $1M annual revenue, enterprise license required above)",
+      "body_summary": "Swift 1.5 is UkisAI's post-trained (RL + OPD) derivative of Alibaba's Qwen3.8-27B, built to cut \"pathological overthinking\" — tokens spent on unproductive reasoning — without directly truncating reasoning length, then recovering accuracy with further RL. Publisher-reported results: 58.5% fewer mean thinking tokens on GPQA-Diamond while scoring 0.35% higher aggregate than the base model (88.59% vs 88.28%), with similar token reductions (17-56%) and accuracy parity or small gains across C-Eval, IFBench, ERQA, AIME 2026, HMMT November 2025, LiveCodeBench v6, and Terminal-Bench 2.1; savings persist at xhigh, medium, and low reasoning-effort settings. A publisher demo prompt (building a 3D exploration game) took the base model 104.6 minutes vs 11.39 minutes for Swift 1.5. It is a direct upgrade from an earlier Swift 1.0 release (350k+ downloads), with training data published (though resampled before use) at `ukisai/Qwen3.8-27B-multi-turn-agent-sft`.",
+      "tags": [
+        "qwen",
+        "fine-tune",
+        "reasoning-efficiency",
+        "local-inference",
+        "gguf",
+        "vllm",
+        "sglang",
+        "quantization",
+        "huggingface",
+        "mtp"
+      ],
+      "workflows": [],
+      "license": "Swift Open License v1.0 (derivative of Apache-2.0 Qwen3.8-27B)",
+      "security_flags": [
+        "Custom, revenue-gated license (Swift Open License v1.0): free for personal/research/educational/evaluation/commercial use only up to US$1,000,000 gross annual revenue (including affiliates); above that threshold requires a separate paid Swift Enterprise License from UkisAI — not a standard OSI license despite being built on the Apache-2.0 base model"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/swift-1-5-qwen3-8-27b.md"
     },
     {
       "name": "syba",
@@ -14046,6 +15458,54 @@
       "security_flags": [],
       "reviewed": "2026-09-29",
       "path": "catalog/entries/termdraw.md"
+    },
+    {
+      "name": "terrain-erosion-3-ways",
+      "title": "terrain-erosion-3-ways",
+      "url": "https://github.com/dandrino/terrain-erosion-3-ways",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Daniel Andrino's Python/NumPy demo comparing three procedural terrain-with-erosion techniques — iterative hydraulic-erosion simulation (rain gathers, flows downhill, carries sediment), a GAN trained on ~180k USGS elevation samples, and a river-network-first approach using Poisson disc sampling + Delaunay triangulation; last pushed 2022-11-22; MIT.",
+      "body_summary": "Demonstrates and compares three ways to procedurally generate terrain height maps with erosion-like features:\n\n1. Simulation — iteratively tracks water level, sediment, and height across a grid; rain gathers, runs downhill, and carries soil away, cutting valleys over many rounds. Naturalistic results but parameter-heavy and O(N^3) runtime.\n2. Machine learning — trains a GAN (Progressive Growing of GANs, TensorFlow with GPU) on roughly 180,000 USGS elevation samples to generate realistic-looking terrain; training takes 8+ days on the project's own hardware, with little direct control over output.\n3. River networks — generates river/stream locations first (Poisson disc sampling + Delaunay triangulation), then derives terrain shape from them; efficient (O(N^2 log N)) and produces convincing ridges, but models sediment deposition only loosely.\n\nThe erosion-simulation method takes a height map (normally generated from noise) as its input and runs repeated rounds of simulated rainfall against it.",
+      "tags": [
+        "terrain-generation",
+        "erosion-simulation",
+        "procedural-generation",
+        "gan",
+        "poisson-disc-sampling",
+        "delaunay-triangulation",
+        "numpy",
+        "generative-art"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "unmaintained",
+        "single-maintainer"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/terrain-erosion-3-ways.md"
+    },
+    {
+      "name": "tesseract",
+      "title": "Tesseract OCR",
+      "url": "https://github.com/tesseract-ocr/tesseract",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Open-source OCR engine (`libtesseract`) and CLI (`tesseract`), originally developed at HP and later Google, now maintained by Stefan Weil and Zdenko Podobny — LSTM-based neural line recognition in v4+ with the legacy v3 pattern-matching engine retained for compatibility, 100+ languages with UTF-8 output in plain text/hOCR/PDF/TSV/ALTO/PAGE formats; ~77.2k stars.",
+      "body_summary": "Tesseract is an open-source OCR (optical character recognition) engine, distributed as a C/C++ library (`libtesseract`) and a command-line program (`tesseract`). Originally developed at HP Labs, open-sourced in 2005, and led by Ray Smith at Google until 2017; now maintained by Stefan Weil (lead) and Zdenko Podobny. Version 4+ added an LSTM (long short-term memory) neural-network line-recognition engine; the legacy pattern-matching engine from v3 is retained and selectable via `--oem` for compatibility. Recognizes 100+ languages with full UTF-8 Unicode output.",
+      "tags": [
+        "ocr",
+        "text-recognition",
+        "image-to-text",
+        "cli",
+        "open-source"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/tesseract.md"
     },
     {
       "name": "textual",
@@ -14582,6 +16042,31 @@
       "path": "catalog/entries/tutorial-creator.md"
     },
     {
+      "name": "twine",
+      "title": "Twine",
+      "url": "https://github.com/klembot/twinejs",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Open-source tool (since 2009, by Chris Klimas) for writing choice-based, state-tracking interactive fiction as linked \"passages\" shown as boxes on a map, connected by [[double-bracket]] links that become both player choices and map arrows; variables and if-checks gate content on player choices (e.g. a trust variable). Ships as a desktop/browser/Electron app (klembot/twinejs, GPL-3.0, ~2.9k stars); default story format is Harlowe (Leon Arnott, Zlib license), with SugarCube, Snowman, and Chapbook as alternatives. \"Publish to File\" exports a single self-contained HTML file playable in any browser or uploadable to itch.io; \"Export as Twee\" produces a plain-text passage format a separate parser can read into another engine. Netflix's \"Black Mirror\" episode Bandersnatch was written in Twine. Current release 2.12.1 (2026-10-06).",
+      "body_summary": "Twine is an open-source tool, created by Chris Klimas in 2009, for writing interactive, nonlinear stories without code. A story is a set of linked \"passages\" — text blocks shown as boxes on a visual map. Writing a link in `[[double square brackets]]` both creates a player-facing choice and draws an arrow between the two passages on the map. Variables can record player choices (e.g. `(set: $trust to 0)`, then `(set: $trust += 1)` when the player brings tea to a character) and `(if:)` macros gate later content on those variables (e.g. a secret is shown only `(if: $trust >= 1)`), so earlier choices can be remembered and change later outcomes. Netflix's interactive film \"Black Mirror\" episode Bandersnatch was written in Twine.\n\nTwine ships as a desktop/Electron app and a browser-based editor (source at `klembot/twinejs`, GPL-3.0, ~2.9k GitHub stars). Stories are written in a story format — a scripting language for passage content. Harlowe, maintained separately by Leon Arnott under the Zlib license, is Twine 2's default format; SugarCube, Snowman, and Chapbook are the other built-in formats.\n\nTwo export paths matter for using a Twine story outside the editor: \"Publish to File\" produces one self-contained HTML file that runs in any browser and can be uploaded as-is to a host like itch.io; \"Export as Twee\" produces Twee, a plain-text passage format (passage names, tags, and body text) that a separate parser can read into another runtime, such as a game engine.",
+      "tags": [
+        "interactive-fiction",
+        "twine",
+        "harlowe",
+        "choice-based-narrative",
+        "hypertext-fiction",
+        "twee",
+        "game-development",
+        "open-source",
+        "gpl"
+      ],
+      "workflows": [],
+      "license": "GPL-3.0",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/twine.md"
+    },
+    {
       "name": "uber-agentic-pods",
       "title": "Uber Agentic Pods",
       "url": "https://www.uber.com/",
@@ -15059,6 +16544,31 @@
       "path": "catalog/entries/vidnote.md"
     },
     {
+      "name": "vllm",
+      "title": "vLLM",
+      "url": "https://github.com/vllm-project/vllm",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "High-throughput, memory-efficient open-source inference and serving engine for LLMs — PagedAttention KV-cache management, continuous batching, prefix caching, speculative decoding, and tensor/pipeline/data/expert/context parallelism; supports 200+ Hugging Face model architectures; originated at UC Berkeley's Sky Computing Lab, now a PyTorch Foundation hosted project (joined Dec 2024, hosted since May 2025); ~96k GitHub stars, 2000+ contributors; Apache-2.0",
+      "body_summary": "vLLM is an inference and serving engine for large language models. PagedAttention manages the KV cache like virtual memory pages, and continuous batching keeps GPUs busy across requests of different lengths; the engine also supports prefix caching and speculative decoding. It runs 200+ model architectures from Hugging Face and scales across tensor, pipeline, data, expert, and context parallelism for multi-GPU/multi-node serving. Install with `uv pip install vllm` or `pip install vllm`; serve a model with `vllm serve <model>`.",
+      "tags": [
+        "llm-inference",
+        "serving",
+        "paged-attention",
+        "continuous-batching",
+        "speculative-decoding",
+        "parallelism",
+        "pytorch-foundation",
+        "open-source",
+        "gpu"
+      ],
+      "workflows": [],
+      "license": "Apache-2.0",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/vllm.md"
+    },
+    {
       "name": "voicestudio",
       "title": "VoiceStudio",
       "url": "https://github.com/debpalash/VoiceStudio",
@@ -15083,6 +16593,32 @@
       "security_flags": [],
       "reviewed": "2026-10-06",
       "path": "catalog/entries/voicestudio.md"
+    },
+    {
+      "name": "voxelspace",
+      "title": "VoxelSpace",
+      "url": "https://github.com/s-macke/VoxelSpace",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Sebastian Macke's JavaScript/Python reimplementation of the Comanche (1992) terrain-rendering trick — reads a height map and a pre-lit color map, projects one map point per screen column per scanline, and draws vertical lines front-to-back with distance-scaled sampling steps; no polygons; MIT (game-derived maps excluded from the license); 6.8k stars, 302 forks.",
+      "body_summary": "Reimplements the \"Voxel Space\" terrain-rendering technique used by the 1992 flight-combat game Comanche, in under 20 lines of core algorithm code. The world is represented by two images: a height map (one height value per map position) and a color map with lighting and shadow already baked in — no 3D polygon mesh at all.\n\nFor each screen column, the renderer casts outward from the camera one map sample at a time, projecting each sampled point's height to a screen-space vertical line segment drawn in that point's color. It works front-to-back: once a column has drawn up to a given screen height, closer terrain that would occlude farther terrain is skipped, so nearer hills correctly hide more distant ones without a depth buffer. Sampling step size grows with distance from the camera, so far terrain costs less to render per screen column — the core trick that let the original 1992 game render detailed mountains on period hardware with no textured polygons.",
+      "tags": [
+        "terrain-rendering",
+        "voxel",
+        "heightmap",
+        "retro-graphics",
+        "computer-graphics",
+        "creative-coding",
+        "javascript",
+        "procedural-generation"
+      ],
+      "workflows": [],
+      "license": "MIT",
+      "security_flags": [
+        "single-maintainer"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/voxelspace.md"
     },
     {
       "name": "vphone-cli",
@@ -15249,6 +16785,32 @@
       "path": "catalog/entries/you-cannot-automate-habit.md"
     },
     {
+      "name": "yt-dlp",
+      "title": "yt-dlp",
+      "url": "https://github.com/yt-dlp/yt-dlp",
+      "category": "cli-tool",
+      "decision_status": "open",
+      "summary": "Feature-rich command-line audio/video downloader supporting thousands of sites — a community-maintained fork of youtube-dl with faster multi-threaded downloads, advanced format selection, subtitle embedding, and a plugin system for custom extractors/postprocessors; ~200k GitHub stars, releases roughly every 2 weeks; Unlicense (public domain); flagged by the music-industry group IFPI for EU piracy watchlist consideration, though IFPI itself notes its open-source/public-domain nature makes it hard to remove.",
+      "body_summary": "yt-dlp downloads audio/video from thousands of sites via a per-site extractor system, not just YouTube. It builds on the now largely dormant youtube-dl with faster multi-threaded fragment downloads, finer-grained format selection (resolution/codec/container filters, merge-format control), subtitle embedding/conversion, SponsorBlock integration, and metadata/thumbnail embedding via ffmpeg postprocessors. A plugin system auto-discovers Python modules placed in `~/.yt-dlp/plugins/` (or a few other search paths) and loads them as additional extractors or postprocessors without modifying core code. Distributed as a single executable (Python, PyInstaller builds for Windows/macOS/Linux) and as a pip package; CLI-first, with Python API usage also supported by importing `yt_dlp`.",
+      "tags": [
+        "video-download",
+        "audio-download",
+        "cli",
+        "media-ingestion",
+        "youtube",
+        "ffmpeg",
+        "extractor-plugins",
+        "public-domain"
+      ],
+      "workflows": [],
+      "license": "Unlicense",
+      "security_flags": [
+        "copyright-dual-use"
+      ],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/yt-dlp.md"
+    },
+    {
       "name": "zdr-router-trust",
       "title": "ZDR Router Trust — DeepSeek/Kimi/Xiaomi Data Leak Investigation (Sep 2026)",
       "category": "reference",
@@ -15275,6 +16837,29 @@
       ],
       "reviewed": "2026-09-25",
       "path": "catalog/entries/zdr-router-trust.md"
+    },
+    {
+      "name": "zed",
+      "title": "Zed",
+      "url": "https://github.com/zed-industries/zed",
+      "category": "framework",
+      "decision_status": "open",
+      "summary": "Rust code editor (from the team behind Atom and Tree-sitter) with a native Agent Panel for agentic AI workflows — built-in agent reads/writes/runs code in a project; external coding agents (Claude, Codex, OpenCode, Copilot, Cursor, Gemini CLI, Qwen Code) connect via the Agent Client Protocol (ACP), with Zed hosting the thread UI while the external agent owns its runtime; inline edit predictions and multiplayer collaboration; editor core open-source, paid tiers sell Zed-hosted AI and admin controls; ~90k GitHub stars",
+      "body_summary": "Zed is a code editor with a native Agent Panel: Zed's own built-in agent can read, write, and run code in a project, and the editor also hosts third-party coding agents (Claude, Codex, OpenCode, GitHub Copilot, Cursor, Gemini CLI, Qwen Code) through the Agent Client Protocol (ACP) — Zed renders the conversation/thread UI while the external agent process owns its own runtime and tool execution. Other editor features include inline edit predictions and multiplayer collaborative editing.",
+      "tags": [
+        "code-editor",
+        "rust",
+        "agent-client-protocol",
+        "ai-agent",
+        "multiplayer",
+        "tree-sitter",
+        "acp"
+      ],
+      "workflows": [],
+      "license": "mixed (GPL-3.0/Apache-2.0 core; paid Zed-hosted AI tiers)",
+      "security_flags": [],
+      "reviewed": "2026-10-29",
+      "path": "catalog/entries/zed.md"
     },
     {
       "name": "zero-to-mastery-ml",

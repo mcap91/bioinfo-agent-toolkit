@@ -41,3 +41,10 @@ Launched 2026-09-26.
 ## Security
 
 License not stated in source content. Model weights hosted on HuggingFace. Runs entirely locally on CPU.
+
+## Usage notes
+
+- Independent third-party test: built a part in 47 clicks in 3 seconds, every click correct; ~2ms per decision on a Mac CPU (vs. the ~1ms figure above, platform unspecified there) (source: https://www.instagram.com/reel/DeFJd9AHPVS/)
+- Same test: 3 custom parts built exactly as specified; a plate with 11 holes took 89 clicks, all correct (source: https://www.instagram.com/reel/DeFJd9AHPVS/)
+- Same test, failure modes: asked for 22 holes, it stopped 9 short — yet the repo's own automated check still passed the result, a validation gap; asked to round corners before other features, it looped (round, undo, round, undo) (source: https://www.instagram.com/reel/DeFJd9AHPVS/)
+- Reviewer states it only handles plates, holes, and patterns, not complex objects like an engine block — this conflicts with the entry's own community-demo claim of a 19-part twin-cylinder engine at IoU 1.0; unresolved discrepancy (source: https://www.instagram.com/reel/DeFJd9AHPVS/)

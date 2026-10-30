@@ -54,6 +54,8 @@ PolyStrata packages the Strata engine (which runs Qwen3.8-Flash-Next on consumer
 - Community reports in the launch thread: Tiel Coder 35B-A3B works unofficially (same qwen35moe arch) with ~4x faster prompt processing (1,000–1,500 tok/s) on an RTX 5060 Mobile 8GB; a ROCm port with INT8 KV cache ran Ornith 1.5 at ~85 tok/s / 200K context on a 20GB 7900 XT. The author recommends raising `--vram-reserve-mib` (e.g. 1024) on HIP rather than disabling the VRAM watchdog.
 - The GitHub account/repo was briefly unavailable during the launch period and was mirrored to Hugging Face before being restored.
 
+- AMD HIP port (0.1.42-poly.4, Linux only, contributed by iMilnb, build via `./setup.sh --family qwen36`) measured on an RX 7600 8GB: Qwen3.6 UD-Q2_K_XL 64 tok/s, Ornith Mini 35 tok/s (source: https://www.reddit.com/r/LocalLLM/comments/1x22inc/polystrata_strata_with_four_more_moe_models/)
+
 ## Security
 
 MIT (model files carry their own licenses). Binds to localhost by default; `--host 0.0.0.0` requires `--api-key`. README states no data leaves the machine; no telemetry described. Installer downloads engines and model files from GitHub releases and Hugging Face. Most engine code is from the Strata project; the added engine and models are labeled experimental and measured on two machines.

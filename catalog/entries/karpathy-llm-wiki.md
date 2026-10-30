@@ -33,3 +33,7 @@ This is the foundational pattern behind what kb-wiki implements. The three-layer
 ## Security
 
 This is a gist (idea document), not executable code. No dependencies, no installation, no runtime. No security concerns. License not specified on the gist — treating as NOASSERTION.
+
+## Usage notes
+
+- Cited in an Instagram reel critiquing the viral Obsidian-vault implementation of this pattern as underneath "just a pretty graph visualizer" running plain keyword search (grep), distinct from the three implementations reviewed properly ([[nashsu-llm-wiki]], [[nvk-llm-wiki]], and an uncorroborated "Lukastorian" source-citing agent with no findable repo); the reel's own blind benchmark (uncredited methodology) found none of the three outperformed plain Claude Code structured with [[model-workspace-protocol]]-style organized folders, which matched the best LLM-wiki tool's accuracy at roughly half the cost (source: https://www.instagram.com/reel/DfFSZDvN6oV/)

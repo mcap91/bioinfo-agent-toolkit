@@ -51,3 +51,7 @@ salt.md is a self-hosted documentation and project workspace (Notion-like) whose
 ## Security
 
 AGPL-3.0 (network-use copyleft applies if modified and offered as a service). Runs as a network service on port 8420; exposure depends on deployment. Install script is curl-piped to sh (review before running, or use the Docker image). Agent access is permission-scoped per user, with administrative actions denied to agents. No telemetry described in the README.
+
+## Usage notes
+
+- Author confirmed (r/vibecoding, Oct 2026): the wiki is currently searchable only through an agent, with a direct search UI acknowledged as a planned gap; the native iOS app in progress is specifically Swift, and Android has no work started yet. The marketing video for salt.md was itself produced with Claude Code (Opus 5.5), [[hyperframes]] for rendering, and [[elevenlabs]] for music/voiceover (source: https://www.reddit.com/r/vibecoding/comments/1wyxpef/look_what_i_built/)

@@ -479,5 +479,27 @@ describe('runProcessing', () => {
     expect(overlapped).toBe(false);
     expect(inFlight.max).toBe(2); // the a→c group in one slot, b in another
   });
+
+  it('graceful stop inside a group: after the stop file appears, the slot starts none of its group\'s remaining items', async () => {
+    const hint = 'Mentioned (unverified hints):\n- Docling: (no url)';
+    await writeQueueFile(dir, [item('a', { content: hint }), item('b', { content: hint }), item('c', { content: hint })]);
+    const stdout = await readFixture('single-turn-result.json');
+    installFakeSpawn(dir, {
+      a: { removeFromQueue: true, stdout, delayMs: 10 },
+      b: { removeFromQueue: true, stdout, delayMs: 10 },
+      c: { removeFromQueue: true, stdout, delayMs: 10 },
+    });
+    // The operator touches the stop file while item `a` is running.
+    const fake = mockSpawn.getMockImplementation()!;
+    mockSpawn.mockImplementationOnce(((cmd: string, args: string[], o: unknown) => {
+      void writeFile(path.join(dir, 'catalog', '.stop-processing'), '', 'utf-8');
+      return fake(cmd, args, o as never);
+    }) as unknown as typeof spawn);
+
+    await runProcessing({ dir, timeoutMs: 5000, concurrency: 2, group: true });
+
+    expect(mockSpawn).toHaveBeenCalledTimes(1);
+    expect(JSON.parse(await readFile(queueFilePath(dir), 'utf-8')).items.map((i: QueueItem) => i.key)).toEqual(['b', 'c']);
+  });
 });
 
