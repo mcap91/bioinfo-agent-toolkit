@@ -51,7 +51,7 @@
 // shim resolution on Windows (PATHEXT-aware, no shell:true required).
 import spawn from 'cross-spawn';
 import { readFile, writeFile, appendFile, readdir, mkdir, copyFile, cp, unlink } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
+import { existsSync, statSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -494,6 +494,9 @@ export interface RunProcessingOptions {
 export async function runProcessing(opts: RunProcessingOptions): Promise<void> {
   const { dir } = opts;
   const catalogRoot = opts.catalogRoot ?? dir;
+  // WK-0097 D1: only when --root was explicitly given — the default (catalogRoot === dir, the
+  // code repo's own checkout) always has catalog/ already, since repoRoot() found it that way.
+  if (opts.catalogRoot !== undefined) assertCatalogRootExists(opts.catalogRoot);
   const model = opts.model ?? 'sonnet';
   const timeoutMs = opts.timeoutMs ?? SESSION_TIMEOUT_MS;
   const recipe = await readFile(path.join(dir, 'catalog', 'recipe.md'), 'utf-8');
@@ -592,6 +595,32 @@ export function parseStringFlag(argv: string[], flag: string): string | undefine
   return raw;
 }
 
+/** WK-0097 D1 (root cause): a relative `--root` resolved against `process.cwd()`. `npm run` sets
+ * `process.cwd()` to the package directory running the script (packages/catalog-mcp) and sets
+ * `INIT_CWD` to the directory the operator actually invoked `npm` from (e.g. the repo root) —
+ * `npm run -w @catalog/mcp catalog:process -- --root toolkit-workbench/x` from the repo root
+ * silently nested the pilot catalog under packages/catalog-mcp/toolkit-workbench/x instead of
+ * `<repo>/toolkit-workbench/x`. Resolve against `INIT_CWD` when set, else `process.cwd()`. An
+ * absolute `--root` is returned unchanged. */
+export function resolveRootPath(root: string): string {
+  if (path.isAbsolute(root)) return root;
+  const base = process.env.INIT_CWD ?? process.cwd();
+  return path.resolve(base, root);
+}
+
+/** WK-0097 D1 (fail loud): when `--root` is given, `<root>/catalog/` must already exist — a
+ * pilot catalog is a deliberate copy, never implicitly created. Without this check, a typo'd or
+ * not-yet-copied `--root` falls through to `readQueue`'s ENOENT->{items:[]} fallback and the run
+ * "succeeds" having silently processed 0 items. Throws naming the resolved path instead; the
+ * default (no `--root`) path never calls this, so `readQueue`'s ENOENT behavior there is
+ * unchanged. */
+export function assertCatalogRootExists(catalogRoot: string): void {
+  const catalogDir = path.join(catalogRoot, 'catalog');
+  if (!existsSync(catalogDir) || !statSync(catalogDir).isDirectory()) {
+    throw new Error(`--root catalog directory not found: ${catalogDir}`);
+  }
+}
+
 async function main(): Promise<void> {
   const dir = repoRoot();
   const argv = process.argv.slice(2);
@@ -602,7 +631,7 @@ async function main(): Promise<void> {
   // transcript archive) at `<dir>/catalog/` instead of this repo's own; `--model <alias>` picks
   // the session model. Both default to the repo's own catalog and `sonnet` (WK-0092 OR-1).
   const root = parseStringFlag(argv, '--root');
-  const catalogRoot = root !== undefined ? path.resolve(root) : undefined;
+  const catalogRoot = root !== undefined ? resolveRootPath(root) : undefined;
   const model = parseStringFlag(argv, '--model');
   // Default unset — runProcessing falls back to SESSION_TIMEOUT_MS, unchanged from before this flag existed.
   const timeoutMs = parseItemTimeoutMs(argv);

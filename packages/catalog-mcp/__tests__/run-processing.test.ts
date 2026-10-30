@@ -25,6 +25,8 @@ import {
   runProcessing,
   parseStringFlag,
   parseItemTimeoutMs,
+  resolveRootPath,
+  assertCatalogRootExists,
   CATALOG_MCP_TOOLS,
   BUILTIN_TOOLS,
 } from '../src/adapter/run-processing.js';
@@ -663,6 +665,57 @@ describe('parseStringFlag (CLI, backs --root and --model)', () => {
   it('rejects a missing or flag-shaped value instead of silently consuming the next flag', () => {
     expect(() => parseStringFlag(['--root'], '--root')).toThrow();
     expect(() => parseStringFlag(['--root', '--model'], '--root')).toThrow();
+  });
+});
+
+describe('resolveRootPath (WK-0097 D1)', () => {
+  afterEach(() => {
+    vi.unstubAllEnvs();
+  });
+
+  it('resolves a relative --root against INIT_CWD, not process.cwd() — npm sets INIT_CWD to the directory the operator actually ran the command from, while process.cwd() for an npm run script is the package directory; without this, a pilot invoked from the repo root silently nests its catalog under packages/catalog-mcp/ instead of the repo root, and runs against an empty queue there', () => {
+    vi.stubEnv('INIT_CWD', '/repo/root');
+    expect(resolveRootPath('toolkit-workbench/x')).toBe(path.resolve('/repo/root', 'toolkit-workbench/x'));
+  });
+
+  it('falls back to process.cwd() when INIT_CWD is unset', () => {
+    vi.stubEnv('INIT_CWD', '');
+    delete process.env.INIT_CWD;
+    expect(resolveRootPath('toolkit-workbench/x')).toBe(path.resolve(process.cwd(), 'toolkit-workbench/x'));
+  });
+
+  it('leaves an absolute --root unchanged, ignoring INIT_CWD', () => {
+    vi.stubEnv('INIT_CWD', '/repo/root');
+    expect(resolveRootPath('/abs/pilot')).toBe('/abs/pilot');
+  });
+});
+
+describe('assertCatalogRootExists (WK-0097 D1, fail loud)', () => {
+  let dir: string;
+  beforeEach(async () => {
+    dir = await mkdtemp(path.join(os.tmpdir(), 'catalog-assert-root-'));
+  });
+  afterEach(async () => {
+    await rm(dir, { recursive: true, force: true });
+  });
+
+  it('throws naming the resolved path when <root>/catalog does not exist — otherwise a typo\'d or not-yet-copied --root falls through to readQueue\'s ENOENT->{items:[]} fallback and the pilot "succeeds" having silently processed 0 items', () => {
+    const missing = path.join(dir, 'does-not-exist');
+    expect(() => assertCatalogRootExists(missing)).toThrow(path.join(missing, 'catalog'));
+  });
+
+  it('does not throw when <root>/catalog exists', async () => {
+    await mkdir(path.join(dir, 'catalog'), { recursive: true });
+    expect(() => assertCatalogRootExists(dir)).not.toThrow();
+  });
+
+  it('runProcessing rejects before starting any session when --root points at a missing catalog dir', async () => {
+    mockSpawn.mockReset();
+    const missing = path.join(dir, 'pilot-not-copied-yet');
+    installFakeSpawn(missing, {});
+
+    await expect(runProcessing({ dir, catalogRoot: missing, timeoutMs: 5000 })).rejects.toThrow();
+    expect(mockSpawn).not.toHaveBeenCalled();
   });
 });
 

@@ -8,14 +8,16 @@ const MISSING_FILE = '/nonexistent/catalog-embedder/.venv/bin/python';
 vi.mock('../src/core/embedder-subprocess.js', () => ({
   runCatalogEmbedder: vi.fn(),
   venvPythonPath: vi.fn(),
+  codeRoot: vi.fn(),
 }));
 
 import { tools } from '../src/tools.js';
-import { runCatalogEmbedder, venvPythonPath } from '../src/core/embedder-subprocess.js';
+import { runCatalogEmbedder, venvPythonPath, codeRoot } from '../src/core/embedder-subprocess.js';
 
 const searchTool = tools.find((t) => t.name === 'search')!;
 const mockRunCatalogEmbedder = vi.mocked(runCatalogEmbedder);
 const mockVenvPythonPath = vi.mocked(venvPythonPath);
+const mockCodeRoot = vi.mocked(codeRoot);
 
 const EMPTY_RESPONSE = { results: [], swept_terms: [], lexical_total: 0, total: 0 };
 
@@ -23,6 +25,8 @@ describe('search tool', () => {
   beforeEach(() => {
     mockRunCatalogEmbedder.mockReset();
     mockVenvPythonPath.mockReset();
+    mockCodeRoot.mockReset();
+    mockCodeRoot.mockReturnValue('/code/root');
     mockVenvPythonPath.mockReturnValue(THIS_FILE); // real file on disk — existsSync passes
     mockRunCatalogEmbedder.mockResolvedValue({
       stdout: JSON.stringify(EMPTY_RESPONSE),
@@ -81,6 +85,17 @@ describe('search tool', () => {
 
     expect(result.error).toMatch(/not available/i);
     expect(mockRunCatalogEmbedder).not.toHaveBeenCalled();
+  });
+
+  it('WK-0097 D2: looks up the embedder venv under the code root, not the catalog dir — an out-of-repo CATALOG_ROOT (an isolated --root pilot copy) has no venv of its own, so a pilot without this would report search as unavailable even though the code checkout has a working venv', async () => {
+    const input = searchTool.inputSchema.parse({ dir: '/outside/pilot-catalog', query: 'ocr' });
+    await searchTool.handler(input);
+
+    expect(mockCodeRoot).toHaveBeenCalled();
+    expect(mockVenvPythonPath).toHaveBeenCalledWith('/code/root');
+    // The catalog data root is unchanged: the embedder still searches the pilot's own entries.
+    const args = mockRunCatalogEmbedder.mock.calls[0]![1];
+    expect(args).toEqual(expect.arrayContaining(['--dir', '/outside/pilot-catalog']));
   });
 
   it('returns a Search failed error when the subprocess exits non-zero', async () => {

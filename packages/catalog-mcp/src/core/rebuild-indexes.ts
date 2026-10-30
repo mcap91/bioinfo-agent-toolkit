@@ -7,7 +7,7 @@
 import { existsSync } from 'node:fs';
 import { generateAndWriteIndex, buildSearchIndex } from './index-gen.js';
 import { buildAndWriteGraph } from './graph/index.js';
-import { runCatalogEmbedder, venvPythonPath } from './embedder-subprocess.js';
+import { runCatalogEmbedder, venvPythonPath, codeRoot } from './embedder-subprocess.js';
 
 export interface RebuildCatalogIndexesOptions {
   dir: string;
@@ -35,7 +35,9 @@ export async function rebuildCatalogIndexes(
   const searchResult = await buildSearchIndex(dir);
   const graphResult = await buildAndWriteGraph(dir);
 
-  const venvPython = venvPythonPath(dir);
+  // WK-0097 D2: the venv lives in the code checkout, not `dir` (the catalog data root, possibly
+  // an isolated --root copy or an out-of-repo CATALOG_ROOT) — `--dir` below still targets `dir`.
+  const venvPython = venvPythonPath(codeRoot());
   let vectorResult: { status: string; reason?: string; stderr?: string };
   if (existsSync(venvPython)) {
     const { stderr, code } = await runCatalogEmbedder(venvPython, ['build', '--dir', dir]);

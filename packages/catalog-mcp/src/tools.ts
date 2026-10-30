@@ -21,7 +21,7 @@ import { existsSync } from 'node:fs';
 import { catalogPaths } from './core/config.js';
 import { buildAndWriteGraph, queryNeighbors, queryTopic } from './core/graph/index.js';
 import type { GraphExport } from './core/graph/types.js';
-import { runCatalogEmbedder, venvPythonPath } from './core/embedder-subprocess.js';
+import { runCatalogEmbedder, venvPythonPath, codeRoot } from './core/embedder-subprocess.js';
 
 export interface ToolDef {
   name: string;
@@ -75,7 +75,9 @@ export const tools: ToolDef[] = [
     }),
     handler: async (input) => {
       const dir = resolveDir(input.dir as string | undefined);
-      const venvPython = venvPythonPath(dir);
+      // WK-0097 D2: the venv lives in the code checkout, not whatever catalog dir `dir` resolved
+      // to (e.g. an out-of-repo CATALOG_ROOT) — `--dir` below still targets the catalog data.
+      const venvPython = venvPythonPath(codeRoot());
       if (!existsSync(venvPython)) {
         return {
           error: 'Semantic search not available. Run: cd packages/catalog-embedder && uv venv && uv pip install -r requirements.txt',
