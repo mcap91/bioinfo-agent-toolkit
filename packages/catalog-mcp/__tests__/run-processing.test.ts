@@ -27,6 +27,7 @@ import {
   BUILTIN_TOOLS,
 } from '../src/adapter/run-processing.js';
 import type { QueueItem } from '../src/core/schema.js';
+import { tools } from '../src/tools.js';
 
 const mockSpawn = vi.mocked(spawn);
 const mockRebuildCatalogIndexes = vi.mocked(rebuildCatalogIndexes);
@@ -160,11 +161,26 @@ describe('buildClaudeArgs', () => {
   it('pre-authorizes exactly the 3 built-ins plus the catalog MCP tools the single-item recipe calls, and nothing else', () => {
     const args = buildClaudeArgs('/tmp/mcp.json');
     const i = args.indexOf('--allowedTools');
-    const j = args.indexOf('--output-format'); // next flag after the variadic --allowedTools list
+    const j = args.indexOf('--disallowedTools'); // next flag after the variadic --allowedTools list
     const allowed = args.slice(i + 1, j);
     expect(allowed.sort()).toEqual([...BUILTIN_TOOLS, ...CATALOG_MCP_TOOLS].sort());
     // The recipe no longer calls `index` (code calls the index function directly, decision 6).
     expect(allowed).not.toContain('mcp__catalog__index');
+  });
+
+  it('denies every other catalog server tool, so the project settings allow list cannot reach scaffold/index/drain', () => {
+    // WK-0092: --allowedTools alone let a session call `scaffold` through .claude/settings.json.
+    const args = buildClaudeArgs('/tmp/mcp.json');
+    const i = args.indexOf('--disallowedTools');
+    const j = args.indexOf('--output-format');
+    const denied = args.slice(i + 1, j);
+    const serverTools = tools.map((t) => `mcp__catalog__${t.name}`);
+    // allowed + denied covers the whole server, with no overlap
+    expect([...denied, ...CATALOG_MCP_TOOLS].sort()).toEqual(serverTools.sort());
+    expect(denied.filter((d) => CATALOG_MCP_TOOLS.includes(d))).toEqual([]);
+    for (const name of ['scaffold', 'index', 'lint', 'drain', 'ingest', 'config']) {
+      expect(denied).toContain(`mcp__catalog__${name}`);
+    }
   });
 });
 

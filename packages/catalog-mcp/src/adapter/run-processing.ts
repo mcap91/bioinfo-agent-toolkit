@@ -57,6 +57,7 @@ import { readQueue } from '../core/queue.js';
 import { groupItems } from '../core/group-items.js';
 import { rebuildCatalogIndexes } from '../core/rebuild-indexes.js';
 import type { QueueItem } from '../core/schema.js';
+import { tools } from '../tools.js';
 
 // Scoped allowlist: the catalog MCP tools the single-item recipe calls, plus the agent's own
 // web search/fetch/read. No `mcp__catalog__index` — the recipe no longer calls it (design
@@ -73,6 +74,16 @@ export const CATALOG_MCP_TOOLS = [
 export const BUILTIN_TOOLS = ['WebSearch', 'WebFetch', 'Read'];
 const TOOLS_FLAG = BUILTIN_TOOLS.join(',');
 const ALLOWED_TOOLS = [...BUILTIN_TOOLS, ...CATALOG_MCP_TOOLS];
+// Every other catalog server tool is denied outright. `--allowedTools` alone does not limit them:
+// the session still loads the project's .claude/settings.json allow list, which permits
+// scaffold/index/lint/drain/etc. (WK-0092: a processing session called `scaffold` and left an
+// empty entry that blocked every later write-entry). Captured 2026-10-30 on claude 2.1.281: with
+// only `--allowedTools mcp__catalog__search`, a session asked to call `lint` ran it; adding
+// `--disallowedTools mcp__catalog__lint` removed `lint` from the session's tool list. Derived from
+// the server's own tool list, so a tool added to the server later is denied by default.
+export const DISALLOWED_CATALOG_TOOLS = tools
+  .map((t) => `mcp__catalog__${t.name}`)
+  .filter((name) => !CATALOG_MCP_TOOLS.includes(name));
 
 const SESSION_TIMEOUT_MS = 15 * 60 * 1000;
 
@@ -121,6 +132,7 @@ export function buildClaudeArgs(mcpConfigPath: string): string[] {
     '--mcp-config', mcpConfigPath,
     '--tools', TOOLS_FLAG,
     '--allowedTools', ...ALLOWED_TOOLS,
+    '--disallowedTools', ...DISALLOWED_CATALOG_TOOLS,
     '--output-format', 'json',
   ];
 }
