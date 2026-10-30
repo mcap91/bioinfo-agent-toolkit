@@ -14,7 +14,9 @@ a thing exists is a failed entry. Detail is the point.
 - Understand the item, then write that understanding down: components, steps, data structures,
   prompts, parameters, commands, design choices and the reasons given, numbers and who claimed
   them, failure modes, disagreements.
-- Target: a competent engineer could rebuild or adopt it from the entry alone, without the original.
+- Target: any later question about the thing is answerable from the entry alone, with no re-fetch of the
+  source; and the entry names exactly what to fetch for more when the operator decides to adopt it (the
+  repo, the docs page, the paper).
 - Do not copy code line by line. A short snippet is fine only where it defines an interface (a
   prompt template, a config schema, a CLI command, a function signature).
 - Describe factually. No recommendations or verdicts about whether the operator should use it.
@@ -37,7 +39,10 @@ queue. Never call `queue {action:list}`.
 1. **Get the source text.** If the item has `content`, use it. Otherwise call `fetch-url {url}` with
    the item's url. If the result has `belowThreshold: true`, call `queue {action:return,
    key:<key>, reason:"empty-fetch"}` and stop.
-2. **List the subjects.** Name every tool, repo, technique or idea the item actually covers. Junk
+2. **List the subjects.** Name every tool, repo, technique or idea the item actually covers. A removed or
+   deleted post ("removed by Reddit's filters" and similar) is page chrome, not content: ignore the chrome,
+   and if a surviving comment or the item names a repo or tool, that repo or tool is the subject — capture
+   it. Junk with nothing salvageable
    (spam, nothing usable) → `queue {action:return, key:<key>, reason:"not-cataloguable"}` and stop.
    An item about a technique, a strategy, an experience report, a design philosophy or a domain the
    operator follows (including game development and creative tools) is cataloguable.
